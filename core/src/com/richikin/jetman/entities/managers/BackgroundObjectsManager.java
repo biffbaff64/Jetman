@@ -13,6 +13,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class BackgroundObjectsManager
 {
@@ -52,21 +53,21 @@ public class BackgroundObjectsManager
         {
             {  82,  554},    // 0
             { 196,  354},    // 1
-            { 440,  484},    // 2
+            {1440,  484},    // 2
             { 528,  401},    // 3
-            { 756,  562},    // 4
+            {1756,  562},    // 4
             { 792,  401},    // 5
             { 924,  484},    // 6
             { 988,  562},    // 7
-            {1069,  320},    // 8
+            {1069,  420},    // 8
             {1124,  476},    // 9
-            {  69,  434},    // 10
+            {1434,  669},    // 10
             { 205,  611},    // 11
             { 280,  488},    // 12
-            { 342,  356},    // 13
+            { 342,  856},    // 13
             { 661,  495},    // 14
-            { 695,  332},    // 15
-            { 967,  392},    // 16
+            {1695,  632},    // 15
+            { 967,  792},    // 16
         };
 
     public void addTwinkleStars()
@@ -74,6 +75,8 @@ public class BackgroundObjectsManager
         for (int[] position : twinklestarPositions)
         {
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
+
+            Trace.dbg("X: " + position[0] + ", Y: " + position[1]);
 
             EntityDescriptor entityDescriptor = new EntityDescriptor();
             entityDescriptor._ASSET    = app.assets.getAnimationRegion(asset);

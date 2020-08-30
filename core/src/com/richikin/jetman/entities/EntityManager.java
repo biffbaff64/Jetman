@@ -8,6 +8,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
+import com.richikin.jetman.entities.managers.PlayerManager;
 import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.entities.systems.RenderSystem;
@@ -79,11 +80,6 @@ public class EntityManager implements IEntityManager
     public void initialise()
     {
         Trace.__FILE_FUNC();
-
-        BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
-
-        manager.addUFOs(6 + MathUtils.random(4));
-        manager.addTwinkleStars();
     }
 
     @Override
@@ -330,10 +326,23 @@ public class EntityManager implements IEntityManager
 
     public void initialisePlayer()
     {
+        PlayerManager playerManager = new PlayerManager(app);
+        playerManager.setSpawnPoint();
+        playerManager.createPlayer();
     }
 
     public void initialiseForLevel()
     {
+        BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
+
+        manager.addUFOs(6 + MathUtils.random(4));
+        manager.addTwinkleStars();
+
+        if (AABBData.boxes().size == 0)
+        {
+            app.mapCreator.addDummyCollisionObject();
+            initialisePlayer();
+        }
     }
 
     @Override
