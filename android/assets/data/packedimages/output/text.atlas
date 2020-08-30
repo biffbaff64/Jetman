@@ -1,0 +1,104 @@
+
+text.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+TeleportMessage
+  rotate: false
+  xy: 2, 842
+  size: 910, 78
+  orig: 910, 78
+  offset: 0, 0
+  index: -1
+base_destroyed
+  rotate: false
+  xy: 1028, 932
+  size: 910, 78
+  orig: 910, 78
+  offset: 0, 0
+  index: -1
+defend_the_rover
+  rotate: false
+  xy: 2, 510
+  size: 784, 90
+  orig: 784, 90
+  offset: 0, 0
+  index: -1
+gameover
+  rotate: false
+  xy: 2, 160
+  size: 520, 348
+  orig: 520, 348
+  offset: 0, 0
+  index: -1
+getready
+  rotate: false
+  xy: 1028, 785
+  size: 650, 145
+  orig: 650, 145
+  offset: 0, 0
+  index: -1
+getready_player_one
+  rotate: false
+  xy: 914, 633
+  size: 650, 150
+  orig: 650, 150
+  offset: 0, 0
+  index: -1
+getready_player_two
+  rotate: false
+  xy: 914, 481
+  size: 650, 150
+  orig: 650, 150
+  offset: 0, 0
+  index: -1
+missilewarning
+  rotate: false
+  xy: 2, 762
+  size: 910, 78
+  orig: 910, 78
+  offset: 0, 0
+  index: -1
+new_bomb
+  rotate: false
+  xy: 2, 682
+  size: 910, 78
+  orig: 910, 78
+  offset: 0, 0
+  index: -1
+new_hiscore
+  rotate: false
+  xy: 2, 2
+  size: 600, 156
+  orig: 600, 156
+  offset: 0, 0
+  index: -1
+new_rovergun
+  rotate: false
+  xy: 2, 602
+  size: 910, 78
+  orig: 910, 78
+  offset: 0, 0
+  index: -1
+paused
+  rotate: false
+  xy: 2, 922
+  size: 1024, 88
+  orig: 1024, 88
+  offset: 0, 0
+  index: -1
+test_title
+  rotate: false
+  xy: 524, 264
+  size: 572, 62
+  orig: 572, 62
+  offset: 0, 0
+  index: -1
+title_small
+  rotate: false
+  xy: 524, 328
+  size: 580, 151
+  orig: 580, 151
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,994 @@
+{
+  "max_level": 34,
+
+  "levels": [
+    {
+      "1": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "2": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "3": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "4": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "5": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "6": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "7": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "8": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "9": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "10": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "11": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "12": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "13": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "14": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "15": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "16": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "17": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "18": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "19": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "20": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "21": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "22": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "23": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "24": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "25": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "26": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "27": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "28": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "29": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "30": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "31": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "32": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "33": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ],
+      "34": [
+        {
+          "fire_rate": 200,
+          "positions": [
+            {
+              "bomb": 10,
+              "rover": -2.0,
+              "teleport1": -5.5,
+              "teleport2": 39.5,
+              "gun": 40.0,
+              "base": -2.0,
+              "defender1": -6.0,
+              "defender2": 8.0
+            }
+          ],
+          "max_asteroids": 4,
+          "max_green_blocks": 6,
+          "max_rover_wheels": 0,
+          "max_star_spinners": 0,
+          "max_3balls": 0,
+          "max_twinkles": 0,
+          "max_blobs": 0,
+          "max_dogs": 0,
+          "max_topspinners": 0,
+          "max_3legs_alien": 0,
+          "max_3balls_ufo": 0,
+          "max_spinning_balls": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "inputs":
+  [
+    {
+      "_key": "input jump",
+      "__value": 62
+    },
+    {
+      "_key": "input left",
+      "__value": 54
+    },
+    {
+      "_key": "input attack",
+      "__value": 29
+    },
+    {
+      "_key": "input right",
+      "__value": 52
+    },
+    {
+      "_key": "input pause",
+      "__value": 131
+    },
+    {
+      "_key": "input settings",
+      "__value": 43
+    },
+    {
+      "_key": "input action",
+      "__value": 44
+    }
+  ],
+"volumes":
+  [
+    {
+      "_key": "fx volume",
+      "__default": 5,
+      "__value": 0
+    },
+    {
+      "_key": "music volume",
+      "__default": 5,
+      "__value": 0
+    }
+  ],
+"game flags":
+  [
+    {
+      "_key": "play services",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "animating tiles",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "spawn points",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "force prefs reset",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "show game buttons",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "game controllers",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "show debug",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "music enabled",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "god mode",
+      "__default": false,
+      "_enabled": true
+    },
+    {
+      "_key": "dev mode",
+      "__default": false,
+      "_enabled": true
+    },
+    {
+      "_key": "game trace",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "two player mode",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "ashley ecs",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "show hints",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "show fps",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "button boxes",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "disable enemies",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "android on desktop",
+      "__default": false,
+      "__enabled": true
+    },
+    {
+      "_key": "on screen controller",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "challenges",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "gl profiler",
+      "__default": false,
+      "__enabled": true
+    },
+    {
+      "_key": "scroll demo",
+      "__default": false,
+      "__enabled": false
+    },
+    {
+      "_key": "shader program",
+      "__default": false,
+      "__enabled": false
+    },
+    {
+      "_key": "cull sprites",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "sprite boxes",
+      "__default": false,
+      "__enabled": false
+    },
+    {
+      "_key": "using box2d",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "disable front end",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "vibrations",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "sound enabled",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "tile boxes",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "b2d renderer",
+      "__default": false,
+      "_enabled": false
+    },
+    {
+      "_key": "achievements",
+      "__default": true,
+      "__enabled": true
+    }
+  ],
+"enemies":
+[
+    {
+      "_key": "missiles",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "3legs alien",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "asteroids",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "transporters",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "star spinners",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "3balls",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "dogs",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "eye bitter",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "alien wheel",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "3balls ufo",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "plus blobs",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "twinkles",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "progress bars",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "defenders",
+      "__default": true,
+      "_enabled": true
+    },
+    {
+      "_key": "topspinner",
+      "__default": true,
+      "_enabled": false
+    },
+    {
+      "_key": "rovers",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "player",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "bombs",
+      "__default": true,
+      "__enabled": true
+    },
+    {
+      "_key": "green blocks",
+      "__default": true,
+      "__enabled": false
+    },
+    {
+      "_key": "spinning balls",
+      "__default": true,
+      "__enabled": false
+    }
+  ]
+}

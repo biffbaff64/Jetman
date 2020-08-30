@@ -1,0 +1,176 @@
+
+Lunar Jetman re-make is a re-imagining of the ZX Spectrum classic 'Lunar Jetman',
+originally produced by 'Ultimate Play The Game' (later known as 'Rare').
+
+
+The Aim Of The Game
+===================
+
+The aim of the game is to save the Planet Earth from destruction. Each alien base
+will launch 2 missiles, one at Earth and one at the Moon Rover, once a countdown timer,
+represented by the Yellow progress bar at the top of the screen, has expired.
+The two missiles are connected by super-advanced alien wifi. Destroy one, and the other
+will explode too.
+Handy that, eh?
+
+To destroy the alien bases Jetman will have to travel to each base and drop a bomb
+(which spawns by the rover) on it. Each time the base is destroyed a new wave begins.
+Each wave will become gradually more challenging and also introduce new enemies.
+
+If the timer runs out before the base is destroyed and the missile is launched, it is
+still possible to save the rover. In order to do this the missile will need to be shot
+down or blocked from hitting the rover by sacrificing a life.
+
+
+The Aliens
+==========
+
+The aliens that inhabit this moon are after your blood, and are hell bent on destroying
+Earth AND your rover. In any order, they're not fussy!
+
+    Bouncing Wheel
+    --------------
+    Not an alien as such. They come from somewhere though, not really sure where. They
+    just bounce along the moonscape and will kill Jetman on contact.
+
+    Green Block
+    -----------
+    Travels horizontally across the screen, at roughly the same speed as Jetman.
+
+    Asteroids
+    ---------
+    Enter the screen diagonally and will kill Jetman on contact. They will occasionally
+    leave a crater behind if they hit the ground.
+
+    3 Ball Spinner
+    --------------
+    These travel along in a fashion that gives the impression that they are climbing
+    up and down invisible stairs.
+
+    Sparkle
+    -------
+    Exactly the same as the 3 Ball Spinner, but with added sparkle!
+
+    Star Spinner
+    ------------
+    Travels horizontally across the screen, at roughly the same speed as Jetman.
+
+    The Blob
+    --------
+    Will follow Jetman around the screen, or hover above the Rover when jetman
+    is aboard.
+
+    The Dog
+    -------
+    Will follow Jetman around the screen, or hover above the Rover when jetman
+    is aboard.
+
+    Top Spinner
+    -----------
+    This is a magnetic alien, and will happily pinch a Teleporter and drag it halfway
+    across the moonscape, dumping it in the middle of nowhere (which may be in mid-air!).
+    These aliens can also use the Teleporters to move around.
+
+    Tubular Grabber
+    ---------------
+    This is a magnetic alien, and will happily pinch a Teleporter and drag it halfway
+    across the moonscape, dumping it in the middle of nowhere (which may be in mid-air!).
+    These aliens can also use the Teleporters to move around.
+
+    Shooter
+    -------
+    These aliens will patrol the moonscape and shower Jetman with a hail of bullets.
+    Shoot them before they get the chance!
+
+    Saturn
+    ------
+    Acts in the same way as The Blob, only with more speed and more accuracy!
+
+
+The Jetpac
+==========
+
+Jetman can walk on the lunar landscape or fly using the Jet Pac. The Jet Pac is
+equipped with a Quad Photon Laser Phaser to blast any alien nasty that gets in the
+way. Use it all the time. There is unlimited laser power.
+
+There is limited fuel within the Jet Pac - so you`ll have to refuel often at the Lunar
+Rover. Do this by standing in front of the Rovers rear wheel and pressing <ACTION>. Jetman
+can carry items that are scattered around the lunar landscape, but remember that the items
+are heavy, so the Jet Pac will react slower and use more fuel.
+
+If Jetman walks over or lands on a hole he will hover and use Jet Pac fuel.
+
+
+Extra Lives
+===========
+
+An extra life will be awarded after every 4th level.
+
+Teleport Booths
+===============
+
+Jetman will come across two of these on the lunar landscape. To enter, stand in front of
+the teleporter and press <ACTION>, and Jetman will teleport across the landscape to the
+other booth. Jetman will automatically exit this booth on arrival.
+
+Jetman can enter the booth when carrying a bomb or blaster, which can be useful. He can
+also pick up a booth by landing on top and pressing <ACTION>.
+
+Be careful because there are 2 aliens which can also use the teleporters. If Jetman is
+in front of a teleporter when an alien appears out of it, he will die.
+
+
+The Moon Rover
+==============
+
+The Moon Rover has room for one Jetman and an unlimited supply of bridging platforms
+and Jetpac fuel. There is enough room at the back of the rover to hold one object, such
+as a Bomb, which can be found scattered around the lunar landscape. The Rover can also be
+equipped with a blaster which can be used to shoot down aliens.
+
+Jetman can enter the Rover by moving into position between the wheels and pressing
+the <ACTION> button. To exit the Rover, press the same button.
+
+When Jetman is inside the rover he is invulnerable to everything other than the alien
+missile and the alien base defence towers. The rover cannot travel over holes in the
+terrain and any holes encountered will need to be repaired in order to take the rover
+any further. Jetman can alternatively carry the bomb to the alien base himself but that
+can be very dangerous due to limited jetpack fuel and also the possibility of encountering
+any enemies. If time is running out this can however be the only viable option. Bridging
+gaps in the terrain can be achieved by collecting a bridge section from the rover and
+placing them over the gaps. Bridge sections can be collected from the rover by standing
+in front of the rovers rear wheel and pressing the <ACTION> button.
+
+The rover can be used to carry the bomb to the alien base in safety. It can also be
+equipped with a blaster to shoot enemies. To place the bomb on the rover it needs to be
+dropped onto the flat rear section of the rover.
+
+
+The Missile Base
+================
+
+Jetman MUST destroy the missile base before the missiles are launched. On the status
+panel there is a timer bar which, when it runs out, will signal the launching of two
+missiles. One of these missiles is aimed at Earth and the other is aimed at the Moon Rover.
+This missile can be shot down by Jetman and will award 500 points. Destroying this missile
+will automatically destroy the other missile AND the base!
+
+Destroying a base ends the level and activates the next. There will be another missile
+base located somewhere on the landscape, and more aliens to fight off.
+
+
+
+
+Do You own a Windows PC?
+===========================
+
+If you have a Windows PC which meets minimum requirements, there is also a PC version of
+this game available for FREE download!
+
+Minimum PC system requirements: Windows 7 or greater with a DirectX 11 compatible
+graphics card.
+
+FREE Download available from: https://nebula-design.itch.io/lunar-jetman-remake
+
+

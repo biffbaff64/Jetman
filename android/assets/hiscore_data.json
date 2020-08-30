@@ -1,0 +1,68 @@
+[
+	{
+		"rank": 1,
+		"level": 1,
+		"score": 10000,
+		"name": "JETMAN"
+	},
+	{
+		"rank": 2,
+		"level": 1,
+		"score": 9000,
+		"name": "MONTY"
+	},
+	{
+		"rank": 3,
+		"level": 1,
+		"score": 8000,
+		"name": "JS WILLY"
+	},
+	{
+		"rank": 4,
+		"level": 1,
+		"score": 7000,
+		"name": "MARIO"
+	},
+	{
+		"rank": 5,
+		"level": 1,
+		"score": 6000,
+		"name": "HORACE"
+	},
+	{
+		"rank": 6,
+		"level": 1,
+		"score": 5000,
+		"name": "KONG"
+	},
+	{
+		"rank": 7,
+		"level": 1,
+		"score": 4000,
+		"name": "PACMAN"
+	},
+	{
+		"rank": 8,
+		"level": 1,
+		"score": 3000,
+		"name": "LUIGI"
+	},
+	{
+		"rank": 9,
+		"level": 1,
+		"score": 2000,
+		"name": "THING"
+	},
+	{
+		"rank": 10,
+		"level": 1,
+		"score": 1000,
+		"name": "CHUCKY"
+	},
+	{
+		"rank": 11,
+		"level": 1,
+		"score": 0,
+		"name": "TABLE END"
+	}
+]

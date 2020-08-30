@@ -1,0 +1,307 @@
+
+animations.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+3_balls
+  rotate: false
+  xy: 1386, 1685
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+3balls
+  rotate: false
+  xy: 2, 536
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+3legs
+  rotate: false
+  xy: 2, 342
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+asteroid02_redglow
+  rotate: false
+  xy: 2, 730
+  size: 480, 240
+  orig: 480, 240
+  offset: 0, 0
+  index: -1
+asteroid03
+  rotate: false
+  xy: 904, 1637
+  size: 480, 240
+  orig: 480, 240
+  offset: 0, 0
+  index: -1
+background_ufo
+  rotate: false
+  xy: 806, 1473
+  size: 80, 4
+  orig: 80, 4
+  offset: 0, 0
+  index: -1
+base_instructions
+  rotate: false
+  xy: 1866, 1890
+  size: 128, 69
+  orig: 128, 69
+  offset: 0, 0
+  index: -1
+bomb
+  rotate: false
+  xy: 1290, 1582
+  size: 84, 53
+  orig: 84, 53
+  offset: 0, 0
+  index: -1
+defence_sparkle
+  rotate: false
+  xy: 610, 1017
+  size: 360, 36
+  orig: 360, 36
+  offset: 0, 0
+  index: -1
+enter_rover
+  rotate: false
+  xy: 1460, 984
+  size: 128, 69
+  orig: 128, 69
+  offset: 0, 0
+  index: -1
+enter_teleporter
+  rotate: false
+  xy: 1590, 984
+  size: 128, 69
+  orig: 128, 69
+  offset: 0, 0
+  index: -1
+explosion64
+  rotate: false
+  xy: 1578, 1055
+  size: 256, 192
+  orig: 256, 192
+  offset: 0, 0
+  index: -1
+eyebitter
+  rotate: false
+  xy: 2, 148
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+green_block
+  rotate: false
+  xy: 1578, 1249
+  size: 288, 192
+  orig: 288, 192
+  offset: 0, 0
+  index: -1
+jetman_defence
+  rotate: false
+  xy: 2, 98
+  size: 520, 48
+  orig: 520, 48
+  offset: 0, 0
+  index: -1
+jm_spinningball
+  rotate: false
+  xy: 904, 1443
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+launcher_base
+  rotate: false
+  xy: 1720, 1002
+  size: 120, 51
+  orig: 120, 51
+  offset: 0, 0
+  index: -1
+launcher_top
+  rotate: false
+  xy: 2, 1479
+  size: 900, 480
+  orig: 900, 480
+  offset: 0, 0
+  index: -1
+launcher_top_empty
+  rotate: false
+  xy: 484, 850
+  size: 90, 120
+  orig: 90, 120
+  offset: 0, 0
+  index: -1
+lives
+  rotate: false
+  xy: 610, 1058
+  size: 64, 45
+  orig: 64, 45
+  offset: 0, 0
+  index: -1
+ljm_death
+  rotate: false
+  xy: 1772, 1773
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+ljm_fly2
+  rotate: false
+  xy: 1218, 973
+  size: 240, 80
+  orig: 240, 80
+  offset: 0, 0
+  index: -1
+ljm_stand
+  rotate: false
+  xy: 1604, 1961
+  size: 400, 80
+  orig: 400, 80
+  offset: 0, 0
+  index: -1
+ljm_walk2
+  rotate: false
+  xy: 904, 1879
+  size: 960, 80
+  orig: 960, 80
+  offset: 0, 0
+  index: -1
+player_appear
+  rotate: false
+  xy: 2, 1961
+  size: 1600, 80
+  orig: 1600, 80
+  offset: 0, 0
+  index: -1
+player_laser
+  rotate: false
+  xy: 610, 1007
+  size: 324, 8
+  orig: 324, 8
+  offset: 0, 0
+  index: -1
+plus_blob
+  rotate: false
+  xy: 806, 1249
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+rocket
+  rotate: false
+  xy: 610, 976
+  size: 240, 29
+  orig: 240, 29
+  offset: 0, 0
+  index: -1
+rover
+  rotate: false
+  xy: 2, 972
+  size: 606, 131
+  orig: 606, 131
+  offset: 0, 0
+  index: -1
+rover_boot
+  rotate: false
+  xy: 1720, 986
+  size: 108, 14
+  orig: 108, 14
+  offset: 0, 0
+  index: -1
+rover_gun_modified
+  rotate: false
+  xy: 972, 994
+  size: 244, 59
+  orig: 244, 59
+  offset: 0, 0
+  index: -1
+rover_wheel
+  rotate: false
+  xy: 484, 780
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+starspinner
+  rotate: false
+  xy: 806, 1055
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+topspin
+  rotate: false
+  xy: 1386, 1491
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+tower
+  rotate: false
+  xy: 676, 1093
+  size: 128, 384
+  orig: 128, 384
+  offset: 0, 0
+  index: -1
+transporter_v3
+  rotate: false
+  xy: 2, 1105
+  size: 672, 372
+  orig: 672, 372
+  offset: 0, 0
+  index: -1
+twinkle_star1
+  rotate: false
+  xy: 2, 50
+  size: 552, 46
+  orig: 552, 46
+  offset: 0, 0
+  index: -1
+twinkle_star2
+  rotate: false
+  xy: 2, 2
+  size: 552, 46
+  orig: 552, 46
+  offset: 0, 0
+  index: -1
+twinkles2
+  rotate: false
+  xy: 1192, 1249
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+ufo_bullet
+  rotate: false
+  xy: 1866, 1879
+  size: 90, 9
+  orig: 90, 9
+  offset: 0, 0
+  index: -1
+verticalblueflare
+  rotate: false
+  xy: 388, 216
+  size: 64, 512
+  orig: 64, 512
+  offset: 0, 0
+  index: -1
+wheel
+  rotate: false
+  xy: 1192, 1055
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+zap
+  rotate: false
+  xy: 1290, 1443
+  size: 572, 46
+  orig: 572, 46
+  offset: 0, 0
+  index: -1

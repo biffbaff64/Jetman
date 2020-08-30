@@ -1,0 +1,307 @@
+
+ljm_objects.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arrow_down
+  rotate: false
+  xy: 1918, 1364
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+arrow_left
+  rotate: false
+  xy: 2, 36
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+arrow_right
+  rotate: false
+  xy: 1284, 706
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+background_star01
+  rotate: false
+  xy: 1461, 1018
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+background_star02
+  rotate: false
+  xy: 1527, 1094
+  size: 46, 46
+  orig: 46, 46
+  offset: 0, 0
+  index: -1
+bar
+  rotate: false
+  xy: 1028, 310
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bar9
+  rotate: false
+  xy: 1241, 352
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bar9patch
+  rotate: false
+  xy: 392, 166
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bar_divider
+  rotate: false
+  xy: 1451, 841
+  size: 8, 26
+  orig: 8, 26
+  offset: 0, 0
+  index: -1
+bar_green
+  rotate: false
+  xy: 324, 90
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_green9
+  rotate: false
+  xy: 1334, 728
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_grey
+  rotate: false
+  xy: 1461, 990
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_orange
+  rotate: false
+  xy: 1527, 1066
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_orange9
+  rotate: false
+  xy: 1509, 1038
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_red
+  rotate: false
+  xy: 1575, 1114
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_red9
+  rotate: false
+  xy: 852, 276
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_yellow
+  rotate: false
+  xy: 1062, 316
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bar_yellow9
+  rotate: false
+  xy: 392, 138
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+bridge
+  rotate: false
+  xy: 802, 273
+  size: 48, 29
+  orig: 48, 29
+  offset: 0, 0
+  index: -1
+button_panel
+  rotate: false
+  xy: 2, 448
+  size: 1280, 240
+  orig: 1280, 240
+  offset: 0, 0
+  index: -1
+complete_star
+  rotate: false
+  xy: 392, 200
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+dialog_background
+  rotate: false
+  xy: 2, 118
+  size: 388, 184
+  orig: 388, 184
+  offset: 0, 0
+  index: -1
+divider
+  rotate: false
+  xy: 1028, 344
+  size: 211, 40
+  orig: 211, 40
+  offset: 0, 0
+  index: -1
+hiscore
+  rotate: false
+  xy: 2, 86
+  size: 320, 30
+  orig: 320, 30
+  offset: 0, 0
+  index: -1
+hud_bottom
+  rotate: false
+  xy: 2, 1052
+  size: 1280, 360
+  orig: 1280, 360
+  offset: 0, 0
+  index: -1
+hud_top
+  rotate: false
+  xy: 2, 690
+  size: 1280, 360
+  orig: 1280, 360
+  offset: 0, 0
+  index: -1
+lives
+  rotate: false
+  xy: 1686, 1210
+  size: 64, 45
+  orig: 64, 45
+  offset: 0, 0
+  index: -1
+loadbar_background
+  rotate: false
+  xy: 392, 266
+  size: 408, 36
+  orig: 408, 36
+  offset: 0, 0
+  index: -1
+menu_glow_blue01
+  rotate: false
+  xy: 2, 304
+  size: 1024, 80
+  orig: 1024, 80
+  offset: 0, 0
+  index: -1
+menu_glow_green01
+  rotate: false
+  xy: 2, 386
+  size: 1280, 60
+  orig: 1280, 60
+  offset: 0, 0
+  index: -1
+poppy
+  rotate: false
+  xy: 1461, 1066
+  size: 64, 74
+  orig: 64, 74
+  offset: 0, 0
+  index: -1
+red7logo
+  rotate: false
+  xy: 1686, 1257
+  size: 230, 155
+  orig: 230, 155
+  offset: 0, 0
+  index: -1
+red7logo_large
+  rotate: false
+  xy: 1284, 1142
+  size: 400, 270
+  orig: 400, 270
+  offset: 0, 0
+  index: -1
+red7logo_small
+  rotate: false
+  xy: 1284, 756
+  size: 165, 111
+  orig: 165, 111
+  offset: 0, 0
+  index: -1
+solid_black32x32
+  rotate: false
+  xy: 458, 232
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_blue32x32
+  rotate: false
+  xy: 1686, 1176
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_clear32x32
+  rotate: false
+  xy: 1752, 1223
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_green32x32
+  rotate: false
+  xy: 1918, 1330
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_lime32x32
+  rotate: false
+  xy: 1968, 1380
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_red32x32
+  rotate: false
+  xy: 2, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_white32x32
+  rotate: false
+  xy: 52, 52
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+solid_yellow32x32
+  rotate: false
+  xy: 1284, 672
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+xmas_tree
+  rotate: false
+  xy: 1284, 869
+  size: 175, 271
+  orig: 175, 271
+  offset: 0, 0
+  index: -1

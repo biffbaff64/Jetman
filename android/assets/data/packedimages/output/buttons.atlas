@@ -1,0 +1,461 @@
+
+buttons.png
+size: 2048,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+arrow_left_blue
+  rotate: false
+  xy: 758, 148
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+arrow_left_blue_pressed
+  rotate: false
+  xy: 826, 148
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+arrow_right_blue
+  rotate: false
+  xy: 1777, 382
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+arrow_right_blue_pressed
+  rotate: false
+  xy: 1845, 348
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+btn_google_signin_dark
+  rotate: false
+  xy: 1854, 464
+  size: 191, 46
+  orig: 191, 46
+  offset: 0, 0
+  index: -1
+btn_google_signin_dark_disabled
+  rotate: false
+  xy: 388, 386
+  size: 233, 56
+  orig: 233, 56
+  offset: 0, 0
+  index: -1
+btn_google_signin_dark_pressed
+  rotate: false
+  xy: 1160, 414
+  size: 191, 46
+  orig: 191, 46
+  offset: 0, 0
+  index: -1
+btn_google_signout_dark
+  rotate: false
+  xy: 358, 128
+  size: 191, 46
+  orig: 191, 46
+  offset: 0, 0
+  index: -1
+btn_google_signout_dark_pressed
+  rotate: false
+  xy: 1854, 416
+  size: 191, 46
+  orig: 191, 46
+  offset: 0, 0
+  index: -1
+button1p
+  rotate: false
+  xy: 906, 234
+  size: 121, 23
+  orig: 121, 23
+  offset: 0, 0
+  index: -1
+button1p_pressed
+  rotate: false
+  xy: 1150, 321
+  size: 121, 23
+  orig: 121, 23
+  offset: 0, 0
+  index: -1
+button2p
+  rotate: false
+  xy: 358, 7
+  size: 142, 23
+  orig: 142, 23
+  offset: 0, 0
+  index: -1
+button2p_pressed
+  rotate: false
+  xy: 906, 259
+  size: 142, 23
+  orig: 142, 23
+  offset: 0, 0
+  index: -1
+buttonExit
+  rotate: false
+  xy: 1050, 306
+  size: 98, 44
+  orig: 98, 44
+  offset: 0, 0
+  index: -1
+buttonExit_pressed
+  rotate: false
+  xy: 1050, 260
+  size: 98, 44
+  orig: 98, 44
+  offset: 0, 0
+  index: -1
+buttonFXOff
+  rotate: false
+  xy: 1981, 350
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonFXOn
+  rotate: false
+  xy: 1240, 255
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonHome
+  rotate: false
+  xy: 1218, 189
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonHomePressed
+  rotate: false
+  xy: 1284, 189
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonMusicOff
+  rotate: false
+  xy: 894, 100
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonMusicOn
+  rotate: false
+  xy: 960, 100
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+buttonOptions
+  rotate: false
+  xy: 358, 80
+  size: 188, 46
+  orig: 188, 46
+  offset: 0, 0
+  index: -1
+buttonOptions_pressed
+  rotate: false
+  xy: 358, 32
+  size: 188, 46
+  orig: 188, 46
+  offset: 0, 0
+  index: -1
+buttonStart
+  rotate: false
+  xy: 736, 462
+  size: 315, 48
+  orig: 315, 48
+  offset: 0, 0
+  index: -1
+buttonStart_pressed
+  rotate: false
+  xy: 1053, 462
+  size: 315, 48
+  orig: 315, 48
+  offset: 0, 0
+  index: -1
+button_achievements
+  rotate: false
+  xy: 548, 2
+  size: 76, 124
+  orig: 76, 124
+  offset: 0, 0
+  index: -1
+button_achievements_pressed
+  rotate: false
+  xy: 570, 218
+  size: 76, 124
+  orig: 76, 124
+  offset: 0, 0
+  index: -1
+button_drop
+  rotate: false
+  xy: 244, 232
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_drop_pressed
+  rotate: false
+  xy: 244, 118
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_e
+  rotate: false
+  xy: 1913, 348
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+button_fire
+  rotate: false
+  xy: 244, 4
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_fire_pressed
+  rotate: false
+  xy: 648, 232
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_k
+  rotate: false
+  xy: 906, 166
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+button_l
+  rotate: false
+  xy: 974, 166
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+button_no
+  rotate: false
+  xy: 244, 346
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+button_no_pressed
+  rotate: false
+  xy: 721, 352
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+button_open_leaderboard
+  rotate: false
+  xy: 2, 110
+  size: 240, 60
+  orig: 240, 60
+  offset: 0, 0
+  index: -1
+button_open_leaderboard_pressed
+  rotate: false
+  xy: 2, 48
+  size: 240, 60
+  orig: 240, 60
+  offset: 0, 0
+  index: -1
+button_pause
+  rotate: false
+  xy: 1150, 204
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+button_show_achievements
+  rotate: false
+  xy: 1370, 450
+  size: 240, 60
+  orig: 240, 60
+  offset: 0, 0
+  index: -1
+button_show_achievements_pressed
+  rotate: false
+  xy: 1612, 450
+  size: 240, 60
+  orig: 240, 60
+  offset: 0, 0
+  index: -1
+button_yes
+  rotate: false
+  xy: 865, 352
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+button_yes_pressed
+  rotate: false
+  xy: 1009, 352
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+joystick_ball
+  rotate: false
+  xy: 623, 346
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+new_back_button
+  rotate: false
+  xy: 1153, 346
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+new_back_button_pressed
+  rotate: false
+  xy: 762, 284
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+new_developer_options_button
+  rotate: false
+  xy: 2, 6
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_developer_options_button_pressed
+  rotate: false
+  xy: 388, 344
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_exit_button
+  rotate: false
+  xy: 906, 284
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+new_exit_button_pressed
+  rotate: false
+  xy: 762, 216
+  size: 142, 66
+  orig: 142, 66
+  offset: 0, 0
+  index: -1
+new_objectives_button
+  rotate: false
+  xy: 736, 420
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_objectives_button_pressed
+  rotate: false
+  xy: 948, 420
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_privacy_policy_button
+  rotate: false
+  xy: 1353, 408
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_privacy_policy_button_pressed
+  rotate: false
+  xy: 1565, 408
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_stats_button
+  rotate: false
+  xy: 358, 302
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_stats_button_pressed
+  rotate: false
+  xy: 358, 260
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_test_access_button
+  rotate: false
+  xy: 358, 218
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+new_test_access_button_pressed
+  rotate: false
+  xy: 358, 176
+  size: 210, 40
+  orig: 210, 40
+  offset: 0, 0
+  index: -1
+slice02
+  rotate: false
+  xy: 388, 444
+  size: 346, 66
+  orig: 346, 66
+  offset: 0, 0
+  index: 2
+toggle_left
+  rotate: false
+  xy: 660, 198
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+toggle_off
+  rotate: false
+  xy: 1150, 272
+  size: 88, 47
+  orig: 88, 47
+  offset: 0, 0
+  index: -1
+toggle_on
+  rotate: false
+  xy: 570, 169
+  size: 88, 47
+  orig: 88, 47
+  offset: 0, 0
+  index: -1
+toggle_right
+  rotate: false
+  xy: 660, 164
+  size: 96, 32
+  orig: 96, 32
+  offset: 0, 0
+  index: -1
+touch
+  rotate: false
+  xy: 2, 414
+  size: 384, 96
+  orig: 384, 96
+  offset: 0, 0
+  index: -1
+touch_background
+  rotate: false
+  xy: 2, 172
+  size: 240, 240
+  orig: 240, 240
+  offset: 0, 0
+  index: -1
