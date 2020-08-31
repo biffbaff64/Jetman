@@ -30,8 +30,6 @@ public class Ufo extends GdxSprite
     @Override
     public void initialise(EntityDescriptor entityDescriptor)
     {
-        Trace.__FILE_FUNC();
-
         create(entityDescriptor);
 
         setAction(Actions._RUNNING);
@@ -47,7 +45,8 @@ public class Ufo extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if ((sprite.getX() <= 0) || (sprite.getX() >= Gfx.mapWidth))
+        if ((sprite.getX() <= (app.mapData.mapPosition.getX() - Gfx._VIEW_WIDTH))
+            || (sprite.getX() >= (app.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH)))
         {
             setUFOPosition();
         }

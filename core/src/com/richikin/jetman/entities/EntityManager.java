@@ -13,6 +13,7 @@ import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.physics.AABB.AABBData;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -56,12 +57,12 @@ public class EntityManager implements IEntityManager
 
     //
     // Indexes into entity list
-    public int     _playerIndex;
-    public int     _roverIndex;
-    public int     _roverGunIndex;
-    public int     _bombIndex;
-    public int     _missileBaseIndex;
-    public int[]   _teleportIndex;
+    public int   _playerIndex;
+    public int   _roverIndex;
+    public int   _roverGunIndex;
+    public int   _bombIndex;
+    public int   _missileBaseIndex;
+    public int[] _teleportIndex;
 
     public RenderSystem renderSystem;
 
@@ -73,7 +74,8 @@ public class EntityManager implements IEntityManager
     {
         this.app = _app;
 
-        this.renderSystem = new RenderSystem(_app);
+        this.renderSystem   = new RenderSystem(_app);
+        this._teleportIndex = new int[2];
     }
 
     @Override
@@ -251,7 +253,7 @@ public class EntityManager implements IEntityManager
                 }
             }
 
-//            app.collisionUtils.tidy();
+            //            app.collisionUtils.tidy();
         }
     }
 
@@ -261,7 +263,7 @@ public class EntityManager implements IEntityManager
     @Override
     public void drawSprites()
     {
-//        renderSystem.drawTeleportBeams(teleportBeam);
+        //        renderSystem.drawTeleportBeams(teleportBeam);
         renderSystem.drawSprites();
     }
 
@@ -279,13 +281,13 @@ public class EntityManager implements IEntityManager
     {
         GdxSprite entity;
 
-        _playerIndex        = 0;
-        _roverIndex         = 0;
-        _roverGunIndex      = 0;
-        _bombIndex          = 0;
-        _missileBaseIndex   = 0;
-        _teleportIndex[0]   = 0;
-        _teleportIndex[1]   = 0;
+        _playerIndex      = 0;
+        _roverIndex       = 0;
+        _roverGunIndex    = 0;
+        _bombIndex        = 0;
+        _missileBaseIndex = 0;
+        _teleportIndex[0] = 0;
+        _teleportIndex[1] = 0;
 
         for (int i = 0; i < app.entityData.entityMap.size; i++)
         {
@@ -295,18 +297,29 @@ public class EntityManager implements IEntityManager
             {
                 if (entity.gid == GraphicID.G_TRANSPORTER)
                 {
-//                    _teleportIndex[((Teleporter) entity).teleporterNumber] = i;
+                    //                    _teleportIndex[((Teleporter) entity).teleporterNumber] = i;
                 }
                 else
                 {
                     switch (entity.gid)
                     {
-                        case G_PLAYER:          _playerIndex = i;       break;
-                        case G_ROVER:           _roverIndex = i;        break;
-                        case G_ROVER_GUN:       _roverGunIndex = i;     break;
-                        case G_BOMB:            _bombIndex = i;         break;
-                        case G_MISSILE_BASE:    _missileBaseIndex = i;  break;
-                        default: break;
+                        case G_PLAYER:
+                            _playerIndex = i;
+                            break;
+                        case G_ROVER:
+                            _roverIndex = i;
+                            break;
+                        case G_ROVER_GUN:
+                            _roverGunIndex = i;
+                            break;
+                        case G_BOMB:
+                            _bombIndex = i;
+                            break;
+                        case G_MISSILE_BASE:
+                            _missileBaseIndex = i;
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -340,7 +353,7 @@ public class EntityManager implements IEntityManager
 
         if (AABBData.boxes().size == 0)
         {
-            app.mapCreator.addDummyCollisionObject();
+            //            app.mapCreator.addDummyCollisionObject();
             initialisePlayer();
         }
     }

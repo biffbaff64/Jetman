@@ -76,8 +76,6 @@ public class BackgroundObjectsManager
         {
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
-            Trace.dbg("X: " + position[0] + ", Y: " + position[1]);
-
             EntityDescriptor entityDescriptor = new EntityDescriptor();
             entityDescriptor._ASSET    = app.assets.getAnimationRegion(asset);
             entityDescriptor._FRAMES   = GameAssets._TWINKLE_STAR_FRAMES;

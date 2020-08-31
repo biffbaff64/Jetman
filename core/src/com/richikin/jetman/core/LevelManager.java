@@ -6,6 +6,7 @@ import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.maps.RoomManager;
+import com.richikin.jetman.physics.AABB.AABBData;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -105,7 +106,7 @@ public class LevelManager
         // Reset positions etc.
         app.entityUtils.resetAllPositions();
 
-        app.getPlayer().setup();
+        app.getPlayer().setup(false);
 
         if (app.gameProgress.levelCompleted)
         {
@@ -157,6 +158,7 @@ public class LevelManager
             app.baseRenderer.isDrawingStage        = true;
 
             app.entityData.createData();
+            AABBData.createData();
             app.entityManager.initialise();
             app.entityManager.initialiseManagerList();
             app.mapData.update();

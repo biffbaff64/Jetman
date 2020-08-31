@@ -175,7 +175,7 @@ public class GameControlLoop
             // Re-setup the player after a death/restart
             if (app.getPlayer() != null)
             {
-                app.getPlayer().setup();
+                app.getPlayer().setup(false);
             }
         }
     }

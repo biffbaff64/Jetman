@@ -2,6 +2,7 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
@@ -45,7 +46,7 @@ public class MapCreator
 
         placementTiles.clear();
 
-        parseObjectTiles();
+        parseMarkerTiles();
         createCollisionBoxes();
     }
 
@@ -53,11 +54,10 @@ public class MapCreator
      * NB: Does NOT create entities. This just extracts markers from
      * the Tile map (Object Layer) and creates the necessary information from them.
      */
-    protected void parseObjectTiles()
+    protected void parseMarkerTiles()
     {
-        GraphicID graphicID;
+        GraphicID graphicID = GraphicID.G_NO_ID;
         TileID    tileID;
-        String    asset;
 
         for (MapObject mapObject : app.mapData.objectTiles)
         {

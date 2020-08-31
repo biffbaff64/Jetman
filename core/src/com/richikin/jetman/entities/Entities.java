@@ -1,15 +1,17 @@
 
 package com.richikin.jetman.entities;
 
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.entities.objects.EntityDef;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.maps.TileID;
 
 public abstract class Entities
 {
     public static final EntityDef[] entityList =
         {
             // Main Characters
-            new EntityDef(),
+            new EntityDef("Player", GraphicID.G_PLAYER, TileID._PLAYER_TILE, GameAssets._IDLE, GameAssets._PLAYER_STAND_FRAMES, GraphicID._MAIN),
 
             // Pickups
 
