@@ -4,7 +4,6 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.paths.PathUtils;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.physics.AABB.AABBData;
 import com.richikin.jetman.ui.HeadsUpDisplay;
@@ -71,7 +70,7 @@ public class LevelManager
         }
 
         //
-        // Reset the bars.
+        // Reset the bars. Each level must start with full fuel and maximum time.
         if (_firstTime)
         {
             app.getHud().refillItems();

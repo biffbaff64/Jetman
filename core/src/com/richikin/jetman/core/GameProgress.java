@@ -35,6 +35,8 @@ public class GameProgress implements Disposable
 
     public void resetProgress()
     {
+        Trace.__FILE_FUNC();
+
         isRestarting   = false;
         levelCompleted = false;
         gameCompleted  = false;
@@ -42,7 +44,6 @@ public class GameProgress implements Disposable
         gameDiffculty  = 1.0f;
 
         resetData();
-        toMinimum();
     }
 
     /**
@@ -52,10 +53,11 @@ public class GameProgress implements Disposable
      */
     private void resetData()
     {
-        Trace.__FILE_FUNC();
-
         score.setRefillAmount(0);
         lives.setRefillAmount(GameConstants._MAX_LIVES);
+
+        score.setToMinimum();
+        lives.setToMaximum();
 
         newHighScoreAvailable   = false;
         baseDestroyed           = false;

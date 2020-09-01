@@ -6,35 +6,35 @@ filter: Nearest,Nearest
 repeat: none
 arrow_down
   rotate: false
-  xy: 1918, 1364
+  xy: 1686, 1207
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 arrow_left
   rotate: false
-  xy: 2, 36
+  xy: 1918, 1364
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 arrow_right
   rotate: false
-  xy: 1284, 706
+  xy: 2, 36
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 background_star01
   rotate: false
-  xy: 1461, 1018
+  xy: 1284, 708
   size: 46, 46
   orig: 46, 46
   offset: 0, 0
   index: -1
 background_star02
   rotate: false
-  xy: 1527, 1094
+  xy: 1461, 1018
   size: 46, 46
   orig: 46, 46
   offset: 0, 0
@@ -76,7 +76,7 @@ bar_green
   index: -1
 bar_green9
   rotate: false
-  xy: 1334, 728
+  xy: 1332, 728
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
@@ -90,42 +90,42 @@ bar_grey
   index: -1
 bar_orange
   rotate: false
-  xy: 1527, 1066
+  xy: 852, 276
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 bar_orange9
   rotate: false
-  xy: 1509, 1038
+  xy: 1527, 1067
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 bar_red
   rotate: false
-  xy: 1575, 1114
+  xy: 1561, 1114
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 bar_red9
   rotate: false
-  xy: 852, 276
+  xy: 1062, 316
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 bar_yellow
   rotate: false
-  xy: 1062, 316
+  xy: 392, 138
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
   index: -1
 bar_yellow9
   rotate: false
-  xy: 392, 138
+  xy: 426, 172
   size: 26, 26
   orig: 26, 26
   offset: 0, 0
@@ -188,9 +188,9 @@ hud_top
   index: -1
 lives
   rotate: false
-  xy: 1686, 1210
-  size: 64, 45
-  orig: 64, 45
+  xy: 1527, 1095
+  size: 32, 45
+  orig: 32, 45
   offset: 0, 0
   index: -1
 loadbar_background
@@ -251,14 +251,14 @@ solid_black32x32
   index: -1
 solid_blue32x32
   rotate: false
-  xy: 1686, 1176
+  xy: 1686, 1173
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 solid_clear32x32
   rotate: false
-  xy: 1752, 1223
+  xy: 1736, 1223
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -293,7 +293,7 @@ solid_white32x32
   index: -1
 solid_yellow32x32
   rotate: false
-  xy: 1284, 672
+  xy: 1284, 674
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

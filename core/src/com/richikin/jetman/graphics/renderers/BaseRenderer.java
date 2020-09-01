@@ -130,11 +130,11 @@ public class BaseRenderer implements Disposable
             app.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
             app.spriteBatch.begin();
 
-            cameraPos.x = (float) (app.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
-            cameraPos.y = (float) (app.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
+            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
+            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
             cameraPos.z = 0;
 
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue());
+            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), true);
 
             parallaxBackground.render();
 
@@ -162,8 +162,6 @@ public class BaseRenderer implements Disposable
             }
 
             app.mapData.render(tiledGameCamera.camera);
-
-            parallaxForeground.render();
 
             //
             // Deleted but, for future reference, the

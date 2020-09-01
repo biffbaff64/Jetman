@@ -6,21 +6,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
-import com.richikin.jetman.input.UIButtons;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.buttons.GameButton;
@@ -87,38 +82,13 @@ public class HeadsUpDisplay implements Disposable
             {1180, 1180, (720 - 101), 99, 86},    // Debug Console
         };
 
-    private final int[][][][] livesDisplay = new int[][][][]
+    private final int[][] livesDisplay = new int[][]
         {
-            {
-                // Positions for ONE PLAYER Game
-                {
-                    {1070, (720 - 47)},
-                    {1024, (720 - 47)},
-                    {978, (720 - 47)},
-                    {932, (720 - 47)},
-                    {886, (720 - 47)},
-                },
-                {
-                    {0, 0},
-                }
-            },
-            {
-                // Positions for TWO PLAYER Game
-                {
-                    {402, (720 - 47)},
-                    {424, (720 - 47)},
-                    {446, (720 - 47)},
-                    {468, (720 - 47)},
-                    {490, (720 - 47)},
-                },
-                {
-                    {762, (720 - 47)},
-                    {784, (720 - 47)},
-                    {806, (720 - 47)},
-                    {828, (720 - 47)},
-                    {850, (720 - 47)},
-                },
-            },
+            {1070, (720 - 47)},
+            {1024, (720 - 47)},
+            { 978, (720 - 47)},
+            { 932, (720 - 47)},
+            { 886, (720 - 47)},
         };
 
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
@@ -132,7 +102,7 @@ public class HeadsUpDisplay implements Disposable
     private Texture         scorePanel;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
-    private TextureRegion[] miniMen;
+    private TextureRegion   miniMen;
     private TextureRegion[] arrows;
     private int             baseArrowIndex;
     private int             truckArrowIndex;
@@ -171,16 +141,7 @@ public class HeadsUpDisplay implements Disposable
         barDividerFuel = app.assets.getObjectRegion("bar_divider");
         barDividerTime = app.assets.getObjectRegion("bar_divider");
 
-        TextureRegion textureRegion = app.assets.getObjectRegion("lives");
-        TextureRegion[] tempRegion = textureRegion.split
-            (
-                (textureRegion.getRegionWidth() / 2),
-                textureRegion.getRegionHeight()
-            )[0];
-
-        miniMen    = new TextureRegion[2];
-        miniMen[0] = new TextureRegion(tempRegion[1]);
-        miniMen[1] = new TextureRegion(tempRegion[1]);
+        miniMen = new TextureRegion(app.assets.getObjectRegion("lives"));
 
         FontUtils fontUtils = new FontUtils();
 
@@ -194,7 +155,7 @@ public class HeadsUpDisplay implements Disposable
         arrows[2] = app.assets.getObjectRegion("arrow_down");
 
         truckArrowIndex = _ARROW_LEFT;
-        baseArrowIndex  = _ARROW_LEFT;
+        baseArrowIndex  = _ARROW_RIGHT;
 
         stateID = StateID._STATE_PANEL_START;
 
@@ -265,7 +226,7 @@ public class HeadsUpDisplay implements Disposable
 //                {
 //                    if (app.preferences.isEnabled(Preferences._PROGRESS_BARS))
 //                    {
-//                        timeBar.updateSlowDecrement();
+                        timeBar.updateSlowDecrement();
 //                    }
 //
 //                    if (timeBar.justEmptied)
@@ -364,6 +325,10 @@ public class HeadsUpDisplay implements Disposable
                     truckArrowIndex = _ARROW_RIGHT;
                 }
             }
+            else
+            {
+                truckArrowIndex = _ARROW_LEFT;
+            }
         }
     }
 
@@ -407,6 +372,19 @@ public class HeadsUpDisplay implements Disposable
             drawMessages();
 
             //
+            // Modify the position of the front parallax layer
+            // so that aligns properly with the HUD
+            for (ParallaxLayer layer : new Array.ArrayIterator<>(app.baseRenderer.parallaxForeground.layers))
+            {
+                layer.position.set(originX, originY);
+            }
+
+            //
+            // The foreground parallax is the row of rocks
+            // in front of the main ground
+            app.baseRenderer.parallaxForeground.render();
+
+            //
             // Draw the Pause panel if activated
 //            if (stateID == StateID._STATE_PAUSED)
 //            {
@@ -417,14 +395,28 @@ public class HeadsUpDisplay implements Disposable
 
     public void showControls()
     {
+        showHUDControls = true;
+
+        if (joystick != null)
+        {
+            joystick.show();
+        }
     }
 
     public void hideControls()
     {
+        showHUDControls = false;
+
+        if (joystick != null)
+        {
+            joystick.hide();
+        }
     }
 
     public void refillItems()
     {
+        app.getHud().getFuelBar().setToMaximum();
+        app.getHud().getTimeBar().setToMaximum();
     }
 
     public void releaseDirectionButtons()
@@ -459,19 +451,19 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawItems()
     {
-        fuelBar.draw((int) (originX + 150), (int) (originY + (Gfx._VIEW_HEIGHT - 72)));
-        timeBar.draw((int) (originX + 150), (int) (originY + (Gfx._VIEW_HEIGHT - 101)));
+        fuelBar.draw((int) (originX + 150), (int) (originY + (Gfx._HUD_HEIGHT - 72)));
+        timeBar.draw((int) (originX + 150), (int) (originY + (Gfx._HUD_HEIGHT - 101)));
 
-        app.spriteBatch.draw(barDividerFuel, (originX + 150 + fuelBar.getTotal()), (originY + (Gfx._VIEW_HEIGHT - 72)));
-        app.spriteBatch.draw(barDividerTime, (originX + 150 + timeBar.getTotal()), (originY + (Gfx._VIEW_HEIGHT - 101)));
+        app.spriteBatch.draw(barDividerFuel, (originX + 150 + fuelBar.getTotal()), (originY + (Gfx._HUD_HEIGHT - 72)));
+        app.spriteBatch.draw(barDividerTime, (originX + 150 + timeBar.getTotal()), (originY + (Gfx._HUD_HEIGHT - 101)));
 
         for (int i = 0; i < app.gameProgress.lives.getTotal(); i++)
         {
             app.spriteBatch.draw
                 (
-                    miniMen[0],
-                    (originX + livesDisplay[0][0][i][0]),
-                    (originY + livesDisplay[0][0][i][1])
+                    miniMen,
+                    (originX + livesDisplay[i][0]),
+                    (originY + livesDisplay[i][1])
                 );
         }
 
@@ -488,7 +480,7 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw(app.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
             }
 
-            smallFont.draw(app.spriteBatch, "FPS: " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 608);
+            smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 608);
         }
 
         bigFont.draw
@@ -499,13 +491,14 @@ public class HeadsUpDisplay implements Disposable
                 originY + (720 - 8)
             );
 
-//        midFont.draw
-//            (
-//                app.spriteBatch,
+        midFont.draw
+            (
+                app.spriteBatch,
 //                String.format(Locale.UK, "%06d", app.highScoreUtils.getHighScoreTable()[0].score),
-//                originX + 668,
-//                originY + (720 - 6)
-//            );
+                String.format(Locale.UK, "%06d", 0),
+                originX + 668,
+                originY + (720 - 6)
+            );
 
         midFont.setColor(Color.valueOf("8cb8edff"));
         midFont.draw
@@ -524,15 +517,41 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawControls(OrthographicCamera camera)
     {
+        if (!AppConfig.gamePaused)
+        {
+            if (showHUDControls)
+            {
+                ((GameButton) buttonA).draw();
+                ((GameButton) buttonB).draw();
+
+                if (joystick != null)
+                {
+                    int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
+
+                    joystick.getTouchpad().setPosition
+                        (
+                            originX + displayPos[_JOYSTICK][xPos],
+                            originY + displayPos[_JOYSTICK][_Y]
+                        );
+
+                    joystick.getTouchpad().setBounds
+                        (
+                            originX + displayPos[_JOYSTICK][xPos],
+                            originY + displayPos[_JOYSTICK][_Y],
+                            displayPos[_JOYSTICK][_WIDTH],
+                            displayPos[_JOYSTICK][_HEIGHT]
+                        );
+                }
+            }
+        }
+
+        ((GameButton) buttonPause).draw();
     }
 
     private void drawArrows()
     {
-        if (app.getRover() != null)
-        {
-            app.spriteBatch.draw(arrows[truckArrowIndex], (originX + 24), (originY + (720 - 92)));
-            app.spriteBatch.draw(arrows[baseArrowIndex], (originX + 1218), (originY + (720 - 92)));
-        }
+        app.spriteBatch.draw(arrows[truckArrowIndex], (originX + 24), (originY + (720 - 92)));
+        app.spriteBatch.draw(arrows[baseArrowIndex], (originX + 1218), (originY + (720 - 92)));
     }
 
     private void drawMessages()
