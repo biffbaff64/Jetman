@@ -12,6 +12,7 @@ public abstract class Entities
         {
             // Main Characters
             new EntityDef("Player", GraphicID.G_PLAYER, TileID._PLAYER_TILE, GameAssets._IDLE, GameAssets._PLAYER_STAND_FRAMES, GraphicID._MAIN),
+            new EntityDef("Rover", GraphicID.G_ROVER, TileID._ROVER_TILE, GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES, GraphicID._MAIN),
 
             // Pickups
 

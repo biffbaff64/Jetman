@@ -159,7 +159,6 @@ public class LevelManager
             app.entityData.createData();
             AABBData.createData();
             app.entityManager.initialise();
-            app.entityManager.initialiseManagerList();
             app.mapData.update();
             app.getHud().createHud();
         }

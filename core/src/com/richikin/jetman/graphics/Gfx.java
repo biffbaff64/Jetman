@@ -14,7 +14,7 @@ public class Gfx
     public static final short CAT_COLLECTIBLE    = 0x0008;   // - 04 (8     )
     public static final short CAT_GROUND         = 0x0010;   // - 05 (16    )
     public static final short CAT_SCENERY        = 0x0020;   // - 06 (32    )
-    public static final short _UNDEFINED_7       = 0x0040;   // - 07 (64    )
+    public static final short CAT_VEHICLE        = 0x0040;   // - 07 (64    )
     public static final short _UNDEFINED_8       = 0x0080;   // - 08 (128   )
     public static final short _UNDEFINED_9       = 0x0100;   // - 09 (256   )
     public static final short _UNDEFINED_10      = 0x0200;   // - 10 (512   )

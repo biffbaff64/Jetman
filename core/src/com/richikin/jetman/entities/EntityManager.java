@@ -1,7 +1,6 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.Actions;
@@ -9,12 +8,11 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
 import com.richikin.jetman.entities.managers.PlayerManager;
+import com.richikin.jetman.entities.managers.RoverManager;
 import com.richikin.jetman.entities.objects.IEntityManager;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityManager implements IEntityManager
@@ -64,6 +62,7 @@ public class EntityManager implements IEntityManager
     public int   _missileBaseIndex;
     public int[] _teleportIndex;
 
+    public PlayerManager playerManager;
     public RenderSystem renderSystem;
 
     public boolean _playerReady;
@@ -82,6 +81,8 @@ public class EntityManager implements IEntityManager
     public void initialise()
     {
         Trace.__FILE_FUNC();
+
+        initialiseManagerList();
     }
 
     @Override
@@ -93,7 +94,6 @@ public class EntityManager implements IEntityManager
 
             //
             // Update all non-player entities.
-            // TODO: 14/05/2019 - Should Rover and connected entities be excluded here also?
             for (int i = 0; i < app.entityData.entityMap.size; i++)
             {
                 entity = (GdxSprite) app.entityData.entityMap.get(i);
@@ -332,14 +332,21 @@ public class EntityManager implements IEntityManager
         return (AppConfig.entitiesExist && !AppConfig.quitToMainMenu);
     }
 
-    public void initialiseManagerList()
+    private void initialiseManagerList()
     {
         Trace.__FILE_FUNC();
+
+        _roverManagerIndex = app.entityData.addManager(new RoverManager(app));
+
+        for (final EntityManagerComponent system : app.entityData.managerList)
+        {
+            system.init();
+        }
     }
 
     public void initialisePlayer()
     {
-        PlayerManager playerManager = new PlayerManager(app);
+        playerManager = new PlayerManager(app);
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
     }
@@ -353,7 +360,7 @@ public class EntityManager implements IEntityManager
 
         if (AABBData.boxes().size == 0)
         {
-            //            app.mapCreator.addDummyCollisionObject();
+//            app.mapCreator.addDummyCollisionObject();
             initialisePlayer();
         }
     }

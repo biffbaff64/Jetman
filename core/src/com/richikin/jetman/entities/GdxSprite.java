@@ -294,7 +294,10 @@ public class GdxSprite extends GameEntity implements IGameSprite
     @Override
     public void setAction(final Actions action)
     {
-        spriteAction = action;
+        if (spriteAction != action)
+        {
+            spriteAction = action;
+        }
     }
 
     @Override

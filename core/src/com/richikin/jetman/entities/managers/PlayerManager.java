@@ -11,6 +11,9 @@ import com.richikin.jetman.graphics.GraphicID;
 
 public class PlayerManager
 {
+    public int playerTileX;
+    public int playerTileY;
+
     private       EntityDescriptor entityDescriptor;
     private final App              app;
 
@@ -21,9 +24,6 @@ public class PlayerManager
 
     public void setSpawnPoint()
     {
-        int playerTileX;
-        int playerTileY;
-
         if ((app.mapCreator.placementTiles == null)
             || (app.roomManager.getStartPosition().isEmpty()))
         {

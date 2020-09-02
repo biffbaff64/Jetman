@@ -4,7 +4,6 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
@@ -148,7 +147,7 @@ public class EntityUtils
     }
 
     /**
-     * Fetch an intial Z position for the specified ID.
+     * Fetch an initial Z position for the specified ID.
      *
      * @param graphicID The GraphicID.
      * @return Z position range is between 0 and Gfx._MAXIMUM_Z_DEPTH.
@@ -163,6 +162,14 @@ public class EntityUtils
             case G_UFO:
             {
                 zed = Gfx._MAXIMUM_Z_DEPTH;
+            }
+            break;
+
+            case G_ROVER:
+            case G_ROVER_BOOT:
+            case G_ROVER_WHEEL:
+            {
+                zed = 1;
             }
             break;
 
