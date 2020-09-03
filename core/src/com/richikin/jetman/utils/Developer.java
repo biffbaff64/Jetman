@@ -7,15 +7,13 @@ import com.richikin.jetman.core.App;
 public abstract class Developer
 {
     public static  boolean developerPanelActive = false;
-    private static boolean _DEVMODE             = false;
-    private static boolean _LAPTOP              = false;
-    private static boolean _ANDROID_ON_DESKTOP  = false;
 
+    private static boolean _DEVMODE             = false;
+    private static boolean _ANDROID_ON_DESKTOP  = false;
     private static App app;
 
     /**
      * Set _DEVMODE from the _DEV_MODE Environment variable.
-     * Set _LAPTOP from the _MACHINE Environment variable.
      */
     public static void setMode(App _app)
     {
@@ -23,15 +21,12 @@ public abstract class Developer
 
         if (AppConfig.isDesktopApp())
         {
-            _DEVMODE            = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
-            _LAPTOP             = "TRUE".equals(System.getenv("_USING_LAPTOP"));
-            _ANDROID_ON_DESKTOP = "TRUE".equals(System.getenv("_ANDROID_ON_DESKTOP"));
+            _DEVMODE = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
         }
 
         if (AppConfig.isAndroidApp())
         {
             _DEVMODE = false;
-            _LAPTOP  = false;
         }
     }
 
@@ -45,13 +40,8 @@ public abstract class Developer
         return app.settings.isEnabled(Settings._GOD_MODE);
     }
 
-    public static boolean isLaptop()
-    {
-        return _LAPTOP;
-    }
-
     public static boolean isAndroidOnDesktop()
     {
-        return _ANDROID_ON_DESKTOP;
+        return app.settings.isEnabled(Settings._ANDROID_ON_DESKTOP);
     }
 }

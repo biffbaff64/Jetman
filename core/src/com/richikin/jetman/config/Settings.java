@@ -36,6 +36,7 @@ public class Settings
     public static final String _BOX2D_PHYSICS       = "using box2d";        // Enables Box2D Physics
     public static final String _B2D_RENDERER        = "b2d renderer";       // Enables/Disables the Box2D Debug Renderer
     public static final String _GL_PROFILER         = "gl profiler";        // Enables/Disables the LibGdx OpenGL Profiler
+    public static final String _ANDROID_ON_DESKTOP  = "android desktop";    //
 
     //
     // Game settings
@@ -123,6 +124,7 @@ public class Settings
             prefs.putBoolean(_CULL_SPRITES, _PREF_TRUE_DEFAULT);
             prefs.putBoolean(_B2D_RENDERER, _PREF_FALSE_DEFAULT);
             prefs.putBoolean(_GL_PROFILER, _PREF_FALSE_DEFAULT);
+            prefs.putBoolean(_ANDROID_ON_DESKTOP, _PREF_FALSE_DEFAULT);
 
             // ---------- Configuration ----------
             prefs.putBoolean(_SHADER_PROGRAM, _PREF_FALSE_DEFAULT);

@@ -37,7 +37,7 @@ public class PlayerManager
         }
 
         entityDescriptor           = new EntityDescriptor();
-        entityDescriptor._ASSET    = app.assets.getAnimationRegion(GameAssets._IDLE);
+        entityDescriptor._ASSET    = app.assets.getAnimationRegion(GameAssets._PLAYER_IDLE);
         entityDescriptor._FRAMES   = GameAssets._PLAYER_STAND_FRAMES;
         entityDescriptor._PLAYMODE = Animation.PlayMode.LOOP;
         entityDescriptor._X        = playerTileX;

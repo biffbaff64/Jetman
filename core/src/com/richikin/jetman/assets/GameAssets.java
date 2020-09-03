@@ -12,10 +12,10 @@ public class GameAssets
 
     //
     // MainPlayer assets
-    public static final String _RUN                   = "ljm_walk2";
-    public static final String _IDLE                  = "ljm_stand";
-    public static final String _FLY                   = "ljm_fly2";
-    public static final String _DYING                 = "ljm_death";
+    public static final String _PLAYER_RUN      = "ljm_walk2";
+    public static final String _PLAYER_IDLE     = "ljm_stand";
+    public static final String _PLAYER_FLY      = "ljm_fly2";
+    public static final String _PLAYER_DYING    = "ljm_death";
 
     public static final int    _PLAYER_STAND_FRAMES   = 5;
     public static final int    _PLAYER_DYING_FRAMES   = 1;
@@ -97,8 +97,9 @@ public class GameAssets
     public static final String _ORBITRON_BOLD_FONT     = "data/fonts/Orbitron Bold.ttf";
     public static final String _PRO_WINDOWS_FONT       = "data/fonts/ProFontWindows.ttf";
     public static final String _HUD_PANEL_ASSET        = "data/hud_panel.png";
-    public static final int    _HUD_PANEL_WIDTH        = 1280;
-    public static final int    _HUD_PANEL_HEIGHT       = 112;
+
+    public static int hudPanelWidth;      // Set when object is loaded
+    public static int hudPanelHeight;     //
 
     public static final String _GETREADY_MSG_ASSET        = "get_ready";
     public static final String _GAMEOVER_MSG_ASSET        = "game_over";

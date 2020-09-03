@@ -8,13 +8,11 @@ import com.richikin.jetman.utils.logging.Trace;
 
 import java.util.concurrent.TimeUnit;
 
-public class GameControlLoop
+public class GameControlLoop extends AbstractControlLoop
 {
-    private final App app;
-
     public GameControlLoop(App _app)
     {
-        this.app = _app;
+        super(_app);
     }
 
     public void initialise()
@@ -166,7 +164,6 @@ public class GameControlLoop
             app.appState.set(StateID._STATE_GAME);
             app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
 
-            // TODO: 10/08/2020 - ShowHUD instead??
             app.getHud().showControls();
 
             scr().firstTime = false;

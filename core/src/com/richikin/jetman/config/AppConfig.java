@@ -60,7 +60,7 @@ public class AppConfig
 
         availableInputs = new Array<>();
 
-        if (isAndroidApp() || isAndroidOnDesktop())
+        if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
             availableInputs.add(ControllerType._VIRTUAL);
 
@@ -81,6 +81,7 @@ public class AppConfig
             Trace.divider();
             Trace.dbg("Android App         : " + isAndroidApp());
             Trace.dbg("Desktop App         : " + isDesktopApp());
+            Trace.dbg("Android On Desktop  : " + Developer.isAndroidOnDesktop());
             Trace.divider();
             Trace.dbg("isDevMode()         : " + Developer.isDevMode());
             Trace.dbg("isGodMode()         : " + Developer.isGodMode());
@@ -159,14 +160,6 @@ public class AppConfig
     public static boolean isAndroidApp()
     {
         return (Gdx.app.getType() == Application.ApplicationType.Android);
-    }
-
-    /**
-     * @return TRUE if the app is running on Android
-     */
-    public static boolean isAndroidOnDesktop()
-    {
-        return Developer.isAndroidOnDesktop();
     }
 
     public static void dispose()

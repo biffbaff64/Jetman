@@ -1,7 +1,6 @@
 package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ai.msg.MessageManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,34 +15,20 @@ import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
-import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.buttons.GameButton;
 import com.richikin.jetman.input.buttons.GameButtonRegion;
 import com.richikin.jetman.input.buttons.Switch;
 import com.richikin.jetman.input.objects.ControllerPos;
+import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.jetman.utils.messaging.MessageManager;
 
 import java.util.Locale;
 
 public class HeadsUpDisplay implements Disposable
 {
-    public StateID   hudStateID;
-    public GDXButton buttonUp;
-    public GDXButton buttonDown;
-    public GDXButton buttonLeft;
-    public GDXButton buttonRight;
-    public GDXButton buttonA;
-    public GDXButton buttonB;
-    public GDXButton buttonX;
-    public GDXButton buttonY;
-    public GDXButton buttonPause;
-    public Switch    buttonDevOptions;
-
-    public MessageManager messageManager;
-    public PausePanel     pausePanel;
-
     private static final int _ARROW_LEFT  = 0;
     private static final int _ARROW_RIGHT = 1;
     private static final int _ARROW_DOWN  = 2;
@@ -86,10 +71,25 @@ public class HeadsUpDisplay implements Disposable
         {
             {1070, (720 - 47)},
             {1024, (720 - 47)},
-            { 978, (720 - 47)},
-            { 932, (720 - 47)},
-            { 886, (720 - 47)},
+            {978, (720 - 47)},
+            {932, (720 - 47)},
+            {886, (720 - 47)},
         };
+
+    public StateID   hudStateID;
+    public GDXButton buttonUp;
+    public GDXButton buttonDown;
+    public GDXButton buttonLeft;
+    public GDXButton buttonRight;
+    public GDXButton buttonA;
+    public GDXButton buttonB;
+    public GDXButton buttonX;
+    public GDXButton buttonY;
+    public GDXButton buttonPause;
+    public Switch    buttonDevOptions;
+
+    public MessageManager messageManager;
+    public PausePanel     pausePanel;
 
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
     private static final int _MAX_FUELBAR_LENGTH = 1000;
@@ -106,7 +106,6 @@ public class HeadsUpDisplay implements Disposable
     private TextureRegion[] arrows;
     private int             baseArrowIndex;
     private int             truckArrowIndex;
-    private VirtualJoystick joystick;
     private boolean         showHUDControls;
     private BitmapFont      bigFont;
     private BitmapFont      midFont;
@@ -125,12 +124,14 @@ public class HeadsUpDisplay implements Disposable
     {
         AppConfig.hudExists = false;
 
-        app.gameProgress.resetProgress();
+        createHUDButtons();
 
         scorePanel = app.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
+        GameAssets.hudPanelWidth  = scorePanel.getWidth();
+        GameAssets.hudPanelHeight = scorePanel.getHeight();
 
-        createVirtualJoystick();
-        createHUDButtons();
+        messageManager  = new MessageManager(app);
+        pausePanel      = new PausePanel(app);
 
         // The game time bar.
         timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
@@ -174,21 +175,27 @@ public class HeadsUpDisplay implements Disposable
 
             case _STATE_PANEL_UPDATE:
             {
+                if (buttonPause.isPressed())
+                {
+                    AppConfig.pause();
+                    buttonPause.release();
+                }
+
                 updateBars();
                 updateArrowIndicators();
                 updateDeveloperItems();
 
-//                if (messageManager.isEnabled())
-//                {
-//                    messageManager.updateMessage();
-//
-//                    if (!messageManager.doesPanelExist("ZoomPanel")
-//                        && (app.mainGameScreen.gameState.get() != StateID._STATE_GAME)
-//                        && app.missileBaseManager.isMissileActive)
-//                    {
-//                        app.mainGameScreen.getGameState().set(StateID._STATE_GAME);
-//                    }
-//                }
+                if (messageManager.isEnabled())
+                {
+                    messageManager.updateMessage();
+
+                    if (!messageManager.doesPanelExist("ZoomPanel")
+                        && (app.mainGameScreen.gameState.get() != StateID._STATE_GAME)
+                        && app.missileBaseManager.isMissileActive)
+                    {
+                        app.mainGameScreen.getGameState().set(StateID._STATE_GAME);
+                    }
+                }
             }
             break;
 
@@ -226,7 +233,7 @@ public class HeadsUpDisplay implements Disposable
 //                {
 //                    if (app.preferences.isEnabled(Preferences._PROGRESS_BARS))
 //                    {
-                        timeBar.updateSlowDecrement();
+        timeBar.updateSlowDecrement();
 //                    }
 //
 //                    if (timeBar.justEmptied)
@@ -290,7 +297,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (app.gameProgress.baseDestroyed || app.gameProgress.roverDestroyed)
         {
-            baseArrowIndex = _ARROW_DOWN;
+            baseArrowIndex  = _ARROW_DOWN;
             truckArrowIndex = _ARROW_DOWN;
         }
         else
@@ -386,31 +393,53 @@ public class HeadsUpDisplay implements Disposable
 
             //
             // Draw the Pause panel if activated
-//            if (stateID == StateID._STATE_PAUSED)
-//            {
-//                pausePanel.draw(app.spriteBatch, camera, originX, originY);
-//            }
+            //            if (stateID == StateID._STATE_PAUSED)
+            //            {
+            //                pausePanel.draw(app.spriteBatch, camera, originX, originY);
+            //            }
         }
     }
 
     public void showControls()
     {
-        showHUDControls = true;
-
-        if (joystick != null)
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            joystick.show();
+            buttonB.setVisible(true);
+            buttonA.setVisible(true);
+
+            if (app.inputManager.virtualJoystick != null)
+            {
+                app.inputManager.virtualJoystick.show();
+            }
         }
+
+        if (Developer.isDevMode())
+        {
+            buttonDevOptions.setVisible(true);
+        }
+
+        showHUDControls = true;
     }
 
     public void hideControls()
     {
-        showHUDControls = false;
-
-        if (joystick != null)
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            joystick.hide();
+            buttonB.setVisible(false);
+            buttonA.setVisible(false);
+
+            if (app.inputManager.virtualJoystick != null)
+            {
+                app.inputManager.virtualJoystick.hide();
+            }
         }
+
+        if (Developer.isDevMode())
+        {
+            buttonDevOptions.setVisible(true);
+        }
+
+        showHUDControls = false;
     }
 
     public void refillItems()
@@ -494,6 +523,7 @@ public class HeadsUpDisplay implements Disposable
         midFont.draw
             (
                 app.spriteBatch,
+                // TODO: 03/09/2020
 //                String.format(Locale.UK, "%06d", app.highScoreUtils.getHighScoreTable()[0].score),
                 String.format(Locale.UK, "%06d", 0),
                 originX + 668,
@@ -524,22 +554,20 @@ public class HeadsUpDisplay implements Disposable
                 ((GameButton) buttonA).draw();
                 ((GameButton) buttonB).draw();
 
-                if (joystick != null)
+                if (app.inputManager.virtualJoystick != null)
                 {
-                    int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
-
-                    joystick.getTouchpad().setPosition
+                    app.inputManager.virtualJoystick.getTouchpad().setPosition
                         (
-                            originX + displayPos[_JOYSTICK][xPos],
+                            originX + displayPos[_JOYSTICK][_X1],
                             originY + displayPos[_JOYSTICK][_Y]
                         );
 
-                    joystick.getTouchpad().setBounds
+                    app.inputManager.virtualJoystick.getTouchpad().setBounds
                         (
-                            originX + displayPos[_JOYSTICK][xPos],
+                            originX + displayPos[_JOYSTICK][_X1],
                             originY + displayPos[_JOYSTICK][_Y],
-                            displayPos[_JOYSTICK][_WIDTH],
-                            displayPos[_JOYSTICK][_HEIGHT]
+                            app.inputManager.virtualJoystick.getTouchpad().getWidth(),
+                            app.inputManager.virtualJoystick.getTouchpad().getHeight()
                         );
                 }
             }
@@ -556,24 +584,18 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawMessages()
     {
-//        if (!AppConfig.gamePaused)
-//        {
-//            if ((app.mainGameScreen.getGameState().get() == StateID._STATE_GAME_FINISHED)
-//                && (app.mainGameScreen.completedPanel != null))
-//            {
-//                app.mainGameScreen.completedPanel.draw();
-//            }
-//            else if (messageManager.messageActive)
-//            {
-//                messageManager.draw();
-//            }
-//        }
-    }
-
-    private void createVirtualJoystick()
-    {
-//        joystick = new VirtualJoystick(app);
-//        joystick.create();
+        //        if (!AppConfig.gamePaused)
+        //        {
+        //            if ((app.mainGameScreen.getGameState().get() == StateID._STATE_GAME_FINISHED)
+        //                && (app.mainGameScreen.completedPanel != null))
+        //            {
+        //                app.mainGameScreen.completedPanel.draw();
+        //            }
+        //            else if (messageManager.messageActive)
+        //            {
+        //                messageManager.draw();
+        //            }
+        //        }
     }
 
     private void createHUDButtons()
