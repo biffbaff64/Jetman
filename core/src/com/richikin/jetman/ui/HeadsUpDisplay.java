@@ -38,42 +38,31 @@ public class HeadsUpDisplay implements Disposable
     private static final int _Y      = 2;
     private static final int _WIDTH  = 3;
     private static final int _HEIGHT = 4;
-    private static final int _X_DIR  = 3;
-    private static final int _Y_DIR  = 4;
 
-    private static final int _JOYSTICK_INIT = 0;
-    private static final int _ATTACK_INIT   = 1;
-    private static final int _ACTION_INIT   = 2;
-    private static final int _JOYSTICK      = 3;
-    private static final int _ATTACK        = 4;
-    private static final int _ACTION        = 5;
-    private static final int _PAUSE         = 6;
-    private static final int _DEV_OPTIONS   = 7;
-    private static final int _CONSOLE       = 8;
+    private static final int _JOYSTICK      = 0;
+    private static final int _ATTACK        = 1;
+    private static final int _ACTION        = 2;
+    private static final int _PAUSE         = 3;
+    private static final int _DEV_OPTIONS   = 4;
+    private static final int _CONSOLE       = 5;
 
     private static final int[][] displayPos = new int[][]
         {
-            {-241, 1281, (720 - 695), 240, 240},    // Joystick Init
-            {1281, -241, (720 - 624), 96, 96},    // Attack Init
-            {1281, -241, (720 - 687), 96, 96},    // Action Init
-
-            {25, 1016, (720 - 695), 240, 240},    // Joystick
-            {1141, 44, (720 - 624), 96, 96},    // Attack
-            {1027, 158, (720 - 687), 96, 96},    // Action
-
-            {1206, 1206, (720 - 177), 66, 66},    // Pause Button
-
-            {0, 0, (720 - 101), 99, 86},    // Dev Options
-            {1180, 1180, (720 - 101), 99, 86},    // Debug Console
+            {  25, 1016, (720 - 695), 240, 240},    // Joystick
+            {1141,   44, (720 - 624),  96,  96},    // Attack
+            {1027,  158, (720 - 687),  96,  96},    // Action
+            {1206, 1206, (720 - 177),  66,  66},    // Pause Button
+            {   0,    0, (720 - 101),  99,  86},    // Dev Options
+            {1180, 1180, (720 - 101),  99,  86},    // Debug Console
         };
 
     private final int[][] livesDisplay = new int[][]
         {
             {1070, (720 - 47)},
             {1024, (720 - 47)},
-            {978, (720 - 47)},
-            {932, (720 - 47)},
-            {886, (720 - 47)},
+            { 978, (720 - 47)},
+            { 932, (720 - 47)},
+            { 886, (720 - 47)},
         };
 
     public StateID   hudStateID;
@@ -133,10 +122,7 @@ public class HeadsUpDisplay implements Disposable
         messageManager  = new MessageManager(app);
         pausePanel      = new PausePanel(app);
 
-        // The game time bar.
         timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
-
-        // The jet pack fuel bar.
         fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
 
         barDividerFuel = app.assets.getObjectRegion("bar_divider");
@@ -187,13 +173,13 @@ public class HeadsUpDisplay implements Disposable
 
                 if (messageManager.isEnabled())
                 {
-                    messageManager.updateMessage();
+                    messageManager.update();
 
                     if (!messageManager.doesPanelExist("ZoomPanel")
-                        && (app.mainGameScreen.gameState.get() != StateID._STATE_GAME)
+                        && (app.appState.peek() != StateID._STATE_GAME)
                         && app.missileBaseManager.isMissileActive)
                     {
-                        app.mainGameScreen.getGameState().set(StateID._STATE_GAME);
+                        app.appState.set(StateID._STATE_GAME);
                     }
                 }
             }
@@ -231,18 +217,16 @@ public class HeadsUpDisplay implements Disposable
 //            {
 //                if (app.getBase().spriteAction != Actions._WAITING)
 //                {
-//                    if (app.preferences.isEnabled(Preferences._PROGRESS_BARS))
-//                    {
         timeBar.updateSlowDecrement();
-//                    }
-//
-//                    if (timeBar.justEmptied)
-//                    {
-//                        if (!app.missileBaseManager.isMissileActive)
-//                        {
+//                }
+
+                    if (timeBar.justEmptied)
+                    {
+                        if (!app.missileBaseManager.isMissileActive)
+                        {
 //                            app.getBase().spriteAction = Actions._FIGHTING;
-//                        }
-//                    }
+                        }
+                    }
 //                }
 //            }
 //        }
@@ -302,19 +286,22 @@ public class HeadsUpDisplay implements Disposable
         }
         else
         {
-//            app.missileBaseManager.checkNearestBase();
-//
+            app.missileBaseManager.checkNearestBase();
+
 //            if ((app.getBase() != null) && app.entityUtils.isOnScreen(app.getBase()))
 //            {
 //                baseArrowIndex = _ARROW_DOWN;
 //            }
-//            else if (app.missileBaseManager.nearestBasePosition < app.getPlayer().sprite.getX())
-//            {
-//                baseArrowIndex = _ARROW_LEFT;
-//            }
 //            else
             {
-                baseArrowIndex = _ARROW_RIGHT;
+                if (app.missileBaseManager.nearestBasePosition < app.getPlayer().sprite.getX())
+                {
+                    baseArrowIndex = _ARROW_LEFT;
+                }
+                else
+                {
+                    baseArrowIndex = _ARROW_RIGHT;
+                }
             }
 
             if (app.getRover() != null)
@@ -343,7 +330,7 @@ public class HeadsUpDisplay implements Disposable
     {
 //        if (Developer._DEVMODE && !AppConfig.gamePaused)
 //        {
-//            // DevOptions button which activates the Dev Settings panel
+//             DevOptions button which activates the Dev Settings panel
 //            if ((buttonDevOptions != null) && buttonDevOptions.isPressed && !AppConfig.developerPanelActive)
 //            {
 //                AppConfig.developerPanelActive = true;
@@ -393,10 +380,10 @@ public class HeadsUpDisplay implements Disposable
 
             //
             // Draw the Pause panel if activated
-            //            if (stateID == StateID._STATE_PAUSED)
-            //            {
-            //                pausePanel.draw(app.spriteBatch, camera, originX, originY);
-            //            }
+            if (stateID == StateID._STATE_PAUSED)
+            {
+                pausePanel.draw(app.spriteBatch, camera, originX, originY);
+            }
         }
     }
 
@@ -404,6 +391,8 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
+            Trace.__FILE_FUNC();
+
             buttonB.setVisible(true);
             buttonA.setVisible(true);
 
@@ -584,20 +573,19 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawMessages()
     {
-        //        if (!AppConfig.gamePaused)
-        //        {
-        //            if ((app.mainGameScreen.getGameState().get() == StateID._STATE_GAME_FINISHED)
-        //                && (app.mainGameScreen.completedPanel != null))
-        //            {
-        //                app.mainGameScreen.completedPanel.draw();
-        //            }
-        //            else if (messageManager.messageActive)
-        //            {
-        //                messageManager.draw();
-        //            }
-        //        }
+        if (!AppConfig.gamePaused)
+        {
+            if (messageManager.isEnabled())
+            {
+                messageManager.draw();
+            }
+        }
     }
 
+    /**
+     * Creates the game screen buttons and then
+     * registers them with the Scene2D Stage.
+     */
     private void createHUDButtons()
     {
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;

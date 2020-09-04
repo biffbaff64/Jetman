@@ -9,6 +9,7 @@ import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.characters.MainPlayer;
 import com.richikin.jetman.entities.characters.Rover;
+import com.richikin.jetman.entities.managers.MissileBaseManager;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.graphics.camera.CameraUtils;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
@@ -49,18 +50,19 @@ public abstract class App extends com.badlogic.gdx.Game
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
-    public LevelManager   levelManager;
-    public EntityData     entityData;
-    public EntityUtils    entityUtils;
-    public MapData        mapData;
-    public HeadsUpDisplay hud;
-    public RoomManager    roomManager;
-    public EntityManager  entityManager;
-    public GameProgress   gameProgress;
-    public MapUtils       mapUtils;
-    public PanelManager   panelManager;
-    public MapCreator     mapCreator;
-    public PathUtils      pathUtils;
+    public LevelManager       levelManager;
+    public EntityData         entityData;
+    public EntityUtils        entityUtils;
+    public MapData            mapData;
+    public HeadsUpDisplay     hud;
+    public RoomManager        roomManager;
+    public EntityManager      entityManager;
+    public GameProgress       gameProgress;
+    public MapUtils           mapUtils;
+    public PanelManager       panelManager;
+    public MapCreator         mapCreator;
+    public PathUtils          pathUtils;
+    public MissileBaseManager missileBaseManager;
 
     public MainPlayer getPlayer()
     {

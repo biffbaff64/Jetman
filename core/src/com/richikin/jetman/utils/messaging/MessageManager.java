@@ -36,6 +36,17 @@ public class MessageManager
         }
     }
 
+    public void draw()
+    {
+        for (Message msg : messages)
+        {
+            if (msg.enabled)
+            {
+                msg.panel.draw(app);
+            }
+        }
+    }
+
     public void addSlidePanel(String imageName)
     {
     }
@@ -54,6 +65,7 @@ public class MessageManager
 
     public boolean doesPanelExist(String _nameID)
     {
+        return true;
     }
 
     public void setPosition(String _nameID, int x, int y)

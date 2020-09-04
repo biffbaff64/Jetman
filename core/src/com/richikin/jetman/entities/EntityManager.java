@@ -7,6 +7,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
+import com.richikin.jetman.entities.managers.MissileBaseManager;
 import com.richikin.jetman.entities.managers.PlayerManager;
 import com.richikin.jetman.entities.managers.RoverManager;
 import com.richikin.jetman.entities.objects.IEntityManager;
@@ -335,6 +336,8 @@ public class EntityManager implements IEntityManager
     private void initialiseManagerList()
     {
         Trace.__FILE_FUNC();
+
+        app.missileBaseManager = new MissileBaseManager(app);
 
         _roverManagerIndex = app.entityData.addManager(new RoverManager(app));
 
