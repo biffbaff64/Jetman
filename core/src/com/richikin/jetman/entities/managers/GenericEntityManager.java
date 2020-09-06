@@ -10,7 +10,6 @@ import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.maths.SimpleVec2;
-import com.sun.prism.image.Coords;
 
 public class GenericEntityManager implements EntityManagerComponent, Disposable
 {

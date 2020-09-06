@@ -18,7 +18,6 @@ public class AppConfig
     // =================================================================
     //
     public static final String _PREFS_FILE_NAME = "com.richikin.jetman.preferences";
-    public static final String _DEBUG_LOG_FILE  = "debuglogfile.txt";
 
     public static boolean               quitToMainMenu;             // Game over, back to menu screen
     public static boolean               forceQuitToMenu;            // Quit to main menu, forced via pause mode for example.

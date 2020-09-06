@@ -8,8 +8,7 @@ public abstract class Developer
 {
     public static  boolean developerPanelActive = false;
 
-    private static boolean _DEVMODE             = false;
-    private static boolean _ANDROID_ON_DESKTOP  = false;
+    private static boolean _DEVMODE = false;
     private static App app;
 
     /**

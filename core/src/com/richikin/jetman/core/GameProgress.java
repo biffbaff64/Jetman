@@ -11,7 +11,6 @@ public class GameProgress implements Disposable
     public boolean gameCompleted;
     public boolean gameSetupDone;
 
-    public boolean newHighScoreAvailable;
     public boolean baseDestroyed;
     public boolean roverDestroyed;
     public int     activeCraterCount;
@@ -19,6 +18,7 @@ public class GameProgress implements Disposable
     public int     playerLevel;
     public boolean playerGameOver;
     public float   gameDiffculty;
+    public boolean newHighScoreAvailable;
 
     public Item score;
     public Item lives;
@@ -59,14 +59,14 @@ public class GameProgress implements Disposable
         score.setToMinimum();
         lives.setToMaximum();
 
-        newHighScoreAvailable   = false;
-        baseDestroyed           = false;
-        roverDestroyed          = false;
-        activeCraterCount       = 0;
-        playerLifeOver          = false;
-        playerLevel             = 1;
-        playerGameOver          = false;
-        gameDiffculty           = 1.0f;
+        newHighScoreAvailable = false;
+        baseDestroyed         = false;
+        roverDestroyed        = false;
+        activeCraterCount     = 0;
+        playerLifeOver        = false;
+        playerLevel           = 1;
+        playerGameOver        = false;
+        gameDiffculty         = 1.0f;
     }
 
     public void closeLastGame()

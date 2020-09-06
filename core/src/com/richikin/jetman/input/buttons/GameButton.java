@@ -1,12 +1,15 @@
 
 package com.richikin.jetman.input.buttons;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.maths.Box;
+import com.richikin.jetman.utils.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 
 public class GameButton implements GDXButton, Disposable
@@ -17,20 +20,18 @@ public class GameButton implements GDXButton, Disposable
     public Box           buttonRect;
     public Actions       buttonAction;
 
-    public boolean hasSound;
-    public float   scale;
-    public float   alpha;
-    public int     x;
-    public int     y;
-    public int     width;
-    public int     height;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
 
     private boolean _isDrawable;
     private boolean _isPressed;
     private boolean _isDisabled;
 
-    private       int mapIndex;
-    private final App app;
+    private final ShapeRenderer sr;
+    private final int           mapIndex;
+    private final App           app;
 
     /**
      * Define a GameButton
@@ -49,7 +50,6 @@ public class GameButton implements GDXButton, Disposable
         this.bgPressed   = textureRegionPressed;
         this.width       = textureRegion.getRegionWidth();
         this.height      = textureRegion.getRegionHeight();
-        this.alpha       = 1.0f;
         this._isDrawable = true;
         this.buttonRect  = new Box(this.x, this.y, this.width, this.height);
     }
@@ -73,7 +73,6 @@ public class GameButton implements GDXButton, Disposable
         this.width       = 0;
         this.height      = 0;
         this._isDrawable = false;
-        this.scale       = 1.0f;
     }
 
     public GameButton(App _app)
@@ -81,9 +80,9 @@ public class GameButton implements GDXButton, Disposable
         this.app          = _app;
         this._isPressed   = false;
         this._isDisabled  = false;
-        this.hasSound     = true;
         this.buttonAction = Actions._NO_ACTION;
         this.buttonRect   = new Box();
+        this.sr           = new ShapeRenderer();
 
         mapIndex = app.inputManager.gameButtons.size;
 
@@ -119,8 +118,8 @@ public class GameButton implements GDXButton, Disposable
             app.spriteBatch.draw
                 (
                     textureRegion,
-                    (float) (x - (Gfx._HUD_WIDTH / 2)),
-                    (float) (y - (Gfx._HUD_HEIGHT / 2)),
+                    (app.baseRenderer.hudGameCamera.getPosition().x + (float) (x - (Gfx._HUD_WIDTH / 2))),
+                    (app.baseRenderer.hudGameCamera.getPosition().y + (float) (y - (Gfx._HUD_HEIGHT / 2))),
                     width,
                     height
                 );
