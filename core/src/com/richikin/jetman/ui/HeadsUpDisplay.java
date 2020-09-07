@@ -11,10 +11,12 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.ControlLoop;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.buttons.GameButton;
 import com.richikin.jetman.input.buttons.GameButtonRegion;
@@ -127,6 +129,7 @@ public class HeadsUpDisplay implements Disposable
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
         GameAssets.hudPanelHeight = scorePanel.getHeight();
 
+        highScoreUtils  = new HighScoreUtils(app);
         messageManager  = new MessageManager(app);
         pausePanel      = new PausePanel(app);
 
@@ -466,6 +469,11 @@ public class HeadsUpDisplay implements Disposable
         hudStateID = _newState;
     }
 
+    public VirtualJoystick getJoystick()
+    {
+        return app.inputManager.virtualJoystick;
+    }
+
     public ProgressBar getTimeBar()
     {
         return timeBar;
@@ -537,6 +545,8 @@ public class HeadsUpDisplay implements Disposable
                 originY + (720 - 6)
             );
 
+        //
+        // This colour value was obtained via Gimp.
         midFont.setColor(Color.valueOf("8cb8edff"));
         midFont.draw
             (

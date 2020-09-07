@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.hero;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,6 +6,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.managers.BridgeManager;
 import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
@@ -13,9 +14,10 @@ import com.richikin.jetman.physics.Movement;
 
 public class MainPlayer extends GdxSprite
 {
-    private static final float _PLAYER_X_SPEED      = 3.0f;
-    private static final float _PLAYER_JUMP_X_SPEED = 16.0f;
-    private static final float _PLAYER_Y_SPEED      = 4.0f;
+    public static final float _PLAYER_X_SPEED      = 3.0f;
+    public static final float _PLAYER_JUMP_X_SPEED = 16.0f;
+    public static final float _PLAYER_Y_SPEED      = 4.0f;
+
     private static final int   _SPAWN_FRAMES        = 20;
     private static final int   _PLAYER_APPEAR_FRAME = 13;
 
@@ -30,12 +32,22 @@ public class MainPlayer extends GdxSprite
     public boolean isOnGround;
     public boolean isInMidAir;
     public boolean isFalling;
+    public boolean isCarrying;
+    public boolean isJumpingCrater;
+
+    public float    shootRate;
+    public int      shootCount;
+    public float    maxMoveSpeed;
 
     private TextureRegion bridgeSection;
     private int           laserColour;
-    private float         shootRate;
-    private int           shootCount;
-    private float         maxMoveSpeed;
+
+    protected ButtonInputHandler  buttons;
+    protected CollisionHandler    collision;
+    protected ActionButtonHandler actionButton;
+    protected TeleportHandler     teleport;
+    protected LaserManager        laserManager;
+    protected BridgeManager       bridgeManager;
 
     public MainPlayer(App _app)
     {
@@ -85,6 +97,7 @@ public class MainPlayer extends GdxSprite
         isDrawable      = true;
         isShooting      = false;
         localIsDrawable = false;
+        isCarrying      = false;
 
         sprite.setRotation(0);
         sprite.setScale(1.0f);
@@ -131,5 +144,11 @@ public class MainPlayer extends GdxSprite
 
     private void createPartners()
     {
+        buttons       = new ButtonInputHandler(app);
+        collision     = new CollisionHandler(app);
+        actionButton  = new ActionButtonHandler(app);
+        teleport      = new TeleportHandler(app);
+        laserManager  = new LaserManager(app);
+        bridgeManager = new BridgeManager(app);
     }
 }

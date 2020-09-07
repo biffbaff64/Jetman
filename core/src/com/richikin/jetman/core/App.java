@@ -7,10 +7,15 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
-import com.richikin.jetman.entities.characters.MainPlayer;
-import com.richikin.jetman.entities.characters.Rover;
+import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.characters.*;
+import com.richikin.jetman.entities.components.EntityManagerComponent;
+import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.managers.MissileBaseManager;
+import com.richikin.jetman.entities.managers.TeleportManager;
 import com.richikin.jetman.entities.paths.PathUtils;
+import com.richikin.jetman.entities.rootobjects.GameEntity;
+import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.camera.CameraUtils;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
@@ -62,6 +67,8 @@ public abstract class App extends com.badlogic.gdx.Game
     public PanelManager       panelManager;
     public MapCreator         mapCreator;
     public PathUtils          pathUtils;
+
+    public TeleportManager    teleportManager;
     public MissileBaseManager missileBaseManager;
 
     public MainPlayer getPlayer()
@@ -91,6 +98,80 @@ public abstract class App extends com.badlogic.gdx.Game
         }
 
         return rover;
+    }
+
+    public boolean doesRoverExist()
+    {
+        boolean exists = false;
+
+        if (entityData.managerList != null)
+        {
+            EntityManagerComponent component;
+
+            component = entityData.managerList.get(entityManager._roverManagerIndex);
+
+            exists = ((component != null)
+                && (component.getGID() == GraphicID.G_ROVER)
+                && (component.getActiveCount() > 0));
+        }
+
+        return exists;
+    }
+
+    public RoverGun getGun()
+    {
+        RoverGun gun = null;
+
+        if ((entityData.entityMap != null)
+            && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
+            && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
+        {
+            gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
+        }
+
+        return gun;
+    }
+
+    public Bomb getBomb()
+    {
+        Bomb bomb = null;
+
+        if ((entityData.entityMap != null)
+            && (entityData.entityMap.get(entityManager._bombIndex) != null)
+            && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
+        {
+            bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
+        }
+
+        return bomb;
+    }
+
+    public MissileBase getBase()
+    {
+        MissileBase base = null;
+
+        if ((entityData.entityMap != null)
+            && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
+            && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
+        {
+            base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
+        }
+
+        return base;
+    }
+
+    public Teleporter getTeleporter(int index)
+    {
+        Teleporter teleporter = null;
+
+        if ((entityData.entityMap != null)
+            && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
+            && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
+        {
+            teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
+        }
+
+        return teleporter;
     }
 
     /**

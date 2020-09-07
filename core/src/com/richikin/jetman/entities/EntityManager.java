@@ -5,11 +5,9 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
-import com.richikin.jetman.entities.managers.MissileBaseManager;
-import com.richikin.jetman.entities.managers.PlayerManager;
-import com.richikin.jetman.entities.managers.RoverManager;
+import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
@@ -64,7 +62,7 @@ public class EntityManager implements IEntityManager
     public int[] _teleportIndex;
 
     public PlayerManager playerManager;
-    public RenderSystem renderSystem;
+    public RenderSystem  renderSystem;
 
     public boolean _playerReady;
 
@@ -298,7 +296,7 @@ public class EntityManager implements IEntityManager
             {
                 if (entity.gid == GraphicID.G_TRANSPORTER)
                 {
-                    //                    _teleportIndex[((Teleporter) entity).teleporterNumber] = i;
+                    _teleportIndex[((Teleporter) entity).teleporterNumber] = i;
                 }
                 else
                 {
