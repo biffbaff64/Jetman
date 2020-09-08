@@ -6,28 +6,28 @@ filter: Nearest,Nearest
 repeat: none
 arrow_left_blue
   rotate: false
-  xy: 758, 148
+  xy: 1218, 278
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 arrow_left_blue_pressed
   rotate: false
-  xy: 826, 148
+  xy: 1218, 210
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 arrow_right_blue
   rotate: false
-  xy: 1777, 382
+  xy: 1286, 223
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 arrow_right_blue_pressed
   rotate: false
-  xy: 1845, 348
+  xy: 1376, 272
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
@@ -69,14 +69,14 @@ btn_google_signout_dark_pressed
   index: -1
 button1p
   rotate: false
-  xy: 906, 234
+  xy: 1441, 383
   size: 121, 23
   orig: 121, 23
   offset: 0, 0
   index: -1
 button1p_pressed
   rotate: false
-  xy: 1150, 321
+  xy: 1441, 358
   size: 121, 23
   orig: 121, 23
   offset: 0, 0
@@ -90,63 +90,63 @@ button2p
   index: -1
 button2p_pressed
   rotate: false
-  xy: 906, 259
+  xy: 762, 213
   size: 142, 23
   orig: 142, 23
   offset: 0, 0
   index: -1
 buttonExit
   rotate: false
-  xy: 1050, 306
+  xy: 1564, 362
   size: 98, 44
   orig: 98, 44
   offset: 0, 0
   index: -1
 buttonExit_pressed
   rotate: false
-  xy: 1050, 260
+  xy: 1664, 362
   size: 98, 44
   orig: 98, 44
   offset: 0, 0
   index: -1
 buttonFXOff
   rotate: false
-  xy: 1981, 350
+  xy: 1716, 296
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 buttonFXOn
   rotate: false
-  xy: 1240, 255
+  xy: 758, 147
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 buttonHome
   rotate: false
-  xy: 1218, 189
+  xy: 824, 147
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 buttonHomePressed
   rotate: false
-  xy: 1284, 189
+  xy: 1777, 384
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 buttonMusicOff
   rotate: false
-  xy: 894, 100
+  xy: 1782, 318
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 buttonMusicOn
   rotate: false
-  xy: 960, 100
+  xy: 1848, 350
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -209,7 +209,7 @@ button_drop_pressed
   index: -1
 button_e
   rotate: false
-  xy: 1913, 348
+  xy: 1444, 290
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
@@ -230,14 +230,14 @@ button_fire_pressed
   index: -1
 button_k
   rotate: false
-  xy: 906, 166
+  xy: 1512, 290
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 button_l
   rotate: false
-  xy: 974, 166
+  xy: 1580, 294
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
@@ -272,7 +272,7 @@ button_open_leaderboard_pressed
   index: -1
 button_pause
   rotate: false
-  xy: 1150, 204
+  xy: 1648, 294
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
@@ -289,6 +289,34 @@ button_show_achievements_pressed
   xy: 1612, 450
   size: 240, 60
   orig: 240, 60
+  offset: 0, 0
+  index: -1
+button_x
+  rotate: false
+  xy: 762, 238
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_x_pressed
+  rotate: false
+  xy: 876, 238
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_y
+  rotate: false
+  xy: 990, 238
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_y_pressed
+  rotate: false
+  xy: 1104, 232
+  size: 112, 112
+  orig: 112, 112
   offset: 0, 0
   index: -1
 button_yes
@@ -321,7 +349,7 @@ new_back_button
   index: -1
 new_back_button_pressed
   rotate: false
-  xy: 762, 284
+  xy: 906, 170
   size: 142, 66
   orig: 142, 66
   offset: 0, 0
@@ -342,14 +370,14 @@ new_developer_options_button_pressed
   index: -1
 new_exit_button
   rotate: false
-  xy: 906, 284
+  xy: 1050, 164
   size: 142, 66
   orig: 142, 66
   offset: 0, 0
   index: -1
 new_exit_button_pressed
   rotate: false
-  xy: 762, 216
+  xy: 1297, 340
   size: 142, 66
   orig: 142, 66
   offset: 0, 0
@@ -426,7 +454,7 @@ toggle_left
   index: -1
 toggle_off
   rotate: false
-  xy: 1150, 272
+  xy: 1286, 291
   size: 88, 47
   orig: 88, 47
   offset: 0, 0

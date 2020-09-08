@@ -11,6 +11,7 @@ public enum Actions
     _JUMPING,
     _CLIMBING,
     _FALLING,
+    _FALLING_TO_GROUND,
     _RIDING,
     _FLYING,
     _TELEPORTING,

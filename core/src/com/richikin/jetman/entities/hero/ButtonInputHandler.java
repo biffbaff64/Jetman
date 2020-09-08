@@ -203,7 +203,7 @@ public class ButtonInputHandler implements Disposable
         {
             directionButtonPressed = true;
 
-            if (!app.getPlayer().isBlockedRight && (app.getPlayer().rightEdge < Gfx.getMapWidth()))
+            if (!app.getPlayer().isBlockedRight && (app.getPlayer().getRightEdge() < Gfx.getMapWidth()))
             {
                 if (app.getPlayer().isRidingRover)
                 {
@@ -291,10 +291,10 @@ public class ButtonInputHandler implements Disposable
             if (app.getPlayer().isRidingRover)
             {
                 app.getRover().isMovingX = false;
-                app.getRover().spriteAction = Actions._STANDING;
+                app.getRover().setAction(Actions._STANDING);
             }
-            else if ((app.getPlayer().spriteAction != Actions._HURT)
-                    && (app.getPlayer().spriteAction != Actions._FALLING_TO_GROUND))
+            else if ((app.getPlayer().getSpriteAction() != Actions._HURT)
+                    && (app.getPlayer().getSpriteAction() != Actions._FALLING_TO_GROUND))
             {
                 if (slowDown > 0)
                 {

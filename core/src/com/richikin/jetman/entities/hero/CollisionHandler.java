@@ -12,4 +12,9 @@ public class CollisionHandler
     {
         return false;
     }
+
+    public boolean isInRoverMiddle()
+    {
+        return false;
+    }
 }

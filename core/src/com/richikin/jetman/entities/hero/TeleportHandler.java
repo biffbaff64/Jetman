@@ -7,4 +7,13 @@ public class TeleportHandler
     public TeleportHandler(App _app)
     {
     }
+
+    public boolean update()
+    {
+        return false;
+    }
+
+    public void end()
+    {
+    }
 }

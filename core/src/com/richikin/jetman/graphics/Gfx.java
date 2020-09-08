@@ -90,6 +90,11 @@ public class Gfx
         return tileWidth;
     }
 
+    public static int visibleMapRight()
+    {
+        return mapWidth - _VIEW_WIDTH;
+    }
+
     public static int getTileHeight()
     {
         return tileHeight;

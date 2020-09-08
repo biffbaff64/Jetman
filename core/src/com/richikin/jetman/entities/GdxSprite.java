@@ -199,8 +199,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
         }
 
         // By default, sprites are always looking DOWN
-        if ((lookingAt.getY() != Movement._DIRECTION_DOWN)
-            && (lookingAt.getY() != Movement._DIRECTION_UP))
+        if ((lookingAt.getY() != Movement._DIRECTION_DOWN) && (lookingAt.getY() != Movement._DIRECTION_UP))
         {
             lookingAt.setY(Movement._DIRECTION_DOWN);
         }
@@ -289,6 +288,11 @@ public class GdxSprite extends GameEntity implements IGameSprite
     public Vector3 getPosition()
     {
         return new Vector3(sprite.getX(), sprite.getY(), zPosition);
+    }
+
+    public float getRightEdge()
+    {
+        return sprite.getX() + frameWidth;
     }
 
     @Override
