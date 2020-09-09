@@ -23,6 +23,13 @@ public class SimpleVec3
         this.z = _z;
     }
 
+    public SimpleVec3(SimpleVec3 _vec2)
+    {
+        this.x = _vec2.x;
+        this.y = _vec2.y;
+        this.z = _vec2.z;
+    }
+
     public void add(int x, int y, int z)
     {
         this.set(this.x + x, this.y + y, this.z + z);

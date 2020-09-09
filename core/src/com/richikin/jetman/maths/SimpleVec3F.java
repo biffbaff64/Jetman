@@ -22,6 +22,12 @@ public class SimpleVec3F
         this.y = _y;
         this.z = _z;
     }
+    public SimpleVec3F(SimpleVec3F _vec2)
+    {
+        this.x = _vec2.x;
+        this.y = _vec2.y;
+        this.z = _vec2.z;
+    }
 
     public void add(float x, float y, float z)
     {

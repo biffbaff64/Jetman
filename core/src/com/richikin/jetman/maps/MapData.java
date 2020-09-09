@@ -36,7 +36,7 @@ public class MapData
     public final LayerImage[] backgroundLayers =
         {
             new LayerImage("data/background_layer.png", 0.0f, 0.0f),
-            new LayerImage("data/nebula_background.png", 0.1f, 0.0f),
+            new LayerImage("data/nebula_background.png", 0.0f, 0.0f),
             new LayerImage("data/stars_background.png", 0.0f, 0.0f),
             new LayerImage("data/dark_mountains.png", 0.4f, 0.0f),
             new LayerImage("data/light_mountains.png", 0.8f, 0.0f),

@@ -616,6 +616,14 @@ public class HeadsUpDisplay implements Disposable
      */
     private void createHUDButtons()
     {
+        buttonUp    = new Switch();
+        buttonDown  = new Switch();
+        buttonLeft  = new Switch();
+        buttonRight = new Switch();
+
+        buttonX = new Switch();
+        buttonY = new Switch();
+
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
         buttonB = new GameButton

@@ -20,6 +20,7 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera hudGameCamera;
     public OrthoGameCamera spriteGameCamera;
     public OrthoGameCamera tiledGameCamera;
+    public OrthoGameCamera starsGameCamera;
     public OrthoGameCamera parallaxGameCamera;
 
     public ParallaxBackground parallaxBackground;
@@ -52,16 +53,19 @@ public class BaseRenderer implements Disposable
         AppConfig.camerasReady = false;
 
         parallaxGameCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Parallax Cam", app);
+        starsGameCamera    = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Stars Cam", app);
         tiledGameCamera    = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Tiled Cam", app);
         spriteGameCamera   = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Sprite Cam", app);
         hudGameCamera      = new OrthoGameCamera(Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT, "Hud Cam", app);
 
         parallaxGameCamera.setStretchViewport();
+        starsGameCamera.setStretchViewport();
         tiledGameCamera.setStretchViewport();
         spriteGameCamera.setStretchViewport();
         hudGameCamera.setStretchViewport();
 
         parallaxGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
+        starsGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         tiledGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         spriteGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         hudGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
@@ -134,7 +138,7 @@ public class BaseRenderer implements Disposable
             cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
             cameraPos.z = 0;
 
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), true);
+            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
 
             parallaxBackground.render();
 
@@ -166,6 +170,24 @@ public class BaseRenderer implements Disposable
             //
             // Deleted but, for future reference, the
             // MarkerTile layer was drawn here...
+
+            app.spriteBatch.end();
+        }
+
+        // ----- Draw the background stars, if enabled -----
+        if (starsGameCamera.isInUse)
+        {
+            starsGameCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(starsGameCamera.camera.combined);
+            app.spriteBatch.begin();
+
+            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
+            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
+            cameraPos.z = 0;
+
+            starsGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+
+            app.entityManager.renderSystem.drawBackgroundSprites();
 
             app.spriteBatch.end();
         }
@@ -219,9 +241,7 @@ public class BaseRenderer implements Disposable
             app.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             app.spriteBatch.begin();
 
-            cameraPos.x = (float) (app.mapData.mapPosition.getX() + (Gfx._HUD_WIDTH / 2));
-            cameraPos.y = (float) (app.mapData.mapPosition.getY() + (Gfx._HUD_HEIGHT / 2));
-            cameraPos.z = 0;
+            cameraPos.setEmpty();
 
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
             hudRenderer.render(app.spriteBatch, hudGameCamera);

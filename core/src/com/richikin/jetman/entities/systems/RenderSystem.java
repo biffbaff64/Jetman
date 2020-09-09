@@ -6,6 +6,7 @@ package com.richikin.jetman.entities.systems;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
@@ -23,6 +24,7 @@ public class RenderSystem
     /**
      * Draw all sprites to the scene.
      * Uses a Z-coord system: 0 at front, MAX at rear.
+     * Any sprites with a Z value > MAX will not be drawn.
      */
     public void drawSprites()
     {
@@ -61,11 +63,54 @@ public class RenderSystem
      */
     private boolean isInViewWindow(GdxSprite sprObj)
     {
-        if (app.settings.isEnabled(Settings._CULL_SPRITES))
-        {
-            return app.mapData.viewportBox.overlaps(sprObj.sprite.getBoundingRectangle());
-        }
+        return app.mapData.viewportBox.overlaps(sprObj.sprite.getBoundingRectangle());
+    }
 
-        return true;
+    /**
+     * Draw the teleporter beams, which are activated when the
+     * teleporter is in use. These are not sprites.
+     *
+     * @param teleportBeam  The {@link TeleportBeam} object.
+     */
+    public void drawTeleportBeams(TeleportBeam teleportBeam)
+    {
+        if (teleportBeam != null)
+        {
+            teleportBeam.draw(app.spriteBatch);
+        }
+    }
+
+    /**
+     * Draw non-game sprites which exist in the background layers.
+     * These can be the twinkling stars, ufos, or anything else
+     * which is animating.
+     */
+    public void drawBackgroundSprites()
+    {
+        drawEntity(GraphicID.G_TWINKLE_STAR);
+        drawEntity(GraphicID.G_UFO);
+    }
+
+    /**
+     * Method called from drawBackgroundSprites().
+     *
+     * @param graphicID The {@link GraphicID} of the sprite to draw.
+     */
+    private void drawEntity(GraphicID graphicID)
+    {
+        GdxSprite entity;
+
+        for (int i = 0; i < app.entityData.entityMap.size; i++)
+        {
+            entity = (GdxSprite) app.entityData.entityMap.get(i);
+
+            if ((entity != null) && (entity.gid == graphicID))
+            {
+                if (isInViewWindow(entity) && entity.isDrawable)
+                {
+                    entity.draw(app.spriteBatch);
+                }
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MainPlayer extends GdxSprite
 {
-    public static final float _PLAYER_X_SPEED      = 3.0f;
+    public static final float _PLAYER_X_SPEED      = 6.0f;
     public static final float _PLAYER_JUMP_X_SPEED = 16.0f;
     public static final float _PLAYER_Y_SPEED      = 4.0f;
 

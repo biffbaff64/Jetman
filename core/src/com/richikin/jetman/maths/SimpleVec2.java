@@ -1,6 +1,8 @@
 
 package com.richikin.jetman.maths;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import org.jetbrains.annotations.NotNull;
 
 public class SimpleVec2
@@ -20,6 +22,12 @@ public class SimpleVec2
         this.y = _y;
     }
 
+    public SimpleVec2(SimpleVec2 _vec2)
+    {
+        this.x = _vec2.x;
+        this.y = _vec2.y;
+    }
+
     public void add(int _x, int _y)
     {
         this.set(this.x + _x, this.y + _y);
@@ -28,6 +36,32 @@ public class SimpleVec2
     public void sub(int _x, int _y)
     {
         this.set(this.x - _x, this.y - _y);
+    }
+
+    //
+    // Experimental
+    public <T> void set(Object _obj, Class<T> clazz)
+    {
+        if (_obj instanceof SimpleVec2)
+        {
+            this.x = ((SimpleVec2) _obj).x;
+            this.y = ((SimpleVec2) _obj).y;
+        }
+        else if (_obj instanceof SimpleVec2F)
+        {
+            this.x = (int) ((SimpleVec2F) _obj).x;
+            this.y = (int) ((SimpleVec2F) _obj).y;
+        }
+        else if (_obj instanceof Vector2)
+        {
+            this.x = (int) ((Vector2) _obj).x;
+            this.y = (int) ((Vector2) _obj).y;
+        }
+        else if (_obj instanceof Vector3)
+        {
+            this.x = (int) ((Vector3) _obj).x;
+            this.y = (int) ((Vector3) _obj).y;
+        }
     }
 
     public void set(int _x, int _y)

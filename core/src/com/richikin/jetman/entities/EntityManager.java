@@ -262,7 +262,7 @@ public class EntityManager implements IEntityManager
     @Override
     public void drawSprites()
     {
-        //        renderSystem.drawTeleportBeams(teleportBeam);
+        renderSystem.drawTeleportBeams(teleportBeam);
         renderSystem.drawSprites();
     }
 

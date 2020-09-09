@@ -79,6 +79,8 @@ public class TwinkleStar extends GdxSprite
 
         sprite.setPosition(originX + initXYZ.getX(), originY + initXYZ.getY());
 
+        Trace.__FILE_FUNC(getPosition().toString());
+
         super.draw(spriteBatch);
     }
 }
