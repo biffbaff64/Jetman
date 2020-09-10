@@ -2,6 +2,7 @@ package com.richikin.jetman.graphics.renderers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
@@ -11,6 +12,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
+import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
@@ -20,10 +22,11 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera hudGameCamera;
     public OrthoGameCamera spriteGameCamera;
     public OrthoGameCamera tiledGameCamera;
-    public OrthoGameCamera starsGameCamera;
     public OrthoGameCamera parallaxGameCamera;
+    public OrthoGameCamera backgroundCamera;
 
     public ParallaxBackground parallaxBackground;
+    public ParallaxBackground parallaxMiddle;
     public ParallaxBackground parallaxForeground;
     public Zoom               gameZoom;
     public Zoom               hudZoom;
@@ -53,19 +56,19 @@ public class BaseRenderer implements Disposable
         AppConfig.camerasReady = false;
 
         parallaxGameCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Parallax Cam", app);
-        starsGameCamera    = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Stars Cam", app);
+        backgroundCamera   = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Stars Cam", app);
         tiledGameCamera    = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Tiled Cam", app);
         spriteGameCamera   = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Sprite Cam", app);
         hudGameCamera      = new OrthoGameCamera(Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT, "Hud Cam", app);
 
         parallaxGameCamera.setStretchViewport();
-        starsGameCamera.setStretchViewport();
+        backgroundCamera.setStretchViewport();
         tiledGameCamera.setStretchViewport();
         spriteGameCamera.setStretchViewport();
         hudGameCamera.setStretchViewport();
 
         parallaxGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        starsGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
+        backgroundCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         tiledGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         spriteGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
         hudGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
@@ -74,12 +77,15 @@ public class BaseRenderer implements Disposable
         hudGameCamera.camera.update();
 
         parallaxBackground = new ParallaxBackground(app);
+        parallaxMiddle     = new ParallaxBackground(app);
         parallaxForeground = new ParallaxBackground(app);
         gameZoom           = new Zoom();
         hudZoom            = new Zoom();
         worldRenderer      = new WorldRenderer(app);
         hudRenderer        = new HUDRenderer(app);
         cameraPos          = new SimpleVec3F();
+
+        app.parallaxManager = new ParallaxManager(app);
 
         isDrawingStage         = false;
         AppConfig.camerasReady = true;
@@ -127,7 +133,7 @@ public class BaseRenderer implements Disposable
 
         app.spriteBatch.enableBlending();
 
-        // ----- Draw the Parallax Layers, if enabled -----
+        // ----- Draw the first set of Parallax Layers, if enabled -----
         if (parallaxGameCamera.isInUse)
         {
             parallaxGameCamera.viewport.apply();
@@ -141,6 +147,42 @@ public class BaseRenderer implements Disposable
             parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
 
             parallaxBackground.render();
+
+            app.spriteBatch.end();
+        }
+
+        // ----- Draw the background, ufos, twinkle stars, if enabled -----
+        if (backgroundCamera.isInUse)
+        {
+            backgroundCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(backgroundCamera.camera.combined);
+            app.spriteBatch.begin();
+
+            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
+            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
+            cameraPos.z = 0;
+
+            backgroundCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+
+            app.entityManager.renderSystem.drawBackgroundSprites();
+
+            app.spriteBatch.end();
+        }
+
+        // ----- Draw the remaining Parallax Layers, if enabled -----
+        if (parallaxGameCamera.isInUse)
+        {
+            parallaxGameCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
+            app.spriteBatch.begin();
+
+            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
+            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
+            cameraPos.z = 0;
+
+            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+
+            parallaxMiddle.render();
 
             app.spriteBatch.end();
         }
@@ -170,24 +212,6 @@ public class BaseRenderer implements Disposable
             //
             // Deleted but, for future reference, the
             // MarkerTile layer was drawn here...
-
-            app.spriteBatch.end();
-        }
-
-        // ----- Draw the background stars, if enabled -----
-        if (starsGameCamera.isInUse)
-        {
-            starsGameCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(starsGameCamera.camera.combined);
-            app.spriteBatch.begin();
-
-            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
-            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
-            cameraPos.z = 0;
-
-            starsGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-
-            app.entityManager.renderSystem.drawBackgroundSprites();
 
             app.spriteBatch.end();
         }

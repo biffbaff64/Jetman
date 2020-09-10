@@ -17,6 +17,7 @@ import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.camera.CameraUtils;
+import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
 import com.richikin.jetman.maps.MapCreator;
@@ -67,6 +68,7 @@ public abstract class App extends com.badlogic.gdx.Game
     public PanelManager       panelManager;
     public MapCreator         mapCreator;
     public PathUtils          pathUtils;
+    public ParallaxManager    parallaxManager;
 
     public TeleportManager    teleportManager;
     public MissileBaseManager missileBaseManager;

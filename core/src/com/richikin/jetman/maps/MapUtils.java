@@ -41,14 +41,6 @@ public class MapUtils
 
         try
         {
-            app.mapData.mapPosition.setY
-                (
-                    (int) Math.max(app.mapData.minScrollY,
-                        (y + (app.getPlayer().frameHeight / 2)) - (float) (Gfx._VIEW_HEIGHT / 2))
-                );
-
-            app.mapData.mapPosition.setY(Math.min(app.mapData.mapPosition.getY(), app.mapData.maxScrollY));
-
             app.mapData.mapPosition.setX
                 (
                     (int) Math.max(app.mapData.minScrollX,
@@ -56,41 +48,21 @@ public class MapUtils
                 );
 
             app.mapData.mapPosition.setX(Math.min(app.mapData.mapPosition.getX(), app.mapData.maxScrollX));
+
+            app.mapData.mapPosition.setY
+                (
+                    (int) Math.max(app.mapData.minScrollY,
+                        (y + (app.getPlayer().frameHeight / 2)) - (float) (Gfx._VIEW_HEIGHT / 2))
+                );
+
+            app.mapData.mapPosition.setY(Math.min(app.mapData.mapPosition.getY(), app.mapData.maxScrollY));
         }
         catch (NullPointerException npe)
         {
             app.mapData.mapPosition.set(0, 0);
         }
 
-        if ((app.mapData.mapPosition.getX() > app.mapData.minScrollX)
-            && (app.mapData.mapPosition.getX() < app.mapData.maxScrollX))
-        {
-            if (app.mapData.previousMapPosition.getX() < app.mapData.mapPosition.getX())
-            {
-                app.baseRenderer.parallaxBackground.scrollLayersLeft();
-                app.baseRenderer.parallaxBackground.scrollLayersLeft();
-            }
-            else if (app.mapData.previousMapPosition.getX() > app.mapData.mapPosition.getX())
-            {
-                app.baseRenderer.parallaxBackground.scrollLayersRight();
-                app.baseRenderer.parallaxBackground.scrollLayersRight();
-            }
-        }
-
-        if ((app.mapData.mapPosition.getY() > app.mapData.minScrollY)
-            && (app.mapData.mapPosition.getY() < app.mapData.maxScrollY))
-        {
-            if (app.mapData.previousMapPosition.getY() < app.mapData.mapPosition.getY())
-            {
-                app.baseRenderer.parallaxBackground.scrollLayersDown();
-                app.baseRenderer.parallaxBackground.scrollLayersDown();
-            }
-            else if (app.mapData.previousMapPosition.getY() > app.mapData.mapPosition.getY())
-            {
-                app.baseRenderer.parallaxBackground.scrollLayersUp();
-                app.baseRenderer.parallaxBackground.scrollLayersUp();
-            }
-        }
+        app.parallaxManager.scroll();
     }
 
     /**
@@ -98,7 +70,7 @@ public class MapUtils
      *
      * @param targetGID The {@link GraphicID} to search for.
      *
-     * @return  Array of valid {@link MarkerTile}.
+     * @return  Array of valid {@link MarkerTile}s.
      */
     public Array<MarkerTile> findMultiTiles(final GraphicID targetGID)
     {

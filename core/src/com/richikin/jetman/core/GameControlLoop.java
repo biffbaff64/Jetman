@@ -198,10 +198,10 @@ public class GameControlLoop extends AbstractControlLoop
         }
         else
         {
-            boolean isLerpingEnabled = (app.appState.peek() == StateID._STATE_GAME);
-
-            app.baseRenderer.tiledGameCamera.isLerpingEnabled    = isLerpingEnabled;
-            app.baseRenderer.spriteGameCamera.isLerpingEnabled   = isLerpingEnabled;
+//            boolean isLerpingEnabled = (app.appState.peek() == StateID._STATE_GAME);
+//
+//            app.baseRenderer.tiledGameCamera.isLerpingEnabled    = isLerpingEnabled;
+//            app.baseRenderer.spriteGameCamera.isLerpingEnabled   = isLerpingEnabled;
 
             app.mapUtils.update();
             app.entityManager.updateSprites();

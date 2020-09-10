@@ -32,7 +32,7 @@ public class RenderSystem
         {
             GdxSprite entity;
 
-            for (int z = Gfx._MAXIMUM_Z_DEPTH; z >= 0; z--)
+            for (int z = Gfx._MAXIMUM_Z_DEPTH-1; z >= 0; z--)
             {
                 for (int i = 0; i < app.entityData.entityMap.size; i++)
                 {
@@ -40,12 +40,25 @@ public class RenderSystem
 
                     if (entity != null)
                     {
-                        if (entity.zPosition == z)
+                        switch (entity.gid)
                         {
-                            if (isInViewWindow(entity) && entity.isDrawable)
+                            case G_UFO:
+                            case G_TWINKLE_STAR:
                             {
-                                entity.draw(app.spriteBatch);
                             }
+                            break;
+
+                            default:
+                            {
+                                if (entity.zPosition == z)
+                                {
+                                    if (isInViewWindow(entity) && entity.isDrawable)
+                                    {
+                                        entity.draw(app.spriteBatch);
+                                    }
+                                }
+                            }
+                            break;
                         }
                     }
                 }
@@ -88,7 +101,7 @@ public class RenderSystem
     public void drawBackgroundSprites()
     {
         drawEntity(GraphicID.G_TWINKLE_STAR);
-        drawEntity(GraphicID.G_UFO);
+//        drawEntity(GraphicID.G_UFO);
     }
 
     /**

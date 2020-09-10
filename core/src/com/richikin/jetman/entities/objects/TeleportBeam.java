@@ -64,7 +64,7 @@ public class TeleportBeam implements Disposable
                 new SimpleVec2(640, (720 - 606)),
                 new SimpleVec2(662, 662),
                 new SimpleVec2(16, 16),
-                new v(Movement._DIRECTION_RIGHT, Movement._DIRECTION_DOWN),
+                new SimpleVec2(Movement._DIRECTION_RIGHT, Movement._DIRECTION_DOWN),
                 45.0f,
                 true
             ),
@@ -193,7 +193,7 @@ public class TeleportBeam implements Disposable
 
             int startXPos = (int) (app.getPlayer().sprite.getX() - originX);
 
-            positions[i] = new SimpleVec2F()
+            positions[i] = new SimpleVec2F
                 (
                     originX + startXPos /*+ (beams[i].distance.getX() * (directions[i].getX() * -1))*/,
                     originY + beams[i].startPos.getY() /*+ (beams[i].distance.getY() * (directions[i].getY() * -1))*/
@@ -201,13 +201,13 @@ public class TeleportBeam implements Disposable
 
             if (!_enteredTeleporter)
             {
-                positions[i].addX((beams[i].distance.getX() * (directions[i].getX() * -1)));
-                positions[i].addY((beams[i].distance.getY() * (directions[i].getY() * -1)));
+//                positions[i].addX((beams[i].distance.getX() * (directions[i].getX() * -1)));
+//                positions[i].addY((beams[i].distance.getY() * (directions[i].getY() * -1)));
             }
             else
             {
-                directions[i].toggleX();
-                directions[i].toggleY();
+//                directions[i].toggleX();
+//                directions[i].toggleY();
             }
 
             beamSprites[i].setPosition(positions[i].getX(), positions[i].getY());
@@ -242,8 +242,8 @@ public class TeleportBeam implements Disposable
                         beams[i].speed.getY() * directions[i].getY()
                     );
 
-                distances[i].subX(beams[i].speed.getX());
-                distances[i].subY(beams[i].speed.getY());
+//                distances[i].subX(beams[i].speed.getX());
+//                distances[i].subY(beams[i].speed.getY());
             }
             else
             {

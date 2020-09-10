@@ -25,7 +25,6 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class TwinkleStar extends GdxSprite
 {
@@ -74,12 +73,10 @@ public class TwinkleStar extends GdxSprite
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        final float originX = app.mapData.mapPosition.getX();
-        final float originY = app.mapData.mapPosition.getY();
+        final float originX = app.baseRenderer.backgroundCamera.getPosition().x;//app.mapData.mapPosition.getX();
+        final float originY = app.baseRenderer.backgroundCamera.getPosition().y;//app.mapData.mapPosition.getY();
 
         sprite.setPosition(originX + initXYZ.getX(), originY + initXYZ.getY());
-
-        Trace.__FILE_FUNC(getPosition().toString());
 
         super.draw(spriteBatch);
     }

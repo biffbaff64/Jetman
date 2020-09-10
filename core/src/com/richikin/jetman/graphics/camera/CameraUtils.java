@@ -16,7 +16,7 @@ public class CameraUtils
     public void resetCameraZoom()
     {
         app.baseRenderer.parallaxGameCamera.camera.update();
-        app.baseRenderer.starsGameCamera.camera.update();
+        app.baseRenderer.backgroundCamera.camera.update();
         app.baseRenderer.tiledGameCamera.camera.update();
         app.baseRenderer.spriteGameCamera.camera.update();
         app.baseRenderer.hudGameCamera.camera.update();
@@ -25,7 +25,7 @@ public class CameraUtils
         app.baseRenderer.hudZoom.stop();
 
         app.baseRenderer.parallaxGameCamera.camera.zoom = Gfx._DEFAULT_ZOOM;
-        app.baseRenderer.starsGameCamera.camera.zoom    = Gfx._DEFAULT_ZOOM;
+        app.baseRenderer.backgroundCamera.camera.zoom   = Gfx._DEFAULT_ZOOM;
         app.baseRenderer.tiledGameCamera.camera.zoom    = Gfx._DEFAULT_ZOOM;
         app.baseRenderer.spriteGameCamera.camera.zoom   = Gfx._DEFAULT_ZOOM;
         app.baseRenderer.hudGameCamera.camera.zoom      = Gfx._DEFAULT_SCALE;
@@ -34,7 +34,7 @@ public class CameraUtils
     public void enableAllCameras()
     {
         app.baseRenderer.parallaxGameCamera.isInUse = true;
-        app.baseRenderer.starsGameCamera.isInUse    = true;
+        app.baseRenderer.backgroundCamera.isInUse   = true;
         app.baseRenderer.tiledGameCamera.isInUse    = true;
         app.baseRenderer.spriteGameCamera.isInUse   = true;
         app.baseRenderer.hudGameCamera.isInUse      = true;
@@ -45,7 +45,7 @@ public class CameraUtils
     public void disableAllCameras()
     {
         app.baseRenderer.parallaxGameCamera.isInUse = false;
-        app.baseRenderer.starsGameCamera.isInUse    = false;
+        app.baseRenderer.backgroundCamera.isInUse   = false;
         app.baseRenderer.tiledGameCamera.isInUse    = false;
         app.baseRenderer.spriteGameCamera.isInUse   = false;
         app.baseRenderer.hudGameCamera.isInUse      = false;
