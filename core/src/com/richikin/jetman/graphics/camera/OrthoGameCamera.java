@@ -44,6 +44,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     public void setExtendedViewport()
     {
         viewport = new ExtendViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+        viewport.apply();
     }
 
     public void setStretchViewport()

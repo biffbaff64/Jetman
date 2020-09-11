@@ -66,6 +66,10 @@ public class BaseRenderer implements Disposable
         parallaxForeground  = new ParallaxBackground(app);
         app.parallaxManager = new ParallaxManager(app);
 
+        Trace.__FILE_FUNC("Parallax Cam");
+        Trace.dbg("Width  : " + parallaxGameCamera.camera.viewportWidth);
+        Trace.dbg("Height : " + parallaxGameCamera.camera.viewportHeight);
+
         // --------------------------------------
         // Camera for background entities that exist between
         // groups of parallax background layers, mainly
