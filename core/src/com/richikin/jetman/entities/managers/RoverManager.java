@@ -82,35 +82,19 @@ public class RoverManager extends GenericEntityManager
 
             super.create
                 (
-                    GameAssets._ROVER_ASSET,
+                    GameAssets._ROVER_IDLE_ASSET,
                     GameAssets._ROVER_FRAMES,
-                    Animation.PlayMode.NORMAL,
+                    Animation.PlayMode.LOOP,
                     roverPos.x,
                     roverPos.y
                 );
+
+            entityDescriptor._ANIM_RATE = 5f / 6f;
 
             Rover rover = new Rover(app);
             rover.initialise(entityDescriptor);
             rover.addPartners();
             app.entityData.addEntity(rover);
-
-//            if (Settings.areGameHintsActive(app))
-//            {
-//                EntityDescriptor descriptor   = new EntityDescriptor();
-//                descriptor._ASSET             = app.assets.getAnimationsAtlas().findRegion("enter_rover");
-//                descriptor._FRAMES            = 1;
-//                descriptor._PLAYMODE          = Animation.PlayMode.NORMAL;
-//                descriptor._ENEMY             = false;
-//                descriptor._X                 += 2;
-//                descriptor._Y                 += 6;
-//                descriptor._Z                 = Gfx._MAXIMUM_Z_DEPTH;
-//                descriptor._INDEX             = app.entityData.entityMap.size;
-//
-//                InfoBox infoBox = new InfoBox(app);
-//                infoBox.initialise(descriptor);
-//
-//                app.entityData.addEntity(infoBox);
-//            }
 
             app.entityManager._roverIndex = rover.spriteNumber;
 

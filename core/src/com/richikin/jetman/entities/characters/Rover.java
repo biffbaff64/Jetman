@@ -1,5 +1,6 @@
 package com.richikin.jetman.entities.characters;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
@@ -222,14 +223,8 @@ public class Rover extends GdxSprite
     @Override
     public void animate()
     {
-        if (app.getPlayer().isRidingRover)
-        {
-            sprite.setRegion(animFrames[0]);
-        }
-        else
-        {
-            sprite.setRegion(animFrames[1]);
-        }
+        elapsedAnimTime += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
     }
 
 //    @Override

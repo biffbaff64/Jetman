@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -38,6 +39,11 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
         camera = new OrthographicCamera(_sceneWidth, _sceneHeight);
         camera.position.set(_sceneWidth / 2, _sceneHeight / 2, 0);
+    }
+
+    public void setExtendedViewport()
+    {
+        viewport = new ExtendViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
     }
 
     public void setStretchViewport()
@@ -91,7 +97,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
             if (_shake)
             {
-                com.richikin.jetman.graphics.camera.Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
+                Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
             }
 
             camera.update();
@@ -147,7 +153,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
             if (_shake)
             {
-                com.richikin.jetman.graphics.camera.Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
+                Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
             }
 
             camera.update();

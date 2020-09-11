@@ -82,7 +82,7 @@ public class HeadsUpDisplay implements Disposable
     public GDXButton buttonB;
     public GDXButton buttonX;
     public GDXButton buttonY;
-    public GDXButton buttonPause;
+    public Switch    buttonPause;
     public Switch    buttonDevOptions;
 
     public MessageManager messageManager;
@@ -589,8 +589,6 @@ public class HeadsUpDisplay implements Disposable
                 }
             }
         }
-
-        ((GameButton) buttonPause).draw();
     }
 
     private void drawArrows()
@@ -624,6 +622,8 @@ public class HeadsUpDisplay implements Disposable
         buttonX = new Switch();
         buttonY = new Switch();
 
+        buttonPause = new Switch();
+
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
         buttonB = new GameButton
@@ -639,14 +639,6 @@ public class HeadsUpDisplay implements Disposable
                 app.assets.getButtonRegion("button_drop"),
                 app.assets.getButtonRegion("button_drop_pressed"),
                 displayPos[_ACTION][xPos], displayPos[_ACTION][_Y],
-                app
-            );
-
-        buttonPause = new GameButton
-            (
-                app.assets.getButtonRegion("button_pause"),
-                app.assets.getButtonRegion("button_pause"),
-                displayPos[_PAUSE][xPos], displayPos[_PAUSE][_Y],
                 app
             );
 

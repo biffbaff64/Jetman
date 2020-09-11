@@ -24,11 +24,11 @@ public class CameraUtils
         app.baseRenderer.gameZoom.stop();
         app.baseRenderer.hudZoom.stop();
 
-        app.baseRenderer.parallaxGameCamera.camera.zoom = Gfx._DEFAULT_ZOOM;
-        app.baseRenderer.backgroundCamera.camera.zoom   = Gfx._DEFAULT_ZOOM;
-        app.baseRenderer.tiledGameCamera.camera.zoom    = Gfx._DEFAULT_ZOOM;
-        app.baseRenderer.spriteGameCamera.camera.zoom   = Gfx._DEFAULT_ZOOM;
-        app.baseRenderer.hudGameCamera.camera.zoom      = Gfx._DEFAULT_SCALE;
+        app.baseRenderer.parallaxGameCamera.camera.zoom = 1.0f;
+        app.baseRenderer.backgroundCamera.camera.zoom   = 1.0f;
+        app.baseRenderer.tiledGameCamera.camera.zoom    = 1.0f;
+        app.baseRenderer.spriteGameCamera.camera.zoom   = 1.0f;
+        app.baseRenderer.hudGameCamera.camera.zoom      = 1.0f;
     }
 
     public void enableAllCameras()

@@ -3,14 +3,11 @@ package com.richikin.jetman.entities.systems;
 // TODO: 27/12/2018 - This class is becoming untidy, with multiple draw methods.
 //                  - Investigate simplifying the draw methods.
 
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {
@@ -100,8 +97,8 @@ public class RenderSystem
      */
     public void drawBackgroundSprites()
     {
-        drawEntity(GraphicID.G_TWINKLE_STAR);
-//        drawEntity(GraphicID.G_UFO);
+        drawBackgroundEntity(GraphicID.G_TWINKLE_STAR);
+        drawBackgroundEntity(GraphicID.G_UFO);
     }
 
     /**
@@ -109,7 +106,7 @@ public class RenderSystem
      *
      * @param graphicID The {@link GraphicID} of the sprite to draw.
      */
-    private void drawEntity(GraphicID graphicID)
+    private void drawBackgroundEntity(GraphicID graphicID)
     {
         GdxSprite entity;
 
@@ -119,7 +116,7 @@ public class RenderSystem
 
             if ((entity != null) && (entity.gid == graphicID))
             {
-                if (isInViewWindow(entity) && entity.isDrawable)
+//                if (isInViewWindow(entity) && entity.isDrawable)
                 {
                     entity.draw(app.spriteBatch);
                 }
