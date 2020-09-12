@@ -2,7 +2,6 @@ package com.richikin.jetman.graphics.renderers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
@@ -10,6 +9,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
+import com.richikin.jetman.graphics.camera.ViewportType;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
@@ -57,49 +57,60 @@ public class BaseRenderer implements Disposable
 
         // --------------------------------------
         // Camera for parallax scrolling backgrounds
-        parallaxGameCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Parallax Cam", app);
-        parallaxGameCamera.setExtendedViewport();
-        parallaxGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        parallaxGameCamera.camera.update();
+        parallaxGameCamera = new OrthoGameCamera
+            (
+                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
+                ViewportType._EXTENDED,
+                "Parallax Cam",
+                app
+            );
+
         parallaxBackground  = new ParallaxBackground(app);
         parallaxMiddle      = new ParallaxBackground(app);
         parallaxForeground  = new ParallaxBackground(app);
         app.parallaxManager = new ParallaxManager(app);
 
-        Trace.__FILE_FUNC("Parallax Cam");
-        Trace.dbg("Width  : " + parallaxGameCamera.camera.viewportWidth);
-        Trace.dbg("Height : " + parallaxGameCamera.camera.viewportHeight);
-
         // --------------------------------------
         // Camera for background entities that exist between
         // groups of parallax background layers, mainly
         // TwinkleStars and UFOs.
-        backgroundCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Background Cam", app);
-        backgroundCamera.setExtendedViewport();
-        backgroundCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        backgroundCamera.camera.update();
+        backgroundCamera = new OrthoGameCamera
+            (
+                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
+                ViewportType._EXTENDED,
+                "Background Cam",
+                app
+            );
 
         // --------------------------------------
         // Camera for displaying TiledMap game maps.
-        tiledGameCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Tiled Cam", app);
-        tiledGameCamera.setExtendedViewport();
-        tiledGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        tiledGameCamera.camera.update();
+        tiledGameCamera = new OrthoGameCamera
+            (
+                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
+                ViewportType._EXTENDED,
+                "Tiled Cam",
+                app
+            );
 
         // --------------------------------------
         // Camera for displaying game sprites
-        spriteGameCamera = new OrthoGameCamera(Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT, "Sprite Cam", app);
-        spriteGameCamera.setExtendedViewport();
-        spriteGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        spriteGameCamera.camera.update();
+        spriteGameCamera = new OrthoGameCamera
+            (
+                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
+                ViewportType._EXTENDED,
+                "Sprite Cam",
+                app
+            );
 
         // --------------------------------------
         // Camera for displaying the HUD
-        hudGameCamera = new OrthoGameCamera(Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT, "Hud Cam", app);
-        hudGameCamera.setExtendedViewport();
-        hudGameCamera.setZoomDefault(Gfx._DEFAULT_ZOOM);
-        hudGameCamera.camera.position.set(0, 0, 0);
-        hudGameCamera.camera.update();
+        hudGameCamera = new OrthoGameCamera
+            (
+                Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT,
+                ViewportType._EXTENDED,
+                "Hud Cam",
+                app
+            );
 
         gameZoom      = new Zoom();
         hudZoom       = new Zoom();
@@ -301,20 +312,8 @@ public class BaseRenderer implements Disposable
             app.stage.draw();
         }
 
-        if (canDebugCameras)
-        {
-            Trace.__FILE_FUNC("ParallaxGameCamera: " + parallaxGameCamera.viewport.getScreenX() + ", " + parallaxGameCamera.viewport.getScreenWidth());
-            Trace.__FILE_FUNC("BackgroundCamera: " + backgroundCamera.viewport.getScreenX() + ", " + backgroundCamera.viewport.getScreenWidth());
-            Trace.__FILE_FUNC("TiledGameCamera: " + tiledGameCamera.viewport.getScreenX() + ", " + tiledGameCamera.viewport.getScreenWidth());
-            Trace.__FILE_FUNC("SpriteGameCamera: " + spriteGameCamera.viewport.getScreenX() + ", " + spriteGameCamera.viewport.getScreenWidth());
-            Trace.__FILE_FUNC("HudGameCamera: " + hudGameCamera.viewport.getScreenX() + ", " + hudGameCamera.viewport.getScreenWidth());
-            canDebugCameras = false;
-        }
-
         app.worldModel.drawDebugMatrix();
     }
-
-    boolean canDebugCameras = true;
 
     public void resizeCameras(int _width, int _height)
     {

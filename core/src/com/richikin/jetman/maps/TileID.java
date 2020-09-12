@@ -7,7 +7,7 @@ public enum TileID
 
     // Row 1
     _PLAYER_TILE                (1),
-    _TRANSPORTER_LEFT_TILE      (2),
+    _TRANSPORTER_TILE           (2),
     _MISSILE_STAND_TILE         (3),
     _DEFENCE_TILE               (4),
     _3BALLS_TILE                (5),
@@ -35,9 +35,9 @@ public enum TileID
     _ROVER_GUN_TILE             (23),
     _ROCKET_TILE                (24),
     _BRIDGE_TILE                (25),
-    _TRANSPORTER_RIGHT_TILE     (26),
-    _TOWER_TILE                 (27),
-    _BEAM_TILE                  (28),
+    _TOWER_TILE                 (26),
+    _BEAM_TILE                  (27),
+    _U28_TILE                   (28),
     _U29_TILE                   (29),
     _U30_TILE                   (30),
 

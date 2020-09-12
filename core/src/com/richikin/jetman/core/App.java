@@ -37,39 +37,40 @@ public abstract class App extends com.badlogic.gdx.Game
     // =======================================================
     // Global access references
     //
-    public SpriteBatch   spriteBatch;
-    public Stage         stage;
-    public WorldModel    worldModel;
-    public Assets        assets;
-    public BaseRenderer  baseRenderer;
-    public CameraUtils   cameraUtils;
-    public AdsController adsController;
-    public PlayServices  googleServices;
-    public Settings      settings;
-    public InputManager  inputManager;
-    public StateManager  appState;
-
-    // TODO: 08/08/2020 - Can these be moved into a SceneManager class?
+    public SpriteBatch    spriteBatch;
+    public Stage          stage;
+    public BaseRenderer   baseRenderer;
+    public CameraUtils    cameraUtils;
+    public WorldModel     worldModel;
+    public Assets         assets;
+    public Settings       settings;
+    public InputManager   inputManager;
+    public StateManager   appState;
     public MainMenuScreen mainMenuScreen;
     public MainGameScreen mainGameScreen;
+
+    public AdsController adsController;
+    public PlayServices  googleServices;
 
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
+    public EntityUtils entityUtils;
+    public MapUtils    mapUtils;
+    public PathUtils   pathUtils;
+
+    public EntityData entityData;
+    public MapData    mapData;
+
+    public HeadsUpDisplay hud;
+    public GameProgress   gameProgress;
+    public MapCreator     mapCreator;
+
+    public PanelManager       panelManager;
     public LevelManager       levelManager;
-    public EntityData         entityData;
-    public EntityUtils        entityUtils;
-    public MapData            mapData;
-    public HeadsUpDisplay     hud;
     public RoomManager        roomManager;
     public EntityManager      entityManager;
-    public GameProgress       gameProgress;
-    public MapUtils           mapUtils;
-    public PanelManager       panelManager;
-    public MapCreator         mapCreator;
-    public PathUtils          pathUtils;
     public ParallaxManager    parallaxManager;
-
     public TeleportManager    teleportManager;
     public MissileBaseManager missileBaseManager;
 

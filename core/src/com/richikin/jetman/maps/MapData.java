@@ -42,8 +42,8 @@ public class MapData
 
     public final LayerImage[] middleLayers =
         {
-            new LayerImage("data/dark_mountains.png", 0.4f, 0.0f),
-            new LayerImage("data/light_mountains.png", 0.8f, 0.0f),
+            new LayerImage("data/dark_mountains.png", 0.4f, 0.01f),
+            new LayerImage("data/light_mountains.png", 0.8f, 0.015f),
         };
 
     //
@@ -51,8 +51,8 @@ public class MapData
     // will be modified based on LJMs current speed.
     public LayerImage[] foregroundLayers =
         {
-            new LayerImage("data/foreground.png", 0.0f, 0.0f),
-            new LayerImage("data/foreground_near.png", 0.0f, 0.0f),
+            new LayerImage("data/foreground.png", 1.2f, 0.0f),
+            new LayerImage("data/foreground_near.png", 1.6f, 0.0f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;

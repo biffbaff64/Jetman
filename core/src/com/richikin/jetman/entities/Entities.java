@@ -19,6 +19,7 @@ public abstract class Entities
             // Decorations
 
             // Interactive
+            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
 
             // Stationary Enemies
 

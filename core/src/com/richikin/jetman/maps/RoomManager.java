@@ -159,6 +159,10 @@ public class RoomManager
         }
     }
 
+    public void initialiseRoom()
+    {
+    }
+
     public int getMaxAllowed(GraphicID gid)
     {
         int thisMax;

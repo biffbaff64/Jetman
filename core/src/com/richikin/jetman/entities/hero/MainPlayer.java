@@ -53,12 +53,12 @@ public class MainPlayer extends GdxSprite
     private TextureRegion bridgeSection;
     private int           laserColour;
 
-    protected ButtonInputHandler  buttons;
-    protected CollisionHandler    collision;
-    protected ActionButtonHandler actionButton;
-    protected TeleportHandler     teleport;
-    protected LaserManager        laserManager;
-    protected BridgeManager       bridgeManager;
+    public ButtonInputHandler  buttons;
+    public CollisionHandler    collision;
+    public ActionButtonHandler actionButton;
+    public TeleportHandler     teleport;
+    public LaserManager        laserManager;
+    public BridgeManager       bridgeManager;
 
     public MainPlayer(App _app)
     {
@@ -427,7 +427,7 @@ public class MainPlayer extends GdxSprite
         {
             if (isMovingX || isMovingY)
             {
-                float layerSpeed = speed.getX() + 1;
+                float layerSpeed = speed.getX() + 0.1f;
 
                 for (ParallaxLayer layer : app.baseRenderer.parallaxForeground.layers)
                 {

@@ -9,6 +9,7 @@ import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.objects.IEntityManager;
+import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.AABB.AABBData;
@@ -16,7 +17,7 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityManager implements IEntityManager
 {
-    //
+    // --------------------------------------------------
     //
     public final GraphicID[] enemies =
         {
@@ -35,8 +36,14 @@ public class EntityManager implements IEntityManager
             GraphicID.G_ALIEN_WHEEL,
         };
 
-    //
+    // --------------------------------------------------
     // Indexes into manager list
+//    public int _playerManagerIndex;
+//    public int _teleportManagerIndex;
+//    public int _baseManagerIndex;
+//    public int _laserManagerIndex;
+//    public int _explosionManagerIndex;
+//    public int _powerBeamManagerIndex;
     public int _bombManagerIndex;
     public int _roverManagerIndex;
     public int _asteroidManagerIndex;
@@ -52,7 +59,7 @@ public class EntityManager implements IEntityManager
     public int _topspinnerManagerIndex;
     public int _twinkleManagerIndex;
 
-    //
+    // --------------------------------------------------
     // Indexes into entity list
     public int   _playerIndex;
     public int   _roverIndex;
@@ -61,6 +68,7 @@ public class EntityManager implements IEntityManager
     public int   _missileBaseIndex;
     public int[] _teleportIndex;
 
+    public TeleportBeam  teleportBeam;
     public PlayerManager playerManager;
     public RenderSystem  renderSystem;
 
@@ -163,8 +171,8 @@ public class EntityManager implements IEntityManager
 
                             case G_TRANSPORTER:
                             {
-//                                _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
-//
+                                _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
+
 //                                entity.collisionObject.kill();
 //                                app.entityData.removeMarkerTile(i);
 //                                app.entityData.removeEntity(i);
@@ -252,7 +260,7 @@ public class EntityManager implements IEntityManager
                 }
             }
 
-            //            app.collisionUtils.tidy();
+//            app.collisionUtils.tidy();
         }
     }
 
@@ -335,7 +343,11 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
+        app.teleportManager    = new TeleportManager(app);
         app.missileBaseManager = new MissileBaseManager(app);
+
+        app.teleportManager.init();
+        app.missileBaseManager.init();
 
         _roverManagerIndex = app.entityData.addManager(new RoverManager(app));
 

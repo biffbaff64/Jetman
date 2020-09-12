@@ -16,4 +16,8 @@ public class TeleportHandler
     public void end()
     {
     }
+
+    public void start()
+    {
+    }
 }

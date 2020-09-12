@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.maths.SimpleVec3F;
+import com.richikin.jetman.utils.logging.NotImplementedException;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class OrthoGameCamera implements IGameCamera, Disposable
@@ -26,37 +27,50 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     public        Vector3 lerpVector;
     private final App     app;
 
-    public OrthoGameCamera(float _sceneWidth, float _sceneHeight, String _name, App _app)
+    public OrthoGameCamera(float _sceneWidth, float _sceneHeight, ViewportType _viewType, String _name, App _app)
     {
-        Trace.__FILE_FUNC(_name);
-
         this.name             = _name;
         this.app              = _app;
         this.isInUse          = false;
         this.isLerpingEnabled = false;
-
-        lerpVector = new Vector3();
+        this.lerpVector       = new Vector3();
 
         camera = new OrthographicCamera(_sceneWidth, _sceneHeight);
         camera.position.set(_sceneWidth / 2, _sceneHeight / 2, 0);
-    }
+        camera.update();
 
-    public void setExtendedViewport()
-    {
-        viewport = new ExtendViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
-        viewport.apply();
-    }
+        switch (_viewType)
+        {
+            case _STRETCH:
+            {
+                viewport = new StretchViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport.apply();
+            }
+            break;
 
-    public void setStretchViewport()
-    {
-        viewport = new StretchViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
-        viewport.apply();
-    }
+            case _FIT:
+            {
+                viewport = new FitViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport.apply();
+            }
+            break;
 
-    public void setFitViewport()
-    {
-        viewport = new FitViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
-        viewport.apply();
+            case _FILL:
+            case _SCREEN:
+            {
+                throw new NotImplementedException("Type " +_viewType + " not yet supported");
+            }
+
+            case _EXTENDED:
+            default:
+            {
+                viewport = new ExtendViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport.apply();
+            }
+            break;
+        }
+
+        setZoomDefault(Gfx._DEFAULT_ZOOM);
     }
 
     @Override

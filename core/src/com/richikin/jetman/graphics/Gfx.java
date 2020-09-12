@@ -42,7 +42,6 @@ public class Gfx
     public static final int   _VIEW_HALF_HEIGHT = (_VIEW_HEIGHT / 2);
 
     public static final float _DEFAULT_ZOOM     = 1.0f;
-    public static final float _DEFAULT_SCALE    = 1.0f;
     public static final float _LERP_SPEED       = 0.075f;
 
     public static float _HUD_SCENE_WIDTH        = (_HUD_WIDTH / _PPM);

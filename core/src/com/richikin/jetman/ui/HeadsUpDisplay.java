@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.ControlLoop;
 import com.richikin.jetman.core.StateID;
@@ -230,31 +231,30 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateBars()
     {
-//        if (!app.teleportManager.teleportActive)
-//        {
-//            if (buttonUp.isPressed || app.getPlayer().isJumpingCrater)
-//            {
-//                fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
-//                fuelBar.updateSlowDecrement();
-//            }
-//
-//            if (app.getBase() != null)
-//            {
-//                if (app.getBase().spriteAction != Actions._WAITING)
-//                {
-        timeBar.updateSlowDecrement();
-//                }
+        if (!app.teleportManager.teleportActive)
+        {
+            if (buttonUp.isPressed() || app.getPlayer().isJumpingCrater)
+            {
+                fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
+                fuelBar.updateSlowDecrement();
+            }
 
-                    if (timeBar.justEmptied)
+            if (app.getBase() != null)
+            {
+                if (app.getBase().getSpriteAction() != Actions._WAITING)
+                {
+                    timeBar.updateSlowDecrement();
+                }
+
+                if (timeBar.justEmptied)
+                {
+                    if (!app.missileBaseManager.isMissileActive)
                     {
-                        if (!app.missileBaseManager.isMissileActive)
-                        {
-//                            app.getBase().spriteAction = Actions._FIGHTING;
-                        }
+                        app.getBase().setAction(Actions._FIGHTING);
                     }
-//                }
-//            }
-//        }
+                }
+            }
+        }
 
         updateBarColours();
     }
@@ -313,11 +313,11 @@ public class HeadsUpDisplay implements Disposable
         {
             app.missileBaseManager.checkNearestBase();
 
-//            if ((app.getBase() != null) && app.entityUtils.isOnScreen(app.getBase()))
-//            {
-//                baseArrowIndex = _ARROW_DOWN;
-//            }
-//            else
+            if ((app.getBase() != null) && app.entityUtils.isOnScreen(app.getBase()))
+            {
+                baseArrowIndex = _ARROW_DOWN;
+            }
+            else
             {
                 if (app.missileBaseManager.nearestBasePosition < app.getPlayer().sprite.getX())
                 {

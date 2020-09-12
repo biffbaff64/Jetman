@@ -2,7 +2,6 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
@@ -56,9 +55,6 @@ public class MapCreator
      */
     protected void parseMarkerTiles()
     {
-        GraphicID graphicID = GraphicID.G_NO_ID;
-        TileID    tileID;
-
         for (MapObject mapObject : app.mapData.objectTiles)
         {
             if (mapObject instanceof TiledMapTileMapObject)
