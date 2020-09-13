@@ -66,6 +66,17 @@ public class MarkerTile implements Disposable
         this._LINK  = 0;
     }
 
+    @Override
+    public void dispose()
+    {
+        _GID   = null;
+        _TILE  = null;
+        _ASSET = null;
+        _DIR   = null;
+        _DIST  = null;
+        _SPEED = null;
+    }
+
     /**
      * Dump debug information to Logcat
      */
@@ -76,34 +87,13 @@ public class MarkerTile implements Disposable
         Trace.dbg("_X     : " + _X);
         Trace.dbg("_Y     : " + _Y);
         Trace.dbg("_GID   : " + _GID);
+        Trace.dbg("_DIR   : " + ((_DIR != null) ? _DIR.toString() : "NULL"));
+        Trace.dbg("_DIST  : " + ((_DIST != null) ? _DIST.toString() : "NULL"));
+        Trace.dbg("_SPEED : " + ((_SPEED != null) ? _SPEED.toString() : "NULL"));
+        Trace.dbg("_LINK  : " + _LINK);
+        Trace.dbg("_BOX   : " + ((_BOX != null) ? _BOX.toString() : "NULL"));
         Trace.dbg("_TILE  : " + _TILE);
         Trace.dbg("_INDEX : " + _INDEX);
         Trace.dbg("_ASSET : " + _ASSET);
-
-        if (_DIR != null)
-        {
-            Trace.dbg("_DIR   : " + _DIR.toString());
-        }
-
-        if (_DIST != null)
-        {
-            Trace.dbg("_DIST  : " + _DIST.toString());
-        }
-
-        if (_SPEED != null)
-        {
-            Trace.dbg("_SPEED : " + _SPEED.toString());
-        }
-    }
-
-    @Override
-    public void dispose()
-    {
-        _GID   = null;
-        _TILE  = null;
-        _ASSET = null;
-        _DIR   = null;
-        _DIST  = null;
-        _SPEED = null;
     }
 }

@@ -47,6 +47,10 @@ public class MapCreator
 
         parseMarkerTiles();
         createCollisionBoxes();
+
+        Trace.megaDivider("PLACEMENT TILE ARRAY - START");
+        debugPlacementsTiles();
+        Trace.megaDivider("PLACEMENT TILE ARRAY - END");
     }
 
     /**
@@ -196,5 +200,13 @@ public class MapCreator
         // eg: The entity might have an initial direction and speed...
 
         return new ObjectTileProperties();
+    }
+
+    private void debugPlacementsTiles()
+    {
+        for (MarkerTile tile : placementTiles)
+        {
+            tile.debug();
+        }
     }
 }

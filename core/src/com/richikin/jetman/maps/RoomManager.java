@@ -161,6 +161,10 @@ public class RoomManager
 
     public void initialiseRoom()
     {
+        for (MarkerTile tile : app.mapCreator.placementTiles)
+        {
+
+        }
     }
 
     public int getMaxAllowed(GraphicID gid)

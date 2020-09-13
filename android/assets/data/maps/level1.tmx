@@ -81,27 +81,9 @@
  <objectgroup id="12" name="object tiles">
   <object id="24" name="Player" gid="1" x="10208" y="1024" width="32" height="32"/>
   <object id="25" name="Rover" gid="17" x="10592" y="1024" width="32" height="32"/>
-  <object id="26" name="Crater" gid="21" x="7776" y="1024" width="32" height="32"/>
-  <object id="27" name="Crater" gid="21" x="7808" y="1024" width="32" height="32"/>
-  <object id="28" name="Crater" gid="21" x="7840" y="1024" width="32" height="32"/>
-  <object id="29" name="Crater" gid="21" x="7872" y="1024" width="32" height="32"/>
-  <object id="30" name="Crater" gid="21" x="5856" y="1024" width="32" height="32"/>
-  <object id="31" name="Crater" gid="21" x="5888" y="1024" width="32" height="32"/>
-  <object id="32" name="Crater" gid="21" x="5920" y="1024" width="32" height="32"/>
-  <object id="33" name="Crater" gid="21" x="5952" y="1024" width="32" height="32"/>
-  <object id="34" name="Crater" gid="21" x="11744" y="1024" width="32" height="32"/>
-  <object id="35" name="Crater" gid="21" x="11776" y="1024" width="32" height="32"/>
-  <object id="36" name="Crater" gid="21" x="11808" y="1024" width="32" height="32"/>
-  <object id="37" name="Crater" gid="21" x="11840" y="1024" width="32" height="32"/>
   <object id="38" name="Base" gid="19" x="15808" y="1024" width="32" height="32"/>
   <object id="39" name="Teleporter" gid="2" x="3968" y="1024" width="32" height="32"/>
   <object id="40" name="Teleporter" gid="2" x="13472" y="1024" width="32" height="32"/>
-  <object id="41" name="Crater" gid="21" x="5984" y="1024" width="32" height="32"/>
-  <object id="42" name="Crater" gid="21" x="5824" y="1024" width="32" height="32"/>
-  <object id="43" name="Crater" gid="21" x="7744" y="1024" width="32" height="32"/>
-  <object id="44" name="Crater" gid="21" x="7904" y="1024" width="32" height="32"/>
-  <object id="45" name="Crater" gid="21" x="11872" y="1024" width="32" height="32"/>
-  <object id="46" name="Crater" gid="21" x="11904" y="1024" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="5" name="collision" visible="0">
   <object id="1" name="Ground" x="0" y="992" width="19232" height="96"/>

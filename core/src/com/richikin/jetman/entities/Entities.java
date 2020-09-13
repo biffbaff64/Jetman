@@ -15,12 +15,13 @@ public abstract class Entities
             new EntityDef("Rover", GraphicID.G_ROVER, TileID._ROVER_TILE, GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES, GraphicID._MAIN),
 
             // Pickups
+            new EntityDef("Bomb", GraphicID.G_BOMB, TileID._BOMB_TILE, GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES, GraphicID._INTERACTIVE),
 
             // Decorations
-            new EntityDef("Crater", GraphicID.G_CRATER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
+            new EntityDef("Crater", GraphicID.G_CRATER, TileID._CRATER_TILE, GameAssets._CRATER_ASSET, GameAssets._CRATER_FRAMES, GraphicID._DECORATION),
 
             // Interactive
-            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._CRATER_TILE, GameAssets._CRATER_ASSET, GameAssets._CRATER_FRAMES, GraphicID._DECORATION),
+            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
 
             // Stationary Enemies
             new EntityDef("Base", GraphicID.G_MISSILE_BASE, TileID._MISSILE_BASE_TILE, GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES, GraphicID._ENEMY),

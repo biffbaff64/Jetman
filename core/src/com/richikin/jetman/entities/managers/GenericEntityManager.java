@@ -13,46 +13,28 @@ import com.richikin.jetman.maths.SimpleVec2;
 
 public class GenericEntityManager implements EntityManagerComponent, Disposable
 {
-    public class Params
-    {
-        public GraphicID    gid;
-        public String       asset;
-        public int          frames;
-
-        Params(final GraphicID _gid, final String _asset, final int _frames)
-        {
-            this.gid    =_gid;
-            this.asset  = _asset;
-            this.frames =_frames;
-        }
-    }
-
-    public       GraphicID        graphicID;
+    public       boolean          canPlace;
     public final App              app;
     public       EntityDescriptor entityDescriptor;
     public       int              activeCount;
+    public       GraphicID        graphicID;
 
-    public final Params[] entitiesList =
-        {
-            new Params(GraphicID.G_SPINNING_BALL,   GameAssets._SPINNING_BALL_ASSET,    GameAssets._SPINNING_BALL_FRAMES),
-            new Params(GraphicID.G_BLOB,            GameAssets._BLOB_ASSET,             GameAssets._BLOB_FRAMES),
-            new Params(GraphicID.G_DOG,             GameAssets._DOG_ASSET,              GameAssets._DOG_FRAMES),
-            new Params(GraphicID.G_3LEGS_ALIEN,     GameAssets._3LEGS_ALIEN_ASSET,      GameAssets._3LEGS_ALIEN_FRAMES),
-            new Params(GraphicID.G_TOPSPIN,         GameAssets._TOPSPIN_ASSET,          GameAssets._TOPSPIN_FRAMES),
-            new Params(GraphicID.G_3BALLS,          GameAssets._3BALLS_ASSET,           GameAssets._3BALLS_FRAMES),
-            new Params(GraphicID.G_TWINKLES,        GameAssets._TWINKLES_ASSET,         GameAssets._TWINKLES_FRAMES),
-        };
+    private final GraphicID managerID;
 
-    public GenericEntityManager(App _app)
+    public GenericEntityManager(final App _app)
     {
         this.app = _app;
-        this.graphicID = GraphicID.G_NO_ID;
+
+        this.graphicID    = GraphicID.G_NO_ID;
+        this.managerID    = GraphicID.G_NO_ID;
     }
 
-    public GenericEntityManager(GraphicID _graphicID, App _app)
+    public GenericEntityManager(final GraphicID _graphicID, final App _app)
     {
         this.app = _app;
-        this.graphicID = _graphicID;
+
+        this.graphicID    = _graphicID;
+        this.managerID    = _graphicID;
     }
 
     @Override
@@ -64,10 +46,6 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     @Override
     public void update()
     {
-        if (activeCount < app.roomManager.getMaxAllowed(graphicID))
-        {
-            create();
-        }
     }
 
     @Override
@@ -78,37 +56,20 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     @Override
     public void create(final String _asset, final int _frames, final Animation.PlayMode _mode, final int x, final int y)
     {
-        if (app.entityUtils.canUpdate(graphicID))
-        {
-            entityDescriptor = new EntityDescriptor
-                (
-                    x,
-                    y,
-                    app.entityUtils.getInitialZPosition(graphicID),
-                    app.assets.getAnimationRegion(_asset),
-                    _frames,
-                    _mode
-                );
+        entityDescriptor = new EntityDescriptor
+            (
+                x,
+                y,
+                app.entityUtils.getInitialZPosition(graphicID),
+                app.assets.getAnimationRegion(_asset),
+                _frames,
+                _mode
+            );
 
-            entityDescriptor._INDEX = app.entityData.entityMap.size;
-        }
+        entityDescriptor._INDEX = app.entityData.entityMap.size;
     }
 
-    public int getParamsIndex(GraphicID _gid)
-    {
-        int index = 0;
-
-        for (final Params param : entitiesList)
-        {
-            if (param.gid != _gid)
-            {
-                index++;
-            }
-        }
-
-        return index;
-    }
-
+    @Override
     public SimpleVec2 findCoordinates(final GraphicID targetGID)
     {
         SimpleVec2 coords = new SimpleVec2();
@@ -124,6 +85,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
         return coords;
     }
 
+    @Override
     public Array<SimpleVec2> findMultiCoordinates(final GraphicID targetGID)
     {
         Array<SimpleVec2> coords = new Array<>();
@@ -166,24 +128,24 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     @Override
     public GraphicID getGID()
     {
-        return graphicID;
+        return managerID;
     }
 
     @Override
     public boolean isPlaceable()
     {
-        return false;
+        return canPlace;
     }
 
     @Override
-    public void setPlaceable(boolean placeable)
+    public void setPlaceable(final boolean placeable)
     {
+        canPlace = placeable;
     }
 
     @Override
     public void dispose()
     {
-        graphicID = null;
         entityDescriptor = null;
     }
 }
