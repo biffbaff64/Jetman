@@ -17,11 +17,13 @@ public abstract class Entities
             // Pickups
 
             // Decorations
+            new EntityDef("Crater", GraphicID.G_CRATER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
 
             // Interactive
-            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
+            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._CRATER_TILE, GameAssets._CRATER_ASSET, GameAssets._CRATER_FRAMES, GraphicID._DECORATION),
 
             // Stationary Enemies
+            new EntityDef("Base", GraphicID.G_MISSILE_BASE, TileID._MISSILE_BASE_TILE, GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES, GraphicID._ENEMY),
 
             // Mobile Enemies
 

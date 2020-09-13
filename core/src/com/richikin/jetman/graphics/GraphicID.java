@@ -38,6 +38,7 @@ public enum GraphicID
 
     // ----------------------------
     G_TOWER,
+    G_CRATER,
 
     // ----------------------------
     G_PICKUP,

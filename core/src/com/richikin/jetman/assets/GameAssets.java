@@ -59,6 +59,7 @@ public class GameAssets
     public static final String _SPARKLE_WEAPON_ASSET   = "defence_sparkle";
     public static final String _LASER_ASSET            = "player_laser";
     public static final String _UFO_BULLET_ASSET       = "ufo_bullet";
+    public static final String _CRATER_ASSET           = "crater";
 
     //
     // Frame counts for animations
@@ -91,6 +92,7 @@ public class GameAssets
     public static final int _SPARKLE_WEAPON_FRAMES   = 10;
     public static final int _LASER_FRAMES            = 1;
     public static final int _UFO_BULLET_FRAMES       = 10;
+    public static final int _CRATER_FRAMES           = 1;
 
     //
     // Fonts and HUD assets
