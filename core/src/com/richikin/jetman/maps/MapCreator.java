@@ -15,6 +15,7 @@ import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
+import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
@@ -48,9 +49,12 @@ public class MapCreator
         parseMarkerTiles();
         createCollisionBoxes();
 
-        Trace.megaDivider("PLACEMENT TILE ARRAY - START");
-        debugPlacementsTiles();
-        Trace.megaDivider("PLACEMENT TILE ARRAY - END");
+        if (Developer.isDevMode())
+        {
+            Trace.megaDivider("PLACEMENT TILE ARRAY - START");
+            debugPlacementsTiles();
+            Trace.megaDivider("PLACEMENT TILE ARRAY - END");
+        }
     }
 
     /**

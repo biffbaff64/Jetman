@@ -311,21 +311,22 @@ public class HeadsUpDisplay implements Disposable
         }
         else
         {
-            app.missileBaseManager.checkNearestBase();
-
-            if ((app.getBase() != null) && app.entityUtils.isOnScreen(app.getBase()))
+            if (app.getBase() != null)
             {
-                baseArrowIndex = _ARROW_DOWN;
-            }
-            else
-            {
-                if (app.missileBaseManager.nearestBasePosition < app.getPlayer().sprite.getX())
+                if (app.entityUtils.isOnScreen(app.getBase()))
                 {
-                    baseArrowIndex = _ARROW_LEFT;
+                    baseArrowIndex = _ARROW_DOWN;
                 }
                 else
                 {
-                    baseArrowIndex = _ARROW_RIGHT;
+                    if (app.getBase().sprite.getX() < app.getPlayer().sprite.getX())
+                    {
+                        baseArrowIndex = _ARROW_LEFT;
+                    }
+                    else
+                    {
+                        baseArrowIndex = _ARROW_RIGHT;
+                    }
                 }
             }
 

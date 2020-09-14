@@ -38,12 +38,12 @@ public class EntityManager implements IEntityManager
 
     // --------------------------------------------------
     // Indexes into manager list
-//    public int _playerManagerIndex;
-//    public int _teleportManagerIndex;
-//    public int _baseManagerIndex;
-//    public int _laserManagerIndex;
-//    public int _explosionManagerIndex;
-//    public int _powerBeamManagerIndex;
+    public int _playerManagerIndex;
+    public int _teleportManagerIndex;
+    public int _baseManagerIndex;
+    public int _laserManagerIndex;
+    public int _explosionManagerIndex;
+    public int _powerBeamManagerIndex;
     public int _bombManagerIndex;
     public int _roverManagerIndex;
     public int _asteroidManagerIndex;
@@ -343,18 +343,12 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        app.teleportManager    = new TeleportManager(app);
-        app.missileBaseManager = new MissileBaseManager(app);
+        app.teleportManager     = new TeleportManager(app);
+        app.missileBaseManager  = new MissileBaseManager(app);
 
-        app.teleportManager.init();
-        app.missileBaseManager.init();
-
-        _roverManagerIndex = app.entityData.addManager(new RoverManager(app));
-
-        for (final EntityManagerComponent system : app.entityData.managerList)
-        {
-            system.init();
-        }
+        _roverManagerIndex      = app.entityData.addManager(new RoverManager(app));
+        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
+        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
     }
 
     public void initialisePlayer()
@@ -375,6 +369,11 @@ public class EntityManager implements IEntityManager
         {
 //            app.mapCreator.addDummyCollisionObject();
             initialisePlayer();
+
+            for (final EntityManagerComponent system : app.entityData.managerList)
+            {
+                system.init();
+            }
         }
     }
 

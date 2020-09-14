@@ -7,6 +7,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.managers.PlayerManager;
+import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.input.buttons.AnimatedButton;
@@ -17,10 +19,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class RoomManager
 {
-    private static final String _MAPS_PATH = "data/maps/";
+    public static final int _MAX_TELEPORTERS = 2;
 
-//    private final int worldWidth;
-//    private final int worldHeight;
+    private static final String _MAPS_PATH = "data/maps/";
 
     private final Room[] roomMap =
         {
@@ -156,14 +157,6 @@ public class RoomManager
         if (roomMap[_index] != null)
         {
             activeRoom.set(roomMap[_index]);
-        }
-    }
-
-    public void initialiseRoom()
-    {
-        for (MarkerTile tile : app.mapCreator.placementTiles)
-        {
-
         }
     }
 

@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.utils.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +50,10 @@ public class EntityUtils
 
         return animation;
     }
+
+//    public EntityDescriptor createDescriptor(MarkerTile _markerTile)
+//    {
+//    }
 
     public TextureRegion getKeyFrame(final Animation<TextureRegion> animation, final float elapsedTime, final boolean looping)
     {
@@ -165,15 +171,77 @@ public class EntityUtils
             }
             break;
 
+            case G_PRIZE_BALLOON:
+            case G_MESSAGE_BUBBLE:
+            {
+                zed = 10;
+            }
+            break;
+
+            case G_DEFENDER:
+            case G_DEFENDER_ZAP:
+            {
+                zed = 9;
+            }
+            break;
+
+            case G_DEFENDER_BULLET:
+            case G_ROVER_BULLET:
+            case G_POWER_BEAM:
+            {
+                zed = 8;
+            }
+            break;
+
+            case G_MISSILE:
+            case G_MISSILE_BASE:
+            case G_MISSILE_LAUNCHER:
+            case G_TRANSPORTER:
+            case G_ROVER_GUN:
+            case G_ROVER_GUN_BARREL:
+            {
+                zed = 7;
+            }
+            break;
+
             case G_ROVER:
             case G_ROVER_BOOT:
             case G_ROVER_WHEEL:
             {
-                zed = 1;
+                zed = 6;
             }
             break;
 
+            case G_LASER:
+            case G_BOMB:
             case G_PLAYER:
+            {
+                zed = 5;
+            }
+            break;
+
+            case G_3BALLS:
+            case G_UFO_BULLET:
+            case G_3BALLS_UFO:
+            case G_3LEGS_ALIEN:
+            case G_ALIEN_WHEEL:
+            case G_ASTEROID:
+            case G_BLOB:
+            case G_DOG:
+            case G_GREEN_BLOCK:
+            case G_SPINNING_BALL:
+            case G_STAR_SPINNER:
+            case G_TOPSPIN:
+            case G_TWINKLES:
+            {
+                zed = 4;
+            }
+            break;
+
+            case G_EXPLOSION12:
+            case G_EXPLOSION64:
+            case G_EXPLOSION128:
+            case G_EXPLOSION256:
             {
                 zed = 0;
             }

@@ -26,7 +26,6 @@ public class MissileBaseManager extends GenericEntityManager
     public int      baseTileY;
     public boolean  baseLocatedLeft;
     public boolean  isMissileActive;
-    public float    nearestBasePosition;
 
     private int activeBases;
 
@@ -41,7 +40,6 @@ public class MissileBaseManager extends GenericEntityManager
         activeBases         = 0;
         activeMissiles      = 0;
         activeSparklers     = 0;
-        nearestBasePosition = 0;
         isMissileActive     = false;
     }
 
@@ -58,27 +56,6 @@ public class MissileBaseManager extends GenericEntityManager
     public int getActiveCount()
     {
         return activeBases;
-    }
-
-    public void checkNearestBase()
-    {
-        float nearestDistance = Gfx.getMapWidth();
-
-        // TODO: 10/12/2018 - Seems odd?
-        Array<GameEntity> entities = app.entityData.entityMap;
-
-        for (int i=0; i<app.entityData.entityMap.size; i++)
-        {
-            if (entities.get(i) != null)
-            {
-                if ((entities.get(i).gid == GraphicID.G_MISSILE_BASE)
-                    && (Math.abs(app.getPlayer().sprite.getX() - ((GdxSprite) entities.get(i)).sprite.getX()) < nearestDistance))
-                {
-                    nearestDistance = Math.abs(app.getPlayer().sprite.getX() - ((GdxSprite) entities.get(i)).sprite.getX());
-                    nearestBasePosition = ((GdxSprite) entities.get(i)).sprite.getX();
-                }
-            }
-        }
     }
 
     @Override

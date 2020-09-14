@@ -13,6 +13,7 @@ import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.MarkerTile;
+import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Direction;
@@ -40,7 +41,7 @@ public class TeleportManager extends GenericEntityManager
     @Override
     public void update()
     {
-        if (activeCount == 0)
+        if (activeCount < RoomManager._MAX_TELEPORTERS)
         {
             createTransporters();
         }
@@ -73,15 +74,6 @@ public class TeleportManager extends GenericEntityManager
                 app.entityData.addEntity(teleporter);
                 app.entityManager._teleportIndex[activeCount] = descriptors[i]._INDEX;
 
-//                if (Settings.areGameHintsActive(app))
-//                {
-//                    InfoBox infoBox = new InfoBox(app);
-//                    infoBox.initialise(descriptors[i + 2]);
-//                    infoBox.parentID = GraphicID.G_TRANSPORTER;
-//
-//                    app.entityData.addEntity(infoBox);
-//                }
-
                 // Store the map positions of each teleporter
                 // for future use
                 mapPositions.add(new SimpleVec2((int) teleporter.sprite.getX(), 0));
@@ -97,7 +89,7 @@ public class TeleportManager extends GenericEntityManager
     {
         Array<SimpleVec2> coords = findMultiCoordinates(GraphicID.G_TRANSPORTER);
 
-        descriptors = new EntityDescriptor[/*Settings.areGameHintsActive(app) ? 4 :*/ 2];
+        descriptors = new EntityDescriptor[2];
 
         descriptors[0]                 = new EntityDescriptor();
         descriptors[0]._ASSET          = app.assets.getAnimationRegion(GameAssets._TRANSPORTER_ASSET);
@@ -112,21 +104,6 @@ public class TeleportManager extends GenericEntityManager
         descriptors[1]    = new EntityDescriptor(descriptors[0]);
         descriptors[1]._X = coords.get(1).x;
         descriptors[1]._Y = coords.get(1).y;
-
-//        if (Settings.areGameHintsActive(app))
-//        {
-//            descriptors[2]           = new EntityDescriptor(descriptors[0]);
-//            descriptors[2]._ASSET    = app.assets.getAnimationsAtlas().findRegion("enter_teleporter");
-//            descriptors[2]._FRAMES   = 1;
-//            descriptors[2]._PLAYMODE = Animation.PlayMode.NORMAL;
-//            descriptors[2]._ENEMY    = false;
-//            descriptors[2]._X        = descriptors[0]._X - 1;
-//            descriptors[2]._Y += 5;
-//            descriptors[2]._Z        = Gfx._MAXIMUM_Z_DEPTH;
-//
-//            descriptors[3]    = new EntityDescriptor(descriptors[2]);
-//            descriptors[3]._X = descriptors[1]._X - 1;
-//        }
     }
 
     public void teleportVisual(boolean _entered)
