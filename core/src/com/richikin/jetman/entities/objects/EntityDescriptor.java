@@ -3,6 +3,7 @@ package com.richikin.jetman.entities.objects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Direction;
@@ -11,6 +12,7 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityDescriptor
 {
+    public GraphicID          _GID;             // ID
     public int                _X;               // X Coordinate.
     public int                _Y;               // Y Coordinate.
     public int                _Z;               // Z Coordinate.
@@ -28,6 +30,7 @@ public class EntityDescriptor
 
     public EntityDescriptor()
     {
+        _GID       = GraphicID.G_NO_ID;
         _X         = 0;
         _Y         = 0;
         _Z         = 0;
@@ -46,6 +49,7 @@ public class EntityDescriptor
 
     public EntityDescriptor(EntityDescriptor descriptor)
     {
+        _GID       = descriptor._GID;
         _X         = descriptor._X;
         _Y         = descriptor._Y;
         _Z         = descriptor._Z;
@@ -96,6 +100,7 @@ public class EntityDescriptor
     public void debug()
     {
         Trace.__FILE_FUNC_WithDivider();
+        Trace.dbg("_GID            : " + _GID);
         Trace.dbg("_X              : " + _X);
         Trace.dbg("_Y              : " + _Y);
         Trace.dbg("_Z              : " + _Z);

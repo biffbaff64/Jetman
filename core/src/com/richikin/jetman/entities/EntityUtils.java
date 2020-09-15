@@ -51,10 +51,6 @@ public class EntityUtils
         return animation;
     }
 
-//    public EntityDescriptor createDescriptor(MarkerTile _markerTile)
-//    {
-//    }
-
     public TextureRegion getKeyFrame(final Animation<TextureRegion> animation, final float elapsedTime, final boolean looping)
     {
         return (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
