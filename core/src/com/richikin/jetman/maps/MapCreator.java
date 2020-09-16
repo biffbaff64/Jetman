@@ -6,8 +6,9 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
+import com.richikin.jetman.entities.EntityData;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.entities.objects.EntityDef;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
@@ -20,7 +21,7 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
 {
-    public Array<MarkerTile> placementTiles;
+    public Array<SpriteDescriptor> placementTiles;
 
     private final App app;
 
@@ -73,15 +74,15 @@ public class MapCreator
 
                 if (null != mapObject.getName())
                 {
-                    for (EntityDef entityDef : Entities.entityList)
+                    for (SpriteDescriptor descriptor : Entities.entityList)
                     {
-                        if (mapObject.getName().equals(entityDef.objectName))
+                        if (mapObject.getName().equals(descriptor._NAME))
                         {
-                            if (entityDef.graphicID != GraphicID.G_NO_ID)
+                            if (descriptor._GID != GraphicID.G_NO_ID)
                             {
-                                ObjectTileProperties properties = setObjectTileProperties(entityDef);
+                                ObjectTileProperties properties = setObjectTileProperties(descriptor);
 
-                                createPlacementTile(mapObject, entityDef, properties);
+                                createPlacementTile(mapObject, descriptor, properties);
                             }
                         }
                     }
@@ -90,19 +91,19 @@ public class MapCreator
         }
     }
 
-    private void createPlacementTile(MapObject _mapObject, EntityDef _entityDef, ObjectTileProperties _properties)
+    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
     {
-        MarkerTile markerTile = new MarkerTile();
+        SpriteDescriptor markerTile = new SpriteDescriptor();
 
-        markerTile._X     = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
-        markerTile._Y     = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
-        markerTile._GID   = _entityDef.graphicID;
-        markerTile._TILE  = _entityDef.tileID;
-        markerTile._ASSET = _entityDef.asset;
-        markerTile._INDEX = placementTiles.size;
-        markerTile._DIST  = new SimpleVec2F();
-        markerTile._DIR   = new Direction();
-        markerTile._SPEED = new Speed();
+        markerTile._POSITION.x = (int) (((TiledMapTileMapObject) _mapObject).getX() / Gfx.getTileWidth());
+        markerTile._POSITION.y = (int) (((TiledMapTileMapObject) _mapObject).getY() / Gfx.getTileHeight());
+        markerTile._GID        = _descriptor._GID;
+        markerTile._TILE       = _descriptor._TILE;
+        markerTile._ASSET      = _descriptor._ASSET;
+        markerTile._INDEX      = placementTiles.size;
+        markerTile._DIST       = new SimpleVec2F();
+        markerTile._DIR        = new Direction();
+        markerTile._SPEED      = new Speed();
 
         if (_properties.isSizeBoxNeeded)
         {
@@ -198,7 +199,7 @@ public class MapCreator
         }
     }
 
-    private ObjectTileProperties setObjectTileProperties(EntityDef _entityDef)
+    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
     {
         // TODO: 13/08/2020 - set properties based on the type of entity passed.
         // eg: The entity might have an initial direction and speed...
@@ -208,9 +209,9 @@ public class MapCreator
 
     private void debugPlacementsTiles()
     {
-        for (MarkerTile tile : placementTiles)
-        {
-            tile.debug();
-        }
+//        for (MarkerTile tile : placementTiles)
+//        {
+//            tile.debug();
+//        }
     }
 }

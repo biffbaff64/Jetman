@@ -367,7 +367,6 @@ public class EntityManager implements IEntityManager
 
         if (AABBData.boxes().size == 0)
         {
-//            app.mapCreator.addDummyCollisionObject();
             initialisePlayer();
 
             for (final EntityManagerComponent system : app.entityData.managerList)

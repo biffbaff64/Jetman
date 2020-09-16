@@ -2,43 +2,70 @@
 package com.richikin.jetman.entities;
 
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.entities.objects.EntityDef;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
 
 public abstract class Entities
 {
-    public static final EntityDef[] entityList =
+    public static final SpriteDescriptor[] entityList =
         {
             // Main Characters
-            new EntityDef("Player", GraphicID.G_PLAYER, TileID._PLAYER_TILE, GameAssets._PLAYER_IDLE, GameAssets._PLAYER_STAND_FRAMES, GraphicID._MAIN),
-            new EntityDef("Rover", GraphicID.G_ROVER, TileID._ROVER_TILE, GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES, GraphicID._MAIN),
+            new SpriteDescriptor
+                (
+                    "Player",
+                    GraphicID.G_PLAYER, GraphicID._MAIN,
+                    GameAssets._PLAYER_IDLE, GameAssets._PLAYER_STAND_FRAMES,
+                    TileID._PLAYER_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Rover",
+                    GraphicID.G_ROVER, GraphicID._MAIN,
+                    GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES,
+                    TileID._ROVER_TILE
+                ),
 
             // Pickups
-            new EntityDef("Bomb", GraphicID.G_BOMB, TileID._BOMB_TILE, GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES, GraphicID._INTERACTIVE),
+            new SpriteDescriptor
+                (
+                    "Bomb",
+                    GraphicID.G_BOMB, GraphicID._INTERACTIVE,
+                    GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES,
+                    TileID._BOMB_TILE
+                ),
 
             // Decorations
-            new EntityDef("Crater", GraphicID.G_CRATER, TileID._CRATER_TILE, GameAssets._CRATER_ASSET, GameAssets._CRATER_FRAMES, GraphicID._DECORATION),
 
             // Interactive
-            new EntityDef("Teleporter", GraphicID.G_TRANSPORTER, TileID._TRANSPORTER_TILE, GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES, GraphicID._INTERACTIVE),
+            new SpriteDescriptor
+                (
+                    "Teleporter",
+                    GraphicID.G_TRANSPORTER, GraphicID._INTERACTIVE,
+                    GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES,
+                    TileID._TRANSPORTER_TILE),
 
             // Stationary Enemies
-            new EntityDef("Base", GraphicID.G_MISSILE_BASE, TileID._MISSILE_BASE_TILE, GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES, GraphicID._ENEMY),
+            new SpriteDescriptor
+                (
+                    "Base",
+                    GraphicID.G_MISSILE_BASE, GraphicID._ENEMY,
+                    GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES,
+                    TileID._MISSILE_BASE_TILE
+                ),
 
             // Mobile Enemies
 
             // Miscellaneous Enemy Related
         };
 
-    public static int getEntityDefIndex(GraphicID _gid)
+    public int getDescriptorIndex(GraphicID _gid)
     {
         int index = 0;
         int defsIndex = 0;
 
-        for (EntityDef def : entityList)
+        for (SpriteDescriptor descriptor : entityList)
         {
-            if (def.graphicID == _gid)
+            if (descriptor._GID == _gid)
             {
                 defsIndex = index;
             }
@@ -49,8 +76,8 @@ public abstract class Entities
         return defsIndex;
     }
 
-    public static EntityDef getEntityDef(GraphicID _gid)
+    public SpriteDescriptor getDescriptor(GraphicID _gid)
     {
-        return entityList[getEntityDefIndex(_gid)];
+        return entityList[getDescriptorIndex(_gid)];
     }
 }
