@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.DefenceStation;
@@ -87,7 +88,7 @@ public class MissileBaseManager extends GenericEntityManager
         activeBases++;
     }
 
-    private EntityDescriptor createMissileBaseMarker()
+    private SpriteDescriptor createMissileBaseMarker()
     {
         SimpleVec2 vec2 = findCoordinates(GraphicID.G_MISSILE_BASE);
 
@@ -96,13 +97,12 @@ public class MissileBaseManager extends GenericEntityManager
         baseTileX = vec2.x;
         baseTileY = vec2.y;
 
-        EntityDescriptor entityDescriptor = new EntityDescriptor();
-        entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._MISSILE_BASE_ASSET);
-        entityDescriptor._FRAMES        = GameAssets._MISSILE_BASE_FRAMES;
+        SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_MISSILE_BASE);
+
         entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._X             = baseTileX;
-        entityDescriptor._Y             = baseTileY;
-        entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_BASE);
+        entityDescriptor._POSITION.x    = baseTileX;
+        entityDescriptor._POSITION.y    = baseTileY;
+        entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_BASE);
         entityDescriptor._INDEX         = app.entityData.entityMap.size;
 
         return entityDescriptor;

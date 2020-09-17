@@ -66,7 +66,7 @@ public abstract class Entities
             // Miscellaneous Enemy Related
         };
 
-    public int getDescriptorIndex(GraphicID _gid)
+    public static int getDescriptorIndex(GraphicID _gid)
     {
         int index = 0;
         int defsIndex = 0;
@@ -84,7 +84,7 @@ public abstract class Entities
         return defsIndex;
     }
 
-    public SpriteDescriptor getDescriptor(GraphicID _gid)
+    public static SpriteDescriptor getDescriptor(GraphicID _gid)
     {
         return entityList[getDescriptorIndex(_gid)];
     }

@@ -8,6 +8,7 @@ import com.richikin.jetman.assets.AssetLoader;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.CameraUtils;
@@ -52,6 +53,7 @@ public class Startup
         AppConfig.freshInstallCheck();
 
         Gfx.setPPM(32.0f);
+        Entities.init(app);
 
         if (AppConfig.isAndroidApp())
         {
