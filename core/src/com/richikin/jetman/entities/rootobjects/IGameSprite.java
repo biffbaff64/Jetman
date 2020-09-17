@@ -30,6 +30,8 @@ public interface IGameSprite
 
     void animate();
 
+    void setAnimation(SpriteDescriptor entityDescriptor);
+
     void setAnimation(SpriteDescriptor entityDescriptor, float frameRate);
 
     void setAction(Actions action);

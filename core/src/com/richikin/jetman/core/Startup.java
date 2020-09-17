@@ -53,7 +53,6 @@ public class Startup
         AppConfig.freshInstallCheck();
 
         Gfx.setPPM(32.0f);
-        Entities.init(app);
 
         if (AppConfig.isAndroidApp())
         {

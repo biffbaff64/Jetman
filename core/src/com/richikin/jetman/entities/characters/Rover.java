@@ -37,7 +37,7 @@ public class Rover extends GdxSprite
     /**
      * Create and initialise the Moon Rover
      *
-     * @param entityDescriptor  The {@link EntityDescriptor} which
+     * @param entityDescriptor  The {@link SpriteDescriptor} which
      *                          holds all the necessary information
      *                          for creating this entity.
      */
@@ -83,13 +83,13 @@ public class Rover extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        EntityDescriptor descriptor = new EntityDescriptor();
-        descriptor._X             = 0;
-        descriptor._Y             = 0;
-        descriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._ROVER_WHEEL_ASSET);
+        SpriteDescriptor descriptor = new SpriteDescriptor();
+        descriptor._ASSET         = GameAssets._ROVER_WHEEL_ASSET;
         descriptor._FRAMES        = GameAssets._ROVER_WHEEL_FRAMES;
         descriptor._PLAYMODE      = Animation.PlayMode.NORMAL;
-        descriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_WHEEL);
+        descriptor._POSITION.x    = 0;
+        descriptor._POSITION.y    = 0;
+        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_WHEEL);
         descriptor._INDEX         = app.entityData.entityMap.size;
 
         // Add the front wheel
@@ -120,7 +120,7 @@ public class Rover extends GdxSprite
             Trace.__FILE_FUNC("Adding Rover Boot.");
 
             descriptor._INDEX = app.entityData.entityMap.size;
-            descriptor._ASSET = app.assets.getAnimationRegion(GameAssets._ROVER_BOOT_ASSET);
+            descriptor._ASSET = GameAssets._ROVER_BOOT_ASSET;
             descriptor._FRAMES = GameAssets._ROVER_BOOT_FRAMES;
 
             roverBack = new GdxSprite(GraphicID.G_ROVER_BOOT, app);

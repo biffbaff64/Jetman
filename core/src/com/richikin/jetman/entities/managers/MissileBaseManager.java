@@ -116,43 +116,43 @@ public class MissileBaseManager extends GenericEntityManager
      */
     public void launch(float startX, float startY)
     {
-        EntityDescriptor entityDescriptor = new EntityDescriptor();
-        entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._MISSILE_ASSET);
-        entityDescriptor._FRAMES        = GameAssets._MISSILE_FRAMES;
-        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._X             = (int) (startX / Gfx.getTileWidth());
-        entityDescriptor._Y             = (int) (startY / Gfx.getTileHeight());
-        entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE);
-        entityDescriptor._INDEX         = app.entityData.entityMap.size;
-
-        Missile missile = new Missile(app);
-        missile.initialise(entityDescriptor);
-        app.entityData.addEntity(missile);
-
-        isMissileActive = true;
-        activeMissiles++;
+//        EntityDescriptor entityDescriptor = new EntityDescriptor();
+//        entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._MISSILE_ASSET);
+//        entityDescriptor._FRAMES        = GameAssets._MISSILE_FRAMES;
+//        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+//        entityDescriptor._X             = (int) (startX / Gfx.getTileWidth());
+//        entityDescriptor._Y             = (int) (startY / Gfx.getTileHeight());
+//        entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE);
+//        entityDescriptor._INDEX         = app.entityData.entityMap.size;
+//
+//        Missile missile = new Missile(app);
+//        missile.initialise(entityDescriptor);
+//        app.entityData.addEntity(missile);
+//
+//        isMissileActive = true;
+//        activeMissiles++;
     }
 
     public void shoot(DefenceStation station)
     {
-        if (activeSparklers < (_MAX_SPARKLERS + app.getLevel()))
-        {
-            EntityDescriptor entityDescriptor = new EntityDescriptor();
-            entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._SPARKLE_WEAPON_ASSET);
-            entityDescriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
-            entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-            entityDescriptor._X             = (int) (station.sprite.getX() / Gfx.getTileWidth());
-            entityDescriptor._Y             = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
-            entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
-            entityDescriptor._INDEX         = app.entityData.entityMap.size;
-
-            SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_DEFENDER_BULLET, app);
-            weapon.initialise(entityDescriptor);
-
-            app.entityData.addEntity(weapon);
-
-            activeSparklers++;
-        }
+//        if (activeSparklers < (_MAX_SPARKLERS + app.getLevel()))
+//        {
+//            EntityDescriptor entityDescriptor = new EntityDescriptor();
+//            entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._SPARKLE_WEAPON_ASSET);
+//            entityDescriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
+//            entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+//            entityDescriptor._X             = (int) (station.sprite.getX() / Gfx.getTileWidth());
+//            entityDescriptor._Y             = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
+//            entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
+//            entityDescriptor._INDEX         = app.entityData.entityMap.size;
+//
+//            SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_DEFENDER_BULLET, app);
+//            weapon.initialise(entityDescriptor);
+//
+//            app.entityData.addEntity(weapon);
+//
+//            activeSparklers++;
+//        }
     }
 
     public void killMissiles()

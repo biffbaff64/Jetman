@@ -220,6 +220,12 @@ public class GdxSprite extends GameEntity implements IGameSprite
     }
 
     @Override
+    public void setAnimation(SpriteDescriptor _entityDescriptor)
+    {
+        setAnimation(_entityDescriptor, _entityDescriptor._ANIM_RATE);
+    }
+
+    @Override
     public void setAnimation(SpriteDescriptor _descriptor, float _frameRate)
     {
         animFrames = new TextureRegion[_descriptor._FRAMES];
