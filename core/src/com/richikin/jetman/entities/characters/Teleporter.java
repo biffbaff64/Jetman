@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -25,7 +25,7 @@ public class Teleporter extends GdxSprite
     }
 
     @Override
-    public void initialise(EntityDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor entityDescriptor)
     {
         Trace.__FILE_FUNC();
 

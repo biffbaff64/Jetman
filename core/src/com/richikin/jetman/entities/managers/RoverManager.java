@@ -5,11 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Rover;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.utils.logging.StopWatch;
 
@@ -106,11 +105,11 @@ public class RoverManager extends GenericEntityManager
     {
         SimpleVec2 position = new SimpleVec2();
 
-        for (MarkerTile tile : app.mapCreator.placementTiles)
+        for (SpriteDescriptor tile : app.mapCreator.placementTiles)
         {
             if (tile._GID.equals(GraphicID.G_ROVER))
             {
-                position.set(tile._X, tile._Y);
+                position.set(tile._POSITION.x, tile._POSITION.y);
             }
         }
 
@@ -134,15 +133,15 @@ public class RoverManager extends GenericEntityManager
 
             if (isValidPosition(markerX))
             {
-                EntityDescriptor descriptor = new EntityDescriptor();
-                descriptor._ASSET             = app.assets.getAnimationRegion(GameAssets._ROVER_GUN_ASSET);
-                descriptor._FRAMES            = GameAssets._ROVER_GUN_FRAMES;
-                descriptor._PLAYMODE          = Animation.PlayMode.NORMAL;
-                descriptor._X                 = markerX;
-                descriptor._Y                 = app.entityManager.playerManager.playerTileY;
-                descriptor._Z                 = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN);
-                descriptor._INDEX             = app.entityData.entityMap.size;
-
+//                EntityDescriptor descriptor = new EntityDescriptor();
+//                descriptor._ASSET             = app.assets.getAnimationRegion(GameAssets._ROVER_GUN_ASSET);
+//                descriptor._FRAMES            = GameAssets._ROVER_GUN_FRAMES;
+//                descriptor._PLAYMODE          = Animation.PlayMode.NORMAL;
+//                descriptor._X                 = markerX;
+//                descriptor._Y                 = app.entityManager.playerManager.playerTileY;
+//                descriptor._Z                 = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN);
+//                descriptor._INDEX             = app.entityData.entityMap.size;
+//
 //                RoverGun roverGun = new RoverGun(app);
 //                roverGun.initialise(descriptor);
 //

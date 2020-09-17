@@ -10,6 +10,10 @@ import com.richikin.jetman.maths.SimpleVec3;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Speed;
 
+/**
+ * Used for storing relevant information for
+ * creating, placing and initialising sprites.
+ */
 public class SpriteDescriptor
 {
     public String             _NAME;         //
@@ -19,8 +23,8 @@ public class SpriteDescriptor
     public int                _FRAMES;       // Number of frames in the asset above.
     public GraphicID          _TYPE;         // _MAIN, _INTERACTIVE, _PICKUP etc
     public SimpleVec3         _POSITION;     // X Pos of tile, in TileWidth units
-                                             // Y Pos of tile, in TileWidth units
-                                             // Z-Sort value.
+    // Y Pos of tile, in TileWidth units
+    // Z-Sort value.
     public SimpleVec2         _SIZE;         // Width and Height.
     public int                _INDEX;        // This entities position in the entity map.
     public Animation.PlayMode _PLAYMODE;     // Animation playmode for the asset frames above.
@@ -68,5 +72,26 @@ public class SpriteDescriptor
         this._ASSET  = _asset;
         this._FRAMES = _frames;
         this._TYPE   = _type;
+    }
+
+    public SpriteDescriptor(SpriteDescriptor _descriptor)
+    {
+        this._GID       = _descriptor._GID;
+        this._TYPE      = _descriptor._TYPE;
+        this._POSITION  = _descriptor._POSITION;
+        this._SIZE      = _descriptor._SIZE;
+        this._INDEX     = _descriptor._INDEX;
+        this._FRAMES    = _descriptor._FRAMES;
+        this._PLAYMODE  = _descriptor._PLAYMODE;
+        this._ANIM_RATE = _descriptor._ANIM_RATE;
+        this._NAME      = _descriptor._NAME;
+        this._ASSET     = _descriptor._ASSET;
+        this._LINK      = _descriptor._LINK;
+        this._TILE      = _descriptor._TILE;
+        this._PARENT    = _descriptor._PARENT;
+        this._DIR       = _descriptor._DIR;
+        this._DIST      = _descriptor._DIST;
+        this._SPEED     = _descriptor._SPEED;
+        this._BOX       = _descriptor._BOX;
     }
 }

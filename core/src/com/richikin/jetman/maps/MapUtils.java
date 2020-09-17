@@ -21,6 +21,7 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 
@@ -65,18 +66,11 @@ public class MapUtils
         app.parallaxManager.scroll();
     }
 
-    /**
-     * Find all instances of Marker tiles with the specified GraphicID.
-     *
-     * @param targetGID The {@link GraphicID} to search for.
-     *
-     * @return  Array of valid {@link MarkerTile}s.
-     */
-    public Array<MarkerTile> findMultiTiles(final GraphicID targetGID)
+    public Array<SpriteDescriptor> findMultiTiles(final GraphicID targetGID)
     {
-        Array<MarkerTile> tiles = new Array<>();
+        Array<SpriteDescriptor> tiles = new Array<>();
 
-        for (MarkerTile marker : app.mapData.placementTiles)
+        for (SpriteDescriptor marker : app.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {

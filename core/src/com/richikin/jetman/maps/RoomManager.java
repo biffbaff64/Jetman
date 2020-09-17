@@ -1,19 +1,8 @@
 package com.richikin.jetman.maps;
 
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.managers.PlayerManager;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.input.buttons.AnimatedButton;
 import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.utils.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 

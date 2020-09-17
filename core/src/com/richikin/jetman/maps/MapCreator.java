@@ -21,14 +21,11 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
 {
-    public Array<SpriteDescriptor> placementTiles;
-
     private final App app;
 
     public MapCreator(App _app)
     {
-        this.app            = _app;
-        this.placementTiles = new Array<>();
+        this.app = _app;
     }
 
     /**
@@ -45,7 +42,7 @@ public class MapCreator
             component.setPlaceable(false);
         }
 
-        placementTiles.clear();
+        app.mapData.placementTiles.clear();
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -100,7 +97,7 @@ public class MapCreator
         markerTile._GID        = _descriptor._GID;
         markerTile._TILE       = _descriptor._TILE;
         markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = placementTiles.size;
+        markerTile._INDEX      = app.mapData.placementTiles.size;
         markerTile._DIST       = new SimpleVec2F();
         markerTile._DIR        = new Direction();
         markerTile._SPEED      = new Speed();
@@ -157,7 +154,7 @@ public class MapCreator
             }
         }
 
-        placementTiles.add(markerTile);
+        app.mapData.placementTiles.add(markerTile);
     }
 
     protected void createCollisionBoxes()

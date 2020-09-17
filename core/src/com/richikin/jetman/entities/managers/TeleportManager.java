@@ -3,35 +3,30 @@ package com.richikin.jetman.entities.managers;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Teleporter;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.entities.objects.TeleportBeam;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
-import com.sun.prism.image.Coords;
 
 public class TeleportManager extends GenericEntityManager
 {
     public Array<SimpleVec2> mapPositions;
     public int[]             index;
     public int               targetBooth;
-    public boolean     teleportActive;
-    public SimpleVec2F targetDistance;
-    public SimpleVec2  targetDirection;
+    public boolean           teleportActive;
+    public SimpleVec2F       targetDistance;
+    public SimpleVec2        targetDirection;
 
-    private EntityDescriptor[] descriptors;
+    private SpriteDescriptor[] descriptors;
 
     public TeleportManager(App _app)
     {
@@ -89,21 +84,21 @@ public class TeleportManager extends GenericEntityManager
     {
         Array<SimpleVec2> coords = findMultiCoordinates(GraphicID.G_TRANSPORTER);
 
-        descriptors = new EntityDescriptor[2];
+        descriptors = new SpriteDescriptor[2];
 
-        descriptors[0]                 = new EntityDescriptor();
-        descriptors[0]._ASSET          = app.assets.getAnimationRegion(GameAssets._TRANSPORTER_ASSET);
-        descriptors[0]._FRAMES         = GameAssets._TRANSPORTER_FRAMES;
-        descriptors[0]._PLAYMODE       = Animation.PlayMode.LOOP;
-        descriptors[0]._X              = coords.get(0).x;
-        descriptors[0]._Y              = coords.get(0).y;
-        descriptors[0]._Z              = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
-        descriptors[0]._INDEX          = app.entityData.entityMap.size;
-        descriptors[0]._SIZE           = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
+        descriptors[0]             = new SpriteDescriptor();
+        descriptors[0]._ASSET      = GameAssets._TRANSPORTER_ASSET;
+        descriptors[0]._FRAMES     = GameAssets._TRANSPORTER_FRAMES;
+        descriptors[0]._PLAYMODE   = Animation.PlayMode.LOOP;
+        descriptors[0]._POSITION.x = coords.get(0).x;
+        descriptors[0]._POSITION.y = coords.get(0).y;
+        descriptors[0]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
+        descriptors[0]._INDEX      = app.entityData.entityMap.size;
+        descriptors[0]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
 
-        descriptors[1]    = new EntityDescriptor(descriptors[0]);
-        descriptors[1]._X = coords.get(1).x;
-        descriptors[1]._Y = coords.get(1).y;
+        descriptors[1]    = new SpriteDescriptor(descriptors[0]);
+        descriptors[1]._POSITION.x = coords.get(1).x;
+        descriptors[1]._POSITION.y = coords.get(1).y;
     }
 
     public void teleportVisual(boolean _entered)

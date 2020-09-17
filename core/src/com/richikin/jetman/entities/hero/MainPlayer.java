@@ -9,8 +9,8 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.BridgeManager;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
@@ -18,8 +18,6 @@ import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Meters;
 import com.richikin.jetman.utils.logging.Stats;
 import com.richikin.jetman.utils.logging.Trace;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainPlayer extends GdxSprite
 {
@@ -66,7 +64,7 @@ public class MainPlayer extends GdxSprite
     }
 
     @Override
-    public void initialise(EntityDescriptor descriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
         create(descriptor);
 

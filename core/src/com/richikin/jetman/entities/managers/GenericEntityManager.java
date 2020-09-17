@@ -3,19 +3,17 @@ package com.richikin.jetman.entities.managers;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.MarkerTile;
 import com.richikin.jetman.maths.SimpleVec2;
 
 public class GenericEntityManager implements EntityManagerComponent, Disposable
 {
     public       boolean          canPlace;
     public final App              app;
-    public       EntityDescriptor entityDescriptor;
+    public       SpriteDescriptor entityDescriptor;
     public       int              activeCount;
     public       GraphicID        graphicID;
 
@@ -56,17 +54,17 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     @Override
     public void create(final String _asset, final int _frames, final Animation.PlayMode _mode, final int x, final int y)
     {
-        entityDescriptor = new EntityDescriptor
-            (
-                x,
-                y,
-                app.entityUtils.getInitialZPosition(graphicID),
-                app.assets.getAnimationRegion(_asset),
-                _frames,
-                _mode
-            );
-
-        entityDescriptor._INDEX = app.entityData.entityMap.size;
+//        entityDescriptor = new SpriteDescriptor
+//            (
+//                x,
+//                y,
+//                app.entityUtils.getInitialZPosition(graphicID),
+//                app.assets.getAnimationRegion(_asset),
+//                _frames,
+//                _mode
+//            );
+//
+//        entityDescriptor._INDEX = app.entityData.entityMap.size;
     }
 
     @Override
@@ -74,11 +72,11 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     {
         SimpleVec2 coords = new SimpleVec2();
 
-        for (MarkerTile marker : app.mapCreator.placementTiles)
+        for (SpriteDescriptor marker : app.mapCreator.placementTiles)
         {
             if (marker._GID == targetGID)
             {
-                coords.set(marker._X, marker._Y);
+                coords.set(marker._POSITION.x, marker._POSITION.y);
             }
         }
 
@@ -90,11 +88,11 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     {
         Array<SimpleVec2> coords = new Array<>();
 
-        for (MarkerTile marker : app.mapCreator.placementTiles)
+        for (SpriteDescriptor marker : app.mapCreator.placementTiles)
         {
             if (marker._GID == targetGID)
             {
-                coords.add(new SimpleVec2(marker._X, marker._Y));
+                coords.add(new SimpleVec2(marker._POSITION.x, marker._POSITION.y));
             }
         }
 

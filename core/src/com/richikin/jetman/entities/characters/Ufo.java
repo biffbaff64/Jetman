@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.Movement;
@@ -28,7 +28,7 @@ public class Ufo extends GdxSprite
     }
 
     @Override
-    public void initialise(EntityDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor entityDescriptor)
     {
         create(entityDescriptor);
 

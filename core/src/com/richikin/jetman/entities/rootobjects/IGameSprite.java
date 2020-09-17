@@ -1,17 +1,16 @@
 package com.richikin.jetman.entities.rootobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.core.Actions;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.maths.SimpleVec3F;
 
 public interface IGameSprite
 {
-    void initialise(EntityDescriptor entityDescriptor);
+    void initialise(SpriteDescriptor entityDescriptor);
 
-    void create(EntityDescriptor entityDescriptor);
+    void create(SpriteDescriptor entityDescriptor);
 
     void initPosition(SimpleVec3F vec3F);
 
@@ -31,7 +30,7 @@ public interface IGameSprite
 
     void animate();
 
-    void setAnimation(EntityDescriptor entityDescriptor, float frameRate);
+    void setAnimation(SpriteDescriptor entityDescriptor, float frameRate);
 
     void setAction(Actions action);
 

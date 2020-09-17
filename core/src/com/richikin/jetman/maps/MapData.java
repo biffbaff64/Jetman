@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.LayerImage;
 import com.richikin.jetman.maths.SimpleVec2;
@@ -77,11 +78,11 @@ public class MapData
     public TiledMapTileLayer gameTilesLayer;
     public TiledMapTileLayer extraGameTilesLayer;
 
-    public TiledMap          currentMap;
-    public MapObjects        objectTiles;
-    public MapObjects        mapObjects;
-    public Array<Rectangle>  enemyFreeZones;
-    public Array<MarkerTile> placementTiles;
+    public TiledMap                currentMap;
+    public MapObjects              objectTiles;
+    public MapObjects              mapObjects;
+    public Array<Rectangle>        enemyFreeZones;
+    public Array<SpriteDescriptor> placementTiles;
 
     private       String currentMapName;
     private final App    app;

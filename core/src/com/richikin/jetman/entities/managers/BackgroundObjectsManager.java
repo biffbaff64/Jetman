@@ -2,18 +2,12 @@ package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.TwinkleStar;
 import com.richikin.jetman.entities.characters.Ufo;
-import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.MarkerTile;
-import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class BackgroundObjectsManager
 {

@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.entities.rootobjects.IGameSprite;
 import com.richikin.jetman.graphics.Gfx;
@@ -73,10 +72,10 @@ public class GdxSprite extends GameEntity implements IGameSprite
     /**
      * Initialise this entity
      *
-     * @param descriptor {@link EntityDescriptor} Entity initialisation data.
+     * @param descriptor {@link SpriteDescriptor} Entity initialisation data.
      */
     @Override
-    public void initialise(final EntityDescriptor descriptor)
+    public void initialise(final SpriteDescriptor descriptor)
     {
         create(descriptor);
 
@@ -86,7 +85,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
     }
 
     @Override
-    public void create(EntityDescriptor entityDescriptor)
+    public void create(SpriteDescriptor entityDescriptor)
     {
         sprite    = new Sprite();
         direction = new Direction();
@@ -116,9 +115,9 @@ public class GdxSprite extends GameEntity implements IGameSprite
 
         initPosition(new SimpleVec3F
             (
-                entityDescriptor._X,
-                entityDescriptor._Y,
-                entityDescriptor._Z
+                entityDescriptor._POSITION.x,
+                entityDescriptor._POSITION.y,
+                entityDescriptor._POSITION.z
             ));
 
         isLinked = (entityDescriptor._LINK > 0);
@@ -221,9 +220,11 @@ public class GdxSprite extends GameEntity implements IGameSprite
     }
 
     @Override
-    public void setAnimation(EntityDescriptor _descriptor, float _frameRate)
+    public void setAnimation(SpriteDescriptor _descriptor, float _frameRate)
     {
         animFrames = new TextureRegion[_descriptor._FRAMES];
+
+        TextureRegion asset = app.assets.getAnimationRegion(_descriptor._ASSET);
 
         if (_descriptor._SIZE != null)
         {
@@ -232,11 +233,11 @@ public class GdxSprite extends GameEntity implements IGameSprite
         }
         else
         {
-            frameWidth  = (float) (_descriptor._ASSET.getRegionWidth() / _descriptor._FRAMES);
-            frameHeight = _descriptor._ASSET.getRegionHeight();
+            frameWidth  = (float) (asset.getRegionWidth() / _descriptor._FRAMES);
+            frameHeight = asset.getRegionHeight();
         }
 
-        TextureRegion[][] tmpFrames = _descriptor._ASSET.split
+        TextureRegion[][] tmpFrames = asset.split
             (
                 (int) frameWidth,
                 (int) frameHeight

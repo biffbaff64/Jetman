@@ -24,6 +24,13 @@ public abstract class Entities
                     GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES,
                     TileID._ROVER_TILE
                 ),
+            new SpriteDescriptor
+                (
+                    "Rover Gun",
+                    GraphicID.G_ROVER_GUN, GraphicID._MAIN,
+                    GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
+                    TileID._ROVER_GUN_TILE
+                ),
 
             // Pickups
             new SpriteDescriptor
@@ -42,7 +49,8 @@ public abstract class Entities
                     "Teleporter",
                     GraphicID.G_TRANSPORTER, GraphicID._INTERACTIVE,
                     GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES,
-                    TileID._TRANSPORTER_TILE),
+                    TileID._TRANSPORTER_TILE
+                ),
 
             // Stationary Enemies
             new SpriteDescriptor

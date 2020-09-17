@@ -1,17 +1,15 @@
 package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.DefenceStation;
 import com.richikin.jetman.entities.characters.Missile;
 import com.richikin.jetman.entities.characters.MissileBase;
 import com.richikin.jetman.entities.characters.SparkleWeapon;
-import com.richikin.jetman.entities.objects.EntityDescriptor;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
@@ -78,7 +76,7 @@ public class MissileBaseManager extends GenericEntityManager
     {
         activeBases = 0;
 
-        EntityDescriptor entityDescriptor = createMissileBaseMarker();
+        SpriteDescriptor entityDescriptor = createMissileBaseMarker();
 
         MissileBase missileBase = new MissileBase(app);
         missileBase.initialise(entityDescriptor);
