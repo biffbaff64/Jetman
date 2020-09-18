@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Rover;
 import com.richikin.jetman.graphics.Gfx;
@@ -79,15 +80,10 @@ public class RoverManager extends GenericEntityManager
         {
             SimpleVec2 roverPos = getStartPosition();
 
-            super.create
-                (
-                    GameAssets._ROVER_IDLE_ASSET,
-                    GameAssets._ROVER_FRAMES,
-                    Animation.PlayMode.LOOP,
-                    roverPos.x,
-                    roverPos.y
-                );
-
+            entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER);
+            entityDescriptor._POSITION.x = roverPos.x;
+            entityDescriptor._POSITION.y = roverPos.y;
+            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
             entityDescriptor._ANIM_RATE = 5f / 6f;
 
             Rover rover = new Rover(app);
@@ -105,7 +101,7 @@ public class RoverManager extends GenericEntityManager
     {
         SimpleVec2 position = new SimpleVec2();
 
-        for (SpriteDescriptor tile : app.mapCreator.placementTiles)
+        for (SpriteDescriptor tile : app.mapData.placementTiles)
         {
             if (tile._GID.equals(GraphicID.G_ROVER))
             {

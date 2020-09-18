@@ -1,6 +1,7 @@
 package com.richikin.jetman.maps;
 
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.utils.logging.Trace;
@@ -284,11 +285,11 @@ public class RoomManager
     {
         SimpleVec2 position = new SimpleVec2();
 
-        for (MarkerTile tile : app.mapCreator.placementTiles)
+        for (SpriteDescriptor tile : app.mapData.placementTiles)
         {
             if (tile._GID.equals(GraphicID.G_PLAYER))
             {
-                position.set(tile._X, tile._Y);
+                position.set(tile._POSITION.x, tile._POSITION.y);
             }
         }
 

@@ -21,7 +21,7 @@ public abstract class Entities
                 (
                     "Rover",
                     GraphicID.G_ROVER, GraphicID._MAIN,
-                    GameAssets._ROVER_ASSET, GameAssets._ROVER_FRAMES,
+                    GameAssets._ROVER_IDLE_ASSET, GameAssets._ROVER_FRAMES,
                     TileID._ROVER_TILE
                 ),
             new SpriteDescriptor

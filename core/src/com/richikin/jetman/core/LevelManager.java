@@ -124,7 +124,7 @@ public class LevelManager
     {
         // TODO: 12/08/2020 - Change this so that it removes all entities that are not MainPlayer
         app.entityData.entityMap.setSize(1);
-        app.mapCreator.placementTiles.clear();
+        app.mapData.placementTiles.clear();
 
         app.mapData.enemyFreeZones.clear();
         app.mapData.currentMap.dispose();

@@ -14,8 +14,6 @@ public interface EntityManagerComponent
 
     void create();
 
-    void create(String _asset, int _frames, Animation.PlayMode _mode, int x, int y);
-
     SimpleVec2 findCoordinates(final GraphicID targetGID);
 
     Array<SimpleVec2> findMultiCoordinates(final GraphicID targetGID);

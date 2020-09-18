@@ -52,27 +52,11 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     }
 
     @Override
-    public void create(final String _asset, final int _frames, final Animation.PlayMode _mode, final int x, final int y)
-    {
-//        entityDescriptor = new SpriteDescriptor
-//            (
-//                x,
-//                y,
-//                app.entityUtils.getInitialZPosition(graphicID),
-//                app.assets.getAnimationRegion(_asset),
-//                _frames,
-//                _mode
-//            );
-//
-//        entityDescriptor._INDEX = app.entityData.entityMap.size;
-    }
-
-    @Override
     public SimpleVec2 findCoordinates(final GraphicID targetGID)
     {
         SimpleVec2 coords = new SimpleVec2();
 
-        for (SpriteDescriptor marker : app.mapCreator.placementTiles)
+        for (SpriteDescriptor marker : app.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {
@@ -88,7 +72,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     {
         Array<SimpleVec2> coords = new Array<>();
 
-        for (SpriteDescriptor marker : app.mapCreator.placementTiles)
+        for (SpriteDescriptor marker : app.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {

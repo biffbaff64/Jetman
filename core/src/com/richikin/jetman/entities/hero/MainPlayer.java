@@ -8,6 +8,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.core.StateID;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.BridgeManager;
@@ -314,17 +315,13 @@ public class MainPlayer extends GdxSprite
                 case _FALLING_TO_GROUND:
                 case _DYING:
                 {
-                    setAnimation
-                        (
-                            new EntityDescriptor
-                                (
-                                    app.assets.getAnimationRegion(GameAssets._PLAYER_DYING),
-                                    GameAssets._PLAYER_DYING_FRAMES,
-                                    Animation.PlayMode.LOOP
-                                ),
-                            1.0f
-                        );
+                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
 
+                    descriptor._ASSET = GameAssets._PLAYER_DYING;
+                    descriptor._FRAMES = GameAssets._PLAYER_DYING_FRAMES;
+                    descriptor._PLAYMODE = Animation.PlayMode.LOOP;
+
+                    setAnimation(descriptor, 1.0f);
                     sprite.setScale(1.2f);
 
                     elapsedAnimTime = 0;
@@ -335,16 +332,13 @@ public class MainPlayer extends GdxSprite
                 case _FALLING:
                 case _HOVERING:
                 {
-                    setAnimation
-                        (
-                            new EntityDescriptor
-                                (
-                                    app.assets.getAnimationRegion(GameAssets._PLAYER_FLY),
-                                    GameAssets._PLAYER_FLY_FRAMES,
-                                    Animation.PlayMode.LOOP
-                                ),
-                            1.25f
-                        );
+                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+
+                    descriptor._ASSET = GameAssets._PLAYER_FLY;
+                    descriptor._FRAMES = GameAssets._PLAYER_FLY_FRAMES;
+                    descriptor._PLAYMODE = Animation.PlayMode.LOOP;
+
+                    setAnimation(descriptor, 1.25f);
 
                     elapsedAnimTime = 0;
                 }
@@ -352,16 +346,13 @@ public class MainPlayer extends GdxSprite
 
                 case _RUNNING:
                 {
-                    setAnimation
-                        (
-                            new EntityDescriptor
-                                (
-                                    app.assets.getAnimationRegion(GameAssets._PLAYER_RUN),
-                                    GameAssets._PLAYER_RUN_FRAMES,
-                                    Animation.PlayMode.LOOP
-                                ),
-                            0.5f
-                        );
+                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+
+                    descriptor._ASSET = GameAssets._PLAYER_RUN;
+                    descriptor._FRAMES = GameAssets._PLAYER_RUN_FRAMES;
+                    descriptor._PLAYMODE = Animation.PlayMode.LOOP;
+
+                    setAnimation(descriptor, 0.5f);
 
                     elapsedAnimTime = 0;
                 }
@@ -372,16 +363,13 @@ public class MainPlayer extends GdxSprite
                 case _STANDING:
                 default:
                 {
-                    setAnimation
-                        (
-                            new EntityDescriptor
-                                (
-                                    app.assets.getAnimationRegion(GameAssets._PLAYER_IDLE),
-                                    GameAssets._PLAYER_STAND_FRAMES,
-                                    Animation.PlayMode.LOOP
-                                ),
-                            1.0f
-                        );
+                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+
+                    descriptor._ASSET = GameAssets._PLAYER_IDLE;
+                    descriptor._FRAMES = GameAssets._PLAYER_STAND_FRAMES;
+                    descriptor._PLAYMODE = Animation.PlayMode.LOOP;
+
+                    setAnimation(descriptor, 1.0f);
 
                     elapsedAnimTime = 0;
                     isTeleporting   = false;
