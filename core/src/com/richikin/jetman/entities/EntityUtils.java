@@ -159,7 +159,7 @@ public class EntityUtils
         switch (graphicID)
         {
             case G_TWINKLE_STAR:
-            case G_UFO:
+            case G_BACKGROUND_UFO:
             {
                 zed = Gfx._MAXIMUM_Z_DEPTH;
             }
@@ -294,7 +294,7 @@ public class EntityUtils
         {
             case G_TWINKLE_STAR:
             case G_ARROW:
-            case G_UFO:
+            case G_BACKGROUND_UFO:
             {
                 isUpdateable = true;
             }

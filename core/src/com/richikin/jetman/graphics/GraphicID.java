@@ -62,7 +62,7 @@ public enum GraphicID
 
     // ----------------------------
     G_TWINKLE_STAR,
-    G_UFO,
+    G_BACKGROUND_UFO,
 
     // ----------------------------
     G_EXPLOSION12,

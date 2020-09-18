@@ -19,7 +19,7 @@ public class Ufo extends GdxSprite
 
     public Ufo(final App _app)
     {
-        super(GraphicID.G_UFO, _app);
+        super(GraphicID.G_BACKGROUND_UFO, _app);
 
         this.app = _app;
 

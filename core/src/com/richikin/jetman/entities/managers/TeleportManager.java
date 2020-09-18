@@ -96,7 +96,7 @@ public class TeleportManager extends GenericEntityManager
         descriptors[0]._INDEX      = app.entityData.entityMap.size;
         descriptors[0]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
 
-        descriptors[1]    = new SpriteDescriptor(descriptors[0]);
+        descriptors[1] = new SpriteDescriptor(descriptors[0]);
         descriptors[1]._POSITION.x = coords.get(1).x;
         descriptors[1]._POSITION.y = coords.get(1).y;
     }

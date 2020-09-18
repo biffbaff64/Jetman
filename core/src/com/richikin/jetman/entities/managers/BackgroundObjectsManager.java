@@ -34,7 +34,7 @@ public class BackgroundObjectsManager
             entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
             entityDescriptor._POSITION.x = 0;
             entityDescriptor._POSITION.y = 0;
-            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_UFO);
+            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._INDEX      = app.entityData.entityMap.size;
 
             Ufo ufo = new Ufo(app);

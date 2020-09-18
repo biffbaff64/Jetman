@@ -8,7 +8,6 @@ import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {
@@ -40,7 +39,7 @@ public class RenderSystem
                     {
                         switch (entity.gid)
                         {
-                            case G_UFO:
+                            case G_BACKGROUND_UFO:
                             case G_TWINKLE_STAR:
                             {
                             }
@@ -99,7 +98,7 @@ public class RenderSystem
     public void drawBackgroundSprites()
     {
         drawBackgroundEntity(GraphicID.G_TWINKLE_STAR);
-        drawBackgroundEntity(GraphicID.G_UFO);
+        drawBackgroundEntity(GraphicID.G_BACKGROUND_UFO);
     }
 
     /**

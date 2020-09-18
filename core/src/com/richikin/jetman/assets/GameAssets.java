@@ -136,6 +136,8 @@ public class GameAssets
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
             new AssetSize(GraphicID.G_POWER_BEAM,        64, 512),
             new AssetSize(GraphicID.G_POWER_BEAM_SMALL,  64, 128),
+            new AssetSize(GraphicID.G_BACKGROUND_UFO,    8,    4),
+            new AssetSize(GraphicID.G_TWINKLE_STAR,      46,  46),
         };
 
     public static SimpleVec2 getAssetSize(GraphicID _gid)

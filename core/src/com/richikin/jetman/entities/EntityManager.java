@@ -162,7 +162,7 @@ public class EntityManager implements IEntityManager
                         switch (entity.gid)
                         {
                             case G_PLAYER:
-                            case G_UFO:
+                            case G_BACKGROUND_UFO:
                             case G_TWINKLE_STAR:
                             case _GROUND:
                             {
