@@ -113,31 +113,37 @@ public class GameAssets
 
     private static final AssetSize[] assetSizes =
         {
+            new AssetSize(GraphicID.G_PLAYER,            80,  80),
             new AssetSize(GraphicID.G_ROVER,            303, 131),
             new AssetSize(GraphicID.G_ROVER_WHEEL,       68,  68),
             new AssetSize(GraphicID.G_ROVER_BOOT,       108,  14),
+            new AssetSize(GraphicID.G_MISSILE_BASE,     120,  51),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),
+            new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
+            new AssetSize(GraphicID.G_DEFENDER,          52,  48),
+            new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
+            new AssetSize(GraphicID.G_TWINKLES,          48,  48),
+
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),
             new AssetSize(GraphicID.G_ALIEN_WHEEL,       48,  48),
             new AssetSize(GraphicID.G_3BALLS_UFO,        48,  48),
             new AssetSize(GraphicID.G_3BALLS,            48,  48),
             new AssetSize(GraphicID.G_3LEGS_ALIEN,       48,  48),
             new AssetSize(GraphicID.G_BLOB,              48,  48),
-            new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
             new AssetSize(GraphicID.G_GREEN_BLOCK,       72,  48),
             new AssetSize(GraphicID.G_DOG,               48,  48),
+            new AssetSize(GraphicID.G_SPINNING_BALL,     48,  48),
+            new AssetSize(GraphicID.G_STAR_SPINNER,      48,  48),
+            new AssetSize(GraphicID.G_TOPSPIN,           48,  48),
+
+            new AssetSize(GraphicID.G_POWER_BEAM,        64, 512),
+            new AssetSize(GraphicID.G_POWER_BEAM_SMALL,  64, 128),
+
             new AssetSize(GraphicID.G_EXPLOSION12,       64,  64),
             new AssetSize(GraphicID.G_EXPLOSION64,       64,  64),
             new AssetSize(GraphicID.G_EXPLOSION128,      64,  64),
             new AssetSize(GraphicID.G_EXPLOSION256,      64,  64),
-            new AssetSize(GraphicID.G_SPINNING_BALL,     48,  48),
-            new AssetSize(GraphicID.G_STAR_SPINNER,      48,  48),
-            new AssetSize(GraphicID.G_TOPSPIN,           48,  48),
-            new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
-            new AssetSize(GraphicID.G_PLAYER,            80,  80),
-            new AssetSize(GraphicID.G_TWINKLES,          48,  48),
-            new AssetSize(GraphicID.G_POWER_BEAM,        64, 512),
-            new AssetSize(GraphicID.G_POWER_BEAM_SMALL,  64, 128),
+
             new AssetSize(GraphicID.G_BACKGROUND_UFO,    8,    4),
             new AssetSize(GraphicID.G_TWINKLE_STAR,      46,  46),
         };

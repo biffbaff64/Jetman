@@ -99,6 +99,7 @@ public class MissileBaseManager extends GenericEntityManager
 
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_MISSILE_BASE);
 
+        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_BASE);
         entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         entityDescriptor._POSITION.x    = baseTileX;
         entityDescriptor._POSITION.y    = baseTileY;
