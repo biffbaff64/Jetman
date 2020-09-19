@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
@@ -83,9 +84,8 @@ public class Rover extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        SpriteDescriptor descriptor = new SpriteDescriptor();
-        descriptor._ASSET         = GameAssets._ROVER_WHEEL_ASSET;
-        descriptor._FRAMES        = GameAssets._ROVER_WHEEL_FRAMES;
+        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_WHEEL);
+        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_WHEEL);
         descriptor._PLAYMODE      = Animation.PlayMode.NORMAL;
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;
@@ -119,9 +119,10 @@ public class Rover extends GdxSprite
         {
             Trace.__FILE_FUNC("Adding Rover Boot.");
 
+            descriptor = Entities.getDescriptor(GraphicID.G_ROVER_BOOT);
+            descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER_BOOT);
+            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BOOT);
             descriptor._INDEX = app.entityData.entityMap.size;
-            descriptor._ASSET = GameAssets._ROVER_BOOT_ASSET;
-            descriptor._FRAMES = GameAssets._ROVER_BOOT_FRAMES;
 
             roverBack = new GdxSprite(GraphicID.G_ROVER_BOOT, app);
             roverBack.create(descriptor);

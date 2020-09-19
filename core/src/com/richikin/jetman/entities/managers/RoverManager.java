@@ -81,10 +81,13 @@ public class RoverManager extends GenericEntityManager
             SimpleVec2 roverPos = getStartPosition();
 
             entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER);
+            entityDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER);
+            entityDescriptor._PLAYMODE = Animation.PlayMode.LOOP;
+            entityDescriptor._ANIM_RATE = 5f / 6f;
             entityDescriptor._POSITION.x = roverPos.x;
             entityDescriptor._POSITION.y = roverPos.y;
             entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
-            entityDescriptor._ANIM_RATE = 5f / 6f;
+            entityDescriptor._INDEX = app.entityData.entityMap.size;
 
             Rover rover = new Rover(app);
             rover.initialise(entityDescriptor);

@@ -9,6 +9,7 @@ import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.maths.SimpleVec3;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Speed;
+import com.richikin.jetman.utils.logging.Trace;
 
 /**
  * Used for storing relevant information for
@@ -45,7 +46,7 @@ public class SpriteDescriptor
         this._INDEX     = 0;
         this._FRAMES    = 0;
         this._PLAYMODE  = Animation.PlayMode.NORMAL;
-        this._ANIM_RATE = 0f;
+        this._ANIM_RATE = 1.0f;
         this._NAME      = "";
         this._ASSET     = "";
         this._LINK      = 0;
@@ -93,5 +94,27 @@ public class SpriteDescriptor
         this._DIST      = _descriptor._DIST;
         this._SPEED     = _descriptor._SPEED;
         this._BOX       = _descriptor._BOX;
+    }
+
+    public void debug()
+    {
+        Trace.__FILE_FUNC_WithDivider();
+        Trace.dbg("_GID            : " + _GID);
+        Trace.dbg("_TYPE           : " + _TYPE);
+        Trace.dbg("_POSITION       : " + (_POSITION != null ? _POSITION.toString() : "NOT SET"));
+        Trace.dbg("_SIZE           : " + (_SIZE != null ? _SIZE.toString() : "NOT SET"));
+        Trace.dbg("_INDEX          : " + _INDEX);
+        Trace.dbg("_FRAMES         : " + _FRAMES);
+        Trace.dbg("_PLAYMODE       : " + _PLAYMODE);
+        Trace.dbg("_ANIM_RATE      : " + _ANIM_RATE);
+        Trace.dbg("_NAME           : " + (_NAME != null ? _NAME.toString() : "NOT SET"));
+        Trace.dbg("_ASSET          : " + (_ASSET != null ? _ASSET.toString() : "NOT SET"));
+        Trace.dbg("_LINK           : " + _LINK);
+        Trace.dbg("_TILE           : " + _TILE);
+        Trace.dbg("_PARENT         : " + _PARENT);
+        Trace.dbg("_DIR            : " + (_DIR != null ? _DIR.toString() : "NOT SET"));
+        Trace.dbg("_DIST           : " + (_DIST != null ? _DIST.toString() : "NOT SET"));
+        Trace.dbg("_SPEED          : " + (_SPEED != null ? _SPEED.toString() : "NOT SET"));
+        Trace.dbg("_BOX            : " + (_BOX != null ? _BOX.toString() : "NOT SET"));
     }
 }

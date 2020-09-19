@@ -19,7 +19,7 @@ public enum TileID
 
     // Row 2
     _ASTEROID_TILE              (11),
-    _TWINKLE_STAR_TILE          (12),
+    _BEAM_TILE                  (12),
     _DOG_TILE                   (13),
     _GREEN_BLOCK_TILE           (14),
     _SPINNING_BALL_TILE         (15),
@@ -36,7 +36,7 @@ public enum TileID
     _ROCKET_TILE                (24),
     _BRIDGE_TILE                (25),
     _TOWER_TILE                 (26),
-    _BEAM_TILE                  (27),
+    _U27_TILE                   (27),
     _U28_TILE                   (28),
     _U29_TILE                   (29),
     _U30_TILE                   (30),
@@ -114,8 +114,8 @@ public enum TileID
     _U90_TILE                   (90),
 
     // Row 10
-    _U91_TILE                   (91),
-    _U92_TILE                   (92),
+    _TWINKLE_STAR_TILE          (91),
+    _BACKGROUND_UFO_TILE        (92),
     _U93_TILE                   (93),
     _U94_TILE                   (94),
     _U95_TILE                   (95),
@@ -124,6 +124,12 @@ public enum TileID
     _U98_TILE                   (98),
     _BLANK_TILE                 (99),
     _NO_ACTION_TILE             (100),
+
+    // Tile IDs for entities that are never
+    // placed into a tilemap, but are created
+    // programmatically.
+    _ROVER_WHEEL_TILE           ( 110),
+    _ROVER_BOOT_TILE            ( 111),
 
     // Tile IDs that are used in path finding
     // These tiles may not necessarily have images

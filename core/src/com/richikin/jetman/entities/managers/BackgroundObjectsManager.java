@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.TwinkleStar;
 import com.richikin.jetman.entities.characters.Ufo;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.maps.TileID;
 
 public class BackgroundObjectsManager
 {
@@ -29,13 +31,18 @@ public class BackgroundObjectsManager
         for (int i = 0; i < numUfos; i++)
         {
             SpriteDescriptor entityDescriptor = new SpriteDescriptor();
+            entityDescriptor._NAME       = "Background Ufo";
+            entityDescriptor._GID        = GraphicID.G_BACKGROUND_UFO;
+            entityDescriptor._TYPE       = GraphicID._ENTITY;
             entityDescriptor._ASSET      = GameAssets._BACKGROUND_UFO_ASSET;
             entityDescriptor._FRAMES     = GameAssets._BACKGROUND_UFO_FRAMES;
             entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
+            entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._POSITION.x = 0;
             entityDescriptor._POSITION.y = 0;
             entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._INDEX      = app.entityData.entityMap.size;
+            entityDescriptor._TILE       = TileID._BACKGROUND_UFO_TILE;
 
             Ufo ufo = new Ufo(app);
             ufo.initialise(entityDescriptor);
@@ -71,9 +78,9 @@ public class BackgroundObjectsManager
         {
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
-            SpriteDescriptor entityDescriptor = new SpriteDescriptor();
+            SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
             entityDescriptor._ASSET      = asset;
-            entityDescriptor._FRAMES     = GameAssets._TWINKLE_STAR_FRAMES;
+            entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
             entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
             entityDescriptor._POSITION.x = position[0] / Gfx.getTileWidth();
             entityDescriptor._POSITION.y = position[1] / Gfx.getTileHeight();

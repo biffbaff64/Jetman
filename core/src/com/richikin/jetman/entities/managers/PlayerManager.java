@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.graphics.Gfx;
@@ -36,9 +37,7 @@ public class PlayerManager
             playerTileY = app.roomManager.getStartPosition().y;
         }
 
-        entityDescriptor             = new SpriteDescriptor();
-        entityDescriptor._ASSET      = GameAssets._PLAYER_IDLE;
-        entityDescriptor._FRAMES     = GameAssets._PLAYER_STAND_FRAMES;
+        entityDescriptor             = Entities.getDescriptor(GraphicID.G_PLAYER);
         entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
         entityDescriptor._POSITION.x = playerTileX;
         entityDescriptor._POSITION.y = playerTileY;

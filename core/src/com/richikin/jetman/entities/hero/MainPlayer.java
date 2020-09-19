@@ -26,8 +26,8 @@ public class MainPlayer extends GdxSprite
     public static final float _PLAYER_JUMP_X_SPEED = 16.0f;
     public static final float _PLAYER_Y_SPEED      = 4.0f;
 
-    private static final int   _SPAWN_FRAMES        = 20;
-    private static final int   _PLAYER_APPEAR_FRAME = 13;
+    private static final int _SPAWN_FRAMES        = 20;
+    private static final int _PLAYER_APPEAR_FRAME = 13;
 
     public boolean isRidingRover;
     public boolean isOnRoverBack;
@@ -45,12 +45,13 @@ public class MainPlayer extends GdxSprite
     public boolean isBlockedLeft;
     public boolean isBlockedRight;
 
-    public float    shootRate;
-    public int      shootCount;
-    public float    maxMoveSpeed;
+    public float shootRate;
+    public int   shootCount;
+    public float maxMoveSpeed;
 
-    private TextureRegion bridgeSection;
-    private int           laserColour;
+    private SpriteDescriptor descriptor;
+    private TextureRegion    bridgeSection;
+    private int              laserColour;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -65,9 +66,11 @@ public class MainPlayer extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor descriptor)
+    public void initialise(SpriteDescriptor _descriptor)
     {
-        create(descriptor);
+        this.descriptor = _descriptor;
+
+        create(_descriptor);
 
         bodyCategory = Gfx.CAT_PLAYER;
         collidesWith = Gfx.CAT_MOBILE_ENEMY
@@ -317,8 +320,8 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET = GameAssets._PLAYER_DYING;
-                    descriptor._FRAMES = GameAssets._PLAYER_DYING_FRAMES;
+                    descriptor._ASSET    = GameAssets._PLAYER_DYING;
+                    descriptor._FRAMES   = GameAssets._PLAYER_DYING_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
                     setAnimation(descriptor, 1.0f);
@@ -334,8 +337,8 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET = GameAssets._PLAYER_FLY;
-                    descriptor._FRAMES = GameAssets._PLAYER_FLY_FRAMES;
+                    descriptor._ASSET    = GameAssets._PLAYER_FLY;
+                    descriptor._FRAMES   = GameAssets._PLAYER_FLY_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
                     setAnimation(descriptor, 1.25f);
@@ -348,8 +351,8 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET = GameAssets._PLAYER_RUN;
-                    descriptor._FRAMES = GameAssets._PLAYER_RUN_FRAMES;
+                    descriptor._ASSET    = GameAssets._PLAYER_RUN;
+                    descriptor._FRAMES   = GameAssets._PLAYER_RUN_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
                     setAnimation(descriptor, 0.5f);
@@ -365,9 +368,11 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET = GameAssets._PLAYER_IDLE;
-                    descriptor._FRAMES = GameAssets._PLAYER_STAND_FRAMES;
+                    descriptor._ASSET    = GameAssets._PLAYER_IDLE;
+                    descriptor._FRAMES   = GameAssets._PLAYER_STAND_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
+
+                    descriptor.debug();
 
                     setAnimation(descriptor, 1.0f);
 

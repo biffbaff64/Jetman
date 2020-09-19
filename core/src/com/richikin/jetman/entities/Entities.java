@@ -31,6 +31,20 @@ public abstract class Entities
                     GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
                     TileID._ROVER_GUN_TILE
                 ),
+            new SpriteDescriptor
+                (
+                    "Rover Wheel",
+                    GraphicID.G_ROVER_WHEEL, GraphicID._MAIN,
+                    GameAssets._ROVER_WHEEL_ASSET, GameAssets._ROVER_WHEEL_FRAMES,
+                    TileID._ROVER_WHEEL_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Rover Boot",
+                    GraphicID.G_ROVER_BOOT, GraphicID._MAIN,
+                    GameAssets._ROVER_BOOT_ASSET, GameAssets._ROVER_BOOT_FRAMES,
+                    TileID._ROVER_BOOT_TILE
+                ),
 
             // Pickups
             new SpriteDescriptor
@@ -64,6 +78,23 @@ public abstract class Entities
             // Mobile Enemies
 
             // Miscellaneous Enemy Related
+
+            // Background Sprites
+            new SpriteDescriptor
+                (
+                    "Background Ufo",
+                    GraphicID.G_BACKGROUND_UFO, GraphicID._BACKGROUND_ENTITY,
+                    GameAssets._BACKGROUND_UFO_ASSET, GameAssets._BACKGROUND_UFO_FRAMES,
+                    TileID._BACKGROUND_UFO_TILE
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Twinkle Star",
+                    GraphicID.G_TWINKLE_STAR, GraphicID._BACKGROUND_ENTITY,
+                    GameAssets._TWINKLE_STAR1_ASSET, GameAssets._TWINKLE_STAR_FRAMES,
+                    TileID._TWINKLE_STAR_TILE
+                ),
         };
 
     public static int getDescriptorIndex(GraphicID _gid)

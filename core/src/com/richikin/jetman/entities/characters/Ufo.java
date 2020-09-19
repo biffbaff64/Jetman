@@ -15,16 +15,9 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class Ufo extends GdxSprite
 {
-    private final App app;
-
     public Ufo(final App _app)
     {
         super(GraphicID.G_BACKGROUND_UFO, _app);
-
-        this.app = _app;
-
-        bodyCategory = Gfx.CAT_SCENERY;
-        collidesWith = Gfx.CAT_NOTHING;
     }
 
     @Override
@@ -34,6 +27,9 @@ public class Ufo extends GdxSprite
 
         setAction(Actions._RUNNING);
         sprite.setColor(Color.WHITE);
+
+        bodyCategory = Gfx.CAT_SCENERY;
+        collidesWith = Gfx.CAT_NOTHING;
 
         elapsedAnimTime = 0;
         isDrawable = true;

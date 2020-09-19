@@ -114,6 +114,8 @@ public class GameAssets
     private static final AssetSize[] assetSizes =
         {
             new AssetSize(GraphicID.G_ROVER,            303, 131),
+            new AssetSize(GraphicID.G_ROVER_WHEEL,       68,  68),
+            new AssetSize(GraphicID.G_ROVER_BOOT,       108,  14),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),
             new AssetSize(GraphicID.G_ALIEN_WHEEL,       48,  48),

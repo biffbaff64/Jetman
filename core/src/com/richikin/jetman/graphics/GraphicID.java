@@ -87,6 +87,7 @@ public enum GraphicID
     _SPEECH,
     _HUD_PANEL,
     _EXIT_BOX,
+    _BACKGROUND_ENTITY,
 
     // ----------------------------
     // Encapsulating type, covering any collision IDs that can be stood on.
