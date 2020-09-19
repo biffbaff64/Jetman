@@ -1,15 +1,15 @@
-package com.richikin.jetman.entities.systems;
+package com.richikin.jetman.entities;
 
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 
-public class EntityCreationSystem
+public class EntityCreationManager
 {
     private SpriteDescriptor spriteDescriptor;
     private final App app;
 
-    public EntityCreationSystem(App _app)
+    public EntityCreationManager(App _app)
     {
         this.app = _app;
     }
