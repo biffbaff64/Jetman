@@ -351,28 +351,19 @@ public class EntityManager implements IEntityManager
         _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
     }
 
-    public void initialisePlayer()
-    {
-        playerManager = new PlayerManager(app);
-        playerManager.setSpawnPoint();
-        playerManager.createPlayer();
-    }
-
     public void initialiseForLevel()
     {
         BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
-
         manager.addUFOs(6 + MathUtils.random(4));
         manager.addTwinkleStars();
 
-        if (AABBData.boxes().size == 0)
-        {
-            initialisePlayer();
+        playerManager = new PlayerManager(app);
+        playerManager.setSpawnPoint();
+        playerManager.createPlayer();
 
-            for (final EntityManagerComponent system : app.entityData.managerList)
-            {
-                system.init();
-            }
+        for (final EntityManagerComponent system : app.entityData.managerList)
+        {
+            system.init();
         }
     }
 

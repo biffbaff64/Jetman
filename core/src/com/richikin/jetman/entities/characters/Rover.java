@@ -23,16 +23,9 @@ public class Rover extends GdxSprite
     public GdxSprite frontWheel;
     public GdxSprite backWheel;
 
-    private final App app;
-
     public Rover(App _app)
     {
         super(GraphicID.G_ROVER, _app);
-
-        this.app = _app;
-
-        bodyCategory = Gfx.CAT_VEHICLE;
-        collidesWith = Gfx.CAT_SCENERY | Gfx.CAT_FIXED_ENEMY;
     }
 
     /**
@@ -46,6 +39,9 @@ public class Rover extends GdxSprite
     public void initialise(SpriteDescriptor entityDescriptor)
     {
         create(entityDescriptor);
+
+        bodyCategory = Gfx.CAT_VEHICLE;
+        collidesWith = Gfx.CAT_SCENERY | Gfx.CAT_FIXED_ENEMY;
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 

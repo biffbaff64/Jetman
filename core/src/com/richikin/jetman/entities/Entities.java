@@ -69,10 +69,38 @@ public abstract class Entities
             // Stationary Enemies
             new SpriteDescriptor
                 (
-                    "Base",
+                    "Missile Base",
                     GraphicID.G_MISSILE_BASE, GraphicID._ENEMY,
                     GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES,
                     TileID._MISSILE_BASE_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Missile Launcher",
+                    GraphicID.G_MISSILE_LAUNCHER, GraphicID._ENEMY,
+                    GameAssets._MISSILE_LAUNCHER_ASSET, GameAssets._MISSILE_LAUNCHER_FRAMES,
+                    TileID._MISSILE_LAUNCHER_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Base Defender",
+                    GraphicID.G_DEFENDER, GraphicID._ENEMY,
+                    GameAssets._DEFENDER_ASSET, GameAssets._DEFENDER_FRAMES,
+                    TileID._DEFENDER_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Defender Bullet",
+                    GraphicID.G_DEFENDER_BULLET, GraphicID._ENEMY,
+                    GameAssets._DEFENDER_BULLET_ASSET, GameAssets._DEFENDER_BULLET_FRAMES,
+                    TileID._DEFENDER_BULLET_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Defender Zap",
+                    GraphicID.G_DEFENDER_ZAP, GraphicID._ENEMY,
+                    GameAssets._DEFENDER_ZAP_ASSET, GameAssets._DEFENDER_ZAP_FRAMES,
+                    TileID._DEFENDER_ZAP_TILE
                 ),
 
             // Mobile Enemies

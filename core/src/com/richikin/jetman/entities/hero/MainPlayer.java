@@ -372,8 +372,6 @@ public class MainPlayer extends GdxSprite
                     descriptor._FRAMES   = GameAssets._PLAYER_STAND_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
-                    descriptor.debug();
-
                     setAnimation(descriptor, 1.0f);
 
                     elapsedAnimTime = 0;

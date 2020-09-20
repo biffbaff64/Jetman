@@ -51,7 +51,7 @@ public class GameAssets
     public static final String _ROVER_GUN_ASSET        = "rover_gun_modified";
     public static final String _STAR_SPINNER_ASSET     = "starspinner";
     public static final String _SPINNING_BALL_ASSET    = "jm_spinningball";
-    public static final String _SPARKLE_WEAPON_ASSET   = "defence_sparkle";
+    public static final String _DEFENDER_BULLET_ASSET  = "defence_sparkle";
     public static final String _TRANSPORTER_ASSET      = "transporter_v3";
     public static final String _TOPSPIN_ASSET          = "topspin";
     public static final String _TWINKLES_ASSET         = "twinkles2";
@@ -83,7 +83,7 @@ public class GameAssets
     public static final int _ROVER_WHEEL_FRAMES      = 1;
     public static final int _STAR_SPINNER_FRAMES     = 32;
     public static final int _SPINNING_BALL_FRAMES    = 32;
-    public static final int _SPARKLE_WEAPON_FRAMES   = 10;
+    public static final int _DEFENDER_BULLET_FRAMES  = 10;
     public static final int _TRANSPORTER_FRAMES      = 21;
     public static final int _TOPSPIN_FRAMES          = 32;
     public static final int _TWINKLES_FRAMES         = 32;
@@ -122,6 +122,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
             new AssetSize(GraphicID.G_DEFENDER,          52,  48),
             new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
+            new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
 
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),

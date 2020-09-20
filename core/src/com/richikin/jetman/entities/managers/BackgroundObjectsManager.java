@@ -30,19 +30,13 @@ public class BackgroundObjectsManager
     {
         for (int i = 0; i < numUfos; i++)
         {
-            SpriteDescriptor entityDescriptor = new SpriteDescriptor();
-            entityDescriptor._NAME       = "Background Ufo";
-            entityDescriptor._GID        = GraphicID.G_BACKGROUND_UFO;
-            entityDescriptor._TYPE       = GraphicID._ENTITY;
-            entityDescriptor._ASSET      = GameAssets._BACKGROUND_UFO_ASSET;
-            entityDescriptor._FRAMES     = GameAssets._BACKGROUND_UFO_FRAMES;
+            SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
             entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._POSITION.x = 0;
             entityDescriptor._POSITION.y = 0;
             entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._INDEX      = app.entityData.entityMap.size;
-            entityDescriptor._TILE       = TileID._BACKGROUND_UFO_TILE;
 
             Ufo ufo = new Ufo(app);
             ufo.initialise(entityDescriptor);

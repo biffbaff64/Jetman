@@ -10,10 +10,11 @@ import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.DefenceStation;
 import com.richikin.jetman.entities.characters.Missile;
 import com.richikin.jetman.entities.characters.MissileBase;
-import com.richikin.jetman.entities.characters.SparkleWeapon;
+import com.richikin.jetman.entities.characters.DefenderBullet;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class MissileBaseManager extends GenericEntityManager
 {
@@ -36,6 +37,8 @@ public class MissileBaseManager extends GenericEntityManager
     @Override
     public void init()
     {
+        Trace.__FILE_FUNC();
+
         activeBases         = 0;
         activeMissiles      = 0;
         activeSparklers     = 0;
@@ -75,6 +78,8 @@ public class MissileBaseManager extends GenericEntityManager
 
     private void createBase()
     {
+        Trace.__FILE_FUNC();
+
         activeBases = 0;
 
         SpriteDescriptor entityDescriptor = createMissileBaseMarker();
@@ -90,6 +95,8 @@ public class MissileBaseManager extends GenericEntityManager
 
     private SpriteDescriptor createMissileBaseMarker()
     {
+        Trace.__FILE_FUNC();
+
         SimpleVec2 vec2 = findCoordinates(GraphicID.G_MISSILE_BASE);
 
         baseLocatedLeft = (vec2.x < (Gfx.getMapWidth() / 2));
@@ -98,7 +105,6 @@ public class MissileBaseManager extends GenericEntityManager
         baseTileY = vec2.y;
 
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_MISSILE_BASE);
-
         entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_BASE);
         entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         entityDescriptor._POSITION.x    = baseTileX;
@@ -136,24 +142,22 @@ public class MissileBaseManager extends GenericEntityManager
 
     public void shoot(DefenceStation station)
     {
-//        if (activeSparklers < (_MAX_SPARKLERS + app.getLevel()))
-//        {
-//            EntityDescriptor entityDescriptor = new EntityDescriptor();
-//            entityDescriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._SPARKLE_WEAPON_ASSET);
-//            entityDescriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
-//            entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-//            entityDescriptor._X             = (int) (station.sprite.getX() / Gfx.getTileWidth());
-//            entityDescriptor._Y             = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
-//            entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
-//            entityDescriptor._INDEX         = app.entityData.entityMap.size;
-//
-//            SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_DEFENDER_BULLET, app);
-//            weapon.initialise(entityDescriptor);
-//
-//            app.entityData.addEntity(weapon);
-//
-//            activeSparklers++;
-//        }
+        if (activeSparklers < (_MAX_SPARKLERS + app.getLevel()))
+        {
+            SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_BULLET);
+            entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+            entityDescriptor._POSITION.x    = (int) (station.sprite.getX() / Gfx.getTileWidth());
+            entityDescriptor._POSITION.y    = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
+            entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
+            entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_BULLET);
+            entityDescriptor._INDEX         = app.entityData.entityMap.size;
+
+            DefenderBullet weapon = new DefenderBullet(GraphicID.G_DEFENDER_BULLET, app);
+            weapon.initialise(entityDescriptor);
+            app.entityData.addEntity(weapon);
+
+            activeSparklers++;
+        }
     }
 
     public void killMissiles()

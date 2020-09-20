@@ -6,6 +6,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.objects.TeleportBeam;
@@ -56,12 +57,21 @@ public class TeleportManager extends GenericEntityManager
             activeCount    = 0;
             teleportActive = false;
 
-            placeMarkerTiles();
+            Array<SimpleVec2> coords = findMultiCoordinates(GraphicID.G_TRANSPORTER);
 
-            index = new int[2];
+            descriptors = new SpriteDescriptor[RoomManager._MAX_TELEPORTERS];
+            index = new int[RoomManager._MAX_TELEPORTERS];
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < RoomManager._MAX_TELEPORTERS; i++)
             {
+                descriptors[i]             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
+                descriptors[i]._PLAYMODE   = Animation.PlayMode.LOOP;
+                descriptors[i]._POSITION.x = coords.get(i).x;
+                descriptors[i]._POSITION.y = coords.get(i).y;
+                descriptors[i]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
+                descriptors[i]._INDEX      = app.entityData.entityMap.size;
+                descriptors[i]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
+
                 Teleporter teleporter = new Teleporter(app);
                 teleporter.initialise(descriptors[i]);
                 teleporter.teleporterNumber = activeCount;
@@ -78,27 +88,6 @@ public class TeleportManager extends GenericEntityManager
                 activeCount++;
             }
         }
-    }
-
-    private void placeMarkerTiles()
-    {
-        Array<SimpleVec2> coords = findMultiCoordinates(GraphicID.G_TRANSPORTER);
-
-        descriptors = new SpriteDescriptor[2];
-
-        descriptors[0]             = new SpriteDescriptor();
-        descriptors[0]._ASSET      = GameAssets._TRANSPORTER_ASSET;
-        descriptors[0]._FRAMES     = GameAssets._TRANSPORTER_FRAMES;
-        descriptors[0]._PLAYMODE   = Animation.PlayMode.LOOP;
-        descriptors[0]._POSITION.x = coords.get(0).x;
-        descriptors[0]._POSITION.y = coords.get(0).y;
-        descriptors[0]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
-        descriptors[0]._INDEX      = app.entityData.entityMap.size;
-        descriptors[0]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
-
-        descriptors[1] = new SpriteDescriptor(descriptors[0]);
-        descriptors[1]._POSITION.x = coords.get(1).x;
-        descriptors[1]._POSITION.y = coords.get(1).y;
     }
 
     public void teleportVisual(boolean _entered)
@@ -132,8 +121,10 @@ public class TeleportManager extends GenericEntityManager
 
         if (Developer.isDevMode())
         {
-            Trace.dbg("Teleporter 1 X: " + app.getTeleporter(0).sprite.getX());
-            Trace.dbg("Teleporter 2 X: " + app.getTeleporter(1).sprite.getX());
+            for (int i=0; i<RoomManager._MAX_TELEPORTERS; i++)
+            {
+                Trace.dbg("Teleporter " + i + " X: " + app.getTeleporter(i).sprite.getX());
+            }
         }
 
         if (index == 0)

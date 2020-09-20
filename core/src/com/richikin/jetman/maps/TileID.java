@@ -8,8 +8,8 @@ public enum TileID
     // Row 1
     _PLAYER_TILE                (1),
     _TRANSPORTER_TILE           (2),
-    _MISSILE_STAND_TILE         (3),
-    _DEFENCE_TILE               (4),
+    _MISSILE_LAUNCHER_TILE      (3),
+    _DEFENDER_TILE              (4),
     _3BALLS_TILE                (5),
     _3BALLS_UFO_TILE            (6),
     _3LEGS_UFO_TILE             (7),
@@ -27,7 +27,7 @@ public enum TileID
     _ROVER_TILE                 (17),
     _BOMB_TILE                  (18),
     _MISSILE_BASE_TILE          (19),
-    _DEFENDER_ZAP_TILE          (20),
+    _U20_TILE                   (20),
 
     // Row 3
     _CRATER_TILE                (21),
@@ -116,8 +116,8 @@ public enum TileID
     // Row 10
     _TWINKLE_STAR_TILE          (91),
     _BACKGROUND_UFO_TILE        (92),
-    _U93_TILE                   (93),
-    _U94_TILE                   (94),
+    _DEFENDER_BULLET_TILE       (93),
+    _DEFENDER_ZAP_TILE          (94),
     _U95_TILE                   (95),
     _U96_TILE                   (96),
     _U97_TILE                   (97),
