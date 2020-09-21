@@ -3,6 +3,7 @@ package com.richikin.jetman.entities;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.managers.PlayerManager;
 
 public class EntityCreationManager
 {
@@ -38,6 +39,13 @@ public class EntityCreationManager
                 {
                     addTeleporters();
                 }
+                break;
+
+                case G_MISSILE_BASE:
+                {
+                    addMissileBase();
+                }
+                break;
 
                 default:
                     break;
@@ -47,6 +55,9 @@ public class EntityCreationManager
 
     private void addPlayer()
     {
+        app.entityManager.playerManager = new PlayerManager(app);
+        app.entityManager.playerManager.setSpawnPoint();
+        app.entityManager.playerManager.createPlayer();
     }
 
     private void addRover()
@@ -54,6 +65,10 @@ public class EntityCreationManager
     }
 
     private void addTeleporters()
+    {
+    }
+
+    private void addMissileBase()
     {
     }
 }

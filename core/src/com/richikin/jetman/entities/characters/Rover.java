@@ -82,7 +82,6 @@ public class Rover extends GdxSprite
 
         SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_WHEEL);
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_WHEEL);
-        descriptor._PLAYMODE      = Animation.PlayMode.NORMAL;
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;
         descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_WHEEL);

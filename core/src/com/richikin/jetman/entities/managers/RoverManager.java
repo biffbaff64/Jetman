@@ -82,7 +82,6 @@ public class RoverManager extends GenericEntityManager
 
             entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER);
             entityDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER);
-            entityDescriptor._PLAYMODE = Animation.PlayMode.LOOP;
             entityDescriptor._ANIM_RATE = 5f / 6f;
             entityDescriptor._POSITION.x = roverPos.x;
             entityDescriptor._POSITION.y = roverPos.y;
@@ -135,7 +134,6 @@ public class RoverManager extends GenericEntityManager
 //                EntityDescriptor descriptor = new EntityDescriptor();
 //                descriptor._ASSET             = app.assets.getAnimationRegion(GameAssets._ROVER_GUN_ASSET);
 //                descriptor._FRAMES            = GameAssets._ROVER_GUN_FRAMES;
-//                descriptor._PLAYMODE          = Animation.PlayMode.NORMAL;
 //                descriptor._X                 = markerX;
 //                descriptor._Y                 = app.entityManager.playerManager.playerTileY;
 //                descriptor._Z                 = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN);

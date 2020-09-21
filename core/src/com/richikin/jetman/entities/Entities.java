@@ -1,6 +1,7 @@
 
 package com.richikin.jetman.entities;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
@@ -15,6 +16,7 @@ public abstract class Entities
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
                     GameAssets._PLAYER_IDLE, GameAssets._PLAYER_STAND_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
                 ),
             new SpriteDescriptor
@@ -22,6 +24,7 @@ public abstract class Entities
                     "Rover",
                     GraphicID.G_ROVER, GraphicID._MAIN,
                     GameAssets._ROVER_IDLE_ASSET, GameAssets._ROVER_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._ROVER_TILE
                 ),
             new SpriteDescriptor
@@ -29,6 +32,7 @@ public abstract class Entities
                     "Rover Gun",
                     GraphicID.G_ROVER_GUN, GraphicID._MAIN,
                     GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
+                    Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
             new SpriteDescriptor
@@ -36,6 +40,7 @@ public abstract class Entities
                     "Rover Wheel",
                     GraphicID.G_ROVER_WHEEL, GraphicID._MAIN,
                     GameAssets._ROVER_WHEEL_ASSET, GameAssets._ROVER_WHEEL_FRAMES,
+                    Animation.PlayMode.NORMAL,
                     TileID._ROVER_WHEEL_TILE
                 ),
             new SpriteDescriptor
@@ -43,6 +48,7 @@ public abstract class Entities
                     "Rover Boot",
                     GraphicID.G_ROVER_BOOT, GraphicID._MAIN,
                     GameAssets._ROVER_BOOT_ASSET, GameAssets._ROVER_BOOT_FRAMES,
+                    Animation.PlayMode.NORMAL,
                     TileID._ROVER_BOOT_TILE
                 ),
 
@@ -52,6 +58,7 @@ public abstract class Entities
                     "Bomb",
                     GraphicID.G_BOMB, GraphicID._INTERACTIVE,
                     GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._BOMB_TILE
                 ),
 
@@ -63,6 +70,7 @@ public abstract class Entities
                     "Teleporter",
                     GraphicID.G_TRANSPORTER, GraphicID._INTERACTIVE,
                     GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._TRANSPORTER_TILE
                 ),
 
@@ -86,6 +94,7 @@ public abstract class Entities
                     "Base Defender",
                     GraphicID.G_DEFENDER, GraphicID._ENEMY,
                     GameAssets._DEFENDER_ASSET, GameAssets._DEFENDER_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._DEFENDER_TILE
                 ),
             new SpriteDescriptor
@@ -93,6 +102,7 @@ public abstract class Entities
                     "Defender Bullet",
                     GraphicID.G_DEFENDER_BULLET, GraphicID._ENEMY,
                     GameAssets._DEFENDER_BULLET_ASSET, GameAssets._DEFENDER_BULLET_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._DEFENDER_BULLET_TILE
                 ),
             new SpriteDescriptor
@@ -100,6 +110,7 @@ public abstract class Entities
                     "Defender Zap",
                     GraphicID.G_DEFENDER_ZAP, GraphicID._ENEMY,
                     GameAssets._DEFENDER_ZAP_ASSET, GameAssets._DEFENDER_ZAP_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._DEFENDER_ZAP_TILE
                 ),
 
@@ -113,6 +124,7 @@ public abstract class Entities
                     "Background Ufo",
                     GraphicID.G_BACKGROUND_UFO, GraphicID._BACKGROUND_ENTITY,
                     GameAssets._BACKGROUND_UFO_ASSET, GameAssets._BACKGROUND_UFO_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._BACKGROUND_UFO_TILE
                 ),
 
@@ -121,6 +133,7 @@ public abstract class Entities
                     "Twinkle Star",
                     GraphicID.G_TWINKLE_STAR, GraphicID._BACKGROUND_ENTITY,
                     GameAssets._TWINKLE_STAR1_ASSET, GameAssets._TWINKLE_STAR_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._TWINKLE_STAR_TILE
                 ),
         };

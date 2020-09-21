@@ -17,15 +17,15 @@ import com.richikin.jetman.utils.logging.Trace;
  */
 public class SpriteDescriptor
 {
-    public String             _NAME;         //
-    public GraphicID          _GID;          // ID
+    public String             _NAME;         // MUST Match the name assigned in TiledMap.
+    public GraphicID          _GID;          // ID. See GraphicID class for options.
     public TileID             _TILE;         //
     public String             _ASSET;        // The initial image asset.
     public int                _FRAMES;       // Number of frames in the asset above.
     public GraphicID          _TYPE;         // _MAIN, _INTERACTIVE, _PICKUP etc
     public SimpleVec3         _POSITION;     // X Pos of tile, in TileWidth units
-    // Y Pos of tile, in TileWidth units
-    // Z-Sort value.
+                                             // Y Pos of tile, in TileWidth units
+                                             // Z-Sort value.
     public SimpleVec2         _SIZE;         // Width and Height.
     public int                _INDEX;        // This entities position in the entity map.
     public Animation.PlayMode _PLAYMODE;     // Animation playmode for the asset frames above.
@@ -73,6 +73,18 @@ public class SpriteDescriptor
         this._ASSET  = _asset;
         this._FRAMES = _frames;
         this._TYPE   = _type;
+    }
+
+    public SpriteDescriptor(String _objectName,
+                            GraphicID _graphicID,
+                            GraphicID _type,
+                            String _asset,
+                            int _frames,
+                            Animation.PlayMode _playMode,
+                            TileID _tileID)
+    {
+        this(_objectName, _graphicID, _type, _asset, _frames, _tileID);
+        this._PLAYMODE = _playMode;
     }
 
     public SpriteDescriptor(SpriteDescriptor _descriptor)
