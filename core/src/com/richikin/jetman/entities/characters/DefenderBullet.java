@@ -2,7 +2,6 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
@@ -29,22 +28,10 @@ public class DefenderBullet extends GdxSprite
             };
 
     private int colourIndex;
-    private App app;
 
     public DefenderBullet(GraphicID _gid, App _app)
     {
         super(_gid, _app);
-
-        if (_gid == GraphicID.G_ROVER_BULLET)
-        {
-            bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-            collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
-        }
-        else
-        {
-            bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-            collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
-        }
     }
 
     @Override
@@ -116,6 +103,17 @@ public class DefenderBullet extends GdxSprite
             speed.setY(Gfx._VIEW_HEIGHT * 0.004f);
         }
 
+        if (gid == GraphicID.G_ROVER_BULLET)
+        {
+            bodyCategory = Gfx.CAT_PLAYER_WEAPON;
+            collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
+        }
+        else
+        {
+            bodyCategory = Gfx.CAT_MOBILE_ENEMY;
+            collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
+        }
+
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
         if (speed.isEmpty())
@@ -158,13 +156,13 @@ public class DefenderBullet extends GdxSprite
             {
 //                ExplosionManager explosionManager = new ExplosionManager();
 //                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
-//
-//                if (spriteAction == Actions._KILLED)
-//                {
+
+                if (getSpriteAction() == Actions._KILLED)
+                {
 //                    app.gameProgress.addScore(10);
-//                }
-//
-//                spriteAction = Actions._EXPLODING;
+                }
+
+                setAction(Actions._EXPLODING);
             }
             break;
 
@@ -187,8 +185,6 @@ public class DefenderBullet extends GdxSprite
             }
             break;
         }
-
-        isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
 
         animate();
 

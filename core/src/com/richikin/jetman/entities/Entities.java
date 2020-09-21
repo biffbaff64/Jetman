@@ -80,6 +80,7 @@ public abstract class Entities
                     "Missile Base",
                     GraphicID.G_MISSILE_BASE, GraphicID._ENEMY,
                     GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES,
+                    Animation.PlayMode.NORMAL,
                     TileID._MISSILE_BASE_TILE
                 ),
             new SpriteDescriptor
@@ -87,6 +88,7 @@ public abstract class Entities
                     "Missile Launcher",
                     GraphicID.G_MISSILE_LAUNCHER, GraphicID._ENEMY,
                     GameAssets._MISSILE_LAUNCHER_ASSET, GameAssets._MISSILE_LAUNCHER_FRAMES,
+                    Animation.PlayMode.LOOP,
                     TileID._MISSILE_LAUNCHER_TILE
                 ),
             new SpriteDescriptor

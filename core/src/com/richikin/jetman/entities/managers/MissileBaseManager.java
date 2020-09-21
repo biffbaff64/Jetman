@@ -106,7 +106,6 @@ public class MissileBaseManager extends GenericEntityManager
 
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_MISSILE_BASE);
         entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_BASE);
-        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         entityDescriptor._POSITION.x    = baseTileX;
         entityDescriptor._POSITION.y    = baseTileY;
         entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_BASE);
@@ -145,11 +144,11 @@ public class MissileBaseManager extends GenericEntityManager
         if (activeSparklers < (_MAX_SPARKLERS + app.getLevel()))
         {
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_BULLET);
-            entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
             entityDescriptor._POSITION.x    = (int) (station.sprite.getX() / Gfx.getTileWidth());
             entityDescriptor._POSITION.y    = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
             entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
             entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_BULLET);
+            entityDescriptor._PARENT        = station;
             entityDescriptor._INDEX         = app.entityData.entityMap.size;
 
             DefenderBullet weapon = new DefenderBullet(GraphicID.G_DEFENDER_BULLET, app);
