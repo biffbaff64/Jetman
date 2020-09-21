@@ -130,6 +130,7 @@ public enum TileID
     // programmatically.
     _ROVER_WHEEL_TILE           ( 110),
     _ROVER_BOOT_TILE            ( 111),
+    _EXPLOSION_TILE             ( 112),
 
     // Tile IDs that are used in path finding
     // These tiles may not necessarily have images

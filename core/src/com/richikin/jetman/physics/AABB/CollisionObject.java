@@ -54,8 +54,6 @@ public class CollisionObject implements Disposable
     public int boxHittingRight;
     public int index;                       // This objects position in the collision object arraylist
 
-    public BodyDef bodyDef;
-    public Body    b2dBody;
     public short   contactMask;
     public short   bodyCategory;
     public short   collidesWith;

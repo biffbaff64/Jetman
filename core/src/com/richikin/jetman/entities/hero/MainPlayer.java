@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
@@ -12,10 +13,12 @@ import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.BridgeManager;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.physics.Movement;
+import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Meters;
 import com.richikin.jetman.utils.logging.Stats;
 import com.richikin.jetman.utils.logging.Trace;
@@ -385,8 +388,63 @@ public class MainPlayer extends GdxSprite
         }
     }
 
+    @Override
+    public void updateCollisionBox()
+    {
+        if (isRidingRover)
+        {
+            collisionObject.rectangle.x = -1;
+            collisionObject.rectangle.y = -1;
+            collisionObject.rectangle.width = 1;
+            collisionObject.rectangle.height = 1;
+        }
+        else
+        {
+            collisionObject.rectangle.x = (sprite.getX() + (frameWidth / 4));
+            collisionObject.rectangle.y = sprite.getY();
+            collisionObject.rectangle.width = (frameWidth / 2);
+            collisionObject.rectangle.height = frameHeight;
+        }
+
+        viewBox.x = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
+        viewBox.y = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
+        viewBox.width = Gfx._VIEW_WIDTH;
+        viewBox.height = Gfx._VIEW_HEIGHT;
+
+        if (viewBox.y < 0)
+        {
+            viewBox.y += (Math.abs(viewBox.y));
+        }
+
+        if (app.preferences.isEnabled((Preferences._SPAWNPOINTS)))
+        {
+            tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+            tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
+            tileRectangle.width = Gfx.getTileWidth();
+            tileRectangle.height = Gfx.getTileHeight();
+        }
+
+        rightEdge = sprite.getX() + frameWidth;
+        topEdge = sprite.getY() + frameHeight;
+    }
+
     public void kill()
     {
+        if (!Developer.isGodMode())
+        {
+            strength = 0;
+        }
+    }
+
+    /**
+     * Trigger the explosion effect for LJM
+     */
+    public void explode()
+    {
+        ExplosionManager explosionManager = new ExplosionManager();
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
+        setAction(Actions._EXPLODING);
+        elapsedAnimTime = 0;
     }
 
     /**

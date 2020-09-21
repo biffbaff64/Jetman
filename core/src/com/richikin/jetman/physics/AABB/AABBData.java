@@ -21,6 +21,10 @@ public class AABBData
         return collisionBoxData;
     }
 
+    public static void initialise()
+    {
+    }
+
     /**
      * Rescan the collision object list, re-ordering indexes
      * after an object has been removed.

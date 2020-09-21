@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
@@ -14,6 +15,9 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
+import com.richikin.jetman.physics.AABB.AABB;
+import com.richikin.jetman.physics.AABB.CollisionObject;
+import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
@@ -29,6 +33,13 @@ public class GdxSprite extends GameEntity implements IGameSprite
     public float       rotateSpeed;
     public float       rotation;
     public int         link;
+
+    // -----------------------------------------------
+    // Collision Related
+    //
+    public  CollisionObject    collisionObject;    // The collision rectangle and data.
+    public  AABB               aabb;               // Reference to the box collision handler;
+    private ICollisionListener collisionCallback;
 
     // -----------------------------------------------
     // public flags
@@ -280,6 +291,108 @@ public class GdxSprite extends GameEntity implements IGameSprite
             catch (NullPointerException npe)
             {
                 Trace.__FILE_FUNC(gid.name() + " : " + npe.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void updateCollisionBox()
+    {
+        collisionObject.rectangle.x      = sprite.getX();
+        collisionObject.rectangle.y      = sprite.getY();
+        collisionObject.rectangle.width  = frameWidth;
+        collisionObject.rectangle.height = frameHeight;
+    }
+
+    @Override
+    public Rectangle getCollisionRectangle()
+    {
+        return collisionObject.rectangle;
+    }
+
+    @Override
+    public void setCollisionObject()
+    {
+        collisionObject = app.collisionUtils.newObject
+            (
+                (int) sprite.getX(),
+                (int) sprite.getY(),
+                (int) frameWidth,
+                (int) frameHeight,
+                GraphicID._ENTITY
+            );
+
+        collisionObject.gid    = this.gid;
+        collisionObject.type   = GraphicID._ENTITY;
+        collisionObject.parent = this;
+
+        if (this.gid != GraphicID.G_NO_ID)
+        {
+            collisionObject.addObjectToList();
+        }
+    }
+
+    /**
+     * Add a {@link ICollisionListener} to
+     * this entity.
+     *
+     * @param listener The listener.
+     */
+    @Override
+    public void addCollisionListener(ICollisionListener listener)
+    {
+        this.collisionCallback = listener;
+    }
+
+    /**
+     * Check for any collisions.
+     */
+    @Override
+    public void updateCollisionCheck()
+    {
+        if (collisionObject != null)
+        {
+            // make sure the collision rectangle
+            // is where the player is
+            updateCollisionBox();
+
+            // Invisibility is set for a period of
+            // time whn the entity is not affected
+            // by any collisions.
+            collisionObject.checkInvisibility();
+            collisionObject.clearCollision();
+
+            //
+            // All CollisionObjects are collidable by default.
+            // This flag is available to turn off detection
+            // as and when needed.
+            if (collisionObject.isCollidable)
+            {
+                collisionObject.isInCollision = aabb.checkHittingBox(this);
+
+                if (collisionObject.isInCollision)
+                {
+                    if (App.collisionUtils.filter(collisionObject.spriteHitting.collidesWith, bodyCategory))
+                    {
+                        if (collisionCallback != null)
+                        {
+                            collisionCallback.onPositiveCollision(collisionObject.spriteHitting.gid);
+                        }
+                    }
+
+                    if (isEnemy && collisionObject.isInvisibilityAllowed)
+                    {
+                        collisionObject.setInvisibility(1000);
+                    }
+                }
+
+                if (!collisionObject.isInCollision)
+                {
+                    if (collisionCallback != null)
+                    {
+                        collisionCallback.onNegativeCollision();
+                    }
+                }
             }
         }
     }

@@ -85,6 +85,9 @@ public class DefenderBullet extends GdxSprite
 //
 //                count -= speed.getX();
 //            }
+
+            bodyCategory = Gfx.CAT_PLAYER_WEAPON;
+            collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
         }
         else
         {
@@ -97,19 +100,13 @@ public class DefenderBullet extends GdxSprite
                 direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_UP);
             }
 
+            sprite.setScale(0.8f + MathUtils.random(0.4f));
+
             float angle = 0.25f + MathUtils.random(0.6f);
 
             speed.setX((Gfx._VIEW_WIDTH * 0.004f) * angle);
             speed.setY(Gfx._VIEW_HEIGHT * 0.004f);
-        }
 
-        if (gid == GraphicID.G_ROVER_BULLET)
-        {
-            bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-            collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
-        }
-        else
-        {
             bodyCategory = Gfx.CAT_MOBILE_ENEMY;
             collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
         }
@@ -154,8 +151,8 @@ public class DefenderBullet extends GdxSprite
             case _KILLED:
             case _HURT:
             {
-//                ExplosionManager explosionManager = new ExplosionManager();
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                ExplosionManager explosionManager = new ExplosionManager();
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
                 if (getSpriteAction() == Actions._KILLED)
                 {

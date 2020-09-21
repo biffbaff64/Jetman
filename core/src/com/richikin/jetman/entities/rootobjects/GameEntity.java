@@ -6,20 +6,21 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.jetman.physics.AABB.CollisionRect;
 
 public class GameEntity implements IGameEntity, Disposable
 {
-    public GraphicID   gid;
-    public GraphicID   type;
-    public Body        b2dBody;
-    public BodyDef     bodyDef;
-    public SimpleVec2F position;
-
-    public int   zPosition;
-    public short bodyCategory;
-    public short collidesWith;
-    public float frameWidth;
-    public float frameHeight;
+    public GraphicID     gid;
+    public GraphicID     type;
+    public Body          b2dBody;
+    public BodyDef       bodyDef;
+    public SimpleVec2F   position;
+    public CollisionRect rectangle;
+    public int           zPosition;
+    public short         bodyCategory;
+    public short         collidesWith;
+    public float         frameWidth;
+    public float         frameHeight;
 
     protected App app;
 
@@ -40,8 +41,8 @@ public class GameEntity implements IGameEntity, Disposable
     @Override
     public void dispose()
     {
-        b2dBody = null;
-        bodyDef = null;
+        b2dBody  = null;
+        bodyDef  = null;
         position = null;
     }
 }

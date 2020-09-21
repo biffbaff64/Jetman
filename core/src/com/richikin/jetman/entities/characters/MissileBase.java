@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
@@ -15,6 +16,7 @@ import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.camera.Shake;
+import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -217,12 +219,14 @@ public class MissileBase extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
+        Array<SimpleVec2> vec2 = app.missileBaseManager.findMultiCoordinates(GraphicID.G_DEFENDER);
+
         //
         // Add a Defence Station to the left of the base
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER);
         entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._POSITION.x    = (int) (this.sprite.getX() / Gfx.getTileWidth()) - 8;
-        entityDescriptor._POSITION.y    = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;
+        entityDescriptor._POSITION.x    = vec2.get(0).x;
+        entityDescriptor._POSITION.y    = vec2.get(0).y;
         entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER);
         entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER);
         entityDescriptor._INDEX         = app.entityData.entityMap.size;
@@ -236,8 +240,8 @@ public class MissileBase extends GdxSprite
 
         //
         // Add a Defence Station to the right of the base
-        entityDescriptor._POSITION.x = (int) (this.sprite.getX() / Gfx.getTileWidth()) + 10;
-        entityDescriptor._POSITION.y = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;
+        entityDescriptor._POSITION.x = vec2.get(1).x;
+        entityDescriptor._POSITION.y = vec2.get(1).y;
 
         defenceStations[1] = new DefenceStation(app);
         defenceStations[1].initialise(entityDescriptor);
