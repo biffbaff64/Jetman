@@ -90,7 +90,7 @@ public class CollisionRect extends Rectangle
 
         for (CollisionObject object : AABBData.boxes())
         {
-            if ((object.index != parentIndex) && (object.type.equals(GraphicID._ENTITY)))
+            if ((object.index != parentIndex) && !object.isObstacle)
             {
                 if (Intersector.overlaps(this, object.rectangle))
                 {

@@ -10,17 +10,18 @@ import com.richikin.jetman.physics.AABB.CollisionRect;
 
 public class GameEntity implements IGameEntity, Disposable
 {
-    public GraphicID     gid;
-    public GraphicID     type;
+    public GraphicID   gid;
+    public GraphicID   type;
+    public SimpleVec2F position;
+    public int         zPosition;
+    public float       frameWidth;
+    public float       frameHeight;
+
+    public CollisionRect rectangle;
     public Body          b2dBody;
     public BodyDef       bodyDef;
-    public SimpleVec2F   position;
-    public CollisionRect rectangle;
-    public int           zPosition;
     public short         bodyCategory;
     public short         collidesWith;
-    public float         frameWidth;
-    public float         frameHeight;
 
     protected App app;
 

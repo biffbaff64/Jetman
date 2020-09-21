@@ -16,14 +16,12 @@
 
 package com.richikin.jetman.physics.AABB;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.core.Actions;
+import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class CollisionObject implements Disposable
 {
@@ -35,13 +33,12 @@ public class CollisionObject implements Disposable
      * _COLLIDING   -   In Collision.
      * _DEAD        -   To be removed from the list.
      */
-    public Actions       action;
-    public GraphicID     gid;               // ID of THIS object
-    public GraphicID     contactGid;        // ID of contact object
-    public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GdxSprite     parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
-    public GdxSprite     contactSprite;     // ID of contact object
-    public CollisionRect rectangle;         // The actual collision rectangle
+    public Actions   action;
+    public GraphicID gid;               // ID of THIS object
+    public GraphicID contactGid;        // ID of contact object
+    public GdxSprite parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
+    public GdxSprite contactSprite;     // ID of contact object
+    public Rectangle rectangle;         // The actual collision rectangle
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
     public GraphicID idBottom;              // ID of object hitting the bottom of this object
@@ -54,9 +51,9 @@ public class CollisionObject implements Disposable
     public int boxHittingRight;
     public int index;                       // This objects position in the collision object arraylist
 
-    public short   contactMask;
-    public short   bodyCategory;
-    public short   collidesWith;
+    public short contactMask;
+    public short bodyCategory;
+    public short collidesWith;
 
     public boolean isHittingPlayer;
     public boolean isObstacle;
@@ -81,8 +78,6 @@ public class CollisionObject implements Disposable
         rectangle = new CollisionRect(new Rectangle(x, y, width, height), _type);
 
         create();
-
-        this.type = _type;
     }
 
     private void create()
@@ -95,31 +90,10 @@ public class CollisionObject implements Disposable
         isContactObstacle = false;
         gid               = GraphicID.G_NO_ID;
         contactGid        = GraphicID.G_NO_ID;
-        type              = GraphicID.G_NO_ID;
         action            = Actions._COLLIDABLE;
         contactMask       = 0;
         bodyCategory      = 0;
         collidesWith      = 0;
-    }
-
-    public boolean hasContactUp()
-    {
-        return (contactMask & AABBData._TOP) > 0;
-    }
-
-    public boolean hasContactDown()
-    {
-        return (contactMask & AABBData._BOTTOM) > 0;
-    }
-
-    public boolean hasContactLeft()
-    {
-        return (contactMask & AABBData._LEFT) > 0;
-    }
-
-    public boolean hasContactRight()
-    {
-        return (contactMask & AABBData._RIGHT) > 0;
     }
 
     public void addObjectToList()
@@ -136,6 +110,42 @@ public class CollisionObject implements Disposable
     public void kill()
     {
         action = Actions._DEAD;
+    }
+
+    public boolean isTouchingAnother(int parentIndex)
+    {
+        boolean isTouching = false;
+
+        for (CollisionObject object : AABBData.boxes())
+        {
+            if (object.index != parentIndex)
+            {
+                if (Intersector.overlaps(this.rectangle, object.rectangle))
+                {
+                    isTouching = true;
+                }
+            }
+        }
+
+        return isTouching;
+    }
+
+    public boolean isTouchingAnEntity(int parentIndex)
+    {
+        boolean isTouching = false;
+
+        for (CollisionObject object : AABBData.boxes())
+        {
+            if ((object.index != parentIndex) && !object.isObstacle)
+            {
+                if (Intersector.overlaps(this.rectangle, object.rectangle))
+                {
+                    isTouching = true;
+                }
+            }
+        }
+
+        return isTouching;
     }
 
     public void clearCollision()
@@ -164,17 +174,5 @@ public class CollisionObject implements Disposable
         idBottom      = null;
         idLeft        = null;
         idRight       = null;
-    }
-
-    public void debug()
-    {
-        Trace.__FILE_FUNC_WithDivider();
-        Trace.dbg("GID   : " + gid);
-        if (parentSprite != null)
-        {
-            Trace.dbg("PARENT: " + parentSprite.gid);
-        }
-        Trace.dbg("ACTION: " + action);
-        Trace.dbg("RECT  : " + rectangle.toString());
     }
 }
