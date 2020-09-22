@@ -22,6 +22,9 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.utils.logging.StopWatch;
+
+import java.util.concurrent.TimeUnit;
 
 public class CollisionObject implements Disposable
 {
@@ -34,11 +37,11 @@ public class CollisionObject implements Disposable
      * _DEAD        -   To be removed from the list.
      */
     public Actions   action;
-    public GraphicID gid;               // ID of THIS object
-    public GraphicID contactGid;        // ID of contact object
-    public GdxSprite parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
-    public GdxSprite contactSprite;     // ID of contact object
-    public Rectangle rectangle;         // The actual collision rectangle
+    public GraphicID gid;                   // ID of THIS object
+    public GraphicID contactGid;            // ID of contact object
+    public GdxSprite parentSprite;          // The GdxSprite this collision object belongs to, if applicable.
+    public GdxSprite contactSprite;         // ID of contact object
+    public Rectangle rectangle;             // The actual collision rectangle
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
     public GraphicID idBottom;              // ID of object hitting the bottom of this object
@@ -58,6 +61,10 @@ public class CollisionObject implements Disposable
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
+    public boolean isInvisibilityAllowed;
+
+    private StopWatch invisibilityTimer;
+    private int       invisibilityDelay;    // How long this collision object is ingored for
 
     public CollisionObject()
     {
@@ -84,16 +91,18 @@ public class CollisionObject implements Disposable
     {
         clearCollision();
 
-        index             = AABBData.boxes().size;
-        isHittingPlayer   = false;
-        isObstacle        = true;
-        isContactObstacle = false;
-        gid               = GraphicID.G_NO_ID;
-        contactGid        = GraphicID.G_NO_ID;
-        action            = Actions._COLLIDABLE;
-        contactMask       = 0;
-        bodyCategory      = 0;
-        collidesWith      = 0;
+        index                   = AABBData.boxes().size;
+        isHittingPlayer         = false;
+        isObstacle              = true;
+        isContactObstacle       = false;
+        gid                     = GraphicID.G_NO_ID;
+        contactGid              = GraphicID.G_NO_ID;
+        action                  = Actions._COLLIDABLE;
+        contactMask             = 0;
+        bodyCategory            = 0;
+        collidesWith            = 0;
+        invisibilityTimer       = StopWatch.start();
+        isInvisibilityAllowed   = true;
     }
 
     public void addObjectToList()
@@ -174,5 +183,24 @@ public class CollisionObject implements Disposable
         idBottom      = null;
         idLeft        = null;
         idRight       = null;
+    }
+
+    public void setInvisibility(int timeInMilliseconds)
+    {
+        action              = Actions._INVISIBLE;
+        invisibilityDelay   = timeInMilliseconds;
+
+        invisibilityTimer.reset();
+    }
+
+    public void checkInvisibility()
+    {
+        if ((action != Actions._COLLIDABLE) && isInvisibilityAllowed)
+        {
+            if (invisibilityTimer.time(TimeUnit.MILLISECONDS) >= invisibilityDelay)
+            {
+                action = Actions._COLLIDABLE;
+            }
+        }
     }
 }

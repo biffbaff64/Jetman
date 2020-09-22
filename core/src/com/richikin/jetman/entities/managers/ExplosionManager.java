@@ -5,6 +5,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.characters.Explosion;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;

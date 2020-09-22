@@ -24,6 +24,7 @@ import com.richikin.jetman.maps.MapCreator;
 import com.richikin.jetman.maps.MapData;
 import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.maps.RoomManager;
+import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
@@ -58,6 +59,7 @@ public abstract class App extends com.badlogic.gdx.Game
     public EntityUtils entityUtils;
     public MapUtils    mapUtils;
     public PathUtils   pathUtils;
+    public CollisionUtils collisionUtils;
 
     public EntityData entityData;
     public MapData    mapData;

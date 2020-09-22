@@ -26,9 +26,9 @@ public interface ICollideUtils
 
     TileID getMarkerTileOn(int x, int y);
 
-    int tileBelowX(GdxSprite spriteObj);
+    int getXBelow(GdxSprite spriteObj);
 
-    int tileBelowY(GdxSprite spriteObj);
+    int getYBelow(GdxSprite spriteObj);
 
     CollisionObject getBoxHittingTop(GdxSprite spriteObject);
 

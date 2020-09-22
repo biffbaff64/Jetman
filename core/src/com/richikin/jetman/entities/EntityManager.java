@@ -260,7 +260,7 @@ public class EntityManager implements IEntityManager
                 }
             }
 
-//            app.collisionUtils.tidy();
+            app.collisionUtils.tidy();
         }
     }
 

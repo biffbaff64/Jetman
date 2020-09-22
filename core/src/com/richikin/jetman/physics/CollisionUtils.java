@@ -1,11 +1,16 @@
 package com.richikin.jetman.physics;
 
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
@@ -109,7 +114,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         for (int i = 0; i < AABBData.boxes().size; i++)
         {
-            AABBData.boxes().get(i).debug();
+//            AABBData.boxes().get(i).debug();
         }
     }
 
@@ -123,18 +128,19 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         return ((entity.collidesWith & target.bodyCategory) != 0)
             && ((target.collidesWith & entity.bodyCategory) != 0)
-            && (entity.collisionObject.collisionArrayIndex != target.collisionObject.collisionArrayIndex);
+            && (entity.spriteNumber != target.spriteNumber);
+//            && (entity.collisionObject.collisionArrayIndex != target.collisionObject.collisionArrayIndex);
     }
 
     /**
-     * @param theEntityFlag
-     * @param theCollisionBoxFlag
+     * @param theEntityFlag         The entitiy's bodyCategory flag
+     * @param theCollisionBoxFlag   The collidesWith flag of the entity to test against.
      *
-     * @return
+     * @return TRUE if the two entities are able to collide.
      */
     public boolean filter(short theEntityFlag, short theCollisionBoxFlag)
     {
-        return (((theEntityFlag & theCollisionBoxFlag) != 0) && ((theCollisionBoxFlag & theEntityFlag) != 0));
+        return ((theEntityFlag & theCollisionBoxFlag) != 0);
     }
 
     /**
@@ -149,11 +155,12 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         TileID tileID = TileID._UNKNOWN;
 
-        TiledMapTileLayer.Cell cell = app.mapData.markerTilesLayer.getCell(x, y);
-
-        if (cell != null)
+        for (SpriteDescriptor placementTile : app.mapData.placementTiles)
         {
-            tileID = TileID.fromValue(cell.getTile().getId());
+            if (placementTile._BOX.contains(x, y))
+            {
+                tileID = placementTile._TILE;
+            }
         }
 
         return tileID;
@@ -166,7 +173,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return
      */
-    public int tileBelowX(GdxSprite spriteObj)
+    public int getXBelow(GdxSprite spriteObj)
     {
         return (int) ((spriteObj.getCollisionRectangle().getX() + (Gfx.getTileWidth() / 2)) / Gfx.getTileWidth());
     }
@@ -178,7 +185,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return
      */
-    public int tileBelowY(GdxSprite spriteObj)
+    public int getYBelow(GdxSprite spriteObj)
     {
         int y;
 

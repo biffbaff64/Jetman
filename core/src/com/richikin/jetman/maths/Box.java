@@ -67,7 +67,7 @@ public class Box
 
     public boolean contains(Vector2 point)
     {
-        return contains(point.x, point.y);
+        return contains((int) point.x, (int) point.y);
     }
 
     public boolean contains(Rectangle _rectangle)

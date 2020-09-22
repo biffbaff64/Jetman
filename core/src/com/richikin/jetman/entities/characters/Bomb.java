@@ -9,9 +9,15 @@ public class Bomb extends GdxSprite
 {
     public SimpleVec2F releaseXY;
     public boolean isAttachedToPlayer;
+    public boolean isAttachedToRover;
 
     public Bomb(App _app)
     {
         super(_app);
+    }
+
+    public void explode()
+    {
+
     }
 }

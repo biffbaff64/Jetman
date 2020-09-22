@@ -17,8 +17,8 @@ import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
 import com.richikin.jetman.physics.AABB.AABB;
 import com.richikin.jetman.physics.AABB.CollisionObject;
-import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
 import com.richikin.jetman.utils.logging.Trace;
@@ -44,6 +44,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
     // -----------------------------------------------
     // public flags
     //
+    // TODO: 22/09/2020 - These flags are getting untidy. Look at making use of these more efficient.
     public boolean isDrawable;
     public boolean isRotating;
     public boolean isFlippedX;
@@ -52,6 +53,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
     public boolean isLinked;
     public boolean isDebuggable;
     public boolean isMainCharacter;
+    public boolean isEnemy;
 
     private Actions spriteAction;
 
@@ -322,9 +324,8 @@ public class GdxSprite extends GameEntity implements IGameSprite
                 GraphicID._ENTITY
             );
 
-        collisionObject.gid    = this.gid;
-        collisionObject.type   = GraphicID._ENTITY;
-        collisionObject.parent = this;
+        collisionObject.gid        = this.gid;
+        collisionObject.isObstacle = false;
 
         if (this.gid != GraphicID.G_NO_ID)
         {
@@ -366,17 +367,20 @@ public class GdxSprite extends GameEntity implements IGameSprite
             // All CollisionObjects are collidable by default.
             // This flag is available to turn off detection
             // as and when needed.
-            if (collisionObject.isCollidable)
+            if (collisionObject.action == Actions._COLLIDABLE)
             {
-                collisionObject.isInCollision = aabb.checkHittingBox(this);
-
-                if (collisionObject.isInCollision)
+                if (aabb.checkHittingBox(this))
                 {
-                    if (App.collisionUtils.filter(collisionObject.spriteHitting.collidesWith, bodyCategory))
+                    collisionObject.action = Actions._COLLIDING;
+                }
+
+                if (collisionObject.action == Actions._COLLIDING)
+                {
+                    if (app.collisionUtils.filter(collisionObject.contactSprite.collidesWith, bodyCategory))
                     {
                         if (collisionCallback != null)
                         {
-                            collisionCallback.onPositiveCollision(collisionObject.spriteHitting.gid);
+                            collisionCallback.onPositiveCollision(collisionObject.contactSprite.gid);
                         }
                     }
 
@@ -386,7 +390,9 @@ public class GdxSprite extends GameEntity implements IGameSprite
                     }
                 }
 
-                if (!collisionObject.isInCollision)
+                //
+                // collisionObject.action might have changed at this point.
+                if (collisionObject.action == Actions._COLLIDING)
                 {
                     if (collisionCallback != null)
                     {

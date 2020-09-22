@@ -52,8 +52,8 @@ public class MapData
     // will be modified based on LJMs current speed.
     public LayerImage[] foregroundLayers =
         {
-            new LayerImage("data/foreground.png", 1.2f, 0.0f),
-            new LayerImage("data/foreground_near.png", 1.6f, 0.0f),
+            new LayerImage("data/foreground.png", 0.0f, 0.0f),
+            new LayerImage("data/foreground_near.png", 0.0f, 0.0f),
         };
 
     public OrthogonalTiledMapRenderer mapRenderer;
@@ -184,6 +184,14 @@ public class MapData
         mapRenderer.setView(camera);
         mapRenderer.renderTileLayer(gameTilesLayer);
         mapRenderer.renderTileLayer(extraGameTilesLayer);
+    }
+
+    private void setTileIDBoxes()
+    {
+        for (MapObject objectTile : objectTiles)
+        {
+
+        }
     }
 
     private void setGameLevelMap(String[] mapLayers)

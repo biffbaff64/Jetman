@@ -17,6 +17,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
+import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Meters;
@@ -48,9 +49,12 @@ public class MainPlayer extends GdxSprite
     public boolean isBlockedLeft;
     public boolean isBlockedRight;
 
+    public float rightEdge;
+    public float topEdge;
     public float shootRate;
     public int   shootCount;
     public float maxMoveSpeed;
+    public Box   viewBox;
 
     private SpriteDescriptor descriptor;
     private TextureRegion    bridgeSection;
@@ -91,6 +95,7 @@ public class MainPlayer extends GdxSprite
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");
+        viewBox = new Box();
     }
 
     /**
@@ -416,16 +421,44 @@ public class MainPlayer extends GdxSprite
             viewBox.y += (Math.abs(viewBox.y));
         }
 
-        if (app.preferences.isEnabled((Preferences._SPAWNPOINTS)))
-        {
-            tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
-            tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
-            tileRectangle.width = Gfx.getTileWidth();
-            tileRectangle.height = Gfx.getTileHeight();
-        }
-
         rightEdge = sprite.getX() + frameWidth;
         topEdge = sprite.getY() + frameHeight;
+    }
+
+    public void handleDying()
+    {
+        if (app.gameProgress.playerLifeOver)
+        {
+            app.gameProgress.lives.setToMinimum();
+        }
+        else
+        {
+            app.gameProgress.lives.subtract(1);
+        }
+
+        // Restart if this player has more lives left...
+        if (app.gameProgress.lives.getTotal() > 0)
+        {
+            setAction(Actions._RESETTING);
+            isDrawable = false;
+
+            app.gameProgress.isRestarting = true;
+            app.gameProgress.playerGameOver = false;
+
+            app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+        }
+        else
+        {
+            setAction(Actions._DEAD);
+
+            app.gameProgress.isRestarting = false;
+            app.gameProgress.playerGameOver = true;
+
+            if (app.gameProgress.playerLifeOver)
+            {
+                app.gameProgress.lives.setToMinimum();
+            }
+        }
     }
 
     public void kill()
@@ -474,18 +507,12 @@ public class MainPlayer extends GdxSprite
         {
             if (isMovingX || isMovingY)
             {
-                float layerSpeed = speed.getX() + 0.1f;
+                float movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
 
-                for (ParallaxLayer layer : app.baseRenderer.parallaxForeground.layers)
-                {
-                    layer.xSpeed = layerSpeed++;
-                }
+                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
+                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
 
-                sprite.translate
-                    (
-                        (speed.getX() * app.inputManager.getControllerXPercentage()),
-                        (speed.getY() * app.inputManager.getControllerYPercentage())
-                    );
+                sprite.translate(movementXSpeed, (speed.getY() * app.inputManager.getControllerYPercentage()));
             }
 
             if (sprite.getX() > Gfx.visibleMapRight())

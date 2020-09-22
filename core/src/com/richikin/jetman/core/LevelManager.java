@@ -6,6 +6,7 @@ import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -85,6 +86,7 @@ public class LevelManager
     {
         Trace.__FILE_FUNC();
 
+        app.collisionUtils.initialise();
         app.mapData.initialiseRoom();               // Load tiled map and create renderer
         app.mapCreator.createMap();                 // Process the tiled map data
 
@@ -148,9 +150,10 @@ public class LevelManager
 
             //
             // Create collision and entity controllers.
-            app.entityUtils   = new EntityUtils(app);
-            app.entityManager = new EntityManager(app);
-            app.hud           = new HeadsUpDisplay(app);
+            app.collisionUtils = new CollisionUtils(app);
+            app.entityUtils    = new EntityUtils(app);
+            app.entityManager  = new EntityManager(app);
+            app.hud            = new HeadsUpDisplay(app);
 
             app.cameraUtils.disableAllCameras();
             app.baseRenderer.hudGameCamera.isInUse = true;

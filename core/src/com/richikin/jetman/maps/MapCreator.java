@@ -100,13 +100,15 @@ public class MapCreator
         markerTile._DIR        = new Direction();
         markerTile._SPEED      = new Speed();
 
-        if (_properties.isSizeBoxNeeded)
-        {
-            int width  = ((int) _mapObject.getProperties().get("width"));
-            int height = ((int) _mapObject.getProperties().get("height"));
-
-            markerTile._BOX = new Box(0, 0, width, height);
-        }
+        //
+        // Create the bounding box for this placement tile.
+        markerTile._BOX = new Box
+            (
+                (int) (((TiledMapTileMapObject)  _mapObject).getX()),
+                (int) (((TiledMapTileMapObject)  _mapObject).getY()),
+                Gfx.getTileWidth(),
+                Gfx.getTileHeight()
+            );
 
         if (_properties.hasDistance)
         {
