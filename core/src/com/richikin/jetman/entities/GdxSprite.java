@@ -55,8 +55,6 @@ public class GdxSprite extends GameEntity implements IGameSprite
     public boolean isMainCharacter;
     public boolean isEnemy;
 
-    private Actions spriteAction;
-
     // -----------------------------------------------
     // Animation related
     public Animation<TextureRegion> animation;
@@ -157,14 +155,14 @@ public class GdxSprite extends GameEntity implements IGameSprite
     {
         if (app.gameProgress.levelCompleted
             && !isMainCharacter
-            && (spriteAction != Actions._DEAD)
-            && (spriteAction != Actions._DYING))
+            && (entityAction != Actions._DEAD)
+            && (entityAction != Actions._DYING))
         {
-            spriteAction = Actions._DYING;
+            entityAction = Actions._DYING;
         }
         else
         {
-            if (spriteAction == Actions._RESTARTING)
+            if (entityAction == Actions._RESTARTING)
             {
                 sprite.setPosition(initXYZ.getX(), initXYZ.getY());
             }
@@ -424,16 +422,16 @@ public class GdxSprite extends GameEntity implements IGameSprite
     @Override
     public void setAction(final Actions action)
     {
-        if (spriteAction != action)
+        if (entityAction != action)
         {
-            spriteAction = action;
+            entityAction = action;
         }
     }
 
     @Override
     public Actions getSpriteAction()
     {
-        return spriteAction;
+        return entityAction;
     }
 
     /**

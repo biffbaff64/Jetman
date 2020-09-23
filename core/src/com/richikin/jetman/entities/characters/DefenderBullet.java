@@ -125,14 +125,20 @@ public class DefenderBullet extends GdxSprite
 
         setAction(Actions._RUNNING);
         colourIndex = 0;
+
+        Trace.__FILE_FUNC("spriteNumber: " + spriteNumber);
     }
 
     @Override
     public void update(int spriteNum)
     {
-        switch (getSpriteAction())
+        if (getSpriteAction() == Actions._RUNNING)
         {
-            case _RUNNING:
+            if (distance.isEmpty())
+            {
+                setAction(Actions._DEAD);
+            }
+            else
             {
                 sprite.setColor(colours[colourIndex]);
 
@@ -147,57 +153,15 @@ public class DefenderBullet extends GdxSprite
                 distance.subXMinZero(speed.getX());
                 distance.subYMinZero(speed.getY());
             }
-            break;
-
-            case _KILLED:
-            case _HURT:
-            {
-                ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
-
-                if (getSpriteAction() == Actions._KILLED)
-                {
-//                    app.gameProgress.addScore(10);
-                }
-
-                setAction(Actions._EXPLODING);
-            }
-            break;
-
-            case _EXPLODING:
-            {
-            }
-            break;
-
-            case _DYING:
-            {
-                setAction(Actions._DEAD);
-
-                app.missileBaseManager.releaseSparkler();
-            }
-            break;
-
-            default:
-            {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
-            }
-            break;
+        }
+        else
+        {
+            Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
         }
 
         animate();
 
         updateCommon();
-    }
-
-    @Override
-    public void postUpdate(int spriteNum)
-    {
-        if (!app.entityUtils.isOnScreen(this))
-        {
-            setAction(Actions._DEAD);
-
-            app.missileBaseManager.releaseSparkler();
-        }
     }
 
     @Override

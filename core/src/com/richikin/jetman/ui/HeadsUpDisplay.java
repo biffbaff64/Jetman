@@ -534,8 +534,8 @@ public class HeadsUpDisplay implements Disposable
             (
                 app.spriteBatch,
                 String.format(Locale.UK, "%06d", app.gameProgress.score.getTotal()),
-                originX + 300,
-                originY + (720 - 8)
+                originX + 296,
+                originY + (720 - 6)
             );
 
         midFont.draw

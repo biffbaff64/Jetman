@@ -16,6 +16,7 @@ public class GameAssets
     public static final String _PLAYER_IDLE  = "ljm_stand";
     public static final String _PLAYER_FLY   = "ljm_fly2";
     public static final String _PLAYER_DYING = "ljm_death";
+    public static final String _PLAYER_SPAWN = "player_appear";
 
     public static final int _PLAYER_STAND_FRAMES = 5;
     public static final int _PLAYER_DYING_FRAMES = 1;

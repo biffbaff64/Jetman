@@ -4,6 +4,7 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
@@ -254,6 +255,17 @@ public class EntityUtils
     public boolean isOnScreen(@NotNull GdxSprite spriteObject)
     {
         return app.mapData.viewportBox.overlaps(spriteObject.sprite.getBoundingRectangle());
+    }
+
+    public void tidy()
+    {
+        for (int i = 0; i < app.entityData.entityMap.size; i++)
+        {
+            if (app.entityData.entityMap.get(i).entityAction == Actions._DEAD)
+            {
+                app.entityData.entityMap.removeIndex(i);
+            }
+        }
     }
 
     public GdxSprite findFirstOf(final GraphicID _gid)

@@ -12,7 +12,9 @@ import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.graphics.GraphicIndex;
 import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityManager implements IEntityManager
@@ -157,6 +159,11 @@ public class EntityManager implements IEntityManager
 
                 if (entity != null)
                 {
+                    if (entity.getSpriteAction() != Actions._DEAD)
+                    {
+                        entity.postUpdate(i);
+                    }
+
                     if (entity.getSpriteAction() == Actions._DEAD)
                     {
                         switch (entity.gid)
@@ -173,89 +180,82 @@ public class EntityManager implements IEntityManager
                             {
                                 _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
 
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeMarkerTile(i);
-//                                app.entityData.removeEntity(i);
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
                             }
                             break;
 
                             case G_MISSILE:
                             {
-//                                if (!app.gameProgress.roverDestroyed
-//                                    && !app.gameProgress.baseDestroyed
-//                                    && (entity.direction.getY() != Movement._DIRECTION_UP))
-//                                {
-//                                    app.getHud().getTimeBar().setToMaximum();
-//                                    app.getHud().getFuelBar().setToMaximum();
-//                                    app.getHud().update();
-//
-//                                    app.getBase().spriteAction = Actions._STANDING;
-//                                }
-//
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeMarkerTile(i);
-//                                app.entityData.removeEntity(i);
+                                if (!app.gameProgress.roverDestroyed
+                                    && !app.gameProgress.baseDestroyed
+                                    && (entity.direction.getY() != Movement._DIRECTION_UP))
+                                {
+                                    app.getHud().getTimeBar().setToMaximum();
+                                    app.getHud().getFuelBar().setToMaximum();
+                                    app.getHud().update();
+
+                                    app.getBase().setAction(Actions._STANDING);
+                                }
+
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
                             }
                             break;
 
                             case G_BOMB:
                             case G_ROVER_GUN:
-                            {
-//                                releaseEntity(entity);
-//
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeMarkerTile(i);
-//                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
                             case G_ASTEROID:
                             {
-//                                releaseEntity(entity);
-//
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeEntity(i);
+                                releaseEntity(entity);
+
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
                             }
                             break;
 
                             case G_MISSILE_BASE:
                             {
-//                                app.missileBaseManager.free();
-//
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeMarkerTile(i);
-//                                app.entityData.removeEntity(i);
+                                app.missileBaseManager.free();
+
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
                             }
                             break;
 
                             case G_DEFENDER:
                             case G_ROVER:
                             {
-//                                entity.collisionObject.kill();
-//                                app.entityData.removeMarkerTile(i);
-//                                app.entityData.removeEntity(i);
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
+                            }
+                            break;
+
+                            case G_DEFENDER_BULLET:
+                            {
+                                Trace.__FILE_FUNC(i);
+
+                                app.missileBaseManager.releaseSparkler();
+
+                                entity.collisionObject.kill();
+                                app.entityData.removeEntity(i);
                             }
                             break;
 
                             default:
                             {
-//                                if ((entity.gid != GraphicID.G_NO_ID) && (entity.collisionObject != null))
-//                                {
-//                                    releaseEntity(entity);
-//
-//                                    entity.collisionObject.kill();
-//                                    app.entityData.removeMarkerTile(i);
-//                                    app.entityData.removeEntity(i);
-//                                }
+                                if ((entity.gid != GraphicID.G_NO_ID) && (entity.collisionObject != null))
+                                {
+                                    releaseEntity(entity);
+
+                                    entity.collisionObject.kill();
+                                    app.entityData.removeEntity(i);
+                                }
                             }
                             break;
                         }
 
                         updateIndexes();
-                    }
-                    else
-                    {
-                        entity.postUpdate(i);
                     }
                 }
             }
@@ -270,13 +270,71 @@ public class EntityManager implements IEntityManager
     @Override
     public void drawSprites()
     {
-//        renderSystem.drawTeleportBeams(teleportBeam);
+        renderSystem.drawTeleportBeams(teleportBeam);
         renderSystem.drawSprites();
     }
 
     @Override
     public void releaseEntity(GdxSprite entity)
     {
+        final GraphicIndex[] indexes =
+            {
+                new GraphicIndex(GraphicID.G_DOG, _dogManagerIndex),
+                new GraphicIndex(GraphicID.G_BLOB, _blobManagerIndex),
+                new GraphicIndex(GraphicID.G_3BALLS, _3ballsManagerIndex),
+                new GraphicIndex(GraphicID.G_SPINNING_BALL, _spinningBallManagerIndex),
+                new GraphicIndex(GraphicID.G_STAR_SPINNER, _spinStarManagerIndex),
+                new GraphicIndex(GraphicID.G_GREEN_BLOCK, _greenblockManagerIndex),
+                new GraphicIndex(GraphicID.G_TOPSPIN, _topspinnerManagerIndex),
+                new GraphicIndex(GraphicID.G_ASTEROID, _asteroidManagerIndex),
+                new GraphicIndex(GraphicID.G_TWINKLES, _twinkleManagerIndex),
+                new GraphicIndex(GraphicID.G_3BALLS_UFO, _3ballsUFOManagerIndex),
+                new GraphicIndex(GraphicID.G_3LEGS_ALIEN, _3legsUFOManagerIndex),
+                new GraphicIndex(GraphicID.G_ALIEN_WHEEL, _wheelManagerIndex),
+                new GraphicIndex(GraphicID.G_BOMB, _bombManagerIndex),
+                new GraphicIndex(GraphicID.G_ROVER_GUN, _roverManagerIndex),
+            };
+
+        switch (entity.gid)
+        {
+            case G_TRANSPORTER:
+            {
+                _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
+            }
+            break;
+
+            case G_MISSILE_BASE:
+            {
+                app.missileBaseManager.free();
+            }
+            break;
+
+            case G_DEFENDER:
+            case G_MISSILE:
+            case G_ROVER:
+            {
+            }
+            break;
+
+            default:
+            {
+                int index = -1;
+
+                for (GraphicIndex gi : indexes)
+                {
+                    if (gi.graphicID == entity.gid)
+                    {
+                        index = gi.value;
+                    }
+                }
+
+                if (index > -1)
+                {
+                    app.entityData.managerList.get(index).free();
+                }
+            }
+            break;
+        }
     }
 
     /**

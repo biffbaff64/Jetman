@@ -3,6 +3,7 @@ package com.richikin.jetman.entities.rootobjects;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
@@ -22,6 +23,7 @@ public class GameEntity implements IGameEntity, Disposable
     public BodyDef       bodyDef;
     public short         bodyCategory;
     public short         collidesWith;
+    public Actions       entityAction;
 
     protected App app;
 

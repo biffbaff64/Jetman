@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
@@ -16,7 +15,6 @@ import com.richikin.jetman.entities.managers.BridgeManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
@@ -56,9 +54,12 @@ public class MainPlayer extends GdxSprite
     public float maxMoveSpeed;
     public Box   viewBox;
 
-    private SpriteDescriptor descriptor;
-    private TextureRegion    bridgeSection;
-    private int              laserColour;
+    private SpriteDescriptor         descriptor;
+    private TextureRegion            bridgeSection;
+    private int                      laserColour;
+    private TextureRegion[]          spawnFrames;
+    private Animation<TextureRegion> spawnAnim;
+    private float                    elapsedSpawnTime;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -95,7 +96,7 @@ public class MainPlayer extends GdxSprite
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");
-        viewBox = new Box();
+        viewBox       = new Box();
     }
 
     /**
@@ -133,7 +134,9 @@ public class MainPlayer extends GdxSprite
         shootCount  = 0;
         laserColour = 0;
 
-        setAction(Actions._STANDING);
+        setAction(Actions._SPAWNING);
+
+        createSpawnAnimation();
     }
 
     @Override
@@ -188,22 +191,19 @@ public class MainPlayer extends GdxSprite
 
             case _SPAWNING:
             {
-//                elapsedSpawnTime += Gdx.graphics.getDeltaTime();
+                elapsedSpawnTime += Gdx.graphics.getDeltaTime();
 
-//                if (spawnAnim.isAnimationFinished(elapsedSpawnTime))
-//                {
-//                    setAction(Actions._STANDING);
+                if (spawnAnim.isAnimationFinished(elapsedSpawnTime))
+                {
+                    setAction(Actions._STANDING);
 
-//                    spawnAnim = null;
-//                    spawnFrames = null;
-//                }
-//                else
-//                {
-//                    localIsDrawable = (spawnAnim.getKeyFrameIndex(elapsedSpawnTime) >= _PLAYER_APPEAR_FRAME);
-//                }
-
-                setAction(Actions._STANDING);
-                localIsDrawable = true;
+                    spawnAnim   = null;
+                    spawnFrames = null;
+                }
+                else
+                {
+                    localIsDrawable = (spawnAnim.getKeyFrameIndex(elapsedSpawnTime) >= _PLAYER_APPEAR_FRAME);
+                }
             }
             break;
 
@@ -232,18 +232,18 @@ public class MainPlayer extends GdxSprite
             // Fall to the ground after being killed while flying
             case _FALLING_TO_GROUND:
             {
-//                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
-//                {
-//                    explode();
-//
-//                    isRotating = false;
-//                    rotateSpeed = 0;
-//                }
-//                else
-//                {
-//                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
-//                    speed.addY(0.2f);
-//                }
+                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
+                {
+                    explode();
+
+                    isRotating = false;
+                    rotateSpeed = 0;
+                }
+                else
+                {
+                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
+                    speed.y += 0.2f;
+                }
             }
             break;
 
@@ -398,22 +398,22 @@ public class MainPlayer extends GdxSprite
     {
         if (isRidingRover)
         {
-            collisionObject.rectangle.x = -1;
-            collisionObject.rectangle.y = -1;
-            collisionObject.rectangle.width = 1;
+            collisionObject.rectangle.x      = -1;
+            collisionObject.rectangle.y      = -1;
+            collisionObject.rectangle.width  = 1;
             collisionObject.rectangle.height = 1;
         }
         else
         {
-            collisionObject.rectangle.x = (sprite.getX() + (frameWidth / 4));
-            collisionObject.rectangle.y = sprite.getY();
-            collisionObject.rectangle.width = (frameWidth / 2);
+            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
+            collisionObject.rectangle.y      = sprite.getY();
+            collisionObject.rectangle.width  = (frameWidth / 2);
             collisionObject.rectangle.height = frameHeight;
         }
 
-        viewBox.x = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
-        viewBox.y = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
-        viewBox.width = Gfx._VIEW_WIDTH;
+        viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
+        viewBox.y      = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
+        viewBox.width  = Gfx._VIEW_WIDTH;
         viewBox.height = Gfx._VIEW_HEIGHT;
 
         if (viewBox.y < 0)
@@ -422,7 +422,7 @@ public class MainPlayer extends GdxSprite
         }
 
         rightEdge = sprite.getX() + frameWidth;
-        topEdge = sprite.getY() + frameHeight;
+        topEdge   = sprite.getY() + frameHeight;
     }
 
     public void handleDying()
@@ -442,7 +442,7 @@ public class MainPlayer extends GdxSprite
             setAction(Actions._RESETTING);
             isDrawable = false;
 
-            app.gameProgress.isRestarting = true;
+            app.gameProgress.isRestarting   = true;
             app.gameProgress.playerGameOver = false;
 
             app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
@@ -451,7 +451,7 @@ public class MainPlayer extends GdxSprite
         {
             setAction(Actions._DEAD);
 
-            app.gameProgress.isRestarting = false;
+            app.gameProgress.isRestarting   = false;
             app.gameProgress.playerGameOver = true;
 
             if (app.gameProgress.playerLifeOver)
@@ -546,5 +546,22 @@ public class MainPlayer extends GdxSprite
         teleport      = new TeleportHandler(app);
         laserManager  = new LaserManager(app);
         bridgeManager = new BridgeManager(app);
+    }
+
+    private void createSpawnAnimation()
+    {
+        //
+        // Spawn frames are the same size as standard
+        // LJM frames, so no need to modify frame sizes
+        spawnFrames = new TextureRegion[_SPAWN_FRAMES];
+        spawnAnim = app.entityUtils.createAnimation
+            (
+                GameAssets._PLAYER_SPAWN,
+                spawnFrames,
+                _SPAWN_FRAMES,
+                Animation.PlayMode.NORMAL
+            );
+        spawnAnim.setFrameDuration(0.3f / 6.0f);
+        elapsedSpawnTime = 0.0f;
     }
 }
