@@ -38,7 +38,7 @@ public class MapData
         {
             new LayerImage("data/background_layer.png", 0.0f, 0.0f),
             new LayerImage("data/nebula_background.png", 0.0f, 0.0f),
-            new LayerImage("data/stars_background.png", 0.0f, 0.0f),
+//            new LayerImage("data/stars_background.png", 0.0f, 0.0f),
         };
 
     public final LayerImage[] middleLayers =

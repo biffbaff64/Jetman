@@ -25,6 +25,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class TwinkleStar extends GdxSprite
 {
@@ -57,6 +58,11 @@ public class TwinkleStar extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
+        if (getSpriteAction() != Actions._STANDING)
+        {
+            Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+        }
+
         animate();
 
         updateCommon();
