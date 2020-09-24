@@ -1,7 +1,5 @@
 package com.richikin.jetman.maths;
 
-import com.richikin.jetman.maths.SimpleVec2F;
-
 public class XYSetF extends SimpleVec2F
 {
     public XYSetF()
@@ -46,30 +44,6 @@ public class XYSetF extends SimpleVec2F
         }
     }
 
-    public void subXMinZero(float value)
-    {
-        if (this.x < value)
-        {
-            this.x = 0;
-        }
-        else
-        {
-            this.x -= value;
-        }
-    }
-
-    public void subYMinZero(float value)
-    {
-        if (this.y < value)
-        {
-            this.y = 0;
-        }
-        else
-        {
-            this.y -= value;
-        }
-    }
-
     public void subX(float value)
     {
         if ((x -= value) <= 0)
@@ -98,6 +72,6 @@ public class XYSetF extends SimpleVec2F
 
     public boolean isEmpty()
     {
-        return ((x == 0) && (y == 0));
+        return ((x <= 0) && (y <= 0));
     }
 }

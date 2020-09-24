@@ -125,8 +125,6 @@ public class DefenderBullet extends GdxSprite
 
         setAction(Actions._RUNNING);
         colourIndex = 0;
-
-        Trace.__FILE_FUNC("spriteNumber: " + spriteNumber);
     }
 
     @Override
@@ -150,8 +148,8 @@ public class DefenderBullet extends GdxSprite
                 sprite.translateX(speed.getX() * direction.getX());
                 sprite.translateY(speed.getY() * direction.getY());
 
-                distance.subXMinZero(speed.getX());
-                distance.subYMinZero(speed.getY());
+                distance.subX(speed.getX());
+                distance.subY(speed.getY());
             }
         }
         else

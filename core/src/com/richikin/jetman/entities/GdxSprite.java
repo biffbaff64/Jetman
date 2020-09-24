@@ -104,6 +104,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
         speed     = new Speed();
         distance  = new XYSetF();
         initXYZ   = new SimpleVec3F();
+        aabb      = new AABB();
 
         strength            = GameConstants._MAX_STRENGTH;
         spriteNumber        = 0;
@@ -130,6 +131,8 @@ public class GdxSprite extends GameEntity implements IGameSprite
                 entityDescriptor._POSITION.y,
                 entityDescriptor._POSITION.z
             ));
+
+        setCollisionObject();
 
         isLinked = (entityDescriptor._LINK > 0);
         link     = entityDescriptor._LINK;

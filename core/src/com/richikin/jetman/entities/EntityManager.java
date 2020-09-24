@@ -180,7 +180,7 @@ public class EntityManager implements IEntityManager
                             {
                                 _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
 
-                                entity.collisionObject.kill();
+                                entity.collisionObject. kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -233,8 +233,6 @@ public class EntityManager implements IEntityManager
 
                             case G_DEFENDER_BULLET:
                             {
-                                Trace.__FILE_FUNC(i);
-
                                 app.missileBaseManager.releaseSparkler();
 
                                 entity.collisionObject.kill();

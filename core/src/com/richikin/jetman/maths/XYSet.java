@@ -46,30 +46,6 @@ public class XYSet extends SimpleVec2
         }
     }
 
-    public void subXMinZero(int value)
-    {
-        if (this.x < value)
-        {
-            this.x = 0;
-        }
-        else
-        {
-            this.x -= value;
-        }
-    }
-
-    public void subYMinZero(int value)
-    {
-        if (this.y < value)
-        {
-            this.y = 0;
-        }
-        else
-        {
-            this.y -= value;
-        }
-    }
-
     public void subX(int value)
     {
         if ((x -= value) <= 0)

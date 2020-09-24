@@ -141,7 +141,7 @@ public class MissileBaseManager extends GenericEntityManager
 
     public void shoot(DefenceStation station)
     {
-        if (activeSparklers == 0)//< _MAX_SPARKLERS)
+        if (activeSparklers < _MAX_SPARKLERS)
         {
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_BULLET);
             entityDescriptor._POSITION.x    = (int) (station.sprite.getX() / Gfx.getTileWidth());
