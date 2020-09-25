@@ -409,10 +409,6 @@ public class EntityManager implements IEntityManager
 
     public void initialiseForLevel()
     {
-        BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
-        manager.addUFOs(6 + MathUtils.random(4));
-        manager.addTwinkleStars();
-
         playerManager = new PlayerManager(app);
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
@@ -421,6 +417,13 @@ public class EntityManager implements IEntityManager
         {
             system.init();
         }
+    }
+
+    public void addBackgroundEntities()
+    {
+        BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
+        manager.addUFOs(6 + MathUtils.random(4));
+        manager.addTwinkleStars();
     }
 
     @Override

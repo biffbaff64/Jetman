@@ -64,22 +64,6 @@ public class Ufo extends GdxSprite
         }
     }
 
-    @Override
-    public void draw(final SpriteBatch spriteBatch)
-    {
-        if (isDrawable)
-        {
-            try
-            {
-                sprite.draw(spriteBatch);
-            }
-            catch (NullPointerException npe)
-            {
-                Trace.__FILE_FUNC(gid.name() + " : " + npe.getMessage());
-            }
-        }
-    }
-
     private void setUFOPosition()
     {
         float xPos;

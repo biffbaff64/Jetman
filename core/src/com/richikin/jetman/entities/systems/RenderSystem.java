@@ -8,6 +8,7 @@ import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {

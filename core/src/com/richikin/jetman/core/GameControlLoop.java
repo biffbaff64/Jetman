@@ -118,16 +118,16 @@ public class GameControlLoop extends AbstractControlLoop
     {
         Trace.megaDivider("_STATE_SETUP");
 
+        app.levelManager.prepareCurrentLevel(scr().firstTime);
+
         // All cameras ON
         app.cameraUtils.enableAllCameras();
         app.baseRenderer.parallaxGameCamera.isLerpingEnabled = false;
         app.baseRenderer.tiledGameCamera.isLerpingEnabled    = false;
         app.baseRenderer.spriteGameCamera.isLerpingEnabled   = false;
 
-        app.levelManager.prepareCurrentLevel(scr().firstTime);
-
-        if (scr().firstTime)
-        {
+//        if (scr().firstTime)
+//        {
             // This is a good place to start the game tune
             // and initialise a 'GET READY' message if needed.
             // eg:
@@ -135,13 +135,9 @@ public class GameControlLoop extends AbstractControlLoop
             *  Sfx.inst().playGameTune(true);
             *
             *  app.messageManager.enable();
-            *  app.messageManager.addZoomMessage
-            *      (
-            *          GameAssets._GETREADY_MSG_ASSET,
-            *          1500
-            *      );
+            *  app.messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
             */
-        }
+//        }
 
         app.appState.set(StateID._STATE_GET_READY);
         app.gameProgress.gameSetupDone = true;
@@ -165,6 +161,8 @@ public class GameControlLoop extends AbstractControlLoop
             app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
 
             app.getHud().showControls();
+
+            app.entityManager.addBackgroundEntities();
 
             scr().firstTime = false;
 

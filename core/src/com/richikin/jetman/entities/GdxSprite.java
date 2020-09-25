@@ -143,7 +143,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
     {
         sprite.setSize(frameWidth, frameHeight);
 
-        sprite.setPosition((vec3F.x * Gfx.getTileWidth()), (vec3F.y * Gfx.getTileHeight()) + Gfx.getTileHeight());
+        sprite.setPosition((vec3F.x * Gfx.getTileWidth()), (vec3F.y * Gfx.getTileHeight()));
 
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
