@@ -79,17 +79,10 @@ public class TwinkleStar extends GdxSprite
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        final float originX = app.baseRenderer.backgroundCamera.getPosition().x;//app.mapData.mapPosition.getX();
-        final float originY = app.baseRenderer.backgroundCamera.getPosition().y;//app.mapData.mapPosition.getY();
+        final float originX = app.mapData.mapPosition.getX();
+        final float originY = app.mapData.mapPosition.getY();
 
         sprite.setPosition(originX + initXYZ.getX(), initXYZ.getY());
-
-        Trace.divider();
-        Trace.dbg("camera pos: " + app.baseRenderer.backgroundCamera.getPosition().toString());
-        Trace.dbg("mapPosition: " + app.mapData.mapPosition.toString());
-        Trace.dbg("originX: " + originX + ", originY: " + originY);
-        Trace.dbg("initXYZ: " + initXYZ.toString());
-        Trace.dbg("Sprite.getPosition(): " + getPosition().toString());
 
         super.draw(spriteBatch);
     }

@@ -296,38 +296,28 @@ public class ButtonInputHandler implements Disposable
             else if ((app.getPlayer().getSpriteAction() != Actions._HURT)
                     && (app.getPlayer().getSpriteAction() != Actions._FALLING_TO_GROUND))
             {
-                if (slowDown > 0)
-                {
-                    slowDown = Math.max(0, slowDown - app.getPlayer().speed.getX());
+                app.getPlayer().isMovingX = false;
+                app.getPlayer().isMovingY = false;
 
-                    app.getPlayer().speed.setX(MainPlayer._PLAYER_X_SPEED);
-                    app.getPlayer().isMovingX = true;
+                if (app.getPlayer().isOnGround && (app.getPlayer().getSpriteAction() != Actions._HOVERING))
+                {
+                    app.getPlayer().setAction(Actions._STANDING);
+                    app.getPlayer().speed.set(0, 0);
                 }
                 else
                 {
-                    app.getPlayer().isMovingX = false;
-                    app.getPlayer().isMovingY = false;
+                    //
+                    // If in mid air and no buttons pressed then
+                    // the player must be falling
+                    if (app.getPlayer().isInMidAir)
+                    {
+                        app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
+                        app.getPlayer().setAction(Actions._FALLING);
+                        app.getPlayer().isMovingY = true;
 
-                    if (app.getPlayer().isOnGround && (app.getPlayer().getSpriteAction() != Actions._HOVERING))
-                    {
-                        app.getPlayer().setAction(Actions._STANDING);
-                        app.getPlayer().speed.set(0, 0);
-                    }
-                    else
-                    {
-                        //
-                        // If in mid air and no buttons pressed then
-                        // the player must be falling
-                        if (app.getPlayer().isInMidAir)
+                        if (app.getPlayer().speed.getY() <= 0)
                         {
-                            app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
-                            app.getPlayer().setAction(Actions._FALLING);
-                            app.getPlayer().isMovingY = true;
-
-                            if (app.getPlayer().speed.getY() <= 0)
-                            {
-                                app.getPlayer().speed.setY(1.0f);
-                            }
+                            app.getPlayer().speed.setY(1.0f);
                         }
                     }
                 }

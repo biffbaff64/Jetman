@@ -11,7 +11,6 @@ import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class Ufo extends GdxSprite
 {
@@ -41,14 +40,6 @@ public class Ufo extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if ((sprite.getX() <= (app.mapData.mapPosition.getX() - Gfx._VIEW_WIDTH))
-            || (sprite.getX() >= (app.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH)))
-        {
-            setUFOPosition();
-        }
-
-        sprite.translate(speed.getX() * direction.getX(), speed.getY() * direction.getY());
-
         animate();
 
         updateCommon();
@@ -62,6 +53,12 @@ public class Ufo extends GdxSprite
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
             sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         }
+    }
+
+    @Override
+    public void draw(SpriteBatch spriteBatch)
+    {
+        super.draw(spriteBatch);
     }
 
     private void setUFOPosition()

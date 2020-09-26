@@ -3,20 +3,25 @@ package com.richikin.jetman.entities.systems;
 // TODO: 27/12/2018 - This class is becoming untidy, with multiple draw methods.
 //                  - Investigate simplifying the draw methods.
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.utils.DeveloperUtils;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {
+    private ShapeRenderer sr;
     private final App app;
 
     public RenderSystem(App _app)
     {
         this.app = _app;
+        this.sr = new ShapeRenderer();
     }
 
     /**
@@ -43,6 +48,16 @@ public class RenderSystem
                             case G_BACKGROUND_UFO:
                             case G_TWINKLE_STAR:
                             {
+//                                DeveloperUtils.drawRect
+//                                    (
+//                                        app.assets.getObjectRegion("solid_white32x32"),
+//                                        (int) entity.getPosition().x,
+//                                        (int) entity.getPosition().y,
+//                                        (int) entity.frameWidth,
+//                                        (int) entity.frameHeight,
+//                                        2,
+//                                        app
+//                                    );
                             }
                             break;
 
@@ -98,29 +113,16 @@ public class RenderSystem
      */
     public void drawBackgroundSprites()
     {
-        drawBackgroundEntity(GraphicID.G_TWINKLE_STAR);
-        drawBackgroundEntity(GraphicID.G_BACKGROUND_UFO);
-    }
-
-    /**
-     * Method called from drawBackgroundSprites().
-     *
-     * @param graphicID The {@link GraphicID} of the sprite to draw.
-     */
-    private void drawBackgroundEntity(GraphicID graphicID)
-    {
         GdxSprite entity;
 
         for (int i = 0; i < app.entityData.entityMap.size; i++)
         {
             entity = (GdxSprite) app.entityData.entityMap.get(i);
 
-            if ((entity != null) && (entity.gid == graphicID))
+            if ((entity != null)
+                && ((entity.gid == GraphicID.G_TWINKLE_STAR) || (entity.gid == GraphicID.G_BACKGROUND_UFO)))
             {
-//                if (isInViewWindow(entity) && entity.isDrawable)
-                {
-                    entity.draw(app.spriteBatch);
-                }
+                entity.draw(app.spriteBatch);
             }
         }
     }
