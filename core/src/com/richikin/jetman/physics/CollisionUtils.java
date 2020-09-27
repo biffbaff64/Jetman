@@ -89,7 +89,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
         {
             if (AABBData.boxes().get(i).action == Actions._DEAD)
             {
-                AABBData.boxes().get(i).removeObjectFromList();
+                AABBData.remove(i);
             }
         }
     }

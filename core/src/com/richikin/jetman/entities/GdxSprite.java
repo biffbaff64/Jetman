@@ -16,6 +16,7 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
 import com.richikin.jetman.physics.AABB.AABB;
+import com.richikin.jetman.physics.AABB.AABBData;
 import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.ICollisionListener;
@@ -330,7 +331,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
 
         if (this.gid != GraphicID.G_NO_ID)
         {
-            collisionObject.addObjectToList();
+            AABBData.add(collisionObject);
         }
     }
 

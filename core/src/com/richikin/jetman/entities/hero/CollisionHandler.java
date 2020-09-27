@@ -7,13 +7,12 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
-import com.richikin.jetman.maths.Point;
-import com.richikin.jetman.physics.CollisionListener;
+import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
-public class CollisionHandler implements CollisionListener, Disposable
+public class CollisionHandler implements ICollisionListener, Disposable
 {
     private final App app;
 
@@ -150,6 +149,8 @@ public class CollisionHandler implements CollisionListener, Disposable
      */
     private void checkForFalling()
     {
+        Trace.__FILE_FUNC();
+
         GraphicID graphicID = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid;
 
         if ((graphicID != GraphicID._GROUND)

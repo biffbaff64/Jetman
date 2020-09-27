@@ -100,17 +100,6 @@ public class CollisionObject implements Disposable
         isInvisibilityAllowed   = true;
     }
 
-    public void addObjectToList()
-    {
-        AABBData.boxes().add(this);
-    }
-
-    public void removeObjectFromList()
-    {
-        AABBData.boxes().removeIndex(index);
-        AABBData.rescan();
-    }
-
     public void kill()
     {
         action = Actions._DEAD;
@@ -154,18 +143,21 @@ public class CollisionObject implements Disposable
 
     public void clearCollision()
     {
-        action           = Actions._COLLIDABLE;
-        isHittingPlayer  = false;
-        contactMask      = 0;
-        contactSprite    = null;
-        boxHittingTop    = 0;
-        boxHittingBottom = 0;
-        boxHittingLeft   = 0;
-        boxHittingRight  = 0;
-        idTop            = GraphicID.G_NO_ID;
-        idBottom         = GraphicID.G_NO_ID;
-        idLeft           = GraphicID.G_NO_ID;
-        idRight          = GraphicID.G_NO_ID;
+        if (action != Actions._DEAD)
+        {
+            action           = Actions._COLLIDABLE;
+            isHittingPlayer  = false;
+            contactMask      = 0;
+            contactSprite    = null;
+            boxHittingTop    = 0;
+            boxHittingBottom = 0;
+            boxHittingLeft   = 0;
+            boxHittingRight  = 0;
+            idTop            = GraphicID.G_NO_ID;
+            idBottom         = GraphicID.G_NO_ID;
+            idLeft           = GraphicID.G_NO_ID;
+            idRight          = GraphicID.G_NO_ID;
+        }
     }
 
     @Override

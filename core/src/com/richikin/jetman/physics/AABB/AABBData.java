@@ -25,6 +25,17 @@ public class AABBData
     {
     }
 
+    public static void add(CollisionObject _object)
+    {
+        collisionBoxData.add(_object);
+    }
+
+    public static void remove(int _index)
+    {
+        collisionBoxData.removeIndex(_index);
+        rescan();
+    }
+
     /**
      * Rescan the collision object list, re-ordering indexes
      * after an object has been removed.

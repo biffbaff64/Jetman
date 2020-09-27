@@ -57,5 +57,8 @@ public class PlayerManager
         app.entityData.addEntity(mainPlayer);
         app.entityManager.updateIndexes();
         app.entityManager._playerReady = true;
+        app.entityManager._playerIndex = entityDescriptor._INDEX;
+
+        mainPlayer.addCollisionListener(app.getPlayer().collision);
     }
 }
