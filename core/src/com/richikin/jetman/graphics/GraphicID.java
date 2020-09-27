@@ -88,6 +88,8 @@ public enum GraphicID
     _HUD_PANEL,
     _EXIT_BOX,
     _BACKGROUND_ENTITY,
+    _BRIDGE,
+    _CRATER,
 
     // ----------------------------
     // Encapsulating type, covering any collision IDs that can be stood on.

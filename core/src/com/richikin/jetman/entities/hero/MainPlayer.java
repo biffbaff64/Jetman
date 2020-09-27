@@ -2,6 +2,7 @@ package com.richikin.jetman.entities.hero;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
@@ -16,6 +17,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
+import com.richikin.jetman.physics.AABB.CollisionRect;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Meters;
@@ -67,6 +69,7 @@ public class MainPlayer extends GdxSprite
     public TeleportHandler     teleport;
     public LaserManager        laserManager;
     public BridgeManager       bridgeManager;
+    public CollisionRect       tileRectangle;
 
     public MainPlayer(App _app)
     {
@@ -96,6 +99,7 @@ public class MainPlayer extends GdxSprite
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");
+        tileRectangle = new CollisionRect(this.gid);
         viewBox       = new Box();
     }
 
@@ -236,7 +240,7 @@ public class MainPlayer extends GdxSprite
                 {
                     explode();
 
-                    isRotating = false;
+                    isRotating  = false;
                     rotateSpeed = 0;
                 }
                 else
@@ -394,6 +398,35 @@ public class MainPlayer extends GdxSprite
     }
 
     @Override
+    public void draw(SpriteBatch spriteBatch)
+    {
+        if (!isTeleporting && !isRidingRover && !app.teleportManager.teleportActive)
+        {
+            sprite.setFlip(isFlippedX, false);
+
+            if (actionButton.getActionMode() == ActionButtonHandler.ActionMode._BRIDGE_CARRY)
+            {
+                spriteBatch.draw(bridgeSection, sprite.getX(), sprite.getY() + (Gfx.getTileHeight() / 2.0f));
+            }
+
+            if (localIsDrawable)
+            {
+                super.draw(spriteBatch);
+            }
+
+            if (getSpriteAction() == Actions._SPAWNING)
+            {
+                spriteBatch.draw
+                    (
+                        app.entityUtils.getKeyFrame(spawnAnim, elapsedSpawnTime, false),
+                        this.sprite.getX(),
+                        this.sprite.getY()
+                    );
+            }
+        }
+    }
+
+    @Override
     public void updateCollisionBox()
     {
         if (isRidingRover)
@@ -420,6 +453,11 @@ public class MainPlayer extends GdxSprite
         {
             viewBox.y += (Math.abs(viewBox.y));
         }
+
+        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
+        tileRectangle.width = Gfx.getTileWidth();
+        tileRectangle.height = Gfx.getTileHeight();
 
         rightEdge = sprite.getX() + frameWidth;
         topEdge   = sprite.getY() + frameHeight;
@@ -554,7 +592,7 @@ public class MainPlayer extends GdxSprite
         // Spawn frames are the same size as standard
         // LJM frames, so no need to modify frame sizes
         spawnFrames = new TextureRegion[_SPAWN_FRAMES];
-        spawnAnim = app.entityUtils.createAnimation
+        spawnAnim   = app.entityUtils.createAnimation
             (
                 GameAssets._PLAYER_SPAWN,
                 spawnFrames,

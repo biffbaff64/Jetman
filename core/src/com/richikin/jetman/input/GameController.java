@@ -383,11 +383,13 @@ public class GameController implements ControllerListener
             if (ControllerMap.isInNegativeRange(value))
             {
                 UIButtons.controllerLeftPressed = true;
+                UIButtons.controllerRightPressed = false;
 
                 if (AppConfig.hudExists)
                 {
                     if (app.getHud().buttonLeft != null)
                     {
+                        app.getHud().buttonRight.release();
                         app.getHud().buttonLeft.press();
                     }
                 }
@@ -395,11 +397,13 @@ public class GameController implements ControllerListener
             else if (ControllerMap.isInPositiveRange(value))
             {
                 UIButtons.controllerRightPressed = true;
+                UIButtons.controllerLeftPressed  = false;
 
                 if (AppConfig.hudExists)
                 {
                     if (app.getHud().buttonRight != null)
                     {
+                        app.getHud().buttonLeft.release();
                         app.getHud().buttonRight.press();
                     }
                 }

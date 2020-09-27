@@ -463,6 +463,10 @@ public class HeadsUpDisplay implements Disposable
 
     public void releaseDirectionButtons()
     {
+        buttonRight.release();
+        buttonLeft.release();
+        buttonUp.release();
+        buttonDown.release();
     }
 
     public void setStateID(StateID _newState)

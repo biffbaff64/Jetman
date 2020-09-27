@@ -39,9 +39,10 @@ public class CollisionObject implements Disposable
     public Actions   action;
     public GraphicID gid;                   // ID of THIS object
     public GraphicID contactGid;            // ID of contact object
+    public Rectangle rectangle;             // The actual collision rectangle
     public GdxSprite parentSprite;          // The GdxSprite this collision object belongs to, if applicable.
     public GdxSprite contactSprite;         // ID of contact object
-    public Rectangle rectangle;             // The actual collision rectangle
+    public int index;                       // This objects position in the collision object arraylist
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
     public GraphicID idBottom;              // ID of object hitting the bottom of this object
@@ -52,12 +53,8 @@ public class CollisionObject implements Disposable
     public int boxHittingBottom;
     public int boxHittingLeft;
     public int boxHittingRight;
-    public int index;                       // This objects position in the collision object arraylist
 
     public short contactMask;
-    public short bodyCategory;
-    public short collidesWith;
-
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
@@ -99,8 +96,6 @@ public class CollisionObject implements Disposable
         contactGid              = GraphicID.G_NO_ID;
         action                  = Actions._COLLIDABLE;
         contactMask             = 0;
-        bodyCategory            = 0;
-        collidesWith            = 0;
         invisibilityTimer       = StopWatch.start();
         isInvisibilityAllowed   = true;
     }

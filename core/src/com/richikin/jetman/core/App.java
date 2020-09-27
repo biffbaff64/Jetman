@@ -211,6 +211,11 @@ public abstract class App extends com.badlogic.gdx.Game
         return gameProgress.playerLevel;
     }
 
+    public boolean doTransportersExist()
+    {
+        return ((teleportManager != null) && (teleportManager.getActiveCount() > 0));
+    }
+
     public HeadsUpDisplay getHud()
     {
         return hud;

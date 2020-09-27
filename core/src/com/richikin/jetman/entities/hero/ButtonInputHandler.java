@@ -22,6 +22,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.input.UIButtons;
 import com.richikin.jetman.physics.Movement;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class ButtonInputHandler implements Disposable
 {
@@ -202,6 +203,7 @@ public class ButtonInputHandler implements Disposable
         if (app.getHud().buttonRight.isPressed())
         {
             directionButtonPressed = true;
+            app.getPlayer().isFlippedX = false;
 
             if (!app.getPlayer().isBlockedRight && (app.getPlayer().getRightEdge() < Gfx.getMapWidth()))
             {
@@ -227,8 +229,6 @@ public class ButtonInputHandler implements Disposable
                             app.getPlayer().setAction(Actions._RUNNING);
                         }
                     }
-
-                    app.getPlayer().isFlippedX = false;
                 }
             }
             else
@@ -245,6 +245,7 @@ public class ButtonInputHandler implements Disposable
         else if (app.getHud().buttonLeft.isPressed())
         {
             directionButtonPressed = true;
+            app.getPlayer().isFlippedX = true;
 
             if (!app.getPlayer().isBlockedLeft && (app.getPlayer().sprite.getX() > 0))
             {
@@ -270,8 +271,6 @@ public class ButtonInputHandler implements Disposable
                             app.getPlayer().setAction(Actions._RUNNING);
                         }
                     }
-
-                    app.getPlayer().isFlippedX = true;
                 }
             }
             else

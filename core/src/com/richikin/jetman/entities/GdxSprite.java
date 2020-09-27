@@ -104,7 +104,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
         speed     = new Speed();
         distance  = new XYSetF();
         initXYZ   = new SimpleVec3F();
-        aabb      = new AABB();
+        aabb      = new AABB(app);
 
         strength            = GameConstants._MAX_STRENGTH;
         spriteNumber        = 0;
