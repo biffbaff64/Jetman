@@ -532,6 +532,7 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 608);
+            smallFont.draw(app.spriteBatch, "GBHB : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 570);
         }
 
         bigFont.draw

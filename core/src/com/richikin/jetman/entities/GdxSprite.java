@@ -38,7 +38,6 @@ public class GdxSprite extends GameEntity implements IGameSprite
     // -----------------------------------------------
     // Collision Related
     //
-    public  CollisionObject    collisionObject;    // The collision rectangle and data.
     public  AABB               aabb;               // Reference to the box collision handler;
     private ICollisionListener collisionCallback;
 
@@ -133,7 +132,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
                 entityDescriptor._POSITION.z
             ));
 
-        setCollisionObject();
+        setCollisionObject(sprite.getX(), sprite.getY());
 
         isLinked = (entityDescriptor._LINK > 0);
         link     = entityDescriptor._LINK;
@@ -170,6 +169,8 @@ public class GdxSprite extends GameEntity implements IGameSprite
             {
                 sprite.setPosition(initXYZ.getX(), initXYZ.getY());
             }
+
+            updateCollisionCheck();
         }
 
         preUpdateCommonDone = true;
@@ -314,27 +315,6 @@ public class GdxSprite extends GameEntity implements IGameSprite
         return collisionObject.rectangle;
     }
 
-    @Override
-    public void setCollisionObject()
-    {
-        collisionObject = app.collisionUtils.newObject
-            (
-                (int) sprite.getX(),
-                (int) sprite.getY(),
-                (int) frameWidth,
-                (int) frameHeight,
-                GraphicID._ENTITY
-            );
-
-        collisionObject.gid        = this.gid;
-        collisionObject.isObstacle = false;
-
-        if (this.gid != GraphicID.G_NO_ID)
-        {
-            AABBData.add(collisionObject);
-        }
-    }
-
     /**
      * Add a {@link ICollisionListener} to
      * this entity.
@@ -394,7 +374,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
 
                 //
                 // collisionObject.action might have changed at this point.
-                if (collisionObject.action == Actions._COLLIDING)
+                if (collisionObject.action != Actions._COLLIDING)
                 {
                     if (collisionCallback != null)
                     {

@@ -42,8 +42,6 @@ public interface IGameSprite
 
     Rectangle getCollisionRectangle();
 
-    void setCollisionObject();
-
     void addCollisionListener(ICollisionListener listener);
 
     void updateCollisionCheck();

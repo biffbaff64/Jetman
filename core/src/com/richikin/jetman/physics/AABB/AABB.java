@@ -58,7 +58,9 @@ public class AABB implements Disposable
 
                 parent.collisionObject.action = Actions._COLLIDABLE;
 
-                if (((parent.collidesWith & contactBox.parentSprite.bodyCategory) != 0)
+                if ((contactBox != null)
+                    && (contactBox.parentSprite != null)
+                    && ((parent.collidesWith & contactBox.parentSprite.bodyCategory) != 0)
                     && ((contactBox.parentSprite.collidesWith & parent.bodyCategory) != 0)
                     && (parent.collisionObject.index != contactBox.index))
                 {

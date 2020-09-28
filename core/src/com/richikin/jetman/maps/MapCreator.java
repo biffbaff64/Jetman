@@ -3,14 +3,18 @@ package com.richikin.jetman.maps;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
+import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
@@ -19,6 +23,7 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
 {
+    private int placementTileIndex;
     private final App app;
 
     public MapCreator(App _app)
@@ -41,6 +46,7 @@ public class MapCreator
         }
 
         app.mapData.placementTiles.clear();
+        placementTileIndex = 1;     // Start at 1, position 0 is reserved for G_PLAYER
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -49,6 +55,7 @@ public class MapCreator
         {
             Trace.megaDivider("PLACEMENT TILE ARRAY - START");
             debugPlacementsTiles();
+            debugCollisionBoxes();
             Trace.megaDivider("PLACEMENT TILE ARRAY - END");
         }
     }
@@ -95,7 +102,7 @@ public class MapCreator
         markerTile._GID        = _descriptor._GID;
         markerTile._TILE       = _descriptor._TILE;
         markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = app.mapData.placementTiles.size;
+        markerTile._INDEX      = _descriptor._GID == GraphicID.G_PLAYER ? 0 : placementTileIndex;
         markerTile._DIST       = new SimpleVec2F();
         markerTile._DIR        = new Direction();
         markerTile._SPEED      = new Speed();
@@ -155,42 +162,58 @@ public class MapCreator
         }
 
         app.mapData.placementTiles.add(markerTile);
+        placementTileIndex++;
     }
 
     protected void createCollisionBoxes()
     {
+        CollisionObject collisionObject;
+
         for (MapObject mapObject : app.mapData.mapObjects)
         {
             if (mapObject instanceof RectangleMapObject)
             {
                 if (null != mapObject.getName())
                 {
-                    // TODO: 13/08/2020 -
-                    //
-                    // Parse through all RectangleMapObjects in the TiledMap
-                    // and create a GameEntity object for each one.
-                    // Assign a Box2D body to each one and add to the World.
-                    //
-                    // Example:
-                    /*
+                    collisionObject = app.collisionUtils.newObject(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
+
                     GameEntity gameEntity = new GameEntity(app);
 
                     switch (mapObject.getName().toLowerCase())
                     {
+                        case "crater":
+                        {
+                            gameEntity.gid = GraphicID._CRATER;
+                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.bodyCategory = Gfx.CAT_SCENERY;
+                        }
+                        break;
+
                         case "ground":
                         case "wall":
                         {
                             gameEntity.gid = GraphicID._GROUND;
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_MOBILE_ENEMY;
-                            gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity);
-
-                            app.entityData.addEntity(gameEntity);
                         }
                         break;
+
+                        default:
+                            break;
                     }
-                    */
+
+                    if (gameEntity.gid != GraphicID.G_NO_ID)
+                    {
+                        gameEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_MOBILE_ENEMY;
+                        gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
+                        gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
+
+                        gameEntity.setCollisionObject
+                            (
+                                (float) mapObject.getProperties().get("x"),
+                                (float) mapObject.getProperties().get("y")
+                            );
+                    }
                 }
             }
         }
@@ -206,9 +229,19 @@ public class MapCreator
 
     private void debugPlacementsTiles()
     {
-//        for (MarkerTile tile : placementTiles)
-//        {
-//            tile.debug();
-//        }
+        for (SpriteDescriptor tile : app.mapData.placementTiles)
+        {
+            tile.debug();
+        }
+    }
+
+    private void debugCollisionBoxes()
+    {
+        Trace.__FILE_FUNC();
+
+        for (CollisionObject object : AABBData.boxes())
+        {
+            Trace.dbg("_GID  : " + object.gid + "  _INDEX: " + object.index);
+        }
     }
 }

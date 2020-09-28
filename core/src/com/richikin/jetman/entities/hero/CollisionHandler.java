@@ -79,8 +79,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case G_NO_ID:
                 default:
                 {
-                    Trace.__FILE_FUNC(graphicID.name());
-
                     if (!Developer.isGodMode())
                     {
                         if ((app.getPlayer().getSpriteAction() != Actions._EXPLODING)
@@ -149,8 +147,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForFalling()
     {
-        Trace.__FILE_FUNC();
-
         GraphicID graphicID = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid;
 
         if ((graphicID != GraphicID._GROUND)
