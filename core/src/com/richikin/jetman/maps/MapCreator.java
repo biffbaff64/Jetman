@@ -46,7 +46,7 @@ public class MapCreator
         }
 
         app.mapData.placementTiles.clear();
-        placementTileIndex = 1;     // Start at 1, position 0 is reserved for G_PLAYER
+        placementTileIndex = 2;     // Start at 2, position 0 is reserved for G_NO_ID, Position 1 for player
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -102,7 +102,7 @@ public class MapCreator
         markerTile._GID        = _descriptor._GID;
         markerTile._TILE       = _descriptor._TILE;
         markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = _descriptor._GID == GraphicID.G_PLAYER ? 0 : placementTileIndex;
+        markerTile._INDEX      = _descriptor._GID == GraphicID.G_PLAYER ? 1 : placementTileIndex;
         markerTile._DIST       = new SimpleVec2F();
         markerTile._DIR        = new Direction();
         markerTile._SPEED      = new Speed();
@@ -167,7 +167,14 @@ public class MapCreator
 
     protected void createCollisionBoxes()
     {
-        CollisionObject collisionObject;
+        GameEntity gameEntity;
+
+        gameEntity = new GameEntity(app);
+        gameEntity.gid = GraphicID.G_NO_ID;
+        gameEntity.type = GraphicID.G_NO_ID;
+        gameEntity.bodyCategory = Gfx.CAT_NOTHING;
+        gameEntity.collidesWith = Gfx.CAT_NOTHING;
+        gameEntity.setCollisionObject(0, 0);
 
         for (MapObject mapObject : app.mapData.mapObjects)
         {
@@ -175,9 +182,7 @@ public class MapCreator
             {
                 if (null != mapObject.getName())
                 {
-                    collisionObject = app.collisionUtils.newObject(new Rectangle(((RectangleMapObject) mapObject).getRectangle()));
-
-                    GameEntity gameEntity = new GameEntity(app);
+                    gameEntity = new GameEntity(app);
 
                     switch (mapObject.getName().toLowerCase())
                     {
