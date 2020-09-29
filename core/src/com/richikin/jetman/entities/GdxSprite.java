@@ -13,6 +13,7 @@ import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.entities.rootobjects.IGameSprite;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
 import com.richikin.jetman.physics.AABB.AABB;
@@ -132,7 +133,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
                 entityDescriptor._POSITION.z
             ));
 
-        setCollisionObject(sprite.getX(), sprite.getY());
+//        setCollisionObject(sprite.getX(), sprite.getY());
 
         isLinked = (entityDescriptor._LINK > 0);
         link     = entityDescriptor._LINK;
@@ -150,6 +151,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
 
         initXYZ.set(sprite.getX(), sprite.getY(), (float) vec3F.z);
 
+        position = new SimpleVec2F(sprite.getX(), sprite.getY());
         zPosition = (int) vec3F.z;
     }
 
@@ -303,16 +305,17 @@ public class GdxSprite extends GameEntity implements IGameSprite
     @Override
     public void updateCollisionBox()
     {
-        collisionObject.rectangle.x      = sprite.getX();
-        collisionObject.rectangle.y      = sprite.getY();
-        collisionObject.rectangle.width  = frameWidth;
-        collisionObject.rectangle.height = frameHeight;
+//        collisionObject.rectangle.x      = sprite.getX();
+//        collisionObject.rectangle.y      = sprite.getY();
+//        collisionObject.rectangle.width  = frameWidth;
+//        collisionObject.rectangle.height = frameHeight;
     }
 
     @Override
     public Rectangle getCollisionRectangle()
     {
-        return collisionObject.rectangle;
+        return sprite.getBoundingRectangle();
+//        return collisionObject.rectangle;
     }
 
     /**
@@ -333,56 +336,56 @@ public class GdxSprite extends GameEntity implements IGameSprite
     @Override
     public void updateCollisionCheck()
     {
-        if (collisionObject != null)
-        {
+//        if (collisionObject != null)
+//        {
             // make sure the collision rectangle
             // is where the player is
-            updateCollisionBox();
+//            updateCollisionBox();
 
             // Invisibility is set for a period of
             // time whn the entity is not affected
             // by any collisions.
-            collisionObject.checkInvisibility();
-            collisionObject.clearCollision();
+//            collisionObject.checkInvisibility();
+//            collisionObject.clearCollision();
 
             //
             // All CollisionObjects are collidable by default.
             // This flag is available to turn off detection
             // as and when needed.
-            if (collisionObject.action == Actions._COLLIDABLE)
-            {
-                if (aabb.checkHittingBox(this))
-                {
-                    collisionObject.action = Actions._COLLIDING;
-                }
-
-                if (collisionObject.action == Actions._COLLIDING)
-                {
-                    if (app.collisionUtils.filter(collisionObject.contactSprite.collidesWith, bodyCategory))
-                    {
-                        if (collisionCallback != null)
-                        {
-                            collisionCallback.onPositiveCollision(collisionObject.contactSprite.gid);
-                        }
-                    }
-
-                    if (isEnemy && collisionObject.isInvisibilityAllowed)
-                    {
-                        collisionObject.setInvisibility(1000);
-                    }
-                }
+//            if (collisionObject.action == Actions._COLLIDABLE)
+//            {
+//                if (aabb.checkHittingBox(this))
+//                {
+//                    collisionObject.action = Actions._COLLIDING;
+//                }
+//
+//                if (collisionObject.action == Actions._COLLIDING)
+//                {
+//                    if (app.collisionUtils.filter(collisionObject.contactSprite.collidesWith, bodyCategory))
+//                    {
+//                        if (collisionCallback != null)
+//                        {
+//                            collisionCallback.onPositiveCollision(collisionObject.contactSprite.gid);
+//                        }
+//                    }
+//
+//                    if (isEnemy && collisionObject.isInvisibilityAllowed)
+//                    {
+//                        collisionObject.setInvisibility(1000);
+//                    }
+//                }
 
                 //
                 // collisionObject.action might have changed at this point.
-                if (collisionObject.action != Actions._COLLIDING)
-                {
-                    if (collisionCallback != null)
-                    {
-                        collisionCallback.onNegativeCollision();
-                    }
-                }
-            }
-        }
+//                if (collisionObject.action != Actions._COLLIDING)
+//                {
+//                    if (collisionCallback != null)
+//                    {
+//                        collisionCallback.onNegativeCollision();
+//                    }
+//                }
+//            }
+//        }
     }
 
     /**

@@ -15,10 +15,13 @@ public class WorldModel
     public Box2DDebugRenderer   b2dr;
     public Box2DContactListener box2DContactListener;
     public BodyBuilder          bodyBuilder;
-    public Matrix4              debugMatrix;
+
+    private final App app;
 
     public WorldModel(App _app)
     {
+        this.app = _app;
+
         box2DWorld = new World
             (
                 new Vector2
@@ -40,8 +43,6 @@ public class WorldModel
                     false,
                     true
                 );
-
-            debugMatrix = _app.spriteBatch.getProjectionMatrix().cpy().scale(Gfx._PPM, Gfx._PPM, 0);
         }
 
         bodyBuilder          = new BodyBuilder(_app);
@@ -54,7 +55,14 @@ public class WorldModel
     {
         if (b2dr != null)
         {
-            b2dr.render(box2DWorld, debugMatrix);
+            //
+            // Care needed here if the viewport sizes for SpriteGameCamera
+            // and TiledGameCamera are different.
+            b2dr.render
+                (
+                    box2DWorld,
+                    app.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(Gfx._PPM, Gfx._PPM, 0)
+                );
         }
     }
 

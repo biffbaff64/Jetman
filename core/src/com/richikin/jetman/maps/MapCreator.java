@@ -23,7 +23,6 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
 {
-    private int placementTileIndex;
     private final App app;
 
     public MapCreator(App _app)
@@ -46,7 +45,6 @@ public class MapCreator
         }
 
         app.mapData.placementTiles.clear();
-        placementTileIndex = 2;     // Start at 2, position 0 is reserved for G_NO_ID, Position 1 for player
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -72,8 +70,6 @@ public class MapCreator
             {
                 //
                 // Find the objects details ready for parsing
-                boolean isFound = false;
-
                 if (null != mapObject.getName())
                 {
                     for (SpriteDescriptor descriptor : Entities.entityList)
@@ -102,7 +98,7 @@ public class MapCreator
         markerTile._GID        = _descriptor._GID;
         markerTile._TILE       = _descriptor._TILE;
         markerTile._ASSET      = _descriptor._ASSET;
-        markerTile._INDEX      = _descriptor._GID == GraphicID.G_PLAYER ? 1 : placementTileIndex;
+        markerTile._INDEX      = _descriptor._INDEX;
         markerTile._DIST       = new SimpleVec2F();
         markerTile._DIR        = new Direction();
         markerTile._SPEED      = new Speed();
@@ -162,19 +158,11 @@ public class MapCreator
         }
 
         app.mapData.placementTiles.add(markerTile);
-        placementTileIndex++;
     }
 
     protected void createCollisionBoxes()
     {
         GameEntity gameEntity;
-
-        gameEntity = new GameEntity(app);
-        gameEntity.gid = GraphicID.G_NO_ID;
-        gameEntity.type = GraphicID.G_NO_ID;
-        gameEntity.bodyCategory = Gfx.CAT_NOTHING;
-        gameEntity.collidesWith = Gfx.CAT_NOTHING;
-        gameEntity.setCollisionObject(0, 0);
 
         for (MapObject mapObject : app.mapData.mapObjects)
         {
@@ -210,14 +198,15 @@ public class MapCreator
                     if (gameEntity.gid != GraphicID.G_NO_ID)
                     {
                         gameEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_MOBILE_ENEMY;
-                        gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
-                        gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
-
-                        gameEntity.setCollisionObject
+                        gameEntity.position = new SimpleVec2F
                             (
                                 (float) mapObject.getProperties().get("x"),
                                 (float) mapObject.getProperties().get("y")
                             );
+                        gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
+                        gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
+
+                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity);
                     }
                 }
             }

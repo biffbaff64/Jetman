@@ -180,7 +180,6 @@ public class EntityManager implements IEntityManager
                             {
                                 _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
 
-                                entity.collisionObject. kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -198,7 +197,6 @@ public class EntityManager implements IEntityManager
                                     app.getBase().setAction(Actions._STANDING);
                                 }
 
-                                entity.collisionObject.kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -209,7 +207,6 @@ public class EntityManager implements IEntityManager
                             {
                                 releaseEntity(entity);
 
-                                entity.collisionObject.kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -218,7 +215,6 @@ public class EntityManager implements IEntityManager
                             {
                                 app.missileBaseManager.free();
 
-                                entity.collisionObject.kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -226,7 +222,6 @@ public class EntityManager implements IEntityManager
                             case G_DEFENDER:
                             case G_ROVER:
                             {
-                                entity.collisionObject.kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
@@ -235,18 +230,16 @@ public class EntityManager implements IEntityManager
                             {
                                 app.missileBaseManager.releaseSparkler();
 
-                                entity.collisionObject.kill();
                                 app.entityData.removeEntity(i);
                             }
                             break;
 
                             default:
                             {
-                                if ((entity.gid != GraphicID.G_NO_ID) && (entity.collisionObject != null))
+                                if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);
 
-                                    entity.collisionObject.kill();
                                     app.entityData.removeEntity(i);
                                 }
                             }

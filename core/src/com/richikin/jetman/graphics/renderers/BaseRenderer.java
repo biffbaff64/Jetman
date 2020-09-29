@@ -7,6 +7,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
+import com.richikin.jetman.core.WorldModel;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.ViewportType;

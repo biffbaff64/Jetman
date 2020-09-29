@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class BodyBuilder
 {
@@ -22,72 +23,57 @@ public class BodyBuilder
      * bodies are suitable for any object which needs to move and be
      * affected by forces.
      *
-     * @param entity      The GdxSprite of this entity
-     * @param density     Object density
-     * @param restitution The object restitution.
+     * @param _entity      The GdxSprite of this entity.
+     * @param _density     Object density.
+     * @param _friction    Object friction.
+     * @param _restitution The object restitution.
      */
-    public void createDynamicCircle(GameEntity entity, float density, float friction, float restitution)
+    public Body createDynamicCircle(GameEntity _entity, float _density, float _friction, float _restitution)
     {
-        entity.bodyDef = new BodyDef();
-        entity.bodyDef.type = BodyDef.BodyType.DynamicBody;
-        entity.bodyDef.fixedRotation = true;
-        entity.bodyDef.position.set
-            (
-                (entity.position.x + (entity.frameWidth / 2)) / Gfx._PPM,
-                (entity.position.y + (entity.frameHeight / 2)) / Gfx._PPM
-            );
-
-        entity.b2dBody = app.worldModel.box2DWorld.createBody(entity.bodyDef);
+        // TODO: 29/09/2020 - Update buildBody() to take shapes
+        BodyDef bodyDef = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
 
         CircleShape shape = new CircleShape();
-        shape.setRadius((entity.frameWidth / 2) / Gfx._PPM);
+        shape.setRadius((_entity.frameWidth / 2) / Gfx._PPM);
 
         FixtureDef fixtureDef           = new FixtureDef();
         fixtureDef.shape                = shape;
-        fixtureDef.density              = density;
-        fixtureDef.restitution          = restitution;
-        fixtureDef.friction             = friction;
-        fixtureDef.filter.categoryBits  = entity.bodyCategory;
-        fixtureDef.filter.maskBits      = entity.collidesWith;
+        fixtureDef.density              = _density;
+        fixtureDef.friction             = _friction;
+        fixtureDef.restitution          = _restitution;
+        fixtureDef.filter.maskBits      = _entity.collidesWith;
+        fixtureDef.filter.categoryBits  = _entity.bodyCategory;
 
-        entity.b2dBody.createFixture(fixtureDef);
-        entity.b2dBody.setUserData(new BodyIdentity(entity, entity.gid, entity.type));
+        Body body = app.worldModel.box2DWorld.createBody(bodyDef);
+        body.setUserData(new BodyIdentity(_entity, _entity.gid, _entity.type));
+        body.createFixture(fixtureDef);
 
-        shape.dispose();
+        return body;
     }
 
-    public void createDynamicPolygon(GameEntity entity, float density, float friction, float restitution)
+    /**
+     * Creates a Dynamic Box2D body which can be assigned to a GdxSprite.
+     *
+     * Dynamic bodies are objects which move around and are affected by
+     * forces and other dynamic, kinematic and static objects. Dynamic
+     * bodies are suitable for any object which needs to move and be
+     * affected by forces.
+     *
+     * @param _entity      The GdxSprite of this entity.
+     * @param _density     Object density.
+     * @param _friction    Object friction.
+     * @param _restitution The object restitution.
+     */
+    public Body createDynamicBox(GameEntity _entity, float _density, float _friction, float _restitution)
     {
-        entity.bodyDef = new BodyDef();
-        entity.bodyDef.type = BodyDef.BodyType.DynamicBody;
-        entity.bodyDef.fixedRotation = true;
-        entity.bodyDef.position.set
+        return buildBody
             (
-                (entity.position.x + (entity.frameWidth / 2)) / Gfx._PPM,
-                (entity.position.y + (entity.frameHeight / 2)) / Gfx._PPM
+                _entity,
+                BodyDef.BodyType.DynamicBody,
+                _density,
+                _friction,
+                _restitution
             );
-
-        entity.b2dBody = app.worldModel.box2DWorld.createBody(entity.bodyDef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox
-            (
-                ((entity.frameWidth / 2) / Gfx._PPM),
-                ((entity.frameHeight / 2) / Gfx._PPM)
-            );
-
-        FixtureDef fixtureDef           = new FixtureDef();
-        fixtureDef.shape                = shape;
-        fixtureDef.density              = density;
-        fixtureDef.restitution          = restitution;
-        fixtureDef.friction             = friction;
-        fixtureDef.filter.categoryBits  = entity.bodyCategory;
-        fixtureDef.filter.maskBits      = entity.collidesWith;
-
-        entity.b2dBody.createFixture(fixtureDef);
-        entity.b2dBody.setUserData(new BodyIdentity(entity, entity.gid, entity.type));
-
-        shape.dispose();
     }
 
     /**
@@ -102,42 +88,20 @@ public class BodyBuilder
      * usually better to set a velocity instead, and letting Box2D take care of
      * position updates.
      *
-     * @param entity      The GdxSprite of this entity
-     * @param density     Object density
-     * @param restitution The object restitution.
+     * @param _entity      The GdxSprite of this entity
+     * @param _density     Object density
+     * @param _restitution The object restitution.
      */
-    public void createKinematicBody(GameEntity entity, float density, float restitution)
+    public Body createKinematicBody(GameEntity _entity, float _density, float _restitution)
     {
-        entity.bodyDef = new BodyDef();
-        entity.bodyDef.type = BodyDef.BodyType.KinematicBody;
-        entity.bodyDef.fixedRotation = true;
-        entity.bodyDef.position.set
+        return buildBody
             (
-                (entity.position.x + (entity.frameWidth / 2)) / Gfx._PPM,
-                (entity.position.y + (entity.frameHeight / 2)) / Gfx._PPM
+                _entity,
+                BodyDef.BodyType.KinematicBody,
+                _density,
+                0,
+                _restitution
             );
-
-        entity.b2dBody = app.worldModel.box2DWorld.createBody(entity.bodyDef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox
-            (
-                ((entity.frameWidth / 2) / Gfx._PPM),
-                ((entity.frameHeight / 2) / Gfx._PPM)
-            );
-
-        FixtureDef fixtureDef           = new FixtureDef();
-        fixtureDef.shape                = shape;
-        fixtureDef.density              = density;
-        fixtureDef.restitution          = restitution;
-        fixtureDef.friction             = 0;
-        fixtureDef.filter.categoryBits  = entity.bodyCategory;
-        fixtureDef.filter.maskBits      = entity.collidesWith;
-
-        entity.b2dBody.createFixture(fixtureDef);
-        entity.b2dBody.setUserData(new BodyIdentity(entity, entity.gid, entity.type));
-
-        shape.dispose();
     }
 
     /**
@@ -152,7 +116,7 @@ public class BodyBuilder
      */
     public Body createStaticBody(GameEntity _entity)
     {
-        return createStaticBody(_entity, 1.0f, 1.0f, 0.15f);
+        return buildBody(_entity, BodyDef.BodyType.StaticBody, 1.0f, 1.0f, 0.15f);
     }
 
     /**
@@ -172,9 +136,19 @@ public class BodyBuilder
      */
     public Body createStaticBody(GameEntity _entity, float _density, float _friction, float _restitution)
     {
-        BodyDef bodyDef = createStaticBodyDef(_entity);
+        return buildBody
+            (
+                _entity,
+                BodyDef.BodyType.StaticBody,
+                _density,
+                _friction,
+                _restitution
+            );
+    }
 
-        _entity.bodyDef = bodyDef;
+    private Body buildBody(GameEntity _entity, BodyDef.BodyType _type, float _density, float _friction, float _restitution)
+    {
+        BodyDef bodyDef = createBodyDef(_type, _entity);
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -183,14 +157,7 @@ public class BodyBuilder
                 ((_entity.frameHeight / 2) / Gfx._PPM)
             );
 
-        FixtureDef fixtureDef           = new FixtureDef();
-        fixtureDef.shape                = shape;
-        fixtureDef.density              = _density;
-        fixtureDef.friction             = _friction;
-        fixtureDef.restitution          = _restitution;
-        fixtureDef.filter.maskBits      = _entity.collidesWith;
-        fixtureDef.filter.categoryBits  = _entity.bodyCategory;
-
+        FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
         Body body = app.worldModel.box2DWorld.createBody(bodyDef);
         body.setUserData(new BodyIdentity(_entity, _entity.gid, _entity.type));
         body.createFixture(fixtureDef);
@@ -215,28 +182,15 @@ public class BodyBuilder
         return bodyDef;
     }
 
-    private BodyDef createStaticBodyDef(GameEntity _entity)
+    private FixtureDef createFixtureDef(GameEntity _entity, Shape _shape, float _density, float _friction, float _restitution)
     {
-        BodyDef bodyDef = new BodyDef();
-
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-        bodyDef.fixedRotation = true;
-
-        bodyDef.position.set
-            (
-                (_entity.position.x + (_entity.frameWidth / 2)) / Gfx._PPM,
-                (_entity.position.y + (_entity.frameHeight / 2)) / Gfx._PPM
-            );
-
-        return bodyDef;
-    }
-
-    private FixtureDef createFixtureDef(Shape shape, float density, float restitution)
-    {
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = shape;
-        fixtureDef.density = density;
-        fixtureDef.restitution = restitution;
+        FixtureDef fixtureDef           = new FixtureDef();
+        fixtureDef.shape                = _shape;
+        fixtureDef.density              = _density;
+        fixtureDef.friction             = _friction;
+        fixtureDef.restitution          = _restitution;
+        fixtureDef.filter.maskBits      = _entity.collidesWith;
+        fixtureDef.filter.categoryBits  = _entity.bodyCategory;
 
         return fixtureDef;
     }

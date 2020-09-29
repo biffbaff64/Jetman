@@ -96,6 +96,11 @@ public class MainPlayer extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
         app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
 
+        b2dBody = app.worldModel.bodyBuilder.createDynamicBox
+            (
+                this, 1.0f, 0.1f, 0.1f
+            );
+
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");
@@ -236,18 +241,18 @@ public class MainPlayer extends GdxSprite
             // Fall to the ground after being killed while flying
             case _FALLING_TO_GROUND:
             {
-                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
-                {
-                    explode();
-
-                    isRotating  = false;
-                    rotateSpeed = 0;
-                }
-                else
-                {
-                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
-                    speed.y += 0.2f;
-                }
+//                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
+//                {
+//                    explode();
+//
+//                    isRotating  = false;
+//                    rotateSpeed = 0;
+//                }
+//                else
+//                {
+//                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
+//                    speed.y += 0.2f;
+//                }
             }
             break;
 
@@ -429,38 +434,38 @@ public class MainPlayer extends GdxSprite
     @Override
     public void updateCollisionBox()
     {
-        if (isRidingRover)
-        {
-            collisionObject.rectangle.x      = -1;
-            collisionObject.rectangle.y      = -1;
-            collisionObject.rectangle.width  = 1;
-            collisionObject.rectangle.height = 1;
-        }
-        else
-        {
-            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
-            collisionObject.rectangle.y      = sprite.getY();
-            collisionObject.rectangle.width  = (frameWidth / 2);
-            collisionObject.rectangle.height = frameHeight;
-        }
-
-        viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
-        viewBox.y      = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
-        viewBox.width  = Gfx._VIEW_WIDTH;
-        viewBox.height = Gfx._VIEW_HEIGHT;
-
-        if (viewBox.y < 0)
-        {
-            viewBox.y += (Math.abs(viewBox.y));
-        }
-
-        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
-        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
-        tileRectangle.width = Gfx.getTileWidth();
-        tileRectangle.height = Gfx.getTileHeight();
-
-        rightEdge = sprite.getX() + frameWidth;
-        topEdge   = sprite.getY() + frameHeight;
+//        if (isRidingRover)
+//        {
+//            collisionObject.rectangle.x      = -1;
+//            collisionObject.rectangle.y      = -1;
+//            collisionObject.rectangle.width  = 1;
+//            collisionObject.rectangle.height = 1;
+//        }
+//        else
+//        {
+//            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
+//            collisionObject.rectangle.y      = sprite.getY();
+//            collisionObject.rectangle.width  = (frameWidth / 2);
+//            collisionObject.rectangle.height = frameHeight;
+//        }
+//
+//        viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
+//        viewBox.y      = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
+//        viewBox.width  = Gfx._VIEW_WIDTH;
+//        viewBox.height = Gfx._VIEW_HEIGHT;
+//
+//        if (viewBox.y < 0)
+//        {
+//            viewBox.y += (Math.abs(viewBox.y));
+//        }
+//
+//        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+//        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
+//        tileRectangle.width = Gfx.getTileWidth();
+//        tileRectangle.height = Gfx.getTileHeight();
+//
+//        rightEdge = sprite.getX() + frameWidth;
+//        topEdge   = sprite.getY() + frameHeight;
     }
 
     public void handleDying()

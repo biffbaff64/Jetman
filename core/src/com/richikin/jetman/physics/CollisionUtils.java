@@ -199,53 +199,25 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return y;
     }
 
-    /**
-     * Gets box hitting top.
-     *
-     * @param spriteObject the sprite object
-     *
-     * @return the box hitting top
-     */
-    public CollisionObject getBoxHittingTop(GdxSprite spriteObject)
-    {
-        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingTop);
-    }
+//    public CollisionObject getBoxHittingTop(GdxSprite spriteObject)
+//    {
+//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingTop);
+//    }
 
-    /**
-     * Gets box hitting bottom.
-     *
-     * @param spriteObject the sprite object
-     *
-     * @return the box hitting bottom
-     */
-    public CollisionObject getBoxHittingBottom(GdxSprite spriteObject)
-    {
-        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingBottom);
-    }
+//    public CollisionObject getBoxHittingBottom(GdxSprite spriteObject)
+//    {
+//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingBottom);
+//    }
 
-    /**
-     * Gets box hitting left.
-     *
-     * @param spriteObject the sprite object
-     *
-     * @return the box hitting left
-     */
-    public CollisionObject getBoxHittingLeft(GdxSprite spriteObject)
-    {
-        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingLeft);
-    }
+//    public CollisionObject getBoxHittingLeft(GdxSprite spriteObject)
+//    {
+//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingLeft);
+//    }
 
-    /**
-     * Gets box hitting right.
-     *
-     * @param spriteObject the sprite object
-     *
-     * @return the box hitting right
-     */
-    public CollisionObject getBoxHittingRight(GdxSprite spriteObject)
-    {
-        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingRight);
-    }
+//    public CollisionObject getBoxHittingRight(GdxSprite spriteObject)
+//    {
+//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingRight);
+//    }
 
     @Override
     public void dispose()

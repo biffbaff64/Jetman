@@ -59,7 +59,7 @@ public class Gfx
     public static final float   _STEP_TIME           = (1.0f / 60f);
     public static final int     _VELOCITY_ITERATIONS = 8;
     public static final int     _POSITION_ITERATIONS = 3;
-    public static final Vector2 _WORLD_GRAVITY       = new Vector2(0, 0);
+    public static final Vector2 _WORLD_GRAVITY       = new Vector2(0, -9.8f);
     public static final int     _FALL_GRAVITY        = 10;
     public static final int     _TERMINAL_VELOCITY   = (int) (_PPM * _FALL_GRAVITY);
 
