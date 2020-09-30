@@ -48,16 +48,6 @@ public class RenderSystem
                             case G_BACKGROUND_UFO:
                             case G_TWINKLE_STAR:
                             {
-//                                DeveloperUtils.drawRect
-//                                    (
-//                                        app.assets.getObjectRegion("solid_white32x32"),
-//                                        (int) entity.getPosition().x,
-//                                        (int) entity.getPosition().y,
-//                                        (int) entity.frameWidth,
-//                                        (int) entity.frameHeight,
-//                                        2,
-//                                        app
-//                                    );
                             }
                             break;
 
@@ -67,6 +57,7 @@ public class RenderSystem
                                 {
                                     if (isInViewWindow(entity) && entity.isDrawable)
                                     {
+                                        entity.setPositionfromBody();
                                         entity.draw(app.spriteBatch);
                                     }
                                 }

@@ -206,7 +206,7 @@ public class MapCreator
                         gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
                         gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
 
-                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity);
+                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity, 1.0f, 0.8f, 0.0f);
                     }
                 }
             }

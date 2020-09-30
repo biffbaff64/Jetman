@@ -394,6 +394,11 @@ public class MainPlayer extends GdxSprite
                     elapsedAnimTime = 0;
                     isTeleporting   = false;
                     isRidingRover   = false;
+
+                    if (getSpriteAction() == Actions._STANDING)
+                    {
+                        b2dBody.setLinearDamping(0.0f);
+                    }
                 }
                 break;
             }
@@ -539,33 +544,41 @@ public class MainPlayer extends GdxSprite
 
         if (getSpriteAction() == Actions._FALLING)
         {
-            sprite.translate
-                (
-                    (speed.getX() * app.inputManager.getControllerXPercentage()),
-                    (speed.getY() * direction.getY())
-                );
-            speed.y += 0.025f;
+//            sprite.translate
+//                (
+//                    (speed.getX() * app.inputManager.getControllerXPercentage()),
+//                    (speed.getY() * direction.getY())
+//                );
+//            speed.y += 0.025f;
         }
         else
         {
+            float movementXSpeed = 0.0f;
+            float movementYSpeed = 0.0f;
+
             if (isMovingX || isMovingY)
             {
-                float movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
+                movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
+                movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
 
                 app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
                 app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
 
-                sprite.translate(movementXSpeed, (speed.getY() * app.inputManager.getControllerYPercentage()));
+//                sprite.translate(movementXSpeed, (speed.getY() * app.inputManager.getControllerYPercentage()));
+
+                b2dBody.setLinearDamping(1.0f);
+
+                b2dBody.setLinearVelocity(movementXSpeed, movementYSpeed);
             }
 
-            if (sprite.getX() > Gfx.visibleMapRight())
-            {
-                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
-            }
-            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_WIDTH)
-            {
-                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
-            }
+//            if (sprite.getX() > Gfx.visibleMapRight())
+//            {
+//                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
+//            }
+//            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_WIDTH)
+//            {
+//                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
+//            }
         }
     }
 
