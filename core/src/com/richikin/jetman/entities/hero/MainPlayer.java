@@ -87,6 +87,7 @@ public class MainPlayer extends GdxSprite
         collidesWith = Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_FIXED_ENEMY
             | Gfx.CAT_GROUND
+            | Gfx.CAT_CEILING
             | Gfx.CAT_SCENERY;
 
         isMainCharacter = true;
@@ -98,7 +99,7 @@ public class MainPlayer extends GdxSprite
 
         b2dBody = app.worldModel.bodyBuilder.createDynamicBox
             (
-                this, 1.0f, 0.1f, 0.1f
+                this, 0.8f, 0.1f, 0.1f
             );
 
         setup(true);
@@ -538,7 +539,7 @@ public class MainPlayer extends GdxSprite
             if ((direction.getY() == Movement._DIRECTION_UP)
                 && ((getPosition().y + frameHeight) > (Gfx._VIEW_HEIGHT - GameAssets.hudPanelHeight)))
             {
-                speed.setY(0);
+//                speed.setY(0);
             }
         }
 
@@ -561,8 +562,8 @@ public class MainPlayer extends GdxSprite
                 movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
                 movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
 
-                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
-                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
+//                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
+//                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
 
 //                sprite.translate(movementXSpeed, (speed.getY() * app.inputManager.getControllerYPercentage()));
 

@@ -6,6 +6,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -39,7 +40,15 @@ public class Teleporter extends GdxSprite
         isCollected = false;
         isDrawable  = true;
 
-        setCollisionListener();
+        bodyCategory = Gfx.CAT_TELEPORTER;
+        collidesWith = Gfx.CAT_PLAYER
+            | Gfx.CAT_MOBILE_ENEMY
+            | Gfx.CAT_GROUND;
+
+        b2dBody = app.worldModel.bodyBuilder.createDynamicBox
+            (
+                this,1.0f, 1.0f, 0.1f
+            );
     }
 
     @Override

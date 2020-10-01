@@ -48,14 +48,6 @@ public class MapCreator
 
         parseMarkerTiles();
         createCollisionBoxes();
-
-        if (Developer.isDevMode())
-        {
-            Trace.megaDivider("PLACEMENT TILE ARRAY - START");
-            debugPlacementsTiles();
-            debugCollisionBoxes();
-            Trace.megaDivider("PLACEMENT TILE ARRAY - END");
-        }
     }
 
     /**
@@ -174,11 +166,21 @@ public class MapCreator
 
                     switch (mapObject.getName().toLowerCase())
                     {
+                        case "ceiling":
+                        {
+                            gameEntity.gid = GraphicID._CEILING;
+                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.bodyCategory = Gfx.CAT_CEILING;
+                            gameEntity.collidesWith = Gfx.CAT_PLAYER;
+                        }
+                        break;
+
                         case "crater":
                         {
                             gameEntity.gid = GraphicID._CRATER;
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
+                            gameEntity.collidesWith = Gfx.CAT_PLAYER;
                         }
                         break;
 
@@ -188,6 +190,11 @@ public class MapCreator
                             gameEntity.gid = GraphicID._GROUND;
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
+                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -197,7 +204,6 @@ public class MapCreator
 
                     if (gameEntity.gid != GraphicID.G_NO_ID)
                     {
-                        gameEntity.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_MOBILE_ENEMY;
                         gameEntity.position = new SimpleVec2F
                             (
                                 (float) mapObject.getProperties().get("x"),
@@ -206,7 +212,7 @@ public class MapCreator
                         gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
                         gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
 
-                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity, 1.0f, 0.8f, 0.0f);
+                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity, 1.0f, 0.25f, 0.0f);
                     }
                 }
             }
