@@ -2,12 +2,14 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.physics.box2d.BodyIdentity;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class Teleporter extends GdxSprite
@@ -85,37 +87,5 @@ public class Teleporter extends GdxSprite
     {
         sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
-    }
-
-    private void setCollisionListener()
-    {
-//        addCollisionListener(new CollisionListener()
-//        {
-//            @Override
-//            public void onPositiveCollision(GraphicID graphicID)
-//            {
-//                if (spriteAction == Actions._FALLING)
-//                {
-//                    GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
-//
-//                    if (contactID == GraphicID._GROUND)
-//                    {
-//                        direction.setY(Movement._DIRECTION_STILL);
-//                        speed.setY(0);
-//                        setAction(Actions._STANDING);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onNegativeCollision()
-//            {
-//            }
-//
-//            @Override
-//            public void dispose()
-//            {
-//            }
-//        });
     }
 }
