@@ -320,6 +320,7 @@ public class Keyboard extends InputAdapter
         {
             returnFlag = app.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
         }
+
         if (AppConfig.gameScreenActive())
         {
             returnFlag = app.inputManager.touchScreen.gameScreenTouchDown(screenX, screenY, pointer);
@@ -343,6 +344,7 @@ public class Keyboard extends InputAdapter
         {
             returnFlag = app.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
         }
+        
         if (AppConfig.gameScreenActive())
         {
             returnFlag = app.inputManager.touchScreen.gameScreenTouchUp(screenX, screenY);

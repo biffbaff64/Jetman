@@ -534,6 +534,8 @@ public class HeadsUpDisplay implements Disposable
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 608);
             smallFont.draw(app.spriteBatch, "SPD  : " + app.getPlayer().speed.toString(), originX + 20, originY + 578);
             smallFont.draw(app.spriteBatch, "ACT  : " + app.getPlayer().getSpriteAction(), originX + 20, originY + 548);
+            smallFont.draw(app.spriteBatch, "MOV  : " + app.getPlayer().isMovingX + ", " + app.getPlayer().isMovingY, originX + 20, originY + 518);
+            smallFont.draw(app.spriteBatch, "CON  : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 480);
         }
 
         bigFont.draw
@@ -598,6 +600,10 @@ public class HeadsUpDisplay implements Disposable
         }
     }
 
+    /**
+     * Draw the Indicator arrows.
+     * These show in which direction the Moon Rover and Missile Base are.
+     */
     private void drawArrows()
     {
         app.spriteBatch.draw(arrows[truckArrowIndex], (originX + displayPos[_TRUCK_ARROW][_X1]), (originY + displayPos[_TRUCK_ARROW][_Y]));
@@ -633,19 +639,19 @@ public class HeadsUpDisplay implements Disposable
 
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-        buttonB = new GameButton
+        buttonA = new GameButton
             (
-                app.assets.getButtonRegion("button_fire"),
-                app.assets.getButtonRegion("button_fire_pressed"),
-                displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y],
+                app.assets.getButtonRegion("button_a"),
+                app.assets.getButtonRegion("button_a_pressed"),
+                displayPos[_ACTION][xPos], displayPos[_ACTION][_Y],
                 app
             );
 
-        buttonA = new GameButton
+        buttonB = new GameButton
             (
-                app.assets.getButtonRegion("button_drop"),
-                app.assets.getButtonRegion("button_drop_pressed"),
-                displayPos[_ACTION][xPos], displayPos[_ACTION][_Y],
+                app.assets.getButtonRegion("button_b"),
+                app.assets.getButtonRegion("button_b_pressed"),
+                displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y],
                 app
             );
 

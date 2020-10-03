@@ -97,11 +97,6 @@ public class MainPlayer extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
         app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
 
-        b2dBody = app.worldModel.bodyBuilder.createDynamicBox
-            (
-                this, 0.8f, 0.1f, 0.1f
-            );
-
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");
@@ -395,11 +390,6 @@ public class MainPlayer extends GdxSprite
                     elapsedAnimTime = 0;
                     isTeleporting   = false;
                     isRidingRover   = false;
-
-                    if (getSpriteAction() == Actions._STANDING)
-                    {
-                        b2dBody.setLinearDamping(0.0f);
-                    }
                 }
                 break;
             }
@@ -440,38 +430,38 @@ public class MainPlayer extends GdxSprite
     @Override
     public void updateCollisionBox()
     {
-//        if (isRidingRover)
-//        {
-//            collisionObject.rectangle.x      = -1;
-//            collisionObject.rectangle.y      = -1;
-//            collisionObject.rectangle.width  = 1;
-//            collisionObject.rectangle.height = 1;
-//        }
-//        else
-//        {
-//            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
-//            collisionObject.rectangle.y      = sprite.getY();
-//            collisionObject.rectangle.width  = (frameWidth / 2);
-//            collisionObject.rectangle.height = frameHeight;
-//        }
-//
-//        viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
-//        viewBox.y      = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
-//        viewBox.width  = Gfx._VIEW_WIDTH;
-//        viewBox.height = Gfx._VIEW_HEIGHT;
-//
-//        if (viewBox.y < 0)
-//        {
-//            viewBox.y += (Math.abs(viewBox.y));
-//        }
-//
-//        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
-//        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
-//        tileRectangle.width = Gfx.getTileWidth();
-//        tileRectangle.height = Gfx.getTileHeight();
-//
-//        rightEdge = sprite.getX() + frameWidth;
-//        topEdge   = sprite.getY() + frameHeight;
+        if (isRidingRover)
+        {
+            collisionObject.rectangle.x      = -1;
+            collisionObject.rectangle.y      = -1;
+            collisionObject.rectangle.width  = 1;
+            collisionObject.rectangle.height = 1;
+        }
+        else
+        {
+            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
+            collisionObject.rectangle.y      = sprite.getY();
+            collisionObject.rectangle.width  = (frameWidth / 2);
+            collisionObject.rectangle.height = frameHeight;
+        }
+
+        viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));
+        viewBox.y      = (int) sprite.getY() - Gfx._VIEW_HALF_HEIGHT;
+        viewBox.width  = Gfx._VIEW_WIDTH;
+        viewBox.height = Gfx._VIEW_HEIGHT;
+
+        if (viewBox.y < 0)
+        {
+            viewBox.y += (Math.abs(viewBox.y));
+        }
+
+        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
+        tileRectangle.width = Gfx.getTileWidth();
+        tileRectangle.height = Gfx.getTileHeight();
+
+        rightEdge = sprite.getX() + frameWidth;
+        topEdge   = sprite.getY() + frameHeight;
     }
 
     public void handleDying()
@@ -539,18 +529,18 @@ public class MainPlayer extends GdxSprite
             if ((direction.getY() == Movement._DIRECTION_UP)
                 && ((getPosition().y + frameHeight) > (Gfx._VIEW_HEIGHT - GameAssets.hudPanelHeight)))
             {
-//                speed.setY(0);
+                speed.setY(0);
             }
         }
 
         if (getSpriteAction() == Actions._FALLING)
         {
-//            sprite.translate
-//                (
-//                    (speed.getX() * app.inputManager.getControllerXPercentage()),
-//                    (speed.getY() * direction.getY())
-//                );
-//            speed.y += 0.025f;
+            sprite.translate
+                (
+                    (speed.getX() * app.inputManager.getControllerXPercentage()),
+                    (speed.getY() * direction.getY())
+                );
+            speed.y += 0.025f;
         }
         else
         {
@@ -565,21 +555,17 @@ public class MainPlayer extends GdxSprite
 //                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
 //                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
 
-//                sprite.translate(movementXSpeed, (speed.getY() * app.inputManager.getControllerYPercentage()));
-
-                b2dBody.setLinearDamping(1.0f);
-
-                b2dBody.setLinearVelocity(movementXSpeed, movementYSpeed);
+                sprite.translate(movementXSpeed, movementYSpeed);
             }
 
-//            if (sprite.getX() > Gfx.visibleMapRight())
-//            {
-//                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
-//            }
-//            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_WIDTH)
-//            {
-//                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
-//            }
+            if (sprite.getX() > Gfx.visibleMapRight())
+            {
+                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
+            }
+            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_WIDTH)
+            {
+                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
+            }
         }
     }
 

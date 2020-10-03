@@ -3,6 +3,7 @@ package com.richikin.jetman.input;
 
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.buttons.GameButton;
 import com.richikin.jetman.input.objects.ControllerType;
 
@@ -36,16 +37,12 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
+                for (GDXButton button : app.inputManager.gameButtons)
                 {
-                    app.getHud().buttonA.press();
-                    returnFlag = true;
-                }
-
-                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
-                {
-                    app.getHud().buttonB.press();
-                    returnFlag = true;
+                    if (button.checkPress(screenX, screenY))
+                    {
+                        returnFlag = true;
+                    }
                 }
             }
         }
@@ -64,16 +61,12 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
+                for (GDXButton button : app.inputManager.gameButtons)
                 {
-                    app.getHud().buttonB.release();
-                    returnFlag = true;
-                }
-
-                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
-                {
-                    app.getHud().buttonA.release();
-                    returnFlag = true;
+                    if (button.checkRelease(screenX, screenY))
+                    {
+                        returnFlag = true;
+                    }
                 }
             }
         }

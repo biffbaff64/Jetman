@@ -22,6 +22,18 @@ public class Switch implements GDXButton
     }
 
     @Override
+    public boolean checkPress(int touchX, int touchY)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean checkRelease(int touchX, int touchY)
+    {
+        return false;
+    }
+
+    @Override
     public void press()
     {
         if (!_isDisabled)

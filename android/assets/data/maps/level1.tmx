@@ -95,6 +95,6 @@
   <object id="63" name="Crater" x="11744" y="992" width="192" height="32"/>
   <object id="64" name="Ground" x="11744" y="1024" width="192" height="64"/>
   <object id="65" name="Ground" x="11936" y="992" width="7296" height="96"/>
-  <object id="66" name="Ceiling" x="0" y="0" width="19232" height="128"/>
+  <object id="66" name="Ceiling" x="0" y="0" width="19232" height="160"/>
  </objectgroup>
 </map>

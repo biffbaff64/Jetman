@@ -58,11 +58,11 @@ public class InputManager
 
         //
         // Initialise external controllers if enabled.
-        if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._EXTERNAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true))
         {
             Trace.dbg("Initialising _EXTERNAL Controller Type");
 
-            gameController = new com.richikin.jetman.input.GameController(app);
+            gameController = new GameController(app);
 
             if (!gameController.setup())
             {
@@ -78,7 +78,7 @@ public class InputManager
 
         inputMultiplexer.addProcessor(keyboard);
 
-        com.richikin.jetman.input.UIButtons.setup(app);
+        UIButtons.setup(app);
 
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
         Gdx.input.setCatchKey(Input.Keys.MENU, true);
@@ -93,7 +93,7 @@ public class InputManager
 
         if (app.getHud() != null)
         {
-            if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._VIRTUAL, true))
+            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
                 if (virtualJoystick != null)
                 {
@@ -102,13 +102,13 @@ public class InputManager
             }
             else
             {
-                if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._EXTERNAL, true))
+                if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true))
                 {
                     xPercent = _horizontalValue;
                 }
                 else
                 {
-                    if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._KEYBOARD, true))
+                    if (AppConfig.availableInputs.contains(ControllerType._KEYBOARD, true))
                     {
                         keyboard.translateXPercent();
 
@@ -127,7 +127,7 @@ public class InputManager
 
         if (app.getHud() != null)
         {
-            if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._VIRTUAL, true))
+            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
                 if (virtualJoystick != null)
                 {
@@ -136,7 +136,7 @@ public class InputManager
             }
             else
             {
-                if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._EXTERNAL, true))
+                if (AppConfig.availableInputs.contains(ControllerType._EXTERNAL, true))
                 {
                     yPercent = _verticalValue;
 
@@ -156,7 +156,7 @@ public class InputManager
                 }
                 else
                 {
-                    if (AppConfig.availableInputs.contains(com.richikin.jetman.input.objects.ControllerType._KEYBOARD, true))
+                    if (AppConfig.availableInputs.contains(ControllerType._KEYBOARD, true))
                     {
                         keyboard.translateYPercent();
 

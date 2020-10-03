@@ -7,6 +7,8 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.AABB.CollisionObject;
 
 public class GameEntity implements IGameEntity, Disposable
 {
@@ -17,7 +19,7 @@ public class GameEntity implements IGameEntity, Disposable
     public float       frameWidth;
     public float       frameHeight;
 
-//    public CollisionObject collisionObject;
+    public CollisionObject collisionObject;
     public Body            b2dBody;
     public BodyDef         bodyDef;
     public short           bodyCategory;
@@ -46,22 +48,22 @@ public class GameEntity implements IGameEntity, Disposable
     @Override
     public void setCollisionObject(float _xPos, float _yPos)
     {
-//        collisionObject = app.collisionUtils.newObject
-//            (
-//                (int) _xPos,
-//                (int) _yPos,
-//                (int) frameWidth,
-//                (int) frameHeight,
-//                GraphicID._ENTITY
-//            );
-//
-//        collisionObject.gid        = this.gid;
-//        collisionObject.isObstacle = false;
-//
-//        if (this.gid != GraphicID.G_NO_ID)
-//        {
-//            AABBData.add(collisionObject);
-//        }
+        collisionObject = app.collisionUtils.newObject
+            (
+                (int) _xPos,
+                (int) _yPos,
+                (int) frameWidth,
+                (int) frameHeight,
+                GraphicID._ENTITY
+            );
+
+        collisionObject.gid        = this.gid;
+        collisionObject.isObstacle = false;
+
+        if (this.gid != GraphicID.G_NO_ID)
+        {
+            AABBData.add(collisionObject);
+        }
     }
 
     /**
@@ -70,8 +72,6 @@ public class GameEntity implements IGameEntity, Disposable
     @Override
     public void dispose()
     {
-        b2dBody  = null;
-        bodyDef  = null;
         position = null;
     }
 }

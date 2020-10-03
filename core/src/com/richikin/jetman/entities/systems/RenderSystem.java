@@ -57,7 +57,6 @@ public class RenderSystem
                                 {
                                     if (isInViewWindow(entity) && entity.isDrawable)
                                     {
-                                        entity.setPositionfromBody();
                                         entity.draw(app.spriteBatch);
                                     }
                                 }

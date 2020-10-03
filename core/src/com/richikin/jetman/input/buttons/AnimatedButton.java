@@ -184,6 +184,18 @@ public class AnimatedButton implements GDXButton, Disposable
         }
     }
 
+    @Override
+    public boolean checkPress(int touchX, int touchY)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean checkRelease(int touchX, int touchY)
+    {
+        return false;
+    }
+
     public boolean contains(int x, int y)
     {
         return !_isDisabled && buttonRect.contains((float) x, (float) y);

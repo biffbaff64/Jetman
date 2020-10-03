@@ -46,11 +46,6 @@ public class Teleporter extends GdxSprite
         collidesWith = Gfx.CAT_PLAYER
             | Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_GROUND;
-
-        b2dBody = app.worldModel.bodyBuilder.createDynamicBox
-            (
-                this,1.0f, 1.0f, 0.1f
-            );
     }
 
     @Override

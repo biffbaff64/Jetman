@@ -46,7 +46,6 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
             // Update any buttons that are animating/Scaling etc
             for (GDXButton button : app.inputManager.gameButtons)
             {
-                button.update();
             }
         }
     }

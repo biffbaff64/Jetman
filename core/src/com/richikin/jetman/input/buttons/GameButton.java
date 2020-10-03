@@ -94,6 +94,40 @@ public class GameButton implements GDXButton, Disposable
     {
     }
 
+    @Override
+    public boolean checkPress(int touchX, int touchY)
+    {
+        boolean returnFlag = false;
+
+        if (!_isDisabled)
+        {
+            if (contains(touchX, touchY))
+            {
+                press();
+                returnFlag = true;
+            }
+        }
+
+        return returnFlag;
+    }
+
+    @Override
+    public boolean checkRelease(int touchX, int touchY)
+    {
+        boolean returnFlag = false;
+
+        if (!_isDisabled)
+        {
+            if (contains(touchX, touchY))
+            {
+                release();
+                returnFlag = true;
+            }
+        }
+
+        return returnFlag;
+    }
+
     public boolean contains(int x, int y)
     {
         return !_isDisabled && buttonRect.contains((float) x, (float) y);

@@ -179,6 +179,20 @@ buttonStart_pressed
   orig: 315, 48
   offset: 0, 0
   index: -1
+button_a
+  rotate: false
+  xy: 244, 232
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+button_a_pressed
+  rotate: false
+  xy: 244, 118
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
 button_achievements
   rotate: false
   xy: 548, 2
@@ -193,16 +207,16 @@ button_achievements_pressed
   orig: 76, 124
   offset: 0, 0
   index: -1
-button_drop
+button_b
   rotate: false
-  xy: 244, 232
+  xy: 244, 4
   size: 112, 112
   orig: 112, 112
   offset: 0, 0
   index: -1
-button_drop_pressed
+button_b_pressed
   rotate: false
-  xy: 244, 118
+  xy: 648, 232
   size: 112, 112
   orig: 112, 112
   offset: 0, 0
@@ -212,20 +226,6 @@ button_e
   xy: 1444, 290
   size: 66, 66
   orig: 66, 66
-  offset: 0, 0
-  index: -1
-button_fire
-  rotate: false
-  xy: 244, 4
-  size: 112, 112
-  orig: 112, 112
-  offset: 0, 0
-  index: -1
-button_fire_pressed
-  rotate: false
-  xy: 648, 232
-  size: 112, 112
-  orig: 112, 112
   offset: 0, 0
   index: -1
 button_k

@@ -5,6 +5,10 @@ public abstract interface GDXButton
 {
     void update();
 
+    boolean checkPress(int touchX, int touchY);
+
+    boolean checkRelease(int touchX, int touchY);
+
     void press();
 
     boolean isPressed();
