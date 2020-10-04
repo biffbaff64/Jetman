@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.TileID;
 import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
@@ -146,11 +145,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForFalling()
     {
-        GraphicID graphicID = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid;
-
-        if ((graphicID != GraphicID._GROUND)
-            && (graphicID != GraphicID._BRIDGE)
-            && (graphicID != GraphicID.G_ROVER_BOOT))
+        if (app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid == GraphicID.G_NO_ID)
         {
             app.getPlayer().isInMidAir = true;
             app.getPlayer().isOnGround = false;
@@ -163,27 +158,46 @@ public class CollisionHandler implements ICollisionListener, Disposable
     }
 
     /**
-     * Returns TRUE if LJM is standing in fron of
+     * Returns TRUE if LJM is standing in front of
      * the Moon Rover, in the middle between the wheels.
      */
     boolean isInRoverMiddle()
     {
         boolean isInMiddle = false;
 
-        if (app.doesRoverExist())
-        {
-            isInMiddle = (app.getRover().getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle())
-                && !Intersector.overlaps(app.getRover().frontWheel.getCollisionRectangle(), app.getPlayer().getCollisionRectangle())
-                && !Intersector.overlaps(app.getRover().backWheel.getCollisionRectangle(), app.getPlayer().getCollisionRectangle()));
-        }
+//        if (app.doesRoverExist())
+//        {
+//            isInMiddle = (app.getRover().getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle())
+//                && !Intersector.overlaps(app.getRover().frontWheel.getCollisionRectangle(), app.getPlayer().getCollisionRectangle())
+//                && !Intersector.overlaps(app.getRover().backWheel.getCollisionRectangle(), app.getPlayer().getCollisionRectangle()));
+//        }
 
         return isInMiddle;
     }
 
     /**
+     *
+     */
+    private void setOnGround(GraphicID graphicID)
+    {
+        app.getPlayer().isInMidAir = false;
+        app.getPlayer().isOnGround = true;
+        app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
+
+        if (app.getPlayer().getSpriteAction() == Actions._FALLING)
+        {
+            app.getPlayer().setAction(Actions._STANDING);
+            app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+        }
+
+        Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
+
+        app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+    }
+
+    /**
      * Returns TRUE if LJM is in contact with the
      * ground, bridge section, or rover boot.
-     * NOTE: _BRIDGE sections are defined as _GROUND objects.
      */
     private void checkForGround()
     {
@@ -197,7 +211,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
             {
                 app.getPlayer().isInMidAir = false;
                 app.getPlayer().isOnGround = true;
-
                 app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
 
                 if (app.getPlayer().getSpriteAction() == Actions._FALLING)
@@ -226,36 +239,11 @@ public class CollisionHandler implements ICollisionListener, Disposable
         }
     }
 
-    /**
-     *
-     */
-    private void setOnGround(GraphicID graphicID)
-    {
-        app.getPlayer().isInMidAir = false;
-        app.getPlayer().isOnGround = true;
-        app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
-
-        if (app.getPlayer().getSpriteAction() == Actions._FALLING)
-        {
-            app.getPlayer().setAction(Actions._STANDING);
-            app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
-        }
-
-        Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
-
-        app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
-    }
-
     private void checkForCrater()
     {
         if (!app.getPlayer().isRidingRover)
         {
-            if (app.collisionUtils.getMarkerTileOn
-                (
-                    (int) app.getPlayer().tileRectangle.x,
-                    (int) app.getPlayer().tileRectangle.y
-                )
-                == TileID._CRATER_TILE)
+            if (app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid == GraphicID._CRATER)
             {
                 if (!app.getPlayer().isMovingX)
                 {

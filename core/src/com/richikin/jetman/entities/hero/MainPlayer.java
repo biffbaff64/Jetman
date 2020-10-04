@@ -22,6 +22,7 @@ import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Meters;
 import com.richikin.jetman.utils.logging.Stats;
+import com.richikin.jetman.utils.logging.StopWatch;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MainPlayer extends GdxSprite
@@ -62,6 +63,7 @@ public class MainPlayer extends GdxSprite
     private TextureRegion[]          spawnFrames;
     private Animation<TextureRegion> spawnAnim;
     private float                    elapsedSpawnTime;
+    private StopWatch                stopWatch;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -91,6 +93,7 @@ public class MainPlayer extends GdxSprite
             | Gfx.CAT_SCENERY;
 
         isMainCharacter = true;
+        stopWatch       = StopWatch.start();
 
         createPartners();
 
@@ -142,6 +145,19 @@ public class MainPlayer extends GdxSprite
         setAction(Actions._SPAWNING);
 
         createSpawnAnimation();
+    }
+
+    @Override
+    public void preUpdate()
+    {
+        if (getSpriteAction() == Actions._RESTARTING)
+        {
+            sprite.setPosition(app.mapData.checkPoint.getX(), app.mapData.checkPoint.getY());
+
+            setAction(Actions._SPAWNING);
+        }
+
+        super.preUpdate();
     }
 
     @Override
@@ -237,18 +253,18 @@ public class MainPlayer extends GdxSprite
             // Fall to the ground after being killed while flying
             case _FALLING_TO_GROUND:
             {
-//                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
-//                {
-//                    explode();
-//
-//                    isRotating  = false;
-//                    rotateSpeed = 0;
-//                }
-//                else
-//                {
-//                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
-//                    speed.y += 0.2f;
-//                }
+                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
+                {
+                    explode();
+
+                    isRotating  = false;
+                    rotateSpeed = 0;
+                }
+                else
+                {
+                    sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
+                    speed.y += 0.2f;
+                }
             }
             break;
 
@@ -283,6 +299,86 @@ public class MainPlayer extends GdxSprite
                 }
 
                 shootRate = 0;
+            }
+        }
+    }
+
+    @Override
+    public void postUpdate(int spriteNum)
+    {
+        switch (getSpriteAction())
+        {
+            case _PAUSED:
+            case _TELEPORTING:
+            case _RIDING:
+            case _EXPLODING:
+            case _FALLING_TO_GROUND:
+            case _DYING:
+            case _RESETTING:
+            case _DEAD:
+            {
+            }
+            break;
+
+            default:
+            {
+                if (((app.getRover() != null) && (app.getRover().getSpriteAction() == Actions._EXPLODING))
+                    || ((strength <= 0) && isOnGround))
+                {
+                    explode();
+
+                    stopWatch.reset();
+                }
+                else
+                {
+                    if (strength <= 0)
+                    {
+                        setAction(Actions._FALLING_TO_GROUND);
+
+                        speed.setY(2.0f);
+                        isRotating = true;
+                        rotateSpeed = 6.0f;
+                        elapsedAnimTime = 0;
+                        stopWatch.reset();
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    public void handleDying()
+    {
+        if (app.gameProgress.playerLifeOver)
+        {
+            app.gameProgress.lives.setToMinimum();
+        }
+        else
+        {
+            app.gameProgress.lives.subtract(1);
+        }
+
+        // Restart if this player has more lives left...
+        if (app.gameProgress.lives.getTotal() > 0)
+        {
+            setAction(Actions._RESETTING);
+            isDrawable = false;
+
+            app.gameProgress.isRestarting   = true;
+            app.gameProgress.playerGameOver = false;
+
+            app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+        }
+        else
+        {
+            setAction(Actions._DEAD);
+
+            app.gameProgress.isRestarting   = false;
+            app.gameProgress.playerGameOver = true;
+
+            if (app.gameProgress.playerLifeOver)
+            {
+                app.gameProgress.lives.setToMinimum();
             }
         }
     }
@@ -462,42 +558,6 @@ public class MainPlayer extends GdxSprite
 
         rightEdge = sprite.getX() + frameWidth;
         topEdge   = sprite.getY() + frameHeight;
-    }
-
-    public void handleDying()
-    {
-        if (app.gameProgress.playerLifeOver)
-        {
-            app.gameProgress.lives.setToMinimum();
-        }
-        else
-        {
-            app.gameProgress.lives.subtract(1);
-        }
-
-        // Restart if this player has more lives left...
-        if (app.gameProgress.lives.getTotal() > 0)
-        {
-            setAction(Actions._RESETTING);
-            isDrawable = false;
-
-            app.gameProgress.isRestarting   = true;
-            app.gameProgress.playerGameOver = false;
-
-            app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
-        }
-        else
-        {
-            setAction(Actions._DEAD);
-
-            app.gameProgress.isRestarting   = false;
-            app.gameProgress.playerGameOver = true;
-
-            if (app.gameProgress.playerLifeOver)
-            {
-                app.gameProgress.lives.setToMinimum();
-            }
-        }
     }
 
     public void kill()

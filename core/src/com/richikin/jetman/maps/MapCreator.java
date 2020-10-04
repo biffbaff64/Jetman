@@ -156,6 +156,13 @@ public class MapCreator
     {
         GameEntity gameEntity;
 
+        gameEntity = new GameEntity(app);
+        gameEntity.gid = GraphicID.G_NO_ID;
+        gameEntity.type = GraphicID.G_NO_ID;
+        gameEntity.position = new SimpleVec2F();
+        gameEntity.collisionObject = app.collisionUtils.newObject();
+        AABBData.add(gameEntity.collisionObject);
+
         for (MapObject mapObject : app.mapData.mapObjects)
         {
             if (mapObject instanceof RectangleMapObject)

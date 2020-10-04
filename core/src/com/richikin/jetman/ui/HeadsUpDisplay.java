@@ -531,11 +531,13 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw(app.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
             }
 
-            smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 608);
-            smallFont.draw(app.spriteBatch, "SPD  : " + app.getPlayer().speed.toString(), originX + 20, originY + 578);
-            smallFont.draw(app.spriteBatch, "ACT  : " + app.getPlayer().getSpriteAction(), originX + 20, originY + 548);
-            smallFont.draw(app.spriteBatch, "MOV  : " + app.getPlayer().isMovingX + ", " + app.getPlayer().isMovingY, originX + 20, originY + 518);
-            smallFont.draw(app.spriteBatch, "CON  : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 480);
+            smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
+            smallFont.draw(app.spriteBatch, "SPD  : " + app.getPlayer().speed.toString(), originX + 20, originY + 570);
+            smallFont.draw(app.spriteBatch, "ACT  : " + app.getPlayer().getSpriteAction(), originX + 20, originY + 540);
+            smallFont.draw(app.spriteBatch, "MOV  : " + app.getPlayer().isMovingX + ", " + app.getPlayer().isMovingY, originX + 20, originY + 510);
+            smallFont.draw(app.spriteBatch, "GND  : " + app.getPlayer().isOnGround, originX + 20, originY + 480);
+            smallFont.draw(app.spriteBatch, "CON  : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 450);
+            smallFont.draw(app.spriteBatch, "IMA  : " + app.getPlayer().isInMidAir, originX + 20, originY + 420);
         }
 
         bigFont.draw

@@ -231,7 +231,8 @@ public class GdxSprite extends GameEntity implements IGameSprite
         }
 
         // By default, sprites are always looking DOWN
-        if ((lookingAt.getY() != Movement._DIRECTION_DOWN) && (lookingAt.getY() != Movement._DIRECTION_UP))
+        if ((lookingAt.getY() != Movement._DIRECTION_DOWN)
+            && (lookingAt.getY() != Movement._DIRECTION_UP))
         {
             lookingAt.setY(Movement._DIRECTION_DOWN);
         }
