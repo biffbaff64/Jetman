@@ -13,7 +13,6 @@ import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
-import com.richikin.jetman.physics.AABB.AABBData;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 

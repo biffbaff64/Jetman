@@ -3,7 +3,7 @@ package com.richikin.jetman.core;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.screens.MainGameScreen;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 import java.util.concurrent.TimeUnit;

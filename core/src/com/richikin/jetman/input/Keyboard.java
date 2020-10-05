@@ -10,7 +10,7 @@ import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.DirectionValue;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.screens.ScreenID;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 
 @SuppressWarnings("WeakerAccess")
 public class Keyboard extends InputAdapter

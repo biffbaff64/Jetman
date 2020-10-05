@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.richikin.jetman.utils;
+package com.richikin.jetman.utils.developer;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

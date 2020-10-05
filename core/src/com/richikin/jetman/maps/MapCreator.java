@@ -3,7 +3,6 @@ package com.richikin.jetman.maps;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
-import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
@@ -18,7 +17,6 @@ import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
-import com.richikin.jetman.utils.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator

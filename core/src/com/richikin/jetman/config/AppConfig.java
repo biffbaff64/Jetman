@@ -9,7 +9,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.jetman.screens.ScreenID;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Stats;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -72,6 +72,9 @@ public class AppConfig
 
             virtualControllerPos = ControllerPos._HIDDEN;
         }
+
+        app.settings.enable(Settings._SPRITE_BOXES);
+        app.settings.enable(Settings._TILE_BOXES);
 
         Stats.setup();
 

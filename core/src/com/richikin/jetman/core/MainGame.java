@@ -1,7 +1,7 @@
 package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.google.DummyAdsController;
 import com.richikin.jetman.utils.google.PlayServices;
 

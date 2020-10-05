@@ -36,13 +36,14 @@ public class CollisionObject implements Disposable
      * _COLLIDING   -   In Collision.
      * _DEAD        -   To be removed from the list.
      */
-    public Actions   action;
-    public GraphicID gid;                   // ID of THIS object
-    public GraphicID contactGid;            // ID of contact object
-    public Rectangle rectangle;             // The actual collision rectangle
-    public GdxSprite parentSprite;          // The GdxSprite this collision object belongs to, if applicable.
-    public GdxSprite contactSprite;         // ID of contact object
-    public int index;                       // This objects position in the collision object arraylist
+    public Actions       action;
+    public GraphicID     gid;               // ID of THIS object
+    public GraphicID     type;              // _OBSTACLE or _ENTITY
+    public GraphicID     contactGid;        // ID of contact object
+    public CollisionRect rectangle;         // The actual collision rectangle
+    public GdxSprite     parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
+    public GdxSprite     contactSprite;     // ID of contact object
+    public int           index;             // This objects position in the collision object arraylist
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
     public GraphicID idBottom;              // ID of object hitting the bottom of this object
@@ -54,7 +55,7 @@ public class CollisionObject implements Disposable
     public int boxHittingLeft;
     public int boxHittingRight;
 
-    public short contactMask;
+    public short   contactMask;
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
@@ -88,16 +89,16 @@ public class CollisionObject implements Disposable
     {
         clearCollision();
 
-        index                   = AABBData.boxes().size;
-        isHittingPlayer         = false;
-        isObstacle              = true;
-        isContactObstacle       = false;
-        gid                     = GraphicID.G_NO_ID;
-        contactGid              = GraphicID.G_NO_ID;
-        action                  = Actions._COLLIDABLE;
-        contactMask             = 0;
-        invisibilityTimer       = StopWatch.start();
-        isInvisibilityAllowed   = true;
+        index                 = AABBData.boxes().size;
+        isHittingPlayer       = false;
+        isObstacle            = true;
+        isContactObstacle     = false;
+        gid                   = GraphicID.G_NO_ID;
+        contactGid            = GraphicID.G_NO_ID;
+        action                = Actions._COLLIDABLE;
+        contactMask           = 0;
+        invisibilityTimer     = StopWatch.start();
+        isInvisibilityAllowed = true;
     }
 
     public void kill()
@@ -174,8 +175,8 @@ public class CollisionObject implements Disposable
 
     public void setInvisibility(int timeInMilliseconds)
     {
-        action              = Actions._INVISIBLE;
-        invisibilityDelay   = timeInMilliseconds;
+        action            = Actions._INVISIBLE;
+        invisibilityDelay = timeInMilliseconds;
 
         invisibilityTimer.reset();
     }

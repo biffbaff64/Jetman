@@ -19,7 +19,7 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.physics.AABB.CollisionRect;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Meters;
 import com.richikin.jetman.utils.logging.Stats;
 import com.richikin.jetman.utils.logging.StopWatch;

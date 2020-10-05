@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
+import com.richikin.jetman.utils.developer.DebugRenderer;
 
 public class WorldRenderer implements GameScreenRenderer
 {
@@ -43,6 +44,8 @@ public class WorldRenderer implements GameScreenRenderer
                 {
                     app.entityManager.drawSprites();
                 }
+
+                DebugRenderer.drawBoxes();
             }
             break;
 

@@ -1,13 +1,12 @@
 package com.richikin.jetman.core;
 
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.box2d.BodyBuilder;
 import com.richikin.jetman.physics.box2d.Box2DContactListener;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 
 public class WorldModel
 {

@@ -8,7 +8,6 @@ import com.richikin.jetman.assets.AssetLoader;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.CameraUtils;
@@ -21,7 +20,8 @@ import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.DebugRenderer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class Startup
@@ -85,6 +85,7 @@ public class Startup
 
         GameAudio.setup(app);
         Shake.setAllowed(false);
+        DebugRenderer.setup(app);
 
         Trace.divider();
     }

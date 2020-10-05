@@ -17,8 +17,6 @@ import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
 import com.richikin.jetman.physics.AABB.AABB;
-import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;

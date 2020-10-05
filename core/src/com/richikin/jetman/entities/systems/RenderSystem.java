@@ -3,15 +3,12 @@ package com.richikin.jetman.entities.systems;
 // TODO: 27/12/2018 - This class is becoming untidy, with multiple draw methods.
 //                  - Investigate simplifying the draw methods.
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.DeveloperUtils;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {

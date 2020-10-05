@@ -8,7 +8,8 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class CollisionHandler implements ICollisionListener, Disposable
 {
@@ -203,12 +204,16 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         GraphicID graphicID = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid;
 
+        Trace.__FILE_FUNC();
+
         switch (graphicID)
         {
             case _GROUND:
             case _BRIDGE:
             case G_ROVER_BOOT:
             {
+                Trace.__FILE_FUNC_LINE();
+
                 app.getPlayer().isInMidAir = false;
                 app.getPlayer().isOnGround = true;
                 app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);

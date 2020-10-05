@@ -2,6 +2,7 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.maths.Item;
+import com.richikin.jetman.utils.NumberUtils;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class GameProgress implements Disposable
@@ -23,6 +24,17 @@ public class GameProgress implements Disposable
     public Item score;
     public Item lives;
 
+    public enum Stack
+    {
+        _SCORE,
+        _TIME,
+        _FUEL
+    }
+
+    private int scoreStack;
+    private int timeStack;
+    private int fuelStack;
+
     private final App app;
 
     public GameProgress(App _app)
@@ -31,6 +43,10 @@ public class GameProgress implements Disposable
 
         score = new Item(0, GameConstants._MAX_SCORE, 0);
         lives = new Item(0, GameConstants._MAX_LIVES, GameConstants._MAX_LIVES);
+
+        this.scoreStack = 0;
+        this.timeStack = 0;
+        this.fuelStack = 0;
     }
 
     public void resetProgress()
@@ -44,6 +60,79 @@ public class GameProgress implements Disposable
         gameDiffculty  = 1.0f;
 
         resetData();
+    }
+
+    public void update()
+    {
+        switch (app.appState.peek())
+        {
+            case _STATE_PAUSED:
+            case _STATE_GAME:
+            case _STATE_MESSAGE_PANEL:
+            {
+                updateStacks();
+            }
+            break;
+
+            default:
+                break;
+        }
+    }
+
+    public void stackPush(Stack stack, int amount)
+    {
+        switch (stack)
+        {
+            case _SCORE:
+            {
+                scoreStack += amount;
+            }
+            break;
+
+            case _TIME:
+            {
+                timeStack += amount;
+            }
+            break;
+
+            case _FUEL:
+            {
+                fuelStack += amount;
+            }
+            break;
+
+            default:
+                break;
+        }
+    }
+
+    private void updateStacks()
+    {
+        int amount;
+
+        if (scoreStack > 0)
+        {
+            amount = NumberUtils.getCount(scoreStack);
+
+            score.add(amount);
+            scoreStack -= amount;
+        }
+
+        if (timeStack > 0)
+        {
+            amount = NumberUtils.getCount(timeStack);
+
+            app.getHud().getTimeBar().add(amount);
+            timeStack -= amount;
+        }
+
+        if (fuelStack > 0)
+        {
+            amount = NumberUtils.getCount(fuelStack);
+
+            app.getHud().getFuelBar().add(amount);
+            fuelStack -= amount;
+        }
     }
 
     /**

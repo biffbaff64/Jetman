@@ -15,7 +15,7 @@ import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class TeleportManager extends GenericEntityManager

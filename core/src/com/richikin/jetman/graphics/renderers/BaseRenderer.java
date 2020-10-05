@@ -7,7 +7,6 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
-import com.richikin.jetman.core.WorldModel;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.ViewportType;
@@ -15,7 +14,7 @@ import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.maths.SimpleVec3F;
-import com.richikin.jetman.utils.Developer;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class BaseRenderer implements Disposable
