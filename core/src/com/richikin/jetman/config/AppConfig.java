@@ -73,6 +73,7 @@ public class AppConfig
             virtualControllerPos = ControllerPos._HIDDEN;
         }
 
+        app.settings.enable(Settings._DISABLE_MENU_SCREEN);
         app.settings.enable(Settings._SPRITE_BOXES);
         app.settings.enable(Settings._TILE_BOXES);
 

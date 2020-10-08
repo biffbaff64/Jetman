@@ -181,19 +181,22 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void setOnGround(GraphicID graphicID)
     {
-        app.getPlayer().isInMidAir = false;
-        app.getPlayer().isOnGround = true;
-        app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
-
-        if (app.getPlayer().getSpriteAction() == Actions._FALLING)
+        if (app.getPlayer().getSpriteAction() != Actions._FLYING)
         {
-            app.getPlayer().setAction(Actions._STANDING);
-            app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+            app.getPlayer().isInMidAir    = false;
+            app.getPlayer().isOnGround    = true;
+            app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
+
+            if (app.getPlayer().getSpriteAction() == Actions._FALLING)
+            {
+                app.getPlayer().setAction(Actions._STANDING);
+                app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+            }
+
+            Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
+
+            app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
         }
-
-        Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
-
-        app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
     }
 
     /**
