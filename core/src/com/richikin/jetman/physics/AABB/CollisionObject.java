@@ -21,6 +21,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.StopWatch;
 
@@ -41,8 +42,8 @@ public class CollisionObject implements Disposable
     public GraphicID     type;              // _OBSTACLE or _ENTITY
     public GraphicID     contactGid;        // ID of contact object
     public CollisionRect rectangle;         // The actual collision rectangle
-    public GdxSprite     parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
-    public GdxSprite     contactSprite;     // ID of contact object
+    public GameEntity    parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
+    public GameEntity    contactSprite;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
@@ -55,7 +56,10 @@ public class CollisionObject implements Disposable
     public int boxHittingLeft;
     public int boxHittingRight;
 
+    public short   bodyCategory;
+    public short   collidesWith;
     public short   contactMask;
+
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
@@ -83,6 +87,16 @@ public class CollisionObject implements Disposable
         rectangle = new CollisionRect(new Rectangle(x, y, width, height), _type);
 
         create();
+    }
+
+    public GameEntity getParent()
+    {
+        return parentSprite;
+    }
+
+    public GameEntity getContact()
+    {
+        return contactSprite;
     }
 
     private void create()

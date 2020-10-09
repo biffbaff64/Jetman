@@ -2,6 +2,8 @@ package com.richikin.jetman.core;
 
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
@@ -172,6 +174,12 @@ public class GameControlLoop extends AbstractControlLoop
             {
                 app.getPlayer().setup(false);
             }
+        }
+
+        Trace.dbg("COLLISIONOBJECT ARRAY");
+        for (CollisionObject _obj : AABBData.boxes())
+        {
+            Trace.dbg(_obj.index + " : " + _obj.gid);
         }
     }
 

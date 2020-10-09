@@ -537,6 +537,7 @@ public class HeadsUpDisplay implements Disposable
             smallFont.draw(app.spriteBatch, "GND  : " + app.getPlayer().isOnGround, originX + 20, originY + 480);
             smallFont.draw(app.spriteBatch, "CON  : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 450);
             smallFont.draw(app.spriteBatch, "IMA  : " + app.getPlayer().isInMidAir, originX + 20, originY + 420);
+            smallFont.draw(app.spriteBatch, "CBA  : " + app.getPlayer().collisionObject.action, originX + 20, originY + 390);
         }
 
         bigFont.draw

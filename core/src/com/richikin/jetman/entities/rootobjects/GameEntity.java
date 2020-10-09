@@ -12,13 +12,12 @@ import com.richikin.jetman.physics.AABB.CollisionObject;
 
 public class GameEntity implements IGameEntity, Disposable
 {
-    public GraphicID   gid;
-    public GraphicID   type;
-    public SimpleVec2F position;
-    public int         zPosition;
-    public float       frameWidth;
-    public float       frameHeight;
-
+    public GraphicID       gid;
+    public GraphicID       type;
+    public SimpleVec2F     position;
+    public int             zPosition;
+    public float           frameWidth;
+    public float           frameHeight;
     public CollisionObject collisionObject;
     public Body            b2dBody;
     public BodyDef         bodyDef;
@@ -64,6 +63,12 @@ public class GameEntity implements IGameEntity, Disposable
         {
             AABBData.add(collisionObject);
         }
+    }
+
+    @Override
+    public void setAction(Actions _action)
+    {
+        this.entityAction = _action;
     }
 
     /**

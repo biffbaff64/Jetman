@@ -17,6 +17,7 @@ import com.richikin.jetman.physics.AABB.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator
@@ -46,6 +47,13 @@ public class MapCreator
 
         parseMarkerTiles();
         createCollisionBoxes();
+
+//        if (Developer.isDevMode())
+//        {
+//            Trace.megaDivider("PLACEMENT TILE ARRAY - START");
+//            debugPlacementsTiles();
+//            Trace.megaDivider("PLACEMENT TILE ARRAY - END");
+//        }
     }
 
     /**
