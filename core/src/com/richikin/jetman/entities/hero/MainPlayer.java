@@ -17,7 +17,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
-import com.richikin.jetman.physics.AABB.CollisionRect;
+import com.richikin.jetman.physics.aabb.CollisionRect;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Meters;
@@ -58,9 +58,9 @@ public class MainPlayer extends GdxSprite
     public Box   viewBox;
 
     private SpriteDescriptor         descriptor;
-    private TextureRegion            bridgeSection;
-    private int                      laserColour;
-    private TextureRegion[]          spawnFrames;
+    private TextureRegion   bridgeSection;
+    public  int             laserColour;
+    private TextureRegion[] spawnFrames;
     private Animation<TextureRegion> spawnAnim;
     private float                    elapsedSpawnTime;
     private StopWatch                stopWatch;
@@ -150,7 +150,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void preUpdate()
     {
-        if (getSpriteAction() == Actions._RESTARTING)
+        if (getAction() == Actions._RESTARTING)
         {
             sprite.setPosition(app.mapData.checkPoint.getX(), app.mapData.checkPoint.getY());
 
@@ -174,7 +174,7 @@ public class MainPlayer extends GdxSprite
         }
         else
         {
-            if (getSpriteAction() == Actions._TELEPORTING)
+            if (getAction() == Actions._TELEPORTING)
             {
                 if (teleport.update())
                 {
@@ -194,7 +194,7 @@ public class MainPlayer extends GdxSprite
 
     private void updateMainPlayer()
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _TELEPORTING:
             case _RIDING:
@@ -232,7 +232,7 @@ public class MainPlayer extends GdxSprite
             {
                 buttons.checkButtons();
 
-                if (getSpriteAction() == Actions._STANDING)
+                if (getAction() == Actions._STANDING)
                 {
                     movePlayer();
                 }
@@ -271,7 +271,7 @@ public class MainPlayer extends GdxSprite
             default:
             {
                 Trace.__FILE_FUNC_WithDivider();
-                Trace.dbg("Unsupported player action: " + getSpriteAction());
+                Trace.dbg("Unsupported player action: " + getAction());
 
                 Stats.incMeter(Meters._BAD_PLAYER_ACTION.get());
             }
@@ -286,7 +286,7 @@ public class MainPlayer extends GdxSprite
 
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 5))
             {
-                laserManager.createLaser(this);
+                laserManager.createLaser(this, app);
 
                 if (++laserColour >= 8)
                 {
@@ -306,7 +306,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void postUpdate(int spriteNum)
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _PAUSED:
             case _TELEPORTING:
@@ -322,7 +322,7 @@ public class MainPlayer extends GdxSprite
 
             default:
             {
-                if (((app.getRover() != null) && (app.getRover().getSpriteAction() == Actions._EXPLODING))
+                if (((app.getRover() != null) && (app.getRover().getAction() == Actions._EXPLODING))
                     || ((strength <= 0) && isOnGround))
                 {
                     explode();
@@ -386,7 +386,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void animate()
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _TELEPORTING:
             case _RIDING:
@@ -407,7 +407,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void setAction(Actions action)
     {
-        if (getSpriteAction() != action)
+        if (getAction() != action)
         {
             switch (action)
             {
@@ -511,7 +511,7 @@ public class MainPlayer extends GdxSprite
                 super.draw(spriteBatch);
             }
 
-            if (getSpriteAction() == Actions._SPAWNING)
+            if (getAction() == Actions._SPAWNING)
             {
                 spriteBatch.draw
                     (
@@ -593,7 +593,7 @@ public class MainPlayer extends GdxSprite
             }
         }
 
-        if (getSpriteAction() == Actions._FALLING)
+        if (getAction() == Actions._FALLING)
         {
             sprite.translate
                 (
@@ -612,8 +612,8 @@ public class MainPlayer extends GdxSprite
                 movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
                 movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
 
-//                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
-//                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
+                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
+                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
 
                 sprite.translate(movementXSpeed, movementYSpeed);
             }

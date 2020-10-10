@@ -106,7 +106,7 @@ public class EntityManager implements IEntityManager
             {
                 entity = (GdxSprite) app.entityData.entityMap.get(i);
 
-                if ((entity.getSpriteAction() != Actions._DEAD)
+                if ((entity.getAction() != Actions._DEAD)
                     && (entity.gid != GraphicID.G_PLAYER))
                 {
                     entity.preUpdate();
@@ -120,7 +120,7 @@ public class EntityManager implements IEntityManager
             // other entities actions.
             if (!app.settings.isEnabled(Settings._SCROLL_DEMO))
             {
-                if (_playerReady && (app.getPlayer().getSpriteAction() != Actions._DEAD))
+                if (_playerReady && (app.getPlayer().getAction() != Actions._DEAD))
                 {
                     app.getPlayer().preUpdate();
                     app.getPlayer().update(_playerIndex);
@@ -158,12 +158,12 @@ public class EntityManager implements IEntityManager
 
                 if (entity != null)
                 {
-                    if (entity.getSpriteAction() != Actions._DEAD)
+                    if (entity.getAction() != Actions._DEAD)
                     {
                         entity.postUpdate(i);
                     }
 
-                    if (entity.getSpriteAction() == Actions._DEAD)
+                    if (entity.getAction() == Actions._DEAD)
                     {
                         switch (entity.gid)
                         {

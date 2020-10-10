@@ -1,4 +1,4 @@
-package com.richikin.jetman.physics.AABB;
+package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.utils.Array;
 

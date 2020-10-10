@@ -52,11 +52,21 @@ public abstract class Entities
                     TileID._ROVER_BOOT_TILE
                 ),
 
+            // Lasers, Bullets, etc
+            new SpriteDescriptor
+                (
+                    "Laser",
+                    GraphicID.G_LASER, GraphicID._INTERACTIVE,
+                    GameAssets._LASER_ASSET, GameAssets._LASER_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._LASER_TILE
+                ),
+
             // Pickups
             new SpriteDescriptor
                 (
                     "Bomb",
-                    GraphicID.G_BOMB, GraphicID._INTERACTIVE,
+                    GraphicID.G_BOMB, GraphicID._WEAPON,
                     GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES,
                     Animation.PlayMode.LOOP,
                     TileID._BOMB_TILE
@@ -117,6 +127,14 @@ public abstract class Entities
                 ),
 
             // Mobile Enemies
+            new SpriteDescriptor
+                (
+                    "Asteroid",
+                    GraphicID.G_ASTEROID, GraphicID._ENEMY,
+                    GameAssets._ASTEROID1_ASSET, GameAssets._ASTEROID_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._ASTEROID_TILE
+                ),
 
             // Miscellaneous Enemy Related
 

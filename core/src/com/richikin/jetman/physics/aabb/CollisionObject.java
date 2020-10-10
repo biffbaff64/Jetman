@@ -14,13 +14,12 @@
  *  limitations under the License.
  */
 
-package com.richikin.jetman.physics.AABB;
+package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
-import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.StopWatch;
@@ -40,10 +39,10 @@ public class CollisionObject implements Disposable
     public Actions       action;
     public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GraphicID     contactGid;        // ID of contact object
-    public CollisionRect rectangle;         // The actual collision rectangle
-    public GameEntity    parentSprite;      // The GdxSprite this collision object belongs to, if applicable.
-    public GameEntity    contactSprite;     // ID of contact object
+    public GraphicID                                      contactGid;        // ID of contact object
+    public com.richikin.jetman.physics.aabb.CollisionRect rectangle;         // The actual collision rectangle
+    public GameEntity                                     parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
@@ -56,9 +55,7 @@ public class CollisionObject implements Disposable
     public int boxHittingLeft;
     public int boxHittingRight;
 
-    public short   bodyCategory;
-    public short   collidesWith;
-    public short   contactMask;
+    public short contactMask;
 
     public boolean isHittingPlayer;
     public boolean isObstacle;
@@ -70,14 +67,14 @@ public class CollisionObject implements Disposable
 
     public CollisionObject()
     {
-        this.rectangle = new CollisionRect(GraphicID.G_NO_ID);
+        this.rectangle = new com.richikin.jetman.physics.aabb.CollisionRect(GraphicID.G_NO_ID);
 
         create();
     }
 
     public CollisionObject(Rectangle _rectangle)
     {
-        this.rectangle = new CollisionRect(_rectangle, GraphicID.G_NO_ID);
+        this.rectangle = new com.richikin.jetman.physics.aabb.CollisionRect(_rectangle, GraphicID.G_NO_ID);
 
         create();
     }
@@ -91,19 +88,19 @@ public class CollisionObject implements Disposable
 
     public GameEntity getParent()
     {
-        return parentSprite;
+        return parentEntity;
     }
 
     public GameEntity getContact()
     {
-        return contactSprite;
+        return contactEntity;
     }
 
     private void create()
     {
         clearCollision();
 
-        index                 = AABBData.boxes().size;
+        index                 = com.richikin.jetman.physics.aabb.AABBData.boxes().size;
         isHittingPlayer       = false;
         isObstacle            = true;
         isContactObstacle     = false;
@@ -124,7 +121,7 @@ public class CollisionObject implements Disposable
     {
         boolean isTouching = false;
 
-        for (CollisionObject object : AABBData.boxes())
+        for (CollisionObject object : com.richikin.jetman.physics.aabb.AABBData.boxes())
         {
             if (object.index != parentIndex)
             {
@@ -163,7 +160,7 @@ public class CollisionObject implements Disposable
             action           = Actions._COLLIDABLE;
             isHittingPlayer  = false;
             contactMask      = 0;
-            contactSprite    = null;
+            contactEntity    = null;
             boxHittingTop    = 0;
             boxHittingBottom = 0;
             boxHittingLeft   = 0;
@@ -178,8 +175,8 @@ public class CollisionObject implements Disposable
     @Override
     public void dispose()
     {
-        contactSprite = null;
-        parentSprite  = null;
+        contactEntity = null;
+        parentEntity  = null;
         rectangle     = null;
         idTop         = null;
         idBottom      = null;

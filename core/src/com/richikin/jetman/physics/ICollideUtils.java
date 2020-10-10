@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
-import com.richikin.jetman.physics.AABB.CollisionObject;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 
 public interface ICollideUtils
 {

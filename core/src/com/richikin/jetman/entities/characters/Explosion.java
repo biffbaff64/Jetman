@@ -95,7 +95,7 @@ public class Explosion extends GdxSprite
                 if ((app.getBomb() != null)
                     && !app.getBomb().isAttachedToRover
                     && !app.getBomb().isAttachedToPlayer
-                    && (app.getBomb().getSpriteAction() == Actions._STANDING))
+                    && (app.getBomb().getAction() == Actions._STANDING))
                 {
                     if (Intersector.overlaps(getCollisionRectangle(), app.getBomb().getCollisionRectangle()))
                     {

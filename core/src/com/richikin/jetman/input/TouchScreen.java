@@ -37,13 +37,8 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                for (GDXButton button : app.inputManager.gameButtons)
-                {
-                    if (button.checkPress(screenX, screenY))
-                    {
-                        returnFlag = true;
-                    }
-                }
+                returnFlag = app.getHud().buttonA.checkPress(screenX, screenY)
+                            || app.getHud().buttonB.checkPress(screenX, screenY);
             }
         }
 
@@ -61,13 +56,8 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                for (GDXButton button : app.inputManager.gameButtons)
-                {
-                    if (button.checkRelease(screenX, screenY))
-                    {
-                        returnFlag = true;
-                    }
-                }
+                returnFlag = app.getHud().buttonA.checkRelease(screenX, screenY)
+                    || app.getHud().buttonB.checkRelease(screenX, screenY);
             }
         }
 

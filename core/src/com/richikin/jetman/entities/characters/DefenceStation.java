@@ -50,7 +50,7 @@ public class DefenceStation extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _STANDING:
             {
@@ -84,7 +84,7 @@ public class DefenceStation extends GdxSprite
             default:
             {
                 Trace.__FILE_FUNC_WithDivider();
-                Trace.dbg("Unsupported spriteAction: " + getSpriteAction());
+                Trace.dbg("Unsupported spriteAction: " + getAction());
             }
             break;
         }

@@ -125,6 +125,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
             new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
+            new AssetSize(GraphicID.G_LASER,             324,  8),
 
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),
             new AssetSize(GraphicID.G_ALIEN_WHEEL,       48,  48),

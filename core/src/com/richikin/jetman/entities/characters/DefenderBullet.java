@@ -7,7 +7,6 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
-import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.Movement;
@@ -130,7 +129,7 @@ public class DefenderBullet extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if (getSpriteAction() == Actions._RUNNING)
+        if (getAction() == Actions._RUNNING)
         {
             if (distance.isEmpty())
             {
@@ -154,7 +153,7 @@ public class DefenderBullet extends GdxSprite
         }
         else
         {
-            Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+            Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
         }
 
         animate();

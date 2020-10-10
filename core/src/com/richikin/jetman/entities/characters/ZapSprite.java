@@ -84,7 +84,7 @@ public class ZapSprite extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _STANDING:
             {
@@ -134,7 +134,7 @@ public class ZapSprite extends GdxSprite
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
             }
             break;
         }

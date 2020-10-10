@@ -20,9 +20,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.input.UIButtons;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class ButtonInputHandler implements Disposable
 {
@@ -292,13 +290,13 @@ public class ButtonInputHandler implements Disposable
                 app.getRover().isMovingX = false;
                 app.getRover().setAction(Actions._STANDING);
             }
-            else if ((app.getPlayer().getSpriteAction() != Actions._HURT)
-                    && (app.getPlayer().getSpriteAction() != Actions._FALLING_TO_GROUND))
+            else if ((app.getPlayer().getAction() != Actions._HURT)
+                    && (app.getPlayer().getAction() != Actions._FALLING_TO_GROUND))
             {
                 app.getPlayer().isMovingX = false;
                 app.getPlayer().isMovingY = false;
 
-                if (app.getPlayer().isOnGround && (app.getPlayer().getSpriteAction() != Actions._HOVERING))
+                if (app.getPlayer().isOnGround && (app.getPlayer().getAction() != Actions._HOVERING))
                 {
                     app.getPlayer().setAction(Actions._STANDING);
                     app.getPlayer().speed.set(0, 0);

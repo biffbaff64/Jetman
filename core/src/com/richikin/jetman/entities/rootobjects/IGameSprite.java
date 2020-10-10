@@ -36,10 +36,6 @@ public interface IGameSprite
 
     void setAnimation(SpriteDescriptor entityDescriptor, float frameRate);
 
-    Actions getSpriteAction();
-
-    Rectangle getCollisionRectangle();
-
     void addCollisionListener(ICollisionListener listener);
 
     void updateCollisionCheck();

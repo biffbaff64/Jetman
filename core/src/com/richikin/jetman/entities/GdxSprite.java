@@ -16,7 +16,7 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
-import com.richikin.jetman.physics.AABB.AABB;
+import com.richikin.jetman.physics.aabb.AABB;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
@@ -325,12 +325,6 @@ public class GdxSprite extends GameEntity implements IGameSprite
         collisionObject.rectangle.height = frameHeight;
     }
 
-    @Override
-    public Rectangle getCollisionRectangle()
-    {
-        return collisionObject.rectangle;
-    }
-
     /**
      * Add a {@link ICollisionListener} to
      * this entity.
@@ -374,11 +368,11 @@ public class GdxSprite extends GameEntity implements IGameSprite
 
                 if (collisionObject.action == Actions._COLLIDING)
                 {
-                    if (app.collisionUtils.filter(collisionObject.contactSprite.collidesWith, bodyCategory))
+                    if (app.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
                     {
                         if (collisionCallback != null)
                         {
-                            collisionCallback.onPositiveCollision(collisionObject.contactSprite.gid);
+                            collisionCallback.onPositiveCollision(collisionObject.contactEntity.gid);
                         }
                     }
 
@@ -429,7 +423,7 @@ public class GdxSprite extends GameEntity implements IGameSprite
     }
 
     @Override
-    public Actions getSpriteAction()
+    public Actions getAction()
     {
         return entityAction;
     }

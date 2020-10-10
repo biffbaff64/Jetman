@@ -58,9 +58,9 @@ public class TwinkleStar extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if (getSpriteAction() != Actions._STANDING)
+        if (getAction() != Actions._STANDING)
         {
-            Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+            Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
         }
 
         animate();

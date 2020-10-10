@@ -1,11 +1,10 @@
-package com.richikin.jetman.physics.AABB;
+package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.rootobjects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 
@@ -41,8 +40,7 @@ public class AABB implements Disposable
             rectangle.height++;
 
             float boxHeight = rectangle.height / 3;
-
-            int arraySize = AABBData.boxes().size;
+            int   arraySize = AABBData.boxes().size;
 
             // Obtain rectangles for the middle and bottom
             // sections of the parent sprite...
@@ -59,16 +57,16 @@ public class AABB implements Disposable
                 _thisSprite.collisionObject.action = Actions._COLLIDABLE;
 
                 if ((contactBox != null)
-                    && (contactBox.parentSprite != null)
-                    && ((_thisSprite.collidesWith & contactBox.parentSprite.bodyCategory) != 0)
-                    && ((contactBox.parentSprite.collidesWith & _thisSprite.bodyCategory) != 0)
+                    && (contactBox.parentEntity != null)
+                    && ((_thisSprite.collidesWith & contactBox.parentEntity.bodyCategory) != 0)
+                    && ((contactBox.parentEntity.collidesWith & _thisSprite.bodyCategory) != 0)
                     && (_thisSprite.collisionObject.index != contactBox.index))
                 {
                     if (Intersector.overlaps(rectangle, contactBox.rectangle))
                     {
                         if (Intersector.overlaps(contactBox.rectangle, topRectangle))
                         {
-                            isHitting                            = true;
+                            isHitting                                 = true;
                             _thisSprite.collisionObject.idTop         = contactBox.gid;
                             _thisSprite.collisionObject.boxHittingTop = contactBox.index;
                         }
@@ -79,7 +77,7 @@ public class AABB implements Disposable
                                 && (midRectangle.x <= (contactBox.rectangle.x + contactBox.rectangle.width))
                                 && ((midRectangle.x + midRectangle.width) > (contactBox.rectangle.x + contactBox.rectangle.width)))
                             {
-                                isHitting                             = true;
+                                isHitting                                  = true;
                                 _thisSprite.collisionObject.idLeft         = contactBox.gid;
                                 _thisSprite.collisionObject.boxHittingLeft = contactBox.index;
                             }
@@ -88,7 +86,7 @@ public class AABB implements Disposable
                                 && ((midRectangle.x + midRectangle.width) >= contactBox.rectangle.x)
                                 && ((midRectangle.x + midRectangle.width) <= (contactBox.rectangle.x + contactBox.rectangle.width)))
                             {
-                                isHitting                              = true;
+                                isHitting                                   = true;
                                 _thisSprite.collisionObject.idRight         = contactBox.gid;
                                 _thisSprite.collisionObject.boxHittingRight = contactBox.index;
                             }
@@ -97,7 +95,7 @@ public class AABB implements Disposable
                         if (Intersector.overlaps(contactBox.rectangle, botRectangle)
                             && (contactBox.rectangle.y <= botRectangle.y))
                         {
-                            isHitting                               = true;
+                            isHitting                                    = true;
                             _thisSprite.collisionObject.idBottom         = contactBox.gid;
                             _thisSprite.collisionObject.boxHittingBottom = contactBox.index;
                         }
@@ -109,7 +107,7 @@ public class AABB implements Disposable
                     collisionDetected = true;
                     contactBox.action = Actions._COLLIDING;
 
-                    _thisSprite.collisionObject.contactSprite = contactBox.parentSprite;
+                    _thisSprite.collisionObject.contactEntity = contactBox.parentEntity;
                     _thisSprite.collisionObject.action        = Actions._COLLIDING;
 
                     if ((_thisSprite.gid != GraphicID.G_PLAYER) && (contactBox.gid == GraphicID.G_PLAYER))

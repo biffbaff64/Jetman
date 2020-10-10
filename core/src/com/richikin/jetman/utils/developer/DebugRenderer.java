@@ -22,24 +22,17 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.AABB.CollisionObject;
-import com.richikin.jetman.physics.AABB.CollisionRect;
+import com.richikin.jetman.physics.aabb.AABBData;
+import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.jetman.physics.aabb.CollisionRect;
 import com.richikin.jetman.utils.logging.Meters;
 import com.richikin.jetman.utils.logging.Stats;
 import com.richikin.jetman.graphics.text.FontUtils;
-import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.AABB.CollisionObject;
-import com.richikin.jetman.physics.AABB.CollisionRect;
 import com.richikin.jetman.utils.logging.Trace;
-
-import java.util.Locale;
 
 public class DebugRenderer implements Disposable
 {

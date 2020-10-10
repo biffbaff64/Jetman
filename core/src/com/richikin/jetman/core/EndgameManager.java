@@ -17,7 +17,7 @@ public class EndgameManager
         boolean returnFlag = false;
 
         if ((app.getPlayer() != null)
-            && (app.getPlayer().getSpriteAction() == Actions._DEAD))
+            && (app.getPlayer().getAction() == Actions._DEAD))
         {
             // Hide HUD Controls here ??
 
@@ -57,7 +57,7 @@ public class EndgameManager
             else if (app.gameProgress.isRestarting)
             {
                 if ((app.getPlayer() != null)
-                    && (app.getPlayer().getSpriteAction() == Actions._RESETTING))
+                    && (app.getPlayer().getAction() == Actions._RESETTING))
                 {
                     app.mainGameScreen.retryDelay = StopWatch.start();
                     app.appState.set(StateID._STATE_LEVEL_RETRY);

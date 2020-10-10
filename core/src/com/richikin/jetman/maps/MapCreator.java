@@ -12,12 +12,11 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.AABB.CollisionObject;
+import com.richikin.jetman.physics.aabb.AABBData;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
-import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MapCreator

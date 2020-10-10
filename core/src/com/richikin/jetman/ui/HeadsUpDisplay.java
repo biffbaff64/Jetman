@@ -240,7 +240,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (app.getBase() != null)
             {
-                if (app.getBase().getSpriteAction() != Actions._WAITING)
+                if (app.getBase().getAction() != Actions._WAITING)
                 {
                     timeBar.updateSlowDecrement();
                 }
@@ -531,13 +531,13 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
-            smallFont.draw(app.spriteBatch, "SPD  : " + app.getPlayer().speed.toString(), originX + 20, originY + 570);
-            smallFont.draw(app.spriteBatch, "ACT  : " + app.getPlayer().getSpriteAction(), originX + 20, originY + 540);
-            smallFont.draw(app.spriteBatch, "MOV  : " + app.getPlayer().isMovingX + ", " + app.getPlayer().isMovingY, originX + 20, originY + 510);
-            smallFont.draw(app.spriteBatch, "GND  : " + app.getPlayer().isOnGround, originX + 20, originY + 480);
-            smallFont.draw(app.spriteBatch, "CON  : " + app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid, originX + 20, originY + 450);
-            smallFont.draw(app.spriteBatch, "IMA  : " + app.getPlayer().isInMidAir, originX + 20, originY + 420);
-            smallFont.draw(app.spriteBatch, "CBA  : " + app.getPlayer().collisionObject.action, originX + 20, originY + 390);
+
+            smallFont.draw(app.spriteBatch, "UP   : " + app.getHud().buttonUp.isPressed(), originX + 20, originY + 570);
+            smallFont.draw(app.spriteBatch, "DOWN : " + app.getHud().buttonDown.isPressed(), originX + 20, originY + 540);
+            smallFont.draw(app.spriteBatch, "LEFT : " + app.getHud().buttonLeft.isPressed(), originX + 20, originY + 510);
+            smallFont.draw(app.spriteBatch, "RIGHT: " + app.getHud().buttonRight.isPressed(), originX + 20, originY + 480);
+            smallFont.draw(app.spriteBatch, "A    : " + app.getHud().buttonA.isPressed(), originX + 20, originY + 450);
+            smallFont.draw(app.spriteBatch, "B    : " + app.getHud().buttonB.isPressed(), originX + 20, originY + 420);
         }
 
         bigFont.draw

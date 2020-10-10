@@ -5,7 +5,7 @@ import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.maps.RoomManager;
-import com.richikin.jetman.physics.AABB.AABBData;
+import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.utils.logging.Trace;

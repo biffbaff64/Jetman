@@ -134,7 +134,7 @@ public class Rover extends GdxSprite
         backWheel.preUpdate();
         roverBack.preUpdate();
 
-        switch(getSpriteAction())
+        switch(getAction())
         {
             case _STANDING:
             {
@@ -191,7 +191,7 @@ public class Rover extends GdxSprite
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
             }
             break;
         }
@@ -210,7 +210,7 @@ public class Rover extends GdxSprite
     @Override
     public void postUpdate(int spriteNum)
     {
-        if (getSpriteAction() == Actions._DEAD)
+        if (getAction() == Actions._DEAD)
         {
             app.gameProgress.lives.setToMinimum();
         }

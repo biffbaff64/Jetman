@@ -8,16 +8,12 @@ import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.GameConstants;
-import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class MissileBase extends GdxSprite
@@ -57,7 +53,7 @@ public class MissileBase extends GdxSprite
     {
         topSection.preUpdate();
 
-        switch(getSpriteAction())
+        switch(getAction())
         {
             case _STANDING:
             case _WAITING:
@@ -116,7 +112,7 @@ public class MissileBase extends GdxSprite
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
             }
             break;
         }
@@ -135,7 +131,7 @@ public class MissileBase extends GdxSprite
 
         if (topSection != null)
         {
-            switch (getSpriteAction())
+            switch (getAction())
             {
                 case _STANDING:
                 {

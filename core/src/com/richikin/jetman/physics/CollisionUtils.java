@@ -9,8 +9,8 @@ import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
-import com.richikin.jetman.physics.AABB.AABBData;
-import com.richikin.jetman.physics.AABB.CollisionObject;
+import com.richikin.jetman.physics.aabb.AABBData;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class CollisionUtils implements ICollideUtils, Disposable

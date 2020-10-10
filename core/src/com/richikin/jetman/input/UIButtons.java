@@ -8,7 +8,6 @@ import com.richikin.jetman.input.buttons.Switch;
 
 // TODO: 12/12/2019 - This class confuses me, WHY do i have this?
 
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class UIButtons
 {
     // =================================================================
@@ -35,8 +34,8 @@ public class UIButtons
     public static int           controllerAxisCode;
     public static float         controllerAxisValue;
 
-    public static PovDirection controllerPovDirection;
-    public static int          controllerPovCode;
+    public static PovDirection  controllerPovDirection;
+    public static int           controllerPovCode;
 
     public static boolean       controllerStartPressed;
     public static boolean       controllerFirePressed;
@@ -58,6 +57,7 @@ public class UIButtons
     public static void setup(App app)
     {
         fullScreenButton = new Switch();
+        systemBackButton = new Switch();
 
         controllerAPressed          = false;
         controllerBPressed          = false;
@@ -72,7 +72,6 @@ public class UIButtons
         controllerFirePressed       = false;
 
         controllerButtonCode        = -1;
-        systemBackButton            = new Switch();
     }
 
     public static void releaseAll()

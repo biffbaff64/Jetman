@@ -59,7 +59,7 @@ public class AppConfig
 
         availableInputs = new Array<>();
 
-        if (isAndroidApp() || Developer.isAndroidOnDesktop())
+        if (isAndroidApp())
         {
             availableInputs.add(ControllerType._VIRTUAL);
 
@@ -73,9 +73,12 @@ public class AppConfig
             virtualControllerPos = ControllerPos._HIDDEN;
         }
 
-        app.settings.enable(Settings._DISABLE_MENU_SCREEN);
-        app.settings.enable(Settings._SPRITE_BOXES);
-        app.settings.enable(Settings._TILE_BOXES);
+        if (Developer.isDevMode())
+        {
+            app.settings.enable(Settings._DISABLE_MENU_SCREEN);
+//            app.settings.enable(Settings._SPRITE_BOXES);
+//            app.settings.enable(Settings._TILE_BOXES);
+        }
 
         Stats.setup();
 

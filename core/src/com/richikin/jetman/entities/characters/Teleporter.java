@@ -2,14 +2,12 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.box2d.BodyIdentity;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class Teleporter extends GdxSprite
@@ -51,7 +49,7 @@ public class Teleporter extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        switch (getSpriteAction())
+        switch (getAction())
         {
             case _STANDING:
             case _HELD:
@@ -67,7 +65,7 @@ public class Teleporter extends GdxSprite
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getSpriteAction());
+                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
             }
             break;
         }
