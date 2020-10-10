@@ -3,6 +3,8 @@ package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.core.Actions;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
 
@@ -31,6 +33,14 @@ public abstract class Entities
                 (
                     "Rover Gun",
                     GraphicID.G_ROVER_GUN, GraphicID._MAIN,
+                    GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
+                    Animation.PlayMode.NORMAL,
+                    TileID._ROVER_GUN_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Gun Turret",
+                    GraphicID.G_ROVER_GUN_BARREL, GraphicID._MAIN,
                     GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
@@ -179,5 +189,15 @@ public abstract class Entities
     public static SpriteDescriptor getDescriptor(GraphicID _gid)
     {
         return entityList[getDescriptorIndex(_gid)];
+    }
+
+    public static void stand(GameEntity _gameEntity)
+    {
+        _gameEntity.setAction(Actions._STANDING);
+    }
+
+    public static void explode(GameEntity _gameEntity)
+    {
+        _gameEntity.setAction(Actions._EXPLODING);
     }
 }

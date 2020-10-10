@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.Trace;

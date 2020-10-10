@@ -2,9 +2,8 @@ package com.richikin.jetman.physics.box2d;
 
 import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.utils.logging.Trace;
 
 public class BodyBuilder
 {

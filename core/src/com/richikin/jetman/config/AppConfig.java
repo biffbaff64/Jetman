@@ -76,8 +76,8 @@ public class AppConfig
         if (Developer.isDevMode())
         {
             app.settings.enable(Settings._DISABLE_MENU_SCREEN);
-//            app.settings.enable(Settings._SPRITE_BOXES);
-//            app.settings.enable(Settings._TILE_BOXES);
+            app.settings.disable(Settings._SPRITE_BOXES);
+            app.settings.disable(Settings._TILE_BOXES);
         }
 
         Stats.setup();

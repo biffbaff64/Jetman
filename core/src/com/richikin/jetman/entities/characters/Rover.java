@@ -9,6 +9,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.Movement;
@@ -160,15 +161,15 @@ public class Rover extends GdxSprite
             case _HURT:
             case _KILLED:
             {
-//                ExplosionManager explosionManager = new ExplosionManager();
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack, app);
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel, app);
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel, app);
-//
-//                collisionObject.setInvisibility(1000);
-//
-//                spriteAction = Actions._EXPLODING;
+                ExplosionManager explosionManager = new ExplosionManager();
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel, app);
+
+                collisionObject.setInvisibility(1000);
+
+                Entities.explode(this);
             }
             break;
 

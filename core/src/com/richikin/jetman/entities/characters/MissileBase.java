@@ -8,11 +8,14 @@ import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.utils.logging.Trace;
 
@@ -65,48 +68,48 @@ public class MissileBase extends GdxSprite
 
             case _FIGHTING:
             {
-//                app.getHud().messageManager.enable();
-//                app.getHud().messageManager.addZoomMessage("missilewarning", 2000);
-//                app.getHud().messageManager.setPosition("missilewarning", 185, (720 - 196));
-//
-//                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
-//                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
-//
-//                topSection.isFlippedX = (sprite.getX() < app.getPlayer().sprite.getX());
-//
-//                setAction(Actions._WAITING);
+                app.getHud().messageManager.enable();
+                app.getHud().messageManager.addZoomMessage("missilewarning", 2000);
+                app.getHud().messageManager.setPosition("missilewarning", 185, (720 - 196));
+
+                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
+                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
+
+                topSection.isFlippedX = (sprite.getX() < app.getPlayer().sprite.getX());
+
+                setAction(Actions._WAITING);
             }
             break;
 
             case _HURT:
             {
-//                ExplosionManager explosionManager = new ExplosionManager();
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection, app);
-//
-//                defenceStations[Constants._LEFT].explode();
-//                defenceStations[Constants._RIGHT].explode();
-//
-//                app.missileBaseManager.killMissiles();
-//
-//                setAction(Actions._EXPLODING);
-//
-//                Shake.start(app);
+                ExplosionManager explosionManager = new ExplosionManager();
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection, app);
+
+                defenceStations[0].explode();
+                defenceStations[1].explode();
+
+                app.missileBaseManager.killMissiles();
+
+                setAction(Actions._EXPLODING);
+
+                Shake.start(app);
             }
             break;
 
             case _DYING:
             {
-//                Trace.__FILE_FUNC("---------- BASE DESTROYED ----------");
-//
-//                app.getHud().messageManager.enable();
-//                app.getHud().messageManager.addZoomMessage("base_destroyed", 3000);
-//
-//                app.gameProgress.baseDestroyed = true;
-//
-//                app.gameProgress.addScore(PointsManager.getPoints(gid));
-//
-//                setAction(Actions._DEAD);
+                Trace.__FILE_FUNC("---------- BASE DESTROYED ----------");
+
+                app.getHud().messageManager.enable();
+                app.getHud().messageManager.addZoomMessage("base_destroyed", 3000);
+
+                app.gameProgress.baseDestroyed = true;
+
+                app.gameProgress.score.add(PointsManager.getPoints(gid));
+
+                setAction(Actions._DEAD);
             }
             break;
 

@@ -1,9 +1,9 @@
-package com.richikin.jetman.entities.rootobjects;
+package com.richikin.jetman.entities.components;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.core.Actions;
 
-public interface IGameEntity
+public interface EntityComponent
 {
     void setAction(Actions _action);
 

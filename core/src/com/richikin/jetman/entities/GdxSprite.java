@@ -4,13 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
-import com.richikin.jetman.entities.rootobjects.GameEntity;
-import com.richikin.jetman.entities.rootobjects.IGameSprite;
+import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.components.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
@@ -23,7 +22,7 @@ import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
 import com.richikin.jetman.utils.logging.Trace;
 
-public class GdxSprite extends GameEntity implements IGameSprite
+public class GdxSprite extends GameEntity implements SpriteComponent
 {
     // -----------------------------------------------
     // properties etc

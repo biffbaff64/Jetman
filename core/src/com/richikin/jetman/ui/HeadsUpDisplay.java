@@ -232,7 +232,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (!app.teleportManager.teleportActive)
         {
-            if (buttonUp.isPressed() || app.getPlayer().isJumpingCrater)
+            if ((app.getPlayer().getAction() == Actions._FLYING) || app.getPlayer().isJumpingCrater)
             {
                 fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
                 fuelBar.updateSlowDecrement();
@@ -531,13 +531,6 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
-
-            smallFont.draw(app.spriteBatch, "UP   : " + app.getHud().buttonUp.isPressed(), originX + 20, originY + 570);
-            smallFont.draw(app.spriteBatch, "DOWN : " + app.getHud().buttonDown.isPressed(), originX + 20, originY + 540);
-            smallFont.draw(app.spriteBatch, "LEFT : " + app.getHud().buttonLeft.isPressed(), originX + 20, originY + 510);
-            smallFont.draw(app.spriteBatch, "RIGHT: " + app.getHud().buttonRight.isPressed(), originX + 20, originY + 480);
-            smallFont.draw(app.spriteBatch, "A    : " + app.getHud().buttonA.isPressed(), originX + 20, originY + 450);
-            smallFont.draw(app.spriteBatch, "B    : " + app.getHud().buttonB.isPressed(), originX + 20, originY + 420);
         }
 
         bigFont.draw

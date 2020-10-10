@@ -8,6 +8,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Rover;
+import com.richikin.jetman.entities.characters.RoverGun;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
@@ -131,22 +132,22 @@ public class RoverManager extends GenericEntityManager
 
             if (isValidPosition(markerX))
             {
-//                EntityDescriptor descriptor = new EntityDescriptor();
-//                descriptor._ASSET             = app.assets.getAnimationRegion(GameAssets._ROVER_GUN_ASSET);
-//                descriptor._FRAMES            = GameAssets._ROVER_GUN_FRAMES;
-//                descriptor._X                 = markerX;
-//                descriptor._Y                 = app.entityManager.playerManager.playerTileY;
-//                descriptor._Z                 = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN);
-//                descriptor._INDEX             = app.entityData.entityMap.size;
-//
-//                RoverGun roverGun = new RoverGun(app);
-//                roverGun.initialise(descriptor);
-//
-//                app.entityData.addEntity(roverGun);
-//
-//                app.entityManager._roverGunIndex = roverGun.spriteNumber;
-//
-//                roverGun.addTurret();
+                SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN);
+                descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN);
+                descriptor._ANIM_RATE = 5f / 6f;
+                descriptor._POSITION.x = markerX;
+                descriptor._POSITION.y = app.entityManager.playerManager.playerTileY;
+                descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
+                descriptor._INDEX = app.entityData.entityMap.size;
+
+                RoverGun roverGun = new RoverGun(app);
+                roverGun.initialise(descriptor);
+
+                app.entityData.addEntity(roverGun);
+
+                app.entityManager._roverGunIndex = roverGun.spriteNumber;
+
+                roverGun.addTurret();
 
                 roverGunCount++;
                 totalGunsUsed++;
@@ -194,13 +195,13 @@ public class RoverManager extends GenericEntityManager
     {
         int count = 0;
 
-//        if (app.getGun() != null)
-//        {
-//            if (app.getGun().gunTurret != null)
-//            {
-//                count++;
-//            }
-//        }
+        if (app.getGun() != null)
+        {
+            if (app.getGun().gunTurret != null)
+            {
+                count++;
+            }
+        }
 
         return count;
     }

@@ -331,7 +331,8 @@ public class MainPlayer extends GdxSprite
                 }
                 else
                 {
-                    if (strength <= 0)
+                    if ((strength <= 0)
+                        || (getAction() == Actions._FLYING) && app.getHud().getFuelBar().isEmpty())
                     {
                         setAction(Actions._FALLING_TO_GROUND);
 

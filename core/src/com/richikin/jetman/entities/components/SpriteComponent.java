@@ -1,14 +1,12 @@
-package com.richikin.jetman.entities.rootobjects;
+package com.richikin.jetman.entities.components;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.SpriteDescriptor;
 import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.physics.ICollisionListener;
 
-public interface IGameSprite
+public interface SpriteComponent
 {
     void initialise(SpriteDescriptor entityDescriptor);
 
