@@ -49,7 +49,8 @@ public class GameAssets
     public static final String _ROVER_WHEEL_ASSET      = "rover_wheel";
     public static final String _ROVER_IDLE_ASSET       = "rover_idle";
     public static final String _ROVER_BOOT_ASSET       = "rover_boot";
-    public static final String _ROVER_GUN_ASSET        = "rover_gun_modified";
+    public static final String _ROVER_GUN_ASSET        = "rover_gun";
+    public static final String _ROVER_GUN_BARREL_ASSET = "rover_gun_barrel";
     public static final String _STAR_SPINNER_ASSET     = "starspinner";
     public static final String _SPINNING_BALL_ASSET    = "jm_spinningball";
     public static final String _DEFENDER_BULLET_ASSET  = "defence_sparkle";
@@ -80,7 +81,8 @@ public class GameAssets
     public static final int _POWER_BEAM_FRAMES       = 1;
     public static final int _ROVER_FRAMES            = 4;
     public static final int _ROVER_BOOT_FRAMES       = 1;
-    public static final int _ROVER_GUN_FRAMES        = 2;
+    public static final int _ROVER_GUN_FRAMES        = 1;
+    public static final int _ROVER_GUN_BARREL_FRAMES = 1;
     public static final int _ROVER_WHEEL_FRAMES      = 1;
     public static final int _STAR_SPINNER_FRAMES     = 32;
     public static final int _SPINNING_BALL_FRAMES    = 32;
@@ -118,12 +120,16 @@ public class GameAssets
             new AssetSize(GraphicID.G_ROVER,            303, 131),
             new AssetSize(GraphicID.G_ROVER_WHEEL,       68,  68),
             new AssetSize(GraphicID.G_ROVER_BOOT,       108,  14),
+            new AssetSize(GraphicID.G_ROVER_GUN,        122,  59),
+            new AssetSize(GraphicID.G_ROVER_GUN_BARREL, 122,  59),
+
             new AssetSize(GraphicID.G_MISSILE_BASE,     120,  51),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),
-            new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
             new AssetSize(GraphicID.G_DEFENDER,          52,  48),
             new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
             new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
+
+            new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
             new AssetSize(GraphicID.G_LASER,             324,  8),
 

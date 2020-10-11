@@ -48,7 +48,7 @@ background_ufo
   index: -1
 base_instructions
   rotate: false
-  xy: 904, 320
+  xy: 904, 381
   size: 128, 69
   orig: 128, 69
   offset: 0, 0
@@ -69,14 +69,14 @@ defence_sparkle
   index: -1
 enter_rover
   rotate: false
-  xy: 904, 249
+  xy: 904, 310
   size: 128, 69
   orig: 128, 69
   offset: 0, 0
   index: -1
 enter_teleporter
   rotate: false
-  xy: 904, 178
+  xy: 1034, 381
   size: 128, 69
   orig: 128, 69
   offset: 0, 0
@@ -214,11 +214,18 @@ rover_boot
   orig: 108, 14
   offset: 0, 0
   index: -1
-rover_gun_modified
+rover_gun
   rotate: false
-  xy: 904, 391
-  size: 244, 59
-  orig: 244, 59
+  xy: 904, 249
+  size: 122, 59
+  orig: 122, 59
+  offset: 0, 0
+  index: -1
+rover_gun_barrel
+  rotate: false
+  xy: 1034, 320
+  size: 122, 59
+  orig: 122, 59
   offset: 0, 0
   index: -1
 rover_idle

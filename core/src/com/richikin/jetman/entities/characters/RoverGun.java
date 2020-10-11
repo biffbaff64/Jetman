@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateManager;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
@@ -15,7 +14,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.google.PlayServicesID;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class RoverGun extends GdxSprite
@@ -64,6 +63,7 @@ public class RoverGun extends GdxSprite
     public void addTurret()
     {
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
+        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
         entityDescriptor._POSITION.x    = 0;
         entityDescriptor._POSITION.y    = 0;
         entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
@@ -282,12 +282,12 @@ public class RoverGun extends GdxSprite
 
     private void setCollisionListener()
     {
-        addCollisionListener(new CollisionListener()
+        addCollisionListener(new ICollisionListener()
         {
             @Override
             public void onPositiveCollision(GraphicID graphicID)
             {
-                if (spriteAction == Actions._FALLING)
+                if (getAction() == Actions._FALLING)
                 {
                     GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getGun()).gid;
 
@@ -295,7 +295,7 @@ public class RoverGun extends GdxSprite
                     {
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        spriteAction = Actions._STANDING;
+                        Entities.stand(app.getGun());
                     }
                     else if ((contactID == GraphicID.G_MISSILE_BASE)
                         || (contactID == GraphicID.G_MISSILE_LAUNCHER)
@@ -311,9 +311,9 @@ public class RoverGun extends GdxSprite
                         isAttachedToRover = true;
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        spriteAction = Actions._STANDING;
+                        Entities.stand(app.getGun());
 
-                        app.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+//                        app.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
                     }
                 }
             }

@@ -7,6 +7,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
+import com.richikin.jetman.utils.logging.Trace;
 
 public abstract class Entities
 {
@@ -31,6 +32,7 @@ public abstract class Entities
                 ),
             new SpriteDescriptor
                 (
+                    // Frame 0
                     "Rover Gun",
                     GraphicID.G_ROVER_GUN, GraphicID._MAIN,
                     GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
@@ -39,9 +41,10 @@ public abstract class Entities
                 ),
             new SpriteDescriptor
                 (
-                    "Gun Turret",
+                    // Frame 1
+                    "Gun Barrel",
                     GraphicID.G_ROVER_GUN_BARREL, GraphicID._MAIN,
-                    GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
+                    GameAssets._ROVER_GUN_BARREL_ASSET, GameAssets._ROVER_GUN_BARREL_FRAMES,
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
@@ -172,15 +175,22 @@ public abstract class Entities
     {
         int index = 0;
         int defsIndex = 0;
+        boolean foundIndex = false;
 
         for (SpriteDescriptor descriptor : entityList)
         {
             if (descriptor._GID == _gid)
             {
                 defsIndex = index;
+                foundIndex = true;
             }
 
             index++;
+        }
+
+        if (!foundIndex)
+        {
+            Trace.megaDivider("INDEX FOR " + _gid + " NOT FOUND!!!");
         }
 
         return defsIndex;

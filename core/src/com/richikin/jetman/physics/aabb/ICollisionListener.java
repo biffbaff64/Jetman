@@ -1,4 +1,4 @@
-package com.richikin.jetman.physics;
+package com.richikin.jetman.physics.aabb;
 
 import com.richikin.jetman.graphics.GraphicID;
 

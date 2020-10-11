@@ -17,9 +17,9 @@ import com.richikin.jetman.maths.SimpleVec3F;
 import com.richikin.jetman.maths.XYSetF;
 import com.richikin.jetman.physics.aabb.AABB;
 import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.ICollisionListener;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.Speed;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class GdxSprite extends GameEntity implements SpriteComponent

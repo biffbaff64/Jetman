@@ -8,6 +8,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.StopWatch;
@@ -94,12 +95,12 @@ public class DefenceStation extends GdxSprite
 
     void explode()
     {
-//        ExplosionManager explosionManager = new ExplosionManager();
-//        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
-//        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, zapSprite, app);
-//
-//        spriteAction = Actions._EXPLODING;
-//        zapSprite.spriteAction = Actions._EXPLODING;
+        ExplosionManager explosionManager = new ExplosionManager();
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, zapSprite, app);
+
+        Entities.explode(this);
+        Entities.explode(zapSprite);
     }
 
     /**
