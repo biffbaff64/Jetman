@@ -167,4 +167,11 @@ public class DefenderBullet extends GdxSprite
         sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
+
+    @Override
+    public void tidy(int _index)
+    {
+        app.missileBaseManager.releaseSparkler();
+        app.entityData.removeEntity(_index);
+    }
 }

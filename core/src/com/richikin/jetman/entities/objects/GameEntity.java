@@ -86,6 +86,11 @@ public class GameEntity implements EntityComponent, Disposable
         return entityAction;
     }
 
+    @Override
+    public void tidy(int _index)
+    {
+    }
+
     /**
      * Releases all resources of this object.
      */

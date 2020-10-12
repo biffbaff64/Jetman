@@ -248,6 +248,13 @@ public class MissileBase extends GdxSprite
         defenceStations[1].addZapper();
     }
 
+    @Override
+    public void tidy(int _index)
+    {
+        app.missileBaseManager.free();
+        app.entityData.removeEntity(_index);
+    }
+
     public void clearUp()
     {
         defenceStations[0] = null;

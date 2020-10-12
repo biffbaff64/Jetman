@@ -224,18 +224,18 @@ public class Rover extends GdxSprite
         sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
     }
 
-//    @Override
-//    public void updateCollisionBox()
-//    {
-//        collisionObject.rectangle.x = sprite.getX();
-//        collisionObject.rectangle.y = sprite.getY() - 2;
-//        collisionObject.rectangle.width = frameWidth;
-//        collisionObject.rectangle.height = frameHeight;
-//
-//        frontWheel.updateCollisionBox();
-//        backWheel.updateCollisionBox();
-//        roverBack.updateCollisionBox();
-//    }
+    @Override
+    public void updateCollisionBox()
+    {
+        collisionObject.rectangle.x = sprite.getX();
+        collisionObject.rectangle.y = sprite.getY() - 2;
+        collisionObject.rectangle.width = frameWidth;
+        collisionObject.rectangle.height = frameHeight;
+
+        frontWheel.updateCollisionBox();
+        backWheel.updateCollisionBox();
+        roverBack.updateCollisionBox();
+    }
 
     @Override
     public void draw(SpriteBatch spriteBatch)
@@ -271,7 +271,7 @@ public class Rover extends GdxSprite
 
     public void playerControl()
     {
-//        app.getPlayer().buttons.checkButtons();
+        app.getPlayer().buttons.checkButtons();
 
         moveGunTurret();
 
@@ -344,6 +344,12 @@ public class Rover extends GdxSprite
         }
 
         return isHitting;
+    }
+
+    @Override
+    public void tidy(int _index)
+    {
+        app.entityData.removeEntity(_index);
     }
 
     // TODO: 29/09/2018 - Move this to RoverGun() class

@@ -81,4 +81,11 @@ public class Teleporter extends GdxSprite
         sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
+
+    @Override
+    public void tidy(int _index)
+    {
+        app.entityManager._teleportIndex[teleporterNumber] = 0;
+        app.entityData.removeEntity(_index);
+    }
 }

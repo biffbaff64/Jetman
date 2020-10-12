@@ -93,6 +93,12 @@ public class DefenceStation extends GdxSprite
         updateCommon();
     }
 
+    @Override
+    public void tidy(int _index)
+    {
+        app.entityData.removeEntity(_index);
+    }
+
     void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();

@@ -9,6 +9,8 @@ public interface EntityComponent
 
     Actions getAction();
 
+    void tidy(int _index);
+
     Rectangle getCollisionRectangle();
 
     void setCollisionObject(int _xPos, int _yPos);

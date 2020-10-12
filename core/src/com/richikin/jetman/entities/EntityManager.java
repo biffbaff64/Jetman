@@ -163,6 +163,10 @@ public class EntityManager implements IEntityManager
                         entity.postUpdate(i);
                     }
 
+                    //
+                    // NB: entity might have died in postUpdate, which is
+                    // why this next if() is not an else.
+
                     if (entity.getAction() == Actions._DEAD)
                     {
                         switch (entity.gid)
@@ -170,66 +174,21 @@ public class EntityManager implements IEntityManager
                             case G_PLAYER:
                             case G_BACKGROUND_UFO:
                             case G_TWINKLE_STAR:
+                            case _CEILING:
+                            case _CRATER:
                             case _GROUND:
                             {
                             }
                             break;
 
                             case G_TRANSPORTER:
-                            {
-                                _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
-
-                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
                             case G_MISSILE:
-                            {
-                                if (!app.gameProgress.roverDestroyed
-                                    && !app.gameProgress.baseDestroyed
-                                    && (entity.direction.getY() != Movement._DIRECTION_UP))
-                                {
-                                    app.getHud().getTimeBar().setToMaximum();
-                                    app.getHud().getFuelBar().setToMaximum();
-                                    app.getHud().update();
-
-                                    app.getBase().setAction(Actions._STANDING);
-                                }
-
-                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
-                            case G_BOMB:
-                            case G_ROVER_GUN:
-                            case G_ASTEROID:
-                            {
-                                releaseEntity(entity);
-
-                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
                             case G_MISSILE_BASE:
-                            {
-                                app.missileBaseManager.free();
-
-                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
                             case G_DEFENDER:
                             case G_ROVER:
-                            {
-                                app.entityData.removeEntity(i);
-                            }
-                            break;
-
                             case G_DEFENDER_BULLET:
                             {
-                                app.missileBaseManager.releaseSparkler();
-
-                                app.entityData.removeEntity(i);
+                                entity.tidy(i);
                             }
                             break;
 

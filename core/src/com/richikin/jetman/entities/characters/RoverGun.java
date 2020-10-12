@@ -257,6 +257,12 @@ public class RoverGun extends GdxSprite
         }
     }
 
+    @Override
+    public void tidy(int _index)
+    {
+        app.entityData.removeEntity(_index);
+    }
+
     public void startShooting()
     {
         if (!isShooting)

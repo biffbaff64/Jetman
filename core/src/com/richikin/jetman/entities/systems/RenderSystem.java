@@ -9,6 +9,7 @@ import com.richikin.jetman.entities.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class RenderSystem
 {
@@ -40,6 +41,8 @@ public class RenderSystem
 
                     if (entity != null)
                     {
+                        Trace.__FILE_FUNC(entity.gid);
+
                         switch (entity.gid)
                         {
                             case G_BACKGROUND_UFO:
