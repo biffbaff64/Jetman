@@ -35,6 +35,14 @@ public class TeleportManager extends GenericEntityManager
     }
 
     @Override
+    public void init()
+    {
+        activeCount = 0;
+
+        createTransporters();
+    }
+
+    @Override
     public void update()
     {
         if (activeCount == 0)
@@ -61,33 +69,41 @@ public class TeleportManager extends GenericEntityManager
 
             Array<SimpleVec2> coords = findMultiCoordinates(GraphicID.G_TRANSPORTER);
 
-            descriptors = new SpriteDescriptor[RoomManager._MAX_TELEPORTERS];
-            index = new int[RoomManager._MAX_TELEPORTERS];
-
-            for (int i = 0; i < RoomManager._MAX_TELEPORTERS; i++)
+            if (coords.isEmpty())
             {
-                descriptors[i]             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
-                descriptors[i]._PLAYMODE   = Animation.PlayMode.LOOP;
-                descriptors[i]._POSITION.x = coords.get(i).x;
-                descriptors[i]._POSITION.y = coords.get(i).y;
-                descriptors[i]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
-                descriptors[i]._INDEX      = app.entityData.entityMap.size;
-                descriptors[i]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
+                Trace.__FILE_FUNC("WARNING: Transporter count ZERO");
+            }
+            else
+            {
+                descriptors = new SpriteDescriptor[RoomManager._MAX_TELEPORTERS];
+                index       = new int[RoomManager._MAX_TELEPORTERS];
 
-                Teleporter teleporter = new Teleporter(app);
-                teleporter.initialise(descriptors[i]);
-                teleporter.teleporterNumber = activeCount;
+                for (int i = 0; i < RoomManager._MAX_TELEPORTERS; i++)
+                {
+                    descriptors[i]             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
+                    descriptors[i]._PLAYMODE   = Animation.PlayMode.LOOP;
+                    descriptors[i]._POSITION.x = coords.get(i).x;
+                    descriptors[i]._POSITION.y = coords.get(i).y;
+                    descriptors[i]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
+                    descriptors[i]._INDEX      = app.entityData.entityMap.size;
+                    descriptors[i]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
 
-                app.entityData.addEntity(teleporter);
-                app.entityManager._teleportIndex[activeCount] = descriptors[i]._INDEX;
+                    Teleporter teleporter = new Teleporter(app);
+                    teleporter.initialise(descriptors[i]);
+                    teleporter.teleporterNumber = activeCount;
 
-                // Store the map positions of each teleporter
-                // for future use
-                mapPositions.add(new SimpleVec2((int) teleporter.sprite.getX(), 0));
+                    app.entityData.addEntity(teleporter);
+                    app.entityManager._teleportIndex[activeCount] = descriptors[i]._INDEX;
 
-                index[activeCount] = descriptors[i]._INDEX;
+                    //
+                    // Store the map positions of each teleporter
+                    // for future use
+                    mapPositions.add(new SimpleVec2((int) teleporter.sprite.getX(), 0));
 
-                activeCount++;
+                    index[activeCount] = descriptors[i]._INDEX;
+
+                    activeCount++;
+                }
             }
         }
     }

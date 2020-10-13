@@ -43,6 +43,8 @@ public class MissileBaseManager extends GenericEntityManager
         activeMissiles      = 0;
         activeSparklers     = 0;
         isMissileActive     = false;
+
+        createBase();
     }
 
     @Override

@@ -16,7 +16,6 @@ import com.richikin.jetman.utils.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
 public class RoverManager extends GenericEntityManager
 {
     public int roverGunCount;
@@ -37,6 +36,9 @@ public class RoverManager extends GenericEntityManager
         totalGunsUsed   = 0;
         roverCount      = 0;
         roverGunCount   = 0;
+
+        createRover();
+        createRoverGun();
     }
 
     @Override
@@ -91,8 +93,8 @@ public class RoverManager extends GenericEntityManager
 
             Rover rover = new Rover(app);
             rover.initialise(entityDescriptor);
-            rover.addPartners();
             app.entityData.addEntity(rover);
+            rover.addPartners();
 
             app.entityManager._roverIndex = rover.spriteNumber;
 

@@ -358,13 +358,12 @@ public class EntityManager implements IEntityManager
         app.missileBaseManager  = new MissileBaseManager(app);
 
         _roverManagerIndex      = app.entityData.addManager(new RoverManager(app));
-//        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
-//        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
+        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
+        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
     }
 
     public void initialiseForLevel()
     {
-        Trace.megaDivider("START");
         Trace.__FILE_FUNC();
 
         AppConfig.entitiesExist = false;
@@ -380,15 +379,13 @@ public class EntityManager implements IEntityManager
             system.init();
         }
 
-        Trace.__FILE_FUNC_LINE();
+        Trace.__FILE_FUNC("EntityMap Contents...");
         for (GameEntity entity : app.entityData.entityMap)
         {
             Trace.dbg(entity.gid.name());
         }
 
         AppConfig.entitiesExist = true;
-
-        Trace.megaDivider("END");
     }
 
     public void addBackgroundEntities()

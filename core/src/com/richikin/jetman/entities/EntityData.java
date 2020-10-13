@@ -60,6 +60,8 @@ public class EntityData implements Disposable
     {
         if (_entity != null)
         {
+            Trace.__FILE_FUNC(_entity.gid.name());
+
             entityMap.add(_entity);
         }
         else
