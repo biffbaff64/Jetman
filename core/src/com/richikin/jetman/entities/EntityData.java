@@ -61,8 +61,6 @@ public class EntityData implements Disposable
         if (_entity != null)
         {
             entityMap.add(_entity);
-
-            AppConfig.entitiesExist = true;
         }
         else
         {

@@ -8,6 +8,8 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class GunTurret extends GdxSprite
 {
+    private float turretAngle;
+
     public GunTurret(App _app)
     {
         super(_app);
@@ -17,6 +19,12 @@ public class GunTurret extends GdxSprite
     public void initialise(SpriteDescriptor entityDescriptor)
     {
         create(entityDescriptor);
+
+        isDrawable = true;
+        setAction(Actions._STANDING);
+
+        sprite.setOrigin(65, frameHeight - 17);
+        turretAngle = 0.0f;
     }
 
     @Override

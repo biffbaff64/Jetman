@@ -175,12 +175,6 @@ public class GameControlLoop extends AbstractControlLoop
                 app.getPlayer().setup(false);
             }
         }
-
-        Trace.dbg("COLLISIONOBJECT ARRAY");
-        for (CollisionObject _obj : AABBData.boxes())
-        {
-            Trace.dbg(_obj.index + " : " + _obj.gid);
-        }
     }
 
     /**

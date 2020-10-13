@@ -33,7 +33,7 @@ public class RenderSystem
         {
             GdxSprite entity;
 
-            for (int z = Gfx._MAXIMUM_Z_DEPTH-1; z >= 0; z--)
+            for (int z = Gfx._MAXIMUM_Z_DEPTH - 1; z >= 0; z--)
             {
                 for (int i = 0; i < app.entityData.entityMap.size; i++)
                 {
@@ -41,8 +41,6 @@ public class RenderSystem
 
                     if (entity != null)
                     {
-                        Trace.__FILE_FUNC(entity.gid);
-
                         switch (entity.gid)
                         {
                             case G_BACKGROUND_UFO:

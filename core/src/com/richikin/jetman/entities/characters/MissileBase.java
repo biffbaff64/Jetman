@@ -21,8 +21,6 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MissileBase extends GdxSprite
 {
-    public DefenceStation[] defenceStations;
-
     private GdxSprite     topSection;
     private TextureRegion emptyFrame;
 
@@ -45,8 +43,7 @@ public class MissileBase extends GdxSprite
 
         setAction(Actions._STANDING);
 
-        addLauncher();
-        addDefenceStations();
+        addTopSection();
 
         app.gameProgress.baseDestroyed = false;
     }
@@ -86,9 +83,6 @@ public class MissileBase extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection, app);
-
-                defenceStations[0].explode();
-                defenceStations[1].explode();
 
                 app.missileBaseManager.killMissiles();
 
@@ -187,7 +181,7 @@ public class MissileBase extends GdxSprite
      * Adds the launcher top section to the
      * missile base.
      */
-    public void addLauncher()
+    public void addTopSection()
     {
         Trace.__FILE_FUNC();
 
@@ -230,6 +224,8 @@ public class MissileBase extends GdxSprite
         entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER);
         entityDescriptor._INDEX         = app.entityData.entityMap.size;
 
+        DefenceStation[] defenceStations;
+
         defenceStations = new DefenceStation[2];
 
         defenceStations[0] = new DefenceStation(app);
@@ -253,15 +249,5 @@ public class MissileBase extends GdxSprite
     {
         app.missileBaseManager.free();
         app.entityData.removeEntity(_index);
-    }
-
-    public void clearUp()
-    {
-        defenceStations[0] = null;
-        defenceStations[1] = null;
-        defenceStations = null;
-
-        topSection = null;
-        emptyFrame = null;
     }
 }

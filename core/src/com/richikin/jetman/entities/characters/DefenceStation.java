@@ -21,16 +21,10 @@ public class DefenceStation extends GdxSprite
     private       ZapSprite zapSprite;
     private       StopWatch shootTimer;
     private       float     shootInterval;
-    private final App       app;
 
     DefenceStation(App _app)
     {
         super(GraphicID.G_DEFENDER, _app);
-
-        this.app = _app;
-
-        bodyCategory = Gfx.CAT_MISSILE_BASE;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_MOBILE_ENEMY;
     }
 
     @Override
@@ -39,6 +33,9 @@ public class DefenceStation extends GdxSprite
         create(entityDescriptor);
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+
+        bodyCategory = Gfx.CAT_MISSILE_BASE;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_MOBILE_ENEMY;
 
         animation.setPlayMode(Animation.PlayMode.NORMAL);
 

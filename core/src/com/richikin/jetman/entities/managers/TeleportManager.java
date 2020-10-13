@@ -37,7 +37,7 @@ public class TeleportManager extends GenericEntityManager
     @Override
     public void update()
     {
-        if (activeCount < RoomManager._MAX_TELEPORTERS)
+        if (activeCount == 0)
         {
             createTransporters();
         }
@@ -51,6 +51,8 @@ public class TeleportManager extends GenericEntityManager
 
     private void createTransporters()
     {
+        Trace.__FILE_FUNC();
+
         if (app.entityUtils.canUpdate(GraphicID.G_TRANSPORTER))
         {
             mapPositions   = new Array<>();

@@ -71,9 +71,6 @@ public class RoverGun extends GdxSprite
 
         gunTurret = new GunTurret(app);
         gunTurret.initialise(entityDescriptor);
-        gunTurret.isDrawable = true;
-        gunTurret.sprite.setOrigin(65, gunTurret.frameHeight - 17);
-        gunTurretAngle = 0.0f;
 
         app.entityData.addEntity(gunTurret);
     }
@@ -213,7 +210,7 @@ public class RoverGun extends GdxSprite
 
         if (gunTurret != null)
         {
-            gunTurret.sprite.setRegion(animFrames[1]);
+            gunTurret.animate();
         }
     }
 

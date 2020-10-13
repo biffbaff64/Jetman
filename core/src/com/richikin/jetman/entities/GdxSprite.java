@@ -117,6 +117,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
         spriteNumber = entityDescriptor._INDEX;
         isAnimating  = (entityDescriptor._FRAMES > 1);
+        setAction(Actions._NO_ACTION);
 
         if (entityDescriptor._ASSET != null)
         {
@@ -410,21 +411,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public float getRightEdge()
     {
         return sprite.getX() + frameWidth;
-    }
-
-    @Override
-    public void setAction(final Actions action)
-    {
-        if (entityAction != action)
-        {
-            entityAction = action;
-        }
-    }
-
-    @Override
-    public Actions getAction()
-    {
-        return entityAction;
     }
 
     /**

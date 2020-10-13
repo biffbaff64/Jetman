@@ -8,6 +8,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
@@ -219,8 +220,11 @@ public class EntityManager implements IEntityManager
     @Override
     public void drawSprites()
     {
-        renderSystem.drawTeleportBeams(teleportBeam);
-        renderSystem.drawSprites();
+        if (renderSystem != null)
+        {
+            renderSystem.drawTeleportBeams(teleportBeam);
+            renderSystem.drawSprites();
+        }
     }
 
     @Override
@@ -354,20 +358,37 @@ public class EntityManager implements IEntityManager
         app.missileBaseManager  = new MissileBaseManager(app);
 
         _roverManagerIndex      = app.entityData.addManager(new RoverManager(app));
-        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
-        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
+//        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
+//        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
     }
 
     public void initialiseForLevel()
     {
+        Trace.megaDivider("START");
+        Trace.__FILE_FUNC();
+
+        AppConfig.entitiesExist = false;
+
         playerManager = new PlayerManager(app);
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
 
         for (final EntityManagerComponent system : app.entityData.managerList)
         {
+            Trace.dbg("EntityManagerComponent : " + system.getGID().name());
+
             system.init();
         }
+
+        Trace.__FILE_FUNC_LINE();
+        for (GameEntity entity : app.entityData.entityMap)
+        {
+            Trace.dbg(entity.gid.name());
+        }
+
+        AppConfig.entitiesExist = true;
+
+        Trace.megaDivider("END");
     }
 
     public void addBackgroundEntities()
