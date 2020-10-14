@@ -1,7 +1,6 @@
 package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.entities.GdxSprite;
 
 public interface IEntityManager extends Disposable
 {

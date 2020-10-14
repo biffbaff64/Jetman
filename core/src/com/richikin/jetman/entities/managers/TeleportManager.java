@@ -7,7 +7,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.GraphicID;

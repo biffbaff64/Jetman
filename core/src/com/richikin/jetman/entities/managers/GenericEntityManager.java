@@ -1,10 +1,9 @@
 package com.richikin.jetman.entities.managers;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;

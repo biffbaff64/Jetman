@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;

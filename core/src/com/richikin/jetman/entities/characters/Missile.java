@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.physics.Movement;
 
 public class Missile extends GdxSprite

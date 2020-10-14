@@ -1,14 +1,14 @@
 android {
     signingConfigs {
         releaseconfig {
-            storeFile file('C:/Development/Issued_Software/Keystore/android.jks')
+            storeFile file('D:/Issued_Software/Keystore/android.jks')
             keyAlias 'jetmanRelease'
             keyPassword 'c646510'
             storePassword 'felix1964'
         }
 
         debugconfig {
-            storeFile file('C:/Development/Issued_Software/Keystore/android.jks')
+            storeFile file('D:/Issued_Software/Keystore/android.jks')
             keyAlias 'jetmanDebug'
             keyPassword 'dfg67hj'
             storePassword 'felix1964'

@@ -9,12 +9,12 @@ import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
-import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityManager implements IEntityManager
@@ -40,14 +40,14 @@ public class EntityManager implements IEntityManager
 
     // --------------------------------------------------
     // Indexes into manager list
-    public int _playerManagerIndex;
-    public int _teleportManagerIndex;
-    public int _baseManagerIndex;
+//    public int _playerManagerIndex;
+//    public int _roverManagerIndex;
+//    public int _teleportManagerIndex;
+//    public int _baseManagerIndex;
+//    public int _explosionManagerIndex;
+//    public int _powerBeamManagerIndex;
     public int _laserManagerIndex;
-    public int _explosionManagerIndex;
-    public int _powerBeamManagerIndex;
     public int _bombManagerIndex;
-    public int _roverManagerIndex;
     public int _asteroidManagerIndex;
     public int _greenblockManagerIndex;
     public int _blobManagerIndex;
@@ -245,7 +245,6 @@ public class EntityManager implements IEntityManager
                 new GraphicIndex(GraphicID.G_3LEGS_ALIEN, _3legsUFOManagerIndex),
                 new GraphicIndex(GraphicID.G_ALIEN_WHEEL, _wheelManagerIndex),
                 new GraphicIndex(GraphicID.G_BOMB, _bombManagerIndex),
-                new GraphicIndex(GraphicID.G_ROVER_GUN, _roverManagerIndex),
             };
 
         switch (entity.gid)
@@ -354,12 +353,10 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        app.teleportManager     = new TeleportManager(app);
-        app.missileBaseManager  = new MissileBaseManager(app);
-
-        _roverManagerIndex      = app.entityData.addManager(new RoverManager(app));
-        _teleportManagerIndex   = app.entityData.addManager(app.teleportManager);
-        _baseManagerIndex       = app.entityData.addManager(app.missileBaseManager);
+        app.roverManager            = new RoverManager(app);
+        app.teleportManager         = new TeleportManager(app);
+        app.missileBaseManager      = new MissileBaseManager(app);
+        app.defenceStationManager   = new DefenceStationManager(app);
     }
 
     public void initialiseForLevel()
@@ -372,12 +369,10 @@ public class EntityManager implements IEntityManager
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
 
-        for (final EntityManagerComponent system : app.entityData.managerList)
-        {
-            Trace.dbg("EntityManagerComponent : " + system.getGID().name());
-
-            system.init();
-        }
+//        app.roverManager.init();
+        app.teleportManager.init();
+        app.missileBaseManager.init();
+        app.defenceStationManager.init();
 
         Trace.__FILE_FUNC("EntityMap Contents...");
         for (GameEntity entity : app.entityData.entityMap)

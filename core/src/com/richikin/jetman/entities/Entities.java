@@ -5,16 +5,17 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
 import com.richikin.jetman.utils.logging.Trace;
 
 public abstract class Entities
 {
-    public static final SpriteDescriptor[] entityList =
+    public static final com.richikin.jetman.entities.objects.SpriteDescriptor[] entityList =
         {
             // Main Characters
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
@@ -22,7 +23,7 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Rover",
                     GraphicID.G_ROVER, GraphicID._MAIN,
@@ -30,7 +31,7 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._ROVER_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     // Frame 0
                     "Rover Gun",
@@ -39,7 +40,7 @@ public abstract class Entities
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     // Frame 1
                     "Gun Barrel",
@@ -48,7 +49,7 @@ public abstract class Entities
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Rover Wheel",
                     GraphicID.G_ROVER_WHEEL, GraphicID._MAIN,
@@ -56,7 +57,7 @@ public abstract class Entities
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_WHEEL_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Rover Boot",
                     GraphicID.G_ROVER_BOOT, GraphicID._MAIN,
@@ -66,7 +67,7 @@ public abstract class Entities
                 ),
 
             // Lasers, Bullets, etc
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Laser",
                     GraphicID.G_LASER, GraphicID._INTERACTIVE,
@@ -76,7 +77,7 @@ public abstract class Entities
                 ),
 
             // Pickups
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Bomb",
                     GraphicID.G_BOMB, GraphicID._WEAPON,
@@ -88,7 +89,7 @@ public abstract class Entities
             // Decorations
 
             // Interactive
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Teleporter",
                     GraphicID.G_TRANSPORTER, GraphicID._INTERACTIVE,
@@ -98,7 +99,7 @@ public abstract class Entities
                 ),
 
             // Stationary Enemies
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Missile Base",
                     GraphicID.G_MISSILE_BASE, GraphicID._ENEMY,
@@ -106,7 +107,7 @@ public abstract class Entities
                     Animation.PlayMode.NORMAL,
                     TileID._MISSILE_BASE_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Missile Launcher",
                     GraphicID.G_MISSILE_LAUNCHER, GraphicID._ENEMY,
@@ -114,7 +115,7 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._MISSILE_LAUNCHER_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Base Defender",
                     GraphicID.G_DEFENDER, GraphicID._ENEMY,
@@ -122,7 +123,7 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._DEFENDER_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Defender Bullet",
                     GraphicID.G_DEFENDER_BULLET, GraphicID._ENEMY,
@@ -130,7 +131,7 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._DEFENDER_BULLET_TILE
                 ),
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Defender Zap",
                     GraphicID.G_DEFENDER_ZAP, GraphicID._ENEMY,
@@ -140,7 +141,7 @@ public abstract class Entities
                 ),
 
             // Mobile Enemies
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Asteroid",
                     GraphicID.G_ASTEROID, GraphicID._ENEMY,
@@ -152,7 +153,7 @@ public abstract class Entities
             // Miscellaneous Enemy Related
 
             // Background Sprites
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Background Ufo",
                     GraphicID.G_BACKGROUND_UFO, GraphicID._BACKGROUND_ENTITY,
@@ -161,7 +162,7 @@ public abstract class Entities
                     TileID._BACKGROUND_UFO_TILE
                 ),
 
-            new SpriteDescriptor
+            new com.richikin.jetman.entities.objects.SpriteDescriptor
                 (
                     "Twinkle Star",
                     GraphicID.G_TWINKLE_STAR, GraphicID._BACKGROUND_ENTITY,
@@ -177,7 +178,7 @@ public abstract class Entities
         int defsIndex = 0;
         boolean foundIndex = false;
 
-        for (SpriteDescriptor descriptor : entityList)
+        for (com.richikin.jetman.entities.objects.SpriteDescriptor descriptor : entityList)
         {
             if (descriptor._GID == _gid)
             {

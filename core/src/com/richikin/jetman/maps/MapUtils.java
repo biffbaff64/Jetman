@@ -21,7 +21,7 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 

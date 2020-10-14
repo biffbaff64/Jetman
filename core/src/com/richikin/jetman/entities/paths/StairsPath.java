@@ -1,7 +1,7 @@
 
 package com.richikin.jetman.entities.paths;
 
-import com.richikin.jetman.entities.GdxSprite;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.maths.SimpleVec2F;
 import com.richikin.jetman.physics.Direction;

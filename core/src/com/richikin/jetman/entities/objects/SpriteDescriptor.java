@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.graphics.GraphicID;

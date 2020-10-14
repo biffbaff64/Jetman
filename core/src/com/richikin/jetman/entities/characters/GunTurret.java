@@ -2,8 +2,8 @@ package com.richikin.jetman.entities.characters;
 
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class GunTurret extends GdxSprite

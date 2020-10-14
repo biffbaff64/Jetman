@@ -8,9 +8,10 @@ import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.characters.*;
-import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.hero.MainPlayer;
+import com.richikin.jetman.entities.managers.DefenceStationManager;
 import com.richikin.jetman.entities.managers.MissileBaseManager;
+import com.richikin.jetman.entities.managers.RoverManager;
 import com.richikin.jetman.entities.managers.TeleportManager;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.graphics.GraphicID;
@@ -54,9 +55,9 @@ public abstract class App extends com.badlogic.gdx.Game
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
-    public EntityUtils entityUtils;
-    public MapUtils    mapUtils;
-    public PathUtils   pathUtils;
+    public EntityUtils    entityUtils;
+    public MapUtils       mapUtils;
+    public PathUtils      pathUtils;
     public CollisionUtils collisionUtils;
 
     public EntityData entityData;
@@ -66,13 +67,15 @@ public abstract class App extends com.badlogic.gdx.Game
     public GameProgress   gameProgress;
     public MapCreator     mapCreator;
 
-    public PanelManager       panelManager;
-    public LevelManager       levelManager;
-    public RoomManager        roomManager;
-    public EntityManager      entityManager;
-    public ParallaxManager    parallaxManager;
-    public TeleportManager    teleportManager;
-    public MissileBaseManager missileBaseManager;
+    public PanelManager          panelManager;
+    public LevelManager          levelManager;
+    public RoomManager           roomManager;
+    public EntityManager         entityManager;
+    public ParallaxManager       parallaxManager;
+    public RoverManager          roverManager;
+    public TeleportManager       teleportManager;
+    public MissileBaseManager    missileBaseManager;
+    public DefenceStationManager defenceStationManager;
 
     public MainPlayer getPlayer()
     {
@@ -107,16 +110,9 @@ public abstract class App extends com.badlogic.gdx.Game
     {
         boolean exists = false;
 
-        if (entityData.managerList != null)
-        {
-            EntityManagerComponent component;
-
-            component = entityData.managerList.get(entityManager._roverManagerIndex);
-
-            exists = ((component != null)
-                && (component.getGID() == GraphicID.G_ROVER)
-                && (component.getActiveCount() > 0));
-        }
+        exists = ((roverManager != null)
+            && (roverManager.getGID() == GraphicID.G_ROVER)
+            && (roverManager.getActiveCount() > 0));
 
         return exists;
     }

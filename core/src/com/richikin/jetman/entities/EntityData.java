@@ -2,7 +2,6 @@ package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.utils.logging.Trace;
@@ -60,8 +59,6 @@ public class EntityData implements Disposable
     {
         if (_entity != null)
         {
-            Trace.__FILE_FUNC(_entity.gid.name());
-
             entityMap.add(_entity);
         }
         else

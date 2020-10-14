@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
-import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.components.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;

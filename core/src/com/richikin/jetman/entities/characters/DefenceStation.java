@@ -6,8 +6,8 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
@@ -22,7 +22,7 @@ public class DefenceStation extends GdxSprite
     private       StopWatch shootTimer;
     private       float     shootInterval;
 
-    DefenceStation(App _app)
+    public DefenceStation(App _app)
     {
         super(GraphicID.G_DEFENDER, _app);
     }

@@ -7,8 +7,8 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
@@ -62,6 +62,8 @@ public class RoverGun extends GdxSprite
 
     public void addTurret()
     {
+        Trace.__FILE_FUNC();
+
         SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
         entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
         entityDescriptor._POSITION.x    = 0;

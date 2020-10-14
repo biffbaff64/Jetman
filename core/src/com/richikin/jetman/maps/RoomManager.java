@@ -1,7 +1,7 @@
 package com.richikin.jetman.maps;
 
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.utils.logging.Trace;
@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public class RoomManager
 {
     public static final int _MAX_TELEPORTERS = 2;
+    public static final int _MAX_DEFENCE_STATIONS = 2;
 
     private static final String _MAPS_PATH = "data/maps/";
 

@@ -1,12 +1,11 @@
 package com.richikin.jetman.entities.managers;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.GdxSprite;
-import com.richikin.jetman.entities.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.DefenceStation;
 import com.richikin.jetman.entities.characters.Missile;
 import com.richikin.jetman.entities.characters.MissileBase;
