@@ -14,9 +14,15 @@ public class XYSetF extends SimpleVec2F
 
     public void addXWrapped(float value, float minimum, float maximum)
     {
-        if ((x += value) >= maximum)
+        x += value;
+
+        if (x >= maximum)
         {
             x -= (maximum - minimum);
+        }
+        else if (x <= minimum)
+        {
+            x += (maximum - minimum);
         }
     }
 

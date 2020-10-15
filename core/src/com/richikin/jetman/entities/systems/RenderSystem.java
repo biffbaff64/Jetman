@@ -107,7 +107,8 @@ public class RenderSystem
             entity = (GdxSprite) app.entityData.entityMap.get(i);
 
             if ((entity != null)
-                && ((entity.gid == GraphicID.G_TWINKLE_STAR) || (entity.gid == GraphicID.G_BACKGROUND_UFO)))
+                && ((entity.gid == GraphicID.G_TWINKLE_STAR)
+                || (entity.gid == GraphicID.G_BACKGROUND_UFO)))
             {
                 entity.draw(app.spriteBatch);
             }

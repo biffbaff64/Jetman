@@ -8,23 +8,25 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.maths.Box;
 import com.richikin.jetman.maths.XYSetF;
+import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.Movement;
 
 public class ParallaxLayer implements Disposable
 {
-    public final  String        name;
-    public final  TextureRegion textureRegion;
-    private final Box           imageBox;
-    public final  XYSetF        offset;
+    public final String        name;
+    public final TextureRegion textureRegion;
+    public final XYSetF        offset;
+    public final XYSetF        position;
+    public final boolean       isActive;
 
-    public final XYSetF  position;
-    public final boolean isActive;
-    public       float   xSpeed;
-    public       float   ySpeed;
+    public Direction direction;
+    public float     xSpeed;
+    public float     ySpeed;
 
+    private final Box imageBox;
     private final App app;
 
-    ParallaxLayer(String textureName, App _app)
+    public ParallaxLayer(String textureName, App _app)
     {
         this.app = _app;
 
@@ -39,6 +41,7 @@ public class ParallaxLayer implements Disposable
         imageBox      = new Box(texture.getWidth(), texture.getHeight());
         offset        = new XYSetF(0f, texture.getHeight() - Gfx._VIEW_HEIGHT);
         position      = new XYSetF(0f, 0f);
+        direction     = new Direction();
         isActive      = true;
         xSpeed        = 0.0f;
         ySpeed        = 0.0f;
@@ -54,25 +57,31 @@ public class ParallaxLayer implements Disposable
         }
     }
 
-    void scrollLayer(int xDirection, int yDirection)
+    public void scrollLayer(int xDirection, int yDirection)
     {
         if (isActive)
         {
             boolean isChanged = false;
 
-            if (xDirection == Movement._DIRECTION_LEFT)
+            if (xDirection != Movement._DIRECTION_STILL)
             {
-                offset.addXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
+                offset.addXWrapped(xSpeed * xDirection, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
                 isChanged = true;
             }
-            else
-            {
-                if (xDirection == Movement._DIRECTION_RIGHT)
-                {
-                    offset.subXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
-                    isChanged = true;
-                }
-            }
+
+//            if (xDirection == Movement._DIRECTION_LEFT)
+//            {
+//                offset.addXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
+//                isChanged = true;
+//            }
+//            else
+//            {
+//                if (xDirection == Movement._DIRECTION_RIGHT)
+//                {
+//                    offset.subXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
+//                    isChanged = true;
+//                }
+//            }
 
             if (isChanged)
             {
@@ -81,7 +90,7 @@ public class ParallaxLayer implements Disposable
         }
     }
 
-    void setTextureRegion()
+    public void setTextureRegion()
     {
         textureRegion.setRegion
             (
@@ -96,6 +105,7 @@ public class ParallaxLayer implements Disposable
     {
         offset.set(0, 0);
         position.set(0, 0);
+        direction.standStill();
     }
 
     @Override

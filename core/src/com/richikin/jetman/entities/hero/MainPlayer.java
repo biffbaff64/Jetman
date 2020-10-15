@@ -605,16 +605,13 @@ public class MainPlayer extends GdxSprite
         }
         else
         {
-            float movementXSpeed = 0.0f;
-            float movementYSpeed = 0.0f;
-
             if (isMovingX || isMovingY)
             {
-                movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
-                movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
+                float movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
+                float movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
 
-                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = movementXSpeed + 0.0025f;
-                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = movementXSpeed + 0.1f;
+                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = speed.getX();
+                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = speed.getX();
 
                 sprite.translate(movementXSpeed, movementYSpeed);
             }

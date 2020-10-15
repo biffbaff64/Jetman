@@ -30,7 +30,6 @@ public class BackgroundObjectsManager
         for (int i = 0; i < numUfos; i++)
         {
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
-            entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
             entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
             entityDescriptor._POSITION.x = 0;
             entityDescriptor._POSITION.y = 0;
@@ -67,14 +66,19 @@ public class BackgroundObjectsManager
 
     public void addTwinkleStars()
     {
-        for (int[] position : twinklestarPositions)
+        int[] position = new int[2];
+
+        //        for (int[] position : twinklestarPositions)
+        for (int i=0; i< 100; i++)
         {
+            position[0] = i * 250;
+            position[1] = MathUtils.random(Gfx._VIEW_HEIGHT);
+
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
             entityDescriptor._ASSET      = asset;
             entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
-            entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
             entityDescriptor._POSITION.x = position[0] / Gfx.getTileWidth();
             entityDescriptor._POSITION.y = position[1] / Gfx.getTileHeight();
             entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);

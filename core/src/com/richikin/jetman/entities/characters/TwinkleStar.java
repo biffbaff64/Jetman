@@ -36,9 +36,6 @@ public class TwinkleStar extends GdxSprite
         super(GraphicID.G_TWINKLE_STAR, _app);
 
         this.app = _app;
-
-        bodyCategory = Gfx.CAT_SCENERY;
-        collidesWith = Gfx.CAT_NOTHING;
     }
 
     @Override
@@ -46,7 +43,13 @@ public class TwinkleStar extends GdxSprite
     {
         create(entityDescriptor);
 
+        bodyCategory = Gfx.CAT_SCENERY;
+        collidesWith = Gfx.CAT_NOTHING;
+
+        initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+
         sprite.setScale(0.225f + MathUtils.random(0.5f));
+        sprite.setPosition(initXYZ.getX(), initXYZ.getY());
 
         animation.setFrameDuration(1.2f / 6);
         elapsedAnimTime = 0;
@@ -76,14 +79,14 @@ public class TwinkleStar extends GdxSprite
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 
-    @Override
-    public void draw(SpriteBatch spriteBatch)
-    {
-        final float originX = app.mapData.mapPosition.getX();
-        final float originY = app.mapData.mapPosition.getY();
-
-        sprite.setPosition(originX + initXYZ.getX(), initXYZ.getY());
-
-        super.draw(spriteBatch);
-    }
+//    @Override
+//    public void draw(SpriteBatch spriteBatch)
+//    {
+//        final float originX = app.baseRenderer.backgroundCamera.getPosition().x;
+//        final float originY = app.baseRenderer.backgroundCamera.getPosition().y;
+//
+//        sprite.setPosition(originX + initXYZ.getX(), initXYZ.getY());
+//
+//        super.draw(spriteBatch);
+//    }
 }

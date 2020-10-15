@@ -129,31 +129,42 @@ public class DefenderBullet extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if (getAction() == Actions._RUNNING)
+        switch (getAction())
         {
-            if (distance.isEmpty())
+            case _RUNNING:
             {
-                setAction(Actions._DEAD);
-            }
-            else
-            {
-                sprite.setColor(colours[colourIndex]);
-
-                if (++colourIndex >= colours.length)
+                if (distance.isEmpty())
                 {
-                    colourIndex = 0;
+                    setAction(Actions._DEAD);
                 }
+                else
+                {
+                    sprite.setColor(colours[colourIndex]);
 
-                sprite.translateX(speed.getX() * direction.getX());
-                sprite.translateY(speed.getY() * direction.getY());
+                    if (++colourIndex >= colours.length)
+                    {
+                        colourIndex = 0;
+                    }
 
-                distance.subX(speed.getX());
-                distance.subY(speed.getY());
+                    sprite.translateX(speed.getX() * direction.getX());
+                    sprite.translateY(speed.getY() * direction.getY());
+
+                    distance.subX(speed.getX());
+                    distance.subY(speed.getY());
+                }
             }
-        }
-        else
-        {
-            Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
+            break;
+
+            case _HURT:
+            {
+            }
+            break;
+
+            default:
+            {
+                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
+            }
+            break;
         }
 
         animate();
