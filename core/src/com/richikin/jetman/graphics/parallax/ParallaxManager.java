@@ -19,13 +19,11 @@ public class ParallaxManager
             if (app.mapData.previousMapPosition.getX() > app.mapData.mapPosition.getX())
             {
                 app.baseRenderer.parallaxBackground.scrollLayersLeft();
-                app.baseRenderer.parallaxMiddle.scrollLayersLeft();
                 app.baseRenderer.parallaxForeground.scrollLayersLeft();
             }
             else if (app.mapData.previousMapPosition.getX() < app.mapData.mapPosition.getX())
             {
                 app.baseRenderer.parallaxBackground.scrollLayersRight();
-                app.baseRenderer.parallaxMiddle.scrollLayersRight();
                 app.baseRenderer.parallaxForeground.scrollLayersRight();
             }
         }
@@ -36,13 +34,11 @@ public class ParallaxManager
             if (app.mapData.previousMapPosition.getY() > app.mapData.mapPosition.getY())
             {
                 app.baseRenderer.parallaxBackground.scrollLayersDown();
-                app.baseRenderer.parallaxMiddle.scrollLayersDown();
                 app.baseRenderer.parallaxForeground.scrollLayersDown();
             }
             else if (app.mapData.previousMapPosition.getY() < app.mapData.mapPosition.getY())
             {
                 app.baseRenderer.parallaxBackground.scrollLayersUp();
-                app.baseRenderer.parallaxMiddle.scrollLayersUp();
                 app.baseRenderer.parallaxForeground.scrollLayersUp();
             }
         }

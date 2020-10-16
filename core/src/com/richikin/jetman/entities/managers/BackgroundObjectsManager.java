@@ -66,14 +66,8 @@ public class BackgroundObjectsManager
 
     public void addTwinkleStars()
     {
-        int[] position = new int[2];
-
-        //        for (int[] position : twinklestarPositions)
-        for (int i=0; i< 100; i++)
+        for (int[] position : twinklestarPositions)
         {
-            position[0] = i * 250;
-            position[1] = MathUtils.random(Gfx._VIEW_HEIGHT);
-
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);

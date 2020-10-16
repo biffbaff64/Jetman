@@ -151,7 +151,6 @@ public class MainGameScreen extends AbstractBaseScreen
     public void loadImages()
     {
         app.baseRenderer.parallaxBackground.setupLayers(app.mapData.backgroundLayers);
-        app.baseRenderer.parallaxMiddle.setupLayers(app.mapData.middleLayers);
         app.baseRenderer.parallaxForeground.setupLayers(app.mapData.foregroundLayers);
     }
 

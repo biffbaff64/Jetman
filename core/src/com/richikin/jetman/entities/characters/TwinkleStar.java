@@ -29,7 +29,7 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class TwinkleStar extends GdxSprite
 {
-    private App app;
+    private final App app;
 
     public TwinkleStar(App _app)
     {
@@ -79,14 +79,20 @@ public class TwinkleStar extends GdxSprite
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 
-//    @Override
-//    public void draw(SpriteBatch spriteBatch)
-//    {
-//        final float originX = app.baseRenderer.backgroundCamera.getPosition().x;
-//        final float originY = app.baseRenderer.backgroundCamera.getPosition().y;
-//
-//        sprite.setPosition(originX + initXYZ.getX(), initXYZ.getY());
-//
-//        super.draw(spriteBatch);
-//    }
+    @Override
+    public void draw(SpriteBatch spriteBatch)
+    {
+        if (isDrawable)
+        {
+//            float originX = (app.baseRenderer.backgroundCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+//            float originY = (app.baseRenderer.backgroundCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
+
+            float originX = app.mapData.mapPosition.getX();
+            float originY = app.mapData.mapPosition.getY();
+
+            sprite.setPosition(originX + initXYZ.getX(), originY + initXYZ.getY());
+
+            super.draw(spriteBatch);
+        }
+    }
 }

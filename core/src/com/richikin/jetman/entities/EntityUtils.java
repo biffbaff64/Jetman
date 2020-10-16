@@ -163,7 +163,7 @@ public class EntityUtils
             case G_TWINKLE_STAR:
             case G_BACKGROUND_UFO:
             {
-                zed = Gfx._MAXIMUM_Z_DEPTH;
+                zed = Gfx._MAXIMUM_Z_DEPTH-1;
             }
             break;
 

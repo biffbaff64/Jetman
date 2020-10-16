@@ -38,13 +38,9 @@ public class MapData
         {
             new LayerImage("data/background_layer.png", 0.0f, 0.0f),
             new LayerImage("data/nebula_background.png", 0.0f, 0.0f),
-//            new LayerImage("data/stars_background.png", 0.0f, 0.0f),
-        };
-
-    public final LayerImage[] middleLayers =
-        {
-            new LayerImage("data/dark_mountains.png", 0.4f, 0.01f),
-            new LayerImage("data/light_mountains.png", 0.8f, 0.015f),
+            new LayerImage("data/stars_background.png", 0.0f, 0.0f),
+            new LayerImage("data/dark_mountains.png", 1.2f, 0.01f),
+            new LayerImage("data/light_mountains.png", 2.4f, 0.015f),
         };
 
     //

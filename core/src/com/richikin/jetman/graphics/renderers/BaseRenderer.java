@@ -60,7 +60,7 @@ public class BaseRenderer implements Disposable
         parallaxGameCamera = new OrthoGameCamera
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
-                ViewportType._EXTENDED,
+                ViewportType._STRETCH,
                 "Parallax Cam",
                 app
             );
@@ -76,8 +76,8 @@ public class BaseRenderer implements Disposable
         // TwinkleStars and UFOs.
         backgroundCamera = new OrthoGameCamera
             (
-                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
-                ViewportType._EXTENDED,
+                Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT,
+                ViewportType._STRETCH,
                 "Background Cam",
                 app
             );
@@ -87,7 +87,7 @@ public class BaseRenderer implements Disposable
         tiledGameCamera = new OrthoGameCamera
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
-                ViewportType._EXTENDED,
+                ViewportType._STRETCH,
                 "Tiled Cam",
                 app
             );
@@ -97,7 +97,7 @@ public class BaseRenderer implements Disposable
         spriteGameCamera = new OrthoGameCamera
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
-                ViewportType._EXTENDED,
+                ViewportType._STRETCH,
                 "Sprite Cam",
                 app
             );
@@ -107,7 +107,7 @@ public class BaseRenderer implements Disposable
         hudGameCamera = new OrthoGameCamera
             (
                 Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT,
-                ViewportType._EXTENDED,
+                ViewportType._STRETCH,
                 "Hud Cam",
                 app
             );
@@ -182,41 +182,21 @@ public class BaseRenderer implements Disposable
             app.spriteBatch.end();
         }
 
-        // ----- Draw the background, ufos, twinkle stars, if enabled -----
-        if (backgroundCamera.isInUse)
-        {
-            backgroundCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(backgroundCamera.camera.combined);
-            app.spriteBatch.begin();
-
-            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
-            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
-            cameraPos.z = 0;
-
-            backgroundCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-
-            app.entityManager.renderSystem.drawBackgroundSprites();
-
-            app.spriteBatch.end();
-        }
-
-        // ----- Draw the remaining Parallax Layers, if enabled -----
-        if (parallaxGameCamera.isInUse)
-        {
-            parallaxGameCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
-            app.spriteBatch.begin();
-
-            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
-            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
-            cameraPos.z = 0;
-
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-
-            parallaxMiddle.render();
-
-            app.spriteBatch.end();
-        }
+        // ----- Draw the background ufos and twinkle stars, if enabled -----
+//        if (backgroundCamera.isInUse)
+//        {
+//            backgroundCamera.viewport.apply();
+//            app.spriteBatch.setProjectionMatrix(backgroundCamera.camera.combined);
+//            app.spriteBatch.begin();
+//
+//            cameraPos.setEmpty();
+//
+//            backgroundCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+//
+//            app.entityManager.renderSystem.drawBackgroundSprites();
+//
+//            app.spriteBatch.end();
+//        }
 
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
