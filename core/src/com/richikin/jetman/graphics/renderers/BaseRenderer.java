@@ -76,7 +76,7 @@ public class BaseRenderer implements Disposable
         // TwinkleStars and UFOs.
         backgroundCamera = new OrthoGameCamera
             (
-                Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT,
+                Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
                 ViewportType._STRETCH,
                 "Background Cam",
                 app
@@ -167,15 +167,15 @@ public class BaseRenderer implements Disposable
         // ----- Draw the first set of Parallax Layers, if enabled -----
         if (parallaxGameCamera.isInUse)
         {
-            parallaxGameCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
-            app.spriteBatch.begin();
-
             cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
             cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
             cameraPos.z = 0;
 
             parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+
+            parallaxGameCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
+            app.spriteBatch.begin();
 
             parallaxBackground.render();
 
@@ -183,28 +183,23 @@ public class BaseRenderer implements Disposable
         }
 
         // ----- Draw the background ufos and twinkle stars, if enabled -----
-//        if (backgroundCamera.isInUse)
-//        {
-//            backgroundCamera.viewport.apply();
-//            app.spriteBatch.setProjectionMatrix(backgroundCamera.camera.combined);
-//            app.spriteBatch.begin();
-//
-//            cameraPos.setEmpty();
-//
-//            backgroundCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-//
-//            app.entityManager.renderSystem.drawBackgroundSprites();
-//
-//            app.spriteBatch.end();
-//        }
+        if (backgroundCamera.isInUse)
+        {
+            cameraPos.setEmpty();
+            backgroundCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+
+            backgroundCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(backgroundCamera.camera.combined);
+            app.spriteBatch.begin();
+
+            app.entityManager.renderSystem.drawBackgroundSprites();
+
+            app.spriteBatch.end();
+        }
 
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
         {
-            tiledGameCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
-            app.spriteBatch.begin();
-
             cameraPos.x = (float) (app.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
             cameraPos.y = (float) (app.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
             cameraPos.z = 0;
@@ -218,6 +213,10 @@ public class BaseRenderer implements Disposable
                 tiledGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), true);
             }
 
+            tiledGameCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
+            app.spriteBatch.begin();
+
             app.mapData.render(tiledGameCamera.camera);
 
             //
@@ -230,10 +229,6 @@ public class BaseRenderer implements Disposable
         // ----- Draw the game sprites, if enabled -----
         if (spriteGameCamera.isInUse)
         {
-            spriteGameCamera.viewport.apply();
-            app.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
-            app.spriteBatch.begin();
-
             if (AppConfig.gameScreenActive())
             {
                 cameraPos.x = (float) (app.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
@@ -258,6 +253,10 @@ public class BaseRenderer implements Disposable
                 spriteGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
             }
 
+            spriteGameCamera.viewport.apply();
+            app.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
+            app.spriteBatch.begin();
+
             if (!app.settings.isEnabled(Settings._USING_ASHLEY_ECS))
             {
                 if (!Developer.developerPanelActive)
@@ -272,13 +271,12 @@ public class BaseRenderer implements Disposable
         // ----- Draw the HUD and any related objects, if enabled -----
         if (hudGameCamera.isInUse)
         {
+            cameraPos.setEmpty();
+            hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
+
             hudGameCamera.viewport.apply();
             app.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             app.spriteBatch.begin();
-
-            cameraPos.setEmpty();
-
-            hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
 
             hudRenderer.render(app.spriteBatch, hudGameCamera);
 

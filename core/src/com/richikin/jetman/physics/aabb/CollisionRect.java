@@ -70,7 +70,7 @@ public class CollisionRect extends Rectangle
     {
         boolean isTouching = false;
 
-        for (CollisionObject object : com.richikin.jetman.physics.aabb.AABBData.boxes())
+        for (CollisionObject object : AABBData.boxes())
         {
             if (object.index != parentIndex)
             {

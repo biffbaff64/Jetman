@@ -39,9 +39,9 @@ public class CollisionObject implements Disposable
     public Actions       action;
     public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GraphicID                                      contactGid;        // ID of contact object
-    public com.richikin.jetman.physics.aabb.CollisionRect rectangle;         // The actual collision rectangle
-    public GameEntity                                     parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public GraphicID     contactGid;        // ID of contact object
+    public CollisionRect rectangle;         // The actual collision rectangle
+    public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 
@@ -67,14 +67,14 @@ public class CollisionObject implements Disposable
 
     public CollisionObject()
     {
-        this.rectangle = new com.richikin.jetman.physics.aabb.CollisionRect(GraphicID.G_NO_ID);
+        this.rectangle = new CollisionRect(GraphicID.G_NO_ID);
 
         create();
     }
 
     public CollisionObject(Rectangle _rectangle)
     {
-        this.rectangle = new com.richikin.jetman.physics.aabb.CollisionRect(_rectangle, GraphicID.G_NO_ID);
+        this.rectangle = new CollisionRect(_rectangle, GraphicID.G_NO_ID);
 
         create();
     }
@@ -100,7 +100,7 @@ public class CollisionObject implements Disposable
     {
         clearCollision();
 
-        index                 = com.richikin.jetman.physics.aabb.AABBData.boxes().size;
+        index                 = AABBData.boxes().size;
         isHittingPlayer       = false;
         isObstacle            = true;
         isContactObstacle     = false;
@@ -121,7 +121,7 @@ public class CollisionObject implements Disposable
     {
         boolean isTouching = false;
 
-        for (CollisionObject object : com.richikin.jetman.physics.aabb.AABBData.boxes())
+        for (CollisionObject object : AABBData.boxes())
         {
             if (object.index != parentIndex)
             {
