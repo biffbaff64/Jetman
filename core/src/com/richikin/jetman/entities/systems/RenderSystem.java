@@ -67,6 +67,41 @@ public class RenderSystem
     }
 
     /**
+     * Draw non-game sprites which exist in the background layers.
+     * These can be the twinkling stars, ufos, or anything else
+     * which is animating.
+     */
+    public void drawBackgroundSprites()
+    {
+        GdxSprite entity;
+
+        app.baseRenderer.gameZoom.stop();
+
+        for (int i = 0; i < app.entityData.entityMap.size; i++)
+        {
+            entity = (GdxSprite) app.entityData.entityMap.get(i);
+
+            if (entity != null)
+            {
+                switch (entity.gid)
+                {
+                    case G_BACKGROUND_UFO:
+                    case G_TWINKLE_STAR:
+                    {
+                        entity.draw(app.spriteBatch);
+                    }
+                    break;
+
+                    default:
+                    {
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
      * Checks for the supplied sprite being inside
      * the scene window.
      *
@@ -90,28 +125,6 @@ public class RenderSystem
         if (teleportBeam != null)
         {
             teleportBeam.draw(app.spriteBatch);
-        }
-    }
-
-    /**
-     * Draw non-game sprites which exist in the background layers.
-     * These can be the twinkling stars, ufos, or anything else
-     * which is animating.
-     */
-    public void drawBackgroundSprites()
-    {
-        GdxSprite entity;
-
-        for (int i = 0; i < app.entityData.entityMap.size; i++)
-        {
-            entity = (GdxSprite) app.entityData.entityMap.get(i);
-
-            if ((entity != null)
-                && ((entity.gid == GraphicID.G_TWINKLE_STAR)
-                || (entity.gid == GraphicID.G_BACKGROUND_UFO)))
-            {
-                entity.draw(app.spriteBatch);
-            }
         }
     }
 }
