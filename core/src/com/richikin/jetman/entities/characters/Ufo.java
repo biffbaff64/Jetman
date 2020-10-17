@@ -40,7 +40,14 @@ public class Ufo extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        animate();
+        if ((sprite.getX() <= 0) || (sprite.getX() >= Gfx.mapWidth))
+        {
+            sprite.setY(((float) Gfx._VIEW_HEIGHT / 2) + MathUtils.random(Gfx._VIEW_HEIGHT / 3));
+            direction.toggleX();
+            speed.setX(0.2f + MathUtils.random(0.2f));
+        }
+
+        sprite.translate(speed.getX() * direction.getX(), speed.getY() * direction.getY());
 
         updateCommon();
     }
@@ -55,11 +62,18 @@ public class Ufo extends GdxSprite
         }
     }
 
-    @Override
-    public void draw(SpriteBatch spriteBatch)
-    {
-        super.draw(spriteBatch);
-    }
+//    @Override
+//    public void draw(SpriteBatch spriteBatch)
+//    {
+//        spriteBatch.draw
+//            (
+//                app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true),
+//                (app.mapData.mapPosition.x + (sprite.getX() - (Gfx._VIEW_WIDTH / 2.0f))),
+//                (app.mapData.mapPosition.y + (sprite.getY() - (Gfx._VIEW_HEIGHT / 2.0f)))
+//            );
+//
+//        elapsedAnimTime += Gdx.graphics.getDeltaTime();
+//    }
 
     private void setUFOPosition()
     {
@@ -73,9 +87,7 @@ public class Ufo extends GdxSprite
 
         sprite.setX(xPos);
 
-        float yPos = (float) (Gfx._VIEW_HEIGHT / 2);
-
-        yPos += MathUtils.random(Gfx._VIEW_HEIGHT * 0.66f);
+        float yPos = MathUtils.random(Gfx._VIEW_HEIGHT * 0.66f);
 
         sprite.setY(yPos);
 

@@ -45,23 +45,23 @@ public class BackgroundObjectsManager
 
     private final int[][] twinklestarPositions =
         {
-            {  96, 544},    // 0
-            { 192, 752},    // 1
-            { 288, 620},    // 2
-            { 352, 764},    // 3
-            { 544, 616},    // 4
-            { 672, 780},    // 5
-            { 800, 816},    // 6
-            { 878, 580},    // 7
-            { 960, 800},    // 8
-            { 992, 576},    // 9
-            {1192, 608},    // 10
-            {2120, 604},    // 11
-            {1356, 716},    // 12
-            {1440, 672},    // 13
-            {1440, 480},    // 14
-            {1696, 640},    // 15
-            {1760, 576},    // 16
+            { 3,  7},    // 0
+            { 6, 16},    // 1
+            {10, 20},    // 2
+            {11, 10},    // 3
+            {15, 17},    // 4
+            {19,  7},    // 5
+            {22, 13},    // 6
+            {29, 19},    // 7
+            {29,  8},    // 8
+            {34, 14},    // 9
+            {41,  7},    // 10
+            {41, 18},    // 11
+            {44, 13},    // 12
+            {51,  8},    // 13
+            {51, 18},    // 14
+            {56, 11},    // 15
+            {53, 15},    // 16
         };
 
     public void addTwinkleStars()
@@ -73,8 +73,8 @@ public class BackgroundObjectsManager
             SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
             entityDescriptor._ASSET      = asset;
             entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
-            entityDescriptor._POSITION.x = position[0] / Gfx.getTileWidth();
-            entityDescriptor._POSITION.y = position[1] / Gfx.getTileHeight();
+            entityDescriptor._POSITION.x = position[0];
+            entityDescriptor._POSITION.y = (Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) - position[1];
             entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
             entityDescriptor._INDEX      = app.entityData.entityMap.size;
 

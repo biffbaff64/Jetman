@@ -315,6 +315,26 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         }
     }
 
+    /**
+     * Wrap an entities position in the map if it
+     * has gone beyond either if the maps borders.
+     */
+    @Override
+    public void wrap()
+    {
+        if ((direction.getX() == Movement._DIRECTION_LEFT) && ((sprite.getX() + frameWidth) < 0))
+        {
+            sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_RIGHT);
+        }
+        else
+        {
+            if ((direction.getX() == Movement._DIRECTION_RIGHT) && (sprite.getX() > Gfx.getMapWidth()))
+            {
+                sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_LEFT);
+            }
+        }
+    }
+
     @Override
     public void updateCollisionBox()
     {

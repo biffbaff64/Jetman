@@ -84,11 +84,8 @@ public class TwinkleStar extends GdxSprite
     {
         if (isDrawable)
         {
-//            float originX = (app.baseRenderer.backgroundCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-//            float originY = (app.baseRenderer.backgroundCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
-
-            float originX = app.mapData.mapPosition.getX();
-            float originY = app.mapData.mapPosition.getY();
+            float originX = (app.baseRenderer.parallaxGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+            float originY = (app.baseRenderer.parallaxGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
             sprite.setPosition(originX + initXYZ.getX(), originY + initXYZ.getY());
 

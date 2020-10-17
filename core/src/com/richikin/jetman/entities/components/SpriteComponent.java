@@ -39,4 +39,6 @@ public interface SpriteComponent
     void updateCollisionCheck();
 
     void updateCollisionBox();
+
+    void wrap();
 }
