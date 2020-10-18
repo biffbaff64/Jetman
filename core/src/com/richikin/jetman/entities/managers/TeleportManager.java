@@ -27,8 +27,6 @@ public class TeleportManager extends GenericEntityManager
     public SimpleVec2F       targetDistance;
     public SimpleVec2        targetDirection;
 
-    private SpriteDescriptor[] descriptors;
-
     public TeleportManager(App _app)
     {
         super(GraphicID.G_TRANSPORTER, _app);
@@ -59,10 +57,10 @@ public class TeleportManager extends GenericEntityManager
 
     private void createTransporters()
     {
-        Trace.__FILE_FUNC();
-
         if (app.entityUtils.canUpdate(GraphicID.G_TRANSPORTER))
         {
+            Trace.__FILE_FUNC();
+
             mapPositions   = new Array<>();
             activeCount    = 0;
             teleportActive = false;
@@ -75,32 +73,31 @@ public class TeleportManager extends GenericEntityManager
             }
             else
             {
-                descriptors = new SpriteDescriptor[RoomManager._MAX_TELEPORTERS];
+                SpriteDescriptor descriptor;
                 index       = new int[RoomManager._MAX_TELEPORTERS];
 
                 for (int i = 0; i < RoomManager._MAX_TELEPORTERS; i++)
                 {
-                    descriptors[i]             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
-                    descriptors[i]._PLAYMODE   = Animation.PlayMode.LOOP;
-                    descriptors[i]._POSITION.x = coords.get(i).x;
-                    descriptors[i]._POSITION.y = coords.get(i).y;
-                    descriptors[i]._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
-                    descriptors[i]._INDEX      = app.entityData.entityMap.size;
-                    descriptors[i]._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
+                    descriptor             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
+                    descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
+                    descriptor._POSITION.x = coords.get(i).x;
+                    descriptor._POSITION.y = coords.get(i).y;
+                    descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
+                    descriptor._INDEX      = app.entityData.entityMap.size;
 
                     Teleporter teleporter = new Teleporter(app);
-                    teleporter.initialise(descriptors[i]);
+                    teleporter.initialise(descriptor);
                     teleporter.teleporterNumber = activeCount;
 
                     app.entityData.addEntity(teleporter);
-                    app.entityManager._teleportIndex[activeCount] = descriptors[i]._INDEX;
+                    app.entityManager._teleportIndex[activeCount] = descriptor._INDEX;
 
                     //
                     // Store the map positions of each teleporter
                     // for future use
                     mapPositions.add(new SimpleVec2((int) teleporter.sprite.getX(), 0));
 
-                    index[activeCount] = descriptors[i]._INDEX;
+                    index[activeCount] = descriptor._INDEX;
 
                     activeCount++;
                 }

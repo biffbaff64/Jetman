@@ -369,15 +369,15 @@ public class EntityManager implements IEntityManager
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
 
-//        app.roverManager.init();
+        app.roverManager.init();
         app.teleportManager.init();
         app.missileBaseManager.init();
         app.defenceStationManager.init();
 
-        Trace.__FILE_FUNC("EntityMap Contents...");
+        Trace.__FILE_FUNC("EntityMap Contents...(Size = " + app.entityData.entityMap.size + ")");
         for (GameEntity entity : app.entityData.entityMap)
         {
-            Trace.dbg(entity.gid.name());
+            Trace.dbg("" + entity.gid);
         }
 
         AppConfig.entitiesExist = true;

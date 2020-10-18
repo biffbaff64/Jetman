@@ -1,13 +1,13 @@
 package com.richikin.jetman.entities.managers;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Explosion;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maps.TileID;
 
 public class ExplosionManager
 {
@@ -43,27 +43,14 @@ public class ExplosionManager
             }
         }
 
-        SpriteDescriptor entityDescriptor = new SpriteDescriptor
-            (
-                "Explosion",
-                explosionTypes[index].graphicID,
-                GraphicID._DECORATION,
-                GameAssets._EXPLOSION64_ASSET,
-                GameAssets._EXPLOSION64_FRAMES,
-                Animation.PlayMode.NORMAL,
-                TileID._EXPLOSION_TILE
-
-//                (int) _parent.sprite.getX() / Gfx.getTileWidth(),
-//                (int) _parent.sprite.getY() / Gfx.getTileHeight(),
-//                _app.entityUtils.getInitialZPosition(_gid),
-//                _app.assets.getAnimationRegion(GameAssets._EXPLOSION64_ASSET),
-//                GameAssets._EXPLOSION64_FRAMES,
-//                Animation.PlayMode.LOOP
-            );
-
-        entityDescriptor._INDEX         = _app.entityData.entityMap.size;
+        SpriteDescriptor entityDescriptor;
+        entityDescriptor = Entities.getDescriptor(_gid);
         entityDescriptor._PARENT        = _parent;
         entityDescriptor._SIZE          = GameAssets.getAssetSize(_gid);
+        entityDescriptor._POSITION.x    = (int) _parent.sprite.getX() / Gfx.getTileWidth();
+        entityDescriptor._POSITION.y    = (int) _parent.sprite.getY() / Gfx.getTileHeight();
+        entityDescriptor._POSITION.z    = _parent.zPosition;
+        entityDescriptor._INDEX         = _app.entityData.entityMap.size;
 
         Explosion explosion = new Explosion(_gid, _app);
         explosion.initialise(entityDescriptor);

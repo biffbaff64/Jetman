@@ -55,8 +55,6 @@ public class CollisionObject implements Disposable
     public int boxHittingLeft;
     public int boxHittingRight;
 
-    public short contactMask;
-
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
@@ -107,7 +105,6 @@ public class CollisionObject implements Disposable
         gid                   = GraphicID.G_NO_ID;
         contactGid            = GraphicID.G_NO_ID;
         action                = Actions._COLLIDABLE;
-        contactMask           = 0;
         invisibilityTimer     = StopWatch.start();
         isInvisibilityAllowed = true;
     }
@@ -159,7 +156,6 @@ public class CollisionObject implements Disposable
         {
             action           = Actions._COLLIDABLE;
             isHittingPlayer  = false;
-            contactMask      = 0;
             contactEntity    = null;
             boxHittingTop    = 0;
             boxHittingBottom = 0;

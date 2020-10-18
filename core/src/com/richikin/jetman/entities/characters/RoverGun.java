@@ -73,7 +73,6 @@ public class RoverGun extends GdxSprite
 
         gunTurret = new GunTurret(app);
         gunTurret.initialise(entityDescriptor);
-
         app.entityData.addEntity(gunTurret);
     }
 
@@ -329,6 +328,13 @@ public class RoverGun extends GdxSprite
                 if ((sprite.getY() + frameHeight) < 0)
                 {
                     explode();
+                }
+                else
+                {
+                    if (collisionObject.idBottom == GraphicID.G_NO_ID)
+                    {
+                        setAction(Actions._FALLING);
+                    }
                 }
             }
 

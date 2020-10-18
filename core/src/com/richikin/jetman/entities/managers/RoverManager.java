@@ -12,6 +12,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
 import com.richikin.jetman.utils.logging.StopWatch;
+import com.richikin.jetman.utils.logging.Trace;
 
 import java.util.concurrent.TimeUnit;
 
@@ -80,6 +81,8 @@ public class RoverManager extends GenericEntityManager
     {
         if (app.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverCount == 0))
         {
+            Trace.__FILE_FUNC();
+
             SimpleVec2 roverPos = getStartPosition();
 
             entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER);
@@ -128,6 +131,8 @@ public class RoverManager extends GenericEntityManager
 
         if (app.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverGunCount == 0))
         {
+            Trace.__FILE_FUNC();
+
             int markerX = (((Gfx.getMapWidth() / 2) + Gfx._VIEW_WIDTH) / Gfx.getTileWidth())
                         + MathUtils.random(10, 20);
 
@@ -143,12 +148,11 @@ public class RoverManager extends GenericEntityManager
 
                 RoverGun roverGun = new RoverGun(app);
                 roverGun.initialise(descriptor);
-
                 app.entityData.addEntity(roverGun);
 
                 app.entityManager._roverGunIndex = roverGun.spriteNumber;
 
-                roverGun.addTurret();
+//                roverGun.addTurret();
 
                 roverGunCount++;
                 totalGunsUsed++;
