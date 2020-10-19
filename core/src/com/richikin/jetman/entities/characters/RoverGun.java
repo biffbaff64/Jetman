@@ -327,7 +327,7 @@ public class RoverGun extends GdxSprite
             {
                 if ((sprite.getY() + frameHeight) < 0)
                 {
-                    explode();
+                     setAction(Actions._DEAD);
                 }
                 else
                 {
