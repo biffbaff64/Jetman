@@ -224,6 +224,7 @@ public class MapCreator
                         gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
                         gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
                         gameEntity.setCollisionObject(gameEntity.position.x, gameEntity.position.y);
+                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity);
                     }
                 }
             }

@@ -57,9 +57,11 @@ public class AppConfig
 
         Developer.setMode(_app);
 
+        app.settings.enable(Settings._ANDROID_ON_DESKTOP);
+
         availableInputs = new Array<>();
 
-        if (isAndroidApp())
+        if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
             availableInputs.add(ControllerType._VIRTUAL);
 
@@ -110,6 +112,7 @@ public class AppConfig
         }
     }
 
+    // TODO: 19/10/2020 - Is this method really necessary?
     public static boolean gameScreenActive()
     {
         return currentScreenID == ScreenID._GAME_SCREEN;

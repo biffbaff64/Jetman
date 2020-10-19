@@ -153,19 +153,19 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     /**
-     * Translates the physics body coordinates onto the sprite position
+     * Sets the sprite position from the physics body coordinates
      */
-//    public void setPositionfromBody()
-//    {
-//        if (b2dBody != null)
-//        {
-//            sprite.setPosition
-//                (
-//                    (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth / 2),
-//                    (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight / 2)
-//                );
-//        }
-//    }
+    public void setPositionfromBody()
+    {
+        if (b2dBody != null)
+        {
+            sprite.setPosition
+                (
+                    (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth / 2),
+                    (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight / 2)
+                );
+        }
+    }
 
     @Override
     public void preUpdate()

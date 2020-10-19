@@ -22,7 +22,6 @@ public class GameEntity implements EntityComponent, Disposable
     public float           frameHeight;
     public CollisionObject collisionObject;
     public Body            b2dBody;
-    public BodyDef         bodyDef;
     public short           bodyCategory;
     public short           collidesWith;
     public Actions         entityAction;

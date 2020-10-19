@@ -176,8 +176,6 @@ public class BodyBuilder
                 (_entity.position.y + (_entity.frameHeight / 2)) / Gfx._PPM
             );
 
-        _entity.bodyDef = bodyDef;
-
         return bodyDef;
     }
 
