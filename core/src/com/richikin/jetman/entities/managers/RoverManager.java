@@ -131,10 +131,8 @@ public class RoverManager extends GenericEntityManager
 
         if (app.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverGunCount == 0))
         {
-            Trace.__FILE_FUNC();
-
-            int markerX = (((Gfx.getMapWidth() / 2) + Gfx._VIEW_WIDTH) / Gfx.getTileWidth())
-                        + MathUtils.random(10, 20);
+            int markerX = (int) (app.getRover().getPosition().x / Gfx.getTileWidth());
+            markerX += MathUtils.randomBoolean() ? -30 : 25;
 
             if (isValidPosition(markerX))
             {

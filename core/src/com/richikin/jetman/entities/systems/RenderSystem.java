@@ -52,6 +52,8 @@ public class RenderSystem
                             {
                                 if (entity.zPosition == z)
                                 {
+                                    entity.setPositionfromBody();
+
                                     if (isInViewWindow(entity) && entity.isDrawable)
                                     {
                                         entity.draw(app.spriteBatch);

@@ -100,6 +100,8 @@ public class MainPlayer extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
         app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
 
+        addPhysicsBody();
+
         setup(true);
 
         bridgeSection = app.assets.getObjectRegion("bridge");

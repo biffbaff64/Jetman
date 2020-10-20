@@ -42,9 +42,14 @@ public class Rover extends GdxSprite
         create(entityDescriptor);
 
         bodyCategory = Gfx.CAT_VEHICLE;
-        collidesWith = Gfx.CAT_SCENERY | Gfx.CAT_FIXED_ENEMY;
+        collidesWith = Gfx.CAT_MOBILE_ENEMY
+            | Gfx.CAT_FIXED_ENEMY
+            | Gfx.CAT_GROUND
+            | Gfx.CAT_SCENERY;
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+
+        addPhysicsBody();
 
         setup();
     }

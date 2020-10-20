@@ -192,7 +192,12 @@ public class MapCreator
                             gameEntity.gid = GraphicID._CRATER;
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER;
+                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                                | Gfx.CAT_PLAYER_WEAPON
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -203,6 +208,7 @@ public class MapCreator
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
+                                | Gfx.CAT_PLAYER_WEAPON
                                 | Gfx.CAT_MOBILE_ENEMY
                                 | Gfx.CAT_MISSILE_BASE
                                 | Gfx.CAT_TELEPORTER
@@ -224,7 +230,6 @@ public class MapCreator
                         gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
                         gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
                         gameEntity.setCollisionObject(gameEntity.position.x, gameEntity.position.y);
-                        gameEntity.b2dBody = app.worldModel.bodyBuilder.createStaticBody(gameEntity);
                     }
                 }
             }

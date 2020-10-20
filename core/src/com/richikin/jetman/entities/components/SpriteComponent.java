@@ -34,6 +34,10 @@ public interface SpriteComponent
 
     void setAnimation(SpriteDescriptor entityDescriptor, float frameRate);
 
+    void addPhysicsBody();
+
+    void setPositionfromBody();
+
     void addCollisionListener(ICollisionListener listener);
 
     void updateCollisionCheck();

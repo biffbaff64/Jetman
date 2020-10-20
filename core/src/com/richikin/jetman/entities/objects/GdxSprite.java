@@ -41,7 +41,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     // -----------------------------------------------
     // public flags
     //
-    // TODO: 22/09/2020 - These flags are getting untidy. Look at making use of these more efficient.
     public boolean isDrawable;
     public boolean isRotating;
     public boolean isFlippedX;
@@ -146,15 +145,22 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 
-        initXYZ.set(sprite.getX(), sprite.getY(), (float) vec3F.z);
-
         position = new SimpleVec2F(sprite.getX(), sprite.getY());
         zPosition = (int) vec3F.z;
+
+        initXYZ.set(sprite.getX(), sprite.getY(), (float) vec3F.z);
+    }
+
+    @Override
+    public void addPhysicsBody()
+    {
+//        b2dBody = app.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
     }
 
     /**
      * Sets the sprite position from the physics body coordinates
      */
+    @Override
     public void setPositionfromBody()
     {
         if (b2dBody != null)
@@ -417,7 +423,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     /**
      * The LibGDX {@link Sprite} class doesn't have a
      * getPosition() method, just getX() and getY(),
-     * so this is here to make up fpr that.
+     * so this is here to make up for that.
      *
      * @return Vector3 holding the map position.
      */
