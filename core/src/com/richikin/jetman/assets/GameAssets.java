@@ -30,7 +30,7 @@ public class GameAssets
     public static final String _3BALLS_UFO_ASSET       = "3balls";
     public static final String _3LEGS_ALIEN_ASSET      = "3legs";
     public static final String _ALIEN_WHEEL_ASSET      = "wheel";
-    public static final String _ASTEROID1_ASSET        = "asteroid01";
+    public static final String _ASTEROID1_ASSET        = "asteroid03";
     public static final String _ASTEROID2_ASSET        = "asteroid02_redglow";
     public static final String _ASTEROID3_ASSET        = "asteroid03";
     public static final String _BLOB_ASSET             = "plus_blob";

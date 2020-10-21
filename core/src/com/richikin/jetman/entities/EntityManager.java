@@ -15,6 +15,7 @@ import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
+import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class EntityManager implements IEntityManager
@@ -360,6 +361,7 @@ public class EntityManager implements IEntityManager
         app.bombManager             = new BombManager(app);
 
         app.entityData.addManager(app.bombManager);
+        app.entityData.addManager(new AlienManager(app));
     }
 
     public void initialiseForLevel()
@@ -376,12 +378,25 @@ public class EntityManager implements IEntityManager
         app.teleportManager.init();
         app.missileBaseManager.init();
         app.defenceStationManager.init();
-        app.bombManager.init();
 
-        Trace.__FILE_FUNC("EntityMap Contents...(Size = " + app.entityData.entityMap.size + ")");
-        for (GameEntity entity : app.entityData.entityMap)
+        for (final EntityManagerComponent system : app.entityData.managerList)
         {
-            Trace.dbg("" + entity.gid);
+            system.init();
+        }
+
+        if (Developer.isDevMode())
+        {
+            Trace.__FILE_FUNC("EntityMap Contents...(Size = " + app.entityData.entityMap.size + ")");
+            for (GameEntity entity : app.entityData.entityMap)
+            {
+                Trace.dbg("" + entity.gid);
+            }
+
+            Trace.__FILE_FUNC("ManagerList Contents...(Size = " + app.entityData.managerList.size() + ")");
+            for (EntityManagerComponent component : app.entityData.managerList)
+            {
+                Trace.dbg("" + component.getGID());
+            }
         }
 
         AppConfig.entitiesExist = true;

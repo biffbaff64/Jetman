@@ -4,6 +4,7 @@ package com.richikin.jetman.input;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.input.objects.ControllerType;
 
 public class InputUtils
 {
@@ -22,7 +23,7 @@ public class InputUtils
         return vector2.rotate90(-1);
     }
 
-    public static boolean isInputAvailable(com.richikin.jetman.input.objects.ControllerType _inputType)
+    public static boolean isInputAvailable(ControllerType _inputType)
     {
         return AppConfig.availableInputs.contains(_inputType, true);
     }

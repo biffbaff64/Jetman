@@ -90,6 +90,7 @@ public enum GraphicID
     _BACKGROUND_ENTITY,
     _BRIDGE,
     _CRATER,
+    _ALIEN_MANAGER,
 
     // ----------------------------
     // Encapsulating type, covering any collision IDs that can be stood on.

@@ -26,8 +26,6 @@ public class Asteroid extends GdxSprite
             1.5f, 1.25f, 1.0f,
         };
 
-    private StopWatch stopWatch;
-
     public Asteroid(App _app)
     {
         super(GraphicID.G_ASTEROID, _app);
@@ -36,6 +34,8 @@ public class Asteroid extends GdxSprite
     @Override
     public void initialise(SpriteDescriptor descriptor)
     {
+        Trace.__FILE_FUNC();
+
         create(descriptor);
 
         sprite.setScale(sizes[MathUtils.random(sizes.length - 1)]);
@@ -52,7 +52,6 @@ public class Asteroid extends GdxSprite
         direction.setY(Movement._DIRECTION_DOWN);
 
         setAction(Actions._RUNNING);
-        stopWatch       = StopWatch.start();
         isRotating      = true;
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
     }
