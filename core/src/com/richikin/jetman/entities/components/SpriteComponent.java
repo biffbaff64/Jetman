@@ -8,9 +8,9 @@ import com.richikin.jetman.physics.aabb.ICollisionListener;
 
 public interface SpriteComponent
 {
-    void initialise(SpriteDescriptor entityDescriptor);
+    void initialise(SpriteDescriptor descriptor);
 
-    void create(SpriteDescriptor entityDescriptor);
+    void create(SpriteDescriptor descriptor);
 
     void initPosition(SimpleVec3F vec3F);
 
@@ -30,9 +30,9 @@ public interface SpriteComponent
 
     void animate();
 
-    void setAnimation(SpriteDescriptor entityDescriptor);
+    void setAnimation(SpriteDescriptor descriptor);
 
-    void setAnimation(SpriteDescriptor entityDescriptor, float frameRate);
+    void setAnimation(SpriteDescriptor descriptor, float frameRate);
 
     void addPhysicsBody();
 

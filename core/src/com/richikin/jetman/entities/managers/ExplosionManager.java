@@ -43,17 +43,17 @@ public class ExplosionManager
             }
         }
 
-        SpriteDescriptor entityDescriptor;
-        entityDescriptor = Entities.getDescriptor(_gid);
-        entityDescriptor._PARENT        = _parent;
-        entityDescriptor._SIZE          = GameAssets.getAssetSize(_gid);
-        entityDescriptor._POSITION.x    = (int) _parent.sprite.getX() / Gfx.getTileWidth();
-        entityDescriptor._POSITION.y    = (int) _parent.sprite.getY() / Gfx.getTileHeight();
-        entityDescriptor._POSITION.z    = _parent.zPosition;
-        entityDescriptor._INDEX         = _app.entityData.entityMap.size;
+        SpriteDescriptor descriptor;
+        descriptor = Entities.getDescriptor(_gid);
+        descriptor._PARENT        = _parent;
+        descriptor._SIZE          = GameAssets.getAssetSize(_gid);
+        descriptor._POSITION.x    = (int) _parent.sprite.getX() / Gfx.getTileWidth();
+        descriptor._POSITION.y    = (int) _parent.sprite.getY() / Gfx.getTileHeight();
+        descriptor._POSITION.z    = _parent.zPosition;
+        descriptor._INDEX         = _app.entityData.entityMap.size;
 
         Explosion explosion = new Explosion(_gid, _app);
-        explosion.initialise(entityDescriptor);
+        explosion.initialise(descriptor);
         explosion.sprite.setScale(explosionTypes[index].scale);
 
         _app.entityData.addEntity(explosion);

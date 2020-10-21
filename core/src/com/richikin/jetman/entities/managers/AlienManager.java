@@ -56,12 +56,12 @@ public class AlienManager extends GenericEntityManager
             {
                 SimpleVec2 markerPos = setInitialPosition(graphicID);
 
-                entityDescriptor = Entities.getDescriptor(graphicID);
-                entityDescriptor._SIZE = GameAssets.getAssetSize(graphicID);
-                entityDescriptor._POSITION.x = markerPos.getX();
-                entityDescriptor._POSITION.y = markerPos.getY();
-                entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(graphicID);
-                entityDescriptor._INDEX = app.entityData.entityMap.size;
+                descriptor = Entities.getDescriptor(graphicID);
+                descriptor._SIZE = GameAssets.getAssetSize(graphicID);
+                descriptor._POSITION.x = markerPos.getX();
+                descriptor._POSITION.y = markerPos.getY();
+                descriptor._POSITION.z = app.entityUtils.getInitialZPosition(graphicID);
+                descriptor._INDEX = app.entityData.entityMap.size;
 
                 switch (graphicID)
                 {
@@ -83,7 +83,7 @@ public class AlienManager extends GenericEntityManager
                     case G_ASTEROID:
                     {
                         Asteroid asteroid = new Asteroid(app);
-                        asteroid.initialise(entityDescriptor);
+                        asteroid.initialise(descriptor);
                         app.entityData.addEntity(asteroid);
                     }
                     break;

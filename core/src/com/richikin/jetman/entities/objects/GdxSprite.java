@@ -92,7 +92,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     @Override
-    public void create(SpriteDescriptor entityDescriptor)
+    public void create(SpriteDescriptor descriptor)
     {
         sprite    = new Sprite();
         direction = new Direction();
@@ -113,26 +113,26 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         isDebuggable        = false;
         isMainCharacter     = false;
 
-        spriteNumber = entityDescriptor._INDEX;
-        isAnimating  = (entityDescriptor._FRAMES > 1);
+        spriteNumber = descriptor._INDEX;
+        isAnimating  = (descriptor._FRAMES > 1);
         setAction(Actions._NO_ACTION);
 
-        if (entityDescriptor._ASSET != null)
+        if (descriptor._ASSET != null)
         {
-            setAnimation(entityDescriptor, entityDescriptor._ANIM_RATE);
+            setAnimation(descriptor, descriptor._ANIM_RATE);
         }
 
         initPosition(new SimpleVec3F
             (
-                entityDescriptor._POSITION.x,
-                entityDescriptor._POSITION.y,
-                entityDescriptor._POSITION.z
+                descriptor._POSITION.x,
+                descriptor._POSITION.y,
+                descriptor._POSITION.z
             ));
 
         setCollisionObject(sprite.getX(), sprite.getY());
 
-        isLinked = (entityDescriptor._LINK > 0);
-        link     = entityDescriptor._LINK;
+        isLinked = (descriptor._LINK > 0);
+        link     = descriptor._LINK;
     }
 
     @Override

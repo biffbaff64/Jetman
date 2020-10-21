@@ -65,9 +65,9 @@ public class ZapSprite extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         sprite.setPosition(parent.sprite.getX() + 2, (parent.sprite.getY() + parent.frameHeight) - 4);
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);

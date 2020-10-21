@@ -32,14 +32,14 @@ public class Rover extends GdxSprite
     /**
      * Create and initialise the Moon Rover
      *
-     * @param entityDescriptor  The {@link SpriteDescriptor} which
+     * @param descriptor  The {@link SpriteDescriptor} which
      *                          holds all the necessary information
      *                          for creating this entity.
      */
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         bodyCategory = Gfx.CAT_VEHICLE;
         collidesWith = Gfx.CAT_MOBILE_ENEMY

@@ -29,15 +29,15 @@ public class BackgroundObjectsManager
     {
         for (int i = 0; i < numUfos; i++)
         {
-            SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
-            entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
-            entityDescriptor._POSITION.x = 0;
-            entityDescriptor._POSITION.y = 0;
-            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
-            entityDescriptor._INDEX      = app.entityData.entityMap.size;
+            SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
+            descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
+            descriptor._POSITION.x = 0;
+            descriptor._POSITION.y = 0;
+            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
+            descriptor._INDEX      = app.entityData.entityMap.size;
 
             Ufo ufo = new Ufo(app);
-            ufo.initialise(entityDescriptor);
+            ufo.initialise(descriptor);
 
             app.entityData.addEntity(ufo);
         }
@@ -70,16 +70,16 @@ public class BackgroundObjectsManager
         {
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
-            SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
-            entityDescriptor._ASSET      = asset;
-            entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
-            entityDescriptor._POSITION.x = position[0];
-            entityDescriptor._POSITION.y = (Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) - position[1];
-            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
-            entityDescriptor._INDEX      = app.entityData.entityMap.size;
+            SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
+            descriptor._ASSET      = asset;
+            descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
+            descriptor._POSITION.x = position[0];
+            descriptor._POSITION.y = (Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) - position[1];
+            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
+            descriptor._INDEX      = app.entityData.entityMap.size;
 
             TwinkleStar twinkleStar = new TwinkleStar(app);
-            twinkleStar.initialise(entityDescriptor);
+            twinkleStar.initialise(descriptor);
 
             app.entityData.addEntity(twinkleStar);
         }

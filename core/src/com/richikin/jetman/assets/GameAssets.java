@@ -3,6 +3,7 @@ package com.richikin.jetman.assets;
 
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.jetman.utils.logging.Trace;
 
 public class GameAssets
 {
@@ -122,6 +123,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_ROVER_BOOT,       108,  14),
             new AssetSize(GraphicID.G_ROVER_GUN,        122,  59),
             new AssetSize(GraphicID.G_ROVER_GUN_BARREL, 122,  59),
+            new AssetSize(GraphicID.G_BOMB,              42,  53),
 
             new AssetSize(GraphicID.G_MISSILE_BASE,     120,  51),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),
@@ -167,6 +169,11 @@ public class GameAssets
             {
                 size = assetSize.size;
             }
+        }
+
+        if (size.isEmpty())
+        {
+            Trace.__FILE_FUNC("***** Size for " + _gid + " not found! *****");
         }
 
         return size;

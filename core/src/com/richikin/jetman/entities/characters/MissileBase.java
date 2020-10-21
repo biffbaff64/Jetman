@@ -21,6 +21,8 @@ import com.richikin.jetman.utils.logging.Trace;
 
 public class MissileBase extends GdxSprite
 {
+    public DefenceStation[] defenceStations;
+
     private GdxSprite     topSection;
     private TextureRegion emptyFrame;
 
@@ -185,18 +187,18 @@ public class MissileBase extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_MISSILE_LAUNCHER);
-        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._POSITION.x    = (int) (this.sprite.getX() / Gfx.getTileWidth());
-        entityDescriptor._POSITION.y    = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;
-        entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_LAUNCHER);
-        entityDescriptor._INDEX         = app.entityData.entityMap.size;
-        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_LAUNCHER);
+        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_MISSILE_LAUNCHER);
+        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+        descriptor._POSITION.x    = (int) (this.sprite.getX() / Gfx.getTileWidth());
+        descriptor._POSITION.y    = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;
+        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_LAUNCHER);
+        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_LAUNCHER);
 
         topSection = new GdxSprite(GraphicID.G_MISSILE_LAUNCHER, app);
         topSection.bodyCategory = Gfx.CAT_FIXED_ENEMY;
         topSection.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
-        topSection.create(entityDescriptor);
+        topSection.create(descriptor);
         topSection.sprite.setPosition(topSection.sprite.getX() + 15, topSection.sprite.getY() + this.frameHeight);
         topSection.animation.setFrameDuration(0.5f / 6f);
         topSection.setAction(Actions._STANDING);
@@ -216,30 +218,28 @@ public class MissileBase extends GdxSprite
 
         //
         // Add a Defence Station to the left of the base
-        SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER);
-        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._POSITION.x    = vec2.get(0).x;
-        entityDescriptor._POSITION.y    = vec2.get(0).y;
-        entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER);
-        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER);
-        entityDescriptor._INDEX         = app.entityData.entityMap.size;
-
-        DefenceStation[] defenceStations;
+        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER);
+        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+        descriptor._POSITION.x    = vec2.get(0).x;
+        descriptor._POSITION.y    = vec2.get(0).y;
+        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER);
+        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER);
+        descriptor._INDEX         = app.entityData.entityMap.size;
 
         defenceStations = new DefenceStation[2];
 
         defenceStations[0] = new DefenceStation(app);
-        defenceStations[0].initialise(entityDescriptor);
+        defenceStations[0].initialise(descriptor);
         app.entityData.addEntity(defenceStations[0]);
         defenceStations[0].addZapper();
 
         //
         // Add a Defence Station to the right of the base
-        entityDescriptor._POSITION.x = vec2.get(1).x;
-        entityDescriptor._POSITION.y = vec2.get(1).y;
+        descriptor._POSITION.x = vec2.get(1).x;
+        descriptor._POSITION.y = vec2.get(1).y;
 
         defenceStations[1] = new DefenceStation(app);
-        defenceStations[1].initialise(entityDescriptor);
+        defenceStations[1].initialise(descriptor);
         app.entityData.addEntity(defenceStations[1]);
         defenceStations[1].addZapper();
     }

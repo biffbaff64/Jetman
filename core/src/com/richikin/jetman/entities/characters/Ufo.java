@@ -20,9 +20,9 @@ public class Ufo extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         setAction(Actions._RUNNING);
         sprite.setColor(Color.WHITE);

@@ -9,10 +9,7 @@ import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.characters.*;
 import com.richikin.jetman.entities.hero.MainPlayer;
-import com.richikin.jetman.entities.managers.DefenceStationManager;
-import com.richikin.jetman.entities.managers.MissileBaseManager;
-import com.richikin.jetman.entities.managers.RoverManager;
-import com.richikin.jetman.entities.managers.TeleportManager;
+import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.camera.CameraUtils;
@@ -76,6 +73,7 @@ public abstract class App extends com.badlogic.gdx.Game
     public TeleportManager       teleportManager;
     public MissileBaseManager    missileBaseManager;
     public DefenceStationManager defenceStationManager;
+    public BombManager           bombManager;
 
     public MainPlayer getPlayer()
     {

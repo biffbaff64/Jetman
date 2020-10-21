@@ -4,6 +4,7 @@ import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
+import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.utils.logging.Trace;
 
 public class GunTurret extends GdxSprite
@@ -12,13 +13,13 @@ public class GunTurret extends GdxSprite
 
     public GunTurret(App _app)
     {
-        super(_app);
+        super(GraphicID.G_ROVER_GUN_BARREL, _app);
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         isDrawable = true;
         setAction(Actions._STANDING);

@@ -357,6 +357,9 @@ public class EntityManager implements IEntityManager
         app.teleportManager         = new TeleportManager(app);
         app.missileBaseManager      = new MissileBaseManager(app);
         app.defenceStationManager   = new DefenceStationManager(app);
+        app.bombManager             = new BombManager(app);
+
+        app.entityData.addManager(app.bombManager);
     }
 
     public void initialiseForLevel()
@@ -373,6 +376,7 @@ public class EntityManager implements IEntityManager
         app.teleportManager.init();
         app.missileBaseManager.init();
         app.defenceStationManager.init();
+        app.bombManager.init();
 
         Trace.__FILE_FUNC("EntityMap Contents...(Size = " + app.entityData.entityMap.size + ")");
         for (GameEntity entity : app.entityData.entityMap)

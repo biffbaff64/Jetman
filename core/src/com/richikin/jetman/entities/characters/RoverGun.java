@@ -38,9 +38,9 @@ public class RoverGun extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
@@ -64,15 +64,15 @@ public class RoverGun extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
-        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
-        entityDescriptor._POSITION.x    = 0;
-        entityDescriptor._POSITION.y    = 0;
-        entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
-        entityDescriptor._INDEX         = app.entityData.entityMap.size;
+        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._POSITION.x    = 0;
+        descriptor._POSITION.y    = 0;
+        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._INDEX         = app.entityData.entityMap.size;
 
         gunTurret = new GunTurret(app);
-        gunTurret.initialise(entityDescriptor);
+        gunTurret.initialise(descriptor);
         app.entityData.addEntity(gunTurret);
     }
 
@@ -172,19 +172,19 @@ public class RoverGun extends GdxSprite
 
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 2))
             {
-//                EntityDescriptor entityDescriptor = new EntityDescriptor();
-//                entityDescriptor._ASSET         = app.assets.getAnimationsAtlas().findRegion(GameAssets._SPARKLE_WEAPON_ASSET);
-//                entityDescriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
-//                entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-//                entityDescriptor._X             = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
-//                entityDescriptor._Y             = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
-//                entityDescriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
-//                entityDescriptor._INDEX         = app.entityData.entityMap.size;
-//                entityDescriptor._ENEMY         = app.entityUtils.setEnemyStatus(GraphicID.G_ROVER_BULLET);
-//                entityDescriptor._UPDATEABLE    = app.entityUtils.canUpdate(GraphicID.G_ROVER_BULLET);
+//                EntityDescriptor descriptor = new EntityDescriptor();
+//                descriptor._ASSET         = app.assets.getAnimationsAtlas().findRegion(GameAssets._SPARKLE_WEAPON_ASSET);
+//                descriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
+//                descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+//                descriptor._X             = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
+//                descriptor._Y             = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
+//                descriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
+//                descriptor._INDEX         = app.entityData.entityMap.size;
+//                descriptor._ENEMY         = app.entityUtils.setEnemyStatus(GraphicID.G_ROVER_BULLET);
+//                descriptor._UPDATEABLE    = app.entityUtils.canUpdate(GraphicID.G_ROVER_BULLET);
 //
 //                SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_ROVER_BULLET, app);
-//                weapon.initialise(entityDescriptor);
+//                weapon.initialise(descriptor);
 //
 //                app.entityData.addEntity(weapon);
 

@@ -39,9 +39,9 @@ public class TwinkleStar extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         bodyCategory = Gfx.CAT_SCENERY;
         collidesWith = Gfx.CAT_NOTHING;

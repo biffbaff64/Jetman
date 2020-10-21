@@ -45,35 +45,35 @@ public class Laser extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         float x;
 
-        if (entityDescriptor._PARENT.lookingAt.getX() == Movement._DIRECTION_LEFT)
+        if (descriptor._PARENT.lookingAt.getX() == Movement._DIRECTION_LEFT)
         {
-            x = entityDescriptor._PARENT.sprite.getX() - frameWidth;
+            x = descriptor._PARENT.sprite.getX() - frameWidth;
 
             distance.set(x - app.mapData.mapPosition.getX(), 0);
         }
         else
         {
-            x = entityDescriptor._PARENT.sprite.getX() + (entityDescriptor._PARENT.collisionObject.rectangle.getWidth() + 1);
+            x = descriptor._PARENT.sprite.getX() + (descriptor._PARENT.collisionObject.rectangle.getWidth() + 1);
 
             distance.set((app.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH) - x, 0);
         }
 
-        float y = (entityDescriptor._PARENT.sprite.getY() + (entityDescriptor._PARENT.frameHeight / 2)) - 2;
+        float y = (descriptor._PARENT.sprite.getY() + (descriptor._PARENT.frameHeight / 2)) - 2;
 
         sprite.setPosition(x, y);
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
-        direction.set(entityDescriptor._PARENT.lookingAt.getX(), 0);
+        direction.set(descriptor._PARENT.lookingAt.getX(), 0);
         speed.set(Math.max((app.getPlayer().speed.getX() + 12), 24), 0);
 
-        sprite.setColor(colourList[((MainPlayer) entityDescriptor._PARENT).laserColour]);
+        sprite.setColor(colourList[((MainPlayer) descriptor._PARENT).laserColour]);
 
         setAction(Actions._RUNNING);
     }

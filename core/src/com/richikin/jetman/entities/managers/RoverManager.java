@@ -85,16 +85,16 @@ public class RoverManager extends GenericEntityManager
 
             SimpleVec2 roverPos = getStartPosition();
 
-            entityDescriptor = Entities.getDescriptor(GraphicID.G_ROVER);
-            entityDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER);
-            entityDescriptor._ANIM_RATE = 5f / 6f;
-            entityDescriptor._POSITION.x = roverPos.x;
-            entityDescriptor._POSITION.y = roverPos.y;
-            entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
-            entityDescriptor._INDEX = app.entityData.entityMap.size;
+            descriptor = Entities.getDescriptor(GraphicID.G_ROVER);
+            descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER);
+            descriptor._ANIM_RATE = 5f / 6f;
+            descriptor._POSITION.x = roverPos.x;
+            descriptor._POSITION.y = roverPos.y;
+            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
+            descriptor._INDEX = app.entityData.entityMap.size;
 
             Rover rover = new Rover(app);
-            rover.initialise(entityDescriptor);
+            rover.initialise(descriptor);
             app.entityData.addEntity(rover);
             rover.addPartners();
 
@@ -150,7 +150,7 @@ public class RoverManager extends GenericEntityManager
 
                 app.entityManager._roverGunIndex = roverGun.spriteNumber;
 
-//                roverGun.addTurret();
+                roverGun.addTurret();
 
                 roverGunCount++;
                 totalGunsUsed++;

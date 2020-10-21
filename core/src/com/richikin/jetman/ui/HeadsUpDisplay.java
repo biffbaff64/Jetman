@@ -6,13 +6,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.core.Actions;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateID;
+import com.richikin.jetman.core.*;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
@@ -25,10 +24,12 @@ import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.jetman.utils.developer.Developer;
 import com.richikin.jetman.utils.HighScoreUtils;
+import com.richikin.jetman.utils.logging.StopWatch;
 import com.richikin.jetman.utils.logging.Trace;
 import com.richikin.jetman.utils.messaging.MessageManager;
 
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class HeadsUpDisplay implements Disposable
 {
@@ -180,7 +181,15 @@ public class HeadsUpDisplay implements Disposable
                     buttonPause.release();
                 }
 
-                updateBars();
+                if (Developer.isDevMode())
+                {
+                    developmentHUDUpdate();
+                }
+                else
+                {
+                    updateBars();
+                }
+
                 updateArrowIndicators();
                 updateDeveloperItems();
 
@@ -663,6 +672,39 @@ public class HeadsUpDisplay implements Disposable
         hideControls();
 
         AppConfig.gameButtonsReady = true;
+    }
+
+    StopWatch scoreStopwatch = StopWatch.start();
+    StopWatch livesStopwatch = StopWatch.start();
+
+    private void developmentHUDUpdate()
+    {
+        if (Developer.isDevMode())
+        {
+            if (scoreStopwatch.time(TimeUnit.MILLISECONDS) > 50)
+            {
+                app.gameProgress.score.add
+                    (
+                        MathUtils.random(100),
+                        GameConstants._MAX_SCORE
+                    );
+
+                scoreStopwatch.reset();
+            }
+
+            if (livesStopwatch.time(TimeUnit.MILLISECONDS) > 750)
+            {
+                app.gameProgress.lives.subtract(1, GameConstants._MAX_LIVES);
+
+                livesStopwatch.reset();
+            }
+
+            fuelBar.setSpeed(1);
+            timeBar.setSpeed(2);
+            fuelBar.updateSlowDecrementWithWrap((int) fuelBar.getMax());
+            timeBar.updateSlowDecrementWithWrap((int) timeBar.getMax());
+            updateBarColours();
+        }
     }
 
     @Override

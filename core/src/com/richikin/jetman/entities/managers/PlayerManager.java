@@ -15,7 +15,7 @@ public class PlayerManager
     public int playerTileX;
     public int playerTileY;
 
-    private       SpriteDescriptor entityDescriptor;
+    private       SpriteDescriptor descriptor;
     private final App              app;
 
     public PlayerManager(App _app)
@@ -37,13 +37,13 @@ public class PlayerManager
             playerTileY = app.roomManager.getStartPosition().y;
         }
 
-        entityDescriptor             = Entities.getDescriptor(GraphicID.G_PLAYER);
-        entityDescriptor._PLAYMODE   = Animation.PlayMode.LOOP;
-        entityDescriptor._POSITION.x = playerTileX;
-        entityDescriptor._POSITION.y = playerTileY;
-        entityDescriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_PLAYER);
-        entityDescriptor._INDEX      = app.entityData.entityMap.size;
-        entityDescriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_PLAYER);
+        descriptor             = Entities.getDescriptor(GraphicID.G_PLAYER);
+        descriptor._PLAYMODE   = Animation.PlayMode.LOOP;
+        descriptor._POSITION.x = playerTileX;
+        descriptor._POSITION.y = playerTileY;
+        descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_PLAYER);
+        descriptor._INDEX      = app.entityData.entityMap.size;
+        descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_PLAYER);
     }
 
     public void createPlayer()
@@ -52,12 +52,12 @@ public class PlayerManager
         app.entityManager._playerReady = false;
 
         MainPlayer mainPlayer = new MainPlayer(app);
-        mainPlayer.initialise(entityDescriptor);
+        mainPlayer.initialise(descriptor);
 
         app.entityData.addEntity(mainPlayer);
         app.entityManager.updateIndexes();
         app.entityManager._playerReady = true;
-        app.entityManager._playerIndex = entityDescriptor._INDEX;
+        app.entityManager._playerIndex = descriptor._INDEX;
 
         mainPlayer.addCollisionListener(app.getPlayer().collision);
     }

@@ -34,9 +34,9 @@ public class Asteroid extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         sprite.setScale(sizes[MathUtils.random(sizes.length - 1)]);
 

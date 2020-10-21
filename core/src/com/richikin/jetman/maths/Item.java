@@ -109,7 +109,7 @@ public class Item
     {
         if ((this.total += amount) > wrap)
         {
-            this.total = this.minimum;
+            this.total -= wrap;
         }
     }
 
@@ -170,6 +170,11 @@ public class Item
     public void refill(int refillAmount)
     {
         this.total = refillAmount;
+    }
+
+    public int getRefillAmount()
+    {
+        return refillAmount;
     }
 
     public void setRefillAmount(int refill)

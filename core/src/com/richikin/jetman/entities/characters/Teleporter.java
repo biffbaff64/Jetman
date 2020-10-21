@@ -26,11 +26,11 @@ public class Teleporter extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
         Trace.__FILE_FUNC();
 
-        create(entityDescriptor);
+        create(descriptor);
 
         setAction(Actions._STANDING);
 

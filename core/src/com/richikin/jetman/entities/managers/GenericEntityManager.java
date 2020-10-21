@@ -12,7 +12,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
 {
     public       boolean          canPlace;
     public final App              app;
-    public       SpriteDescriptor entityDescriptor;
+    public       SpriteDescriptor descriptor;
     public       int              activeCount;
     public       GraphicID        graphicID;
 
@@ -127,6 +127,6 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     @Override
     public void dispose()
     {
-        entityDescriptor = null;
+        descriptor = null;
     }
 }

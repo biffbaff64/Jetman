@@ -28,9 +28,9 @@ public class DefenceStation extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
@@ -112,16 +112,16 @@ public class DefenceStation extends GdxSprite
      */
     void addZapper()
     {
-        SpriteDescriptor entityDescriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
-        entityDescriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        entityDescriptor._POSITION.x    = (int) (sprite.getX() / Gfx.getTileWidth());
-        entityDescriptor._POSITION.y    = (int) ((sprite.getY() + frameHeight) / Gfx.getTileHeight());
-        entityDescriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);
-        entityDescriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_ZAP);
-        entityDescriptor._INDEX         = app.entityData.entityMap.size;
+        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
+        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
+        descriptor._POSITION.x    = (int) (sprite.getX() / Gfx.getTileWidth());
+        descriptor._POSITION.y    = (int) ((sprite.getY() + frameHeight) / Gfx.getTileHeight());
+        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);
+        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_ZAP);
+        descriptor._INDEX         = app.entityData.entityMap.size;
 
         zapSprite = new ZapSprite(GraphicID.G_DEFENDER_ZAP, this, app);
-        zapSprite.initialise(entityDescriptor);
+        zapSprite.initialise(descriptor);
         app.entityData.addEntity(zapSprite);
     }
 }

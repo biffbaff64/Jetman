@@ -49,11 +49,11 @@ public class Explosion extends GdxSprite
     }
 
     @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
+    public void initialise(SpriteDescriptor descriptor)
     {
-        create(entityDescriptor);
+        create(descriptor);
 
-        this.parent = entityDescriptor._PARENT;
+        this.parent = descriptor._PARENT;
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
