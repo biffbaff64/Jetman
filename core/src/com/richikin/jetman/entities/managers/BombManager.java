@@ -60,7 +60,6 @@ public class BombManager extends GenericEntityManager
                 {
                     if (totalBombsUsed > 1)
                     {
-                        app.getHud().messageManager.enable();
                         app.getHud().messageManager.addZoomMessage("new_bomb", 3500);
                         app.getHud().messageManager.setPosition
                             (

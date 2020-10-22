@@ -112,9 +112,7 @@ public class TeleportManager extends GenericEntityManager
 
         if (_entered)
         {
-            app.getHud().messageManager.enable();
             app.getHud().messageManager.addZoomMessage("TeleportMessage", 1500);
-
             app.entityManager.teleportBeam.entryVisual();
 
 //            Sfx.inst().startSound(Sfx.inst().SFX_TELEPORT);

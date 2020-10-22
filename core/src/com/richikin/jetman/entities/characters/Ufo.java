@@ -87,7 +87,7 @@ public class Ufo extends GdxSprite
 
         sprite.setX(xPos);
 
-        float yPos = MathUtils.random(Gfx._VIEW_HEIGHT * 0.66f);
+        float yPos = MathUtils.random(Gfx._VIEW_HEIGHT * 0.4f) + Gfx._VIEW_HALF_HEIGHT;
 
         sprite.setY(yPos);
 

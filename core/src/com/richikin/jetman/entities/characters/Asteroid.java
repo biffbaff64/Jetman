@@ -43,7 +43,7 @@ public class Asteroid extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
         bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_SCENERY | Gfx.CAT_VEHICLE;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_GROUND | Gfx.CAT_VEHICLE;
 
         speed.setX(Gfx._VIEW_WIDTH * 0.004f);
         speed.setY(speed.getX() * (0.35f + MathUtils.random(0.9f)));

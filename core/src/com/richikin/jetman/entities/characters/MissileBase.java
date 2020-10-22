@@ -67,9 +67,12 @@ public class MissileBase extends GdxSprite
 
             case _FIGHTING:
             {
-                app.getHud().messageManager.enable();
-                app.getHud().messageManager.addZoomMessage("missilewarning", 2000);
-                app.getHud().messageManager.setPosition("missilewarning", 185, (720 - 196));
+                app.getHud().messageManager.addZoomMessage
+                    (
+                        "missilewarning",
+                        2000,
+                        185, (720 - 196)
+                    );
 
                 app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
                 app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
@@ -98,7 +101,6 @@ public class MissileBase extends GdxSprite
             {
                 Trace.__FILE_FUNC("---------- BASE DESTROYED ----------");
 
-                app.getHud().messageManager.enable();
                 app.getHud().messageManager.addZoomMessage("base_destroyed", 3000);
 
                 app.gameProgress.baseDestroyed = true;
