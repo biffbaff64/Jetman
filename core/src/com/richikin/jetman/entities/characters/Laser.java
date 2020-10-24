@@ -10,7 +10,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 public class Laser extends GdxSprite
 {

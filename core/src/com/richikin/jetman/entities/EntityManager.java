@@ -15,8 +15,8 @@ import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Trace;
 
 public class EntityManager implements IEntityManager
 {

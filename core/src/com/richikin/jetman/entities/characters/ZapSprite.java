@@ -24,8 +24,8 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 import java.util.concurrent.TimeUnit;
 

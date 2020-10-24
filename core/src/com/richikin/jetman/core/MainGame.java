@@ -1,9 +1,9 @@
 package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.google.DummyAdsController;
-import com.richikin.jetman.utils.google.PlayServices;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.google.DummyAdsController;
+import com.richikin.utilslib.google.PlayServices;
 
 public class MainGame extends App
 {

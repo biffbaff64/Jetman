@@ -8,7 +8,7 @@ import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.ui.HeadsUpDisplay;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class LevelManager
 {

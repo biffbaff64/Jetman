@@ -12,8 +12,8 @@ import com.richikin.jetman.entities.characters.MissileBase;
 import com.richikin.jetman.entities.characters.DefenderBullet;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.logging.Trace;
 
 public class MissileBaseManager extends GenericEntityManager
 {

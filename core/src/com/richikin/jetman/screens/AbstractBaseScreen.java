@@ -9,6 +9,7 @@ import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.core.StateManager;
 import com.richikin.jetman.graphics.effects.FadeEffect;
 import com.richikin.jetman.input.buttons.GDXButton;
+import com.richikin.utilslib.screens.IBaseScreen;
 
 public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseScreen, Disposable
 {

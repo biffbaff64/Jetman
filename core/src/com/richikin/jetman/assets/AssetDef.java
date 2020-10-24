@@ -3,7 +3,7 @@ package com.richikin.jetman.assets;
 
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
-import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 /**
  * Asset description class.

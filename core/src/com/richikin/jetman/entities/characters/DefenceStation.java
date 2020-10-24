@@ -11,8 +11,8 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 import java.util.concurrent.TimeUnit;
 

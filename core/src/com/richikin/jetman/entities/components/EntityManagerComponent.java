@@ -1,10 +1,9 @@
 
 package com.richikin.jetman.entities.components;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public interface EntityManagerComponent
 {

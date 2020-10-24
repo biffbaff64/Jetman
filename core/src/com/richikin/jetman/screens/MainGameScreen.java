@@ -5,9 +5,9 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.*;
 import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.jetman.input.objects.ControllerType;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 public class MainGameScreen extends AbstractBaseScreen
 {

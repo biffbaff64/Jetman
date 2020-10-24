@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class PathUtils
 {

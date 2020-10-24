@@ -5,7 +5,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class GunTurret extends GdxSprite
 {

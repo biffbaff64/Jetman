@@ -3,9 +3,9 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.maths.Vec2Boolean;
-import com.richikin.jetman.maths.XYSetF;
+import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.Vec2Boolean;
+import com.richikin.utilslib.maths.XYSetF;
 
 @SuppressWarnings("WeakerAccess")
 public class ScrollPaneObject

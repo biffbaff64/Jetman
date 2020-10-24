@@ -10,14 +10,14 @@ import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.Box;
-import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.physics.Speed;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.Speed;
+import com.richikin.utilslib.logging.Trace;
 
 public class MapCreator
 {

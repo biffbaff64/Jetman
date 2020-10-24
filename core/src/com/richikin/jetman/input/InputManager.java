@@ -10,8 +10,8 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.objects.ControllerType;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.logging.Trace;
 
 @SuppressWarnings("WeakerAccess")
 public class InputManager

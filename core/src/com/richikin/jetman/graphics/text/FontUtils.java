@@ -5,9 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.richikin.jetman.utils.logging.Meters;
-import com.richikin.jetman.utils.logging.Stats;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Meters;
+import com.richikin.utilslib.logging.Stats;
+import com.richikin.utilslib.logging.Trace;
 
 public class FontUtils
 {

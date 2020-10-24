@@ -9,9 +9,9 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.jetman.screens.ScreenID;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Stats;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Stats;
+import com.richikin.utilslib.logging.Trace;
 
 public class AppConfig
 {

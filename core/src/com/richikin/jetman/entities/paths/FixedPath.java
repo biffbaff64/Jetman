@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.paths;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class FixedPath
 {

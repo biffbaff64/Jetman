@@ -1,7 +1,7 @@
 package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.utils.logging.StopWatch;
+import com.richikin.utilslib.logging.StopWatch;
 
 public class EndgameManager
 {

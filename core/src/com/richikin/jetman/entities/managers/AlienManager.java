@@ -8,7 +8,7 @@ import com.richikin.jetman.entities.characters.Asteroid;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
-import com.richikin.jetman.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public class AlienManager extends GenericEntityManager
 {
@@ -47,7 +47,7 @@ public class AlienManager extends GenericEntityManager
     {
         for (GraphicIndex alien : aliens)
         {
-            if (alien.value < app.roomManager.getMaxAllowed(alien.graphicID))
+            if (alien.value < 1)//app.roomManager.getMaxAllowed(alien.graphicID))
             {
                 create(alien.graphicID);
                 alien.value++;

@@ -2,7 +2,7 @@
 package com.richikin.jetman.config;
 
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 /**
  * Major Version - 0 == Development Version

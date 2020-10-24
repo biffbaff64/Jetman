@@ -13,7 +13,7 @@ import com.richikin.jetman.input.objects.ControllerMap;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.jetman.input.controllers.DefaultControllerMap;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 @SuppressWarnings("WeakerAccess")
 public class GameController implements ControllerListener

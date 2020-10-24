@@ -3,8 +3,8 @@ package com.richikin.jetman.maps;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 
 public class RoomManager

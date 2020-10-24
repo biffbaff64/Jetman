@@ -5,7 +5,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.assets.Assets;
+import com.richikin.utilslib.logging.Trace;
 
 public class AssetLoader implements Assets, Disposable
 {

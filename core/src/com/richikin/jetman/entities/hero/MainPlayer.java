@@ -16,14 +16,14 @@ import com.richikin.jetman.entities.managers.BridgeManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.Box;
+import com.richikin.utilslib.maths.Box;
 import com.richikin.jetman.physics.aabb.CollisionRect;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Meters;
-import com.richikin.jetman.utils.logging.Stats;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Meters;
+import com.richikin.utilslib.logging.Stats;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 public class MainPlayer extends GdxSprite
 {

@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.maths.Box;
-import com.richikin.jetman.maths.XYSetF;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.maths.XYSetF;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.Movement;
 
 public class ParallaxLayer implements Disposable
 {

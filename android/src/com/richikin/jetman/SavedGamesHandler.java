@@ -5,7 +5,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.richikin.jetman.utils.google.RCConstants;
+import com.richikin.utilslib.google.RCConstants;
 
 public class SavedGamesHandler implements OnSuccessListener<Intent>
 {

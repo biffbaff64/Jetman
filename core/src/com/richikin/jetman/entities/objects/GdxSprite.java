@@ -11,15 +11,15 @@ import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.entities.components.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.maths.SimpleVec3F;
-import com.richikin.jetman.maths.XYSetF;
+import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.SimpleVec3F;
+import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.jetman.physics.aabb.AABB;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.physics.Speed;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.Speed;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {

@@ -1,10 +1,7 @@
 package com.richikin.jetman.physics.box2d;
 
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 import net.dermetfan.gdx.Multiplexer;
 
 public class Box2DContactListener extends Multiplexer<ContactListener> implements ContactListener

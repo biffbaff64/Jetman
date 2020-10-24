@@ -3,8 +3,8 @@ package com.richikin.jetman.config;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.richikin.jetman.audio.AudioData;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Trace;
 
 public class Settings
 {

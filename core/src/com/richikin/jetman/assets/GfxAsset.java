@@ -3,7 +3,6 @@ package com.richikin.jetman.assets;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.Trace;
 
 /**
  * Creates an object describing essential asset data for entities.

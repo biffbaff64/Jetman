@@ -16,8 +16,8 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.camera.Shake;
-import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.logging.Trace;
 
 public class MissileBase extends GdxSprite
 {

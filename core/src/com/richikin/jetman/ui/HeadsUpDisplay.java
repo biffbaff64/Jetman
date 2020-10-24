@@ -22,11 +22,11 @@ import com.richikin.jetman.input.buttons.GameButtonRegion;
 import com.richikin.jetman.input.buttons.Switch;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.HighScoreUtils;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
-import com.richikin.jetman.utils.messaging.MessageManager;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.misc.HighScoreUtils;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.messaging.MessageManager;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -130,7 +130,7 @@ public class HeadsUpDisplay implements Disposable
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
         GameAssets.hudPanelHeight = scorePanel.getHeight();
 
-        highScoreUtils  = new HighScoreUtils(app);
+        highScoreUtils  = new HighScoreUtils();
         messageManager  = new MessageManager(app);
         pausePanel      = new PausePanel(app);
 

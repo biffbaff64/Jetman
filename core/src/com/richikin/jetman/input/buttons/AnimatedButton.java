@@ -9,8 +9,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.maths.Box;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.physics.Movement;
 import org.jetbrains.annotations.NotNull;
 
 public class AnimatedButton implements GDXButton, Disposable

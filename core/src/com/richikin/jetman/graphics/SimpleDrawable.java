@@ -3,7 +3,7 @@ package com.richikin.jetman.graphics;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.SimpleVec2F;
 
 public class SimpleDrawable
 {

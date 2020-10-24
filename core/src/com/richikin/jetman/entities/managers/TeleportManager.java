@@ -1,6 +1,5 @@
 package com.richikin.jetman.entities.managers;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.Actions;
@@ -12,11 +11,11 @@ import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.RoomManager;
-import com.richikin.jetman.maths.SimpleVec2;
-import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Trace;
 
 public class TeleportManager extends GenericEntityManager
 {

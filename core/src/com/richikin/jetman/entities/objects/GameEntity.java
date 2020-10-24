@@ -2,13 +2,12 @@ package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityComponent;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.maths.SimpleVec2F;
+import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 

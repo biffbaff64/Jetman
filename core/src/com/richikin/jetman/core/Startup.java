@@ -20,9 +20,9 @@ import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.jetman.utils.developer.DebugRenderer;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.DebugRenderer;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Trace;
 
 public class Startup
 {

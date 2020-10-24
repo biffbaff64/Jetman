@@ -11,7 +11,7 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.maps.TileID;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.logging.Trace;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {

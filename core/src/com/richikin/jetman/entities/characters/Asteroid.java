@@ -5,15 +5,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.utils.logging.StopWatch;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.logging.Trace;
 
 public class Asteroid extends GdxSprite
 {
@@ -54,11 +52,14 @@ public class Asteroid extends GdxSprite
         setAction(Actions._RUNNING);
         isRotating      = true;
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
+        isDebuggable    = true;
     }
 
     @Override
     public void update(int spriteNum)
     {
+        Trace.__FILE_FUNC(getAction().name());
+
         switch (getAction())
         {
             case _RUNNING:

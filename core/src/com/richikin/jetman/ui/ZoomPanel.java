@@ -6,7 +6,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.Zoom;
-import com.richikin.jetman.utils.logging.StopWatch;
+import com.richikin.utilslib.logging.StopWatch;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;

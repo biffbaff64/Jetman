@@ -7,7 +7,7 @@ import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.MainGame;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.utils.google.PlayServicesDesktop;
+import com.richikin.utilslib.google.PlayServicesDesktop;
 
 public class DesktopLauncher
 {

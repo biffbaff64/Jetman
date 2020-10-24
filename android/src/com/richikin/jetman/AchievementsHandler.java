@@ -6,8 +6,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.richikin.jetman.utils.google.RCConstants;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.google.RCConstants;
+import com.richikin.utilslib.logging.Trace;
 
 public class AchievementsHandler implements OnSuccessListener<Intent>
 {

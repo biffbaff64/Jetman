@@ -22,7 +22,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.logging.StopWatch;
+import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
 

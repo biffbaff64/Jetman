@@ -11,9 +11,10 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.maths.SimpleVec3F;
-import com.richikin.jetman.utils.logging.NotImplementedException;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.graphics.IGameCamera;
+import com.richikin.utilslib.graphics.ViewportType;
+import com.richikin.utilslib.maths.SimpleVec3F;
+import com.richikin.utilslib.logging.NotImplementedException;
 
 public class OrthoGameCamera implements IGameCamera, Disposable
 {

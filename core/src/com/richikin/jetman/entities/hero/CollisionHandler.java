@@ -6,11 +6,11 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.AABBUtils;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.logging.Trace;
 
 public class CollisionHandler implements ICollisionListener, Disposable
 {

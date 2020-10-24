@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.maths.SimpleVec3F;
+import com.richikin.utilslib.maths.SimpleVec3F;
 
 /**
  * A 3D Star object

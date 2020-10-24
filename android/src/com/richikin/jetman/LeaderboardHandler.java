@@ -2,7 +2,7 @@ package com.richikin.jetman;
 
 import android.content.Intent;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.richikin.jetman.utils.google.RCConstants;
+import com.richikin.utilslib.google.RCConstants;
 
 class LeaderboardHandler implements OnSuccessListener<Intent>
 {

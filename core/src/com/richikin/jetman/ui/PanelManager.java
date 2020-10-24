@@ -3,11 +3,11 @@ package com.richikin.jetman.ui;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.StateID;
-import com.richikin.jetman.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.physics.Speed;
-import com.richikin.jetman.utils.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.Speed;
+import com.richikin.utilslib.logging.Trace;
 
 public class PanelManager
 {

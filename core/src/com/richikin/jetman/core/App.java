@@ -2,7 +2,7 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.richikin.jetman.assets.Assets;
+import com.richikin.utilslib.assets.Assets;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
@@ -25,29 +25,23 @@ import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.jetman.utils.developer.Developer;
-import com.richikin.jetman.utils.google.AdsController;
-import com.richikin.jetman.utils.google.PlayServices;
+import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.google.AdsController;
+import com.richikin.utilslib.google.PlayServices;
 
-public abstract class App extends com.badlogic.gdx.Game
+public abstract class App extends com.richikin.utilslib.App
 {
     // =======================================================
     // Global access references
     //
-    public SpriteBatch    spriteBatch;
-    public Stage          stage;
     public BaseRenderer   baseRenderer;
     public CameraUtils    cameraUtils;
     public WorldModel     worldModel;
-    public Assets         assets;
     public Settings       settings;
     public InputManager   inputManager;
     public StateManager   appState;
     public MainMenuScreen mainMenuScreen;
     public MainGameScreen mainGameScreen;
-
-    public AdsController adsController;
-    public PlayServices  googleServices;
 
     //
     // Globals to be made available when MainGameScreen is active.

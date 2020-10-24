@@ -6,11 +6,11 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.DirectionValue;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.DirectionValue;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.screens.ScreenID;
-import com.richikin.jetman.utils.developer.Developer;
+import com.richikin.utilslib.developer.Developer;
 
 @SuppressWarnings("WeakerAccess")
 public class Keyboard extends InputAdapter

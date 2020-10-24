@@ -9,7 +9,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Laser;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.utils.pooling.ObjectPool;
+import com.richikin.utilslib.pooling.ObjectPool;
 
 public class LaserManager implements Disposable
 {

@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.components;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.maths.SimpleVec3F;
+import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 
 public interface SpriteComponent

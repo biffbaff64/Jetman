@@ -2,7 +2,7 @@
 package com.richikin.jetman.graphics.camera;
 
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 @SuppressWarnings("unused")
 public class Zoom
