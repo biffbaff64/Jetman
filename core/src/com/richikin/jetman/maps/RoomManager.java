@@ -17,6 +17,19 @@ public class RoomManager
     private final Room[] roomMap =
         {
             null,
+            // ####################################################################
+            // Test Level
+            new Room
+                (
+                    "level1.tmx",
+                    new MapEntry
+                        (
+                            -2.0f, 1200,
+                            2, 2, 2, 0, 0, 0,
+                            0, 0, 0, 0, 0, 0
+                        )
+                ),
+            // ####################################################################
             new Room
                 (
                     "level1.tmx",
@@ -226,6 +239,13 @@ public class RoomManager
             case G_STAR_SPINNER:
             {
                 thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxStarSpinners);
+            }
+            break;
+
+            case _CRATER:
+            case G_CRATER:
+            {
+                thisMax = 4;
             }
             break;
 

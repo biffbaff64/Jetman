@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
+import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -32,8 +33,6 @@ public class Asteroid extends GdxSprite
     @Override
     public void initialise(SpriteDescriptor descriptor)
     {
-        Trace.__FILE_FUNC();
-
         create(descriptor);
 
         sprite.setScale(sizes[MathUtils.random(sizes.length - 1)]);
@@ -56,10 +55,13 @@ public class Asteroid extends GdxSprite
     }
 
     @Override
+    public void tidy(int _index)
+    {
+    }
+
+    @Override
     public void update(int spriteNum)
     {
-        Trace.__FILE_FUNC(getAction().name());
-
         switch (getAction())
         {
             case _RUNNING:
@@ -78,16 +80,10 @@ public class Asteroid extends GdxSprite
             }
             break;
 
-            case _KILLED:
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
-
-                if (getAction() == Actions._KILLED)
-                {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
-                }
 
                 setAction(Actions._EXPLODING);
             }
@@ -102,16 +98,16 @@ public class Asteroid extends GdxSprite
 
             case _DYING:
             {
-//                CraterManager craterManager = new CraterManager(app);
-//
-//                if ((collisionObject.idBottom == GraphicID._GROUND)
-//                    && (craterManager.canMakeCrater(this, false)))
-//                {
-//                    int x = (int) (sprite.getX() / Gfx.getTileWidth());
-//                    int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
-//
-//                    craterManager.makeCrater(x, y);
-//                }
+                CraterManager craterManager = new CraterManager(app);
+
+                if ((collisionObject.idBottom == GraphicID._GROUND)
+                    && (craterManager.canMakeCrater(this, false)))
+                {
+                    int x = (int) (sprite.getX() / Gfx.getTileWidth());
+                    int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
+
+                    craterManager.makeCrater(x, y);
+                }
 
                 setAction(Actions._DEAD);
             }
@@ -123,8 +119,6 @@ public class Asteroid extends GdxSprite
             }
             break;
         }
-
-        isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
 
         animate();
 
@@ -147,7 +141,7 @@ public class Asteroid extends GdxSprite
             }
             break;
 
-            case _KILLED:
+            case _DYING:
             case _EXPLODING:
             default:
             {

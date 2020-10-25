@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="601" height="34" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="67">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="left-up" compressionlevel="0" width="601" height="34" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="82">
  <tileset firstgid="1" source="marker_tiles.tsx"/>
  <tileset firstgid="101" source="floor_tiles.tsx"/>
+ <tileset firstgid="245" source="items.tsx"/>
  <layer id="1" name="game tiles" width="601" height="34">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -88,13 +89,28 @@
   <object id="54" name="Player" gid="1" x="10208" y="704" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffaa00" id="5" name="collision">
-  <object id="1" name="Ground" x="6016" y="992" width="5728" height="96"/>
-  <object id="59" name="Ground" x="0" y="992" width="5824" height="96"/>
+  <object id="1" name="Ground" x="6016" y="992" width="2560" height="96"/>
+  <object id="59" name="Ground" x="0" y="992" width="4384" height="96"/>
   <object id="60" name="Ground" x="5824" y="1014.83" width="192" height="73.125"/>
   <object id="61" name="Crater" x="5824" y="992" width="192" height="32"/>
   <object id="63" name="Crater" x="11744" y="992" width="192" height="32"/>
   <object id="64" name="Ground" x="11744" y="1024" width="192" height="64"/>
-  <object id="65" name="Ground" x="11936" y="992" width="7296" height="96"/>
+  <object id="65" name="Ground" x="16224" y="992" width="3008" height="96"/>
   <object id="66" name="Ceiling" x="0" y="0" width="19232" height="160"/>
+  <object id="67" name="Ground" x="4384" y="1024" width="384" height="64"/>
+  <object id="68" name="Ground" x="4768" y="992" width="1056" height="95.955"/>
+  <object id="69" name="Bridge" x="4384" y="992" width="384" height="32"/>
+  <object id="70" name="Bridge" x="8576" y="992" width="512" height="32"/>
+  <object id="71" name="Bridge" x="10464" y="992" width="512" height="32"/>
+  <object id="72" name="Bridge" x="13280" y="992" width="448" height="32"/>
+  <object id="73" name="Bridge" x="15520" y="992" width="704" height="32"/>
+  <object id="74" name="Ground" x="9088" y="992" width="1376" height="96"/>
+  <object id="75" name="Ground" x="10976" y="992" width="768" height="96"/>
+  <object id="76" name="Ground" x="11936" y="992" width="1344" height="96"/>
+  <object id="77" name="Ground" x="13728" y="992" width="1792" height="96"/>
+  <object id="78" name="Ground" x="15520" y="1024" width="704" height="64"/>
+  <object id="79" name="Ground" x="13280" y="1024" width="448" height="64"/>
+  <object id="80" name="Ground" x="10464" y="1024" width="512" height="64"/>
+  <object id="81" name="Ground" x="8576" y="1024" width="512" height="64"/>
  </objectgroup>
 </map>

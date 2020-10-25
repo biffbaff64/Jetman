@@ -89,6 +89,11 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     }
 
     @Override
+    public void free(final GraphicID _gid)
+    {
+    }
+
+    @Override
     public void reset()
     {
         activeCount = 0;

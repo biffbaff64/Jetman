@@ -43,9 +43,6 @@ public class Explosion extends GdxSprite
         super(graphicID, _app);
 
         this.app = _app;
-
-        bodyCategory = Gfx.CAT_NOTHING;
-        collidesWith = Gfx.CAT_NOTHING;
     }
 
     @Override
@@ -56,6 +53,9 @@ public class Explosion extends GdxSprite
         this.parent = descriptor._PARENT;
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+
+        bodyCategory = Gfx.CAT_NOTHING;
+        collidesWith = Gfx.CAT_NOTHING;
 
         animation.setFrameDuration(0.4f / 6.0f);
         animation.setPlayMode(Animation.PlayMode.NORMAL);
@@ -75,7 +75,7 @@ public class Explosion extends GdxSprite
         if (animation.isAnimationFinished(elapsedAnimTime))
         {
             setAction(Actions._DEAD);
-            isDrawable   = false;
+            isDrawable = false;
 
             if (parent.gid == GraphicID.G_PLAYER)
             {

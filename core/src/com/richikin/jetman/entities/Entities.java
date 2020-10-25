@@ -101,7 +101,7 @@ public abstract class Entities
                 ),
             new SpriteDescriptor
                 (
-                    "Explosion 256                 ",
+                    "Explosion 256",
                     GraphicID.G_EXPLOSION256, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
                     Animation.PlayMode.NORMAL,
@@ -180,6 +180,22 @@ public abstract class Entities
                     GameAssets._ASTEROID1_ASSET, GameAssets._ASTEROID_FRAMES,
                     Animation.PlayMode.LOOP,
                     TileID._ASTEROID_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "AlienWheel",
+                    GraphicID.G_ALIEN_WHEEL, GraphicID._ENEMY,
+                    GameAssets._ALIEN_WHEEL_ASSET, GameAssets._ALIEN_WHEEL_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._ALIEN_WHEEL_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "GreenBlock",
+                    GraphicID.G_GREEN_BLOCK, GraphicID._ENEMY,
+                    GameAssets._GREEN_BLOCK_ASSET, GameAssets._GREEN_BLOCK_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._GREEN_BLOCK_TILE
                 ),
 
             // Miscellaneous Enemy Related

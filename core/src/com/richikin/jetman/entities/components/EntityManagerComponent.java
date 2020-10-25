@@ -19,6 +19,8 @@ public interface EntityManagerComponent
 
     void free();
 
+    void free(final GraphicID _gid);
+
     void reset();
 
     int getActiveCount();

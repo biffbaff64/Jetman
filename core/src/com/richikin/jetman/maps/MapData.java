@@ -70,6 +70,7 @@ public class MapData
     public Rectangle   viewportBox;
     public Rectangle   innerViewportBox;
     public Rectangle   extendedViewportBox;
+    public Rectangle   mapBox;
 
     public TiledMapTileLayer gameTilesLayer;
     public TiledMapTileLayer extraGameTilesLayer;
@@ -96,6 +97,7 @@ public class MapData
         viewportBox         = new Rectangle();
         innerViewportBox    = new Rectangle();
         extendedViewportBox = new Rectangle();
+        mapBox              = new Rectangle();
         enemyFreeZones      = new Array<>();
         placementTiles      = new Array<>();
     }
@@ -208,6 +210,8 @@ public class MapData
         minScrollY = 0;
 
         previousMapPosition.set(mapPosition.getX(), mapPosition.getY());
+
+        mapBox.set(Gfx._VIEW_WIDTH, 0, Gfx.mapWidth - Gfx._VIEW_WIDTH, Gfx.mapHeight);
     }
 
     /**

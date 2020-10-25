@@ -46,13 +46,6 @@ public class MapCreator
 
         parseMarkerTiles();
         createCollisionBoxes();
-
-//        if (Developer.isDevMode())
-//        {
-//            Trace.megaDivider("PLACEMENT TILE ARRAY - START");
-//            debugPlacementsTiles();
-//            Trace.megaDivider("PLACEMENT TILE ARRAY - END");
-//        }
     }
 
     /**
@@ -192,6 +185,20 @@ public class MapCreator
                             gameEntity.gid = GraphicID._CRATER;
                             gameEntity.type = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
+                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                                | Gfx.CAT_PLAYER_WEAPON
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
+                        }
+                        break;
+
+                        case "bridge":
+                        {
+                            gameEntity.gid = GraphicID._BRIDGE;
+                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
                                 | Gfx.CAT_MOBILE_ENEMY

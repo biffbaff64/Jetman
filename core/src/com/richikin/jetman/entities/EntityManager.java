@@ -14,7 +14,6 @@ import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.graphics.GraphicIndex;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 
@@ -26,41 +25,23 @@ public class EntityManager implements IEntityManager
         {
             GraphicID.G_3BALLS,
             GraphicID.G_3BALLS_UFO,
-            GraphicID.G_UFO_BULLET,
             GraphicID.G_3LEGS_ALIEN,
-            GraphicID.G_TOPSPIN,
-            GraphicID.G_TWINKLES,
-            GraphicID.G_STAR_SPINNER,
+            GraphicID.G_ALIEN_WHEEL,
             GraphicID.G_ASTEROID,
+            GraphicID.G_BLOB,
             GraphicID.G_DOG,
             GraphicID.G_GREEN_BLOCK,
             GraphicID.G_SPINNING_BALL,
-            GraphicID.G_BLOB,
-            GraphicID.G_ALIEN_WHEEL,
+            GraphicID.G_STAR_SPINNER,
+            GraphicID.G_TOPSPIN,
+            GraphicID.G_TWINKLES,
         };
 
     // --------------------------------------------------
     // Indexes into manager list
-//    public int _playerManagerIndex;
-//    public int _roverManagerIndex;
-//    public int _teleportManagerIndex;
-//    public int _baseManagerIndex;
-//    public int _explosionManagerIndex;
-//    public int _powerBeamManagerIndex;
     public int _laserManagerIndex;
     public int _bombManagerIndex;
-    public int _asteroidManagerIndex;
-    public int _greenblockManagerIndex;
-    public int _blobManagerIndex;
-    public int _wheelManagerIndex;
-    public int _dogManagerIndex;
-    public int _spinningBallManagerIndex;
-    public int _spinStarManagerIndex;
-    public int _3ballsManagerIndex;
-    public int _3ballsUFOManagerIndex;
-    public int _3legsUFOManagerIndex;
-    public int _topspinnerManagerIndex;
-    public int _twinkleManagerIndex;
+    public int _alienManagerIndex;
 
     // --------------------------------------------------
     // Indexes into entity list
@@ -231,23 +212,6 @@ public class EntityManager implements IEntityManager
     @Override
     public void releaseEntity(GdxSprite entity)
     {
-        final GraphicIndex[] indexes =
-            {
-                new GraphicIndex(GraphicID.G_DOG, _dogManagerIndex),
-                new GraphicIndex(GraphicID.G_BLOB, _blobManagerIndex),
-                new GraphicIndex(GraphicID.G_3BALLS, _3ballsManagerIndex),
-                new GraphicIndex(GraphicID.G_SPINNING_BALL, _spinningBallManagerIndex),
-                new GraphicIndex(GraphicID.G_STAR_SPINNER, _spinStarManagerIndex),
-                new GraphicIndex(GraphicID.G_GREEN_BLOCK, _greenblockManagerIndex),
-                new GraphicIndex(GraphicID.G_TOPSPIN, _topspinnerManagerIndex),
-                new GraphicIndex(GraphicID.G_ASTEROID, _asteroidManagerIndex),
-                new GraphicIndex(GraphicID.G_TWINKLES, _twinkleManagerIndex),
-                new GraphicIndex(GraphicID.G_3BALLS_UFO, _3ballsUFOManagerIndex),
-                new GraphicIndex(GraphicID.G_3LEGS_ALIEN, _3legsUFOManagerIndex),
-                new GraphicIndex(GraphicID.G_ALIEN_WHEEL, _wheelManagerIndex),
-                new GraphicIndex(GraphicID.G_BOMB, _bombManagerIndex),
-            };
-
         switch (entity.gid)
         {
             case G_TRANSPORTER:
@@ -262,6 +226,7 @@ public class EntityManager implements IEntityManager
             }
             break;
 
+            case G_BOMB:
             case G_DEFENDER:
             case G_MISSILE:
             case G_ROVER:
@@ -271,19 +236,12 @@ public class EntityManager implements IEntityManager
 
             default:
             {
-                int index = -1;
-
-                for (GraphicIndex gi : indexes)
+                for (GraphicID gid : enemies)
                 {
-                    if (gi.graphicID == entity.gid)
+                    if (gid == entity.gid)
                     {
-                        index = gi.value;
+                        app.entityData.managerList.get(_alienManagerIndex).free(gid);
                     }
-                }
-
-                if (index > -1)
-                {
-                    app.entityData.managerList.get(index).free();
                 }
             }
             break;
@@ -360,8 +318,8 @@ public class EntityManager implements IEntityManager
         app.defenceStationManager   = new DefenceStationManager(app);
         app.bombManager             = new BombManager(app);
 
-        app.entityData.addManager(app.bombManager);
-        app.entityData.addManager(new AlienManager(app));
+        _bombManagerIndex = app.entityData.addManager(app.bombManager);
+        _alienManagerIndex = app.entityData.addManager(new AlienManager(app));
     }
 
     public void initialiseForLevel()
@@ -382,21 +340,6 @@ public class EntityManager implements IEntityManager
         for (final EntityManagerComponent system : app.entityData.managerList)
         {
             system.init();
-        }
-
-        if (Developer.isDevMode())
-        {
-            Trace.__FILE_FUNC("EntityMap Contents...(Size = " + app.entityData.entityMap.size + ")");
-            for (GameEntity entity : app.entityData.entityMap)
-            {
-                Trace.dbg("" + entity.gid);
-            }
-
-            Trace.__FILE_FUNC("ManagerList Contents...(Size = " + app.entityData.managerList.size() + ")");
-            for (EntityManagerComponent component : app.entityData.managerList)
-            {
-                Trace.dbg("" + component.getGID());
-            }
         }
 
         AppConfig.entitiesExist = true;

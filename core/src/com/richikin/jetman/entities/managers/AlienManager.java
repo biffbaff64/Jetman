@@ -4,7 +4,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
+import com.richikin.jetman.entities.characters.AlienWheel;
 import com.richikin.jetman.entities.characters.Asteroid;
+import com.richikin.jetman.entities.characters.GreenBlock;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
@@ -14,18 +16,18 @@ public class AlienManager extends GenericEntityManager
 {
     private final GraphicIndex[] aliens =
         {
-//            new GraphicIndex(GraphicID.G_3BALLS, 0),
-//            new GraphicIndex(GraphicID.G_3BALLS_UFO, 0),
-//            new GraphicIndex(GraphicID.G_3LEGS_ALIEN, 0),
+            new GraphicIndex(GraphicID.G_3BALLS, 0),
+            new GraphicIndex(GraphicID.G_3BALLS_UFO, 0),
+            new GraphicIndex(GraphicID.G_3LEGS_ALIEN, 0),
             new GraphicIndex(GraphicID.G_ASTEROID, 0),
-//            new GraphicIndex(GraphicID.G_ALIEN_WHEEL, 0),
-//            new GraphicIndex(GraphicID.G_BLOB, 0),
-//            new GraphicIndex(GraphicID.G_DOG, 0),
-//            new GraphicIndex(GraphicID.G_GREEN_BLOCK, 0),
-//            new GraphicIndex(GraphicID.G_SPINNING_BALL, 0),
-//            new GraphicIndex(GraphicID.G_STAR_SPINNER, 0),
-//            new GraphicIndex(GraphicID.G_TOPSPIN, 0),
-//            new GraphicIndex(GraphicID.G_TWINKLES, 0),
+            new GraphicIndex(GraphicID.G_ALIEN_WHEEL, 0),
+            new GraphicIndex(GraphicID.G_BLOB, 0),
+            new GraphicIndex(GraphicID.G_DOG, 0),
+            new GraphicIndex(GraphicID.G_GREEN_BLOCK, 0),
+            new GraphicIndex(GraphicID.G_SPINNING_BALL, 0),
+            new GraphicIndex(GraphicID.G_STAR_SPINNER, 0),
+            new GraphicIndex(GraphicID.G_TOPSPIN, 0),
+            new GraphicIndex(GraphicID.G_TWINKLES, 0),
         };
 
     public AlienManager(final App _app)
@@ -43,11 +45,23 @@ public class AlienManager extends GenericEntityManager
     }
 
     @Override
+    public void free(final GraphicID _gid)
+    {
+        for (GraphicIndex item : aliens)
+        {
+            if (item.graphicID == _gid)
+            {
+                item.value = Math.max(0, item.value - 1);
+            }
+        }
+    }
+
+    @Override
     public void update()
     {
         for (GraphicIndex alien : aliens)
         {
-            if (alien.value < 1)//app.roomManager.getMaxAllowed(alien.graphicID))
+            if (alien.value < app.roomManager.getMaxAllowed(alien.graphicID))
             {
                 create(alien.graphicID);
                 alien.value++;
@@ -95,6 +109,9 @@ public class AlienManager extends GenericEntityManager
 
                 case G_ALIEN_WHEEL:
                 {
+                    AlienWheel alienWheel = new AlienWheel(app);
+                    alienWheel.initialise(descriptor);
+                    app.entityData.addEntity(alienWheel);
                 }
                 break;
 
@@ -110,6 +127,9 @@ public class AlienManager extends GenericEntityManager
 
                 case G_GREEN_BLOCK:
                 {
+                    GreenBlock greenBlock = new GreenBlock(app);
+                    greenBlock.initialise(descriptor);
+                    app.entityData.addEntity(greenBlock);
                 }
                 break;
 
@@ -167,9 +187,30 @@ public class AlienManager extends GenericEntityManager
                 initPos.y = ((Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) / 2) + MathUtils.random(4);
 
                 initPos.x += ((MathUtils.random(100) < 50) ?
-                    (Gfx._VIEW_WIDTH / Gfx.getTileWidth()) * 2 :
-                    -(Gfx._VIEW_WIDTH / Gfx.getTileWidth()) * 2);
+                    (Gfx._VIEW_WIDTH / Gfx.getTileWidth()) + 10 :
+                    -((Gfx._VIEW_WIDTH / Gfx.getTileWidth()) + 10));
                 initPos.y += (Gfx._VIEW_HEIGHT / Gfx.getTileHeight());
+            }
+            break;
+
+            case G_GREEN_BLOCK:
+            {
+                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.y = MathUtils.random(4,16);
+
+                initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
+                initPos.x += (int) (MathUtils.random(100) < 50 ?
+                    (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
+            }
+            break;
+
+            case G_ALIEN_WHEEL:
+            {
+                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.y = 3;
+
+                initPos.x -= (Gfx._VIEW_WIDTH / Gfx.getTileWidth());
+                initPos.x -= MathUtils.random(10);
             }
             break;
 
