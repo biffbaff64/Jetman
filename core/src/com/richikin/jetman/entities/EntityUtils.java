@@ -216,7 +216,7 @@ public class EntityUtils
             }
             break;
 
-            case G_3BALLS:
+            case G_STAIR_CLIMBER:
             case G_UFO_BULLET:
             case G_3BALLS_UFO:
             case G_3LEGS_ALIEN:
@@ -345,7 +345,7 @@ public class EntityUtils
             case G_DEFENDER_BULLET:
             case G_PLAYER:
             case G_LASER:
-            case G_3BALLS:
+            case G_STAIR_CLIMBER:
             case G_3BALLS_UFO:
             case G_UFO_BULLET:
             case G_3LEGS_ALIEN:

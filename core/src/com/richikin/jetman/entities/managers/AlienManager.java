@@ -7,6 +7,7 @@ import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.AlienWheel;
 import com.richikin.jetman.entities.characters.Asteroid;
 import com.richikin.jetman.entities.characters.GreenBlock;
+import com.richikin.jetman.entities.characters.StairClimber;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
@@ -16,7 +17,6 @@ public class AlienManager extends GenericEntityManager
 {
     private final GraphicIndex[] aliens =
         {
-            new GraphicIndex(GraphicID.G_3BALLS, 0),
             new GraphicIndex(GraphicID.G_3BALLS_UFO, 0),
             new GraphicIndex(GraphicID.G_3LEGS_ALIEN, 0),
             new GraphicIndex(GraphicID.G_ASTEROID, 0),
@@ -25,6 +25,7 @@ public class AlienManager extends GenericEntityManager
             new GraphicIndex(GraphicID.G_DOG, 0),
             new GraphicIndex(GraphicID.G_GREEN_BLOCK, 0),
             new GraphicIndex(GraphicID.G_SPINNING_BALL, 0),
+            new GraphicIndex(GraphicID.G_STAIR_CLIMBER, 0),
             new GraphicIndex(GraphicID.G_STAR_SPINNER, 0),
             new GraphicIndex(GraphicID.G_TOPSPIN, 0),
             new GraphicIndex(GraphicID.G_TWINKLES, 0),
@@ -84,11 +85,6 @@ public class AlienManager extends GenericEntityManager
 
             switch (graphicID)
             {
-                case G_3BALLS:
-                {
-                }
-                break;
-
                 case G_3BALLS_UFO:
                 {
                 }
@@ -138,6 +134,14 @@ public class AlienManager extends GenericEntityManager
                 }
                 break;
 
+                case G_STAIR_CLIMBER:
+                {
+                    StairClimber stairClimber = new StairClimber(app);
+                    stairClimber.initialise(descriptor);
+                    app.entityData.addEntity(stairClimber);
+                }
+                break;
+
                 case G_STAR_SPINNER:
                 {
                 }
@@ -174,7 +178,6 @@ public class AlienManager extends GenericEntityManager
 
         switch (graphicID)
         {
-            case G_3BALLS:
             case G_3BALLS_UFO:
             case G_3LEGS_ALIEN:
             {
@@ -211,6 +214,16 @@ public class AlienManager extends GenericEntityManager
 
                 initPos.x -= (Gfx._VIEW_WIDTH / Gfx.getTileWidth());
                 initPos.x -= MathUtils.random(10);
+            }
+            break;
+
+            case G_STAIR_CLIMBER:
+            {
+                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.y = MathUtils.random(2, 5);
+
+                initPos.x += (int) ((MathUtils.random(100) < 50) ?
+                    (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
             }
             break;
 

@@ -25,7 +25,7 @@ public class RoomManager
                     new MapEntry
                         (
                             -2.0f, 1200,
-                            2, 2, 2, 0, 0, 0,
+                            2, 2, 2, 2, 0, 0,
                             0, 0, 0, 0, 0, 0
                         )
                 ),
@@ -170,9 +170,9 @@ public class RoomManager
 
         switch (gid)
         {
-            case G_3BALLS:
+            case G_STAIR_CLIMBER:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.max3Balls);
+                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxStairClimbers);
             }
             break;
 

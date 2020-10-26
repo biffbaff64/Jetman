@@ -26,7 +26,6 @@ public class GameAssets
 
     //
     // Asset names for all game graphics
-    public static final String _3BALLS_ASSET           = "3_balls";
     public static final String _3BALLS_UFO_ASSET       = "3balls";
     public static final String _3LEGS_ALIEN_ASSET      = "3legs";
     public static final String _ALIEN_WHEEL_ASSET      = "wheel";
@@ -52,6 +51,7 @@ public class GameAssets
     public static final String _ROVER_BOOT_ASSET       = "rover_boot";
     public static final String _ROVER_GUN_ASSET        = "rover_gun";
     public static final String _ROVER_GUN_BARREL_ASSET = "rover_gun_barrel";
+    public static final String _STAIRCLIMBER_ASSET     = "3_balls";
     public static final String _STAR_SPINNER_ASSET     = "starspinner";
     public static final String _SPINNING_BALL_ASSET    = "jm_spinningball";
     public static final String _DEFENDER_BULLET_ASSET  = "defence_sparkle";
@@ -62,7 +62,6 @@ public class GameAssets
 
     //
     // Frame counts for animations
-    public static final int _3BALLS_FRAMES           = 32;
     public static final int _3BALLS_UFO_FRAMES       = 32;
     public static final int _3LEGS_ALIEN_FRAMES      = 32;
     public static final int _ASTEROID_FRAMES         = 32;
@@ -85,6 +84,7 @@ public class GameAssets
     public static final int _ROVER_GUN_FRAMES        = 1;
     public static final int _ROVER_GUN_BARREL_FRAMES = 1;
     public static final int _ROVER_WHEEL_FRAMES      = 1;
+    public static final int _STAIRCLIMBER_FRAMES     = 32;
     public static final int _STAR_SPINNER_FRAMES     = 32;
     public static final int _SPINNING_BALL_FRAMES    = 32;
     public static final int _DEFENDER_BULLET_FRAMES  = 10;
@@ -138,7 +138,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),
             new AssetSize(GraphicID.G_ALIEN_WHEEL,       48,  48),
             new AssetSize(GraphicID.G_3BALLS_UFO,        48,  48),
-            new AssetSize(GraphicID.G_3BALLS,            48,  48),
+            new AssetSize(GraphicID.G_STAIR_CLIMBER,            48,  48),
             new AssetSize(GraphicID.G_3LEGS_ALIEN,       48,  48),
             new AssetSize(GraphicID.G_BLOB,              48,  48),
             new AssetSize(GraphicID.G_GREEN_BLOCK,       72,  48),

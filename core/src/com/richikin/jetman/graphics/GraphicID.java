@@ -46,7 +46,7 @@ public enum GraphicID
     G_ADD_TIME,
 
     // ----------------------------
-    G_3BALLS,
+    G_STAIR_CLIMBER,
     G_3BALLS_UFO,
     G_UFO_BULLET,
     G_3LEGS_ALIEN,

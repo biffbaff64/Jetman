@@ -10,7 +10,7 @@ public enum TileID
     _TRANSPORTER_TILE           (2),
     _MISSILE_LAUNCHER_TILE      (3),
     _DEFENDER_TILE              (4),
-    _3BALLS_TILE                (5),
+    _STAIRCLIMBER_TILE          (5),
     _3BALLS_UFO_TILE            (6),
     _3LEGS_UFO_TILE             (7),
     _TOPSPIN_TILE               (8),

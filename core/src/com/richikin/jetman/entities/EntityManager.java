@@ -8,13 +8,11 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
-import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 public class EntityManager implements IEntityManager
@@ -23,7 +21,7 @@ public class EntityManager implements IEntityManager
     //
     public final GraphicID[] enemies =
         {
-            GraphicID.G_3BALLS,
+            GraphicID.G_STAIR_CLIMBER,
             GraphicID.G_3BALLS_UFO,
             GraphicID.G_3LEGS_ALIEN,
             GraphicID.G_ALIEN_WHEEL,

@@ -197,6 +197,14 @@ public abstract class Entities
                     Animation.PlayMode.LOOP,
                     TileID._GREEN_BLOCK_TILE
                 ),
+            new SpriteDescriptor
+                (
+                    "StairClimber",
+                    GraphicID.G_STAIR_CLIMBER, GraphicID._ENEMY,
+                    GameAssets._STAIRCLIMBER_ASSET, GameAssets._STAIRCLIMBER_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._STAIRCLIMBER_TILE
+                ),
 
             // Miscellaneous Enemy Related
 
