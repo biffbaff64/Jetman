@@ -87,14 +87,7 @@ public class Bouncer extends GdxSprite
 //                    }
 //                    else
                     {
-                        if ((graphicID == GraphicID._CRATER)
-                            || (graphicID == GraphicID.G_ROVER)
-                            || (graphicID == GraphicID.G_ROVER_GUN)
-                            || (graphicID == GraphicID.G_ROVER_BOOT)
-                            || (graphicID == GraphicID.G_ROVER_GUN_BARREL)
-                            || (graphicID == GraphicID.G_MISSILE_BASE)
-                            || (graphicID == GraphicID.G_MISSILE_LAUNCHER)
-                            || (graphicID == GraphicID.G_TRANSPORTER))
+                        if (graphicID == GraphicID._CRATER)
                         {
                             if (MathUtils.random(100) < 35)
                             {
