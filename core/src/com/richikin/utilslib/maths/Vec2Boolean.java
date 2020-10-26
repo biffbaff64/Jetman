@@ -3,7 +3,6 @@ package com.richikin.utilslib.maths;
 
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("unused")
 public class Vec2Boolean
 {
     public boolean x;

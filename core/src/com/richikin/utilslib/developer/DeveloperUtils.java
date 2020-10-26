@@ -18,7 +18,7 @@ package com.richikin.utilslib.developer;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.richikin.utilslib.App;
+import com.richikin.utilslib.LibApp;
 
 public class DeveloperUtils
 {
@@ -31,9 +31,9 @@ public class DeveloperUtils
         shapeRenderer.end();
     }
 
-    public static void drawRect(int x, int y, int width, int height, int thickness, App app)
+    public static void drawRect(int x, int y, int width, int height, int thickness, LibApp libApp)
     {
-        TextureRegion debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
+        TextureRegion debugTextureRegion = libApp.assets.getObjectRegion("solid_red32x32");
 
         drawRect
             (
@@ -43,15 +43,15 @@ public class DeveloperUtils
                 width,
                 height,
                 thickness,
-                app
+                libApp
             );
     }
 
-    public static void drawRect(TextureRegion textureRegion, int x, int y, int width, int height, int thickness, App app)
+    public static void drawRect(TextureRegion textureRegion, int x, int y, int width, int height, int thickness, LibApp libApp)
     {
-        app.spriteBatch.draw(textureRegion, x, y, width, thickness);
-        app.spriteBatch.draw(textureRegion, x, y, thickness, height);
-        app.spriteBatch.draw(textureRegion, x, (y + height) - thickness, width, thickness);
-        app.spriteBatch.draw(textureRegion, (x + width) - thickness, y, thickness, height);
+        libApp.spriteBatch.draw(textureRegion, x, y, width, thickness);
+        libApp.spriteBatch.draw(textureRegion, x, y, thickness, height);
+        libApp.spriteBatch.draw(textureRegion, x, (y + height) - thickness, width, thickness);
+        libApp.spriteBatch.draw(textureRegion, (x + width) - thickness, y, thickness, height);
     }
 }

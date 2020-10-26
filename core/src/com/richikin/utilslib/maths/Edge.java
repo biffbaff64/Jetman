@@ -3,7 +3,7 @@ package com.richikin.utilslib.maths;
 
 import com.badlogic.gdx.math.Rectangle;
 
-public class Edge extends com.richikin.utilslib.maths.SimpleLine2D
+public class Edge extends SimpleLine2D
 {
     public Edge(float _x1, float _y1, float _x2, float _y2)
     {

@@ -1,35 +1,39 @@
+/*
+ *  Copyright 01/05/2018 Red7Projects.
+ *  <p>
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *  <p>
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *  <p>
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 
 package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.entities.paths.StairsPath;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
-public class StairClimber extends GdxSprite
+public class StarSpinner extends GdxSprite
 {
-    private StopWatch stopWatch;
-    private StairsPath stairsPath;
-    private App        app;
-
-    public StairClimber(GraphicID _gid, App _app)
+    public StarSpinner(App _app)
     {
-        super(_gid, _app);
-
-        this.app = _app;
-
-        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
+        super(GraphicID.G_STAR_SPINNER, _app);
     }
 
     @Override
@@ -37,15 +41,27 @@ public class StairClimber extends GdxSprite
     {
         create(entityDescriptor);
 
-        animation.setFrameDuration(0.25f / 6f);
-
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
-        stairsPath = new StairsPath();
-        stairsPath.setNextPathData(this);
+        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
+
+        distance.set(Gfx._VIEW_WIDTH * 6, 0);
+        speed.set(1 + MathUtils.random(2), 0);
+
+        if (sprite.getX() < app.getPlayer().sprite.getX())
+        {
+            direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
+        }
+        else
+        {
+            direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
+        }
 
         setAction(Actions._RUNNING);
-        stopWatch = StopWatch.start();
+
+        isRotating = true;
+        rotateSpeed = 4.0f;
     }
 
     @Override
@@ -55,9 +71,6 @@ public class StairClimber extends GdxSprite
         {
             case _RUNNING:
             {
-                elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
-
                 move();
             }
             break;
@@ -95,36 +108,22 @@ public class StairClimber extends GdxSprite
             break;
         }
 
-        int directionXStore = direction.getX();
+        animate();
 
         updateCommon();
-
-        if (direction.getX() != directionXStore)
-        {
-            stairsPath.directionReset.setX(direction.getX());
-        }
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch)
+    public void animate()
     {
-        sprite.setFlip(isFlippedX, false);
-
-        super.draw(spriteBatch);
+        elapsedAnimTime += Gdx.graphics.getDeltaTime();
+        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
     }
 
     private void move()
     {
-        if (distance.isEmpty())
-        {
-            stairsPath.setNextPathData(this);
-        }
+        sprite.translate((speed.getX() * direction.getX()), 0);
 
-        sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
-
-        distance.subX(speed.getX());
-        distance.subY(speed.getY());
-
-        isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
+        wrap();
     }
 }

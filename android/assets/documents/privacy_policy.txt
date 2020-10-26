@@ -1,12 +1,12 @@
 Privacy Policy
 ==============
 
-The app developer, Red7Projects, built the app "Lunar Jetman" as a free app. This SERVICE is
+The libApp developer, Red7Projects, built the libApp "Lunar Jetman" as a free libApp. This SERVICE is
 provided by Red7Projects at no cost and is intended for use as is.
 
-The app developer respects your privacy and is dedicated to protecting the privacy of those
+The libApp developer respects your privacy and is dedicated to protecting the privacy of those
 persons using the developers apps, website, and any other services provided by the developer on
-a mobile or other platform. This privacy policy is used to inform users of the app of our
+a mobile or other platform. This privacy policy is used to inform users of the libApp of our
 policies regarding the collection, use, and disclosure of Personal Information provided by
 service users.
 
@@ -27,15 +27,15 @@ signing into your Google account, for the purpose of logging acheivements, savin
 etc. The information that we request is retained on your device and is not collected by us in any
 way as described in this privacy policy.
 
-The app does use third party services that may collect information used to identify you.
+The libApp does use third party services that may collect information used to identify you.
 
 Log Data
 ========
 
-We want to inform you that whenever you use our Service, in case of an error in the app we
+We want to inform you that whenever you use our Service, in case of an error in the libApp we
 collect data and information (through third party products) on your phone called Log Data.
 This Log Data may include information such as your devices’s Internet Protocol (“IP”) address,
-device name, operating system version, configuration of the app when utilising our Service, the
+device name, operating system version, configuration of the libApp when utilising our Service, the
 time and date of your use of the Service, and other statistics.
 
 Cookies
@@ -43,7 +43,7 @@ Cookies
 
 Cookies are files with small amounts of data that are commonly used anonymous unique identifiers.
 These are sent to your browser from the website that you visit and are stored on your devices’s
-internal memory. This Service does not use these “cookies” explicitly. However, the app may use
+internal memory. This Service does not use these “cookies” explicitly. However, the libApp may use
 third party code and libraries that use “cookies” to collection information and to improve their
 services. You have the option to either accept or refuse these cookies, and know when a cookie is
 being sent to your device. If you choose to refuse our cookies, you may not be able to use some

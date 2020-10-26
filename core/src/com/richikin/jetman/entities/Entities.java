@@ -77,6 +77,14 @@ public abstract class Entities
                 ),
             new SpriteDescriptor
                 (
+                    "UFOBullet",
+                    GraphicID.G_UFO_BULLET, GraphicID._INTERACTIVE,
+                    GameAssets._UFO_BULLET_ASSET, GameAssets._UFO_BULLET_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._UFO_BULLET_TILE
+                ),
+            new SpriteDescriptor
+                (
                     "Explosion 12",
                     GraphicID.G_EXPLOSION12, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
@@ -175,6 +183,22 @@ public abstract class Entities
             // Mobile Enemies
             new SpriteDescriptor
                 (
+                    "3BallsUfo",
+                    GraphicID.G_3BALLS_UFO, GraphicID._ENEMY,
+                    GameAssets._3BALLS_UFO_ASSET, GameAssets._3BALLS_UFO_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._3BALLS_UFO_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "3LegsAlien",
+                    GraphicID.G_3LEGS_ALIEN, GraphicID._ENEMY,
+                    GameAssets._3LEGS_ALIEN_ASSET, GameAssets._3LEGS_ALIEN_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._3LEGS_ALIEN_TILE
+                ),
+            new SpriteDescriptor
+                (
                     "Asteroid",
                     GraphicID.G_ASTEROID, GraphicID._ENEMY,
                     GameAssets._ASTEROID1_ASSET, GameAssets._ASTEROID_FRAMES,
@@ -191,6 +215,22 @@ public abstract class Entities
                 ),
             new SpriteDescriptor
                 (
+                    "Blob",
+                    GraphicID.G_BLOB, GraphicID._ENEMY,
+                    GameAssets._BLOB_ASSET, GameAssets._BLOB_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._BLOB_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Dog",
+                    GraphicID.G_DOG, GraphicID._ENEMY,
+                    GameAssets._DOG_ASSET, GameAssets._DOG_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._DOG_TILE
+                ),
+            new SpriteDescriptor
+                (
                     "GreenBlock",
                     GraphicID.G_GREEN_BLOCK, GraphicID._ENEMY,
                     GameAssets._GREEN_BLOCK_ASSET, GameAssets._GREEN_BLOCK_FRAMES,
@@ -204,6 +244,38 @@ public abstract class Entities
                     GameAssets._STAIRCLIMBER_ASSET, GameAssets._STAIRCLIMBER_FRAMES,
                     Animation.PlayMode.LOOP,
                     TileID._STAIRCLIMBER_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "StarSpinner",
+                    GraphicID.G_STAR_SPINNER, GraphicID._ENEMY,
+                    GameAssets._STAR_SPINNER_ASSET, GameAssets._STAR_SPINNER_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._STAR_SPINNER_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "SpinningBall",
+                    GraphicID.G_SPINNING_BALL, GraphicID._ENEMY,
+                    GameAssets._SPINNING_BALL_ASSET, GameAssets._SPINNING_BALL_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._SPINNING_BALL_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "TopSpin",
+                    GraphicID.G_TOPSPIN, GraphicID._ENEMY,
+                    GameAssets._TOPSPIN_ASSET, GameAssets._TOPSPIN_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._TOPSPIN_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Twinkles",
+                    GraphicID.G_TWINKLES, GraphicID._ENEMY,
+                    GameAssets._TWINKLES_ASSET, GameAssets._TWINKLES_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._TWINKLES_TILE
                 ),
 
             // Miscellaneous Enemy Related

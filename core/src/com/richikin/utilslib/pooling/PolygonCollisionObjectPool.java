@@ -3,18 +3,18 @@ package com.richikin.utilslib.pooling;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.utilslib.LibApp;
 
 public class PolygonCollisionObjectPool<T>
 {
     public interface ObjectPoolFactory<T>
     {
-        T createObject(App _app);
+        T createObject(LibApp _app);
 
-        T createObject(Rectangle _rectangle, App _app);
+        T createObject(Rectangle _rectangle, LibApp _app);
 
-        T createObject(int x, int y, int width, int height, GraphicID type, App _app);
+        T createObject(int x, int y, int width, int height, GraphicID type, LibApp _app);
 
         void finaliseObject();
     }
@@ -30,7 +30,7 @@ public class PolygonCollisionObjectPool<T>
         this.freeObjects = new Array<>(_maxSize);
     }
 
-    public T newObject(App _app)
+    public T newObject(LibApp _app)
     {
         T object;
 
@@ -46,7 +46,7 @@ public class PolygonCollisionObjectPool<T>
         return object;
     }
 
-    public T newObject(Rectangle _rectangle, App _app)
+    public T newObject(Rectangle _rectangle, LibApp _app)
     {
         T object;
 
@@ -62,7 +62,7 @@ public class PolygonCollisionObjectPool<T>
         return object;
     }
 
-    public T newObject(int x, int y, int width, int height, GraphicID type, App _app)
+    public T newObject(int x, int y, int width, int height, GraphicID type, LibApp _app)
     {
         T object;
 

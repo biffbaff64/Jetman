@@ -21,15 +21,15 @@ public class EntityManager implements IEntityManager
     //
     public final GraphicID[] enemies =
         {
-            GraphicID.G_STAIR_CLIMBER,
             GraphicID.G_3BALLS_UFO,
             GraphicID.G_3LEGS_ALIEN,
-            GraphicID.G_ALIEN_WHEEL,
             GraphicID.G_ASTEROID,
+            GraphicID.G_ALIEN_WHEEL,
             GraphicID.G_BLOB,
             GraphicID.G_DOG,
             GraphicID.G_GREEN_BLOCK,
             GraphicID.G_SPINNING_BALL,
+            GraphicID.G_STAIR_CLIMBER,
             GraphicID.G_STAR_SPINNER,
             GraphicID.G_TOPSPIN,
             GraphicID.G_TWINKLES,

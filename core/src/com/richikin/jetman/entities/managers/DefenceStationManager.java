@@ -76,7 +76,6 @@ public class DefenceStationManager extends GenericEntityManager
                     teleporter.initialise(descriptors[i]);
 
                     app.entityData.addEntity(teleporter);
-                    app.entityManager._teleportIndex[activeCount] = descriptors[i]._INDEX;
 
                     activeCount++;
                 }

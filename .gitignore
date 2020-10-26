@@ -99,7 +99,7 @@ nb-configuration.xml
 
 /local.properties
 .gradle/
-gradle-app.setting
+gradle-libApp.setting
 /build/
 /android/build/
 /core/build/
@@ -117,8 +117,8 @@ Thumbs.db
 !/ios/xcode/*.xcodeproj/xcshareddata
 !/ios/xcode/*.xcodeproj/project.pbxproj
 /ios/xcode/native/
-/ios/IOSLauncher.app
-/ios/IOSLauncher.app.dSYM
+/ios/IOSLauncher.libApp
+/ios/IOSLauncher.libApp.dSYM
 
 /ios-moe/xcode/*.xcodeproj/*
 !/ios-moe/xcode/*.xcodeproj/xcshareddata

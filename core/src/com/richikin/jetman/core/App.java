@@ -1,8 +1,6 @@
 package com.richikin.jetman.core;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.richikin.utilslib.assets.Assets;
+import com.richikin.utilslib.LibApp;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
@@ -26,10 +24,8 @@ import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.developer.Developer;
-import com.richikin.utilslib.google.AdsController;
-import com.richikin.utilslib.google.PlayServices;
 
-public abstract class App extends com.richikin.utilslib.App
+public abstract class App extends LibApp
 {
     // =======================================================
     // Global access references

@@ -14,7 +14,6 @@ public enum Actions
     _FALLING_TO_GROUND,
     _RIDING,
     _FLYING,
-    _TELEPORTING,
     _CIRCLING,
     _HOVERING,
     _TALKING,
@@ -77,6 +76,11 @@ public enum Actions
     _TO_AND_FRO,
 
     // ----------------------------
+    _TELEPORTING,
+    _USE_TELEPORTER,
+    _STEAL_TELEPORTER,
+
+    // ----------------------------
     _TEST_ACTION1,
     _TEST_ACTION2,
     _TEST_ACTION3,
@@ -84,4 +88,5 @@ public enum Actions
     _TEST_ACTION5,
 
     _NO_ACTION,
+    ;
 }
