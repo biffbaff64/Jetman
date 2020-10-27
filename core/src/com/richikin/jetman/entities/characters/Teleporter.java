@@ -8,7 +8,9 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
 
 public class Teleporter extends GdxSprite
 {
@@ -28,8 +30,6 @@ public class Teleporter extends GdxSprite
     @Override
     public void initialise(SpriteDescriptor descriptor)
     {
-        Trace.__FILE_FUNC();
-
         create(descriptor);
 
         setAction(Actions._STANDING);
@@ -44,6 +44,8 @@ public class Teleporter extends GdxSprite
         collidesWith = Gfx.CAT_PLAYER
             | Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_GROUND;
+
+        setCollisionListener();
     }
 
     @Override
@@ -88,5 +90,37 @@ public class Teleporter extends GdxSprite
         app.entityManager._teleportIndex[teleporterNumber] = 0;
         collisionObject.kill();
         app.entityData.removeEntity(_index);
+    }
+
+    private void setCollisionListener()
+    {
+        addCollisionListener(new ICollisionListener()
+        {
+            @Override
+            public void onPositiveCollision(GraphicID graphicID)
+            {
+                if (getAction() == Actions._FALLING)
+                {
+                    GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
+
+                    if (contactID == GraphicID._GROUND)
+                    {
+                        direction.setY(Movement._DIRECTION_STILL);
+                        speed.setY(0);
+                        setAction(Actions._STANDING);
+                    }
+                }
+            }
+
+            @Override
+            public void onNegativeCollision()
+            {
+            }
+
+            @Override
+            public void dispose()
+            {
+            }
+        });
     }
 }

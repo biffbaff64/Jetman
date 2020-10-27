@@ -43,7 +43,7 @@ public class TeleportThief extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
         bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_GROUND;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_GROUND | Gfx.CAT_TELEPORTER;
 
         speed.setX(MathUtils.random(Gfx._VIEW_WIDTH * 0.0015f, Gfx._VIEW_WIDTH * 0.003f));
         speed.setY(0);
