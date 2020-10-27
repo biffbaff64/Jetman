@@ -44,8 +44,7 @@ public class Rover extends GdxSprite
         bodyCategory = Gfx.CAT_VEHICLE;
         collidesWith = Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_FIXED_ENEMY
-            | Gfx.CAT_GROUND
-            | Gfx.CAT_SCENERY;
+            | Gfx.CAT_GROUND;
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
@@ -354,6 +353,7 @@ public class Rover extends GdxSprite
     @Override
     public void tidy(int _index)
     {
+        collisionObject.kill();
         app.entityData.removeEntity(_index);
     }
 

@@ -132,20 +132,21 @@ public class GameAssets
             new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
 
             new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
-            new AssetSize(GraphicID.G_TWINKLES,          48,  48),
-            new AssetSize(GraphicID.G_LASER,             324,  8),
+            new AssetSize(GraphicID.G_LASER,            324,   8),
+            new AssetSize(GraphicID.G_UFO_BULLET,         9,   9),
 
             new AssetSize(GraphicID.G_ASTEROID,          60,  60),
-            new AssetSize(GraphicID.G_ALIEN_WHEEL,       48,  48),
+            new AssetSize(GraphicID.G_ALIEN_WHEEL,       68,  68),
             new AssetSize(GraphicID.G_3BALLS_UFO,        48,  48),
-            new AssetSize(GraphicID.G_STAIR_CLIMBER,            48,  48),
-            new AssetSize(GraphicID.G_3LEGS_ALIEN,       48,  48),
+            new AssetSize(GraphicID.G_STAIR_CLIMBER,     96,  96),
+            new AssetSize(GraphicID.G_3LEGS_ALIEN,      112, 112),
             new AssetSize(GraphicID.G_BLOB,              48,  48),
             new AssetSize(GraphicID.G_GREEN_BLOCK,       72,  48),
-            new AssetSize(GraphicID.G_DOG,               48,  48),
-            new AssetSize(GraphicID.G_SPINNING_BALL,     48,  48),
-            new AssetSize(GraphicID.G_STAR_SPINNER,      48,  48),
-            new AssetSize(GraphicID.G_TOPSPIN,           48,  48),
+            new AssetSize(GraphicID.G_DOG,               64,  64),
+            new AssetSize(GraphicID.G_SPINNING_BALL,     80,  80),
+            new AssetSize(GraphicID.G_STAR_SPINNER,      68,  68),
+            new AssetSize(GraphicID.G_TOPSPIN,           72,  72),
+            new AssetSize(GraphicID.G_TWINKLES,          48,  48),
 
             new AssetSize(GraphicID.G_POWER_BEAM,        64, 512),
             new AssetSize(GraphicID.G_POWER_BEAM_SMALL,  64, 128),
@@ -155,7 +156,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_EXPLOSION128,      64,  64),
             new AssetSize(GraphicID.G_EXPLOSION256,      64,  64),
 
-            new AssetSize(GraphicID.G_BACKGROUND_UFO,    8,    4),
+            new AssetSize(GraphicID.G_BACKGROUND_UFO,     8,   4),
             new AssetSize(GraphicID.G_TWINKLE_STAR,      46,  46),
         };
 

@@ -45,7 +45,7 @@ public class RoverGun extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_SCENERY | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER;
+        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER;
 
         setAction(Actions._STANDING);
 

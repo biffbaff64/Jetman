@@ -22,7 +22,6 @@ public class WorldRenderer implements GameScreenRenderer
         {
             case _STATE_MAIN_MENU:
             {
-                app.baseRenderer.gameZoom.stop();
                 app.mainMenuScreen.draw(spriteBatch, gameCamera);
             }
             break;
@@ -38,8 +37,6 @@ public class WorldRenderer implements GameScreenRenderer
             case _STATE_TELEPORTING:
             case _STATE_DEBUG_HANG:
             {
-                app.baseRenderer.gameZoom.stop();
-
                 if (!app.settings.isEnabled(Settings._USING_ASHLEY_ECS))
                 {
                     app.entityManager.drawSprites();

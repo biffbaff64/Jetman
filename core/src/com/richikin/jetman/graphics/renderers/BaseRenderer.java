@@ -263,6 +263,9 @@ public class BaseRenderer implements Disposable
             app.stage.draw();
         }
 
+        gameZoom.stop();
+        hudZoom.stop();
+
         app.worldModel.drawDebugMatrix();
     }
 

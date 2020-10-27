@@ -16,114 +16,104 @@
 
 package com.richikin.jetman.entities.characters;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.PointsManager;
-import com.richikin.jetman.entities.managers.ExplosionManager;
-import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.physics.Movement;
 
-public class StarSpinner extends GdxSprite
+public class StarSpinner extends Bouncer
 {
     public StarSpinner(App _app)
     {
         super(GraphicID.G_STAR_SPINNER, _app);
     }
 
-    @Override
-    public void initialise(SpriteDescriptor entityDescriptor)
-    {
-        create(entityDescriptor);
-
-        initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
-
-        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
-
-        distance.set(Gfx._VIEW_WIDTH * 6, 0);
-        speed.set(1 + MathUtils.random(2), 0);
-
-        if (sprite.getX() < app.getPlayer().sprite.getX())
-        {
-            direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
-        }
-        else
-        {
-            direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
-        }
-
-        setAction(Actions._RUNNING);
-
-        isRotating = true;
-        rotateSpeed = 4.0f;
-    }
-
-    @Override
-    public void update(int spriteNum)
-    {
-        switch (getAction())
-        {
-            case _RUNNING:
-            {
-                move();
-            }
-            break;
-
-            case _KILLED:
-            case _HURT:
-            {
-                ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
-
-                if (getAction() == Actions._KILLED)
-                {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
-                }
-
-                setAction(Actions._EXPLODING);
-            }
-            break;
-
-            case _EXPLODING:
-            {
-            }
-            break;
-
-            case _DYING:
-            {
-                setAction(Actions._DEAD);
-            }
-            break;
-
-            default:
-            {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
-            }
-            break;
-        }
-
-        animate();
-
-        updateCommon();
-    }
-
-    @Override
-    public void animate()
-    {
-        elapsedAnimTime += Gdx.graphics.getDeltaTime();
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
-    }
-
-    private void move()
-    {
-        sprite.translate((speed.getX() * direction.getX()), 0);
-
-        wrap();
-    }
+//    @Override
+//    public void initialise(SpriteDescriptor entityDescriptor)
+//    {
+//        create(entityDescriptor);
+//
+//        initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+//
+//        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
+//        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
+//
+//        distance.set(Gfx._VIEW_WIDTH * 6, 0);
+//        speed.set(1 + MathUtils.random(2), 0);
+//
+//        if (sprite.getX() < app.getPlayer().sprite.getX())
+//        {
+//            direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
+//        }
+//        else
+//        {
+//            direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
+//        }
+//
+//        setAction(Actions._RUNNING);
+//
+//        isRotating = true;
+//        rotateSpeed = 4.0f;
+//    }
+//
+//    @Override
+//    public void update(int spriteNum)
+//    {
+//        switch (getAction())
+//        {
+//            case _RUNNING:
+//            {
+//                move();
+//            }
+//            break;
+//
+//            case _KILLED:
+//            case _HURT:
+//            {
+//                ExplosionManager explosionManager = new ExplosionManager();
+//                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+//
+//                if (getAction() == Actions._KILLED)
+//                {
+//                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+//                }
+//
+//                setAction(Actions._EXPLODING);
+//            }
+//            break;
+//
+//            case _EXPLODING:
+//            {
+//            }
+//            break;
+//
+//            case _DYING:
+//            {
+//                setAction(Actions._DEAD);
+//            }
+//            break;
+//
+//            default:
+//            {
+//                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
+//            }
+//            break;
+//        }
+//
+//        animate();
+//
+//        updateCommon();
+//    }
+//
+//    @Override
+//    public void animate()
+//    {
+//        elapsedAnimTime += Gdx.graphics.getDeltaTime();
+//        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+//    }
+//
+//    private void move()
+//    {
+//        sprite.translate((speed.getX() * direction.getX()), 0);
+//
+//        wrap();
+//    }
 }

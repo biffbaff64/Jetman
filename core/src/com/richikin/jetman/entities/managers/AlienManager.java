@@ -10,8 +10,6 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-import java.sql.Blob;
-
 public class AlienManager extends GenericEntityManager
 {
     private final GraphicIndex[] aliens =
@@ -86,9 +84,9 @@ public class AlienManager extends GenericEntityManager
             {
                 case G_3BALLS_UFO:
                 {
-//                    ThreeBallsUFO threeBallsUFO = new ThreeBallsUFO(app);
-//                    threeBallsUFO.initialise(descriptor);
-//                    app.entityData.addEntity(threeBallsUFO);
+                    ThreeBallsUFO threeBallsUFO = new ThreeBallsUFO(app);
+                    threeBallsUFO.initialise(descriptor);
+                    app.entityData.addEntity(threeBallsUFO);
                 }
                 break;
 
@@ -118,17 +116,17 @@ public class AlienManager extends GenericEntityManager
 
                 case G_BLOB:
                 {
-//                    Blob blob = new Blob(app);
-//                    blob.initialise(descriptor);
-//                    app.entityData.addEntity(blob);
+                    Blob blob = new Blob(app);
+                    blob.initialise(descriptor);
+                    app.entityData.addEntity(blob);
                 }
                 break;
 
                 case G_DOG:
                 {
-//                    Dog dog = new Dog(app);
-//                    dog.initialise(descriptor);
-//                    app.entityData.addEntity(dog);
+                    Dog dog = new Dog(app);
+                    dog.initialise(descriptor);
+                    app.entityData.addEntity(dog);
                 }
                 break;
 
@@ -142,9 +140,9 @@ public class AlienManager extends GenericEntityManager
 
                 case G_SPINNING_BALL:
                 {
-//                    SpinningBall spinningBall = new SpinningBall(app);
-//                    spinningBall.initialise(descriptor);
-//                    app.entityData.addEntity(spinningBall);;
+                    SpinningBall spinningBall = new SpinningBall(app);
+                    spinningBall.initialise(descriptor);
+                    app.entityData.addEntity(spinningBall);;
                 }
                 break;
 
@@ -166,9 +164,9 @@ public class AlienManager extends GenericEntityManager
 
                 case G_TOPSPIN:
                 {
-//                    TopSpin topSpin = new TopSpin(app);
-//                    topSpin.initialise(descriptor);
-//                    app.entityData.addEntity(topSpin);
+                    TopSpin topSpin = new TopSpin(app);
+                    topSpin.initialise(descriptor);
+                    app.entityData.addEntity(topSpin);
                 }
                 break;
 
@@ -212,6 +210,7 @@ public class AlienManager extends GenericEntityManager
             }
             break;
 
+            case G_TOPSPIN:
             case G_3LEGS_ALIEN:
             {
                 initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
@@ -224,6 +223,7 @@ public class AlienManager extends GenericEntityManager
             break;
 
             case G_BLOB:
+            case G_SPINNING_BALL:
             {
                 initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(5, 12);
@@ -245,32 +245,10 @@ public class AlienManager extends GenericEntityManager
             }
             break;
 
-            case G_TOPSPIN:
-            {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
-                initPos.y = MathUtils.random(10, 16);
-
-                initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
-                initPos.x += (int) (MathUtils.random(100) < 50 ?
-                    (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
-            }
-            break;
-
             case G_TWINKLES:
             {
                 initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 16);
-
-                initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
-                initPos.x += (int) (MathUtils.random(100) < 50 ?
-                    (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
-            }
-            break;
-
-            case G_SPINNING_BALL:
-            {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
-                initPos.y = MathUtils.random(6, 12);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
                 initPos.x += (int) (MathUtils.random(100) < 50 ?
@@ -302,6 +280,7 @@ public class AlienManager extends GenericEntityManager
             break;
 
             case G_ALIEN_WHEEL:
+            case G_STAR_SPINNER:
             {
                 initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = 3;
@@ -316,17 +295,6 @@ public class AlienManager extends GenericEntityManager
                 initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 5);
 
-                initPos.x += (int) ((MathUtils.random(100) < 50) ?
-                    (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
-            }
-            break;
-
-            case G_STAR_SPINNER:
-            {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
-                initPos.y = MathUtils.random(3, 5);
-
-                initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
                 initPos.x += (int) ((MathUtils.random(100) < 50) ?
                     (Gfx._GAME_SCENE_WIDTH * 2) : -(Gfx._GAME_SCENE_WIDTH * 2));
             }

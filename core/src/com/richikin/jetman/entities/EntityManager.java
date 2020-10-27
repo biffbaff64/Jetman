@@ -168,17 +168,26 @@ public class EntityManager implements IEntityManager
                             case G_DEFENDER:
                             case G_ROVER:
                             case G_DEFENDER_BULLET:
+                            case G_UFO_BULLET:
+                            case G_EXPLOSION12:
+                            case G_EXPLOSION64:
+                            case G_EXPLOSION128:
+                            case G_EXPLOSION256:
                             {
                                 entity.tidy(i);
                             }
                             break;
 
+                            case G_BOMB:
+                            case G_ROVER_GUN:
+                            case G_ASTEROID:
                             default:
                             {
                                 if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);
 
+                                    entity.collisionObject.kill();
                                     app.entityData.removeEntity(i);
                                 }
                             }

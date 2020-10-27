@@ -20,9 +20,6 @@ public class HUDRenderer implements GameScreenRenderer
     {
         if (!AppConfig.shutDownActive)
         {
-            app.baseRenderer.gameZoom.stop();
-            app.baseRenderer.hudZoom.stop();
-
             switch (app.appState.peek())
             {
                 case _STATE_MAIN_MENU:

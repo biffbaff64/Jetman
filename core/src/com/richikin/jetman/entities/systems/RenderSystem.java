@@ -77,8 +77,6 @@ public class RenderSystem
     {
         GdxSprite entity;
 
-        app.baseRenderer.gameZoom.stop();
-
         for (int i = 0; i < app.entityData.entityMap.size; i++)
         {
             entity = (GdxSprite) app.entityData.entityMap.get(i);

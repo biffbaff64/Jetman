@@ -93,6 +93,7 @@ public class DefenceStation extends GdxSprite
     @Override
     public void tidy(int _index)
     {
+        collisionObject.kill();
         app.entityData.removeEntity(_index);
     }
 

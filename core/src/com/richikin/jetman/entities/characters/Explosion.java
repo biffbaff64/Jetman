@@ -108,4 +108,12 @@ public class Explosion extends GdxSprite
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
         }
     }
+
+    @Override
+    public void tidy(int _index)
+    {
+        collisionObject.kill();
+        app.entityData.removeEntity(_index);
+        parent = null;
+    }
 }

@@ -89,8 +89,7 @@ public class MainPlayer extends GdxSprite
         collidesWith = Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_FIXED_ENEMY
             | Gfx.CAT_GROUND
-            | Gfx.CAT_CEILING
-            | Gfx.CAT_SCENERY;
+            | Gfx.CAT_CEILING;
 
         isMainCharacter = true;
         stopWatch       = StopWatch.start();

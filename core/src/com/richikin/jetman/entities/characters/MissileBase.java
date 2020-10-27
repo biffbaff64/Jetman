@@ -250,6 +250,7 @@ public class MissileBase extends GdxSprite
     public void tidy(int _index)
     {
         app.missileBaseManager.free();
+        collisionObject.kill();
         app.entityData.removeEntity(_index);
     }
 }
