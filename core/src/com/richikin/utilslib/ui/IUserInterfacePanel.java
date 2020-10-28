@@ -1,8 +1,8 @@
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateID;
+import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Speed;
@@ -15,7 +15,7 @@ public interface IUserInterfacePanel
 
     boolean update();
 
-    void draw(App _app);
+    void draw(SpriteBatch spriteBatch);
 
     boolean getActiveState();
 

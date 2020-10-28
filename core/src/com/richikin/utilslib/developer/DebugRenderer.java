@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.aabb.AABBData;

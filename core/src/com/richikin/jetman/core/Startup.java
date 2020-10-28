@@ -23,6 +23,8 @@ import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.developer.DebugRenderer;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.states.StateID;
+import com.richikin.utilslib.states.StateManager;
 
 public class Startup
 {

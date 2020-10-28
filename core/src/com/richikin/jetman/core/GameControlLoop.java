@@ -5,6 +5,8 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.states.StateID;
+import com.richikin.utilslib.states.StateManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -139,7 +141,7 @@ public class GameControlLoop extends AbstractControlLoop
             */
 //        }
 
-        app.appState.set(StateID._STATE_GET_READY);
+        app.appState.set(com.richikin.utilslib.states.StateID._STATE_GET_READY);
         app.gameProgress.gameSetupDone = true;
     }
 
@@ -157,8 +159,8 @@ public class GameControlLoop extends AbstractControlLoop
         {
             Trace.__FILE_FUNC("----- START GAME (GET READY) -----");
 
-            app.appState.set(StateID._STATE_GAME);
-            app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
+            app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME);
+            app.getHud().setStateID(com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE);
 
             app.getHud().showControls();
 
@@ -186,12 +188,12 @@ public class GameControlLoop extends AbstractControlLoop
     {
         app.getHud().update();
 
-        if (app.appState.peek() == StateID._STATE_DEVELOPER_PANEL)
+        if (app.appState.peek() == com.richikin.utilslib.states.StateID._STATE_DEVELOPER_PANEL)
         {
             if (!Developer.developerPanelActive)
             {
-                app.appState.set(StateID._STATE_GAME);
-                app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME);
+                app.getHud().setStateID(com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE);
             }
         }
         else
@@ -211,11 +213,11 @@ public class GameControlLoop extends AbstractControlLoop
             {
                 //
                 // Tasks to perform if the game has not ended
-                if (app.appState.peek() == StateID._STATE_PAUSED)
+                if (app.appState.peek() == com.richikin.utilslib.states.StateID._STATE_PAUSED)
                 {
                     if (!AppConfig.gamePaused)
                     {
-                        app.appState.set(StateID._STATE_GAME);
+                        app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME);
                     }
                 }
             }
@@ -235,11 +237,11 @@ public class GameControlLoop extends AbstractControlLoop
         {
             if (AppConfig.quitToMainMenu)
             {
-                app.appState.set(StateID._STATE_GAME_OVER);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME_OVER);
             }
             else
             {
-                app.appState.set(StateID._STATE_SETUP);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
             }
 
             scr().retryDelay = null;
@@ -260,7 +262,7 @@ public class GameControlLoop extends AbstractControlLoop
         app.mapUtils.update();
 
         scr().reset();
-        app.appState.set(StateID._STATE_SETUP);
+        app.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
     }
 
     /**
@@ -273,7 +275,7 @@ public class GameControlLoop extends AbstractControlLoop
 
         if (!app.panelManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
         {
-            app.appState.set(StateID._STATE_END_GAME);
+            app.appState.set(com.richikin.utilslib.states.StateID._STATE_END_GAME);
         }
     }
 
@@ -289,7 +291,7 @@ public class GameControlLoop extends AbstractControlLoop
         // a good place to update it and check for it closing.
         //
         // app.appState should be set to _STATE_END_GAME when appropriate.
-        app.appState.set(StateID._STATE_END_GAME);
+        app.appState.set(com.richikin.utilslib.states.StateID._STATE_END_GAME);
     }
 
     /**

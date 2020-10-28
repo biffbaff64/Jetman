@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;

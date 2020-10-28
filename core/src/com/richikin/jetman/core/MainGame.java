@@ -4,6 +4,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.google.DummyAdsController;
 import com.richikin.utilslib.google.PlayServices;
+import com.richikin.utilslib.states.StateID;
 
 public class MainGame extends App
 {
@@ -50,7 +51,7 @@ public class MainGame extends App
     {
         if (!Developer.isDevMode()
             && (appState != null)
-            && (appState.equalTo(StateID._STATE_GAME)))
+            && (appState.equalTo(com.richikin.utilslib.states.StateID._STATE_GAME)))
         {
             AppConfig.pause();
         }

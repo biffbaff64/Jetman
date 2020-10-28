@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -16,7 +16,6 @@ import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.Proximity;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Movement;
 
 import java.util.concurrent.TimeUnit;

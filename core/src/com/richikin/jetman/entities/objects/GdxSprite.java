@@ -5,21 +5,21 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.entities.components.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.physics.aabb.AABB;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.maths.XYSetF;
-import com.richikin.jetman.physics.aabb.AABB;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.Speed;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.logging.Trace;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {
@@ -145,7 +145,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 
-        position = new SimpleVec2F(sprite.getX(), sprite.getY());
+        position  = new SimpleVec2F(sprite.getX(), sprite.getY());
         zPosition = (int) vec3F.z;
 
         initXYZ.set(sprite.getX(), sprite.getY(), (float) vec3F.z);
@@ -431,11 +431,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public Vector3 getPosition()
     {
         return new Vector3(sprite.getX(), sprite.getY(), zPosition);
-    }
-
-    public float getRightEdge()
-    {
-        return sprite.getX() + frameWidth;
     }
 
     /**

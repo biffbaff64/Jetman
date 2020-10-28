@@ -1,9 +1,9 @@
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateID;
+import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Speed;
@@ -38,9 +38,9 @@ public abstract class BasicPanel implements IUserInterfacePanel, Disposable
      * Draw this panel.
      */
     @Override
-    public void draw(App _app)
+    public void draw(SpriteBatch spriteBatch)
     {
-        _app.spriteBatch.draw(textureRegion, position.x, position.y, panelWidth, panelHeight);
+        spriteBatch.draw(textureRegion, position.x, position.y, panelWidth, panelHeight);
     }
 
     /**

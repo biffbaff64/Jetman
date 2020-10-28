@@ -3,7 +3,7 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.components.EntityManagerComponent;

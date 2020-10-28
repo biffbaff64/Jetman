@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.objects;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityComponent;
 import com.richikin.jetman.graphics.GraphicID;
@@ -81,12 +81,71 @@ public class GameEntity implements EntityComponent, Disposable
     @Override
     public Actions getAction()
     {
-        return entityAction;
+        return this.entityAction;
     }
 
     @Override
     public void tidy(int _index)
     {
+    }
+
+    @Override
+    public float getTopEdge()
+    {
+        return position.y + frameHeight;
+    }
+
+    @Override
+    public float getRightEdge()
+    {
+        return position.x + frameWidth;
+    }
+
+    //
+    // The most common sprite actions.
+    public void setStanding()
+    {
+        this.entityAction = Actions._STANDING;
+    }
+
+    public void setRunning()
+    {
+        this.entityAction = Actions._RUNNING;
+    }
+
+    public void setFalling()
+    {
+        this.entityAction = Actions._FALLING;
+    }
+
+    public void setFlying()
+    {
+        this.entityAction = Actions._FLYING;
+    }
+
+    public void setHurt()
+    {
+        this.entityAction = Actions._HURT;
+    }
+
+    public void setKilled()
+    {
+        this.entityAction = Actions._KILLED;
+    }
+
+    public void setDying()
+    {
+        this.entityAction = Actions._DYING;
+    }
+
+    public void setExploding()
+    {
+        this.entityAction = Actions._EXPLODING;
+    }
+
+    public void setDead()
+    {
+        this.entityAction = Actions._DEAD;
     }
 
     /**

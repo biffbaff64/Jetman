@@ -2,12 +2,13 @@
 package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.jetman.core.Actions;
-import com.richikin.jetman.core.StateID;
+import com.richikin.utilslib.states.Actions;
+import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Speed;
+import com.richikin.utilslib.ui.BasicPanel;
 
 public class SlidePanel extends BasicPanel
 {

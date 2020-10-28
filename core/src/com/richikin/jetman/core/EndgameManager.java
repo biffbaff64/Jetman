@@ -2,6 +2,8 @@ package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.states.Actions;
+import com.richikin.utilslib.states.StateID;
 
 public class EndgameManager
 {
@@ -17,7 +19,7 @@ public class EndgameManager
         boolean returnFlag = false;
 
         if ((app.getPlayer() != null)
-            && (app.getPlayer().getAction() == Actions._DEAD))
+            && (app.getPlayer().getAction() == com.richikin.utilslib.states.Actions._DEAD))
         {
             // Hide HUD Controls here ??
 
@@ -25,7 +27,7 @@ public class EndgameManager
             // Setting appState to Level Retry, but settin quitToMainMenu to true
             // will redirect flow to Game Over state after a short delay followed
             // by a 'Game Over' message.
-            app.appState.set(StateID._STATE_LEVEL_RETRY);
+            app.appState.set(com.richikin.utilslib.states.StateID._STATE_LEVEL_RETRY);
             app.mainGameScreen.retryDelay = StopWatch.start();
 
             AppConfig.quitToMainMenu = true;
@@ -39,15 +41,15 @@ public class EndgameManager
                 // Hide HUD Controls here ??
                 // Initialise a Game Completed Panel here ??
 
-                app.getHud().setStateID(StateID._STATE_GAME_FINISHED);
-                app.appState.set(StateID._STATE_GAME_FINISHED);
+                app.getHud().setStateID(com.richikin.utilslib.states.StateID._STATE_GAME_FINISHED);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME_FINISHED);
 
                 returnFlag = true;
             }
             else if (app.gameProgress.levelCompleted)
             {
-                app.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
-                app.appState.set(StateID._STATE_LEVEL_FINISHED);
+                app.getHud().setStateID(com.richikin.utilslib.states.StateID._STATE_LEVEL_FINISHED);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_LEVEL_FINISHED);
 
                 returnFlag = true;
             }
@@ -60,7 +62,7 @@ public class EndgameManager
                     && (app.getPlayer().getAction() == Actions._RESETTING))
                 {
                     app.mainGameScreen.retryDelay = StopWatch.start();
-                    app.appState.set(StateID._STATE_LEVEL_RETRY);
+                    app.appState.set(com.richikin.utilslib.states.StateID._STATE_LEVEL_RETRY);
                 }
 
                 returnFlag = true;

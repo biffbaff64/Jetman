@@ -26,7 +26,8 @@ import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.misc.HighScoreUtils;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.messaging.MessageManager;
+import com.richikin.utilslib.states.Actions;
+import com.richikin.utilslib.states.StateID;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -87,16 +88,16 @@ public class HeadsUpDisplay implements Disposable
     public Switch    buttonDevOptions;
 
     public MessageManager messageManager;
-    public PausePanel     pausePanel;
-    public StateID        hudStateID;
+    public PausePanel                           pausePanel;
+    public com.richikin.utilslib.states.StateID hudStateID;
 
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
     private static final int _MAX_FUELBAR_LENGTH = 1000;
 
     private float           originX;
-    private float           originY;
-    private StateID         stateID;
-    private ProgressBar     timeBar;
+    private float                                originY;
+    private com.richikin.utilslib.states.StateID stateID;
+    private ProgressBar                          timeBar;
     private ProgressBar     fuelBar;
     private Texture         scorePanel;
     private TextureRegion   barDividerFuel;
@@ -158,7 +159,7 @@ public class HeadsUpDisplay implements Disposable
         truckArrowIndex = _ARROW_DOWN;
         baseArrowIndex  = _ARROW_DOWN;
 
-        stateID = StateID._STATE_PANEL_START;
+        stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_START;
 
         AppConfig.hudExists = true;
     }
@@ -169,7 +170,7 @@ public class HeadsUpDisplay implements Disposable
         {
             case _STATE_PANEL_START:
             {
-                stateID = StateID._STATE_PANEL_UPDATE;
+                stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE;
             }
             break;
 
@@ -198,10 +199,10 @@ public class HeadsUpDisplay implements Disposable
                     messageManager.update();
 
                     if (!messageManager.doesPanelExist("ZoomPanel")
-                        && (app.appState.peek() != StateID._STATE_GAME)
+                        && (app.appState.peek() != com.richikin.utilslib.states.StateID._STATE_GAME)
                         && app.missileBaseManager.isMissileActive)
                     {
-                        app.appState.set(StateID._STATE_GAME);
+                        app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME);
                     }
                 }
             }
@@ -219,7 +220,7 @@ public class HeadsUpDisplay implements Disposable
 
                     buttonPause.release();
 
-                    stateID = StateID._STATE_PANEL_UPDATE;
+                    stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE;
                 }
             }
             break;
@@ -241,7 +242,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (!app.teleportManager.teleportActive)
         {
-            if ((app.getPlayer().getAction() == Actions._FLYING) || app.getPlayer().isJumpingCrater)
+            if ((app.getPlayer().getAction() == com.richikin.utilslib.states.Actions._FLYING) || app.getPlayer().isJumpingCrater)
             {
                 fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
                 fuelBar.updateSlowDecrement();
@@ -249,7 +250,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (app.getBase() != null)
             {
-                if (app.getBase().getAction() != Actions._WAITING)
+                if (app.getBase().getAction() != com.richikin.utilslib.states.Actions._WAITING)
                 {
                     timeBar.updateSlowDecrement();
                 }
@@ -374,7 +375,7 @@ public class HeadsUpDisplay implements Disposable
 
 //                app.developerPanel.setup();
                 buttonDevOptions.release();
-                app.appState.set(StateID._STATE_DEVELOPER_PANEL);
+                app.appState.set(com.richikin.utilslib.states.StateID._STATE_DEVELOPER_PANEL);
             }
         }
     }
@@ -412,7 +413,7 @@ public class HeadsUpDisplay implements Disposable
 
             //
             // Draw the Pause panel if activated
-            if (stateID == StateID._STATE_PAUSED)
+            if (stateID == com.richikin.utilslib.states.StateID._STATE_PAUSED)
             {
                 pausePanel.draw(app.spriteBatch, camera, originX, originY);
             }
@@ -540,22 +541,6 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
-            smallFont.draw
-                (
-                    app.spriteBatch,
-                    "Teleporter: " + app.getTeleporter(0).teleporterNumber
-                        + " : " + app.getTeleporter(0).isCollected
-                        + " : " + app.getTeleporter(0).getAction(),
-                    originX + 20, originY + 570
-                );
-            smallFont.draw
-                (
-                    app.spriteBatch,
-                    "Teleporter: " + app.getTeleporter(1).teleporterNumber
-                        + " : " + app.getTeleporter(1).isCollected
-                        + " : " + app.getTeleporter(1).getAction(),
-                    originX + 20, originY + 540
-                );
         }
 
         bigFont.draw

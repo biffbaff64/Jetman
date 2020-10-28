@@ -1,12 +1,14 @@
 
 package com.richikin.jetman.ui;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateID;
+import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.ui.BasicPanel;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
@@ -167,11 +169,11 @@ public class ZoomPanel extends BasicPanel
     }
 
     @Override
-    public void draw(final App _app)
+    public void draw(SpriteBatch spriteBatch)
     {
         if (!isFinished)
         {
-            _app.spriteBatch.draw
+            spriteBatch.draw
                 (
                     textureRegion,
                     getPosition().x,

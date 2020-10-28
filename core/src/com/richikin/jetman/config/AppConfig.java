@@ -4,7 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.StateID;
+import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;

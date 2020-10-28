@@ -24,6 +24,7 @@ import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.states.StateManager;
 
 public abstract class App extends LibApp
 {

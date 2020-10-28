@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;

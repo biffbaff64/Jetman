@@ -10,7 +10,7 @@ import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProgressBar extends ItemF implements UIProgressBar, Disposable
+public class ProgressBar extends ItemF implements com.richikin.utilslib.ui.UIProgressBar, Disposable
 {
     private static final int _DEFAULT_BAR_HEIGHT = 26;
 

@@ -1,7 +1,7 @@
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 
 /**
  * UIPaqes are Main Menu/Title sequences pages,
@@ -16,7 +16,7 @@ public interface UIPage
 
     void hide();
 
-    void draw(SpriteBatch spriteBatch, OrthoGameCamera camera, float originX, float originY);
+    void draw(SpriteBatch spriteBatch, OrthographicCamera camera, float originX, float originY);
 
     void reset();
 

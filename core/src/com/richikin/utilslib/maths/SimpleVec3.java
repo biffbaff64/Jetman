@@ -35,9 +35,29 @@ public class SimpleVec3
         this.set(this.x + x, this.y + y, this.z + z);
     }
 
+    public void addX(int value)
+    {
+        this.x += value;
+    }
+
+    public void addY(int value)
+    {
+        this.y += value;
+    }
+
     public void sub(int x, int y, int z)
     {
         this.set(this.x - x, this.y - y, this.z - z);
+    }
+
+    public void subX(int value)
+    {
+        this.x -= value;
+    }
+
+    public void subY(int value)
+    {
+        this.y -= value;
     }
 
     public void set(int x, int y, int z)

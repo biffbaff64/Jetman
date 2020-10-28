@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;

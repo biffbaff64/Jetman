@@ -8,6 +8,7 @@ import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.states.StateID;
 
 public class MainGameScreen extends AbstractBaseScreen
 {
@@ -53,7 +54,7 @@ public class MainGameScreen extends AbstractBaseScreen
             gameControlLoop.initialise();
             app.levelManager.prepareNewGame();
 
-            app.appState.set(StateID._STATE_SETUP);
+            app.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
         }
 
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))

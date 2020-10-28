@@ -1,11 +1,9 @@
-package com.richikin.utilslib.messaging;
+package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.core.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.ui.IUserInterfacePanel;
-import com.richikin.jetman.ui.SlidePanel;
-import com.richikin.jetman.ui.ZoomPanel;
+import com.richikin.utilslib.states.Actions;
+import com.richikin.utilslib.ui.IUserInterfacePanel;
 import com.richikin.utilslib.logging.Trace;
 
 public class MessageManager
@@ -25,8 +23,8 @@ public class MessageManager
     }
 
     private       Array<Message> messages;
-    private       boolean        managerEnabled;
-    private final App            app;
+    private       boolean managerEnabled;
+    private final App     app;
 
     public MessageManager(App _app)
     {
@@ -54,7 +52,7 @@ public class MessageManager
         {
             if (messages.get(i).enabled)
             {
-                messages.get(i).panel.draw(app);
+                messages.get(i).panel.draw(app.spriteBatch);
             }
         }
     }

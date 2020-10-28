@@ -19,7 +19,7 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.Actions;
+import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;
