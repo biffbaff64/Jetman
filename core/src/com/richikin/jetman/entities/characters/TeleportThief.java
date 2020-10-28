@@ -99,6 +99,7 @@ public class TeleportThief extends GdxSprite
                         attachedToTransporter = false;
                         app.getTeleporter(heldTransporter).collector = null;
                         app.getTeleporter(heldTransporter).isCollected = false;
+                        app.getTeleporter(heldTransporter).setAction(Actions._STANDING);
 
                         collectTimer.reset();
                         setAction(Actions._RUNNING);

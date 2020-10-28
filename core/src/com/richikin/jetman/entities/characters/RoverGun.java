@@ -62,8 +62,6 @@ public class RoverGun extends GdxSprite
 
     public void addTurret()
     {
-        Trace.__FILE_FUNC();
-
         SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._POSITION.x    = 0;

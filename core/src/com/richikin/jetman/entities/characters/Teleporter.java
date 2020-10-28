@@ -54,8 +54,36 @@ public class Teleporter extends GdxSprite
         switch (getAction())
         {
             case _STANDING:
+            {
+                if (collisionObject.idBottom == GraphicID.G_NO_ID)
+                {
+                    speed.y = 0;
+                    setAction(Actions._FALLING);
+                }
+            }
+            break;
+
             case _HELD:
             {
+                if (collector != null)
+                {
+                    sprite.setPosition
+                        (
+                            collector.getPosition().x,
+                            collector.getPosition().y - collector.frameHeight
+                        );
+                }
+            }
+            break;
+
+            case _FALLING:
+            {
+                isCollected = false;
+                collector = null;
+
+                speed.y += 0.2f;
+
+                sprite.translate(Movement._DIRECTION_STILL, (speed.getY() * Movement._DIRECTION_DOWN));
             }
             break;
 
