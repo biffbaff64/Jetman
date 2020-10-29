@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.maths.SimpleVec3F;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 public interface SpriteComponent
 {

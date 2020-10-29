@@ -1,6 +1,7 @@
 package com.richikin.jetman.input.buttons;
 
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
 
 public class GameButtonRegion extends Switch

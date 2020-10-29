@@ -8,7 +8,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 

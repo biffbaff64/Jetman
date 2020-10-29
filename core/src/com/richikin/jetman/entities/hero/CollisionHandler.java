@@ -7,8 +7,8 @@ import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.aabb.AABBUtils;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.aabb.AABBUtils;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 

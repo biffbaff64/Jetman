@@ -1,14 +1,13 @@
 
-package com.richikin.jetman.input.buttons;
+package com.richikin.utilslib.input;
 
 /**
  * A Simple ON/OFF Switch class
  */
 public class Switch implements GDXButton
 {
-    private boolean _isPressed;
-    private boolean _isDisabled;
-    private int     _pointer;
+    protected boolean _isPressed;
+    protected boolean _isDisabled;
 
     public Switch()
     {
@@ -67,12 +66,12 @@ public class Switch implements GDXButton
     }
 
     @Override
-    public void setVisible(boolean _state)
+    public void setDrawable(boolean _state)
     {
     }
 
     @Override
-    public boolean isVisible()
+    public boolean isDrawable()
     {
         return false;
     }

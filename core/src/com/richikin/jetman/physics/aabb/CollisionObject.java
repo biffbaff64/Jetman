@@ -19,8 +19,9 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.states.Actions;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.utilslib.entities.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;
 
@@ -39,9 +40,9 @@ public class CollisionObject implements Disposable
     public Actions       action;
     public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GraphicID     contactGid;        // ID of contact object
-    public CollisionRect rectangle;         // The actual collision rectangle
-    public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public GraphicID                                        contactGid;        // ID of contact object
+    public com.richikin.utilslib.physics.aabb.CollisionRect rectangle;         // The actual collision rectangle
+    public GameEntity                                       parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 
@@ -65,14 +66,14 @@ public class CollisionObject implements Disposable
 
     public CollisionObject()
     {
-        this.rectangle = new CollisionRect(GraphicID.G_NO_ID);
+        this.rectangle = new com.richikin.utilslib.physics.aabb.CollisionRect(GraphicID.G_NO_ID);
 
         create();
     }
 
     public CollisionObject(Rectangle _rectangle)
     {
-        this.rectangle = new CollisionRect(_rectangle, GraphicID.G_NO_ID);
+        this.rectangle = new com.richikin.utilslib.physics.aabb.CollisionRect(_rectangle, GraphicID.G_NO_ID);
 
         create();
     }

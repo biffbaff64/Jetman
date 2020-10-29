@@ -49,7 +49,7 @@ public class PanelManager
     {
         if (currentPanel != null)
         {
-            currentPanel.draw(app);
+            currentPanel.draw(app.spriteBatch);
         }
     }
 

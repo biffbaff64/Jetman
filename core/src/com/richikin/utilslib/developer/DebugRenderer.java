@@ -28,7 +28,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.physics.aabb.CollisionRect;
+import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.jetman.graphics.text.FontUtils;

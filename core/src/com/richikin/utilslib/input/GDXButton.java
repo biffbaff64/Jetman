@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.input.buttons;
+package com.richikin.utilslib.input;
 
 public abstract interface GDXButton
 {
@@ -17,9 +17,9 @@ public abstract interface GDXButton
 
     void setDisabled(boolean _state);
 
-    boolean isVisible();
+    boolean isDrawable();
 
-    void setVisible(boolean _state);
+    void setDrawable(boolean _state);
 
     void release();
 

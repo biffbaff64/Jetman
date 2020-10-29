@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.utilslib.input.GDXButton;
 import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
@@ -270,7 +271,7 @@ public class AnimatedButton implements GDXButton, Disposable
     }
 
     @Override
-    public void setVisible(boolean _drawable)
+    public void setDrawable(boolean _drawable)
     {
         _isDrawable = _drawable;
     }
@@ -300,7 +301,7 @@ public class AnimatedButton implements GDXButton, Disposable
     }
 
     @Override
-    public boolean isVisible()
+    public boolean isDrawable()
     {
         return _isDrawable;
     }

@@ -11,21 +11,22 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.core.*;
+import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
-import com.richikin.jetman.input.buttons.GDXButton;
 import com.richikin.jetman.input.buttons.GameButton;
 import com.richikin.jetman.input.buttons.GameButtonRegion;
-import com.richikin.jetman.input.buttons.Switch;
 import com.richikin.jetman.input.objects.ControllerPos;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.utilslib.developer.Developer;
-import com.richikin.utilslib.misc.HighScoreUtils;
+import com.richikin.utilslib.input.GDXButton;
+import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.misc.HighScoreUtils;
 import com.richikin.utilslib.states.Actions;
 import com.richikin.utilslib.states.StateID;
 
@@ -44,14 +45,14 @@ public class HeadsUpDisplay implements Disposable
     private static final int _WIDTH  = 3;
     private static final int _HEIGHT = 4;
 
-    private static final int _JOYSTICK      = 0;
-    private static final int _ATTACK        = 1;
-    private static final int _ACTION        = 2;
-    private static final int _PAUSE         = 3;
-    private static final int _DEV_OPTIONS   = 4;
-    private static final int _CONSOLE       = 5;
-    private static final int _TRUCK_ARROW   = 6;
-    private static final int _BASE_ARROW    = 7;
+    private static final int _JOYSTICK    = 0;
+    private static final int _ATTACK      = 1;
+    private static final int _ACTION      = 2;
+    private static final int _PAUSE       = 3;
+    private static final int _DEV_OPTIONS = 4;
+    private static final int _CONSOLE     = 5;
+    private static final int _TRUCK_ARROW = 6;
+    private static final int _BASE_ARROW  = 7;
 
     //@formatter:off
     private static final int[][] displayPos = new int[][]
@@ -88,16 +89,16 @@ public class HeadsUpDisplay implements Disposable
     public Switch    buttonDevOptions;
 
     public MessageManager messageManager;
-    public PausePanel                           pausePanel;
-    public com.richikin.utilslib.states.StateID hudStateID;
+    public PausePanel     pausePanel;
+    public StateID        hudStateID;
 
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
     private static final int _MAX_FUELBAR_LENGTH = 1000;
 
     private float           originX;
-    private float                                originY;
-    private com.richikin.utilslib.states.StateID stateID;
-    private ProgressBar                          timeBar;
+    private float           originY;
+    private StateID         stateID;
+    private ProgressBar     timeBar;
     private ProgressBar     fuelBar;
     private Texture         scorePanel;
     private TextureRegion   barDividerFuel;
@@ -127,13 +128,13 @@ public class HeadsUpDisplay implements Disposable
 
         AppConfig.hudExists = false;
 
-        scorePanel = app.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
+        scorePanel                = app.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
         GameAssets.hudPanelHeight = scorePanel.getHeight();
 
-        highScoreUtils  = new HighScoreUtils();
-        messageManager  = new MessageManager(app);
-        pausePanel      = new PausePanel(app);
+        highScoreUtils = new HighScoreUtils();
+        messageManager = new MessageManager(app);
+        pausePanel     = new PausePanel(app);
 
         timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
         fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
@@ -159,7 +160,7 @@ public class HeadsUpDisplay implements Disposable
         truckArrowIndex = _ARROW_DOWN;
         baseArrowIndex  = _ARROW_DOWN;
 
-        stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_START;
+        stateID = StateID._STATE_PANEL_START;
 
         AppConfig.hudExists = true;
     }
@@ -170,7 +171,7 @@ public class HeadsUpDisplay implements Disposable
         {
             case _STATE_PANEL_START:
             {
-                stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE;
+                stateID = StateID._STATE_PANEL_UPDATE;
             }
             break;
 
@@ -199,10 +200,10 @@ public class HeadsUpDisplay implements Disposable
                     messageManager.update();
 
                     if (!messageManager.doesPanelExist("ZoomPanel")
-                        && (app.appState.peek() != com.richikin.utilslib.states.StateID._STATE_GAME)
+                        && (app.appState.peek() != StateID._STATE_GAME)
                         && app.missileBaseManager.isMissileActive)
                     {
-                        app.appState.set(com.richikin.utilslib.states.StateID._STATE_GAME);
+                        app.appState.set(StateID._STATE_GAME);
                     }
                 }
             }
@@ -220,7 +221,7 @@ public class HeadsUpDisplay implements Disposable
 
                     buttonPause.release();
 
-                    stateID = com.richikin.utilslib.states.StateID._STATE_PANEL_UPDATE;
+                    stateID = StateID._STATE_PANEL_UPDATE;
                 }
             }
             break;
@@ -242,7 +243,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (!app.teleportManager.teleportActive)
         {
-            if ((app.getPlayer().getAction() == com.richikin.utilslib.states.Actions._FLYING) || app.getPlayer().isJumpingCrater)
+            if ((app.getPlayer().getAction() == Actions._FLYING) || app.getPlayer().isJumpingCrater)
             {
                 fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
                 fuelBar.updateSlowDecrement();
@@ -250,7 +251,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (app.getBase() != null)
             {
-                if (app.getBase().getAction() != com.richikin.utilslib.states.Actions._WAITING)
+                if (app.getBase().getAction() != Actions._WAITING)
                 {
                     timeBar.updateSlowDecrement();
                 }
@@ -375,7 +376,7 @@ public class HeadsUpDisplay implements Disposable
 
 //                app.developerPanel.setup();
                 buttonDevOptions.release();
-                app.appState.set(com.richikin.utilslib.states.StateID._STATE_DEVELOPER_PANEL);
+                app.appState.set(StateID._STATE_DEVELOPER_PANEL);
             }
         }
     }
@@ -413,7 +414,7 @@ public class HeadsUpDisplay implements Disposable
 
             //
             // Draw the Pause panel if activated
-            if (stateID == com.richikin.utilslib.states.StateID._STATE_PAUSED)
+            if (stateID == StateID._STATE_PAUSED)
             {
                 pausePanel.draw(app.spriteBatch, camera, originX, originY);
             }
@@ -426,8 +427,8 @@ public class HeadsUpDisplay implements Disposable
         {
             Trace.__FILE_FUNC();
 
-            buttonB.setVisible(true);
-            buttonA.setVisible(true);
+            buttonB.setDrawable(true);
+            buttonA.setDrawable(true);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -437,7 +438,7 @@ public class HeadsUpDisplay implements Disposable
 
         if (Developer.isDevMode())
         {
-            buttonDevOptions.setVisible(true);
+            buttonDevOptions.setDrawable(true);
         }
 
         showHUDControls = true;
@@ -447,8 +448,8 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            buttonB.setVisible(false);
-            buttonA.setVisible(false);
+            buttonB.setDrawable(false);
+            buttonA.setDrawable(false);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -458,7 +459,7 @@ public class HeadsUpDisplay implements Disposable
 
         if (Developer.isDevMode())
         {
-            buttonDevOptions.setVisible(true);
+            buttonDevOptions.setDrawable(true);
         }
 
         showHUDControls = false;
@@ -541,6 +542,23 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
+
+            smallFont.draw
+                (
+                    app.spriteBatch,
+                    "BUTTON A : " + buttonA.isPressed()
+                        + " : " + buttonA.isDisabled()
+                        + " : " + buttonA.isDrawable(),
+                    originX + 20, originY + 550
+                );
+            smallFont.draw
+                (
+                    app.spriteBatch,
+                    "BUTTON B : " + buttonB.isPressed()
+                        + " : " + buttonB.isDisabled()
+                        + " : " + buttonB.isDrawable(),
+                    originX + 20, originY + 520
+                );
         }
 
         bigFont.draw
@@ -711,9 +729,9 @@ public class HeadsUpDisplay implements Disposable
     @Override
     public void dispose()
     {
-        buttonA = null;
-        buttonB = null;
-        buttonPause = null;
+        buttonA          = null;
+        buttonB          = null;
+        buttonPause      = null;
         buttonDevOptions = null;
 
         messageManager = null;
@@ -722,7 +740,7 @@ public class HeadsUpDisplay implements Disposable
 
         barDividerFuel = null;
         barDividerTime = null;
-        scorePanel = null;
+        scorePanel     = null;
 
         bigFont.dispose();
         midFont.dispose();

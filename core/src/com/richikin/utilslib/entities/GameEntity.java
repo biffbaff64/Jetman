@@ -1,8 +1,9 @@
-package com.richikin.jetman.entities.objects;
+package com.richikin.utilslib.entities;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.components.EntityComponent;
@@ -25,14 +26,14 @@ public class GameEntity implements EntityComponent, Disposable
     public short           collidesWith;
     public Actions         entityAction;
 
-    protected App app;
+    protected LibApp app;
 
-    public GameEntity(App _app)
+    public GameEntity(LibApp _app)
     {
         this.app = _app;
     }
 
-    public GameEntity(GraphicID _gid, App _app)
+    public GameEntity(GraphicID _gid, LibApp _app)
     {
         this.app = _app;
         this.gid = _gid;

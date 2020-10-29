@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.utilslib.entities.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 
 public class AABB implements Disposable

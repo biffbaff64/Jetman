@@ -4,7 +4,6 @@ package com.richikin.utilslib.maths;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-@SuppressWarnings("unused")
 public class Box
 {
     public int x;

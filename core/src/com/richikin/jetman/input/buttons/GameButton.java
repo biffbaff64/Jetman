@@ -2,15 +2,15 @@
 package com.richikin.jetman.input.buttons;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.states.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.states.Actions;
 import org.jetbrains.annotations.NotNull;
 
-public class GameButton implements GDXButton, Disposable
+public class GameButton extends Switch implements Disposable
 {
     public TextureRegion bg;
     public TextureRegion bgPressed;
@@ -23,13 +23,9 @@ public class GameButton implements GDXButton, Disposable
     public int width;
     public int height;
 
-    private boolean _isDrawable;
-    private boolean _isPressed;
-    private boolean _isDisabled;
-
-    private final ShapeRenderer sr;
-    private final int           mapIndex;
-    private final App           app;
+    private       boolean _isDrawable;
+    private final int     mapIndex;
+    private final App     app;
 
     /**
      * Define a GameButton
@@ -75,12 +71,11 @@ public class GameButton implements GDXButton, Disposable
 
     public GameButton(App _app)
     {
+        super();
+
         this.app          = _app;
-        this._isPressed   = false;
-        this._isDisabled  = false;
         this.buttonAction = Actions._NO_ACTION;
         this.buttonRect   = new Box();
-        this.sr           = new ShapeRenderer();
 
         mapIndex = app.inputManager.gameButtons.size;
 
@@ -128,7 +123,7 @@ public class GameButton implements GDXButton, Disposable
 
     public boolean contains(int x, int y)
     {
-        return !_isDisabled && buttonRect.contains((float) x, (float) y);
+        return contains((float) x, (float) y);
     }
 
     public boolean contains(float x, float y)
@@ -200,51 +195,15 @@ public class GameButton implements GDXButton, Disposable
     }
 
     @Override
-    public void setVisible(boolean _drawable)
+    public void setDrawable(boolean _drawable)
     {
         _isDrawable = _drawable;
     }
 
     @Override
-    public void press()
-    {
-        _isPressed = true;
-    }
-
-    @Override
-    public void release()
-    {
-        _isPressed = false;
-    }
-
-    @Override
-    public boolean isPressed()
-    {
-        return _isPressed;
-    }
-
-    @Override
-    public boolean isDisabled()
-    {
-        return _isDisabled;
-    }
-
-    @Override
-    public boolean isVisible()
+    public boolean isDrawable()
     {
         return _isDrawable;
-    }
-
-    @Override
-    public void toggleDisabled()
-    {
-        _isDisabled = !_isDisabled;
-    }
-
-    @Override
-    public void togglePressed()
-    {
-        _isPressed = !_isPressed;
     }
 
     public void delete()
@@ -267,6 +226,9 @@ public class GameButton implements GDXButton, Disposable
         return "x: " + x
             + ", y: " + y
             + ", w: " + width
-            + ", h: " + height;
+            + ", h: " + height
+            + ", pressed: " + _isPressed
+            + ", disabled: " + _isDisabled
+            + ", drawable: " + _isDrawable;
     }
 }

@@ -7,7 +7,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.utilslib.entities.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.maths.Box;

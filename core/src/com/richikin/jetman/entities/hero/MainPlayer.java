@@ -17,7 +17,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.maths.Box;
-import com.richikin.jetman.physics.aabb.CollisionRect;
+import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Meters;

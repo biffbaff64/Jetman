@@ -16,7 +16,7 @@
 
 package com.richikin.jetman.physics.box2d;
 
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.utilslib.entities.GameEntity;
 import com.richikin.jetman.graphics.GraphicID;
 
 public class BodyIdentity

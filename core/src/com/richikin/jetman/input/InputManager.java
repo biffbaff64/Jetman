@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.input.buttons.GDXButton;
+import com.richikin.utilslib.input.GDXButton;
 import com.richikin.jetman.input.objects.ControllerType;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;

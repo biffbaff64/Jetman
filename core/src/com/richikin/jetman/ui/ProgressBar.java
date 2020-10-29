@@ -7,10 +7,11 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.maths.ItemF;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.ui.UIProgressBar;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProgressBar extends ItemF implements com.richikin.utilslib.ui.UIProgressBar, Disposable
+public class ProgressBar extends ItemF implements UIProgressBar, Disposable
 {
     private static final int _DEFAULT_BAR_HEIGHT = 26;
 

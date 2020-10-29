@@ -4,7 +4,7 @@ package com.richikin.jetman.input;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.input.buttons.Switch;
+import com.richikin.utilslib.input.Switch;
 
 // TODO: 12/12/2019 - This class confuses me, WHY do i have this?
 

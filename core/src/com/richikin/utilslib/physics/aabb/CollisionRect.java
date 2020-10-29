@@ -17,12 +17,14 @@
  *
  */
 
-package com.richikin.jetman.physics.aabb;
+package com.richikin.utilslib.physics.aabb;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.physics.aabb.AABBData;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import org.jetbrains.annotations.NotNull;
 
 public class CollisionRect extends Rectangle

@@ -3,8 +3,6 @@ package com.richikin.jetman.input;
 
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.input.buttons.GDXButton;
-import com.richikin.jetman.input.buttons.GameButton;
 import com.richikin.jetman.input.objects.ControllerType;
 
 public class TouchScreen
@@ -37,8 +35,11 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                returnFlag = app.getHud().buttonA.checkPress(screenX, screenY)
-                            || app.getHud().buttonB.checkPress(screenX, screenY);
+                if (app.getHud().buttonA.checkPress(screenX, screenY)
+                    || app.getHud().buttonB.checkPress(screenX, screenY))
+                {
+                    returnFlag = true;
+                }
             }
         }
 
@@ -56,8 +57,11 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                returnFlag = app.getHud().buttonA.checkRelease(screenX, screenY)
-                    || app.getHud().buttonB.checkRelease(screenX, screenY);
+                if (app.getHud().buttonA.checkRelease(screenX, screenY)
+                    || app.getHud().buttonB.checkRelease(screenX, screenY))
+                {
+                    returnFlag = true;
+                }
             }
         }
 

@@ -28,7 +28,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 
 public class Bomb extends GdxSprite
