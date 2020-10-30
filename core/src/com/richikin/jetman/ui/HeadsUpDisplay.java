@@ -18,17 +18,18 @@ import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.jetman.input.buttons.GameButton;
-import com.richikin.jetman.input.buttons.GameButtonRegion;
-import com.richikin.jetman.input.objects.ControllerPos;
-import com.richikin.jetman.input.objects.ControllerType;
+import com.richikin.utilslib.input.GameButtonRegion;
+import com.richikin.utilslib.input.ControllerPos;
+import com.richikin.utilslib.input.ControllerType;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.GDXButton;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.misc.HighScoreUtils;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.utilslib.states.StateID;
+import com.richikin.utilslib.ui.ProgressBar;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -97,10 +98,10 @@ public class HeadsUpDisplay implements Disposable
 
     private float           originX;
     private float           originY;
-    private StateID         stateID;
-    private ProgressBar     timeBar;
-    private ProgressBar     fuelBar;
-    private Texture         scorePanel;
+    private StateID                              stateID;
+    private com.richikin.utilslib.ui.ProgressBar timeBar;
+    private com.richikin.utilslib.ui.ProgressBar fuelBar;
+    private Texture                              scorePanel;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
     private TextureRegion   miniMen;
@@ -136,8 +137,8 @@ public class HeadsUpDisplay implements Disposable
         messageManager = new MessageManager(app);
         pausePanel     = new PausePanel(app);
 
-        timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
-        fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
+        timeBar = new com.richikin.utilslib.ui.ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
+        fuelBar = new com.richikin.utilslib.ui.ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
 
         barDividerFuel = app.assets.getObjectRegion("bar_divider");
         barDividerTime = app.assets.getObjectRegion("bar_divider");
@@ -489,7 +490,7 @@ public class HeadsUpDisplay implements Disposable
         return app.inputManager.virtualJoystick;
     }
 
-    public ProgressBar getTimeBar()
+    public com.richikin.utilslib.ui.ProgressBar getTimeBar()
     {
         return timeBar;
     }
@@ -683,8 +684,7 @@ public class HeadsUpDisplay implements Disposable
             buttonDevOptions = new GameButtonRegion
                 (
                     displayPos[_DEV_OPTIONS][xPos], displayPos[_DEV_OPTIONS][_Y],
-                    displayPos[_DEV_OPTIONS][_WIDTH], displayPos[_DEV_OPTIONS][_HEIGHT],
-                    app
+                    displayPos[_DEV_OPTIONS][_WIDTH], displayPos[_DEV_OPTIONS][_HEIGHT]
                 );
         }
 

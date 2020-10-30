@@ -1,6 +1,6 @@
 package com.richikin.utilslib.physics.aabb;
 
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 
 public interface ICollisionListener
 {

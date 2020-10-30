@@ -7,7 +7,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import org.jetbrains.annotations.NotNull;
 
 public class GameButton extends Switch implements Disposable

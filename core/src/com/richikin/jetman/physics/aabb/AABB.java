@@ -3,10 +3,10 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.entities.GameEntity;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.enumslib.GraphicID;
 
 public class AABB implements Disposable
 {

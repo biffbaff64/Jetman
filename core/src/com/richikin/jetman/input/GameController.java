@@ -9,10 +9,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.input.objects.ControllerMap;
-import com.richikin.jetman.input.objects.ControllerPos;
-import com.richikin.jetman.input.objects.ControllerType;
-import com.richikin.jetman.input.controllers.DefaultControllerMap;
+import com.richikin.utilslib.input.ControllerMap;
+import com.richikin.utilslib.input.ControllerPos;
+import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.DefaultControllerMap;
 import com.richikin.utilslib.logging.Trace;
 
 @SuppressWarnings("WeakerAccess")

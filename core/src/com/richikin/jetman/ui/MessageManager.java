@@ -2,7 +2,7 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.utilslib.ui.IUserInterfacePanel;
 import com.richikin.utilslib.logging.Trace;
 

@@ -1,5 +1,6 @@
 package com.richikin.jetman.core;
 
+import com.richikin.utilslib.core.ControlLoop;
 import com.richikin.utilslib.states.StateManager;
 
 public abstract class AbstractControlLoop implements ControlLoop

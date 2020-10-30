@@ -4,8 +4,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.utilslib.entities.components.EntityManagerComponent;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GenericEntityManager implements EntityManagerComponent, Disposable

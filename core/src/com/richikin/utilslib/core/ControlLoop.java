@@ -1,4 +1,4 @@
-package com.richikin.jetman.core;
+package com.richikin.utilslib.core;
 
 import com.richikin.utilslib.states.StateManager;
 

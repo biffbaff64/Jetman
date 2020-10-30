@@ -6,8 +6,8 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.*;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.GraphicID;
-import com.richikin.jetman.graphics.GraphicIndex;
+import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.graphics.GraphicIndex;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class AlienManager extends GenericEntityManager

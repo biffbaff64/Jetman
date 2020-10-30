@@ -4,12 +4,12 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.entities.GameEntity;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 

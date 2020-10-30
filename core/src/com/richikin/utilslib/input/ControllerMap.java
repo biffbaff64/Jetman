@@ -1,8 +1,8 @@
 
-package com.richikin.jetman.input.objects;
+package com.richikin.utilslib.input;
 
 import com.badlogic.gdx.controllers.PovDirection;
-import com.richikin.jetman.input.controllers.ControlMapData;
+import com.richikin.utilslib.input.controllers.ControlMapData;
 
 public abstract class ControllerMap
 {

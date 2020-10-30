@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.input.controllers;
+package com.richikin.utilslib.input.controllers;
 
 import com.badlogic.gdx.controllers.PovDirection;
 

@@ -3,10 +3,10 @@ package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.utilslib.states.Actions;
-import com.richikin.utilslib.entities.GameEntity;
+import com.richikin.enumslib.Actions;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.maps.TileID;
 import com.richikin.utilslib.logging.Trace;
 

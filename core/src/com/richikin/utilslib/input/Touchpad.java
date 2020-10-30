@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.input;
+package com.richikin.utilslib.input;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -29,7 +29,6 @@ import com.richikin.utilslib.logging.Trace;
  * is moved. Cancelling the event will move the knob to where it was
  * previously.
  */
-@SuppressWarnings("unused")
 public class Touchpad extends Widget
 {
     private static final float DEFAULT_DEADZONE_RADIUS = 10.0f;
@@ -384,7 +383,7 @@ public class Touchpad extends Widget
     }
 
     /**
-     * The style for a {@link com.richikin.jetman.input.Touchpad}.
+     * The style for a {@link Touchpad}.
      *
      * @author Josh Street
      */

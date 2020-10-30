@@ -3,16 +3,16 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
-import com.richikin.jetman.entities.components.EntityManagerComponent;
+import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.entities.objects.IEntityManager;
+import com.richikin.utilslib.entities.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.logging.Trace;
 
 public class EntityManager implements IEntityManager

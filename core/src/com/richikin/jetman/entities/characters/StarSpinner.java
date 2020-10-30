@@ -17,7 +17,7 @@
 package com.richikin.jetman.entities.characters;
 
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 
 public class StarSpinner extends Bouncer
 {

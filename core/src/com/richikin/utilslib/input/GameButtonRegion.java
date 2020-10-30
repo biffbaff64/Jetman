@@ -1,18 +1,14 @@
-package com.richikin.jetman.input.buttons;
+package com.richikin.utilslib.input;
 
-import com.richikin.jetman.core.App;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
 
 public class GameButtonRegion extends Switch
 {
     private final Box region;
-    private final App app;
 
-    public GameButtonRegion(int _x, int _y, int _width, int _height, App _app)
+    public GameButtonRegion(int _x, int _y, int _width, int _height)
     {
-        this.app = _app;
-
         this.region = new Box(_x, _y, _width, _height);
     }
 

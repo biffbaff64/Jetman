@@ -1,9 +1,11 @@
-package com.richikin.jetman.graphics;
+package com.richikin.utilslib.graphics;
+
+import com.richikin.enumslib.GraphicID;
 
 public class GraphicIndex
 {
     public final GraphicID graphicID;
-    public       int       value;
+    public       int value;
 
     public GraphicIndex(GraphicID _gid, int _value)
     {

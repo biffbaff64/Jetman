@@ -1,8 +1,8 @@
 
-package com.richikin.jetman.entities.components;
+package com.richikin.utilslib.entities.components;
 
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public interface EntityManagerComponent

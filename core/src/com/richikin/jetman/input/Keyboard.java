@@ -6,10 +6,11 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.DirectionValue;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.screens.ScreenID;
+import com.richikin.enumslib.ScreenID;
 import com.richikin.utilslib.developer.Developer;
 
 @SuppressWarnings("WeakerAccess")
@@ -463,7 +464,7 @@ public class Keyboard extends InputAdapter
                 (int) app.inputManager._verticalValue
             );
 
-        Movement.Dir keyDir = DirectionMap.map[DirectionMap.map.length - 1].translated;
+        Movement.Dir keyDir = com.richikin.utilslib.input.DirectionMap.map[com.richikin.utilslib.input.DirectionMap.map.length - 1].translated;
 
         for (DirectionValue dv : DirectionMap.map)
         {

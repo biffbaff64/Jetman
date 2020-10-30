@@ -1,7 +1,7 @@
 package com.richikin.utilslib.physics.aabb;
 
 import com.badlogic.gdx.math.Intersector;
-import com.richikin.utilslib.entities.GameEntity;
+import com.richikin.jetman.entities.objects.GameEntity;
 
 public abstract class AABBUtils
 {

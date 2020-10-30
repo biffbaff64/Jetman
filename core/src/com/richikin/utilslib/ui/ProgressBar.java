@@ -1,13 +1,12 @@
 
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.App;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.maths.ItemF;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.ui.UIProgressBar;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,9 +23,9 @@ public class ProgressBar extends ItemF implements UIProgressBar, Disposable
     private       float height;
     private final float scale;
     private       NinePatch ninePatch;
-    private final App       app;
+    private final LibApp app;
 
-    public ProgressBar(int _speed, int delay, int size, int maxSize, String texture, App _app)
+    public ProgressBar(int _speed, int delay, int size, int maxSize, String texture, LibApp _app)
     {
         this.app = _app;
 

@@ -9,7 +9,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Rover;
 import com.richikin.jetman.entities.characters.RoverGun;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;

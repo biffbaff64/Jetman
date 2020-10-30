@@ -1,4 +1,4 @@
-package com.richikin.jetman.maps;
+package com.richikin.utilslib.maps;
 
 public class ObjectTileProperties
 {

@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.components;
+package com.richikin.utilslib.entities.components;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;

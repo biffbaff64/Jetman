@@ -1,7 +1,7 @@
-package com.richikin.jetman.entities.components;
+package com.richikin.utilslib.entities.components;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 
 public interface EntityComponent
 {

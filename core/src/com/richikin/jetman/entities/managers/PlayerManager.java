@@ -8,7 +8,7 @@ import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 
 public class PlayerManager
 {

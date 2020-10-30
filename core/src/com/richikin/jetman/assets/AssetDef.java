@@ -1,7 +1,7 @@
 
 package com.richikin.jetman.assets;
 
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.maps.TileID;
 import com.richikin.utilslib.maths.SimpleVec2;
 

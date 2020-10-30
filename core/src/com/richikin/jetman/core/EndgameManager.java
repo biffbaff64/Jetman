@@ -2,7 +2,7 @@ package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.utilslib.states.StateID;
 
 public class EndgameManager
@@ -19,7 +19,7 @@ public class EndgameManager
         boolean returnFlag = false;
 
         if ((app.getPlayer() != null)
-            && (app.getPlayer().getAction() == com.richikin.utilslib.states.Actions._DEAD))
+            && (app.getPlayer().getAction() == Actions._DEAD))
         {
             // Hide HUD Controls here ??
 

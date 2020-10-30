@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
-import com.richikin.jetman.input.objects.ControllerType;
+import com.richikin.utilslib.input.ControllerType;
 
 public class HUDRenderer implements GameScreenRenderer
 {

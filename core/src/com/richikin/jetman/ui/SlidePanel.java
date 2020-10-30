@@ -2,7 +2,7 @@
 package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;

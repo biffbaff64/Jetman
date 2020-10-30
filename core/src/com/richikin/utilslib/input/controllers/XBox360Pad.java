@@ -1,10 +1,26 @@
 
-package com.richikin.jetman.input.controllers;
+package com.richikin.utilslib.input.controllers;
 
 import com.badlogic.gdx.controllers.PovDirection;
 
-public class DefaultControllerMap implements ControlMapData
+public class XBox360Pad implements ControlMapData
 {
+    /*
+     * It seems there are different versions of gamepads with different ID Strings.
+     * Therefore its IMO a better bet to check for:
+     * if (controller.getName().toLowerCase().contains("xbox") &&
+     *             controller.getName().contains("360"))
+     *
+     * Controller (Gamepad for Xbox 360)
+     * Controller (XBOX 360 For Windows)
+     * Controller (Xbox 360 Wireless Receiver for Windows)
+     * Controller (Xbox wireless receiver for windows)
+     * XBOX 360 For Windows (Controller)
+     * Xbox 360 Wireless Receiver
+     * Xbox Receiver for Windows (Wireless Controller)
+     * Xbox wireless receiver for windows (Controller)
+     */
+
     public static final float           _MIN_RANGE              = -1.0f;
     public static final float           _MAX_RANGE              = 1.0f;
     public static final float           _DEAD_ZONE              = 0.5f;

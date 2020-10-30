@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.input;
+package com.richikin.utilslib.input;
 
 import com.richikin.utilslib.physics.DirectionValue;
 import com.richikin.utilslib.physics.Movement;

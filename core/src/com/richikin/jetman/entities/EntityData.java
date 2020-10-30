@@ -2,8 +2,8 @@ package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.entities.components.EntityManagerComponent;
-import com.richikin.utilslib.entities.GameEntity;
+import com.richikin.utilslib.entities.components.EntityManagerComponent;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.ArrayList;

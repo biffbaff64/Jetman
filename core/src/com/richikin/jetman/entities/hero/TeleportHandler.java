@@ -1,6 +1,6 @@
 package com.richikin.jetman.entities.hero;
 
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.jetman.core.App;
 
 public class TeleportHandler

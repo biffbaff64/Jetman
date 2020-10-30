@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.input.objects;
+package com.richikin.utilslib.input;
 
 public enum ControllerType
 {

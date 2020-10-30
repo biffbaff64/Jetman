@@ -1,4 +1,4 @@
-package com.richikin.jetman.screens;
+package com.richikin.enumslib;
 
 public enum ScreenID
 {

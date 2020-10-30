@@ -2,16 +2,15 @@ package com.richikin.jetman.physics;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.states.Actions;
+import com.richikin.enumslib.Actions;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.maps.TileID;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.utilslib.logging.Trace;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {
@@ -24,8 +23,6 @@ public class CollisionUtils implements ICollideUtils, Disposable
      */
     public CollisionUtils(App _app)
     {
-        Trace.__FILE_FUNC();
-
         this.app = _app;
     }
 

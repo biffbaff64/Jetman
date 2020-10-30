@@ -9,7 +9,7 @@ import com.richikin.jetman.entities.characters.*;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.paths.PathUtils;
-import com.richikin.jetman.graphics.GraphicID;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.camera.CameraUtils;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
@@ -18,7 +18,6 @@ import com.richikin.jetman.maps.MapCreator;
 import com.richikin.jetman.maps.MapData;
 import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.maps.RoomManager;
-import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
@@ -46,7 +45,6 @@ public abstract class App extends LibApp
     public EntityUtils    entityUtils;
     public MapUtils       mapUtils;
     public PathUtils      pathUtils;
-    public CollisionUtils collisionUtils;
 
     public EntityData entityData;
     public MapData    mapData;

@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics;
+package com.richikin.enumslib;
 
 public enum GraphicID
 {
