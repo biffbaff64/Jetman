@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.utilslib.entities.components.EntityComponent;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -22,8 +22,8 @@ public class GameEntity implements EntityComponent, Disposable
     public CollisionObject collisionObject;
     public Body            b2dBody;
     public short           bodyCategory;
-    public short           collidesWith;
-    public Actions         entityAction;
+    public short        collidesWith;
+    public ActionStates entityAction;
 
     protected App app;
 
@@ -73,13 +73,13 @@ public class GameEntity implements EntityComponent, Disposable
     }
 
     @Override
-    public void setAction(Actions _action)
+    public void setAction(ActionStates _action)
     {
         this.entityAction = _action;
     }
 
     @Override
-    public Actions getAction()
+    public ActionStates getAction()
     {
         return this.entityAction;
     }
@@ -105,47 +105,47 @@ public class GameEntity implements EntityComponent, Disposable
     // The most common sprite actions.
     public void setStanding()
     {
-        this.entityAction = Actions._STANDING;
+        this.entityAction = ActionStates._STANDING;
     }
 
     public void setRunning()
     {
-        this.entityAction = Actions._RUNNING;
+        this.entityAction = ActionStates._RUNNING;
     }
 
     public void setFalling()
     {
-        this.entityAction = Actions._FALLING;
+        this.entityAction = ActionStates._FALLING;
     }
 
     public void setFlying()
     {
-        this.entityAction = Actions._FLYING;
+        this.entityAction = ActionStates._FLYING;
     }
 
     public void setHurt()
     {
-        this.entityAction = Actions._HURT;
+        this.entityAction = ActionStates._HURT;
     }
 
     public void setKilled()
     {
-        this.entityAction = Actions._KILLED;
+        this.entityAction = ActionStates._KILLED;
     }
 
     public void setDying()
     {
-        this.entityAction = Actions._DYING;
+        this.entityAction = ActionStates._DYING;
     }
 
     public void setExploding()
     {
-        this.entityAction = Actions._EXPLODING;
+        this.entityAction = ActionStates._EXPLODING;
     }
 
     public void setDead()
     {
-        this.entityAction = Actions._DEAD;
+        this.entityAction = ActionStates._DEAD;
     }
 
     /**

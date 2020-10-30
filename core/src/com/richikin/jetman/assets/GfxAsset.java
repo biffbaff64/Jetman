@@ -15,9 +15,9 @@ import com.richikin.enumslib.GraphicID;
  */
 public class GfxAsset
 {
-    public final GraphicID          graphicID;
-    public       String             asset;
-    public final String             preference;
+    public final GraphicID graphicID;
+    public final String    asset;
+    public final String    preference;
     public final int                frames;
     public final Animation.PlayMode playMode;
 

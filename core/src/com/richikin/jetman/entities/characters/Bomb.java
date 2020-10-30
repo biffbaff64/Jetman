@@ -18,7 +18,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -117,7 +117,7 @@ public class Bomb extends GdxSprite
 
             case _HURT:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
 
             case _EXPLODING:
@@ -127,7 +127,7 @@ public class Bomb extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
                 releaseXY    = null;
             }
             break;
@@ -191,7 +191,7 @@ public class Bomb extends GdxSprite
             @Override
             public void onPositiveCollision(GraphicID graphicID)
             {
-                if (getAction() == Actions._FALLING)
+                if (getAction() == ActionStates._FALLING)
                 {
                     GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
 
@@ -208,7 +208,7 @@ public class Bomb extends GdxSprite
                         {
                             explode();
 
-                            app.getBase().setAction(Actions._HURT);
+                            app.getBase().setAction(ActionStates._HURT);
                         }
                         else if (releaseXY.getY() > (initXYZ.getY() + Gfx.getTileHeight()))
                         {
@@ -216,7 +216,7 @@ public class Bomb extends GdxSprite
                         }
                         else
                         {
-                            setAction(Actions._STANDING);
+                            setAction(ActionStates._STANDING);
                         }
                     }
                     else if ((contactID == GraphicID.G_MISSILE_BASE)
@@ -228,14 +228,14 @@ public class Bomb extends GdxSprite
 
                         explode();
 
-                        app.getBase().setAction(Actions._HURT);
+                        app.getBase().setAction(ActionStates._HURT);
                     }
                     else if (contactID == GraphicID.G_ROVER_BOOT)
                     {
                         isAttachedToRover = true;
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        setAction(Actions._STANDING);
+                        setAction(ActionStates._STANDING);
 
 //                        app.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
                     }

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.utilslib.states.StateID;
@@ -143,7 +143,7 @@ public class MainPlayer extends GdxSprite
         shootCount  = 0;
         laserColour = 0;
 
-        setAction(Actions._SPAWNING);
+        setAction(ActionStates._SPAWNING);
 
         createSpawnAnimation();
     }
@@ -151,11 +151,11 @@ public class MainPlayer extends GdxSprite
     @Override
     public void preUpdate()
     {
-        if (getAction() == Actions._RESTARTING)
+        if (getAction() == ActionStates._RESTARTING)
         {
             sprite.setPosition(app.mapData.checkPoint.getX(), app.mapData.checkPoint.getY());
 
-            setAction(Actions._SPAWNING);
+            setAction(ActionStates._SPAWNING);
         }
 
         super.preUpdate();
@@ -166,7 +166,7 @@ public class MainPlayer extends GdxSprite
     {
         if (app.appState.peek() == StateID._STATE_PAUSED)
         {
-            setAction(Actions._PAUSED);
+            setAction(ActionStates._PAUSED);
         }
 
         if (isRidingRover)
@@ -175,7 +175,7 @@ public class MainPlayer extends GdxSprite
         }
         else
         {
-            if (getAction() == Actions._TELEPORTING)
+            if (getAction() == ActionStates._TELEPORTING)
             {
                 if (teleport.update())
                 {
@@ -217,7 +217,7 @@ public class MainPlayer extends GdxSprite
 
                 if (spawnAnim.isAnimationFinished(elapsedSpawnTime))
                 {
-                    setAction(Actions._STANDING);
+                    setAction(ActionStates._STANDING);
 
                     spawnAnim   = null;
                     spawnFrames = null;
@@ -233,7 +233,7 @@ public class MainPlayer extends GdxSprite
             {
                 buttons.checkButtons();
 
-                if (getAction() == Actions._STANDING)
+                if (getAction() == ActionStates._STANDING)
                 {
                     movePlayer();
                 }
@@ -323,7 +323,7 @@ public class MainPlayer extends GdxSprite
 
             default:
             {
-                if (((app.getRover() != null) && (app.getRover().getAction() == Actions._EXPLODING))
+                if (((app.getRover() != null) && (app.getRover().getAction() == ActionStates._EXPLODING))
                     || ((strength <= 0) && isOnGround))
                 {
                     explode();
@@ -333,9 +333,9 @@ public class MainPlayer extends GdxSprite
                 else
                 {
                     if ((strength <= 0)
-                        || (getAction() == Actions._FLYING) && app.getHud().getFuelBar().isEmpty())
+                        || (getAction() == ActionStates._FLYING) && app.getHud().getFuelBar().isEmpty())
                     {
-                        setAction(Actions._FALLING_TO_GROUND);
+                        setAction(ActionStates._FALLING_TO_GROUND);
 
                         speed.setY(2.0f);
                         isRotating = true;
@@ -363,7 +363,7 @@ public class MainPlayer extends GdxSprite
         // Restart if this player has more lives left...
         if (app.gameProgress.lives.getTotal() > 0)
         {
-            setAction(Actions._RESETTING);
+            setAction(ActionStates._RESETTING);
             isDrawable = false;
 
             app.gameProgress.isRestarting   = true;
@@ -373,7 +373,7 @@ public class MainPlayer extends GdxSprite
         }
         else
         {
-            setAction(Actions._DEAD);
+            setAction(ActionStates._DEAD);
 
             app.gameProgress.isRestarting   = false;
             app.gameProgress.playerGameOver = true;
@@ -407,7 +407,7 @@ public class MainPlayer extends GdxSprite
     }
 
     @Override
-    public void setAction(Actions action)
+    public void setAction(ActionStates action)
     {
         if (getAction() != action)
         {
@@ -513,7 +513,7 @@ public class MainPlayer extends GdxSprite
                 super.draw(spriteBatch);
             }
 
-            if (getAction() == Actions._SPAWNING)
+            if (getAction() == ActionStates._SPAWNING)
             {
                 spriteBatch.draw
                     (
@@ -577,7 +577,7 @@ public class MainPlayer extends GdxSprite
     {
         ExplosionManager explosionManager = new ExplosionManager();
         explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
-        setAction(Actions._EXPLODING);
+        setAction(ActionStates._EXPLODING);
         elapsedAnimTime = 0;
     }
 
@@ -595,7 +595,7 @@ public class MainPlayer extends GdxSprite
             }
         }
 
-        if (getAction() == Actions._FALLING)
+        if (getAction() == ActionStates._FALLING)
         {
             sprite.translate
                 (

@@ -1,7 +1,6 @@
 
 package com.richikin.utilslib.states;
 
-@SuppressWarnings("unused")
 public enum StateID
 {
     _STATE_MAIN_MENU,

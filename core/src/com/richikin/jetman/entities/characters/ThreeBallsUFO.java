@@ -20,7 +20,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
@@ -67,7 +67,7 @@ public class ThreeBallsUFO extends GdxSprite
             direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
         }
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         stopWatch = StopWatch.start();
         restingTime = (MathUtils.random(30, 50) * 100);
     }
@@ -98,12 +98,12 @@ public class ThreeBallsUFO extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
-                if (getAction() == Actions._KILLED)
+                if (getAction() == ActionStates._KILLED)
                 {
                     app.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
@@ -114,7 +114,7 @@ public class ThreeBallsUFO extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -133,7 +133,7 @@ public class ThreeBallsUFO extends GdxSprite
     @Override
     public void animate()
     {
-        if (getAction() == Actions._RUNNING)
+        if (getAction() == ActionStates._RUNNING)
         {
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
             sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));

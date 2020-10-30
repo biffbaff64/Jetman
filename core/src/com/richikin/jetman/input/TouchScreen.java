@@ -28,18 +28,21 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (AppConfig.gamePaused)
-        {
-        }
-        else
+        if (!AppConfig.gamePaused)
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                if (app.getHud().buttonA.checkPress(screenX, screenY)
-                    || app.getHud().buttonB.checkPress(screenX, screenY))
-                {
-                    returnFlag = true;
-                }
+//                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
+//                {
+//                    app.getHud().buttonA.press();
+//                    returnFlag = true;
+//                }
+
+//                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
+//                {
+//                    app.getHud().buttonB.press();
+//                    returnFlag = true;
+//                }
             }
         }
 
@@ -50,18 +53,21 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (AppConfig.gamePaused)
-        {
-        }
-        else
+        if (!AppConfig.gamePaused)
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-                if (app.getHud().buttonA.checkRelease(screenX, screenY)
-                    || app.getHud().buttonB.checkRelease(screenX, screenY))
-                {
-                    returnFlag = true;
-                }
+//                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
+//                {
+//                    app.getHud().buttonA.release();
+//                    returnFlag = true;
+//                }
+
+//                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
+//                {
+//                    app.getHud().buttonB.release();
+//                    returnFlag = true;
+//                }
             }
         }
 

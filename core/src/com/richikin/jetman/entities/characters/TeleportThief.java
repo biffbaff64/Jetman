@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -48,7 +48,7 @@ public class TeleportThief extends GdxSprite
         speed.setX(MathUtils.random(Gfx._VIEW_WIDTH * 0.0015f, Gfx._VIEW_WIDTH * 0.003f));
         speed.setY(0);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
 
         if (sprite.getX() < app.getPlayer().sprite.getX())
         {
@@ -99,10 +99,10 @@ public class TeleportThief extends GdxSprite
                         attachedToTransporter = false;
                         app.getTeleporter(heldTransporter).collector = null;
                         app.getTeleporter(heldTransporter).isCollected = false;
-                        app.getTeleporter(heldTransporter).setAction(Actions._STANDING);
+                        app.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
 
                         collectTimer.reset();
-                        setAction(Actions._RUNNING);
+                        setAction(ActionStates._RUNNING);
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class TeleportThief extends GdxSprite
 
                     app.getTeleporter(heldTransporter).isCollected = true;
                     app.getTeleporter(heldTransporter).collector = this;
-                    app.getTeleporter(heldTransporter).setAction(Actions._HELD);
+                    app.getTeleporter(heldTransporter).setAction(ActionStates._HELD);
 
                     sprite.setY
                         (
@@ -124,13 +124,13 @@ public class TeleportThief extends GdxSprite
                                 + app.getTeleporter(heldTransporter).frameHeight
                         );
 
-                    setAction(Actions._CLIMBING);
+                    setAction(ActionStates._CLIMBING);
                     stopWatch.reset();
                     restingTime = 750;
                 }
                 else if ((sprite.getY() + frameHeight) < 0)
                 {
-                    setAction(Actions._HURT);
+                    setAction(ActionStates._HURT);
                 }
                 else
                 {
@@ -145,13 +145,13 @@ public class TeleportThief extends GdxSprite
             {
                 if (collisionObject.idBottom == GraphicID._GROUND)
                 {
-                    setAction(Actions._TELEPORTING);
+                    setAction(ActionStates._TELEPORTING);
                     stopWatch.reset();
                     restingTime = 750;
                 }
                 else if ((sprite.getY() + frameHeight) < 0)
                 {
-                    setAction(Actions._HURT);
+                    setAction(ActionStates._HURT);
                 }
                 else
                 {
@@ -178,7 +178,7 @@ public class TeleportThief extends GdxSprite
 
                     attachedToTransporter = false;
                     canTakeTransporter = false;
-                    setAction(Actions._RUNNING);
+                    setAction(ActionStates._RUNNING);
                 }
             }
             break;
@@ -189,7 +189,7 @@ public class TeleportThief extends GdxSprite
                 {
                     if (distance.getY() <= 0)
                     {
-                        setAction(Actions._HOLDING);
+                        setAction(ActionStates._HOLDING);
                         speed.setY(0);
 
                         carryTime = 2000 + (MathUtils.random(200, 500) * 10);
@@ -216,18 +216,18 @@ public class TeleportThief extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
-                if (getAction() == Actions._KILLED)
+                if (getAction() == ActionStates._KILLED)
                 {
                     app.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 if (attachedToTransporter)
                 {
-                    app.getTeleporter(heldTransporter).setAction(Actions._STANDING);
+                    app.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
 
                 }
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
@@ -238,7 +238,7 @@ public class TeleportThief extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -316,7 +316,7 @@ public class TeleportThief extends GdxSprite
                         collectTimer.reset();
                         distance.setY(0);                            // ?????
                         direction.setY(Movement._DIRECTION_STILL);   // ?????
-                        setAction(Actions._STEAL_TELEPORTER);
+                        setAction(ActionStates._STEAL_TELEPORTER);
                     }
                 }
             }

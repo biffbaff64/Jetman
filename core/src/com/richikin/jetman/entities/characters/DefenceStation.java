@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -39,7 +39,7 @@ public class DefenceStation extends GdxSprite
 
         animation.setPlayMode(Animation.PlayMode.NORMAL);
 
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         shootTimer      = StopWatch.start();
         shootInterval   = app.roomManager.getFireRate();
@@ -74,8 +74,8 @@ public class DefenceStation extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
-                zapSprite.setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
+                zapSprite.setAction(ActionStates._DEAD);
             }
             break;
 

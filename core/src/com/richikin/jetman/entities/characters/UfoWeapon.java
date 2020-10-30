@@ -19,8 +19,9 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
@@ -81,7 +82,7 @@ public class UfoWeapon extends GdxSprite
         speed.setX((Gfx._VIEW_WIDTH * speedMod) * angle);
         speed.setY(Gfx._VIEW_HEIGHT * speedMod);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         colourIndex = 0;
     }
 
@@ -107,10 +108,10 @@ public class UfoWeapon extends GdxSprite
             case _KILLED:
             case _HURT:
             {
-//                ExplosionManager explosionManager = new ExplosionManager();
-//                explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this, app);
-//                setAction(Actions._EXPLODING);
-                setAction(Actions._DEAD);
+                ExplosionManager explosionManager = new ExplosionManager();
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this, app);
+                setAction(ActionStates._EXPLODING);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -121,7 +122,7 @@ public class UfoWeapon extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -142,14 +143,14 @@ public class UfoWeapon extends GdxSprite
     {
         if (collisionObject.idBottom == GraphicID._GROUND)
         {
-            setAction(Actions._HURT);
+            setAction(ActionStates._HURT);
         }
     }
 
     @Override
     public void animate()
     {
-        if (getAction() == Actions._RUNNING)
+        if (getAction() == ActionStates._RUNNING)
         {
             sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
             elapsedAnimTime += Gdx.graphics.getDeltaTime();

@@ -1,6 +1,6 @@
 package com.richikin.jetman.ui;
 
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -63,7 +63,7 @@ public class PanelManager
 
             panel.initialise(app.assets.getObjectRegion(imageName), imageName);
             panel.activate();
-            panel.action = Actions._OPENING;
+            panel.action = ActionStates._OPENING;
 
             if (currentPanel != null)
             {

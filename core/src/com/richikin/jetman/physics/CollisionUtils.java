@@ -2,7 +2,7 @@ package com.richikin.jetman.physics;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -79,7 +79,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         for (int i = 0; i < AABBData.boxes().size; i++)
         {
-            if (AABBData.boxes().get(i).action == Actions._DEAD)
+            if (AABBData.boxes().get(i).action == ActionStates._DEAD)
             {
                 AABBData.remove(i);
             }
@@ -93,7 +93,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         for (int i = 0; i < AABBData.boxes().size; i++)
         {
-            AABBData.boxes().get(i).action = Actions._DEAD;
+            AABBData.boxes().get(i).action = ActionStates._DEAD;
         }
 
         tidy();
@@ -104,10 +104,10 @@ public class CollisionUtils implements ICollideUtils, Disposable
      */
     public void debugAll()
     {
-        for (int i = 0; i < AABBData.boxes().size; i++)
-        {
+//        for (int i = 0; i < AABBData.boxes().size; i++)
+//        {
 //            AABBData.boxes().get(i).debug();
-        }
+//        }
     }
 
     /**

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.utilslib.input.GDXButton;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.maths.Box;
@@ -43,8 +43,8 @@ public class AnimatedButton implements GDXButton, Disposable
     public TextureRegion bg;
     public TextureRegion bgPressed;
     public TextureRegion bgDisabled;
-    public Box           buttonRect;
-    public Actions       buttonAction;
+    public Box          buttonRect;
+    public ActionStates buttonAction;
 
     public boolean _isDrawable;
     public boolean _isPressed;
@@ -123,7 +123,7 @@ public class AnimatedButton implements GDXButton, Disposable
         this._isPressed     = false;
         this._isDisabled    = false;
         this.hasSound       = true;
-        this.buttonAction   = Actions._NO_ACTION;
+        this.buttonAction   = ActionStates._NO_ACTION;
 
         this.buttonRect = new Box();
     }

@@ -1,7 +1,7 @@
 
 package com.richikin.utilslib.google;
 
-@SuppressWarnings({"SameReturnValue", "unused"})
+@SuppressWarnings({"SameReturnValue"})
 public interface AdsController
 {
     void showBannerAd();

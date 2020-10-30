@@ -194,26 +194,26 @@ public class TeleportBeam implements Disposable
 
             positions[i] = new SimpleVec2F
                 (
-                    originX + startXPos /*+ (beams[i].distance.getX() * (directions[i].getX() * -1))*/,
-                    originY + beams[i].startPos.getY() /*+ (beams[i].distance.getY() * (directions[i].getY() * -1))*/
+                    originX + startXPos,
+                    originY //+ beams[i].startPos.getY()
                 );
 
             if (!_enteredTeleporter)
             {
-//                positions[i].addX((beams[i].distance.getX() * (directions[i].getX() * -1)));
-//                positions[i].addY((beams[i].distance.getY() * (directions[i].getY() * -1)));
+                positions[i].addX((beams[i].distance.getX() * (directions[i].getX() * -1)));
+                positions[i].addY((beams[i].distance.getY() * (directions[i].getY() * -1)));
             }
             else
             {
-//                directions[i].toggleX();
-//                directions[i].toggleY();
+                directions[i].x *= -1;
+                directions[i].y *= -1;
             }
 
             beamSprites[i].setPosition(positions[i].getX(), positions[i].getY());
 
             beamSprites[i].setSize(frameWidth, frameHeight);
             beamSprites[i].setBounds(positions[i].getX(), positions[i].getY(), frameWidth, frameHeight);
-            beamSprites[i].setOrigin(frameWidth / 2, 0);
+            beamSprites[i].setOrigin((float) frameWidth / 2, 0);
             beamSprites[i].setColor(colours[MathUtils.random(colours.length - 1)]);
 
             colorIndex[i] = i;

@@ -1,7 +1,8 @@
 package com.richikin.jetman.entities.hero;
 
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.google.PlayServicesID;
 
 public class TeleportHandler
 {
@@ -18,9 +19,9 @@ public class TeleportHandler
     public void start()
     {
         app.getPlayer().isTeleporting = true;
-        app.getPlayer().setAction(Actions._TELEPORTING);
+        app.getPlayer().setAction(ActionStates._TELEPORTING);
         app.getPlayer().speed.set(app.teleportManager.targetDistance.getX() / 25, app.teleportManager.targetDistance.getY() / 25);
-        app.getPlayer().collisionObject.action = Actions._INACTIVE;
+        app.getPlayer().collisionObject.action = ActionStates._INACTIVE;
     }
 
     public boolean update()
@@ -92,14 +93,14 @@ public class TeleportHandler
             }
         }
 
-        app.getPlayer().collisionObject.action = Actions._COLLIDABLE;
+        app.getPlayer().collisionObject.action = ActionStates._COLLIDABLE;
 
-//        app.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
+        app.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
 
         if ((app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
             || (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY))
         {
-//            app.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
+            app.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
         }
     }
 }

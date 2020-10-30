@@ -44,9 +44,9 @@ public class Gfx
     public static final float _DEFAULT_ZOOM     = 1.0f;
     public static final float _LERP_SPEED       = 0.075f;
 
-    public static float _HUD_SCENE_WIDTH        = (_HUD_WIDTH / _PPM);
-    public static float _HUD_SCENE_HEIGHT       = (_HUD_HEIGHT / _PPM);
-    public static float _GAME_SCENE_WIDTH       = (_VIEW_WIDTH / _PPM);
+    public static final float _HUD_SCENE_WIDTH  = (_HUD_WIDTH / _PPM);
+    public static final float _HUD_SCENE_HEIGHT = (_HUD_HEIGHT / _PPM);
+    public static       float _GAME_SCENE_WIDTH = (_VIEW_WIDTH / _PPM);
     public static float _GAME_SCENE_HEIGHT      = (_VIEW_HEIGHT / _PPM);
 
     //

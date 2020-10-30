@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -36,7 +36,7 @@ public class GreenBlock extends GdxSprite
         speed.setX(MathUtils.random(Gfx._VIEW_WIDTH * 0.0015f, Gfx._VIEW_WIDTH * 0.003f));
         speed.setY(0);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
 
         if (sprite.getX() < app.getPlayer().sprite.getX())
         {
@@ -69,12 +69,12 @@ public class GreenBlock extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
 
-                if (getAction() == Actions._KILLED)
+                if (getAction() == ActionStates._KILLED)
                 {
                     app.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
                 bodyCategory = Gfx.CAT_NOTHING;
                 collidesWith = Gfx.CAT_NOTHING;
             }
@@ -87,7 +87,7 @@ public class GreenBlock extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

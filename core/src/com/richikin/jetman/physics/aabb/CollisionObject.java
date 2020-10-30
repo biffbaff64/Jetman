@@ -20,7 +20,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.utilslib.physics.aabb.CollisionRect;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;
@@ -37,8 +37,8 @@ public class CollisionObject implements Disposable
      * _COLLIDING   -   In Collision.
      * _DEAD        -   To be removed from the list.
      */
-    public Actions       action;
-    public GraphicID     gid;               // ID of THIS object
+    public ActionStates action;
+    public GraphicID    gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
     public GraphicID                                        contactGid;        // ID of contact object
     public com.richikin.utilslib.physics.aabb.CollisionRect rectangle;         // The actual collision rectangle
@@ -66,14 +66,14 @@ public class CollisionObject implements Disposable
 
     public CollisionObject()
     {
-        this.rectangle = new com.richikin.utilslib.physics.aabb.CollisionRect(GraphicID.G_NO_ID);
+        this.rectangle = new CollisionRect(GraphicID.G_NO_ID);
 
         create();
     }
 
     public CollisionObject(Rectangle _rectangle)
     {
-        this.rectangle = new com.richikin.utilslib.physics.aabb.CollisionRect(_rectangle, GraphicID.G_NO_ID);
+        this.rectangle = new CollisionRect(_rectangle, GraphicID.G_NO_ID);
 
         create();
     }
@@ -105,14 +105,14 @@ public class CollisionObject implements Disposable
         isContactObstacle     = false;
         gid                   = GraphicID.G_NO_ID;
         contactGid            = GraphicID.G_NO_ID;
-        action                = Actions._COLLIDABLE;
+        action                = ActionStates._COLLIDABLE;
         invisibilityTimer     = StopWatch.start();
         isInvisibilityAllowed = true;
     }
 
     public void kill()
     {
-        action = Actions._DEAD;
+        action = ActionStates._DEAD;
     }
 
     public boolean isTouchingAnother(int parentIndex)
@@ -153,9 +153,9 @@ public class CollisionObject implements Disposable
 
     public void clearCollision()
     {
-        if (action != Actions._DEAD)
+        if (action != ActionStates._DEAD)
         {
-            action           = Actions._COLLIDABLE;
+            action           = ActionStates._COLLIDABLE;
             isHittingPlayer  = false;
             contactEntity    = null;
             boxHittingTop    = 0;
@@ -183,7 +183,7 @@ public class CollisionObject implements Disposable
 
     public void setInvisibility(int timeInMilliseconds)
     {
-        action            = Actions._INVISIBLE;
+        action            = ActionStates._INVISIBLE;
         invisibilityDelay = timeInMilliseconds;
 
         invisibilityTimer.reset();
@@ -191,11 +191,11 @@ public class CollisionObject implements Disposable
 
     public void checkInvisibility()
     {
-        if ((action != Actions._COLLIDABLE) && isInvisibilityAllowed)
+        if ((action != ActionStates._COLLIDABLE) && isInvisibilityAllowed)
         {
             if (invisibilityTimer.time(TimeUnit.MILLISECONDS) >= invisibilityDelay)
             {
-                action = Actions._COLLIDABLE;
+                action = ActionStates._COLLIDABLE;
             }
         }
     }

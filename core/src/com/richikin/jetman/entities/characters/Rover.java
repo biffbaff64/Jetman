@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -61,7 +61,7 @@ public class Rover extends GdxSprite
      */
     public void setup()
     {
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         animation.setPlayMode(Animation.PlayMode.NORMAL);
         speed.set(1, 0);
@@ -184,10 +184,10 @@ public class Rover extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
-                frontWheel.setAction(Actions._DEAD);
-                backWheel.setAction(Actions._DEAD);
-                roverBack.setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
+                frontWheel.setAction(ActionStates._DEAD);
+                backWheel.setAction(ActionStates._DEAD);
+                roverBack.setAction(ActionStates._DEAD);
 
                 app.gameProgress.playerLifeOver = true;
                 app.gameProgress.roverDestroyed = true;
@@ -215,7 +215,7 @@ public class Rover extends GdxSprite
     @Override
     public void postUpdate(int spriteNum)
     {
-        if (getAction() == Actions._DEAD)
+        if (getAction() == ActionStates._DEAD)
         {
             app.gameProgress.lives.setToMinimum();
         }
@@ -284,14 +284,14 @@ public class Rover extends GdxSprite
         if (isMovingX && !checkForCrater())
         {
             speed.set(3, 0);
-            setAction(Actions._RUNNING);
+            setAction(ActionStates._RUNNING);
 
 //            app.googleServices.unlockAchievement(PlayServicesID.achievement_moon_rider.getID());
         }
         else
         {
             speed.set(0, 0);
-            setAction(Actions._STANDING);
+            setAction(ActionStates._STANDING);
         }
     }
 

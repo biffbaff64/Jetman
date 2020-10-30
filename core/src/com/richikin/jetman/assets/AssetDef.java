@@ -10,12 +10,12 @@ import com.richikin.utilslib.maths.SimpleVec2;
  */
 public class AssetDef
 {
-    public String     asset;        // The asset filename
-    public GraphicID  graphicID;    // Asset Identity
-    public GraphicID  type;         // Asset Type - _ENTITY, _OBSTACLE, etc
-    public TileID     tileID;       // Associated marker tile
-    public SimpleVec2 size;         // Asset size, or Frame size for multiple frame assets
-    public int        frames;       // Number of animation frames
+    public final String     asset;        // The asset filename
+    public final GraphicID  graphicID;    // Asset Identity
+    public final GraphicID  type;         // Asset Type - _ENTITY, _OBSTACLE, etc
+    public final TileID     tileID;       // Associated marker tile
+    public final SimpleVec2 size;         // Asset size, or Frame size for multiple frame assets
+    public final int        frames;       // Number of animation frames
 
     public AssetDef()
     {

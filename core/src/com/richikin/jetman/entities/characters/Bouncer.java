@@ -18,7 +18,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -62,7 +62,7 @@ public class Bouncer extends GdxSprite
         distance.set(0, 0);
         direction.set(Movement._DIRECTION_STILL, Movement._DIRECTION_STILL);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         stopWatch = StopWatch.start();
         isRotating = true;
 
@@ -77,7 +77,7 @@ public class Bouncer extends GdxSprite
             {
                 if (graphicID == GraphicID.G_LASER)
                 {
-                    setAction(Actions._KILLED);
+                    setAction(ActionStates._KILLED);
                 }
                 else
                 {
@@ -135,12 +135,12 @@ public class Bouncer extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
-                if (getAction() == Actions._KILLED)
+                if (getAction() == ActionStates._KILLED)
                 {
                     app.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
@@ -151,7 +151,7 @@ public class Bouncer extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

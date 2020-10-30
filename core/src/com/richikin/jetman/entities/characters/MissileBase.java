@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
@@ -43,7 +43,7 @@ public class MissileBase extends GdxSprite
 
         emptyFrame = app.assets.getAnimationRegion("launcher_top_empty");
 
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         addTopSection();
 
@@ -79,7 +79,7 @@ public class MissileBase extends GdxSprite
 
                 topSection.isFlippedX = (sprite.getX() < app.getPlayer().sprite.getX());
 
-                setAction(Actions._WAITING);
+                setAction(ActionStates._WAITING);
             }
             break;
 
@@ -91,7 +91,7 @@ public class MissileBase extends GdxSprite
 
                 app.missileBaseManager.killMissiles();
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
 
                 Shake.start(app);
             }
@@ -107,7 +107,7 @@ public class MissileBase extends GdxSprite
 
                 app.gameProgress.score.add(PointsManager.getPoints(gid));
 
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -171,7 +171,7 @@ public class MissileBase extends GdxSprite
     }
 
     @Override
-    public void setAction(Actions action)
+    public void setAction(ActionStates action)
     {
         super.setAction(action);
 
@@ -203,7 +203,7 @@ public class MissileBase extends GdxSprite
         topSection.create(descriptor);
         topSection.sprite.setPosition(topSection.sprite.getX() + 15, topSection.sprite.getY() + this.frameHeight);
         topSection.animation.setFrameDuration(0.5f / 6f);
-        topSection.setAction(Actions._STANDING);
+        topSection.setAction(ActionStates._STANDING);
 
         app.entityData.addEntity(topSection);
     }

@@ -184,14 +184,6 @@ public class MapData
         mapRenderer.renderTileLayer(extraGameTilesLayer);
     }
 
-    private void setTileIDBoxes()
-    {
-        for (MapObject objectTile : objectTiles)
-        {
-
-        }
-    }
-
     private void setGameLevelMap(String[] mapLayers)
     {
         gameTilesLayer      = (TiledMapTileLayer) currentMap.getLayers().get(mapLayers[_GAME_TILES]);

@@ -19,7 +19,7 @@ import com.richikin.utilslib.logging.Trace;
  * ------------------------------------------------------------------
  * @version 0.0.1 Internal       initial issue
  */
-@SuppressWarnings({"unused", "SameReturnValue", "WeakerAccess"})
+@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 public final class Version
 {
     public static final int majorVersion    = 0;

@@ -8,7 +8,7 @@ import com.richikin.utilslib.ui.BasicPanel;
 
 public class PausePanel extends BasicPanel
 {
-    private App app;
+    private final App app;
 
     public PausePanel(App _app)
     {

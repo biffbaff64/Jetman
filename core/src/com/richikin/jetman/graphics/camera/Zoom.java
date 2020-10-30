@@ -4,7 +4,6 @@ package com.richikin.jetman.graphics.camera;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
 
-@SuppressWarnings("unused")
 public class Zoom
 {
     private static final float _DEFAULT_ZOOM = 0.0f;

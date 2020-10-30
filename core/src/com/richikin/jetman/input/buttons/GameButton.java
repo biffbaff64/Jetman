@@ -7,7 +7,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import org.jetbrains.annotations.NotNull;
 
 public class GameButton extends Switch implements Disposable
@@ -15,8 +15,8 @@ public class GameButton extends Switch implements Disposable
     public TextureRegion bg;
     public TextureRegion bgPressed;
     public TextureRegion bgDisabled;
-    public Box           buttonRect;
-    public Actions       buttonAction;
+    public Box          buttonRect;
+    public ActionStates buttonAction;
 
     public int x;
     public int y;
@@ -69,12 +69,17 @@ public class GameButton extends Switch implements Disposable
         this._isDrawable = false;
     }
 
+    /**
+     * Define a GameButton
+     *
+     * @param _app - Instance of the game
+     */
     public GameButton(App _app)
     {
         super();
 
         this.app          = _app;
-        this.buttonAction = Actions._NO_ACTION;
+        this.buttonAction = ActionStates._NO_ACTION;
         this.buttonRect   = new Box();
 
         mapIndex = app.inputManager.gameButtons.size;
@@ -123,7 +128,7 @@ public class GameButton extends Switch implements Disposable
 
     public boolean contains(int x, int y)
     {
-        return contains((float) x, (float) y);
+        return !_isDisabled && buttonRect.contains((float) x, (float) y);
     }
 
     public boolean contains(float x, float y)

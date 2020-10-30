@@ -8,7 +8,6 @@ import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.Speed;
 
-@SuppressWarnings("unused")
 public class StairsPath
 {
     private static class PathData

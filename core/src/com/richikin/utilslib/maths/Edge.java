@@ -31,9 +31,9 @@ public class Edge extends SimpleLine2D
                 isIntersecting = true;
             }
 
-            if (intersects(new com.richikin.utilslib.maths.SimpleLine2D(x, y, x, y + height))
-                    || intersects(new com.richikin.utilslib.maths.SimpleLine2D(x, y + height, x + width, y + height))
-                    || intersects(new com.richikin.utilslib.maths.SimpleLine2D(x + width, y, x + width, y + height))
+            if (intersects(new SimpleLine2D(x, y, x, y + height))
+                    || intersects(new SimpleLine2D(x, y + height, x + width, y + height))
+                    || intersects(new SimpleLine2D(x + width, y, x + width, y + height))
                     || intersects(new SimpleLine2D(x, y, x + width, y)))
             {
                 isIntersecting = true;

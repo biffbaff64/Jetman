@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 import java.io.File;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class Trace
 {
     /*

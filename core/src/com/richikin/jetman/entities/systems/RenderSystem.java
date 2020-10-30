@@ -11,8 +11,8 @@ import com.richikin.jetman.graphics.Gfx;
 
 public class RenderSystem
 {
-    private ShapeRenderer sr;
-    private final App app;
+    private final ShapeRenderer sr;
+    private final App           app;
 
     public RenderSystem(App _app)
     {

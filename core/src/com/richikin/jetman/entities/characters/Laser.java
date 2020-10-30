@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -75,7 +75,7 @@ public class Laser extends GdxSprite
 
         sprite.setColor(colourList[((MainPlayer) descriptor._PARENT).laserColour]);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class Laser extends GdxSprite
     {
         if (distance.getX() <= 0)
         {
-            setAction(Actions._DEAD);
+            setAction(ActionStates._DEAD);
         }
         else
         {

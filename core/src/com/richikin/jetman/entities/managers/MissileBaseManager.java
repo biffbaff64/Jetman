@@ -1,7 +1,7 @@
 package com.richikin.jetman.entities.managers;
 
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -190,7 +190,7 @@ public class MissileBaseManager extends GenericEntityManager
 
                 if (currentEntity.gid == GraphicID.G_MISSILE)
                 {
-                    currentEntity.setAction(Actions._PAUSED);
+                    currentEntity.setAction(ActionStates._PAUSED);
                 }
             }
         }

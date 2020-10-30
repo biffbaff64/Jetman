@@ -8,18 +8,20 @@ public enum PlayServicesID
     // given via google play developers console when they
     // are submitted.
 
+    // TODO: 30/10/2020 - This should be a map, and initialised from the game code.
+
     // achievements
-    achievement_1    ("CgkIvdearaEYEAIQBA"),
-    achievement_2    ("CgkIvdearaEYEAIQBQ"),
-    achievement_3    ("CgkIvdearaEYEAIQBg"),
-    achievement_4    ("CgkIvdearaEYEAIQBw"),
-    achievement_5    ("CgkIvdearaEYEAIQCA"),
-    achievement_6    ("CgkIvdearaEYEAIQCQ"),
-    achievement_7    ("CgkIvdearaEYEAIQDQ"),
-    achievement_8    ("CgkIvdearaEYEAIQCg"),
-    achievement_9    ("CgkIvdearaEYEAIQCw"),
-    achievement_10   ("CgkIvdearaEYEAIQDA"),
-    achievement_11   ("CgkIvdearaEYEAIQDg"),
+    achievement_base_destroyed      ("CgkIvdearaEYEAIQBA"),
+    achievement_millionaire         ("CgkIvdearaEYEAIQBQ"),
+    achievement_score_500k          ("CgkIvdearaEYEAIQBg"),
+    achievement_score_100k          ("CgkIvdearaEYEAIQBw"),
+    achievement_shoot_a_missile     ("CgkIvdearaEYEAIQCA"),
+    achievement_courier_services    ("CgkIvdearaEYEAIQCQ"),
+    achievement_bridge_building     ("CgkIvdearaEYEAIQDQ"),
+    achievement_beam_me_up          ("CgkIvdearaEYEAIQCg"),
+    achievement_gunman_jetman       ("CgkIvdearaEYEAIQCw"),
+    achievement_bomb_collector      ("CgkIvdearaEYEAIQDA"),
+    achievement_moon_rider          ("CgkIvdearaEYEAIQDg"),
 
     // leaderboard High Scores
     leaderboard_leaderboard         ("CgkIvdearaEYEAIQAQ"),

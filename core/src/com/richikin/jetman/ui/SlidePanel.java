@@ -2,7 +2,7 @@
 package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
@@ -15,9 +15,9 @@ public class SlidePanel extends BasicPanel
     public  Speed     speed;
     public  Direction direction;
     public  XYSetF    distance;
-    public  XYSetF    distanceReset;
-    public  Actions   action;
-    private boolean   isInPlace;
+    public  XYSetF       distanceReset;
+    public  ActionStates action;
+    private boolean      isInPlace;
 
     public SlidePanel()
     {
@@ -32,7 +32,7 @@ public class SlidePanel extends BasicPanel
 
         deactivate();
         this.isInPlace = false;
-        this.action    = Actions._NO_ACTION;
+        this.action    = ActionStates._NO_ACTION;
 
         setWidth(textureRegion.getRegionWidth());
         setHeight(textureRegion.getRegionHeight());

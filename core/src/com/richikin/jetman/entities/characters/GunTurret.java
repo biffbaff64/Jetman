@@ -1,6 +1,6 @@
 package com.richikin.jetman.entities.characters;
 
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -22,7 +22,7 @@ public class GunTurret extends GdxSprite
         create(descriptor);
 
         isDrawable = true;
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         sprite.setOrigin(65, frameHeight - 17);
         turretAngle = 0.0f;
@@ -42,7 +42,7 @@ public class GunTurret extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

@@ -3,7 +3,7 @@ package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.enumslib.GraphicID;
@@ -332,11 +332,11 @@ public abstract class Entities
 
     public static void stand(GameEntity _gameEntity)
     {
-        _gameEntity.setAction(Actions._STANDING);
+        _gameEntity.setAction(ActionStates._STANDING);
     }
 
     public static void explode(GameEntity _gameEntity)
     {
-        _gameEntity.setAction(Actions._EXPLODING);
+        _gameEntity.setAction(ActionStates._EXPLODING);
     }
 }

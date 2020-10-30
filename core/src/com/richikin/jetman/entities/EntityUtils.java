@@ -4,7 +4,7 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -53,7 +53,7 @@ public class EntityUtils
 
     public TextureRegion getKeyFrame(final Animation<TextureRegion> animation, final float elapsedTime, final boolean looping)
     {
-        return (TextureRegion) animation.getKeyFrame(elapsedTime, looping);
+        return animation.getKeyFrame(elapsedTime, looping);
     }
 
     public com.richikin.jetman.entities.objects.GdxSprite getRandomSprite(com.richikin.jetman.entities.objects.GdxSprite oneToAvoid)
@@ -262,7 +262,7 @@ public class EntityUtils
     {
         for (int i = 0; i < app.entityData.entityMap.size; i++)
         {
-            if (app.entityData.entityMap.get(i).entityAction == Actions._DEAD)
+            if (app.entityData.entityMap.get(i).entityAction == ActionStates._DEAD)
             {
                 app.entityData.entityMap.removeIndex(i);
             }

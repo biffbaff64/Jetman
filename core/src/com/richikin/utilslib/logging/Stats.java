@@ -3,7 +3,6 @@ package com.richikin.utilslib.logging;
 
 import com.badlogic.gdx.Gdx;
 
-@SuppressWarnings("unused")
 public class Stats
 {
     private static com.badlogic.gdx.Preferences prefs;

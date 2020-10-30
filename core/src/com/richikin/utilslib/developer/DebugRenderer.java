@@ -23,7 +23,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.Settings;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABBData;
@@ -84,11 +84,11 @@ public class DebugRenderer implements Disposable
                 {
                     debugRectangle.set(collisionObject.rectangle);
 
-                    if (collisionObject.action == Actions._COLLIDABLE)
+                    if (collisionObject.action == ActionStates._COLLIDABLE)
                     {
                         debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
                     }
-                    else if (collisionObject.action == Actions._COLLIDING)
+                    else if (collisionObject.action == ActionStates._COLLIDING)
                     {
                         debugTextureRegion = app.assets.getObjectRegion("solid_blue32x32");
                     }
@@ -132,7 +132,7 @@ public class DebugRenderer implements Disposable
                 {
                     debugTextureRegion = app.assets.getObjectRegion("solid_blue32x32");
                 }
-                else if ((collisionObject.rectangle.colour == Color.RED) || (collisionObject.action == Actions._COLLIDING))
+                else if ((collisionObject.rectangle.colour == Color.RED) || (collisionObject.action == ActionStates._COLLIDING))
                 {
                     debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
                 }

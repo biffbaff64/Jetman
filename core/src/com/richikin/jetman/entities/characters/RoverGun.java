@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -28,7 +28,7 @@ public class RoverGun extends GdxSprite
     public SimpleVec2F releaseXY;
     public GunTurret gunTurret;
 
-    private App app;
+    private final App app;
 
     public RoverGun(App _app)
     {
@@ -47,7 +47,7 @@ public class RoverGun extends GdxSprite
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
         collidesWith = Gfx.CAT_GROUND | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER;
 
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         animation.setPlayMode(Animation.PlayMode.NORMAL);
 
@@ -133,12 +133,12 @@ public class RoverGun extends GdxSprite
             {
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
 
                 if (gunTurret != null)
                 {
                     explosionManager.createExplosion(GraphicID.G_EXPLOSION64, gunTurret, app);
-                    gunTurret.setAction(Actions._EXPLODING);
+                    gunTurret.setAction(ActionStates._EXPLODING);
                 }
             }
             break;
@@ -151,8 +151,8 @@ public class RoverGun extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
-                gunTurret.setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
+                gunTurret.setAction(ActionStates._DEAD);
                 releaseXY = null;
             }
             break;
@@ -289,7 +289,7 @@ public class RoverGun extends GdxSprite
             @Override
             public void onPositiveCollision(GraphicID graphicID)
             {
-                if (getAction() == Actions._FALLING)
+                if (getAction() == ActionStates._FALLING)
                 {
                     GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getGun()).gid;
 
@@ -325,13 +325,13 @@ public class RoverGun extends GdxSprite
             {
                 if ((sprite.getY() + frameHeight) < 0)
                 {
-                     setAction(Actions._DEAD);
+                     setAction(ActionStates._DEAD);
                 }
                 else
                 {
                     if (collisionObject.idBottom == GraphicID.G_NO_ID)
                     {
-                        setAction(Actions._FALLING);
+                        setAction(ActionStates._FALLING);
                     }
                 }
             }

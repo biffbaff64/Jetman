@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -122,7 +122,7 @@ public class DefenderBullet extends GdxSprite
             distance.set((float) Gfx._VIEW_WIDTH / 2, (float) Gfx._VIEW_HEIGHT / 2);
         }
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         colourIndex = 0;
     }
 
@@ -135,7 +135,7 @@ public class DefenderBullet extends GdxSprite
             {
                 if (distance.isEmpty())
                 {
-                    setAction(Actions._DEAD);
+                    setAction(ActionStates._DEAD);
                 }
                 else
                 {

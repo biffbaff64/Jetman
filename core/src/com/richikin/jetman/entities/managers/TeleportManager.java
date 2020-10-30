@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.entities.Entities;
@@ -213,7 +213,7 @@ public class TeleportManager extends GenericEntityManager
         app.getPlayer().isTeleporting = false;
         app.getPlayer().sprite.setX(app.getTeleporter(targetBooth).sprite.getX());
         app.getPlayer().sprite.setY(app.getTeleporter(targetBooth).sprite.getY());
-        app.getPlayer().setAction(Actions._STANDING);
+        app.getPlayer().setAction(ActionStates._STANDING);
         app.getPlayer().actionButton.removeAction();
 
         teleportActive = false;

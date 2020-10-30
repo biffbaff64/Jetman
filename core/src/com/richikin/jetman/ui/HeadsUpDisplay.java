@@ -7,8 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
@@ -17,17 +22,11 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
-import com.richikin.jetman.input.buttons.GameButton;
-import com.richikin.utilslib.input.GameButtonRegion;
-import com.richikin.utilslib.input.ControllerPos;
-import com.richikin.utilslib.input.ControllerType;
 import com.richikin.utilslib.developer.Developer;
-import com.richikin.utilslib.input.GDXButton;
-import com.richikin.utilslib.input.Switch;
+import com.richikin.utilslib.input.*;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.misc.HighScoreUtils;
-import com.richikin.enumslib.Actions;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.ui.ProgressBar;
 
@@ -59,8 +58,8 @@ public class HeadsUpDisplay implements Disposable
     private static final int[][] displayPos = new int[][]
         {
             {  25, 1016, (720 - 695), 240, 240},    // Joystick
-            {1141,   44, (720 - 624),  96,  96},    // Attack
-            {1027,  158, (720 - 687),  96,  96},    // Action
+            { 987,   44, (720 - 687),  96,  96},    // Attack
+            {1109,  158, (720 - 600),  96,  96},    // Action
             {1206, 1206, (720 - 177),  66,  66},    // Pause Button
             {   0,    0, (720 - 101),  99,  86},    // Dev Options
             {1180, 1180, (720 - 101),  99,  86},    // Debug Console
@@ -89,6 +88,9 @@ public class HeadsUpDisplay implements Disposable
     public Switch    buttonPause;
     public Switch    buttonDevOptions;
 
+    public ImageButton Actionbutton;
+    public ImageButton Attackbutton;
+
     public MessageManager messageManager;
     public PausePanel     pausePanel;
     public StateID        hudStateID;
@@ -98,10 +100,10 @@ public class HeadsUpDisplay implements Disposable
 
     private float           originX;
     private float           originY;
-    private StateID                              stateID;
-    private com.richikin.utilslib.ui.ProgressBar timeBar;
-    private com.richikin.utilslib.ui.ProgressBar fuelBar;
-    private Texture                              scorePanel;
+    private StateID         stateID;
+    private ProgressBar     timeBar;
+    private ProgressBar     fuelBar;
+    private Texture         scorePanel;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
     private TextureRegion   miniMen;
@@ -137,8 +139,8 @@ public class HeadsUpDisplay implements Disposable
         messageManager = new MessageManager(app);
         pausePanel     = new PausePanel(app);
 
-        timeBar = new com.richikin.utilslib.ui.ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
-        fuelBar = new com.richikin.utilslib.ui.ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
+        timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
+        fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
 
         barDividerFuel = app.assets.getObjectRegion("bar_divider");
         barDividerTime = app.assets.getObjectRegion("bar_divider");
@@ -244,7 +246,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (!app.teleportManager.teleportActive)
         {
-            if ((app.getPlayer().getAction() == Actions._FLYING) || app.getPlayer().isJumpingCrater)
+            if ((app.getPlayer().getAction() == ActionStates._FLYING) || app.getPlayer().isJumpingCrater)
             {
                 fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
                 fuelBar.updateSlowDecrement();
@@ -252,7 +254,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (app.getBase() != null)
             {
-                if (app.getBase().getAction() != Actions._WAITING)
+                if (app.getBase().getAction() != ActionStates._WAITING)
                 {
                     timeBar.updateSlowDecrement();
                 }
@@ -261,7 +263,7 @@ public class HeadsUpDisplay implements Disposable
                 {
                     if (!app.missileBaseManager.isMissileActive)
                     {
-                        app.getBase().setAction(Actions._FIGHTING);
+                        app.getBase().setAction(ActionStates._FIGHTING);
                     }
                 }
             }
@@ -411,7 +413,7 @@ public class HeadsUpDisplay implements Disposable
             //
             // The foreground parallax is the row of rocks
             // in front of the main ground
-            app.baseRenderer.parallaxForeground.render();
+//            app.baseRenderer.parallaxForeground.render();
 
             //
             // Draw the Pause panel if activated
@@ -426,10 +428,11 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            Trace.__FILE_FUNC();
+            Actionbutton.addAction(Actions.show());
+            Attackbutton.addAction(Actions.show());
 
-            buttonB.setDrawable(true);
-            buttonA.setDrawable(true);
+            Actionbutton.setVisible(true);
+            Attackbutton.setVisible(true);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -449,8 +452,11 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            buttonB.setDrawable(false);
-            buttonA.setDrawable(false);
+            Actionbutton.addAction(Actions.hide());
+            Attackbutton.addAction(Actions.hide());
+
+            Actionbutton.setVisible(false);
+            Attackbutton.setVisible(false);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -543,23 +549,6 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
-
-            smallFont.draw
-                (
-                    app.spriteBatch,
-                    "BUTTON A : " + buttonA.isPressed()
-                        + " : " + buttonA.isDisabled()
-                        + " : " + buttonA.isDrawable(),
-                    originX + 20, originY + 550
-                );
-            smallFont.draw
-                (
-                    app.spriteBatch,
-                    "BUTTON B : " + buttonB.isPressed()
-                        + " : " + buttonB.isDisabled()
-                        + " : " + buttonB.isDrawable(),
-                    originX + 20, originY + 520
-                );
         }
 
         bigFont.draw
@@ -601,8 +590,8 @@ public class HeadsUpDisplay implements Disposable
         {
             if (showHUDControls)
             {
-                ((GameButton) buttonA).draw();
-                ((GameButton) buttonB).draw();
+                Actionbutton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
+                Attackbutton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
 
                 if (app.inputManager.virtualJoystick != null)
                 {
@@ -651,6 +640,8 @@ public class HeadsUpDisplay implements Disposable
      */
     private void createHUDButtons()
     {
+        Scene2DUtils.setup(app);
+
         buttonUp    = new Switch();
         buttonDown  = new Switch();
         buttonLeft  = new Switch();
@@ -663,20 +654,21 @@ public class HeadsUpDisplay implements Disposable
 
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-        buttonA = new GameButton
+        buttonA = new Switch();
+        buttonB = new Switch();
+
+        Actionbutton = Scene2DUtils.addButton
             (
-                app.assets.getButtonRegion("button_a"),
-                app.assets.getButtonRegion("button_a_pressed"),
-                displayPos[_ACTION][xPos], displayPos[_ACTION][_Y],
-                app
+                "button_a",
+                "button_a_pressed",
+                displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
             );
 
-        buttonB = new GameButton
+        Attackbutton = Scene2DUtils.addButton
             (
-                app.assets.getButtonRegion("button_b"),
-                app.assets.getButtonRegion("button_b_pressed"),
-                displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y],
-                app
+                "button_b",
+                "button_b_pressed",
+                displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
             );
 
         if (Developer.isDevMode())
@@ -691,6 +683,42 @@ public class HeadsUpDisplay implements Disposable
         hideControls();
 
         AppConfig.gameButtonsReady = true;
+
+        Actionbutton.addListener(new ClickListener()
+        {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonA.press();
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonA.release();
+            }
+        });
+
+        Attackbutton.addListener(new ClickListener()
+        {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonB.press();
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonB.release();
+            }
+        });
     }
 
     StopWatch scoreStopwatch = StopWatch.start();

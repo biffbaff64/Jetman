@@ -20,7 +20,7 @@ public class GameController implements ControllerListener
 {
     public Controller controller;
 
-    protected App app;
+    protected final App app;
 
     public GameController(App _app)
     {

@@ -1,7 +1,7 @@
 package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -49,7 +49,7 @@ public class Missile extends GdxSprite implements ICollisionListener
             speed.setY(distance.getY() / (distance.getX() / speed.getX()));
         }
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
 
         addCollisionListener(this);
     }
@@ -67,7 +67,7 @@ public class Missile extends GdxSprite implements ICollisionListener
                     ExplosionManager explosionManager = new ExplosionManager();
                     explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
 
-                    setAction(Actions._EXPLODING);
+                    setAction(ActionStates._EXPLODING);
                 }
                 else
                 {
@@ -80,11 +80,11 @@ public class Missile extends GdxSprite implements ICollisionListener
                             reset();
                         }
 
-                        setAction(Actions._DEAD);
+                        setAction(ActionStates._DEAD);
                     }
                     else
                     {
-                        if (getAction() != Actions._PAUSED)
+                        if (getAction() != ActionStates._PAUSED)
                         {
                             sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
 
@@ -119,7 +119,7 @@ public class Missile extends GdxSprite implements ICollisionListener
             {
                 reset();
 
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -149,12 +149,12 @@ public class Missile extends GdxSprite implements ICollisionListener
         ExplosionManager explosionManager = new ExplosionManager();
         explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
-        if (getAction() == Actions._KILLED)
+        if (getAction() == ActionStates._KILLED)
         {
             app.gameProgress.score.add(PointsManager.getPoints(gid));
         }
 
-        setAction(Actions._EXPLODING);
+        setAction(ActionStates._EXPLODING);
     }
 
     private void reset()
@@ -175,14 +175,14 @@ public class Missile extends GdxSprite implements ICollisionListener
 
             if (!Developer.isGodMode())
             {
-                app.getRover().setAction(Actions._HURT);
+                app.getRover().setAction(ActionStates._HURT);
             }
 
-            setAction(Actions._EXPLODING);
+            setAction(ActionStates._EXPLODING);
         }
         else if (graphicID == GraphicID.G_LASER)
         {
-            setAction(Actions._KILLED);
+            setAction(ActionStates._KILLED);
         }
     }
 
@@ -202,7 +202,7 @@ public class Missile extends GdxSprite implements ICollisionListener
             app.getHud().getFuelBar().setToMaximum();
             app.getHud().update();
 
-            app.getBase().setAction(Actions._STANDING);
+            app.getBase().setAction(ActionStates._STANDING);
         }
 
         collisionObject.kill();

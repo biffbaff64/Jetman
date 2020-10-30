@@ -19,7 +19,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Intersector;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -61,7 +61,7 @@ public class Explosion extends GdxSprite
         animation.setPlayMode(Animation.PlayMode.NORMAL);
 
         sprite.setCenter(parent.sprite.getX() + (parent.frameWidth / 2), parent.sprite.getY() + (parent.frameHeight / 2));
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
 
 //        if (app.entityUtils.isOnScreen(this))
 //        {
@@ -74,7 +74,7 @@ public class Explosion extends GdxSprite
     {
         if (animation.isAnimationFinished(elapsedAnimTime))
         {
-            setAction(Actions._DEAD);
+            setAction(ActionStates._DEAD);
             isDrawable = false;
 
             if (parent.gid == GraphicID.G_PLAYER)
@@ -83,7 +83,7 @@ public class Explosion extends GdxSprite
             }
             else
             {
-                parent.setAction(Actions._DYING);
+                parent.setAction(ActionStates._DYING);
             }
         }
         else
@@ -95,7 +95,7 @@ public class Explosion extends GdxSprite
                 if ((app.getBomb() != null)
                     && !app.getBomb().isAttachedToRover
                     && !app.getBomb().isAttachedToPlayer
-                    && (app.getBomb().getAction() == Actions._STANDING))
+                    && (app.getBomb().getAction() == ActionStates._STANDING))
                 {
                     if (Intersector.overlaps(getCollisionRectangle(), app.getBomb().getCollisionRectangle()))
                     {

@@ -1,6 +1,6 @@
 package com.richikin.enumslib;
 
-public enum Actions
+public enum ActionStates
 {
     // ----------------------------
     _INIT_SPAWN, _SPAWNING,

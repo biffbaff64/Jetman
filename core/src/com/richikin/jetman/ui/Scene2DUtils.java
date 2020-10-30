@@ -50,7 +50,7 @@ public class Scene2DUtils
 
     public static Image createImage(String imageName, TextureAtlas atlasLoader)
     {
-        TextureRegion region = atlasLoader.findRegion(imageName);
+        TextureRegion         region   = atlasLoader.findRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -86,7 +86,7 @@ public class Scene2DUtils
         FontUtils fontUtils = new FontUtils();
 
         Label.LabelStyle label1Style = new Label.LabelStyle();
-        label1Style.font = fontUtils.createFont(fontName, size, Color.WHITE);
+        label1Style.font      = fontUtils.createFont(fontName, size, Color.WHITE);
         label1Style.fontColor = color;
 
         Label label = new Label(labelText, label1Style);
@@ -120,7 +120,7 @@ public class Scene2DUtils
         FontUtils fontUtils = new FontUtils();
 
         TextField.TextFieldStyle style = new TextField.TextFieldStyle();
-        style.font = fontUtils.createFont(fontName, size, Color.WHITE);
+        style.font      = fontUtils.createFont(fontName, size, Color.WHITE);
         style.fontColor = color;
 
         TextField textField = new TextField(string, style);
@@ -135,12 +135,8 @@ public class Scene2DUtils
 
     public static ImageButton addButton(String upButton, String downButton, int x, int y)
     {
-        Image imageUp;
-        Image imageDown;
-
-        imageUp = new Image(app.assets.getButtonRegion(upButton));
-        imageDown = new Image(app.assets.getButtonRegion(downButton));
-
+        Image       imageUp     = new Image(app.assets.getButtonRegion(upButton));
+        Image       imageDown   = new Image(app.assets.getButtonRegion(downButton));
         ImageButton imageButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
 
         imageButton.setPosition(x, y);
@@ -196,7 +192,7 @@ public class Scene2DUtils
         return checkBox;
     }
 
-    public static SelectBox addSelectBox(int x, int y, Skin skin)
+    public static SelectBox<String> addSelectBox(int x, int y, Skin skin)
     {
         SelectBox<String> list = new SelectBox<>(skin);
 
@@ -217,7 +213,7 @@ public class Scene2DUtils
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
                 "F1", "F2", "F3", "F4", "F5", "F6",
                 "F7", "F8", "F9", "F10", "F11", "F12",
-            };
+                };
 
         list.setItems(strings);
 
@@ -239,7 +235,7 @@ public class Scene2DUtils
 
     public static Label makeLabel(String string, int x, int y, Color color, Skin skin)
     {
-        Label label = new Label(string, skin);
+        Label            label = new Label(string, skin);
         Label.LabelStyle style = label.getStyle();
         style.fontColor = color;
 
@@ -253,7 +249,7 @@ public class Scene2DUtils
 
     public static TextField makeTextField(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
-        TextField textField = new TextField(string, skin);
+        TextField                textField      = new TextField(string, skin);
         TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle(textField.getStyle());
         textFieldStyle.fontColor = color;
 
@@ -268,8 +264,8 @@ public class Scene2DUtils
 
     public static TextButton makeButton(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
-        TextButton textButton = new TextButton(string, skin);
-        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle(textButton.getStyle());
+        TextButton                 textButton = new TextButton(string, skin);
+        TextButton.TextButtonStyle style      = new TextButton.TextButtonStyle(textButton.getStyle());
         style.fontColor = color;
 
         textButton.setStyle(style);
@@ -283,8 +279,8 @@ public class Scene2DUtils
 
     public static Slider makeSlider(int x, int y, Skin skin)
     {
-        Slider slider = new Slider(0, 10, 1, false, skin);
-        Slider.SliderStyle style = slider.getStyle();
+        Slider             slider = new Slider(0, 10, 1, false, skin);
+        Slider.SliderStyle style  = slider.getStyle();
 
         slider.setPosition(x, y);
         slider.setSize(280, 30);
@@ -294,14 +290,14 @@ public class Scene2DUtils
 
     public static CheckBox makeCheckBox(int x, int y, Color color, Skin skin)
     {
-        TextureRegion regionOn = app.assets.getButtonRegion("toggle_on");
+        TextureRegion regionOn  = app.assets.getButtonRegion("toggle_on");
         TextureRegion regionOff = app.assets.getButtonRegion("toggle_off");
 
-        CheckBox checkBox = new CheckBox("", skin);
-        CheckBox.CheckBoxStyle style = checkBox.getStyle();
+        CheckBox               checkBox = new CheckBox("", skin);
+        CheckBox.CheckBoxStyle style    = checkBox.getStyle();
 
-        style.fontColor = color;
-        style.checkboxOn = new TextureRegionDrawable(regionOn);
+        style.fontColor   = color;
+        style.checkboxOn  = new TextureRegionDrawable(regionOn);
         style.checkboxOff = new TextureRegionDrawable(regionOff);
 
         checkBox.setSize(regionOn.getRegionWidth(), regionOn.getRegionHeight());
@@ -313,7 +309,7 @@ public class Scene2DUtils
 
     public static Image makeAchievementsImage(String imageName)
     {
-        TextureRegion region = app.assets.getAchievementRegion(imageName);
+        TextureRegion         region   = app.assets.getAchievementRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -321,7 +317,7 @@ public class Scene2DUtils
 
     public static Image makeObjectsImage(String imageName)
     {
-        TextureRegion region = app.assets.getObjectRegion(imageName);
+        TextureRegion         region   = app.assets.getObjectRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -329,7 +325,7 @@ public class Scene2DUtils
 
     public static Image makeTextImage(String imageName)
     {
-        TextureRegion region = app.assets.getTextRegion(imageName);
+        TextureRegion         region   = app.assets.getTextRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);

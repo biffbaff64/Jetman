@@ -2,7 +2,7 @@ package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.utilslib.states.StateID;
 
 public class EndgameManager
@@ -19,7 +19,7 @@ public class EndgameManager
         boolean returnFlag = false;
 
         if ((app.getPlayer() != null)
-            && (app.getPlayer().getAction() == Actions._DEAD))
+            && (app.getPlayer().getAction() == ActionStates._DEAD))
         {
             // Hide HUD Controls here ??
 
@@ -59,7 +59,7 @@ public class EndgameManager
             else if (app.gameProgress.isRestarting)
             {
                 if ((app.getPlayer() != null)
-                    && (app.getPlayer().getAction() == Actions._RESETTING))
+                    && (app.getPlayer().getAction() == ActionStates._RESETTING))
                 {
                     app.mainGameScreen.retryDelay = StopWatch.start();
                     app.appState.set(com.richikin.utilslib.states.StateID._STATE_LEVEL_RETRY);

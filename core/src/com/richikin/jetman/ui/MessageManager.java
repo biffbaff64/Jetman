@@ -2,7 +2,7 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.utilslib.ui.IUserInterfacePanel;
 import com.richikin.utilslib.logging.Trace;
 
@@ -22,8 +22,8 @@ public class MessageManager
         }
     }
 
-    private       Array<Message> messages;
-    private       boolean managerEnabled;
+    private final Array<Message> messages;
+    private       boolean        managerEnabled;
     private final App     app;
 
     public MessageManager(App _app)
@@ -65,7 +65,7 @@ public class MessageManager
 
             panel.initialise(app.assets.getObjectRegion(imageName), imageName);
             panel.activate();
-            panel.action = Actions._OPENING;
+            panel.action = ActionStates._OPENING;
 
             messages.add(new Message(panel, true, imageName));
         }
@@ -116,6 +116,7 @@ public class MessageManager
             if (_nameID.equals(msg.name))
             {
                 exists = true;
+                break;
             }
         }
 

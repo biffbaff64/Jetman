@@ -58,14 +58,14 @@ public class RoverManager extends GenericEntityManager
                 {
                     if (totalGunsUsed > 1)
                     {
-//                        app.getHud().messageManager.enable();
-//                        app.getHud().messageManager.addZoomMessage("new_rovergun", 3500);
-//                        app.getHud().messageManager.setPosition
-//                            (
-//                                "new_rovergun",
-//                                185,
-//                                (720 - 167)
-//                            );
+                        app.getHud().messageManager.enable();
+                        app.getHud().messageManager.addZoomMessage("new_rovergun", 3500);
+                        app.getHud().messageManager.setPosition
+                            (
+                                "new_rovergun",
+                                185,
+                                (720 - 167)
+                            );
                     }
                 }
             }

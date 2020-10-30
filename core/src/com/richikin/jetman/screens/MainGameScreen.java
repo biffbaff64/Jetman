@@ -88,10 +88,6 @@ public class MainGameScreen extends AbstractBaseScreen
             break;
 
             case _STATE_PREPARE_GAME_END:
-            {
-            }
-            break;
-
             case _STATE_CLOSING:
             {
             }

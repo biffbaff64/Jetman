@@ -119,8 +119,8 @@ public class SpriteDescriptor
         Trace.dbg("_FRAMES         : " + _FRAMES);
         Trace.dbg("_PLAYMODE       : " + _PLAYMODE);
         Trace.dbg("_ANIM_RATE      : " + _ANIM_RATE);
-        Trace.dbg("_NAME           : " + (_NAME != null ? _NAME.toString() : "NOT SET"));
-        Trace.dbg("_ASSET          : " + (_ASSET != null ? _ASSET.toString() : "NOT SET"));
+        Trace.dbg("_NAME           : " + (_NAME != null ? _NAME : "NOT SET"));
+        Trace.dbg("_ASSET          : " + (_ASSET != null ? _ASSET : "NOT SET"));
         Trace.dbg("_LINK           : " + _LINK);
         Trace.dbg("_TILE           : " + _TILE);
         Trace.dbg("_PARENT         : " + _PARENT);

@@ -3,7 +3,7 @@ package com.richikin.jetman.entities;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.utilslib.entities.components.EntityManagerComponent;
@@ -87,7 +87,7 @@ public class EntityManager implements IEntityManager
             {
                 entity = (GdxSprite) app.entityData.entityMap.get(i);
 
-                if ((entity.getAction() != Actions._DEAD)
+                if ((entity.getAction() != ActionStates._DEAD)
                     && (entity.gid != GraphicID.G_PLAYER))
                 {
                     entity.preUpdate();
@@ -101,7 +101,7 @@ public class EntityManager implements IEntityManager
             // other entities actions.
             if (!app.settings.isEnabled(Settings._SCROLL_DEMO))
             {
-                if (_playerReady && (app.getPlayer().getAction() != Actions._DEAD))
+                if (_playerReady && (app.getPlayer().getAction() != ActionStates._DEAD))
                 {
                     app.getPlayer().preUpdate();
                     app.getPlayer().update(_playerIndex);
@@ -139,7 +139,7 @@ public class EntityManager implements IEntityManager
 
                 if (entity != null)
                 {
-                    if (entity.getAction() != Actions._DEAD)
+                    if (entity.getAction() != ActionStates._DEAD)
                     {
                         entity.postUpdate(i);
                     }
@@ -148,7 +148,7 @@ public class EntityManager implements IEntityManager
                     // NB: entity might have died in postUpdate, which is
                     // why this next if() is not an else.
 
-                    if (entity.getAction() == Actions._DEAD)
+                    if (entity.getAction() == ActionStates._DEAD)
                     {
                         switch (entity.gid)
                         {

@@ -22,7 +22,7 @@ public class PointsManager
         }
     }
 
-    private static Array<Points> pointsTable = new Array<>();
+    private static final Array<Points> pointsTable = new Array<>();
 
     public static void updatePointStacks()
     {

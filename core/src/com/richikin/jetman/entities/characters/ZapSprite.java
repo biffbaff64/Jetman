@@ -21,7 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;
@@ -77,7 +77,7 @@ public class ZapSprite extends GdxSprite
         bodyCategory = parent.bodyCategory;
         collidesWith = parent.collidesWith;
         stopWatch = StopWatch.start();
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
         isDrawable = true;
     }
 
@@ -90,7 +90,7 @@ public class ZapSprite extends GdxSprite
             {
                 if (animation.isAnimationFinished(elapsedAnimTime))
                 {
-                    setAction(Actions._HIDING);
+                    setAction(ActionStates._HIDING);
                     stopWatch.reset();
                     restingTime = 750;
                     isDrawable = false;
@@ -114,7 +114,7 @@ public class ZapSprite extends GdxSprite
             {
                 if (stopWatch.time(TimeUnit.MILLISECONDS) >= restingTime)
                 {
-                    setAction(Actions._STANDING);
+                    setAction(ActionStates._STANDING);
                     elapsedAnimTime = 0;
                     isDrawable = true;
                 }
@@ -128,7 +128,7 @@ public class ZapSprite extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

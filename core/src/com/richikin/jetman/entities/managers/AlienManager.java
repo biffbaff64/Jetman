@@ -142,7 +142,7 @@ public class AlienManager extends GenericEntityManager
                 {
                     SpinningBall spinningBall = new SpinningBall(app);
                     spinningBall.initialise(descriptor);
-                    app.entityData.addEntity(spinningBall);;
+                    app.entityData.addEntity(spinningBall);
                 }
                 break;
 

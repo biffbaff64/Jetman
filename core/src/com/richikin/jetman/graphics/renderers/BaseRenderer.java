@@ -253,6 +253,8 @@ public class BaseRenderer implements Disposable
 
             hudRenderer.render(app.spriteBatch, hudGameCamera);
 
+            app.baseRenderer.parallaxForeground.render();
+
             app.spriteBatch.end();
         }
 

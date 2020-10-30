@@ -20,7 +20,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
@@ -54,14 +54,14 @@ public class TwinkleStar extends GdxSprite
         animation.setFrameDuration(1.2f / 6);
         elapsedAnimTime = 0;
 
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
         isDrawable = true;
     }
 
     @Override
     public void update(int spriteNum)
     {
-        if (getAction() != Actions._STANDING)
+        if (getAction() != ActionStates._STANDING)
         {
             Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
         }

@@ -21,5 +21,5 @@ public enum ScreenID
     _TITLE_RENDERER,
     _GAME_RENDERER,
 
-    _NO_ID;
+    _NO_ID
 }

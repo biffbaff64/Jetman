@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -32,7 +32,7 @@ public class Teleporter extends GdxSprite
     {
         create(descriptor);
 
-        setAction(Actions._STANDING);
+        setAction(ActionStates._STANDING);
 
         animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
@@ -58,7 +58,7 @@ public class Teleporter extends GdxSprite
                 if (collisionObject.idBottom == GraphicID.G_NO_ID)
                 {
                     speed.y = 0;
-                    setAction(Actions._FALLING);
+                    setAction(ActionStates._FALLING);
                 }
             }
             break;
@@ -89,7 +89,7 @@ public class Teleporter extends GdxSprite
 
             case _HURT:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 
@@ -127,7 +127,7 @@ public class Teleporter extends GdxSprite
             @Override
             public void onPositiveCollision(GraphicID graphicID)
             {
-                if (getAction() == Actions._FALLING)
+                if (getAction() == ActionStates._FALLING)
                 {
                     GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
 
@@ -135,7 +135,7 @@ public class Teleporter extends GdxSprite
                     {
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        setAction(Actions._STANDING);
+                        setAction(ActionStates._STANDING);
                     }
                 }
             }

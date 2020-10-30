@@ -3,7 +3,7 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.enumslib.GraphicID;
@@ -54,7 +54,7 @@ public class AABB implements Disposable
                 // Grab rectangle from the global data table
                 contactBox = AABBData.boxes().get(index);
 
-                _thisSprite.collisionObject.action = Actions._COLLIDABLE;
+                _thisSprite.collisionObject.action = ActionStates._COLLIDABLE;
 
                 if ((contactBox != null)
                     && (contactBox.parentEntity != null)
@@ -105,10 +105,10 @@ public class AABB implements Disposable
                 if (isHitting)
                 {
                     collisionDetected = true;
-                    contactBox.action = Actions._COLLIDING;
+                    contactBox.action = ActionStates._COLLIDING;
 
                     _thisSprite.collisionObject.contactEntity = contactBox.parentEntity;
-                    _thisSprite.collisionObject.action        = Actions._COLLIDING;
+                    _thisSprite.collisionObject.action        = ActionStates._COLLIDING;
 
                     if ((_thisSprite.gid != GraphicID.G_PLAYER) && (contactBox.gid == GraphicID.G_PLAYER))
                     {

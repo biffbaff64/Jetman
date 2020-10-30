@@ -17,7 +17,7 @@
 package com.richikin.jetman.entities.hero;
 
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
@@ -72,7 +72,7 @@ public class ButtonInputHandler implements Disposable
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
             {
-                app.getHud().buttonA.release();
+//                app.getHud().buttonA.release();
 
                 if (app.getPlayer().isCarrying)
                 {
@@ -82,7 +82,7 @@ public class ButtonInputHandler implements Disposable
                     app.getBomb().isAttachedToPlayer = false;
                     app.getBomb().releaseXY.set(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
 
-                    app.getBomb().setAction(Actions._FALLING);
+                    app.getBomb().setAction(ActionStates._FALLING);
                 }
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY)
@@ -97,7 +97,7 @@ public class ButtonInputHandler implements Disposable
                     app.getGun().isAttachedToPlayer = false;
                     app.getGun().releaseXY.set(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
 
-                    app.getGun().setAction(Actions._FALLING);
+                    app.getGun().setAction(ActionStates._FALLING);
                 }
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._ROVER_RIDE)
@@ -107,8 +107,8 @@ public class ButtonInputHandler implements Disposable
                     app.getPlayer().isRidingRover = false;
                     app.getPlayer().actionButton.removeAction();
                     app.getPlayer().sprite.setPosition((app.getRover().sprite.getX() + 96), app.getPlayer().initXYZ.getY());
-                    app.getPlayer().setAction(Actions._STANDING);
-                    app.getRover().setAction(Actions._STANDING);
+                    app.getPlayer().setAction(ActionStates._STANDING);
+                    app.getRover().setAction(ActionStates._STANDING);
                 }
 
                 app.getHud().buttonA.release();
@@ -164,7 +164,7 @@ public class ButtonInputHandler implements Disposable
                     app.getPlayer().direction.setY(Movement._DIRECTION_UP);
                     app.getPlayer().speed.setY(MainPlayer._PLAYER_Y_SPEED);
 
-                    app.getPlayer().setAction(Actions._FLYING);
+                    app.getPlayer().setAction(ActionStates._FLYING);
                 }
                 else
                 {
@@ -218,13 +218,13 @@ public class ButtonInputHandler implements Disposable
 
                     if (app.getPlayer().isJumpingCrater)
                     {
-                        app.getPlayer().setAction(Actions._FLYING);
+                        app.getPlayer().setAction(ActionStates._FLYING);
                     }
                     else
                     {
                         if (!app.getPlayer().isInMidAir)
                         {
-                            app.getPlayer().setAction(Actions._RUNNING);
+                            app.getPlayer().setAction(ActionStates._RUNNING);
                         }
                     }
                 }
@@ -260,13 +260,13 @@ public class ButtonInputHandler implements Disposable
 
                     if (app.getPlayer().isJumpingCrater)
                     {
-                        app.getPlayer().setAction(Actions._FLYING);
+                        app.getPlayer().setAction(ActionStates._FLYING);
                     }
                     else
                     {
                         if (!app.getPlayer().isInMidAir)
                         {
-                            app.getPlayer().setAction(Actions._RUNNING);
+                            app.getPlayer().setAction(ActionStates._RUNNING);
                         }
                     }
                 }
@@ -288,17 +288,17 @@ public class ButtonInputHandler implements Disposable
             if (app.getPlayer().isRidingRover)
             {
                 app.getRover().isMovingX = false;
-                app.getRover().setAction(Actions._STANDING);
+                app.getRover().setAction(ActionStates._STANDING);
             }
-            else if ((app.getPlayer().getAction() != Actions._HURT)
-                    && (app.getPlayer().getAction() != Actions._FALLING_TO_GROUND))
+            else if ((app.getPlayer().getAction() != ActionStates._HURT)
+                    && (app.getPlayer().getAction() != ActionStates._FALLING_TO_GROUND))
             {
                 app.getPlayer().isMovingX = false;
                 app.getPlayer().isMovingY = false;
 
-                if (app.getPlayer().isOnGround && (app.getPlayer().getAction() != Actions._HOVERING))
+                if (app.getPlayer().isOnGround && (app.getPlayer().getAction() != ActionStates._HOVERING))
                 {
-                    app.getPlayer().setAction(Actions._STANDING);
+                    app.getPlayer().setAction(ActionStates._STANDING);
                     app.getPlayer().speed.set(0, 0);
                 }
                 else
@@ -309,7 +309,7 @@ public class ButtonInputHandler implements Disposable
                     if (app.getPlayer().isInMidAir)
                     {
                         app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
-                        app.getPlayer().setAction(Actions._FALLING);
+                        app.getPlayer().setAction(ActionStates._FALLING);
                         app.getPlayer().isMovingY = true;
 
                         if (app.getPlayer().speed.getY() <= 0)

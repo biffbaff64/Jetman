@@ -1,13 +1,13 @@
 package com.richikin.utilslib.entities.components;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 
 public interface EntityComponent
 {
-    void setAction(Actions _action);
+    void setAction(ActionStates _action);
 
-    Actions getAction();
+    ActionStates getAction();
 
     void tidy(int _index);
 

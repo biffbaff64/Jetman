@@ -13,14 +13,14 @@ public class ExplosionManager
 {
     static class ExplosionInfo
     {
-        GraphicID graphicID;
-        float     scale;
+        final GraphicID graphicID;
+        final float     scale;
 
         ExplosionInfo(GraphicID _gid, float _scale)
         {
             this.graphicID = _gid;
             this.scale = _scale;
-        };
+        }
     }
 
     private final ExplosionInfo[] explosionTypes =

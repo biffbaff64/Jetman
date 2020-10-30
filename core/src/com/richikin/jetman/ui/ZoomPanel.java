@@ -3,7 +3,6 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.jetman.core.App;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.Zoom;

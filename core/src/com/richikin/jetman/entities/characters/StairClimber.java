@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -19,8 +19,8 @@ import com.richikin.utilslib.physics.Movement;
 public class StairClimber extends GdxSprite
 {
     private StopWatch stopWatch;
-    private StairsPath stairsPath;
-    private App        app;
+    private       StairsPath stairsPath;
+    private final App        app;
 
     public StairClimber(GraphicID _gid, App _app)
     {
@@ -44,7 +44,7 @@ public class StairClimber extends GdxSprite
         stairsPath = new StairsPath();
         stairsPath.setNextPathData(this);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         stopWatch = StopWatch.start();
     }
 
@@ -68,12 +68,12 @@ public class StairClimber extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
 
-                if (getAction() == Actions._KILLED)
+                if (getAction() == ActionStates._KILLED)
                 {
                     app.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
@@ -84,7 +84,7 @@ public class StairClimber extends GdxSprite
 
             case _DYING:
             {
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

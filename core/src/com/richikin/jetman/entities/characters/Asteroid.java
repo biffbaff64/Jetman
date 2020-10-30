@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -47,7 +47,7 @@ public class Asteroid extends GdxSprite
         direction.setX((sprite.getX() < app.getPlayer().sprite.getX()) ? Movement._DIRECTION_RIGHT : Movement._DIRECTION_LEFT);
         direction.setY(Movement._DIRECTION_DOWN);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         isRotating      = true;
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
         isDebuggable    = true;
@@ -73,7 +73,7 @@ public class Asteroid extends GdxSprite
                 if ((collisionObject.idBottom == GraphicID._GROUND)
                     || collisionObject.isHittingPlayer)
                 {
-                    setAction(Actions._HURT);
+                    setAction(ActionStates._HURT);
                     elapsedAnimTime = 0;
                 }
             }
@@ -84,7 +84,7 @@ public class Asteroid extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
 
-                setAction(Actions._EXPLODING);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
@@ -108,7 +108,7 @@ public class Asteroid extends GdxSprite
                     craterManager.makeCrater(x, y);
                 }
 
-                setAction(Actions._DEAD);
+                setAction(ActionStates._DEAD);
             }
             break;
 

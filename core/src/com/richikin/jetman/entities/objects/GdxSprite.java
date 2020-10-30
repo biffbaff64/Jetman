@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.utilslib.entities.components.SpriteComponent;
@@ -115,7 +115,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
         spriteNumber = descriptor._INDEX;
         isAnimating  = (descriptor._FRAMES > 1);
-        setAction(Actions._NO_ACTION);
+        setAction(ActionStates._NO_ACTION);
 
         if (descriptor._ASSET != null)
         {
@@ -148,7 +148,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         position  = new SimpleVec2F(sprite.getX(), sprite.getY());
         zPosition = (int) vec3F.z;
 
-        initXYZ.set(sprite.getX(), sprite.getY(), (float) vec3F.z);
+        initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
     }
 
     @Override
@@ -178,14 +178,14 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     {
         if (app.gameProgress.levelCompleted
             && !isMainCharacter
-            && (entityAction != Actions._DEAD)
-            && (entityAction != Actions._DYING))
+            && (entityAction != ActionStates._DEAD)
+            && (entityAction != ActionStates._DYING))
         {
-            entityAction = Actions._DYING;
+            entityAction = ActionStates._DYING;
         }
         else
         {
-            if (entityAction == Actions._RESTARTING)
+            if (entityAction == ActionStates._RESTARTING)
             {
                 sprite.setPosition(initXYZ.getX(), initXYZ.getY());
             }
@@ -384,14 +384,14 @@ public class GdxSprite extends GameEntity implements SpriteComponent
             // All CollisionObjects are collidable by default.
             // This flag is available to turn off detection
             // as and when needed.
-            if (collisionObject.action == Actions._COLLIDABLE)
+            if (collisionObject.action == ActionStates._COLLIDABLE)
             {
                 if (aabb.checkHittingBox(this))
                 {
-                    collisionObject.action = Actions._COLLIDING;
+                    collisionObject.action = ActionStates._COLLIDING;
                 }
 
-                if (collisionObject.action == Actions._COLLIDING)
+                if (collisionObject.action == ActionStates._COLLIDING)
                 {
                     if (app.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
                     {
@@ -409,7 +409,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
                 //
                 // collisionObject.action might have changed at this point.
-                if (collisionObject.action != Actions._COLLIDING)
+                if (collisionObject.action != ActionStates._COLLIDING)
                 {
                     if (collisionCallback != null)
                     {

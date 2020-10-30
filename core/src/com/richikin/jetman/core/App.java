@@ -95,13 +95,9 @@ public abstract class App extends LibApp
 
     public boolean doesRoverExist()
     {
-        boolean exists = false;
-
-        exists = ((roverManager != null)
+        return ((roverManager != null)
             && (roverManager.getGID() == GraphicID.G_ROVER)
             && (roverManager.getActiveCount() > 0));
-
-        return exists;
     }
 
     public RoverGun getGun()

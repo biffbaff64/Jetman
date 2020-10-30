@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -23,7 +23,7 @@ public class Ufo extends GdxSprite
     {
         create(descriptor);
 
-        setAction(Actions._RUNNING);
+        setAction(ActionStates._RUNNING);
         sprite.setColor(Color.WHITE);
 
         bodyCategory = Gfx.CAT_SCENERY;

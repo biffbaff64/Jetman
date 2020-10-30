@@ -3,7 +3,7 @@ package com.richikin.jetman.entities.hero;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.enumslib.Actions;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.physics.Movement;
@@ -30,7 +30,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     @Override
     public void onPositiveCollision(GraphicID graphicID)
     {
-        if (app.getPlayer().getAction() != Actions._TELEPORTING)
+        if (app.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
             switch (graphicID)
             {
@@ -41,7 +41,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case _CRATER:
                 case G_ROVER_BOOT:
                 {
-                    if ((app.getPlayer().getAction() == Actions._FALLING_TO_GROUND)
+                    if ((app.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                         && (graphicID != GraphicID.G_ROVER_BOOT))
                     {
                         app.getPlayer().explode();
@@ -81,14 +81,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 {
                     if (!Developer.isGodMode())
                     {
-                        if ((app.getPlayer().getAction() != Actions._EXPLODING)
-                            && (app.getPlayer().getAction() != Actions._DYING))
+                        if ((app.getPlayer().getAction() != ActionStates._EXPLODING)
+                            && (app.getPlayer().getAction() != ActionStates._DYING))
                         {
                             app.getPlayer().kill();
 
                             if ((graphicID != GraphicID.G_MISSILE_BASE) && (graphicID != GraphicID.G_MISSILE_LAUNCHER))
                             {
-                                app.getPlayer().collisionObject.contactEntity.setAction(Actions._HURT);
+                                app.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
                             }
                         }
                     }
@@ -104,7 +104,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     @Override
     public void onNegativeCollision()
     {
-        if (app.getPlayer().getAction() != Actions._TELEPORTING)
+        if (app.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
             checkForFalling();
             checkForGround();
@@ -152,9 +152,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
             app.getPlayer().isInMidAir = true;
             app.getPlayer().isOnGround = false;
 
-            if (app.getPlayer().getAction() == Actions._STANDING)
+            if (app.getPlayer().getAction() == ActionStates._STANDING)
             {
-                app.getPlayer().setAction(Actions._FALLING);
+                app.getPlayer().setAction(ActionStates._FALLING);
             }
         }
     }
@@ -186,9 +186,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
         app.getPlayer().isOnGround    = true;
         app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
 
-        if (app.getPlayer().getAction() == Actions._FALLING)
+        if (app.getPlayer().getAction() == ActionStates._FALLING)
         {
-            app.getPlayer().setAction(Actions._STANDING);
+            app.getPlayer().setAction(ActionStates._STANDING);
             app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
         }
 
@@ -217,9 +217,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 app.getPlayer().isOnGround = true;
                 app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
 
-                if (app.getPlayer().getAction() == Actions._FALLING)
+                if (app.getPlayer().getAction() == ActionStates._FALLING)
                 {
-                    app.getPlayer().setAction(Actions._STANDING);
+                    app.getPlayer().setAction(ActionStates._STANDING);
                     app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
                 }
 
@@ -234,9 +234,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 app.getPlayer().isInMidAir = true;
                 app.getPlayer().isOnGround = false;
 
-                if (app.getPlayer().getAction() == Actions._STANDING)
+                if (app.getPlayer().getAction() == ActionStates._STANDING)
                 {
-                    app.getPlayer().setAction(Actions._FALLING);
+                    app.getPlayer().setAction(ActionStates._FALLING);
                 }
             }
             break;
@@ -251,7 +251,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
             {
                 if (!app.getPlayer().isMovingX)
                 {
-                    app.getPlayer().setAction(Actions._HOVERING);
+                    app.getPlayer().setAction(ActionStates._HOVERING);
                 }
 
                 app.getPlayer().isJumpingCrater = true;

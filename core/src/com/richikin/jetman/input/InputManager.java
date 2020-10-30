@@ -29,7 +29,7 @@ public class InputManager
     public float            _horizontalValue;
     public float            _verticalValue;
 
-    protected App app;
+    protected final App app;
 
     public InputManager(App _app)
     {

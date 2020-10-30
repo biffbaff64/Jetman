@@ -17,8 +17,8 @@ public class VirtualJoystick
     private static final float PAD_WIDTH  = 240;
     private static final float PAD_HEIGHT = 240;
 
-    private       com.richikin.utilslib.input.Touchpad touchpad;
-    private final App                                  app;
+    private       Touchpad touchpad;
+    private final App      app;
 
     public VirtualJoystick(App _app)
     {
@@ -31,7 +31,7 @@ public class VirtualJoystick
         touchpadSkin.add("background", new Texture("data/packedimages/input/touch_background.png"));
         touchpadSkin.add("ball", new Texture("data/packedimages/input/joystick_ball.png"));
 
-        com.richikin.utilslib.input.Touchpad.TouchpadStyle touchpadStyle = new com.richikin.utilslib.input.Touchpad.TouchpadStyle();
+        Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle();
 
         Drawable touchBackground = touchpadSkin.getDrawable("background");
         Drawable touchKnob       = touchpadSkin.getDrawable("ball");
@@ -39,7 +39,7 @@ public class VirtualJoystick
         touchpadStyle.background = touchBackground;
         touchpadStyle.knob       = touchKnob;
 
-        touchpad = new com.richikin.utilslib.input.Touchpad(1, touchpadStyle);
+        touchpad = new Touchpad(1, touchpadStyle);
         touchpad.setBounds(PAD_X, PAD_Y, PAD_WIDTH, PAD_HEIGHT);
         touchpad.setResetOnTouchUp(true);
         app.stage.addActor(touchpad);

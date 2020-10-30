@@ -15,8 +15,8 @@ public class ActionButtonHandler
     }
 
     private       int        teleportNumber;
-    private       ActionMode actionMode;
-    private       ActionMode previousActionMode;
+    private final ActionMode actionMode;
+    private final ActionMode previousActionMode;
     private final App        app;
 
     public ActionButtonHandler(App _app)
