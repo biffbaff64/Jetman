@@ -10,7 +10,7 @@ import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.graphics.ViewportType;
-import com.richikin.jetman.graphics.camera.Zoom;
+import com.richikin.utilslib.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.utilslib.maths.SimpleVec3F;

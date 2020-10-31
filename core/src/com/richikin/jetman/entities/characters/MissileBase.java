@@ -15,7 +15,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.graphics.camera.Shake;
+import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.Trace;
 

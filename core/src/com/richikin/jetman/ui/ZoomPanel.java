@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.camera.Zoom;
+import com.richikin.utilslib.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.ui.BasicPanel;
 import org.jetbrains.annotations.NotNull;

@@ -173,9 +173,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonA != null)
+                if (app.getHud().buttonAction != null)
                 {
-                    app.getHud().buttonA.press();
+                    app.getHud().buttonAction.press();
                 }
             }
         }
@@ -185,9 +185,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonB != null)
+                if (app.getHud().buttonAttack != null)
                 {
-                    app.getHud().buttonB.press();
+                    app.getHud().buttonAttack.press();
                 }
             }
         }
@@ -275,9 +275,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonA != null)
+                if (app.getHud().buttonAction != null)
                 {
-                    app.getHud().buttonA.release();
+                    app.getHud().buttonAction.release();
                 }
             }
         }
@@ -287,9 +287,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonB != null)
+                if (app.getHud().buttonAttack != null)
                 {
-                    app.getHud().buttonB.release();
+                    app.getHud().buttonAttack.release();
                 }
             }
         }

@@ -56,13 +56,13 @@ public class EntityUtils
         return animation.getKeyFrame(elapsedTime, looping);
     }
 
-    public com.richikin.jetman.entities.objects.GdxSprite getRandomSprite(com.richikin.jetman.entities.objects.GdxSprite oneToAvoid)
+    public GdxSprite getRandomSprite(GdxSprite oneToAvoid)
     {
-        com.richikin.jetman.entities.objects.GdxSprite randomSprite;
+        GdxSprite randomSprite;
 
         do
         {
-            randomSprite = (com.richikin.jetman.entities.objects.GdxSprite) app.entityData.entityMap.get(MathUtils.random(app.entityData.entityMap.size - 1));
+            randomSprite = (GdxSprite) app.entityData.entityMap.get(MathUtils.random(app.entityData.entityMap.size - 1));
         }
         while ((randomSprite.gid == oneToAvoid.gid)
                 || (randomSprite.sprite == null)
@@ -77,10 +77,10 @@ public class EntityUtils
      * @param _gid
      * @return
      */
-    public com.richikin.jetman.entities.objects.GdxSprite findNearest(GraphicID _gid)
+    public GdxSprite findNearest(GraphicID _gid)
     {
-        com.richikin.jetman.entities.objects.GdxSprite distantSprite = findFirstOf(_gid);
-        com.richikin.jetman.entities.objects.GdxSprite gdxSprite;
+        GdxSprite distantSprite = findFirstOf(_gid);
+        GdxSprite gdxSprite;
 
         if (distantSprite != null)
         {
@@ -90,7 +90,7 @@ public class EntityUtils
             {
                 if (entity.gid == _gid)
                 {
-                    gdxSprite = (com.richikin.jetman.entities.objects.GdxSprite) entity;
+                    gdxSprite = (GdxSprite) entity;
 
                     float tempDistance = app.getPlayer().getPosition().dst(gdxSprite.getPosition());
 
@@ -106,16 +106,16 @@ public class EntityUtils
         return distantSprite;
     }
 
-    public com.richikin.jetman.entities.objects.GdxSprite getDistantSprite(com.richikin.jetman.entities.objects.GdxSprite _checkSprite)
+    public GdxSprite getDistantSprite(GdxSprite _checkSprite)
     {
-        com.richikin.jetman.entities.objects.GdxSprite distantSprite = app.getPlayer();
-        com.richikin.jetman.entities.objects.GdxSprite gdxSprite;
+        GdxSprite distantSprite = app.getPlayer();
+        GdxSprite gdxSprite;
 
         float distance = _checkSprite.getPosition().dst(distantSprite.getPosition());
 
         for (GameEntity entity : app.entityData.entityMap)
         {
-            gdxSprite = (com.richikin.jetman.entities.objects.GdxSprite) entity;
+            gdxSprite = (GdxSprite) entity;
 
             float tempDistance = _checkSprite.getPosition().dst(gdxSprite.getPosition());
 
@@ -137,11 +137,11 @@ public class EntityUtils
     {
         if (app.entityData.entityMap != null)
         {
-            com.richikin.jetman.entities.objects.GdxSprite entity;
+            GdxSprite entity;
 
             for (int i = 0; i < app.entityData.entityMap.size; i++)
             {
-                entity = (com.richikin.jetman.entities.objects.GdxSprite) app.entityData.entityMap.get(i);
+                entity = (GdxSprite) app.entityData.entityMap.get(i);
 
                 entity.sprite.setPosition(entity.initXYZ.getX(), entity.initXYZ.getY());
             }
@@ -253,7 +253,7 @@ public class EntityUtils
         return zed;
     }
 
-    public boolean isOnScreen(@NotNull com.richikin.jetman.entities.objects.GdxSprite spriteObject)
+    public boolean isOnScreen(@NotNull GdxSprite spriteObject)
     {
         return app.mapData.viewportBox.overlaps(spriteObject.sprite.getBoundingRectangle());
     }
@@ -269,24 +269,24 @@ public class EntityUtils
         }
     }
 
-    public com.richikin.jetman.entities.objects.GdxSprite findFirstOf(final GraphicID _gid)
+    public GdxSprite findFirstOf(final GraphicID _gid)
     {
-        com.richikin.jetman.entities.objects.GdxSprite gdxSprite = null;
+        GdxSprite gdxSprite = null;
 
         for (GameEntity entity : app.entityData.entityMap)
         {
             if ((entity.gid == _gid) && (gdxSprite == null))
             {
-                gdxSprite = (com.richikin.jetman.entities.objects.GdxSprite) entity;
+                gdxSprite = (GdxSprite) entity;
             }
         }
 
         return gdxSprite;
     }
 
-    public com.richikin.jetman.entities.objects.GdxSprite findLastOf(final GraphicID _gid)
+    public GdxSprite findLastOf(final GraphicID _gid)
     {
-        com.richikin.jetman.entities.objects.GdxSprite gdxSprite = null;
+        GdxSprite gdxSprite = null;
 
         for (GameEntity entity : app.entityData.entityMap)
         {

@@ -3,7 +3,8 @@ package com.richikin.jetman.screens;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.*;
-import com.richikin.jetman.graphics.camera.Shake;
+import com.richikin.utilslib.graphics.camera.Shake;
+import com.richikin.jetman.ui.GameCompletedPanel;
 import com.richikin.utilslib.input.ControllerType;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.StopWatch;
@@ -13,7 +14,7 @@ import com.richikin.utilslib.states.StateID;
 
 public class MainGameScreen extends AbstractBaseScreen
 {
-//    public GameCompletedPanel completedPanel;
+    public GameCompletedPanel completedPanel;
     public StopWatch          retryDelay;
     public EndgameManager     endGameManager;
     public GameControlLoop    gameControlLoop;

@@ -44,7 +44,7 @@ public class ButtonInputHandler implements Disposable
 
         //
         // FIRE button - shoot lasers at the bad guys
-        if (app.getHud().buttonB.isPressed())
+        if (app.getHud().buttonAttack.isPressed())
         {
             if (app.getPlayer().isRidingRover)
             {
@@ -64,7 +64,7 @@ public class ButtonInputHandler implements Disposable
         //
         // ACTION Button, used for picking up bombs or bridge sections,
         // entering transporters, or entering the Rover
-        if (app.getHud().buttonA.isPressed())
+        if (app.getHud().buttonAction.isPressed())
         {
             if (app.getPlayer().collision.isTeleporterPresent())
             {
@@ -72,7 +72,7 @@ public class ButtonInputHandler implements Disposable
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
             {
-//                app.getHud().buttonA.release();
+                app.getHud().buttonAction.release();
 
                 if (app.getPlayer().isCarrying)
                 {
@@ -87,7 +87,7 @@ public class ButtonInputHandler implements Disposable
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY)
             {
-                app.getHud().buttonA.release();
+                app.getHud().buttonAction.release();
 
                 if (app.getPlayer().isCarrying)
                 {
@@ -111,11 +111,11 @@ public class ButtonInputHandler implements Disposable
                     app.getRover().setAction(ActionStates._STANDING);
                 }
 
-                app.getHud().buttonA.release();
+                app.getHud().buttonAction.release();
             }
             else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BRIDGE_CARRY)
             {
-                app.getHud().buttonA.release();
+                app.getHud().buttonAction.release();
 
                 if (app.getPlayer().isCarrying && app.getPlayer().isOnGround && !app.getPlayer().isOnRoverBack)
                 {

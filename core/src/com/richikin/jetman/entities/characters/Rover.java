@@ -12,6 +12,8 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.input.UIButtons;
+import com.richikin.utilslib.google.PlayServicesID;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
@@ -286,7 +288,7 @@ public class Rover extends GdxSprite
             speed.set(3, 0);
             setAction(ActionStates._RUNNING);
 
-//            app.googleServices.unlockAchievement(PlayServicesID.achievement_moon_rider.getID());
+            app.googleServices.unlockAchievement(PlayServicesID.achievement_moon_rider.getID());
         }
         else
         {
@@ -318,11 +320,11 @@ public class Rover extends GdxSprite
 
     private void obstacleCheck()
     {
-//        app.getPlayer().isBlockedLeft = (collisionCheck(app.collisionUtils.getBoxHittingLeft(this).gid)
-//            && (lookingAt.getX() == Movement._DIRECTION_LEFT));
-//
-//        app.getPlayer().isBlockedRight = (collisionCheck(app.collisionUtils.getBoxHittingRight(this).gid)
-//            && (lookingAt.getX() == Movement._DIRECTION_RIGHT));
+        app.getPlayer().isBlockedLeft = (collisionCheck(app.collisionUtils.getBoxHittingLeft(this).gid)
+            && (lookingAt.getX() == Movement._DIRECTION_LEFT));
+
+        app.getPlayer().isBlockedRight = (collisionCheck(app.collisionUtils.getBoxHittingRight(this).gid)
+            && (lookingAt.getX() == Movement._DIRECTION_RIGHT));
     }
 
     private boolean collisionCheck(GraphicID graphicID)
@@ -360,21 +362,21 @@ public class Rover extends GdxSprite
     // TODO: 29/09/2018 - Move this to RoverGun() class
     private void moveGunTurret()
     {
-//        if (app.getGun().isAttachedToRover)
-//        {
-//            if (UIButtons.buttonUp.isPressed && (app.getGun().gunTurretAngle >= 0.0f) && (app.getGun().gunTurretAngle < 90.0f))
-//            {
-//                app.getGun().gunTurretAngle++;
-//            }
-//            else
-//            {
-//                if (UIButtons.buttonDown.isPressed && (app.getGun().gunTurretAngle <= 90.0f) && (app.getGun().gunTurretAngle > 0.0f))
-//                {
-//                    app.getGun().gunTurretAngle--;
-//                }
-//            }
-//
-//            app.getGun().gunTurret.sprite.setRotation(app.getGun().gunTurretAngle * this.direction.getX());
-//        }
+        if (app.getGun().isAttachedToRover)
+        {
+            if (app.getHud().buttonUp.isPressed() && (app.getGun().gunTurretAngle >= 0.0f) && (app.getGun().gunTurretAngle < 90.0f))
+            {
+                app.getGun().gunTurretAngle++;
+            }
+            else
+            {
+                if (app.getHud().buttonDown.isPressed() && (app.getGun().gunTurretAngle <= 90.0f) && (app.getGun().gunTurretAngle > 0.0f))
+                {
+                    app.getGun().gunTurretAngle--;
+                }
+            }
+
+            app.getGun().gunTurret.sprite.setRotation(app.getGun().gunTurretAngle * this.direction.getX());
+        }
     }
 }

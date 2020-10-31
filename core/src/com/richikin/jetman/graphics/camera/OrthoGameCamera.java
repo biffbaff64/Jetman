@@ -13,6 +13,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.graphics.IGameCamera;
 import com.richikin.utilslib.graphics.ViewportType;
+import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.logging.NotImplementedException;
 
@@ -113,7 +114,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
             if (_shake)
             {
-                Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
+                com.richikin.utilslib.graphics.camera.Shake.update(Gdx.graphics.getDeltaTime(), camera);
             }
 
             camera.update();
@@ -169,7 +170,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
             if (_shake)
             {
-                Shake.update(Gdx.graphics.getDeltaTime(), camera, app);
+                Shake.update(Gdx.graphics.getDeltaTime(), camera);
             }
 
             camera.update();

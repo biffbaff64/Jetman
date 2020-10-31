@@ -1,9 +1,8 @@
 
-package com.richikin.jetman.graphics.camera;
+package com.richikin.utilslib.graphics.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.core.App;
 
 @SuppressWarnings({"WeakerAccess", "FieldCanBeLocal"})
 public class Shake
@@ -17,12 +16,12 @@ public class Shake
     private static float shakeIntensity;
     private static boolean screenShakeAllowed;
 
-    public static void start(App app)
+    public static void start()
     {
-        start(30, 450, 10, app);
+        start(30, 450, 10);
     }
 
-    public static void start(float radius, float duration, float intensity, App app)
+    public static void start(float radius, float duration, float intensity)
     {
         if (screenShakeAllowed)
         {
@@ -39,7 +38,7 @@ public class Shake
         }
     }
 
-    public static void update(float delta, OrthographicCamera camera, App app)
+    public static void update(float delta, OrthographicCamera camera)
     {
         if (!screenShakeAllowed)
         {

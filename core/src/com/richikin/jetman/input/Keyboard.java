@@ -106,12 +106,12 @@ public class Keyboard extends InputAdapter
         }
         else if (keycode == UIButtons.defaultValueB)
         {
-            app.getHud().buttonB.press();
+            app.getHud().buttonAttack.press();
             returnFlag = true;
         }
         else if (keycode == UIButtons.defaultValueA)
         {
-            app.getHud().buttonA.press();
+            app.getHud().buttonAction.press();
             returnFlag = true;
         }
         else
@@ -222,12 +222,12 @@ public class Keyboard extends InputAdapter
         }
         else if (keycode == UIButtons.defaultValueB)
         {
-            app.getHud().buttonB.release();
+            app.getHud().buttonAttack.release();
             returnFlag = true;
         }
         else if (keycode == UIButtons.defaultValueA)
         {
-            app.getHud().buttonA.release();
+            app.getHud().buttonAction.release();
             returnFlag = true;
         }
         else

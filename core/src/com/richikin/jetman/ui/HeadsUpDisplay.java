@@ -81,15 +81,15 @@ public class HeadsUpDisplay implements Disposable
     public GDXButton buttonDown;
     public GDXButton buttonLeft;
     public GDXButton buttonRight;
-    public GDXButton buttonA;
-    public GDXButton buttonB;
+    public GDXButton buttonAction;
+    public GDXButton buttonAttack;
     public GDXButton buttonX;
     public GDXButton buttonY;
     public Switch    buttonPause;
     public Switch    buttonDevOptions;
 
-    public ImageButton Actionbutton;
-    public ImageButton Attackbutton;
+    public ImageButton ActionButton;
+    public ImageButton AttackButton;
 
     public MessageManager messageManager;
     public PausePanel     pausePanel;
@@ -411,11 +411,6 @@ public class HeadsUpDisplay implements Disposable
             }
 
             //
-            // The foreground parallax is the row of rocks
-            // in front of the main ground
-//            app.baseRenderer.parallaxForeground.render();
-
-            //
             // Draw the Pause panel if activated
             if (stateID == StateID._STATE_PAUSED)
             {
@@ -428,11 +423,11 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            Actionbutton.addAction(Actions.show());
-            Attackbutton.addAction(Actions.show());
+            ActionButton.addAction(Actions.show());
+            AttackButton.addAction(Actions.show());
 
-            Actionbutton.setVisible(true);
-            Attackbutton.setVisible(true);
+            ActionButton.setVisible(true);
+            AttackButton.setVisible(true);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -452,11 +447,11 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            Actionbutton.addAction(Actions.hide());
-            Attackbutton.addAction(Actions.hide());
+            ActionButton.addAction(Actions.hide());
+            AttackButton.addAction(Actions.hide());
 
-            Actionbutton.setVisible(false);
-            Attackbutton.setVisible(false);
+            ActionButton.setVisible(false);
+            AttackButton.setVisible(false);
 
             if (app.inputManager.virtualJoystick != null)
             {
@@ -549,6 +544,7 @@ public class HeadsUpDisplay implements Disposable
             }
 
             smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
+            smallFont.draw(app.spriteBatch, "ActionButton  : " + app.getPlayer().actionButton.getActionMode().name(), originX + 20, originY + 570);
         }
 
         bigFont.draw
@@ -590,8 +586,8 @@ public class HeadsUpDisplay implements Disposable
         {
             if (showHUDControls)
             {
-                Actionbutton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
-                Attackbutton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
+                ActionButton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
+                AttackButton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
 
                 if (app.inputManager.virtualJoystick != null)
                 {
@@ -654,17 +650,17 @@ public class HeadsUpDisplay implements Disposable
 
         int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-        buttonA = new Switch();
-        buttonB = new Switch();
+        buttonAction = new Switch();
+        buttonAttack = new Switch();
 
-        Actionbutton = Scene2DUtils.addButton
+        ActionButton = Scene2DUtils.addButton
             (
                 "button_a",
                 "button_a_pressed",
                 displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
             );
 
-        Attackbutton = Scene2DUtils.addButton
+        AttackButton = Scene2DUtils.addButton
             (
                 "button_b",
                 "button_b_pressed",
@@ -684,13 +680,13 @@ public class HeadsUpDisplay implements Disposable
 
         AppConfig.gameButtonsReady = true;
 
-        Actionbutton.addListener(new ClickListener()
+        ActionButton.addListener(new ClickListener()
         {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
                 event.handle();
-                buttonA.press();
+                buttonAction.press();
                 return true;
             }
 
@@ -698,17 +694,17 @@ public class HeadsUpDisplay implements Disposable
             public void touchUp(InputEvent event, float x, float y, int pointer, int button)
             {
                 event.handle();
-                buttonA.release();
+                buttonAction.release();
             }
         });
 
-        Attackbutton.addListener(new ClickListener()
+        AttackButton.addListener(new ClickListener()
         {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
             {
                 event.handle();
-                buttonB.press();
+                buttonAttack.press();
                 return true;
             }
 
@@ -716,7 +712,7 @@ public class HeadsUpDisplay implements Disposable
             public void touchUp(InputEvent event, float x, float y, int pointer, int button)
             {
                 event.handle();
-                buttonB.release();
+                buttonAttack.release();
             }
         });
     }
@@ -757,9 +753,9 @@ public class HeadsUpDisplay implements Disposable
     @Override
     public void dispose()
     {
-        buttonA          = null;
-        buttonB          = null;
-        buttonPause      = null;
+        buttonAction = null;
+        buttonAttack = null;
+        buttonPause  = null;
         buttonDevOptions = null;
 
         messageManager = null;

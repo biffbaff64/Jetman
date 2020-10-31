@@ -1,12 +1,12 @@
 
-package com.richikin.jetman.graphics.camera;
+package com.richikin.utilslib.graphics.camera;
 
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
 
 public class Zoom
 {
-    private static final float _DEFAULT_ZOOM = 0.0f;
+    private static final float _DEFAULT_ZOOM = 1.0f;
+    private static final float _INITIAL_ZOOM = 0.0f;
 
     private       int     direction;
     private       float   zoomValue;
@@ -16,9 +16,9 @@ public class Zoom
 
     public Zoom()
     {
-        this.zoomValue  = _DEFAULT_ZOOM;
-        this.resetValue = _DEFAULT_ZOOM;
-        this.target     = Gfx._DEFAULT_ZOOM;
+        this.zoomValue  = _INITIAL_ZOOM;
+        this.resetValue = _INITIAL_ZOOM;
+        this.target     = _DEFAULT_ZOOM;
         this.bounce     = false;
         this.direction  = Movement._DIRECTION_STILL;
     }
@@ -27,15 +27,15 @@ public class Zoom
     {
         boolean done = false;
 
-        if(direction == Movement._DIRECTION_UP)
+        if (direction == Movement._DIRECTION_UP)
         {
-            if(zoomValue < target)
+            if (zoomValue < target)
             {
                 zoomValue += zoom;
             }
             else
             {
-                if(bounce)
+                if (bounce)
                 {
                     direction = Movement._DIRECTION_DOWN;
                 }
@@ -43,15 +43,15 @@ public class Zoom
                 done = true;
             }
         }
-        else if(direction == Movement._DIRECTION_DOWN)
+        else if (direction == Movement._DIRECTION_DOWN)
         {
-            if(zoomValue > target)
+            if (zoomValue > target)
             {
                 zoomValue -= zoom;
             }
             else
             {
-                if(bounce)
+                if (bounce)
                 {
                     direction = Movement._DIRECTION_UP;
                 }
