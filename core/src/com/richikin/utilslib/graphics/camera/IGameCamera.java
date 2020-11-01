@@ -13,7 +13,7 @@ public interface IGameCamera
 
     Vector3 getPosition();
 
-    void updatePosition();
+    void updatePosition(float targetX, float targetY);
 
     void lerpTo(SimpleVec3F _position, float _speed);
 

@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics.camera;
+package com.richikin.utilslib.graphics.camera;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,15 +9,10 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.graphics.camera.IGameCamera;
-import com.richikin.utilslib.graphics.camera.ViewportType;
-import com.richikin.utilslib.graphics.camera.Shake;
+import com.richikin.utilslib.graphics.Gfx;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.logging.NotImplementedException;
 
-// TODO: 01/11/2020 - Move to utilslib
 public class OrthoGameCamera implements IGameCamera, Disposable
 {
     public Viewport           viewport;
@@ -28,12 +23,10 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
     private       float   defaultZoom;
     public        Vector3 lerpVector;
-    private final App     app;
 
-    public OrthoGameCamera(float _sceneWidth, float _sceneHeight, ViewportType _viewType, String _name, App _app)
+    public OrthoGameCamera(float _sceneWidth, float _sceneHeight, ViewportType _viewType, String _name)
     {
         this.name             = _name;
-        this.app              = _app;
         this.isInUse          = false;
         this.isLerpingEnabled = false;
         this.lerpVector       = new Vector3();
@@ -46,14 +39,24 @@ public class OrthoGameCamera implements IGameCamera, Disposable
         {
             case _STRETCH:
             {
-                viewport = new StretchViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport = new StretchViewport
+                    (
+                        camera.viewportWidth * Gfx._PPM,
+                        camera.viewportHeight * Gfx._PPM,
+                        camera
+                    );
                 viewport.apply();
             }
             break;
 
             case _FIT:
             {
-                viewport = new FitViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport = new FitViewport
+                    (
+                        camera.viewportWidth * Gfx._PPM,
+                        camera.viewportHeight * Gfx._PPM,
+                        camera
+                    );
                 viewport.apply();
             }
             break;
@@ -67,13 +70,18 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             case _EXTENDED:
             default:
             {
-                viewport = new ExtendViewport(camera.viewportWidth * Gfx._PPM, camera.viewportHeight * Gfx._PPM, camera);
+                viewport = new ExtendViewport
+                    (
+                        camera.viewportWidth * Gfx._PPM,
+                        camera.viewportHeight * Gfx._PPM,
+                        camera
+                    );
                 viewport.apply();
             }
             break;
         }
 
-        setZoomDefault(Gfx._DEFAULT_ZOOM);
+        setZoomDefault(Zoom._DEFAULT_ZOOM);
     }
 
     @Override
@@ -129,7 +137,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     }
 
     @Override
-    public void updatePosition()
+    public void updatePosition(float targetX, float targetY)
     {
         if (isInUse)
         {
@@ -139,8 +147,8 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             // b = target
             // a = (b - a) * lerp
 
-            position.x = camera.position.x + (app.getPlayer().getPosition().x - camera.position.x) * 0.1f;
-            position.y = camera.position.y + (app.getPlayer().getPosition().y - camera.position.y) * 0.1f;
+            position.x = camera.position.x + (targetX - camera.position.x) * 0.1f;
+            position.y = camera.position.y + (targetY - camera.position.y) * 0.1f;
 
             camera.position.set(position);
             camera.update();
@@ -213,7 +221,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
     @Override
     public void reset()
     {
-        camera.zoom = Gfx._DEFAULT_ZOOM;
+        camera.zoom = Zoom._DEFAULT_ZOOM;
         camera.position.set(0, 0, 0);
         camera.update();
     }

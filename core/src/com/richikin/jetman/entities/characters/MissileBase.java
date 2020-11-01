@@ -93,7 +93,7 @@ public class MissileBase extends GdxSprite
 
                 setAction(ActionStates._EXPLODING);
 
-                Shake.start(app);
+                Shake.start();
             }
             break;
 

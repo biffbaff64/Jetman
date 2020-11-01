@@ -10,7 +10,7 @@ import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.graphics.camera.CameraUtils;
+import com.richikin.jetman.graphics.CameraUtils;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;

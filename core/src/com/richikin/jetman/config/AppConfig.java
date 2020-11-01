@@ -112,7 +112,6 @@ public class AppConfig extends com.richikin.utilslib.config.AppConfig
         }
     }
 
-    // TODO: 19/10/2020 - Is this method really necessary?
     public static boolean gameScreenActive()
     {
         return currentScreenID == ScreenID._GAME_SCREEN;

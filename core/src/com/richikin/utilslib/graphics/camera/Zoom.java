@@ -5,8 +5,8 @@ import com.richikin.utilslib.physics.Movement;
 
 public class Zoom
 {
-    private static final float _DEFAULT_ZOOM = 1.0f;
-    private static final float _INITIAL_ZOOM = 0.0f;
+    public static final float _DEFAULT_ZOOM = 1.0f;
+    public static final float _INITIAL_ZOOM = 0.0f;
 
     private       int     direction;
     private       float   zoomValue;

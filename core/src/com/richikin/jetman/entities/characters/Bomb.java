@@ -26,6 +26,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.google.PlayServicesID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
@@ -237,7 +238,7 @@ public class Bomb extends GdxSprite
                         speed.setY(0);
                         setAction(ActionStates._STANDING);
 
-//                        app.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
+                        app.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
                     }
                 }
             }

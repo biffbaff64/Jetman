@@ -9,7 +9,7 @@ import com.richikin.enumslib.ScreenID;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.states.StateManager;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.camera.OrthoGameCamera;
+import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 
 public class MainMenuScreen extends AbstractBaseScreen
 {

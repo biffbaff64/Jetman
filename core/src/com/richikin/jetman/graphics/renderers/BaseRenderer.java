@@ -8,7 +8,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.camera.OrthoGameCamera;
+import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.graphics.camera.ViewportType;
 import com.richikin.utilslib.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
@@ -60,8 +60,7 @@ public class BaseRenderer implements Disposable
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
                 ViewportType._STRETCH,
-                "Parallax Cam",
-                app
+                "Parallax Cam"
             );
 
         parallaxBackground  = new ParallaxBackground(app);
@@ -75,8 +74,7 @@ public class BaseRenderer implements Disposable
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
                 ViewportType._STRETCH,
-                "Tiled Cam",
-                app
+                "Tiled Cam"
             );
 
         // --------------------------------------
@@ -85,8 +83,7 @@ public class BaseRenderer implements Disposable
             (
                 Gfx._GAME_SCENE_WIDTH, Gfx._GAME_SCENE_HEIGHT,
                 ViewportType._STRETCH,
-                "Sprite Cam",
-                app
+                "Sprite Cam"
             );
 
         // --------------------------------------
@@ -95,8 +92,7 @@ public class BaseRenderer implements Disposable
             (
                 Gfx._HUD_SCENE_WIDTH, Gfx._HUD_SCENE_HEIGHT,
                 ViewportType._STRETCH,
-                "Hud Cam",
-                app
+                "Hud Cam"
             );
 
         gameZoom      = new Zoom();

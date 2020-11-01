@@ -168,7 +168,7 @@ public class Missile extends GdxSprite implements ICollisionListener
     {
         if (graphicID == GraphicID.G_ROVER)
         {
-            Shake.start(app);
+            Shake.start();
 
             ExplosionManager explosionManager = new ExplosionManager();
             explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);

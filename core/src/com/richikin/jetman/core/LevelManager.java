@@ -1,5 +1,6 @@
 package com.richikin.jetman.core;
 
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
@@ -124,8 +125,14 @@ public class LevelManager
      */
     public void closeCurrentLevel()
     {
-        // TODO: 12/08/2020 - Change this so that it removes all entities that are not MainPlayer
-        app.entityData.entityMap.setSize(1);
+        for (int i=0; i< app.entityData.entityMap.size; i++)
+        {
+            if (app.entityData.entityMap.get(i).gid != GraphicID.G_PLAYER)
+            {
+                app.entityData.entityMap.removeIndex(i);
+            }
+        }
+
         app.mapData.placementTiles.clear();
 
         app.mapData.enemyFreeZones.clear();

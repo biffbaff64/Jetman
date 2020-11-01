@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics.camera;
+package com.richikin.jetman.graphics;
 
 import com.richikin.jetman.core.App;
 

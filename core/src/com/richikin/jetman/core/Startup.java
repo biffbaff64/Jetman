@@ -10,7 +10,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.camera.CameraUtils;
+import com.richikin.jetman.graphics.CameraUtils;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
