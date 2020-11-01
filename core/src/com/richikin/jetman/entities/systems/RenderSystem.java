@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
-import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.graphics.Gfx;
 
 public class RenderSystem
 {

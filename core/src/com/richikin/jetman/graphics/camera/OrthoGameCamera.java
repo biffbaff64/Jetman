@@ -11,12 +11,13 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.graphics.IGameCamera;
-import com.richikin.utilslib.graphics.ViewportType;
+import com.richikin.utilslib.graphics.camera.IGameCamera;
+import com.richikin.utilslib.graphics.camera.ViewportType;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.logging.NotImplementedException;
 
+// TODO: 01/11/2020 - Move to utilslib
 public class OrthoGameCamera implements IGameCamera, Disposable
 {
     public Viewport           viewport;
@@ -60,7 +61,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             case _FILL:
             case _SCREEN:
             {
-                throw new NotImplementedException("Type " +_viewType + " not yet supported");
+                throw new NotImplementedException("Type " + _viewType + " not yet supported");
             }
 
             case _EXTENDED:
@@ -114,7 +115,7 @@ public class OrthoGameCamera implements IGameCamera, Disposable
 
             if (_shake)
             {
-                com.richikin.utilslib.graphics.camera.Shake.update(Gdx.graphics.getDeltaTime(), camera);
+                Shake.update(Gdx.graphics.getDeltaTime(), camera);
             }
 
             camera.update();

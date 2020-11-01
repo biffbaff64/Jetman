@@ -25,8 +25,8 @@ public class WorldModel
             (
                 new Vector2
                     (
-                        (Gfx._WORLD_GRAVITY.x * Gfx._PPM),
-                        (Gfx._WORLD_GRAVITY.y * Gfx._PPM)
+                        (Gfx._WORLD_GRAVITY.x * com.richikin.utilslib.graphics.Gfx._PPM),
+                        (Gfx._WORLD_GRAVITY.y * com.richikin.utilslib.graphics.Gfx._PPM)
                     ),
                 false
             );
@@ -60,7 +60,7 @@ public class WorldModel
             b2dr.render
                 (
                     box2DWorld,
-                    app.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(Gfx._PPM, Gfx._PPM, 0)
+                    app.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(com.richikin.utilslib.graphics.Gfx._PPM, com.richikin.utilslib.graphics.Gfx._PPM, 0)
                 );
         }
     }

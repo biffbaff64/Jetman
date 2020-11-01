@@ -9,20 +9,18 @@ import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
 
-public class FadeEffect
+public abstract class FadeEffect
 {
-    public static int      direction;
-    public static float    speed;
-    public static boolean  isActive;
+    public static int     direction;
+    public static float   speed;
+    public static boolean isActive;
 
-    private static StopWatch    timer;
-    private static float        width;
-    private static float        height;
-    private static Color        colour;
-    private static NinePatch    image;
-    private static App          app;
-
-    private FadeEffect() {}
+    private static StopWatch timer;
+    private static float     width;
+    private static float     height;
+    private static Color     colour;
+    private static NinePatch image;
+    private static App       app;
 
     public static void createEffect(App _app, float _width, float _height)
     {
@@ -30,13 +28,13 @@ public class FadeEffect
 
         image = new NinePatch(app.assets.getObjectRegion("bar9patch"), 1, 1, 1, 1);
 
-        timer       = StopWatch.start();
-        direction   = Movement._DIRECTION_STILL;
-        colour      = Color.BLACK;
-        speed       = 0;
-        width       = _width;
-        height      = _height;
-        isActive    = false;
+        timer     = StopWatch.start();
+        direction = Movement._DIRECTION_STILL;
+        colour    = Color.BLACK;
+        speed     = 0;
+        width     = _width;
+        height    = _height;
+        isActive  = false;
     }
 
     public static boolean update()
@@ -53,7 +51,7 @@ public class FadeEffect
             }
 
             return ((direction == Movement._DIRECTION_DOWN) && (colour.a < 0.0f))
-                    || ((direction == Movement._DIRECTION_UP) && (colour.a > 1.0f));
+                || ((direction == Movement._DIRECTION_UP) && (colour.a > 1.0f));
         }
 
         return true;
@@ -73,8 +71,8 @@ public class FadeEffect
 
     public static void end()
     {
-        direction   = Movement._DIRECTION_STILL;
-        isActive    = false;
+        direction = Movement._DIRECTION_STILL;
+        isActive  = false;
     }
 
     /**
@@ -82,10 +80,10 @@ public class FadeEffect
      */
     public static void triggerFadeOut()
     {
-        direction   = Movement._DIRECTION_UP;
-        colour.a    = 0.0f;
-        speed       = 0.1f;
-        isActive    = true;
+        direction = Movement._DIRECTION_UP;
+        colour.a  = 0.0f;
+        speed     = 0.1f;
+        isActive  = true;
     }
 
     /**
@@ -93,9 +91,9 @@ public class FadeEffect
      */
     public static void triggerFadeIn()
     {
-        direction   = Movement._DIRECTION_DOWN;
-        colour.a    = 1.0f;
-        speed       = 0.1f;
-        isActive    = true;
+        direction = Movement._DIRECTION_DOWN;
+        colour.a  = 1.0f;
+        speed     = 0.1f;
+        isActive  = true;
     }
 }

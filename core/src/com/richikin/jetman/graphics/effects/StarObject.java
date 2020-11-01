@@ -9,45 +9,28 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.maths.SimpleVec3F;
 
-/**
- * A 3D Star object
- *
- * @author Richard Ikin.
- * @author TBC.
- *
- * This code is adapted from similar
- * code that I have seen in the past. I cannot
- * remember who the author of that code was and,
- * when his/her identity is established, this
- * javaDoc will be updated to add credits.
- */
 @SuppressWarnings("FieldCanBeLocal")
 public class StarObject implements Disposable
 {
-    private final float _INITIAL_DEPTH          = 100.0f;
-    private final float _FINAL_DEPTH            = 1000.0f;
-    private final float _MINIMUM_VELOCITY       = 0.5f;
-    private final float _MAXIMUM_VELOCITY       = 5.0f;
-    private final float _MAXIMUM_STAR_RADIUS    = 16.0f;
+    private final float _INITIAL_DEPTH       = 100.0f;
+    private final float _FINAL_DEPTH         = 1000.0f;
+    private final float _MINIMUM_VELOCITY    = 0.5f;
+    private final float _MAXIMUM_VELOCITY    = 5.0f;
+    private final float _MAXIMUM_STAR_RADIUS = 16.0f;
 
     //
     // Note: SimpleVec3F is a simplified Vector3.
-    private SimpleVec3F     position;
-    private SimpleVec3F     velocity;
-    private TextureRegion   region;
-    private App             app;
+    private SimpleVec3F   position;
+    private SimpleVec3F   velocity;
+    private TextureRegion region;
+    private App           app;
 
-    /**
-     * COnstructor
-     *
-     * @param _app App - A reference to the App global.
-     */
-    StarObject(App _app)
+    public StarObject(App _app)
     {
-        app         = _app;
-        position    = new SimpleVec3F();
-        velocity    = new SimpleVec3F();
-        region      = app.assets.getObjectRegion("solid_white32x32");
+        app      = _app;
+        position = new SimpleVec3F();
+        velocity = new SimpleVec3F();
+        region   = app.assets.getObjectRegion("solid_white32x32");
 
         resetPosition();
     }
@@ -61,8 +44,8 @@ public class StarObject implements Disposable
     {
         update(speed);
 
-        float x = ((position.x / position.z)/* * 100*/) * (Gfx._VIEW_WIDTH * 0.5f);
-        float y = ((position.y / position.z)/* * 100*/) * (Gfx._VIEW_HEIGHT * 0.5f);
+        float x = (position.x / position.z) * (Gfx._VIEW_WIDTH * 0.5f);
+        float y = (position.y / position.z) * (Gfx._VIEW_HEIGHT * 0.5f);
 
         float radius = ((_MAXIMUM_STAR_RADIUS - ((position.z * _MAXIMUM_STAR_RADIUS) * 0.001f)) * velocity.z) * 0.2f;
 
@@ -94,7 +77,7 @@ public class StarObject implements Disposable
     private void resetPosition()
     {
         position.x = MathUtils.random(-Gfx._VIEW_WIDTH, Gfx._VIEW_WIDTH);
-        position.y = MathUtils.random(-Gfx._VIEW_HEIGHT,Gfx._VIEW_HEIGHT);
+        position.y = MathUtils.random(-Gfx._VIEW_HEIGHT, Gfx._VIEW_HEIGHT);
         position.z = MathUtils.random(_INITIAL_DEPTH, _FINAL_DEPTH);
         velocity.z = MathUtils.random(_MINIMUM_VELOCITY, _MAXIMUM_VELOCITY);
     }
@@ -120,7 +103,7 @@ public class StarObject implements Disposable
     {
         position = null;
         velocity = null;
-        region = null;
-        app = null;
+        region   = null;
+        app      = null;
     }
 }

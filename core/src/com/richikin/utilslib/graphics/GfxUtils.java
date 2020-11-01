@@ -1,14 +1,13 @@
 
-package com.richikin.jetman.graphics;
+package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.richikin.jetman.core.App;
 
 public class GfxUtils
 {
-    public static void splitRegion(TextureRegion textureRegion, int frameCount, TextureRegion[] destinationFrames, App app)
+    public static void splitRegion(TextureRegion textureRegion, int frameCount, TextureRegion[] destinationFrames)
     {
         TextureRegion[] tmpFrames = textureRegion.split
             (

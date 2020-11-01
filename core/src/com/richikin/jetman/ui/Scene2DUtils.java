@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.ui.ScrollPaneObject;
 

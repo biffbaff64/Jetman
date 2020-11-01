@@ -13,7 +13,7 @@ import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
-public class AppConfig
+public class AppConfig extends com.richikin.utilslib.config.AppConfig
 {
     // =================================================================
     //

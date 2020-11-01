@@ -167,8 +167,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         {
             sprite.setPosition
                 (
-                    (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth / 2),
-                    (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight / 2)
+                    (b2dBody.getPosition().x * com.richikin.utilslib.graphics.Gfx._PPM) - (frameWidth / 2),
+                    (b2dBody.getPosition().y * com.richikin.utilslib.graphics.Gfx._PPM) - (frameHeight / 2)
                 );
         }
     }

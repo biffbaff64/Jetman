@@ -1,4 +1,4 @@
-package com.richikin.utilslib.graphics;
+package com.richikin.utilslib.graphics.camera;
 
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.utilslib.maths.SimpleVec3F;

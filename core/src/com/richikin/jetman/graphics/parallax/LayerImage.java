@@ -11,8 +11,8 @@ public class LayerImage
     {
         super();
 
-        this.layerName          = _layerName;
-        this.horizontalSpeed    = _horizontalSpeed;
-        this.verticalSpeed      = _verticalSpeed;
+        this.layerName       = _layerName;
+        this.horizontalSpeed = _horizontalSpeed;
+        this.verticalSpeed   = _verticalSpeed;
     }
 }

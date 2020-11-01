@@ -1,4 +1,4 @@
-package com.richikin.utilslib.graphics;
+package com.richikin.utilslib.graphics.camera;
 
 public enum ViewportType
 {

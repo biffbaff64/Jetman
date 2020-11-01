@@ -16,7 +16,7 @@ public class ParallaxBackground implements Disposable
     public ParallaxBackground(App _app)
     {
         this.layers = new Array<>();
-        this.app = _app;
+        this.app    = _app;
     }
 
     public void setupLayers(LayerImage[] layerImage)
@@ -27,7 +27,7 @@ public class ParallaxBackground implements Disposable
 
     public void render()
     {
-        for (int layer=0; layer<layers.size; layer++)
+        for (int layer = 0; layer < layers.size; layer++)
         {
             layers.get(layer).draw();
         }
@@ -46,7 +46,7 @@ public class ParallaxBackground implements Disposable
 
     public void addLayerGroup(String[] layerGroup, App _app)
     {
-        for(int layer = 0, arraySize = layerGroup.length; layer < arraySize; layer++)
+        for (int layer = 0, arraySize = layerGroup.length; layer < arraySize; layer++)
         {
             layers.add(new ParallaxLayer(layerGroup[layer], app));
             layers.get(layer).setTextureRegion();
@@ -55,7 +55,7 @@ public class ParallaxBackground implements Disposable
 
     public void addLayerGroupSpeeds(float[][] speeds)
     {
-        if((speeds[0].length != layers.size) || (speeds[0].length != speeds[1].length))
+        if ((speeds[0].length != layers.size) || (speeds[0].length != speeds[1].length))
         {
             Trace.__FILE_FUNC_WithDivider();
             Trace.dbg("ERROR: SPEED and LAYERS arrays size mismatch.");
@@ -63,7 +63,7 @@ public class ParallaxBackground implements Disposable
 
         int arraySize = speeds[0].length;
 
-        for(int layer = 0; layer < arraySize; layer++)
+        for (int layer = 0; layer < arraySize; layer++)
         {
             layers.get(layer).xSpeed = speeds[0][layer];
             layers.get(layer).ySpeed = speeds[1][layer];
@@ -72,7 +72,7 @@ public class ParallaxBackground implements Disposable
 
     public void scrollLayersUp()
     {
-        for(int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
+        for (int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
         {
             layers.get(layerNum).scrollLayer(Movement._DIRECTION_STILL, Movement._DIRECTION_UP);
         }
@@ -80,7 +80,7 @@ public class ParallaxBackground implements Disposable
 
     public void scrollLayersDown()
     {
-        for(int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
+        for (int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
         {
             layers.get(layerNum).scrollLayer(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN);
         }
@@ -88,7 +88,7 @@ public class ParallaxBackground implements Disposable
 
     public void scrollLayersLeft()
     {
-        for(int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
+        for (int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
         {
             layers.get(layerNum).scrollLayer(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
         }
@@ -96,7 +96,7 @@ public class ParallaxBackground implements Disposable
 
     public void scrollLayersRight()
     {
-        for(int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
+        for (int layerNum = 0, arraySize = layers.size; layerNum < arraySize; layerNum++)
         {
             layers.get(layerNum).scrollLayer(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
         }
@@ -105,7 +105,7 @@ public class ParallaxBackground implements Disposable
     @Override
     public void dispose()
     {
-        for (int i=0; i<layers.size; i++)
+        for (int i = 0; i < layers.size; i++)
         {
             layers.get(i).dispose();
             layers.removeIndex(i);

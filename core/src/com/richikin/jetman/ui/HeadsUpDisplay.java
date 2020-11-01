@@ -20,7 +20,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.*;

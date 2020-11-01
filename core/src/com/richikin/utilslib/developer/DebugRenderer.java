@@ -31,7 +31,7 @@ import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Trace;
 
 public class DebugRenderer implements Disposable
