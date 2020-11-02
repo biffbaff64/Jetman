@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
@@ -16,13 +15,10 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.graphics.camera.Shake;
-import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.Trace;
 
 public class MissileBase extends GdxSprite
 {
-    public DefenceStation[] defenceStations;
-
     private GdxSprite     topSection;
     private TextureRegion emptyFrame;
 
@@ -206,44 +202,6 @@ public class MissileBase extends GdxSprite
         topSection.setAction(ActionStates._STANDING);
 
         app.entityData.addEntity(topSection);
-    }
-
-    /**
-     * Adds the two defence stations either side
-     * of the missile base.
-     */
-    public void addDefenceStations()
-    {
-        Trace.__FILE_FUNC();
-
-        Array<SimpleVec2> vec2 = app.missileBaseManager.findMultiCoordinates(GraphicID.G_DEFENDER);
-
-        //
-        // Add a Defence Station to the left of the base
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER);
-        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-        descriptor._POSITION.x    = vec2.get(0).x;
-        descriptor._POSITION.y    = vec2.get(0).y;
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER);
-        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER);
-        descriptor._INDEX         = app.entityData.entityMap.size;
-
-        defenceStations = new DefenceStation[2];
-
-        defenceStations[0] = new DefenceStation(app);
-        defenceStations[0].initialise(descriptor);
-        app.entityData.addEntity(defenceStations[0]);
-        defenceStations[0].addZapper();
-
-        //
-        // Add a Defence Station to the right of the base
-        descriptor._POSITION.x = vec2.get(1).x;
-        descriptor._POSITION.y = vec2.get(1).y;
-
-        defenceStations[1] = new DefenceStation(app);
-        defenceStations[1].initialise(descriptor);
-        app.entityData.addEntity(defenceStations[1]);
-        defenceStations[1].addZapper();
     }
 
     @Override

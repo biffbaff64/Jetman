@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
+import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -174,15 +175,15 @@ public class Bomb extends GdxSprite
         Entities.explode(this);
         elapsedAnimTime = 0;
 
-//        CraterManager craterManager = new CraterManager(app);
-//
-//        if (craterManager.canMakeCrater(this, false))
-//        {
-//            int x = (int) (sprite.getX() / Gfx.getTileWidth());
-//            int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
-//
-//            craterManager.makeCrater(x, y);
-//        }
+        CraterManager craterManager = new CraterManager(app);
+
+        if (craterManager.canMakeCrater(this, false))
+        {
+            int x = (int) (sprite.getX() / Gfx.getTileWidth());
+            int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
+
+            craterManager.makeCrater(x, y);
+        }
     }
 
     private void setCollisionListener()
@@ -201,9 +202,9 @@ public class Bomb extends GdxSprite
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
 
-                        float minX = app.getBase().defenceStations[0].sprite.getX();
-                        float maxX = app.getBase().defenceStations[1].sprite.getX()
-                            + app.getBase().defenceStations[1].frameWidth;
+                        float minX = app.entityData.defenceStations[0].sprite.getX();
+                        float maxX = app.entityData.defenceStations[1].sprite.getX()
+                            + app.entityData.defenceStations[1].frameWidth;
 
                         if ((sprite.getX() >= minX) && (sprite.getX() <= maxX))
                         {

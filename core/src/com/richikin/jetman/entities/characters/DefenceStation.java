@@ -111,10 +111,9 @@ public class DefenceStation extends GdxSprite
      * Adds the spark zapper beam to the
      * defence station.
      */
-    void addZapper()
+    public void addZapper()
     {
         SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
-        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         descriptor._POSITION.x    = (int) (sprite.getX() / Gfx.getTileWidth());
         descriptor._POSITION.y    = (int) ((sprite.getY() + frameHeight) / Gfx.getTileHeight());
         descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);
