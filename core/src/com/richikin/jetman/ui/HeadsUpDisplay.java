@@ -53,6 +53,8 @@ public class HeadsUpDisplay implements Disposable
     private static final int _CONSOLE     = 5;
     private static final int _TRUCK_ARROW = 6;
     private static final int _BASE_ARROW  = 7;
+    private static final int _FUEL_BAR    = 8;
+    private static final int _TIME_BAR    = 9;
 
     //@formatter:off
     private static final int[][] displayPos = new int[][]
@@ -63,8 +65,10 @@ public class HeadsUpDisplay implements Disposable
             {1206, 1206, (720 - 177),  66,  66},    // Pause Button
             {   0,    0, (720 - 101),  99,  86},    // Dev Options
             {1180, 1180, (720 - 101),  99,  86},    // Debug Console
-            {  24,   24, (720 -  92),   0,   0},    // Truck Arrow
+            {  18,   18, (720 -  92),   0,   0},    // Truck Arrow
             {1218, 1218, (720 -  92),   0,   0},    // Base Arrow
+            { 162,  162, (720 -  72),   0,   0},    // Fuel Bar
+            { 162,  162, (720 - 101),   0,   0},    // Time Bar
         };
 
     private final int[][] livesDisplay = new int[][]
@@ -514,11 +518,21 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawItems()
     {
-        fuelBar.draw((int) (originX + 150), (int) (originY + (Gfx._HUD_HEIGHT - 72)));
-        timeBar.draw((int) (originX + 150), (int) (originY + (Gfx._HUD_HEIGHT - 101)));
+        fuelBar.draw((int) (originX + displayPos[_FUEL_BAR][_X1]), (int) (originY + displayPos[_FUEL_BAR][_Y]));
+        timeBar.draw((int) (originX + displayPos[_TIME_BAR][_X1]), (int) (originY + displayPos[_TIME_BAR][_Y]));
 
-        app.spriteBatch.draw(barDividerFuel, (originX + 150 + fuelBar.getTotal()), (originY + (Gfx._HUD_HEIGHT - 72)));
-        app.spriteBatch.draw(barDividerTime, (originX + 150 + timeBar.getTotal()), (originY + (Gfx._HUD_HEIGHT - 101)));
+        app.spriteBatch.draw
+            (
+                barDividerFuel,
+                (originX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
+                (originY + displayPos[_FUEL_BAR][_Y])
+            );
+        app.spriteBatch.draw
+            (
+                barDividerTime,
+                (originX + displayPos[_TIME_BAR][_X1] + timeBar.getTotal()),
+                (originY + displayPos[_TIME_BAR][_Y])
+            );
 
         for (int i = 0; i < app.gameProgress.lives.getTotal(); i++)
         {
@@ -533,33 +547,21 @@ public class HeadsUpDisplay implements Disposable
         bigFont.setColor(Color.WHITE);
         midFont.setColor(Color.WHITE);
 
-        if (Developer.isDevMode())
-        {
-            smallFont.setColor(Color.WHITE);
-            smallFont.draw(app.spriteBatch, "DEV MODE", originX + 470, originY + (720 - 6));
-
-            if (Developer.isGodMode())
-            {
-                smallFont.draw(app.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
-            }
-
-            smallFont.draw(app.spriteBatch, "FPS  : " + Gdx.graphics.getFramesPerSecond(), originX + 20, originY + 600);
-            smallFont.draw(app.spriteBatch, "ActionButton  : " + app.getPlayer().actionButton.getActionMode().name(), originX + 20, originY + 570);
-        }
+        hudDebug();
 
         bigFont.draw
             (
                 app.spriteBatch,
                 String.format(Locale.UK, "%06d", app.gameProgress.score.getTotal()),
                 originX + 296,
-                originY + (720 - 6)
+                originY + (720 - 4)
             );
 
         midFont.draw
             (
                 app.spriteBatch,
                 String.format(Locale.UK, "%06d", highScoreUtils.getHighScoreTable()[0].score),
-                originX + 668,
+                originX + 660,
                 originY + (720 - 6)
             );
 
@@ -747,6 +749,36 @@ public class HeadsUpDisplay implements Disposable
             fuelBar.updateSlowDecrementWithWrap((int) fuelBar.getMax());
             timeBar.updateSlowDecrementWithWrap((int) timeBar.getMax());
             updateBarColours();
+        }
+    }
+
+    private void hudDebug()
+    {
+        if (Developer.isDevMode())
+        {
+            smallFont.setColor(Color.WHITE);
+            smallFont.draw(app.spriteBatch, "DEV MODE", originX + 470, originY + (720 - 6));
+
+            if (Developer.isGodMode())
+            {
+                smallFont.draw(app.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
+            }
+
+            smallFont.draw
+                (
+                    app.spriteBatch,
+                    "FPS  : " + Gdx.graphics.getFramesPerSecond(),
+                    originX + 20,
+                    originY + 600
+                );
+
+            smallFont.draw
+                (
+                    app.spriteBatch,
+                    "ActionButton  : " + app.getPlayer().actionButton.getActionMode().name(),
+                    originX + 20,
+                    originY + 570
+                );
         }
     }
 
