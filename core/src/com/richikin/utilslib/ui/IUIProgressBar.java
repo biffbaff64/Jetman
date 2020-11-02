@@ -3,7 +3,7 @@ package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.Color;
 
-public interface UIProgressBar
+public interface IUIProgressBar
 {
     void draw(int x, int y);
 

@@ -1,7 +1,7 @@
 
 package com.richikin.utilslib.input;
 
-public interface GDXButton
+public interface IGDXButton
 {
     void update();
 

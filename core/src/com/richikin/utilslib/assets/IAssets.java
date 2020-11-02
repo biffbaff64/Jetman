@@ -3,7 +3,7 @@ package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public interface Assets
+public interface IAssets
 {
     <T> T loadSingleAsset(String asset, Class<?> type);
 

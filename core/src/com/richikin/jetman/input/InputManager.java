@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.input.GDXButton;
+import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.ControllerType;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
@@ -16,8 +16,8 @@ import com.richikin.utilslib.logging.Trace;
 @SuppressWarnings("WeakerAccess")
 public class InputManager
 {
-    public Array<GDXButton> gameButtons;
-    public Vector2          mousePosition;
+    public Array<IGDXButton> gameButtons;
+    public Vector2           mousePosition;
     public Vector2          mouseWorldPosition;
     public Keyboard         keyboard;
     public VirtualJoystick  virtualJoystick;

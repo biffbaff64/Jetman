@@ -6,7 +6,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.input.ControllerType;
 
-public class HUDRenderer implements GameScreenRenderer
+public class HUDRenderer implements IGameScreenRenderer
 {
     private final App app;
 

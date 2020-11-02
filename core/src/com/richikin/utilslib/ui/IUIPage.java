@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * such as Menu, Credits page, hiscore page etc.
  * Pages should implement this interface.
  */
-public interface UIPage
+public interface IUIPage
 {
     boolean update();
 

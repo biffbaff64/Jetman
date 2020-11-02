@@ -2,7 +2,7 @@ package com.richikin.utilslib.core;
 
 import com.richikin.utilslib.states.StateManager;
 
-public interface ControlLoop
+public interface IControlLoop
 {
     void initialise();
 

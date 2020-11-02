@@ -12,6 +12,7 @@ import com.richikin.utilslib.entities.components.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABB;
+import com.richikin.utilslib.graphics.LibGfx;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -167,8 +168,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         {
             sprite.setPosition
                 (
-                    (b2dBody.getPosition().x * com.richikin.utilslib.graphics.Gfx._PPM) - (frameWidth / 2),
-                    (b2dBody.getPosition().y * com.richikin.utilslib.graphics.Gfx._PPM) - (frameHeight / 2)
+                    (b2dBody.getPosition().x * LibGfx._PPM) - (frameWidth / 2),
+                    (b2dBody.getPosition().y * LibGfx._PPM) - (frameHeight / 2)
                 );
         }
     }

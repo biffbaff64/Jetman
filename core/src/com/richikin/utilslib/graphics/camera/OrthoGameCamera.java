@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.richikin.utilslib.graphics.Gfx;
+import com.richikin.utilslib.graphics.LibGfx;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.logging.NotImplementedException;
 
@@ -41,8 +41,8 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             {
                 viewport = new StretchViewport
                     (
-                        camera.viewportWidth * Gfx._PPM,
-                        camera.viewportHeight * Gfx._PPM,
+                        camera.viewportWidth * LibGfx._PPM,
+                        camera.viewportHeight * LibGfx._PPM,
                         camera
                     );
                 viewport.apply();
@@ -53,8 +53,8 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             {
                 viewport = new FitViewport
                     (
-                        camera.viewportWidth * Gfx._PPM,
-                        camera.viewportHeight * Gfx._PPM,
+                        camera.viewportWidth * LibGfx._PPM,
+                        camera.viewportHeight * LibGfx._PPM,
                         camera
                     );
                 viewport.apply();
@@ -72,8 +72,8 @@ public class OrthoGameCamera implements IGameCamera, Disposable
             {
                 viewport = new ExtendViewport
                     (
-                        camera.viewportWidth * Gfx._PPM,
-                        camera.viewportHeight * Gfx._PPM,
+                        camera.viewportWidth * LibGfx._PPM,
+                        camera.viewportHeight * LibGfx._PPM,
                         camera
                     );
                 viewport.apply();

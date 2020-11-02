@@ -12,11 +12,11 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.Task;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.google.PlayServices;
+import com.richikin.utilslib.google.IPlayServices;
 import com.richikin.utilslib.google.RCConstants;
 import com.richikin.utilslib.logging.Trace;
 
-public class GoogleServices implements PlayServices
+public class GoogleServices implements IPlayServices
 {
     private       GoogleSignInClient  googleSignInClient;
     private final AndroidLauncher     androidLauncher;

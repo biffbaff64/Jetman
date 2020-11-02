@@ -3,7 +3,7 @@ package com.richikin.utilslib.google;
 
 import com.richikin.utilslib.logging.Trace;
 
-public class DummyAdsController implements AdsController
+public class DummyAdsController implements IAdsController
 {
     @Override
     public void showBannerAd()

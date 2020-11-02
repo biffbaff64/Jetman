@@ -8,7 +8,7 @@ import com.richikin.jetman.core.PointsManager;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.states.StateManager;
 import com.richikin.jetman.graphics.effects.FadeEffect;
-import com.richikin.utilslib.input.GDXButton;
+import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.screens.IBaseScreen;
 
 public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseScreen, Disposable
@@ -45,7 +45,7 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
 
             //
             // Update any buttons that are animating/Scaling etc
-            for (GDXButton button : app.inputManager.gameButtons)
+            for (IGDXButton button : app.inputManager.gameButtons)
             {
                 button.update();
             }

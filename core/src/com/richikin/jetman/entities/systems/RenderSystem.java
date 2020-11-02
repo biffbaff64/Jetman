@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
-import com.richikin.utilslib.graphics.Gfx;
+import com.richikin.utilslib.graphics.LibGfx;
 
 public class RenderSystem
 {
@@ -31,7 +31,7 @@ public class RenderSystem
         {
             GdxSprite entity;
 
-            for (int z = Gfx._MAXIMUM_Z_DEPTH - 1; z >= 0; z--)
+            for (int z = LibGfx._MAXIMUM_Z_DEPTH - 1; z >= 0; z--)
             {
                 for (int i = 0; i < app.entityData.entityMap.size; i++)
                 {

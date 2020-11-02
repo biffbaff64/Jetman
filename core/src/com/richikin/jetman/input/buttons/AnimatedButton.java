@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.input.GDXButton;
+import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
@@ -14,7 +14,7 @@ import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.physics.Movement;
 import org.jetbrains.annotations.NotNull;
 
-public class AnimatedButton implements GDXButton, Disposable
+public class AnimatedButton implements IGDXButton, Disposable
 {
     private static final int _INITIAL_ROTATION  = 270;
     private static final int _INITIAL_DISTANCE  = 45;

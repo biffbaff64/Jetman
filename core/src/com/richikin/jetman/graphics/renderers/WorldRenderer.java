@@ -6,7 +6,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.developer.DebugRenderer;
 
-public class WorldRenderer implements GameScreenRenderer
+public class WorldRenderer implements IGameScreenRenderer
 {
     private final App app;
 

@@ -3,7 +3,7 @@ package com.richikin.utilslib.google;
 
 import com.richikin.jetman.core.App;
 
-public interface PlayServices
+public interface IPlayServices
 {
     void setup(App _app);
 

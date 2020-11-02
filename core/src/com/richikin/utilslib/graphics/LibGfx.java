@@ -2,7 +2,7 @@ package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class Gfx
+public class LibGfx
 {
     //
     // Pixels Per Meter in the Box2D World

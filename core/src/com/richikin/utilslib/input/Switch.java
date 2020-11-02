@@ -4,7 +4,7 @@ package com.richikin.utilslib.input;
 /**
  * A Simple ON/OFF Switch class
  */
-public class Switch implements GDXButton
+public class Switch implements IGDXButton
 {
     protected boolean _isPressed;
     protected boolean _isDisabled;

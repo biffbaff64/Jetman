@@ -1,8 +1,9 @@
 package com.richikin.jetman.graphics;
 
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.utilslib.graphics.LibGfx;
 
-public class Gfx extends com.richikin.utilslib.graphics.Gfx
+public class Gfx extends LibGfx
 {
     //
     // Entity collision types

@@ -5,7 +5,7 @@ package com.richikin.jetman.entities.paths;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 
-public class Circular implements PathMover
+public class Circular implements IPathMover
 {
     private float timeInterval;
     private float xOffset;

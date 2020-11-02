@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.config.LibAppConfig;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.input.ControllerPos;
@@ -13,7 +14,7 @@ import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
-public class AppConfig extends com.richikin.utilslib.config.AppConfig
+public class AppConfig extends LibAppConfig
 {
     // =================================================================
     //

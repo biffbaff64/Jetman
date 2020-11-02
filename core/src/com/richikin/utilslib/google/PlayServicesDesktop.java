@@ -5,7 +5,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.Trace;
 
-public class PlayServicesDesktop implements PlayServices
+public class PlayServicesDesktop implements IPlayServices
 {
     private App app;
 

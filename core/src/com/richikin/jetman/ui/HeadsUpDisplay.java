@@ -77,15 +77,15 @@ public class HeadsUpDisplay implements Disposable
         };
     //@formatter:on
 
-    public GDXButton buttonUp;
-    public GDXButton buttonDown;
-    public GDXButton buttonLeft;
-    public GDXButton buttonRight;
-    public GDXButton buttonAction;
-    public GDXButton buttonAttack;
-    public GDXButton buttonX;
-    public GDXButton buttonY;
-    public Switch    buttonPause;
+    public IGDXButton buttonUp;
+    public IGDXButton buttonDown;
+    public IGDXButton buttonLeft;
+    public IGDXButton buttonRight;
+    public IGDXButton buttonAction;
+    public IGDXButton buttonAttack;
+    public IGDXButton buttonX;
+    public IGDXButton buttonY;
+    public Switch     buttonPause;
     public Switch    buttonDevOptions;
 
     public ImageButton ActionButton;
