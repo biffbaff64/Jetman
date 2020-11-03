@@ -128,8 +128,8 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addMenu()
     {
-        final float originX = app.baseRenderer.hudGameCamera.camera.position.x - ((float) (Gfx._HUD_WIDTH / 2));
-        final float originY = app.baseRenderer.hudGameCamera.camera.position.y - ((float) (Gfx._HUD_HEIGHT / 2));
+        final float originX = -((float) (Gfx._HUD_WIDTH / 2));
+        final float originY = -((float) (Gfx._HUD_HEIGHT / 2));
 
         Trace.__FILE_FUNC("cameraX: " + app.baseRenderer.hudGameCamera.camera.position.x + ",  cameraY: " + app.baseRenderer.hudGameCamera.camera.position.y);
         Trace.__FILE_FUNC("originX: " + originX + ",  originY: " + originY);

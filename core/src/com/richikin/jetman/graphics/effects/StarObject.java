@@ -16,7 +16,7 @@ public class StarObject implements Disposable
     private final float _FINAL_DEPTH         = 1000.0f;
     private final float _MINIMUM_VELOCITY    = 0.5f;
     private final float _MAXIMUM_VELOCITY    = 5.0f;
-    private final float _MAXIMUM_STAR_RADIUS = 16.0f;
+    private final float _MAXIMUM_STAR_RADIUS = 8.0f;
 
     //
     // Note: SimpleVec3F is a simplified Vector3.

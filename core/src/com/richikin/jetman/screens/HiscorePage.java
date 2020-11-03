@@ -167,9 +167,6 @@ public class HiscorePage implements IUIPage, Disposable
      */
     private void addItems()
     {
-        final float originX = app.baseRenderer.hudGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2);
-        final float originY = app.baseRenderer.hudGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2);
-
         foreground = app.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
 
         Scene2DUtils.setup(app);
@@ -196,28 +193,39 @@ public class HiscorePage implements IUIPage, Disposable
 
         for (int i=0; i<GameConstants._MAX_HISCORES; i++)
         {
+            int _Y_POS = (_TABLE_Y - (Gfx._HUD_HEIGHT / 2)) - (_SPACING * i);
+
             // Hiscore table rank
             rankLabels[i] = Scene2DUtils.addLabel
                 (
                     "" + (i + 1),
-                    (int) (originX + _RANK_X), (int) (originY + _TABLE_Y - (_SPACING * i)),
-                    _FNT_SIZE, Color.WHITE, GameAssets._BENZOIC_FONT
+                    _RANK_X - (Gfx._HUD_WIDTH / 2),
+                    _Y_POS,
+                    _FNT_SIZE,
+                    Color.WHITE,
+                    GameAssets._BENZOIC_FONT
                 );
 
             // The game level achieved
             levelLabels[i] = Scene2DUtils.addLabel
                 (
                     "" + app.highScoreUtils.getHighScoreTable()[i].level,
-                    (int) (originX + _LEVEL_X), (int) (_TABLE_Y - (_SPACING * i)),
-                    _FNT_SIZE, Color.WHITE, GameAssets._BENZOIC_FONT
+                    _LEVEL_X - (Gfx._HUD_WIDTH / 2),
+                    _Y_POS,
+                    _FNT_SIZE,
+                    Color.WHITE,
+                    GameAssets._BENZOIC_FONT
                 );
 
             // The player score
             scoreLabels[i] = Scene2DUtils.addLabel
                 (
                     String.format(Locale.UK, "%8d", app.highScoreUtils.getHighScoreTable()[i].score),
-                    (int) (originX + _SCORE_X), (int) (originY + _TABLE_Y - (_SPACING * i)),
-                    _FNT_SIZE, Color.WHITE, GameAssets._BENZOIC_FONT
+                    _SCORE_X - (Gfx._HUD_WIDTH / 2),
+                    _Y_POS,
+                    _FNT_SIZE,
+                    Color.WHITE,
+                    GameAssets._BENZOIC_FONT
                 );
 
             colorIndex[i] = i;
