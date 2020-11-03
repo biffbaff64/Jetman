@@ -5,10 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.config.LibAppConfig;
+import com.richikin.utilslib.core.AppSystem;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.input.ControllerPos;
-import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.ControllerPos;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
@@ -79,12 +80,13 @@ public class AppConfig extends LibAppConfig
         if (Developer.isDevMode())
         {
             app.settings.enable(Settings._GOD_MODE);
-            app.settings.enable(Settings._DISABLE_MENU_SCREEN);
+            app.settings.disable(Settings._DISABLE_MENU_SCREEN);
             app.settings.disable(Settings._SPRITE_BOXES);
             app.settings.disable(Settings._TILE_BOXES);
         }
 
         Stats.setup();
+        AppSystem.initialise();
 
         if (Developer.isDevMode())
         {

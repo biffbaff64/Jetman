@@ -16,12 +16,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.input.UIButtons;
+import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.Switch;
+import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
@@ -33,24 +35,24 @@ import java.util.concurrent.TimeUnit;
 
 public class MenuPage implements IUIPage, Disposable
 {
-    private Texture       foreground;
-    private Array<Switch> buttons;
-    private StopWatch     stopWatch;
-    private App       app;
-    private Image     decoration;
-    private Label           javaHeapLabel;
-    private Label           nativeHeapLabel;
-    private Label           versionLabel;
+    public ImageButton buttonStart;
+    public ImageButton buttonOptions;
+    public ImageButton buttonExit;
+    public ImageButton buttonGoogle;
 
-    private ImageButton     button1Player;
-    private ImageButton     buttonOptions;
-    private ImageButton     buttonExit;
-    private ImageButton     buttonGoogle;
+    private Texture       foreground;
+    private StopWatch     stopWatch;
+    private Image         decoration;
+    private Label         javaHeapLabel;
+    private Label         nativeHeapLabel;
+    private Label         versionLabel;
 
     private int menuIndex;
     private int menuLoop;
 
-    MenuPage(App _app)
+    private final App app;
+
+    public MenuPage(App _app)
     {
         this.app = _app;
 
@@ -59,12 +61,6 @@ public class MenuPage implements IUIPage, Disposable
         addMenu();
         addClickListeners();
 
-        buttons = new Array<>();
-        buttons.add(UIButtons.button1PStart);
-        buttons.add(UIButtons.buttonOptions);
-        buttons.add(UIButtons.buttonExit);
-        buttons.add(UIButtons.buttonGoogle);
-
         this.stopWatch = StopWatch.start();
     }
 
@@ -72,7 +68,7 @@ public class MenuPage implements IUIPage, Disposable
     public void reset()
     {
         menuIndex = 0;
-        menuLoop = 0;
+        menuLoop  = 0;
     }
 
     @Override
@@ -83,7 +79,7 @@ public class MenuPage implements IUIPage, Disposable
         stopWatch.reset();
 
         menuIndex = 0;
-        menuLoop = 0;
+        menuLoop  = 0;
     }
 
     @Override
@@ -138,26 +134,26 @@ public class MenuPage implements IUIPage, Disposable
         Trace.__FILE_FUNC("cameraX: " + app.baseRenderer.hudGameCamera.camera.position.x + ",  cameraY: " + app.baseRenderer.hudGameCamera.camera.position.y);
         Trace.__FILE_FUNC("originX: " + originX + ",  originY: " + originY);
 
-        Scene2DUtils scene2DUtils = new Scene2DUtils(app);
+        Scene2DUtils.setup(app);
 
-        button1Player = scene2DUtils.makeImageButton("buttonStart", "buttonStart_pressed");
-        button1Player.setPosition((int) originX + 482, (int) originY + (720 - 417));
-        button1Player.setVisible(true);
-        button1Player.setZIndex(1);
-        app.stage.addActor(button1Player);
+        buttonStart = Scene2DUtils.makeImageButton("buttonStart", "buttonStart_pressed");
+        buttonStart.setPosition((int) originX + 482, (int) originY + (720 - 417));
+        buttonStart.setVisible(true);
+        buttonStart.setZIndex(1);
+        app.stage.addActor(buttonStart);
 
-        buttonOptions = scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) originX + 545, (int) originY + (720 - 516));
-        buttonExit = scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) originX + 591, (int) originY + (720 - 609));
-        button1Player.setZIndex(1);
+        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) originX + 545, (int) originY + (720 - 516));
+        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) originX + 591, (int) originY + (720 - 609));
+        buttonStart.setZIndex(1);
         buttonOptions.setZIndex(1);
         buttonExit.setZIndex(1);
 
-        if (Developer._DEVMODE && app.preferences.prefs.getBoolean(Preferences._MENU_HEAPS))
+        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
         {
             Trace.dbg("Adding Heap Usage debug...");
 
-            javaHeapLabel = scene2DUtils.addLabel("JAVA HEAP: ", (int) originX + 40, (int) originY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
-            nativeHeapLabel = scene2DUtils.addLabel("NATIVE HEAP: ", (int) originX + 40, (int) originY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
+            javaHeapLabel   = Scene2DUtils.addLabel("JAVA HEAP: ", (int) originX + 40, (int) originY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
+            nativeHeapLabel = Scene2DUtils.addLabel("NATIVE HEAP: ", (int) originX + 40, (int) originY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
 
             app.stage.addActor(javaHeapLabel);
             app.stage.addActor(nativeHeapLabel);
@@ -166,7 +162,7 @@ public class MenuPage implements IUIPage, Disposable
         }
 
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-        versionLabel = new Scene2DUtils(app).addLabel
+        versionLabel = Scene2DUtils.addLabel
             (
                 Version.getAppVersion(),
                 (int) (originX + 10),
@@ -177,12 +173,12 @@ public class MenuPage implements IUIPage, Disposable
         versionLabel.setVisible(true);
         versionLabel.setZIndex(1);
 
-        addDateSpecificItems(scene2DUtils, originX, originY);
+        addDateSpecificItems(originX, originY);
     }
 
-    private void addDateSpecificItems(Scene2DUtils scene2DUtils, float originX, float originY)
+    private void addDateSpecificItems(float originX, float originY)
     {
-        Date date = new Date(TimeUtils.millis());
+        Date     date     = new Date(TimeUtils.millis());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
@@ -190,7 +186,7 @@ public class MenuPage implements IUIPage, Disposable
         {
             if (calendar.get(Calendar.DAY_OF_MONTH) == 11)
             {
-                decoration = scene2DUtils.makeObjectsImage("poppy");
+                decoration = Scene2DUtils.makeObjectsImage("poppy");
                 decoration.setPosition(originX + 1160, originY + (720 - 90));
                 app.stage.addActor(decoration);
             }
@@ -201,7 +197,7 @@ public class MenuPage implements IUIPage, Disposable
             {
                 if (calendar.get(Calendar.DAY_OF_MONTH) == 25)
                 {
-                    decoration = scene2DUtils.makeObjectsImage("xmas_tree");
+                    decoration = Scene2DUtils.makeObjectsImage("xmas_tree");
                     decoration.setPosition(originX + 1075, originY + (720 - 342));
                     app.stage.addActor(decoration);
                 }
@@ -211,13 +207,13 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addClickListeners()
     {
-        button1Player.addListener(new ClickListener()
+        buttonStart.addListener(new ClickListener()
         {
             public void clicked(InputEvent event, float x, float y)
             {
-                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
 
-                UIButtons.button1PStart.press();
+                buttonStart.setChecked(true);
             }
         });
 
@@ -225,9 +221,9 @@ public class MenuPage implements IUIPage, Disposable
         {
             public void clicked(InputEvent event, float x, float y)
             {
-                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
 
-                UIButtons.buttonOptions.press();
+                buttonOptions.setChecked(true);
             }
         });
 
@@ -235,9 +231,9 @@ public class MenuPage implements IUIPage, Disposable
         {
             public void clicked(InputEvent event, float x, float y)
             {
-                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
 
-                UIButtons.buttonExit.press();
+                buttonExit.setChecked(true);
             }
         });
     }
@@ -271,9 +267,9 @@ public class MenuPage implements IUIPage, Disposable
     {
         if (app.googleServices.isEnabled() && !app.googleServices.isSignedIn())
         {
-            Scene2DUtils scene2DUtils = new Scene2DUtils(app);
+            Scene2DUtils.setup(app);
 
-            buttonGoogle = scene2DUtils.addButton
+            buttonGoogle = Scene2DUtils.addButton
                 (
                     "btn_google_signin_dark",
                     "btn_google_signin_dark_pressed",
@@ -287,9 +283,9 @@ public class MenuPage implements IUIPage, Disposable
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
 
-                    UIButtons.buttonGoogle.press();
+                    buttonGoogle.setChecked(true);
                 }
             });
         }
@@ -298,11 +294,11 @@ public class MenuPage implements IUIPage, Disposable
     /**
      * Sets visibility of all rlevant actors.
      *
-    * @param _visible   boolean visibility setting.
+     * @param _visible boolean visibility setting.
      */
     private void showItems(boolean _visible)
     {
-        button1Player.setVisible(_visible);
+        buttonStart.setVisible(_visible);
         buttonOptions.setVisible(_visible);
         buttonExit.setVisible(_visible);
 
@@ -316,7 +312,7 @@ public class MenuPage implements IUIPage, Disposable
             buttonGoogle.setVisible(_visible);
         }
 
-        if (Developer._DEVMODE && app.preferences.prefs.getBoolean(Preferences._MENU_HEAPS))
+        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {
@@ -333,15 +329,15 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public void dispose()
     {
-        button1Player.addAction(Actions.removeActor());
+        buttonStart.addAction(Actions.removeActor());
         buttonOptions.addAction(Actions.removeActor());
         buttonExit.addAction(Actions.removeActor());
 
-        button1Player = null;
+        buttonStart   = null;
         buttonOptions = null;
-        buttonExit = null;
+        buttonExit    = null;
 
-        if (Developer._DEVMODE && app.preferences.prefs.getBoolean(Preferences._MENU_HEAPS))
+        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {
@@ -368,43 +364,37 @@ public class MenuPage implements IUIPage, Disposable
         app.assets.unloadAsset("data/title_background.png");
 
         foreground = null;
-        stopWatch = null;
-
-        if (buttons != null)
-        {
-            buttons.clear();
-            buttons = null;
-        }
+        stopWatch  = null;
     }
 
     private void menuPageDebug()
     {
-        if (Developer._DEVMODE && app.preferences.prefs.getBoolean(Preferences._MENU_HEAPS))
+        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {
                 javaHeapLabel.setText
-                (
-                    String.format
                     (
-                        Locale.UK,
-                        "JAVA HEAP: %3.2fMB",
-                        ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
-                    )
-                );
+                        String.format
+                            (
+                                Locale.UK,
+                                "JAVA HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
+                            )
+                    );
             }
 
             if (nativeHeapLabel != null)
             {
                 nativeHeapLabel.setText
-                (
-                    String.format
                     (
-                        Locale.UK,
-                        "NATIVE HEAP: %3.2fMB",
-                        ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
-                    )
-                );
+                        String.format
+                            (
+                                Locale.UK,
+                                "NATIVE HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
+                            )
+                    );
             }
         }
     }

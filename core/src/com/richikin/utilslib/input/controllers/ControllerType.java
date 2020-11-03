@@ -1,5 +1,5 @@
 
-package com.richikin.utilslib.input;
+package com.richikin.utilslib.input.controllers;
 
 public enum ControllerType
 {

@@ -5,7 +5,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.*;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.ui.GameCompletedPanel;
-import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;

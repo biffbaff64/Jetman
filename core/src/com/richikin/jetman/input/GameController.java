@@ -9,9 +9,10 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.input.ControllerMap;
-import com.richikin.utilslib.input.ControllerPos;
-import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.ControllerData;
+import com.richikin.utilslib.input.controllers.ControllerMap;
+import com.richikin.utilslib.input.controllers.ControllerPos;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.input.controllers.DefaultControllerMap;
 import com.richikin.utilslib.logging.Trace;
 
@@ -165,11 +166,11 @@ public class GameController implements ControllerListener
     @Override
     public boolean buttonDown(Controller controller, int buttonCode)
     {
-        UIButtons.controllerButtonCode = buttonCode;
+        ControllerData.controllerButtonCode = buttonCode;
 
         if (buttonCode == ControllerMap._BUTTON_A)
         {
-            UIButtons.controllerAPressed = true;
+            ControllerData.controllerAPressed = true;
 
             if (AppConfig.hudExists)
             {
@@ -181,7 +182,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_B)
         {
-            UIButtons.controllerBPressed = true;
+            ControllerData.controllerBPressed = true;
 
             if (AppConfig.hudExists)
             {
@@ -193,7 +194,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_X)
         {
-            UIButtons.controllerXPressed = true;
+            ControllerData.controllerXPressed = true;
 
             if (AppConfig.hudExists)
             {
@@ -205,7 +206,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_Y)
         {
-            UIButtons.controllerYPressed = true;
+            ControllerData.controllerYPressed = true;
 
             if (AppConfig.hudExists)
             {
@@ -217,15 +218,15 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_LB)
         {
-            UIButtons.controllerLBPressed = true;
+            ControllerData.controllerLBPressed = true;
         }
         else if (buttonCode == ControllerMap._BUTTON_RB)
         {
-            UIButtons.controllerRBPressed = true;
+            ControllerData.controllerRBPressed = true;
         }
         else if (buttonCode == ControllerMap._BUTTON_START)
         {
-            UIButtons.controllerStartPressed = true;
+            ControllerData.controllerStartPressed = true;
 
             if (AppConfig.hudExists)
             {
@@ -237,17 +238,17 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_BACK)
         {
-            UIButtons.controllerBackPressed = true;
+            ControllerData.controllerBackPressed = true;
         }
         else if (buttonCode == ControllerMap._LEFT_TRIGGER)
         {
-            UIButtons.controllerLeftFirePressed = true;
-            UIButtons.controllerFirePressed     = true;
+            ControllerData.controllerLeftFirePressed = true;
+            ControllerData.controllerFirePressed     = true;
         }
         else if (buttonCode == ControllerMap._RIGHT_TRIGGER)
         {
-            UIButtons.controllerRightFirePressed = true;
-            UIButtons.controllerFirePressed      = true;
+            ControllerData.controllerRightFirePressed = true;
+            ControllerData.controllerFirePressed      = true;
         }
 
         return false;
@@ -267,11 +268,11 @@ public class GameController implements ControllerListener
     @Override
     public boolean buttonUp(Controller controller, int buttonCode)
     {
-        UIButtons.controllerButtonCode = -1;
+        ControllerData.controllerButtonCode = -1;
 
         if (buttonCode == ControllerMap._BUTTON_A)
         {
-            UIButtons.controllerAPressed = false;
+            ControllerData.controllerAPressed = false;
 
             if (AppConfig.hudExists)
             {
@@ -283,7 +284,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_B)
         {
-            UIButtons.controllerBPressed = false;
+            ControllerData.controllerBPressed = false;
 
             if (AppConfig.hudExists)
             {
@@ -295,7 +296,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_X)
         {
-            UIButtons.controllerXPressed = false;
+            ControllerData.controllerXPressed = false;
 
             if (AppConfig.hudExists)
             {
@@ -307,7 +308,7 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_Y)
         {
-            UIButtons.controllerYPressed = false;
+            ControllerData.controllerYPressed = false;
 
             if (AppConfig.hudExists)
             {
@@ -319,29 +320,29 @@ public class GameController implements ControllerListener
         }
         else if (buttonCode == ControllerMap._BUTTON_LB)
         {
-            UIButtons.controllerLBPressed = false;
+            ControllerData.controllerLBPressed = false;
         }
         else if (buttonCode == ControllerMap._BUTTON_RB)
         {
-            UIButtons.controllerRBPressed = false;
+            ControllerData.controllerRBPressed = false;
         }
         else if (buttonCode == ControllerMap._BUTTON_START)
         {
-            UIButtons.controllerStartPressed = false;
+            ControllerData.controllerStartPressed = false;
         }
         else if (buttonCode == ControllerMap._BUTTON_BACK)
         {
-            UIButtons.controllerBackPressed = false;
+            ControllerData.controllerBackPressed = false;
         }
         else if (buttonCode == ControllerMap._LEFT_TRIGGER)
         {
-            UIButtons.controllerLeftFirePressed = false;
-            UIButtons.controllerFirePressed     = false;
+            ControllerData.controllerLeftFirePressed = false;
+            ControllerData.controllerFirePressed     = false;
         }
         else if (buttonCode == ControllerMap._RIGHT_TRIGGER)
         {
-            UIButtons.controllerRightFirePressed = false;
-            UIButtons.controllerFirePressed      = false;
+            ControllerData.controllerRightFirePressed = false;
+            ControllerData.controllerFirePressed      = false;
         }
 
         return false;
@@ -363,17 +364,17 @@ public class GameController implements ControllerListener
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value)
     {
-        UIButtons.controllerAxisCode  = axisCode;
-        UIButtons.controllerAxisValue = value;
+        ControllerData.controllerAxisCode  = axisCode;
+        ControllerData.controllerAxisValue = value;
 
-        if (UIButtons.controllerAxisValue > 1.0f)
+        if (ControllerData.controllerAxisValue > 1.0f)
         {
-            UIButtons.controllerAxisValue = 1.0f;
+            ControllerData.controllerAxisValue = 1.0f;
         }
 
-        if (UIButtons.controllerAxisValue < -1.0f)
+        if (ControllerData.controllerAxisValue < -1.0f)
         {
-            UIButtons.controllerAxisValue = -1.0f;
+            ControllerData.controllerAxisValue = -1.0f;
         }
 
         if ((axisCode == ControllerMap._AXIS_LEFT_X) || (axisCode == ControllerMap._AXIS_RIGHT_X))
@@ -382,8 +383,8 @@ public class GameController implements ControllerListener
 
             if (ControllerMap.isInNegativeRange(value))
             {
-                UIButtons.controllerLeftPressed = true;
-                UIButtons.controllerRightPressed = false;
+                ControllerData.controllerLeftPressed  = true;
+                ControllerData.controllerRightPressed = false;
 
                 if (AppConfig.hudExists)
                 {
@@ -396,8 +397,8 @@ public class GameController implements ControllerListener
             }
             else if (ControllerMap.isInPositiveRange(value))
             {
-                UIButtons.controllerRightPressed = true;
-                UIButtons.controllerLeftPressed  = false;
+                ControllerData.controllerRightPressed = true;
+                ControllerData.controllerLeftPressed  = false;
 
                 if (AppConfig.hudExists)
                 {
@@ -419,11 +420,11 @@ public class GameController implements ControllerListener
                     }
                 }
 
-                UIButtons.controllerLeftPressed  = false;
-                UIButtons.controllerRightPressed = false;
+                ControllerData.controllerLeftPressed  = false;
+                ControllerData.controllerRightPressed = false;
 
-                UIButtons.controllerAxisCode  = -1;
-                UIButtons.controllerAxisValue = 0;
+                ControllerData.controllerAxisCode  = -1;
+                ControllerData.controllerAxisValue = 0;
             }
         }
         else if ((axisCode == ControllerMap._AXIS_LEFT_Y) || (axisCode == ControllerMap._AXIS_RIGHT_Y))
@@ -432,7 +433,7 @@ public class GameController implements ControllerListener
 
             if (ControllerMap.isInNegativeRange(value))
             {
-                UIButtons.controllerUpPressed = true;
+                ControllerData.controllerUpPressed = true;
 
                 if (AppConfig.hudExists)
                 {
@@ -444,7 +445,7 @@ public class GameController implements ControllerListener
             }
             else if (ControllerMap.isInPositiveRange(value))
             {
-                UIButtons.controllerDownPressed = true;
+                ControllerData.controllerDownPressed = true;
 
                 if (AppConfig.hudExists)
                 {
@@ -465,27 +466,27 @@ public class GameController implements ControllerListener
                     }
                 }
 
-                UIButtons.controllerUpPressed   = false;
-                UIButtons.controllerDownPressed = false;
+                ControllerData.controllerUpPressed   = false;
+                ControllerData.controllerDownPressed = false;
 
-                UIButtons.controllerAxisCode  = -1;
-                UIButtons.controllerAxisValue = 0;
+                ControllerData.controllerAxisCode  = -1;
+                ControllerData.controllerAxisValue = 0;
             }
         }
         else
         {
-            UIButtons.controllerUpPressed    = false;
-            UIButtons.controllerDownPressed  = false;
-            UIButtons.controllerLeftPressed  = false;
-            UIButtons.controllerRightPressed = false;
+            ControllerData.controllerUpPressed    = false;
+            ControllerData.controllerDownPressed  = false;
+            ControllerData.controllerLeftPressed  = false;
+            ControllerData.controllerRightPressed = false;
 
             if (AppConfig.hudExists)
             {
                 app.getHud().releaseDirectionButtons();
             }
 
-            UIButtons.controllerAxisCode  = -1;
-            UIButtons.controllerAxisValue = 0;
+            ControllerData.controllerAxisCode  = -1;
+            ControllerData.controllerAxisValue = 0;
         }
 
         return false;
@@ -506,8 +507,8 @@ public class GameController implements ControllerListener
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value)
     {
-        UIButtons.controllerPovDirection = value;
-        UIButtons.controllerPovCode = povCode;
+        ControllerData.controllerPovDirection = value;
+        ControllerData.controllerPovCode      = povCode;
 
         return false;
     }

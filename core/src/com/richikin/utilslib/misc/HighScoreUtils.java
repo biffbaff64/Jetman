@@ -10,6 +10,8 @@ import java.util.Comparator;
 
 public class HighScoreUtils
 {
+    public boolean newHighScoreAvailable;
+
     private static final int    _MAX_HISCORES = 10;
     private static final String filePath      = "hiscore_data.json";
 
@@ -26,7 +28,6 @@ public class HighScoreUtils
      */
     private       HighScore[] highScores;
     private final Json        json;
-    private boolean newHighScoreAvailable;
 
     public HighScoreUtils()
     {

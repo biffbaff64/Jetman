@@ -8,8 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.IGDXButton;
-import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
@@ -78,7 +79,7 @@ public class InputManager
 
         inputMultiplexer.addProcessor(keyboard);
 
-        UIButtons.setup(app);
+        ControllerData.setup(app);
 
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
         Gdx.input.setCatchKey(Input.Keys.MENU, true);

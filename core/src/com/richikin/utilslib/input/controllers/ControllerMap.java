@@ -1,5 +1,5 @@
 
-package com.richikin.utilslib.input;
+package com.richikin.utilslib.input.controllers;
 
 import com.badlogic.gdx.controllers.PovDirection;
 import com.richikin.utilslib.input.controllers.ControlMapData;

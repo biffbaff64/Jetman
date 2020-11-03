@@ -307,6 +307,14 @@ public class Scene2DUtils
         return checkBox;
     }
 
+    public static ImageButton makeImageButton(String upButton, String downButton)
+    {
+        Image       imageUp     = new Image(app.assets.getButtonRegion(upButton));
+        Image       imageDown   = new Image(app.assets.getButtonRegion(downButton));
+
+        return new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
+    }
+
     public static Image makeAchievementsImage(String imageName)
     {
         TextureRegion         region   = app.assets.getAchievementRegion(imageName);

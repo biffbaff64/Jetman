@@ -1,6 +1,7 @@
 
 package com.richikin.utilslib.google;
 
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.Trace;
@@ -60,13 +61,13 @@ public class PlayServicesDesktop implements IPlayServices
     @Override
     public boolean isSignedIn()
     {
-        return app.settings.isEnabled(Settings._SIGN_IN_STATUS);
+        return isEnabled() && app.settings.isEnabled(Settings._SIGN_IN_STATUS);
     }
 
     @Override
     public boolean isEnabled()
     {
-        return app.settings.isEnabled(Settings._PLAY_SERVICES);
+        return AppConfig.isAndroidApp() && app.settings.isEnabled(Settings._PLAY_SERVICES);
     }
 
     @Override

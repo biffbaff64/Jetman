@@ -4,7 +4,7 @@ package com.richikin.jetman.input;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.input.ControllerType;
+import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class InputUtils
 {

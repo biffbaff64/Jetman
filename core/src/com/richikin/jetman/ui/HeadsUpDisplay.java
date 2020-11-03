@@ -24,6 +24,7 @@ import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.*;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.misc.HighScoreUtils;
@@ -425,7 +426,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void showControls()
     {
-        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(com.richikin.utilslib.input.controllers.ControllerType._VIRTUAL, true))
         {
             ActionButton.addAction(Actions.show());
             AttackButton.addAction(Actions.show());
@@ -650,7 +651,7 @@ public class HeadsUpDisplay implements Disposable
 
         buttonPause = new Switch();
 
-        int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
+        int xPos = AppConfig.virtualControllerPos == com.richikin.utilslib.input.controllers.ControllerPos._LEFT ? _X1 : _X2;
 
         buttonAction = new Switch();
         buttonAttack = new Switch();

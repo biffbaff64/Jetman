@@ -3,18 +3,19 @@ package com.richikin.jetman.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
-import com.richikin.enumslib.ScreenID;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.effects.StarField;
-import com.richikin.jetman.input.UIButtons;
 import com.richikin.jetman.ui.ExitPanel;
+import com.richikin.utilslib.core.AppSystem;
+import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
+import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.states.StateManager;
-import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.ArrayList;
@@ -22,29 +23,26 @@ import java.util.ArrayList;
 /**
  * Main class for handling all actions on the front end screen.
  */
-//@formatter:off
 public class MainMenuScreen extends AbstractBaseScreen
 {
-    private static final int _MENU_PAGE         = 0;
-    private static final int _HISCORE_PAGE      = 1;
-    private static final int _CREDITS_PAGE      = 2;
-    private static final int _NUM_MAIN_PAGES    = 3;
-    private static final int _OPTIONS_PAGE      = 3;
-    private static final int _EXIT_PAGE         = 4;
+    private static final int _MENU_PAGE      = 0;
+    private static final int _HISCORE_PAGE   = 1;
+    private static final int _CREDITS_PAGE   = 2;
+    private static final int _NUM_MAIN_PAGES = 3;
+    private static final int _OPTIONS_PAGE   = 3;
+    private static final int _EXIT_PAGE      = 4;
 
-    private ExitPanel         exitPanel;
-    private OptionsPage       optionsPage;
-    private StateManager      gameState;
-    private Texture           background;
-    private StarField         starField;
+    private ExitPanel          exitPanel;
+    private OptionsPage        optionsPage;
+    private MenuPage           menuPage;
+    private Texture            background;
+    private StarField          starField;
     private ArrayList<IUIPage> panels;
-    private int               currentPage;
+    private int                currentPage;
 
     public MainMenuScreen(final App _app)
     {
         super(_app);
-
-        this.gameState = new StateManager();
     }
 
     @Override
@@ -52,11 +50,12 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        optionsPage     = new OptionsPage(app);
-        panels          = new ArrayList<>();
-        starField       = new StarField(app);
+        optionsPage = new OptionsPage(app);
+        menuPage    = new MenuPage(app);
+        panels      = new ArrayList<>();
+        starField   = new StarField(app);
 
-        panels.add(_MENU_PAGE, new MenuPage(app));
+        panels.add(_MENU_PAGE, menuPage);
         panels.add(_HISCORE_PAGE, new HiscorePage(app));
         panels.add(_CREDITS_PAGE, new CreditsPage(app));
         panels.add(_OPTIONS_PAGE, optionsPage);
@@ -85,7 +84,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
             if ((tempState = update(app.appState).peek()) != StateID._STATE_MAIN_MENU)
             {
-                gameState.set(tempState);
+                app.appState.set(tempState);
             }
 
             super.render(delta);
@@ -94,12 +93,12 @@ public class MainMenuScreen extends AbstractBaseScreen
 
     private StateManager update(final StateManager state)
     {
-        if (!Sfx.inst().isTunePlaying(Sfx.inst().MUS_TITLE))
-        {
-            Sfx.inst().playTitleTune(true);
-        }
+//        if (!Sfx.inst().isTunePlaying(Sfx.inst().MUS_TITLE))
+//        {
+//            Sfx.inst().playTitleTune(true);
+//        }
 
-        if (state.get() == StateID._STATE_MAIN_MENU)
+        if (state.peek() == StateID._STATE_MAIN_MENU)
         {
             switch (currentPage)
             {
@@ -120,7 +119,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 {
                     optionsPage.update();
 
-                    if (!AppConfig.optionsPageActive)
+                    if (!app.optionsPageActive)
                     {
                         changePageTo(_MENU_PAGE);
                     }
@@ -160,36 +159,32 @@ public class MainMenuScreen extends AbstractBaseScreen
             //
             // If currently showing Hiscore or Credits pages, return to menupage
             // if the screen is tapped (or controller start button pressed)
-            if (UIButtons.fullScreenButton.isPressed || UIButtons.controllerFirePressed || UIButtons.controllerStartPressed)
+            if (AppSystem.fullScreenButton.isPressed()
+                || ControllerData.controllerFirePressed
+                || ControllerData.controllerStartPressed)
             {
                 if ((currentPage == _HISCORE_PAGE) || (currentPage == _CREDITS_PAGE))
                 {
                     changePageTo(_MENU_PAGE);
 
-                    UIButtons.controllerFirePressed = false;
-                    UIButtons.controllerStartPressed = false;
+                    ControllerData.controllerFirePressed  = false;
+                    ControllerData.controllerStartPressed = false;
                 }
 
-                UIButtons.fullScreenButton.release();
+                AppSystem.fullScreenButton.release();
             }
 
             //
-            // Start button(s) check
-            if (((UIButtons.button1PStart != null) && UIButtons.button1PStart.isPressed)
-                || ((UIButtons.button2PStart != null) && UIButtons.button2PStart.isPressed))
+            // Start button check
+            if ((menuPage.buttonStart != null) && menuPage.buttonStart.isChecked())
             {
                 Trace.divider('#', 100);
                 Trace.dbg(" ***** START PRESSED ***** ");
                 Trace.divider('#', 100);
 
-                Sfx.inst().playTitleTune(false);
+//                Sfx.inst().playTitleTune(false);
 
-                app.gameProgress.activePlayers = (UIButtons.button1PStart.isPressed) ?
-                    Player._PLAYER_ONE :
-                    Player._PLAYER_TWO;
-
-                UIButtons.button1PStart.release();
-                UIButtons.button2PStart.release();
+                menuPage.buttonStart.setChecked(false);
 
                 app.mainGameScreen.reset();
                 app.setScreen(app.mainGameScreen);
@@ -197,20 +192,20 @@ public class MainMenuScreen extends AbstractBaseScreen
             else
             {
                 // If we're still on the title screen...
-                if (state.get() == StateID._STATE_MAIN_MENU)
+                if (state.peek() == StateID._STATE_MAIN_MENU)
                 {
                     //
                     // Check OPTIONS button, open settings page if pressed
-                    if ((UIButtons.buttonOptions != null) && UIButtons.buttonOptions.isPressed)
+                    if ((menuPage.buttonOptions != null) && menuPage.buttonOptions.isChecked())
                     {
                         changePageTo(_OPTIONS_PAGE);
 
-                        UIButtons.buttonOptions.release();
+                        menuPage.buttonOptions.setChecked(false);
                     }
 
                     //
                     // Check EXIT button, open exit panel if pressed
-                    if ((UIButtons.buttonExit != null) && UIButtons.buttonExit.isPressed)
+                    if ((menuPage.buttonExit != null) && menuPage.buttonExit.isChecked())
                     {
                         panels.get(currentPage).hide();
 
@@ -219,14 +214,14 @@ public class MainMenuScreen extends AbstractBaseScreen
 
                         currentPage = _EXIT_PAGE;
 
-                        UIButtons.buttonExit.release();
+                        menuPage.buttonExit.setChecked(false);
                     }
 
                     //
                     // Check GOOGLE SIGN-IN button
-                    if ((UIButtons.buttonGoogle != null) && UIButtons.buttonGoogle.isPressed)
+                    if ((menuPage.buttonGoogle != null) && menuPage.buttonGoogle.isChecked())
                     {
-                        UIButtons.buttonGoogle.release();
+                        menuPage.buttonGoogle.setChecked(false);
 
                         if (!app.googleServices.isSignedIn())
                         {
@@ -239,7 +234,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         else
         {
             Trace.__FILE_FUNC();
-            Trace.dbg("Unsupported game state: " + state.get());
+            Trace.dbg("Unsupported game state: " + state.peek());
         }
 
         return state;
@@ -249,11 +244,11 @@ public class MainMenuScreen extends AbstractBaseScreen
      * Draw the currently active page.
      *
      * @param spriteBatch The spritebatch to use.
-     * @param _camera  The camera to use.
+     * @param _camera     The camera to use.
      */
     public void draw(final SpriteBatch spriteBatch, final OrthoGameCamera _camera)
     {
-        if (gameState.get() == StateID._STATE_MAIN_MENU)
+        if (app.appState.peek() == StateID._STATE_MAIN_MENU)
         {
             float originX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             float originY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
@@ -266,25 +261,17 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _OPTIONS_PAGE:
                 case _EXIT_PAGE:
                 {
-                    if ("Sprite Cam".equals(_camera.name))
-                    {
-                        if (background != null)
-                        {
-                            spriteBatch.draw(background, originX, originY);
-                        }
+                    spriteBatch.draw(background, originX, originY);
 
-                        starField.render();
+                    starField.render();
+
+                    if (exitPanel == null)
+                    {
+                        panels.get(currentPage).draw(spriteBatch, originX, originY);
                     }
                     else
                     {
-                        if (exitPanel == null)
-                        {
-                            panels.get(currentPage).draw(spriteBatch, originX, originY);
-                        }
-                        else
-                        {
-                            exitPanel.draw(spriteBatch, _camera.camera);
-                        }
+                        exitPanel.draw(spriteBatch, _camera.camera);
                     }
                 }
                 break;
@@ -303,13 +290,8 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        if (gameState == null)
-        {
-            this.gameState = new StateManager();
-        }
-
-        app.currentScreenID = ScreenID._TITLE_SCREEN;
-        gameState.set(StateID._STATE_MAIN_MENU);
+        AppConfig.currentScreenID = ScreenID._MAIN_MENU;
+        app.appState.set(StateID._STATE_MAIN_MENU);
 
         super.show();
 
@@ -317,11 +299,11 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         app.cameraUtils.resetCameraZoom();
         app.cameraUtils.disableAllCameras();
-        app.baseRenderer.spriteGameCamera.isInUse   = true;
-        app.baseRenderer.hudGameCamera.isInUse      = true;
-        app.baseRenderer.isDrawingStage             = true;
+        app.baseRenderer.spriteGameCamera.isInUse = true;
+        app.baseRenderer.hudGameCamera.isInUse    = true;
+        app.baseRenderer.isDrawingStage           = true;
 
-        currentPage = (app.highScoreUtils.canAddNewEntry()) ? _HISCORE_PAGE : _MENU_PAGE;
+        currentPage = (app.highScoreUtils.canAddNewEntry(app.gameProgress.score)) ? _HISCORE_PAGE : _MENU_PAGE;
 
         panels.get(currentPage).show();
 
@@ -336,17 +318,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         super.hide();
 
         dispose();
-    }
-
-    /**
-     * Gets the current game state.
-     *
-     * @return StateManager value.
-     */
-    @Override
-    public StateManager getGameState()
-    {
-        return gameState;
     }
 
     @Override
@@ -375,7 +346,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         exitPanel   = null;
         optionsPage = null;
-        gameState   = null;
     }
 
     /**

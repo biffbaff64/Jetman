@@ -4,26 +4,43 @@ package com.richikin.jetman.input;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
+import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.core.AppSystem;
+import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.DirectionValue;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.enumslib.ScreenID;
-import com.richikin.utilslib.developer.Developer;
 
 @SuppressWarnings("WeakerAccess")
 public class Keyboard extends InputAdapter
 {
+    // =================================================================
+    // DEFAULT Keyboard options.
+    //
+    public static final int defaultValueUp       = Input.Keys.W;
+    public static final int defaultValueDown     = Input.Keys.S;
+    public static final int defaultValueLeft     = Input.Keys.A;
+    public static final int defaultValueRight    = Input.Keys.D;
+    public static final int defaultValueA        = Input.Keys.NUMPAD_2;
+    public static final int defaultValueB        = Input.Keys.NUMPAD_6;
+    public static final int defaultValueX        = Input.Keys.NUMPAD_1;
+    public static final int defaultValueY        = Input.Keys.NUMPAD_5;
+    public static final int defaultValueHudInfo  = Input.Keys.F9;
+    public static final int defaultValuePause    = Input.Keys.ESCAPE;
+    public static final int defaultValueSettings = Input.Keys.F10;
+
     public boolean ctrlButtonHeld;
     public boolean shiftButtonHeld;
+
     private final App app;
 
     public Keyboard(App _app)
     {
-        this.app = _app;
-        ctrlButtonHeld = false;
+        this.app        = _app;
+        ctrlButtonHeld  = false;
         shiftButtonHeld = false;
     }
 
@@ -84,32 +101,32 @@ public class Keyboard extends InputAdapter
     {
         boolean returnFlag;
 
-        if (keycode == UIButtons.defaultValueLeft)
+        if (keycode == defaultValueLeft)
         {
             app.getHud().buttonLeft.press();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueRight)
+        else if (keycode == defaultValueRight)
         {
             app.getHud().buttonRight.press();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueUp)
+        else if (keycode == defaultValueUp)
         {
             app.getHud().buttonUp.press();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueDown)
+        else if (keycode == defaultValueDown)
         {
             app.getHud().buttonDown.press();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueB)
+        else if (keycode == defaultValueB)
         {
             app.getHud().buttonAttack.press();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueA)
+        else if (keycode == defaultValueA)
         {
             app.getHud().buttonAction.press();
             returnFlag = true;
@@ -171,7 +188,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.SHIFT_RIGHT:
                 {
                     shiftButtonHeld = true;
-                    returnFlag = true;
+                    returnFlag      = true;
                 }
                 break;
 
@@ -179,7 +196,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.CONTROL_RIGHT:
                 {
                     ctrlButtonHeld = true;
-                    returnFlag = true;
+                    returnFlag     = true;
                 }
                 break;
 
@@ -200,32 +217,32 @@ public class Keyboard extends InputAdapter
     {
         boolean returnFlag;
 
-        if (keycode == UIButtons.defaultValueLeft)
+        if (keycode == defaultValueLeft)
         {
             app.getHud().buttonLeft.release();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueRight)
+        else if (keycode == defaultValueRight)
         {
             app.getHud().buttonRight.release();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueUp)
+        else if (keycode == defaultValueUp)
         {
             app.getHud().buttonUp.release();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueDown)
+        else if (keycode == defaultValueDown)
         {
             app.getHud().buttonDown.release();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueB)
+        else if (keycode == defaultValueB)
         {
             app.getHud().buttonAttack.release();
             returnFlag = true;
         }
-        else if (keycode == UIButtons.defaultValueA)
+        else if (keycode == defaultValueA)
         {
             app.getHud().buttonAction.release();
             returnFlag = true;
@@ -247,7 +264,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.SHIFT_RIGHT:
                 {
                     shiftButtonHeld = false;
-                    returnFlag = true;
+                    returnFlag      = true;
                 }
                 break;
 
@@ -255,7 +272,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.CONTROL_RIGHT:
                 {
                     ctrlButtonHeld = false;
-                    returnFlag = true;
+                    returnFlag     = true;
                 }
                 break;
 
@@ -287,7 +304,7 @@ public class Keyboard extends InputAdapter
 
         if (keycode == Input.Keys.BACK)
         {
-            UIButtons.systemBackButton.release();
+            AppSystem.systemBackButton.release();
 
             if (AppConfig.gameScreenActive())
             {
@@ -345,7 +362,7 @@ public class Keyboard extends InputAdapter
         {
             returnFlag = app.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
         }
-        
+
         if (AppConfig.gameScreenActive())
         {
             returnFlag = app.inputManager.touchScreen.gameScreenTouchUp(screenX, screenY);

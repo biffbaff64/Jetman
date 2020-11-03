@@ -16,7 +16,7 @@ public interface IUIPage
 
     void hide();
 
-    void draw(SpriteBatch spriteBatch, OrthographicCamera camera, float originX, float originY);
+    void draw(SpriteBatch spriteBatch, float originX, float originY);
 
     void reset();
 

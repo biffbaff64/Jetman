@@ -9,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.misc.HighScore;
 import com.richikin.utilslib.states.StateID;
@@ -88,7 +90,7 @@ public class HiscorePage implements IUIPage, Disposable
     {
         boolean isFinished = false;
 
-        if (state.get() != StateID._STATE_NEW_HISCORE)
+        if (state.peek() != StateID._STATE_NEW_HISCORE)
         {
             if (stopWatch.time(TimeUnit.MILLISECONDS) >= 75)
             {
@@ -131,7 +133,7 @@ public class HiscorePage implements IUIPage, Disposable
 
         loopCount = 0;
 
-        if (app.gameProgress.newHiScoreAvailable)
+        if (app.highScoreUtils.newHighScoreAvailable)
         {
             state.set(StateID._STATE_NEW_HISCORE);
         }
@@ -148,7 +150,7 @@ public class HiscorePage implements IUIPage, Disposable
     {
         showItems(false);
 
-        app.gameProgress.newHiScoreAvailable = false;
+        app.highScoreUtils.newHighScoreAvailable = false;
     }
 
     @Override
@@ -170,32 +172,32 @@ public class HiscorePage implements IUIPage, Disposable
 
         foreground = app.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
 
-        Scene2DUtils scene2DUtils = new Scene2DUtils(app);
+        Scene2DUtils.setup(app);
 
-        rankLabels  = new Label[Constants._MAX_HISCORES];
-        levelLabels = new Label[Constants._MAX_HISCORES];
-        scoreLabels = new Label[Constants._MAX_HISCORES];
+        rankLabels  = new Label[GameConstants._MAX_HISCORES];
+        levelLabels = new Label[GameConstants._MAX_HISCORES];
+        scoreLabels = new Label[GameConstants._MAX_HISCORES];
 
         app.highScoreUtils.loadTableData();
 
         HighScore highScore = new HighScore();
 
-        if (app.gameProgress.newHiScoreAvailable)
+        if (app.highScoreUtils.newHighScoreAvailable)
         {
-            highScore.score = app.gameProgress.getScoreOne().getTotal();
-            highScore.level = app.gameProgress.playerLevel[Player._PLAYER_ONE.get()];
+            highScore.score = app.gameProgress.score.getTotal();
+            highScore.level = app.gameProgress.playerLevel;
             highScore.rank = app.highScoreUtils.findInsertLevel(highScore);
 
             app.highScoreUtils.addHighScore(highScore);
         }
 
-        colorIndex = new int[Constants._MAX_HISCORES];
+        colorIndex = new int[GameConstants._MAX_HISCORES];
         loopCount = 0;
 
-        for (int i=0; i<Constants._MAX_HISCORES; i++)
+        for (int i=0; i<GameConstants._MAX_HISCORES; i++)
         {
             // Hiscore table rank
-            rankLabels[i] = scene2DUtils.addLabel
+            rankLabels[i] = Scene2DUtils.addLabel
                 (
                     "" + (i + 1),
                     (int) (originX + _RANK_X), (int) (originY + _TABLE_Y - (_SPACING * i)),
@@ -203,7 +205,7 @@ public class HiscorePage implements IUIPage, Disposable
                 );
 
             // The game level achieved
-            levelLabels[i] = scene2DUtils.addLabel
+            levelLabels[i] = Scene2DUtils.addLabel
                 (
                     "" + app.highScoreUtils.getHighScoreTable()[i].level,
                     (int) (originX + _LEVEL_X), (int) (_TABLE_Y - (_SPACING * i)),
@@ -211,7 +213,7 @@ public class HiscorePage implements IUIPage, Disposable
                 );
 
             // The player score
-            scoreLabels[i] = scene2DUtils.addLabel
+            scoreLabels[i] = Scene2DUtils.addLabel
                 (
                     String.format(Locale.UK, "%8d", app.highScoreUtils.getHighScoreTable()[i].score),
                     (int) (originX + _SCORE_X), (int) (originY + _TABLE_Y - (_SPACING * i)),

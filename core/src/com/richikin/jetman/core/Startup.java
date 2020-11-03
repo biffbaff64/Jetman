@@ -23,6 +23,7 @@ import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.developer.DebugRenderer;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.misc.HighScoreUtils;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.utilslib.states.StateManager;
 
@@ -72,6 +73,8 @@ public class Startup
 
         app.inputManager   = new InputManager(app);
         app.panelManager   = new PanelManager(app);
+
+        app.highScoreUtils = new HighScoreUtils();
 
         //
         // TODO: 19/08/2020
