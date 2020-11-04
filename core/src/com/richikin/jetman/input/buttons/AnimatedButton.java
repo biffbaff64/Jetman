@@ -55,8 +55,7 @@ public class AnimatedButton implements IGDXButton, Disposable
     public int width;
     public int height;
 
-    private       int mapIndex;
-    private final App app;
+    private int mapIndex;
 
     /**
      * Define a GameButton
@@ -65,11 +64,10 @@ public class AnimatedButton implements IGDXButton, Disposable
      * @param textureRegionPressed - Image used for PRESSED state
      * @param x                    - X Display co-ordinate
      * @param y                    - Y Display co-ordinate
-     * @param _app                 - Instance of the game
      */
-    public AnimatedButton(TextureRegion textureRegion, TextureRegion textureRegionPressed, int x, int y, App _app)
+    public AnimatedButton(TextureRegion textureRegion, TextureRegion textureRegionPressed, int x, int y)
     {
-        this(x, y, _app);
+        this(x, y);
 
         this.bg         = textureRegion;
         this.bgPressed  = textureRegionPressed;
@@ -85,11 +83,10 @@ public class AnimatedButton implements IGDXButton, Disposable
      *
      * @param x    - X Display co-ordinate
      * @param y    - Y Display co-ordinate
-     * @param _app - Instance of the game
      */
-    public AnimatedButton(int x, int y, App _app)
+    public AnimatedButton(int x, int y)
     {
-        this(_app);
+        this();
 
         this.bg           = null;
         this.bgPressed    = null;
@@ -112,14 +109,13 @@ public class AnimatedButton implements IGDXButton, Disposable
         this.buttonTimer  = 0;
         this.isToAndFro   = false;
 
-        mapIndex = app.inputManager.gameButtons.size;
+        mapIndex = App.inputManager.gameButtons.size;
 
-        app.inputManager.gameButtons.add(this);
+        App.inputManager.gameButtons.add(this);
     }
 
-    public AnimatedButton(App _app)
+    public AnimatedButton()
     {
-        this.app            = _app;
         this._isPressed     = false;
         this._isDisabled    = false;
         this.hasSound       = true;
@@ -320,7 +316,7 @@ public class AnimatedButton implements IGDXButton, Disposable
 
     public void delete()
     {
-        app.inputManager.gameButtons.removeIndex(mapIndex);
+        App.inputManager.gameButtons.removeIndex(mapIndex);
     }
 
     @Override

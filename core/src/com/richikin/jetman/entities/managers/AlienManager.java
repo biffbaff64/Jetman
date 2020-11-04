@@ -28,9 +28,9 @@ public class AlienManager extends GenericEntityManager
             new GraphicIndex(GraphicID.G_TWINKLES, 0),
         };
 
-    public AlienManager(final App _app)
+    public AlienManager()
     {
-        super(_app);
+        super();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class AlienManager extends GenericEntityManager
     {
         for (GraphicIndex alien : aliens)
         {
-            if (alien.value < app.roomManager.getMaxAllowed(alien.graphicID))
+            if (alien.value < App.roomManager.getMaxAllowed(alien.graphicID))
             {
                 create(alien.graphicID);
                 alien.value++;
@@ -69,7 +69,7 @@ public class AlienManager extends GenericEntityManager
 
     public void create(GraphicID graphicID)
     {
-        if (app.entityUtils.canUpdate(graphicID))
+        if (App.entityUtils.canUpdate(graphicID))
         {
             SimpleVec2 markerPos = setInitialPosition(graphicID);
 
@@ -77,104 +77,104 @@ public class AlienManager extends GenericEntityManager
             descriptor._SIZE       = GameAssets.getAssetSize(graphicID);
             descriptor._POSITION.x = markerPos.getX();
             descriptor._POSITION.y = markerPos.getY();
-            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(graphicID);
-            descriptor._INDEX      = app.entityData.entityMap.size;
+            descriptor._POSITION.z = App.entityUtils.getInitialZPosition(graphicID);
+            descriptor._INDEX      = App.entityData.entityMap.size;
 
             switch (graphicID)
             {
                 case G_3BALLS_UFO:
                 {
-                    ThreeBallsUFO threeBallsUFO = new ThreeBallsUFO(app);
+                    ThreeBallsUFO threeBallsUFO = new ThreeBallsUFO();
                     threeBallsUFO.initialise(descriptor);
-                    app.entityData.addEntity(threeBallsUFO);
+                    App.entityData.addEntity(threeBallsUFO);
                 }
                 break;
 
                 case G_3LEGS_ALIEN:
                 {
-                    ThreeLegsAlien threeLegsAlien = new ThreeLegsAlien(app);
+                    ThreeLegsAlien threeLegsAlien = new ThreeLegsAlien();
                     threeLegsAlien.initialise(descriptor);
-                    app.entityData.addEntity(threeLegsAlien);
+                    App.entityData.addEntity(threeLegsAlien);
                 }
                 break;
 
                 case G_ASTEROID:
                 {
-                    Asteroid asteroid = new Asteroid(app);
+                    Asteroid asteroid = new Asteroid();
                     asteroid.initialise(descriptor);
-                    app.entityData.addEntity(asteroid);
+                    App.entityData.addEntity(asteroid);
                 }
                 break;
 
                 case G_ALIEN_WHEEL:
                 {
-                    AlienWheel alienWheel = new AlienWheel(app);
+                    AlienWheel alienWheel = new AlienWheel();
                     alienWheel.initialise(descriptor);
-                    app.entityData.addEntity(alienWheel);
+                    App.entityData.addEntity(alienWheel);
                 }
                 break;
 
                 case G_BLOB:
                 {
-                    Blob blob = new Blob(app);
+                    Blob blob = new Blob();
                     blob.initialise(descriptor);
-                    app.entityData.addEntity(blob);
+                    App.entityData.addEntity(blob);
                 }
                 break;
 
                 case G_DOG:
                 {
-                    Dog dog = new Dog(app);
+                    Dog dog = new Dog();
                     dog.initialise(descriptor);
-                    app.entityData.addEntity(dog);
+                    App.entityData.addEntity(dog);
                 }
                 break;
 
                 case G_GREEN_BLOCK:
                 {
-                    GreenBlock greenBlock = new GreenBlock(app);
+                    GreenBlock greenBlock = new GreenBlock();
                     greenBlock.initialise(descriptor);
-                    app.entityData.addEntity(greenBlock);
+                    App.entityData.addEntity(greenBlock);
                 }
                 break;
 
                 case G_SPINNING_BALL:
                 {
-                    SpinningBall spinningBall = new SpinningBall(app);
+                    SpinningBall spinningBall = new SpinningBall();
                     spinningBall.initialise(descriptor);
-                    app.entityData.addEntity(spinningBall);
+                    App.entityData.addEntity(spinningBall);
                 }
                 break;
 
                 case G_STAIR_CLIMBER:
                 {
-                    StairClimber stairClimber = new StairClimber(GraphicID.G_STAIR_CLIMBER, app);
+                    StairClimber stairClimber = new StairClimber(GraphicID.G_STAIR_CLIMBER);
                     stairClimber.initialise(descriptor);
-                    app.entityData.addEntity(stairClimber);
+                    App.entityData.addEntity(stairClimber);
                 }
                 break;
 
                 case G_STAR_SPINNER:
                 {
-                    StarSpinner starSpinner = new StarSpinner(app);
+                    StarSpinner starSpinner = new StarSpinner();
                     starSpinner.initialise(descriptor);
-                    app.entityData.addEntity(starSpinner);
+                    App.entityData.addEntity(starSpinner);
                 }
                 break;
 
                 case G_TOPSPIN:
                 {
-                    TopSpin topSpin = new TopSpin(app);
+                    TopSpin topSpin = new TopSpin();
                     topSpin.initialise(descriptor);
-                    app.entityData.addEntity(topSpin);
+                    App.entityData.addEntity(topSpin);
                 }
                 break;
 
                 case G_TWINKLES:
                 {
-                    Twinkle twinkle = new Twinkle(app);
+                    Twinkle twinkle = new Twinkle();
                     twinkle.initialise(descriptor);
-                    app.entityData.addEntity(twinkle);
+                    App.entityData.addEntity(twinkle);
                 }
                 break;
 
@@ -201,7 +201,7 @@ public class AlienManager extends GenericEntityManager
         {
             case G_3BALLS_UFO:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(6, 11);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -213,7 +213,7 @@ public class AlienManager extends GenericEntityManager
             case G_TOPSPIN:
             case G_3LEGS_ALIEN:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(10, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -225,7 +225,7 @@ public class AlienManager extends GenericEntityManager
             case G_BLOB:
             case G_SPINNING_BALL:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(5, 12);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -236,7 +236,7 @@ public class AlienManager extends GenericEntityManager
 
             case G_DOG:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(6, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -247,7 +247,7 @@ public class AlienManager extends GenericEntityManager
 
             case G_TWINKLES:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -258,7 +258,7 @@ public class AlienManager extends GenericEntityManager
 
             case G_ASTEROID:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = ((Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) / 2) + MathUtils.random(4);
 
                 initPos.x += ((MathUtils.random(100) < 50) ?
@@ -270,7 +270,7 @@ public class AlienManager extends GenericEntityManager
 
             case G_GREEN_BLOCK:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(4, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -282,7 +282,7 @@ public class AlienManager extends GenericEntityManager
             case G_ALIEN_WHEEL:
             case G_STAR_SPINNER:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = 3;
 
                 initPos.x -= (Gfx._VIEW_WIDTH / Gfx.getTileWidth());
@@ -292,7 +292,7 @@ public class AlienManager extends GenericEntityManager
 
             case G_STAIR_CLIMBER:
             {
-                initPos.x = (int) (app.getPlayer().sprite.getX() / Gfx.getTileWidth());
+                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 5);
 
                 initPos.x += (int) ((MathUtils.random(100) < 50) ?

@@ -8,11 +8,8 @@ import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class HUDRenderer implements IGameScreenRenderer
 {
-    private final App app;
-
-    public HUDRenderer(App _app)
+    public HUDRenderer()
     {
-        this.app = _app;
     }
 
     @Override
@@ -20,13 +17,13 @@ public class HUDRenderer implements IGameScreenRenderer
     {
         if (!AppConfig.shutDownActive)
         {
-            switch (app.appState.peek())
+            switch (App.appState.peek())
             {
                 case _STATE_MAIN_MENU:
                 {
-                    if (app.mainMenuScreen != null)
+                    if (App.mainMenuScreen != null)
                     {
-                        app.mainMenuScreen.draw(spriteBatch, hudCamera);
+                        App.mainMenuScreen.draw(spriteBatch, hudCamera);
                     }
                 }
                 break;
@@ -42,18 +39,18 @@ public class HUDRenderer implements IGameScreenRenderer
                 case _STATE_TELEPORTING:
                 case _STATE_GAME_OVER:
                 {
-                    if (app.getHud() != null)
+                    if (App.getHud() != null)
                     {
-                        app.getHud().render(hudCamera.camera, (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true)));
+                        App.getHud().render(hudCamera.camera, (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true)));
                     }
                 }
                 break;
 
                 case _STATE_GAME_FINISHED:
                 {
-                    if (app.getHud() != null)
+                    if (App.getHud() != null)
                     {
-                        app.getHud().render(hudCamera.camera, false);
+                        App.getHud().render(hudCamera.camera, false);
                     }
                 }
                 break;

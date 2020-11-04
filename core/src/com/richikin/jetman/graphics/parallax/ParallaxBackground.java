@@ -11,12 +11,9 @@ public class ParallaxBackground implements Disposable
 {
     public final Array<ParallaxLayer> layers;
 
-    private final App app;
-
-    public ParallaxBackground(App _app)
+    public ParallaxBackground()
     {
         this.layers = new Array<>();
-        this.app    = _app;
     }
 
     public void setupLayers(LayerImage[] layerImage)
@@ -37,18 +34,18 @@ public class ParallaxBackground implements Disposable
     {
         for (int layer = 0; layer < layerImage.length; layer++)
         {
-            layers.add(new ParallaxLayer(layerImage[layer].layerName, app));
+            layers.add(new ParallaxLayer(layerImage[layer].layerName));
 
             layers.get(layer).xSpeed = layerImage[layer].horizontalSpeed;
             layers.get(layer).ySpeed = layerImage[layer].verticalSpeed;
         }
     }
 
-    public void addLayerGroup(String[] layerGroup, App _app)
+    public void addLayerGroup(String[] layerGroup)
     {
         for (int layer = 0, arraySize = layerGroup.length; layer < arraySize; layer++)
         {
-            layers.add(new ParallaxLayer(layerGroup[layer], app));
+            layers.add(new ParallaxLayer(layerGroup[layer]));
             layers.get(layer).setTextureRegion();
         }
     }

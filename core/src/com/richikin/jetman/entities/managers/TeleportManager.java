@@ -26,9 +26,9 @@ public class TeleportManager extends GenericEntityManager
     public SimpleVec2F       targetDistance;
     public SimpleVec2        targetDirection;
 
-    public TeleportManager(App _app)
+    public TeleportManager()
     {
-        super(GraphicID.G_TRANSPORTER, _app);
+        super(GraphicID.G_TRANSPORTER);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TeleportManager extends GenericEntityManager
 
     private void createTransporters()
     {
-        if (app.entityUtils.canUpdate(GraphicID.G_TRANSPORTER))
+        if (App.entityUtils.canUpdate(GraphicID.G_TRANSPORTER))
         {
             Trace.__FILE_FUNC();
 
@@ -81,15 +81,15 @@ public class TeleportManager extends GenericEntityManager
                     descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
                     descriptor._POSITION.x = coords.get(i).x;
                     descriptor._POSITION.y = coords.get(i).y;
-                    descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
-                    descriptor._INDEX      = app.entityData.entityMap.size;
+                    descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
+                    descriptor._INDEX      = App.entityData.entityMap.size;
 
-                    Teleporter teleporter = new Teleporter(app);
+                    Teleporter teleporter = new Teleporter();
                     teleporter.initialise(descriptor);
                     teleporter.teleporterNumber = activeCount;
 
-                    app.entityData.addEntity(teleporter);
-                    app.entityManager._teleportIndex[activeCount] = descriptor._INDEX;
+                    App.entityData.addEntity(teleporter);
+                    App.entityManager._teleportIndex[activeCount] = descriptor._INDEX;
 
                     //
                     // Store the map positions of each teleporter
@@ -107,18 +107,18 @@ public class TeleportManager extends GenericEntityManager
     public void teleportVisual(boolean _entered)
     {
         teleportActive                 = true;
-        app.entityManager.teleportBeam = new TeleportBeam(app);
+        App.entityManager.teleportBeam = new TeleportBeam();
 
         if (_entered)
         {
-            app.getHud().messageManager.addZoomMessage("TeleportMessage", 1500);
-            app.entityManager.teleportBeam.entryVisual();
+            App.getHud().messageManager.addZoomMessage("TeleportMessage", 1500);
+            App.entityManager.teleportBeam.entryVisual();
 
 //            Sfx.inst().startSound(Sfx.inst().SFX_TELEPORT);
         }
         else
         {
-            app.entityManager.teleportBeam.exitVisual();
+            App.entityManager.teleportBeam.exitVisual();
         }
     }
 
@@ -129,24 +129,24 @@ public class TeleportManager extends GenericEntityManager
         targetDistance  = new SimpleVec2F();
         targetDirection = new SimpleVec2();
 
-        app.appState.set(StateID._STATE_TELEPORTING);
+        App.appState.set(StateID._STATE_TELEPORTING);
 
         if (Developer.isDevMode())
         {
             for (int i=0; i<RoomManager._MAX_TELEPORTERS; i++)
             {
-                Trace.dbg("Teleporter " + i + " X: " + app.getTeleporter(i).sprite.getX());
+                Trace.dbg("Teleporter " + i + " X: " + App.getTeleporter(i).sprite.getX());
             }
         }
 
         if (index == 0)
         {
-            if (app.getTeleporter(0).sprite.getX() < app.getTeleporter(1).sprite.getX())
+            if (App.getTeleporter(0).sprite.getX() < App.getTeleporter(1).sprite.getX())
             {
                 targetDirection.setX(Movement._DIRECTION_RIGHT);
                 targetDistance.set
                     (
-                        app.getTeleporter(1).sprite.getX() - app.getTeleporter(0).sprite.getX(),
+                        App.getTeleporter(1).sprite.getX() - App.getTeleporter(0).sprite.getX(),
                         Movement._DIRECTION_STILL
                     );
             }
@@ -155,7 +155,7 @@ public class TeleportManager extends GenericEntityManager
                 targetDirection.setX(Movement._DIRECTION_LEFT);
                 targetDistance.set
                     (
-                        app.getTeleporter(0).sprite.getX() - app.getTeleporter(1).sprite.getX(),
+                        App.getTeleporter(0).sprite.getX() - App.getTeleporter(1).sprite.getX(),
                         Movement._DIRECTION_STILL
                     );
             }
@@ -164,12 +164,12 @@ public class TeleportManager extends GenericEntityManager
         }
         else
         {
-            if (app.getTeleporter(1).sprite.getX() > app.getTeleporter(0).sprite.getX())
+            if (App.getTeleporter(1).sprite.getX() > App.getTeleporter(0).sprite.getX())
             {
                 targetDirection.setX(Movement._DIRECTION_LEFT);
                 targetDistance.set
                     (
-                        app.getTeleporter(1).sprite.getX() - app.getTeleporter(0).sprite.getX(),
+                        App.getTeleporter(1).sprite.getX() - App.getTeleporter(0).sprite.getX(),
                         Movement._DIRECTION_STILL
                     );
             }
@@ -178,7 +178,7 @@ public class TeleportManager extends GenericEntityManager
                 targetDirection.setX(Movement._DIRECTION_RIGHT);
                 targetDistance.set
                     (
-                        app.getTeleporter(0).sprite.getX() - app.getTeleporter(1).sprite.getX(),
+                        App.getTeleporter(0).sprite.getX() - App.getTeleporter(1).sprite.getX(),
                         Movement._DIRECTION_STILL
                     );
             }
@@ -186,16 +186,16 @@ public class TeleportManager extends GenericEntityManager
             targetBooth = 0;
         }
 
-        if (app.getTeleporter(targetBooth).sprite.getY() > app.getPlayer().sprite.getY())
+        if (App.getTeleporter(targetBooth).sprite.getY() > App.getPlayer().sprite.getY())
         {
             targetDirection.setY(Movement._DIRECTION_UP);
         }
-        else if (app.getTeleporter(targetBooth).sprite.getY() < app.getPlayer().sprite.getY())
+        else if (App.getTeleporter(targetBooth).sprite.getY() < App.getPlayer().sprite.getY())
         {
             targetDirection.setY(Movement._DIRECTION_DOWN);
         }
 
-        app.getPlayer().teleport.start();
+        App.getPlayer().teleport.start();
 
         if (Developer.isDevMode())
         {
@@ -208,21 +208,21 @@ public class TeleportManager extends GenericEntityManager
 
     public void endTeleporting()
     {
-        app.appState.set(StateID._STATE_GAME);
+        App.appState.set(StateID._STATE_GAME);
 
-        app.getPlayer().isTeleporting = false;
-        app.getPlayer().sprite.setX(app.getTeleporter(targetBooth).sprite.getX());
-        app.getPlayer().sprite.setY(app.getTeleporter(targetBooth).sprite.getY());
-        app.getPlayer().setAction(ActionStates._STANDING);
-        app.getPlayer().actionButton.removeAction();
+        App.getPlayer().isTeleporting = false;
+        App.getPlayer().sprite.setX(App.getTeleporter(targetBooth).sprite.getX());
+        App.getPlayer().sprite.setY(App.getTeleporter(targetBooth).sprite.getY());
+        App.getPlayer().setAction(ActionStates._STANDING);
+        App.getPlayer().actionButton.removeAction();
 
         teleportActive = false;
 
 //        GdxSprite entity;
 //
-//        for (int i = 0; i < app.entityData.entityMap.size; i++)
+//        for (int i = 0; i < App.entityData.entityMap.size; i++)
 //        {
-//            entity = (GdxSprite) app.entityData.entityMap.get(i);
+//            entity = (GdxSprite) App.entityData.entityMap.get(i);
 //
 //            if ((entity != null) && (entity.gid == GraphicID.G_MESSAGE_BUBBLE))
 //            {

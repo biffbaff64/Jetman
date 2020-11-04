@@ -40,9 +40,9 @@ public class MainMenuScreen extends AbstractBaseScreen
     private ArrayList<IUIPage> panels;
     private int                currentPage;
 
-    public MainMenuScreen(final App _app)
+    public MainMenuScreen()
     {
-        super(_app);
+        super();
     }
 
     @Override
@@ -50,22 +50,22 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        optionsPage = new OptionsPage(app);
-        menuPage    = new MenuPage(app);
+        optionsPage = new OptionsPage();
+        menuPage    = new MenuPage();
         panels      = new ArrayList<>();
-        starField   = new StarField(app);
+        starField   = new StarField();
 
         panels.add(_MENU_PAGE, menuPage);
-        panels.add(_HISCORE_PAGE, new HiscorePage(app));
-        panels.add(_CREDITS_PAGE, new CreditsPage(app));
+        panels.add(_HISCORE_PAGE, new HiscorePage());
+        panels.add(_CREDITS_PAGE, new CreditsPage());
         panels.add(_OPTIONS_PAGE, optionsPage);
 
         if (AppConfig.isAndroidApp())
         {
-            app.googleServices.signInSilently();
+            App.googleServices.signInSilently();
         }
 
-        app.mapData.mapPosition.set(0, 0);
+        App.mapData.mapPosition.set(0, 0);
     }
 
     /**
@@ -78,13 +78,13 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         super.update();
 
-        if (app.appState.peek() == StateID._STATE_MAIN_MENU)
+        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
             StateID tempState;
 
-            if ((tempState = update(app.appState).peek()) != StateID._STATE_MAIN_MENU)
+            if ((tempState = update(App.appState).peek()) != StateID._STATE_MAIN_MENU)
             {
-                app.appState.set(tempState);
+                App.appState.set(tempState);
             }
 
             super.render(delta);
@@ -119,7 +119,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 {
                     optionsPage.update();
 
-                    if (!app.optionsPageActive)
+                    if (!App.optionsPageActive)
                     {
                         changePageTo(_MENU_PAGE);
                     }
@@ -186,8 +186,8 @@ public class MainMenuScreen extends AbstractBaseScreen
 
                 menuPage.buttonStart.setChecked(false);
 
-                app.mainGameScreen.reset();
-                app.setScreen(app.mainGameScreen);
+                App.mainGameScreen.reset();
+                App.mainGame.setScreen(App.mainGameScreen);
             }
             else
             {
@@ -209,7 +209,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     {
                         panels.get(currentPage).hide();
 
-                        exitPanel = new ExitPanel(app);
+                        exitPanel = new ExitPanel();
                         exitPanel.open();
 
                         currentPage = _EXIT_PAGE;
@@ -223,9 +223,9 @@ public class MainMenuScreen extends AbstractBaseScreen
                     {
                         menuPage.buttonGoogle.setChecked(false);
 
-                        if (!app.googleServices.isSignedIn())
+                        if (!App.googleServices.isSignedIn())
                         {
-                            app.googleServices.signIn();
+                            App.googleServices.signIn();
                         }
                     }
                 }
@@ -248,7 +248,7 @@ public class MainMenuScreen extends AbstractBaseScreen
      */
     public void draw(final SpriteBatch spriteBatch, final OrthoGameCamera _camera)
     {
-        if (app.appState.peek() == StateID._STATE_MAIN_MENU)
+        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
             float originX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             float originY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
@@ -291,23 +291,23 @@ public class MainMenuScreen extends AbstractBaseScreen
         Trace.__FILE_FUNC();
 
         AppConfig.currentScreenID = ScreenID._MAIN_MENU;
-        app.appState.set(StateID._STATE_MAIN_MENU);
+        App.appState.set(StateID._STATE_MAIN_MENU);
 
         super.show();
 
         initialise();
 
-        app.cameraUtils.resetCameraZoom();
-        app.cameraUtils.disableAllCameras();
-        app.baseRenderer.spriteGameCamera.isInUse = true;
-        app.baseRenderer.hudGameCamera.isInUse    = true;
-        app.baseRenderer.isDrawingStage           = true;
+        App.cameraUtils.resetCameraZoom();
+        App.cameraUtils.disableAllCameras();
+        App.baseRenderer.spriteGameCamera.isInUse = true;
+        App.baseRenderer.hudGameCamera.isInUse    = true;
+        App.baseRenderer.isDrawingStage           = true;
 
-        currentPage = (app.highScoreUtils.canAddNewEntry(app.gameProgress.score)) ? _HISCORE_PAGE : _MENU_PAGE;
+        currentPage = (App.highScoreUtils.canAddNewEntry(App.gameProgress.score)) ? _HISCORE_PAGE : _MENU_PAGE;
 
         panels.get(currentPage).show();
 
-        Version.appDetails(app);
+        Version.appDetails();
     }
 
     @Override
@@ -323,7 +323,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        background = app.assets.loadSingleAsset("data/empty_screen_dark.png", Texture.class);
+        background = App.assets.loadSingleAsset("data/empty_screen_dark.png", Texture.class);
     }
 
     /**
@@ -338,7 +338,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         hideAllPages();
 
-        app.assets.unloadAsset("empty_screen_dark.png");
+        App.assets.unloadAsset("empty_screen_dark.png");
         background = null;
 
         starField.dispose();

@@ -24,9 +24,9 @@ public class Asteroid extends GdxSprite
             1.5f, 1.25f, 1.0f,
         };
 
-    public Asteroid(App _app)
+    public Asteroid()
     {
-        super(GraphicID.G_ASTEROID, _app);
+        super(GraphicID.G_ASTEROID);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Asteroid extends GdxSprite
         speed.setX(Gfx._VIEW_WIDTH * 0.004f);
         speed.setY(speed.getX() * (0.35f + MathUtils.random(0.9f)));
 
-        direction.setX((sprite.getX() < app.getPlayer().sprite.getX()) ? Movement._DIRECTION_RIGHT : Movement._DIRECTION_LEFT);
+        direction.setX((sprite.getX() < App.getPlayer().sprite.getX()) ? Movement._DIRECTION_RIGHT : Movement._DIRECTION_LEFT);
         direction.setY(Movement._DIRECTION_DOWN);
 
         setAction(ActionStates._RUNNING);
@@ -82,7 +82,7 @@ public class Asteroid extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
 
                 setAction(ActionStates._EXPLODING);
             }
@@ -97,13 +97,13 @@ public class Asteroid extends GdxSprite
 
             case _DYING:
             {
-                CraterManager craterManager = new CraterManager(app);
+                CraterManager craterManager = new CraterManager();
 
                 if ((collisionObject.idBottom == GraphicID._GROUND)
                     && (craterManager.canMakeCrater(this, false)))
                 {
                     int x = (int) (sprite.getX() / Gfx.getTileWidth());
-                    int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
+                    int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
 
                     craterManager.makeCrater(x, y);
                 }
@@ -134,7 +134,7 @@ public class Asteroid extends GdxSprite
             {
                 if (animation != null)
                 {
-                    sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                    sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
                     elapsedAnimTime += Gdx.graphics.getDeltaTime();
                 }
             }

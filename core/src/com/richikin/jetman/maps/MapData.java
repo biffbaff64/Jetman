@@ -81,14 +81,11 @@ public class MapData
     public Array<Rectangle>        enemyFreeZones;
     public Array<SpriteDescriptor> placementTiles;
 
-    private       String currentMapName;
-    private final App    app;
+    private String currentMapName;
 
-    public MapData(App _app)
+    public MapData()
     {
         Trace.__FILE_FUNC();
-
-        this.app = _app;
 
         mapPosition         = new SimpleVec2();
         previousMapPosition = new SimpleVec2();
@@ -107,7 +104,7 @@ public class MapData
      */
     public void initialiseRoom()
     {
-        initialiseMap(app.roomManager.getMapNameWithPath(), mapLayerNames);
+        initialiseMap(App.roomManager.getMapNameWithPath(), mapLayerNames);
     }
 
     public void initialiseMap(String gameMap, String[] mapLayers)
@@ -124,7 +121,7 @@ public class MapData
         }
         else
         {
-            mapRenderer = new OrthogonalTiledMapRenderer(currentMap, app.spriteBatch);
+            mapRenderer = new OrthogonalTiledMapRenderer(currentMap, App.spriteBatch);
         }
 
         scrollXDirection = Movement._DIRECTION_STILL;
@@ -140,7 +137,7 @@ public class MapData
      */
     public void update()
     {
-        OrthographicCamera camera = app.baseRenderer.spriteGameCamera.camera;
+        OrthographicCamera camera = App.baseRenderer.spriteGameCamera.camera;
 
         float xPos       = camera.position.x;
         float yPos       = camera.position.y;

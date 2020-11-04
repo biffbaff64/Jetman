@@ -16,12 +16,8 @@ public class WorldModel
     public Box2DContactListener box2DContactListener;
     public BodyBuilder          bodyBuilder;
 
-    private final App app;
-
-    public WorldModel(App _app)
+    public WorldModel()
     {
-        this.app = _app;
-
         box2DWorld = new World
             (
                 new Vector2
@@ -45,8 +41,8 @@ public class WorldModel
                 );
         }
 
-        bodyBuilder          = new BodyBuilder(_app);
-        box2DContactListener = new Box2DContactListener(_app);
+        bodyBuilder          = new BodyBuilder();
+        box2DContactListener = new Box2DContactListener();
 
         box2DWorld.setContactListener(box2DContactListener);
     }
@@ -61,7 +57,7 @@ public class WorldModel
             b2dr.render
                 (
                     box2DWorld,
-                    app.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(LibGfx._PPM, LibGfx._PPM, 0)
+                    App.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(LibGfx._PPM, LibGfx._PPM, 0)
                 );
         }
     }

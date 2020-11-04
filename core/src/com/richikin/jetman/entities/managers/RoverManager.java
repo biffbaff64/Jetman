@@ -24,9 +24,9 @@ public class RoverManager extends GenericEntityManager
     private int totalGunsUsed;
     private StopWatch spawnDelay;
 
-    public RoverManager(App _app)
+    public RoverManager()
     {
-        super(GraphicID.G_ROVER, _app);
+        super(GraphicID.G_ROVER);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class RoverManager extends GenericEntityManager
     @Override
     public void update()
     {
-        if (app.entityUtils.canUpdate(GraphicID.G_ROVER))
+        if (App.entityUtils.canUpdate(GraphicID.G_ROVER))
         {
             if (roverCount == 0)
             {
@@ -58,9 +58,9 @@ public class RoverManager extends GenericEntityManager
                 {
                     if (totalGunsUsed > 1)
                     {
-                        app.getHud().messageManager.enable();
-                        app.getHud().messageManager.addZoomMessage("new_rovergun", 3500);
-                        app.getHud().messageManager.setPosition
+                        App.getHud().messageManager.enable();
+                        App.getHud().messageManager.addZoomMessage("new_rovergun", 3500);
+                        App.getHud().messageManager.setPosition
                             (
                                 "new_rovergun",
                                 185,
@@ -79,7 +79,7 @@ public class RoverManager extends GenericEntityManager
      */
     public void createRover()
     {
-        if (app.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverCount == 0))
+        if (App.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverCount == 0))
         {
             Trace.__FILE_FUNC();
 
@@ -90,15 +90,15 @@ public class RoverManager extends GenericEntityManager
             descriptor._ANIM_RATE = 5f / 6f;
             descriptor._POSITION.x = roverPos.x;
             descriptor._POSITION.y = roverPos.y;
-            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
-            descriptor._INDEX = app.entityData.entityMap.size;
+            descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
+            descriptor._INDEX = App.entityData.entityMap.size;
 
-            Rover rover = new Rover(app);
+            Rover rover = new Rover();
             rover.initialise(descriptor);
-            app.entityData.addEntity(rover);
+            App.entityData.addEntity(rover);
             rover.addPartners();
 
-            app.entityManager._roverIndex = rover.spriteNumber;
+            App.entityManager._roverIndex = rover.spriteNumber;
 
             roverCount++;
         }
@@ -108,7 +108,7 @@ public class RoverManager extends GenericEntityManager
     {
         SimpleVec2 position = new SimpleVec2();
 
-        for (SpriteDescriptor tile : app.mapData.placementTiles)
+        for (SpriteDescriptor tile : App.mapData.placementTiles)
         {
             if (tile._GID.equals(GraphicID.G_ROVER))
             {
@@ -129,9 +129,9 @@ public class RoverManager extends GenericEntityManager
     {
         boolean created = false;
 
-        if (app.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverGunCount == 0))
+        if (App.entityUtils.canUpdate(GraphicID.G_ROVER) && (roverGunCount == 0))
         {
-            int markerX = (int) (app.getRover().getPosition().x / Gfx.getTileWidth());
+            int markerX = (int) (App.getRover().getPosition().x / Gfx.getTileWidth());
             markerX += MathUtils.randomBoolean() ? -30 : 25;
 
             if (isValidPosition(markerX))
@@ -140,15 +140,15 @@ public class RoverManager extends GenericEntityManager
                 descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN);
                 descriptor._ANIM_RATE = 5f / 6f;
                 descriptor._POSITION.x = markerX;
-                descriptor._POSITION.y = app.entityManager.playerManager.playerTileY;
-                descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
-                descriptor._INDEX = app.entityData.entityMap.size;
+                descriptor._POSITION.y = App.entityManager.playerManager.playerTileY;
+                descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER);
+                descriptor._INDEX = App.entityData.entityMap.size;
 
-                RoverGun roverGun = new RoverGun(app);
+                RoverGun roverGun = new RoverGun();
                 roverGun.initialise(descriptor);
-                app.entityData.addEntity(roverGun);
+                App.entityData.addEntity(roverGun);
 
-                app.entityManager._roverGunIndex = roverGun.spriteNumber;
+                App.entityManager._roverGunIndex = roverGun.spriteNumber;
 
                 roverGun.addTurret();
 
@@ -164,7 +164,7 @@ public class RoverManager extends GenericEntityManager
 
     private boolean isValidPosition(int x)
     {
-//        return !(app.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() == TileID._CRATER_TILE.get());
+//        return !(App.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() == TileID._CRATER_TILE.get());
         return true;
     }
 
@@ -198,9 +198,9 @@ public class RoverManager extends GenericEntityManager
     {
         int count = 0;
 
-        if (app.getGun() != null)
+        if (App.getGun() != null)
         {
-            if (app.getGun().gunTurret != null)
+            if (App.getGun().gunTurret != null)
             {
                 count++;
             }

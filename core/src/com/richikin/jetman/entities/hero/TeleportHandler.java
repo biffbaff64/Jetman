@@ -6,36 +6,33 @@ import com.richikin.utilslib.google.PlayServicesID;
 
 public class TeleportHandler
 {
-    private       boolean readyToExit;
-    private final App     app;
+    private boolean readyToExit;
 
-    public TeleportHandler(App _app)
+    public TeleportHandler()
     {
-        this.app = _app;
-
         readyToExit = false;
     }
 
     public void start()
     {
-        app.getPlayer().isTeleporting = true;
-        app.getPlayer().setAction(ActionStates._TELEPORTING);
-        app.getPlayer().speed.set(app.teleportManager.targetDistance.getX() / 25, app.teleportManager.targetDistance.getY() / 25);
-        app.getPlayer().collisionObject.action = ActionStates._INACTIVE;
+        App.getPlayer().isTeleporting = true;
+        App.getPlayer().setAction(ActionStates._TELEPORTING);
+        App.getPlayer().speed.set(App.teleportManager.targetDistance.getX() / 25, App.teleportManager.targetDistance.getY() / 25);
+        App.getPlayer().collisionObject.action = ActionStates._INACTIVE;
     }
 
     public boolean update()
     {
         if (readyToExit)
         {
-            if (app.entityManager.teleportBeam != null)
+            if (App.entityManager.teleportBeam != null)
             {
-                if (app.entityManager.teleportBeam.update())
+                if (App.entityManager.teleportBeam.update())
                 {
-                    app.entityManager.teleportBeam.dispose();
-                    app.entityManager.teleportBeam = null;
+                    App.entityManager.teleportBeam.dispose();
+                    App.entityManager.teleportBeam = null;
 
-                    app.teleportManager.endTeleporting();
+                    App.teleportManager.endTeleporting();
 
                     readyToExit = false;
                 }
@@ -43,25 +40,25 @@ public class TeleportHandler
         }
         else
         {
-            if (app.teleportManager.targetDistance.getX() > 0)
+            if (App.teleportManager.targetDistance.getX() > 0)
             {
-                app.getPlayer().sprite.translate
+                App.getPlayer().sprite.translate
                     (
-                        app.getPlayer().speed.getX() * app.teleportManager.targetDirection.getX(),
-                        app.getPlayer().speed.getY() * app.teleportManager.targetDirection.getY()
+                        App.getPlayer().speed.getX() * App.teleportManager.targetDirection.getX(),
+                        App.getPlayer().speed.getY() * App.teleportManager.targetDirection.getY()
                     );
 
-                app.teleportManager.targetDistance.subX(app.getPlayer().speed.getX());
-                app.teleportManager.targetDistance.subY(app.getPlayer().speed.getY());
+                App.teleportManager.targetDistance.subX(App.getPlayer().speed.getX());
+                App.teleportManager.targetDistance.subY(App.getPlayer().speed.getY());
             }
             else
             {
                 //
                 // Teleportation has finished, so trigger the end visual
-                app.getPlayer().sprite.setX(app.getTeleporter(app.teleportManager.targetBooth).sprite.getX());
-                app.getPlayer().sprite.setY(app.getTeleporter(app.teleportManager.targetBooth).sprite.getY());
+                App.getPlayer().sprite.setX(App.getTeleporter(App.teleportManager.targetBooth).sprite.getX());
+                App.getPlayer().sprite.setY(App.getTeleporter(App.teleportManager.targetBooth).sprite.getY());
 
-                app.teleportManager.teleportVisual(false);
+                App.teleportManager.teleportVisual(false);
                 readyToExit = true;
             }
         }
@@ -77,30 +74,30 @@ public class TeleportHandler
      */
     public void end()
     {
-        if (app.getBomb() != null)
+        if (App.getBomb() != null)
         {
-            if (app.getBomb().isAttachedToPlayer)
+            if (App.getBomb().isAttachedToPlayer)
             {
-                app.getBomb().isDrawable = true;
+                App.getBomb().isDrawable = true;
             }
         }
 
-        if (app.getGun() != null)
+        if (App.getGun() != null)
         {
-            if (app.getGun().isAttachedToPlayer)
+            if (App.getGun().isAttachedToPlayer)
             {
-                app.getGun().isDrawable = true;
+                App.getGun().isDrawable = true;
             }
         }
 
-        app.getPlayer().collisionObject.action = ActionStates._COLLIDABLE;
+        App.getPlayer().collisionObject.action = ActionStates._COLLIDABLE;
 
-        app.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
+        App.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
 
-        if ((app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
-            || (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY))
+        if ((App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
+            || (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY))
         {
-            app.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
+            App.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
         }
     }
 }

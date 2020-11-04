@@ -16,19 +16,16 @@ import com.richikin.utilslib.ui.ScrollPaneObject;
 
 public class Scene2DUtils
 {
-    private static App app;
-
-    public static void setup(App _app)
+    public static void setup()
     {
-        app = _app;
     }
 
     public static SimpleVec2F getHUDOffset()
     {
         return new SimpleVec2F
             (
-                (app.baseRenderer.hudGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2)),
-                (app.baseRenderer.hudGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2))
+                (App.baseRenderer.hudGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2)),
+                (App.baseRenderer.hudGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2))
             );
     }
 
@@ -101,7 +98,7 @@ public class Scene2DUtils
     {
         Label label = makeLabel(labelText, x, y, color, skin);
 
-        app.stage.addActor(label);
+        App.stage.addActor(label);
 
         return label;
     }
@@ -110,7 +107,7 @@ public class Scene2DUtils
     {
         TextField textField = makeTextField(string, x, y, color, disabled, skin);
 
-        app.stage.addActor(textField);
+        App.stage.addActor(textField);
 
         return textField;
     }
@@ -128,21 +125,21 @@ public class Scene2DUtils
         textField.setPosition(x, y);
         textField.setDisabled(disabled);
 
-        app.stage.addActor(textField);
+        App.stage.addActor(textField);
 
         return textField;
     }
 
     public static ImageButton addButton(String upButton, String downButton, int x, int y)
     {
-        Image       imageUp     = new Image(app.assets.getButtonRegion(upButton));
-        Image       imageDown   = new Image(app.assets.getButtonRegion(downButton));
+        Image       imageUp     = new Image(App.assets.getButtonRegion(upButton));
+        Image       imageDown   = new Image(App.assets.getButtonRegion(downButton));
         ImageButton imageButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
 
         imageButton.setPosition(x, y);
         imageButton.setVisible(true);
 
-        app.stage.addActor(imageButton);
+        App.stage.addActor(imageButton);
 
         return imageButton;
     }
@@ -151,7 +148,7 @@ public class Scene2DUtils
     {
         TextButton textButton = makeButton(string, x, y, color, disabled, skin);
 
-        app.stage.addActor(textButton);
+        App.stage.addActor(textButton);
 
         return textButton;
     }
@@ -169,7 +166,7 @@ public class Scene2DUtils
         textButton.setDisabled(false);
         textButton.setPosition(x, y);
 
-        app.stage.addActor(textButton);
+        App.stage.addActor(textButton);
 
         return textButton;
     }
@@ -178,7 +175,7 @@ public class Scene2DUtils
     {
         Slider slider = makeSlider(x, y, skin);
 
-        app.stage.addActor(slider);
+        App.stage.addActor(slider);
 
         return slider;
     }
@@ -187,7 +184,7 @@ public class Scene2DUtils
     {
         CheckBox checkBox = makeCheckBox(x, y, color, skin);
 
-        app.stage.addActor(checkBox);
+        App.stage.addActor(checkBox);
 
         return checkBox;
     }
@@ -217,7 +214,7 @@ public class Scene2DUtils
 
         list.setItems(strings);
 
-        app.stage.addActor(list);
+        App.stage.addActor(list);
 
         return list;
     }
@@ -290,8 +287,8 @@ public class Scene2DUtils
 
     public static CheckBox makeCheckBox(int x, int y, Color color, Skin skin)
     {
-        TextureRegion regionOn  = app.assets.getButtonRegion("toggle_on");
-        TextureRegion regionOff = app.assets.getButtonRegion("toggle_off");
+        TextureRegion regionOn  = App.assets.getButtonRegion("toggle_on");
+        TextureRegion regionOff = App.assets.getButtonRegion("toggle_off");
 
         CheckBox               checkBox = new CheckBox("", skin);
         CheckBox.CheckBoxStyle style    = checkBox.getStyle();
@@ -309,15 +306,15 @@ public class Scene2DUtils
 
     public static ImageButton makeImageButton(String upButton, String downButton)
     {
-        Image       imageUp     = new Image(app.assets.getButtonRegion(upButton));
-        Image       imageDown   = new Image(app.assets.getButtonRegion(downButton));
+        Image       imageUp     = new Image(App.assets.getButtonRegion(upButton));
+        Image       imageDown   = new Image(App.assets.getButtonRegion(downButton));
 
         return new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
     }
 
     public static Image makeAchievementsImage(String imageName)
     {
-        TextureRegion         region   = app.assets.getAchievementRegion(imageName);
+        TextureRegion         region   = App.assets.getAchievementRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -325,7 +322,7 @@ public class Scene2DUtils
 
     public static Image makeObjectsImage(String imageName)
     {
-        TextureRegion         region   = app.assets.getObjectRegion(imageName);
+        TextureRegion         region   = App.assets.getObjectRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -333,7 +330,7 @@ public class Scene2DUtils
 
     public static Image makeTextImage(String imageName)
     {
-        TextureRegion         region   = app.assets.getTextRegion(imageName);
+        TextureRegion         region   = App.assets.getTextRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
@@ -341,14 +338,14 @@ public class Scene2DUtils
 
     public static Drawable makeButtonDrawable(String imageName)
     {
-        TextureRegion region = app.assets.getButtonRegion(imageName);
+        TextureRegion region = App.assets.getButtonRegion(imageName);
 
         return new TextureRegionDrawable(region);
     }
 
     public static Drawable makeDrawable(String imageName)
     {
-        TextureRegion region = app.assets.getObjectRegion(imageName);
+        TextureRegion region = App.assets.getObjectRegion(imageName);
 
         return new TextureRegionDrawable(region);
     }

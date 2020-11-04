@@ -11,9 +11,9 @@ public class GunTurret extends GdxSprite
 {
     private float turretAngle;
 
-    public GunTurret(App _app)
+    public GunTurret()
     {
-        super(GraphicID.G_ROVER_GUN_BARREL, _app);
+        super(GraphicID.G_ROVER_GUN_BARREL);
     }
 
     @Override

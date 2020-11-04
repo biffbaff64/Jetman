@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 
 public class GameControlLoop extends AbstractControlLoop
 {
-    public GameControlLoop(App _app)
+    public GameControlLoop()
     {
-        super(_app);
+        super();
     }
 
     public void initialise()
@@ -90,8 +90,8 @@ public class GameControlLoop extends AbstractControlLoop
             case _STATE_ANNOUNCE_MISSILE:
             case _STATE_TELEPORTING:
             {
-                app.entityManager.updateSprites();
-                app.getHud().update();
+                App.entityManager.updateSprites();
+                App.getHud().update();
             }
             break;
 
@@ -120,13 +120,13 @@ public class GameControlLoop extends AbstractControlLoop
     {
         Trace.megaDivider("_STATE_SETUP");
 
-        app.levelManager.prepareCurrentLevel(scr().firstTime);
+        App.levelManager.prepareCurrentLevel(scr().firstTime);
 
         // All cameras ON
-        app.cameraUtils.enableAllCameras();
-        app.baseRenderer.parallaxGameCamera.isLerpingEnabled = false;
-        app.baseRenderer.tiledGameCamera.isLerpingEnabled    = false;
-        app.baseRenderer.spriteGameCamera.isLerpingEnabled   = false;
+        App.cameraUtils.enableAllCameras();
+        App.baseRenderer.parallaxGameCamera.isLerpingEnabled = false;
+        App.baseRenderer.tiledGameCamera.isLerpingEnabled    = false;
+        App.baseRenderer.spriteGameCamera.isLerpingEnabled   = false;
 
 //        if (scr().firstTime)
 //        {
@@ -136,13 +136,13 @@ public class GameControlLoop extends AbstractControlLoop
             /*
             *  Sfx.inst().playGameTune(true);
             *
-            *  app.messageManager.enable();
-            *  app.messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
+            *  App.messageManager.enable();
+            *  App.messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
             */
 //        }
 
-        app.appState.set(StateID._STATE_GET_READY);
-        app.gameProgress.gameSetupDone = true;
+        App.appState.set(StateID._STATE_GET_READY);
+        App.gameProgress.gameSetupDone = true;
     }
 
     /**
@@ -150,29 +150,29 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateGetReady()
     {
-        app.getHud().update();
+        App.getHud().update();
 
         //
         // If there is no 'Get Ready' message on screen then setup
         // flow control to play the game.
-        if (!app.panelManager.doesPanelExist(GameAssets._GETREADY_MSG_ASSET))
+        if (!App.panelManager.doesPanelExist(GameAssets._GETREADY_MSG_ASSET))
         {
             Trace.__FILE_FUNC("----- START GAME (GET READY) -----");
 
-            app.appState.set(StateID._STATE_GAME);
-            app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
+            App.appState.set(StateID._STATE_GAME);
+            App.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
 
-            app.getHud().showControls();
+            App.getHud().showControls();
 
-            app.entityManager.addBackgroundEntities();
+            App.entityManager.addBackgroundEntities();
 
             scr().firstTime = false;
 
             //
             // Re-setup the player after a death/restart
-            if (app.getPlayer() != null)
+            if (App.getPlayer() != null)
             {
-                app.getPlayer().setup(false);
+                App.getPlayer().setup(false);
             }
         }
     }
@@ -186,26 +186,26 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateGame()
     {
-        app.getHud().update();
+        App.getHud().update();
 
-        if (app.appState.peek() == StateID._STATE_DEVELOPER_PANEL)
+        if (App.appState.peek() == StateID._STATE_DEVELOPER_PANEL)
         {
             if (!Developer.developerPanelActive)
             {
-                app.appState.set(StateID._STATE_GAME);
-                app.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
+                App.appState.set(StateID._STATE_GAME);
+                App.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
             }
         }
         else
         {
-//            boolean isLerpingEnabled = (app.appState.peek() == StateID._STATE_GAME);
+//            boolean isLerpingEnabled = (App.appState.peek() == StateID._STATE_GAME);
 //
-//            app.baseRenderer.tiledGameCamera.isLerpingEnabled    = isLerpingEnabled;
-//            app.baseRenderer.spriteGameCamera.isLerpingEnabled   = isLerpingEnabled;
+//            App.baseRenderer.tiledGameCamera.isLerpingEnabled    = isLerpingEnabled;
+//            App.baseRenderer.spriteGameCamera.isLerpingEnabled   = isLerpingEnabled;
 
-            app.mapUtils.update();
-            app.entityManager.updateSprites();
-            app.entityManager.tidySprites();
+            App.mapUtils.update();
+            App.entityManager.updateSprites();
+            App.entityManager.tidySprites();
 
             //
             // Check for game ending
@@ -213,11 +213,11 @@ public class GameControlLoop extends AbstractControlLoop
             {
                 //
                 // Tasks to perform if the game has not ended
-                if (app.appState.peek() == StateID._STATE_PAUSED)
+                if (App.appState.peek() == StateID._STATE_PAUSED)
                 {
                     if (!AppConfig.gamePaused)
                     {
-                        app.appState.set(StateID._STATE_GAME);
+                        App.appState.set(StateID._STATE_GAME);
                     }
                 }
             }
@@ -230,18 +230,18 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateSetForRetry()
     {
-        app.getHud().update();
-        app.mapUtils.update();
+        App.getHud().update();
+        App.mapUtils.update();
 
         if (scr().retryDelay.time(TimeUnit.MILLISECONDS) > 2000)
         {
             if (AppConfig.quitToMainMenu)
             {
-                app.appState.set(StateID._STATE_GAME_OVER);
+                App.appState.set(StateID._STATE_GAME_OVER);
             }
             else
             {
-                app.appState.set(StateID._STATE_SETUP);
+                App.appState.set(StateID._STATE_SETUP);
             }
 
             scr().retryDelay = null;
@@ -256,13 +256,13 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateSetForLevelFinished()
     {
-        app.levelManager.closeCurrentLevel();
+        App.levelManager.closeCurrentLevel();
 
-        app.getHud().update();
-        app.mapUtils.update();
+        App.getHud().update();
+        App.mapUtils.update();
 
         scr().reset();
-        app.appState.set(StateID._STATE_SETUP);
+        App.appState.set(StateID._STATE_SETUP);
     }
 
     /**
@@ -271,11 +271,11 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateSetForGameOverMessage()
     {
-        app.getHud().update();
+        App.getHud().update();
 
-        if (!app.panelManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
+        if (!App.panelManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
         {
-            app.appState.set(StateID._STATE_END_GAME);
+            App.appState.set(StateID._STATE_END_GAME);
         }
     }
 
@@ -284,14 +284,14 @@ public class GameControlLoop extends AbstractControlLoop
      */
     private void stateSetForGameFinished()
     {
-        app.getHud().update();
+        App.getHud().update();
 
         //
         // If the game has a 'Completed Panel' this is
         // a good place to update it and check for it closing.
         //
-        // app.appState should be set to _STATE_END_GAME when appropriate.
-        app.appState.set(StateID._STATE_END_GAME);
+        // App.appState should be set to _STATE_END_GAME when appropriate.
+        App.appState.set(StateID._STATE_END_GAME);
     }
 
     /**
@@ -301,17 +301,17 @@ public class GameControlLoop extends AbstractControlLoop
     {
         Trace.megaDivider("***** GAME OVER *****");
 
-        app.gameProgress.closeLastGame();
+        App.gameProgress.closeLastGame();
 
         scr().dispose();
 
-        app.setScreen(app.mainMenuScreen);
+        App.mainGame.setScreen(App.mainMenuScreen);
 
-        app.appState.set(StateID._STATE_CLOSING);
+        App.appState.set(StateID._STATE_CLOSING);
     }
 
     private MainGameScreen scr()
     {
-        return app.mainGameScreen;
+        return App.mainGameScreen;
     }
 }

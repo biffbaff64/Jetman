@@ -33,9 +33,9 @@ public class BombManager extends GenericEntityManager
     private int       totalBombsUsed;
     private StopWatch spawnDelay;
 
-    public BombManager(App _app)
+    public BombManager()
     {
-        super(GraphicID.G_BOMB, _app);
+        super(GraphicID.G_BOMB);
     }
 
     @Override
@@ -51,17 +51,17 @@ public class BombManager extends GenericEntityManager
     public void update()
     {
         if (((spawnDelay.time(TimeUnit.MILLISECONDS) > 2000) || (totalBombsUsed == 0))
-            && app.entityUtils.canUpdate(GraphicID.G_BOMB)
+            && App.entityUtils.canUpdate(GraphicID.G_BOMB)
             && (activeCount == 0))
         {
-            if (app.getRover() != null)
+            if (App.getRover() != null)
             {
                 if (hasCreatedBomb())
                 {
                     if (totalBombsUsed > 1)
                     {
-                        app.getHud().messageManager.addZoomMessage("new_bomb", 3500);
-                        app.getHud().messageManager.setPosition
+                        App.getHud().messageManager.addZoomMessage("new_bomb", 3500);
+                        App.getHud().messageManager.setPosition
                             (
                                 "new_bomb",
                                 185,
@@ -77,14 +77,14 @@ public class BombManager extends GenericEntityManager
     {
         boolean created = false;
 
-        if (app.entityUtils.canUpdate(GraphicID.G_BOMB))
+        if (App.entityUtils.canUpdate(GraphicID.G_BOMB))
         {
-            int markerX = (int) (app.getRover().sprite.getX() / Gfx.getTileWidth());
+            int markerX = (int) (App.getRover().sprite.getX() / Gfx.getTileWidth());
             int offset  = (totalBombsUsed == 0) ? 0 : MathUtils.random(10, 30);
 
             if (MathUtils.random(100) < 50)
             {
-                markerX += (app.getRover().frameWidth + (Gfx.getTileWidth() * 2)) / Gfx.getTileWidth();
+                markerX += (App.getRover().frameWidth + (Gfx.getTileWidth() * 2)) / Gfx.getTileWidth();
                 markerX += offset;
             }
             else
@@ -98,14 +98,14 @@ public class BombManager extends GenericEntityManager
                 descriptor             = Entities.getDescriptor(GraphicID.G_BOMB);
                 descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BOMB);
                 descriptor._POSITION.x = markerX;
-                descriptor._POSITION.y = (int) (app.getRover().getPosition().y / Gfx.getTileHeight());
-                descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BOMB);
-                descriptor._INDEX      = app.entityData.entityMap.size;
+                descriptor._POSITION.y = (int) (App.getRover().getPosition().y / Gfx.getTileHeight());
+                descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_BOMB);
+                descriptor._INDEX      = App.entityData.entityMap.size;
 
-                Bomb bomb = new Bomb(app);
+                Bomb bomb = new Bomb();
                 bomb.initialise(descriptor);
-                app.entityData.addEntity(bomb);
-                app.entityManager._bombIndex = bomb.spriteNumber;
+                App.entityData.addEntity(bomb);
+                App.entityManager._bombIndex = bomb.spriteNumber;
 
                 activeCount++;
                 totalBombsUsed++;
@@ -119,7 +119,7 @@ public class BombManager extends GenericEntityManager
 
     private boolean isValidPosition(int x)
     {
-        return app.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() != TileID._CRATER_TILE.get();
+        return App.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() != TileID._CRATER_TILE.get();
 
     }
 

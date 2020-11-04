@@ -22,9 +22,9 @@ public class MissileBase extends GdxSprite
     private GdxSprite     topSection;
     private TextureRegion emptyFrame;
 
-    public MissileBase(App _app)
+    public MissileBase()
     {
-        super(GraphicID.G_MISSILE_BASE, _app);
+        super(GraphicID.G_MISSILE_BASE);
     }
 
     @Override
@@ -37,13 +37,13 @@ public class MissileBase extends GdxSprite
         bodyCategory = Gfx.CAT_MISSILE_BASE;
         collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_MOBILE_ENEMY;
 
-        emptyFrame = app.assets.getAnimationRegion("launcher_top_empty");
+        emptyFrame = App.assets.getAnimationRegion("launcher_top_empty");
 
         setAction(ActionStates._STANDING);
 
         addTopSection();
 
-        app.gameProgress.baseDestroyed = false;
+        App.gameProgress.baseDestroyed = false;
     }
 
     @Override
@@ -63,17 +63,17 @@ public class MissileBase extends GdxSprite
 
             case _FIGHTING:
             {
-                app.getHud().messageManager.addZoomMessage
+                App.getHud().messageManager.addZoomMessage
                     (
                         "missilewarning",
                         2000,
                         185, (720 - 196)
                     );
 
-                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
-                app.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
+                App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
+                App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
 
-                topSection.isFlippedX = (sprite.getX() < app.getPlayer().sprite.getX());
+                topSection.isFlippedX = (sprite.getX() < App.getPlayer().sprite.getX());
 
                 setAction(ActionStates._WAITING);
             }
@@ -82,10 +82,10 @@ public class MissileBase extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection);
 
-                app.missileBaseManager.killMissiles();
+                App.missileBaseManager.killMissiles();
 
                 setAction(ActionStates._EXPLODING);
 
@@ -97,11 +97,11 @@ public class MissileBase extends GdxSprite
             {
                 Trace.__FILE_FUNC("---------- BASE DESTROYED ----------");
 
-                app.getHud().messageManager.addZoomMessage("base_destroyed", 3000);
+                App.getHud().messageManager.addZoomMessage("base_destroyed", 3000);
 
-                app.gameProgress.baseDestroyed = true;
+                App.gameProgress.baseDestroyed = true;
 
-                app.gameProgress.score.add(PointsManager.getPoints(gid));
+                App.gameProgress.score.add(PointsManager.getPoints(gid));
 
                 setAction(ActionStates._DEAD);
             }
@@ -124,7 +124,7 @@ public class MissileBase extends GdxSprite
     public void animate()
     {
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
         if (topSection != null)
         {
@@ -133,7 +133,7 @@ public class MissileBase extends GdxSprite
                 case _STANDING:
                 {
                     topSection.elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                    topSection.sprite.setRegion(app.entityUtils.getKeyFrame
+                    topSection.sprite.setRegion(App.entityUtils.getKeyFrame
                         (
                             topSection.animation,
                             topSection.elapsedAnimTime,
@@ -189,11 +189,11 @@ public class MissileBase extends GdxSprite
         descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         descriptor._POSITION.x    = (int) (this.sprite.getX() / Gfx.getTileWidth());
         descriptor._POSITION.y    = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_LAUNCHER);
-        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_LAUNCHER);
+        descriptor._INDEX         = App.entityData.entityMap.size;
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_LAUNCHER);
 
-        topSection = new GdxSprite(GraphicID.G_MISSILE_LAUNCHER, app);
+        topSection = new GdxSprite(GraphicID.G_MISSILE_LAUNCHER);
         topSection.bodyCategory = Gfx.CAT_FIXED_ENEMY;
         topSection.collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
         topSection.create(descriptor);
@@ -201,14 +201,14 @@ public class MissileBase extends GdxSprite
         topSection.animation.setFrameDuration(0.5f / 6f);
         topSection.setAction(ActionStates._STANDING);
 
-        app.entityData.addEntity(topSection);
+        App.entityData.addEntity(topSection);
     }
 
     @Override
     public void tidy(int _index)
     {
-        app.missileBaseManager.free();
+        App.missileBaseManager.free();
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 }

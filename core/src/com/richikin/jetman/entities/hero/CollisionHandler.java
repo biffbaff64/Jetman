@@ -14,11 +14,8 @@ import com.richikin.utilslib.logging.Trace;
 
 public class CollisionHandler implements ICollisionListener, Disposable
 {
-    private final App app;
-
-    public CollisionHandler(App _app)
+    public CollisionHandler()
     {
-        this.app = _app;
     }
 
     /**
@@ -30,7 +27,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     @Override
     public void onPositiveCollision(GraphicID graphicID)
     {
-        if (app.getPlayer().getAction() != ActionStates._TELEPORTING)
+        if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
             switch (graphicID)
             {
@@ -41,17 +38,17 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case _CRATER:
                 case G_ROVER_BOOT:
                 {
-                    if ((app.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
+                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                         && (graphicID != GraphicID.G_ROVER_BOOT))
                     {
-                        app.getPlayer().explode();
+                        App.getPlayer().explode();
 
-                        app.getPlayer().isRotating = false;
-                        app.getPlayer().rotateSpeed = 0;
+                        App.getPlayer().isRotating = false;
+                        App.getPlayer().rotateSpeed = 0;
                     }
                     else
                     {
-                        if (graphicID == app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid)
+                        if (graphicID == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         {
                             setOnGround(graphicID);         // Set LJM standing
                             checkForCrater();               // Check for contact with any craters
@@ -65,8 +62,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case G_TRANSPORTER:
                 {
                     // TODO: 12/12/2018 - LJM needs to be able to pick up Teleporters.
-                    if ((graphicID == app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid)
-                        && (app.getPlayer().sprite.getY() > (app.getTeleporter(0).frameHeight)))
+                    if ((graphicID == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+                        && (App.getPlayer().sprite.getY() > (App.getTeleporter(0).frameHeight)))
                     {
                         setOnGround(graphicID);         // Set LJM standing
                         checkForCrater();               // Check for contact with any craters
@@ -81,14 +78,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 {
                     if (!Developer.isGodMode())
                     {
-                        if ((app.getPlayer().getAction() != ActionStates._EXPLODING)
-                            && (app.getPlayer().getAction() != ActionStates._DYING))
+                        if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
+                            && (App.getPlayer().getAction() != ActionStates._DYING))
                         {
-                            app.getPlayer().kill();
+                            App.getPlayer().kill();
 
                             if ((graphicID != GraphicID.G_MISSILE_BASE) && (graphicID != GraphicID.G_MISSILE_LAUNCHER))
                             {
-                                app.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
+                                App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
                             }
                         }
                     }
@@ -104,7 +101,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     @Override
     public void onNegativeCollision()
     {
-        if (app.getPlayer().getAction() != ActionStates._TELEPORTING)
+        if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
             checkForFalling();
             checkForGround();
@@ -118,9 +115,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isPresent = false;
 
-        if (app.getBomb() != null)
+        if (App.getBomb() != null)
         {
-            isPresent = Intersector.overlaps(app.getPlayer().getCollisionRectangle(), app.getBomb().getCollisionRectangle());
+            isPresent = Intersector.overlaps(App.getPlayer().getCollisionRectangle(), App.getBomb().getCollisionRectangle());
         }
 
         return isPresent;
@@ -133,10 +130,10 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isPresent = false;
 
-        if (app.doTransportersExist())
+        if (App.doTransportersExist())
         {
-            isPresent = app.getTeleporter(0).getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle())
-                || (app.getTeleporter(1).getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle()));
+            isPresent = App.getTeleporter(0).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle())
+                || (App.getTeleporter(1).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()));
         }
 
         return isPresent;
@@ -147,14 +144,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForFalling()
     {
-        if (app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid == GraphicID.G_NO_ID)
+        if (App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid == GraphicID.G_NO_ID)
         {
-            app.getPlayer().isInMidAir = true;
-            app.getPlayer().isOnGround = false;
+            App.getPlayer().isInMidAir = true;
+            App.getPlayer().isOnGround = false;
 
-            if (app.getPlayer().getAction() == ActionStates._STANDING)
+            if (App.getPlayer().getAction() == ActionStates._STANDING)
             {
-                app.getPlayer().setAction(ActionStates._FALLING);
+                App.getPlayer().setAction(ActionStates._FALLING);
             }
         }
     }
@@ -167,11 +164,11 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isInMiddle = false;
 
-        if (app.doesRoverExist())
+        if (App.doesRoverExist())
         {
-            isInMiddle = AABBUtils.contains(app.getRover(), app.getPlayer())
-                        && !AABBUtils.overlaps(app.getRover().frontWheel, app.getPlayer())
-                        && !AABBUtils.overlaps(app.getRover().backWheel, app.getPlayer());
+            isInMiddle = AABBUtils.contains(App.getRover(), App.getPlayer())
+                        && !AABBUtils.overlaps(App.getRover().frontWheel, App.getPlayer())
+                        && !AABBUtils.overlaps(App.getRover().backWheel, App.getPlayer());
         }
 
         return isInMiddle;
@@ -182,19 +179,19 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void setOnGround(GraphicID graphicID)
     {
-        app.getPlayer().isInMidAir    = false;
-        app.getPlayer().isOnGround    = true;
-        app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
+        App.getPlayer().isInMidAir    = false;
+        App.getPlayer().isOnGround    = true;
+        App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
 
-        if (app.getPlayer().getAction() == ActionStates._FALLING)
+        if (App.getPlayer().getAction() == ActionStates._FALLING)
         {
-            app.getPlayer().setAction(ActionStates._STANDING);
-            app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+            App.getPlayer().setAction(ActionStates._STANDING);
+            App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
         }
 
-        Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
+        Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
 
-        app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+        App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
     }
 
     /**
@@ -203,7 +200,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForGround()
     {
-        GraphicID graphicID = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid;
+        GraphicID graphicID = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid;
 
         switch (graphicID)
         {
@@ -213,30 +210,30 @@ public class CollisionHandler implements ICollisionListener, Disposable
             {
                 Trace.__FILE_FUNC_LINE();
 
-                app.getPlayer().isInMidAir = false;
-                app.getPlayer().isOnGround = true;
-                app.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
+                App.getPlayer().isInMidAir = false;
+                App.getPlayer().isOnGround = true;
+                App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
 
-                if (app.getPlayer().getAction() == ActionStates._FALLING)
+                if (App.getPlayer().getAction() == ActionStates._FALLING)
                 {
-                    app.getPlayer().setAction(ActionStates._STANDING);
-                    app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+                    App.getPlayer().setAction(ActionStates._STANDING);
+                    App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
                 }
 
-                Rectangle rectangle = app.collisionUtils.getBoxHittingBottom(app.getPlayer()).rectangle;
+                Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
 
-                app.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+                App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
             }
             break;
 
             default:
             {
-                app.getPlayer().isInMidAir = true;
-                app.getPlayer().isOnGround = false;
+                App.getPlayer().isInMidAir = true;
+                App.getPlayer().isOnGround = false;
 
-                if (app.getPlayer().getAction() == ActionStates._STANDING)
+                if (App.getPlayer().getAction() == ActionStates._STANDING)
                 {
-                    app.getPlayer().setAction(ActionStates._FALLING);
+                    App.getPlayer().setAction(ActionStates._FALLING);
                 }
             }
             break;
@@ -245,20 +242,20 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
     private void checkForCrater()
     {
-        if (!app.getPlayer().isRidingRover)
+        if (!App.getPlayer().isRidingRover)
         {
-            if (app.collisionUtils.getBoxHittingBottom(app.getPlayer()).gid == GraphicID._CRATER)
+            if (App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid == GraphicID._CRATER)
             {
-                if (!app.getPlayer().isMovingX)
+                if (!App.getPlayer().isMovingX)
                 {
-                    app.getPlayer().setAction(ActionStates._HOVERING);
+                    App.getPlayer().setAction(ActionStates._HOVERING);
                 }
 
-                app.getPlayer().isJumpingCrater = true;
+                App.getPlayer().isJumpingCrater = true;
             }
             else
             {
-                app.getPlayer().isJumpingCrater = false;
+                App.getPlayer().isJumpingCrater = false;
             }
         }
     }

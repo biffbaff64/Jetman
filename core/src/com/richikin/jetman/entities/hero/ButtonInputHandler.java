@@ -25,38 +25,36 @@ import com.richikin.utilslib.physics.Movement;
 public class ButtonInputHandler implements Disposable
 {
     private float slowDown;
-    private final App app;
 
-    public ButtonInputHandler(App _app)
+    public ButtonInputHandler()
     {
-        this.app = _app;
     }
 
     public void checkButtons()
     {
-        if (app.getHud().getJoystick() != null)
+        if (App.getHud().getJoystick() != null)
         {
             //
             // Updates button presses depending
             // upon joystick knob position
-            app.getHud().getJoystick().update();
+            App.getHud().getJoystick().update();
         }
 
         //
         // FIRE button - shoot lasers at the bad guys
-        if (app.getHud().buttonAttack.isPressed())
+        if (App.getHud().buttonAttack.isPressed())
         {
-            if (app.getPlayer().isRidingRover)
+            if (App.getPlayer().isRidingRover)
             {
-                app.getGun().startShooting();
+                App.getGun().startShooting();
             }
             else
             {
-                if (!app.getPlayer().isShooting)
+                if (!App.getPlayer().isShooting)
                 {
-                    app.getPlayer().isShooting = true;
-                    app.getPlayer().shootCount = 0;
-                    app.getPlayer().shootRate = 0;
+                    App.getPlayer().isShooting = true;
+                    App.getPlayer().shootCount = 0;
+                    App.getPlayer().shootRate = 0;
                 }
             }
         }
@@ -64,85 +62,85 @@ public class ButtonInputHandler implements Disposable
         //
         // ACTION Button, used for picking up bombs or bridge sections,
         // entering transporters, or entering the Rover
-        if (app.getHud().buttonAction.isPressed())
+        if (App.getHud().buttonAction.isPressed())
         {
-            if (app.getPlayer().collision.isTeleporterPresent())
+            if (App.getPlayer().collision.isTeleporterPresent())
             {
-                app.getPlayer().actionButton.setAction();
+                App.getPlayer().actionButton.setAction();
             }
-            else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
+            else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
             {
-                app.getHud().buttonAction.release();
+                App.getHud().buttonAction.release();
 
-                if (app.getPlayer().isCarrying)
+                if (App.getPlayer().isCarrying)
                 {
-                    app.getPlayer().actionButton.removeAction();
-                    app.getPlayer().isCarrying = false;
+                    App.getPlayer().actionButton.removeAction();
+                    App.getPlayer().isCarrying = false;
 
-                    app.getBomb().isAttachedToPlayer = false;
-                    app.getBomb().releaseXY.set(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
+                    App.getBomb().isAttachedToPlayer = false;
+                    App.getBomb().releaseXY.set(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY());
 
-                    app.getBomb().setAction(ActionStates._FALLING);
+                    App.getBomb().setAction(ActionStates._FALLING);
                 }
             }
-            else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY)
+            else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY)
             {
-                app.getHud().buttonAction.release();
+                App.getHud().buttonAction.release();
 
-                if (app.getPlayer().isCarrying)
+                if (App.getPlayer().isCarrying)
                 {
-                    app.getPlayer().actionButton.removeAction();
-                    app.getPlayer().isCarrying = false;
+                    App.getPlayer().actionButton.removeAction();
+                    App.getPlayer().isCarrying = false;
 
-                    app.getGun().isAttachedToPlayer = false;
-                    app.getGun().releaseXY.set(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
+                    App.getGun().isAttachedToPlayer = false;
+                    App.getGun().releaseXY.set(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY());
 
-                    app.getGun().setAction(ActionStates._FALLING);
+                    App.getGun().setAction(ActionStates._FALLING);
                 }
             }
-            else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._ROVER_RIDE)
+            else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._ROVER_RIDE)
             {
-                if (app.getPlayer().isRidingRover)
+                if (App.getPlayer().isRidingRover)
                 {
-                    app.getPlayer().isRidingRover = false;
-                    app.getPlayer().actionButton.removeAction();
-                    app.getPlayer().sprite.setPosition((app.getRover().sprite.getX() + 96), app.getPlayer().initXYZ.getY());
-                    app.getPlayer().setAction(ActionStates._STANDING);
-                    app.getRover().setAction(ActionStates._STANDING);
+                    App.getPlayer().isRidingRover = false;
+                    App.getPlayer().actionButton.removeAction();
+                    App.getPlayer().sprite.setPosition((App.getRover().sprite.getX() + 96), App.getPlayer().initXYZ.getY());
+                    App.getPlayer().setAction(ActionStates._STANDING);
+                    App.getRover().setAction(ActionStates._STANDING);
                 }
 
-                app.getHud().buttonAction.release();
+                App.getHud().buttonAction.release();
             }
-            else if (app.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BRIDGE_CARRY)
+            else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BRIDGE_CARRY)
             {
-                app.getHud().buttonAction.release();
+                App.getHud().buttonAction.release();
 
-                if (app.getPlayer().isCarrying && app.getPlayer().isOnGround && !app.getPlayer().isOnRoverBack)
+                if (App.getPlayer().isCarrying && App.getPlayer().isOnGround && !App.getPlayer().isOnRoverBack)
                 {
-                    int x = (int) app.getPlayer().sprite.getX();
+                    int x = (int) App.getPlayer().sprite.getX();
 
-                    if (app.getPlayer().lookingAt.getX() == Movement._DIRECTION_RIGHT)
+                    if (App.getPlayer().lookingAt.getX() == Movement._DIRECTION_RIGHT)
                     {
-                        x += app.getPlayer().frameWidth;
+                        x += App.getPlayer().frameWidth;
                     }
                     else
                     {
                         x -= Gfx.getTileWidth();
                     }
 
-                    app.getPlayer().bridgeManager.layBridge
+                    App.getPlayer().bridgeManager.layBridge
                         (
                             x / Gfx.getTileWidth(),
-                            (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1
+                            (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1
                         );
 
-                    app.getPlayer().actionButton.removeAction();
-                    app.getPlayer().isCarrying = false;
+                    App.getPlayer().actionButton.removeAction();
+                    App.getPlayer().isCarrying = false;
                 }
             }
             else
             {
-                app.getPlayer().actionButton.setAction();
+                App.getPlayer().actionButton.setAction();
             }
         }
 
@@ -150,171 +148,171 @@ public class ButtonInputHandler implements Disposable
 
         //
         // UP button
-        if (app.getHud().buttonUp.isPressed())
+        if (App.getHud().buttonUp.isPressed())
         {
             directionButtonPressed = true;
 
-            if (!app.getPlayer().isRidingRover)
+            if (!App.getPlayer().isRidingRover)
             {
-                if (app.getHud().getFuelBar().getTotal() > 0)
+                if (App.getHud().getFuelBar().getTotal() > 0)
                 {
-                    app.getPlayer().isFalling = false;
-                    app.getPlayer().isMovingY = true;
-                    app.getPlayer().maxMoveSpeed = 24;
-                    app.getPlayer().direction.setY(Movement._DIRECTION_UP);
-                    app.getPlayer().speed.setY(MainPlayer._PLAYER_Y_SPEED);
+                    App.getPlayer().isFalling = false;
+                    App.getPlayer().isMovingY = true;
+                    App.getPlayer().maxMoveSpeed = 24;
+                    App.getPlayer().direction.setY(Movement._DIRECTION_UP);
+                    App.getPlayer().speed.setY(MainPlayer._PLAYER_Y_SPEED);
 
-                    app.getPlayer().setAction(ActionStates._FLYING);
+                    App.getPlayer().setAction(ActionStates._FLYING);
                 }
                 else
                 {
-                    app.getPlayer().isMovingY = false;
+                    App.getPlayer().isMovingY = false;
                 }
             }
         }
 
         //
         // DOWN button
-        if (app.getHud().buttonDown.isPressed() && !app.getPlayer().isOnGround)
+        if (App.getHud().buttonDown.isPressed() && !App.getPlayer().isOnGround)
         {
             directionButtonPressed = true;
 
-            if (!app.getPlayer().isRidingRover)
+            if (!App.getPlayer().isRidingRover)
             {
-                if (app.getPlayer().isInMidAir)
+                if (App.getPlayer().isInMidAir)
                 {
-                    app.getPlayer().isFalling = true;
-                    app.getPlayer().isMovingY = true;
-                    app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
-                    app.getPlayer().speed.setY(MainPlayer._PLAYER_Y_SPEED);
+                    App.getPlayer().isFalling = true;
+                    App.getPlayer().isMovingY = true;
+                    App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
+                    App.getPlayer().speed.setY(MainPlayer._PLAYER_Y_SPEED);
                 }
                 else
                 {
-                    app.getPlayer().isMovingY = false;
-                    app.getPlayer().speed.setY(0);
+                    App.getPlayer().isMovingY = false;
+                    App.getPlayer().speed.setY(0);
                 }
             }
         }
 
         //
         // Check the RIGHT button
-        if (app.getHud().buttonRight.isPressed())
+        if (App.getHud().buttonRight.isPressed())
         {
             directionButtonPressed = true;
-            app.getPlayer().isFlippedX = false;
+            App.getPlayer().isFlippedX = false;
 
-            if (!app.getPlayer().isBlockedRight && (app.getPlayer().getRightEdge() < Gfx.getMapWidth()))
+            if (!App.getPlayer().isBlockedRight && (App.getPlayer().getRightEdge() < Gfx.getMapWidth()))
             {
-                if (app.getPlayer().isRidingRover)
+                if (App.getPlayer().isRidingRover)
                 {
-                    app.getRover().isMovingX = true;
-                    app.getRover().direction.setX(Movement._DIRECTION_RIGHT);
+                    App.getRover().isMovingX = true;
+                    App.getRover().direction.setX(Movement._DIRECTION_RIGHT);
                 }
                 else
                 {
-                    app.getPlayer().direction.setX(Movement._DIRECTION_RIGHT);
-                    app.getPlayer().isMovingX = true;
-                    app.getPlayer().speed.setX(app.getPlayer().isInMidAir ? MainPlayer._PLAYER_JUMP_X_SPEED : MainPlayer._PLAYER_X_SPEED);
+                    App.getPlayer().direction.setX(Movement._DIRECTION_RIGHT);
+                    App.getPlayer().isMovingX = true;
+                    App.getPlayer().speed.setX(App.getPlayer().isInMidAir ? MainPlayer._PLAYER_JUMP_X_SPEED : MainPlayer._PLAYER_X_SPEED);
 
-                    if (app.getPlayer().isJumpingCrater)
+                    if (App.getPlayer().isJumpingCrater)
                     {
-                        app.getPlayer().setAction(ActionStates._FLYING);
+                        App.getPlayer().setAction(ActionStates._FLYING);
                     }
                     else
                     {
-                        if (!app.getPlayer().isInMidAir)
+                        if (!App.getPlayer().isInMidAir)
                         {
-                            app.getPlayer().setAction(ActionStates._RUNNING);
+                            App.getPlayer().setAction(ActionStates._RUNNING);
                         }
                     }
                 }
             }
             else
             {
-                app.getPlayer().isMovingX = false;
+                App.getPlayer().isMovingX = false;
 
-                app.getHud().buttonRight.release();
-                app.getPlayer().direction.setX(Movement._DIRECTION_STILL);
-                app.getPlayer().speed.setX(0);
+                App.getHud().buttonRight.release();
+                App.getPlayer().direction.setX(Movement._DIRECTION_STILL);
+                App.getPlayer().speed.setX(0);
             }
         }
         //
         // Check the LEFT button
-        else if (app.getHud().buttonLeft.isPressed())
+        else if (App.getHud().buttonLeft.isPressed())
         {
             directionButtonPressed = true;
-            app.getPlayer().isFlippedX = true;
+            App.getPlayer().isFlippedX = true;
 
-            if (!app.getPlayer().isBlockedLeft && (app.getPlayer().sprite.getX() > 0))
+            if (!App.getPlayer().isBlockedLeft && (App.getPlayer().sprite.getX() > 0))
             {
-                if (app.getPlayer().isRidingRover)
+                if (App.getPlayer().isRidingRover)
                 {
-                    app.getRover().isMovingX = true;
-                    app.getRover().direction.setX(Movement._DIRECTION_LEFT);
+                    App.getRover().isMovingX = true;
+                    App.getRover().direction.setX(Movement._DIRECTION_LEFT);
                 }
                 else
                 {
-                    app.getPlayer().direction.setX(Movement._DIRECTION_LEFT);
-                    app.getPlayer().isMovingX = true;
-                    app.getPlayer().speed.setX(app.getPlayer().isInMidAir ? MainPlayer._PLAYER_JUMP_X_SPEED : MainPlayer._PLAYER_X_SPEED);
+                    App.getPlayer().direction.setX(Movement._DIRECTION_LEFT);
+                    App.getPlayer().isMovingX = true;
+                    App.getPlayer().speed.setX(App.getPlayer().isInMidAir ? MainPlayer._PLAYER_JUMP_X_SPEED : MainPlayer._PLAYER_X_SPEED);
 
-                    if (app.getPlayer().isJumpingCrater)
+                    if (App.getPlayer().isJumpingCrater)
                     {
-                        app.getPlayer().setAction(ActionStates._FLYING);
+                        App.getPlayer().setAction(ActionStates._FLYING);
                     }
                     else
                     {
-                        if (!app.getPlayer().isInMidAir)
+                        if (!App.getPlayer().isInMidAir)
                         {
-                            app.getPlayer().setAction(ActionStates._RUNNING);
+                            App.getPlayer().setAction(ActionStates._RUNNING);
                         }
                     }
                 }
             }
             else
             {
-                app.getPlayer().isMovingX = false;
+                App.getPlayer().isMovingX = false;
 
-                app.getHud().buttonLeft.release();
-                app.getPlayer().direction.setX(Movement._DIRECTION_STILL);
-                app.getPlayer().speed.setX(0);
+                App.getHud().buttonLeft.release();
+                App.getPlayer().direction.setX(Movement._DIRECTION_STILL);
+                App.getPlayer().speed.setX(0);
             }
         }
 
         //
         // No direction buttons pressed
-        if (!directionButtonPressed && !app.getPlayer().isTeleporting)
+        if (!directionButtonPressed && !App.getPlayer().isTeleporting)
         {
-            if (app.getPlayer().isRidingRover)
+            if (App.getPlayer().isRidingRover)
             {
-                app.getRover().isMovingX = false;
-                app.getRover().setAction(ActionStates._STANDING);
+                App.getRover().isMovingX = false;
+                App.getRover().setAction(ActionStates._STANDING);
             }
-            else if ((app.getPlayer().getAction() != ActionStates._HURT)
-                    && (app.getPlayer().getAction() != ActionStates._FALLING_TO_GROUND))
+            else if ((App.getPlayer().getAction() != ActionStates._HURT)
+                    && (App.getPlayer().getAction() != ActionStates._FALLING_TO_GROUND))
             {
-                app.getPlayer().isMovingX = false;
-                app.getPlayer().isMovingY = false;
+                App.getPlayer().isMovingX = false;
+                App.getPlayer().isMovingY = false;
 
-                if (app.getPlayer().isOnGround && (app.getPlayer().getAction() != ActionStates._HOVERING))
+                if (App.getPlayer().isOnGround && (App.getPlayer().getAction() != ActionStates._HOVERING))
                 {
-                    app.getPlayer().setAction(ActionStates._STANDING);
-                    app.getPlayer().speed.set(0, 0);
+                    App.getPlayer().setAction(ActionStates._STANDING);
+                    App.getPlayer().speed.set(0, 0);
                 }
                 else
                 {
                     //
                     // If in mid air and no buttons pressed then
                     // the player must be falling
-                    if (app.getPlayer().isInMidAir)
+                    if (App.getPlayer().isInMidAir)
                     {
-                        app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
-                        app.getPlayer().setAction(ActionStates._FALLING);
-                        app.getPlayer().isMovingY = true;
+                        App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
+                        App.getPlayer().setAction(ActionStates._FALLING);
+                        App.getPlayer().isMovingY = true;
 
-                        if (app.getPlayer().speed.getY() <= 0)
+                        if (App.getPlayer().speed.getY() <= 0)
                         {
-                            app.getPlayer().speed.setY(1.0f);
+                            App.getPlayer().speed.setY(1.0f);
                         }
                     }
                 }

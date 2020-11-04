@@ -17,12 +17,10 @@ public class VirtualJoystick
     private static final float PAD_WIDTH  = 240;
     private static final float PAD_HEIGHT = 240;
 
-    private       Touchpad touchpad;
-    private final App      app;
+    private Touchpad touchpad;
 
-    public VirtualJoystick(App _app)
+    public VirtualJoystick()
     {
-        this.app = _app;
     }
 
     public void create()
@@ -43,66 +41,66 @@ public class VirtualJoystick
         touchpad.setBounds(PAD_X, PAD_Y, PAD_WIDTH, PAD_HEIGHT);
         touchpad.setResetOnTouchUp(true);
 
-        app.stage.addActor(touchpad);
+        App.stage.addActor(touchpad);
 
         hide();
     }
 
     public void update()
     {
-        app.getHud().releaseDirectionButtons();
+        App.getHud().releaseDirectionButtons();
 
         switch (evaluateJoypadDirection())
         {
             case _UP:
             {
-                app.getHud().buttonUp.press();
+                App.getHud().buttonUp.press();
             }
             break;
 
             case _DOWN:
             {
-                app.getHud().buttonDown.press();
+                App.getHud().buttonDown.press();
             }
             break;
 
             case _LEFT:
             {
-                app.getHud().buttonLeft.press();
+                App.getHud().buttonLeft.press();
             }
             break;
 
             case _RIGHT:
             {
-                app.getHud().buttonRight.press();
+                App.getHud().buttonRight.press();
             }
             break;
 
             case _UP_LEFT:
             {
-                app.getHud().buttonUp.press();
-                app.getHud().buttonLeft.press();
+                App.getHud().buttonUp.press();
+                App.getHud().buttonLeft.press();
             }
             break;
 
             case _UP_RIGHT:
             {
-                app.getHud().buttonUp.press();
-                app.getHud().buttonRight.press();
+                App.getHud().buttonUp.press();
+                App.getHud().buttonRight.press();
             }
             break;
 
             case _DOWN_LEFT:
             {
-                app.getHud().buttonDown.press();
-                app.getHud().buttonLeft.press();
+                App.getHud().buttonDown.press();
+                App.getHud().buttonLeft.press();
             }
             break;
 
             case _DOWN_RIGHT:
             {
-                app.getHud().buttonDown.press();
-                app.getHud().buttonRight.press();
+                App.getHud().buttonDown.press();
+                App.getHud().buttonRight.press();
             }
             break;
 
@@ -152,11 +150,11 @@ public class VirtualJoystick
         //
         // The default angle for joystick goes round anti-clockwise,
         // so modify so that the result is now clockwise.
-        int angle = Math.abs((int) (InputUtils.getJoystickAngle(app) - 360));
+        int angle = Math.abs((int) (InputUtils.getJoystickAngle() - 360));
 
         joyDir = DirectionMap.map[angle / 10].translated;
 
-        app.inputManager.lastRegisteredDirection = joyDir;
+        App.inputManager.lastRegisteredDirection = joyDir;
 
         return joyDir;
     }

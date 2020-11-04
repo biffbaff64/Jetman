@@ -1,68 +1,49 @@
-/*
- *  Copyright 24/04/2018 Red7Projects.
- *  <p>
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *  <p>
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  <p>
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 
-package com.richikin.utilslib.developer;
+package com.richikin.jetman;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.Settings;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.physics.aabb.AABBData;
-import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.jetman.physics.aabb.AABBData;
+import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.jetman.config.Settings;
 
 public class DebugRenderer implements Disposable
 {
     private static TextureRegion debugTextureRegion;
-    private static App           app;
     private static BitmapFont    font;
 
-    public static void setup(App _app)
+    public static void setup(String _debugFont)
     {
-        app = _app;
-
         debugTextureRegion = new TextureRegion();
 
         FontUtils fontUtils = new FontUtils();
-        font = fontUtils.createFont(GameAssets._PRO_WINDOWS_FONT, 15, Color.WHITE);
+        font = fontUtils.createFont(_debugFont, 15, Color.WHITE);
     }
 
     public static void drawText(String _message, float _x, float _y)
     {
-        font.draw(app.spriteBatch, _message, _x, _y);
+        font.draw(LibApp.spriteBatch, _message, _x, _y);
     }
 
     public static void drawBoxes()
     {
-        if (app.settings.isEnabled(Settings._TILE_BOXES))
+        if (LibApp.settings.isEnabled(Settings._TILE_BOXES))
         {
             drawTileLayerBoxes();
         }
 
-        if (app.settings.isEnabled(Settings._SPRITE_BOXES))
+        if (LibApp.settings.isEnabled(Settings._SPRITE_BOXES))
         {
             drawSpriteCollisionBoxes();
         }
@@ -86,15 +67,15 @@ public class DebugRenderer implements Disposable
 
                     if (collisionObject.action == ActionStates._COLLIDABLE)
                     {
-                        debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
+                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
                     }
                     else if (collisionObject.action == ActionStates._COLLIDING)
                     {
-                        debugTextureRegion = app.assets.getObjectRegion("solid_blue32x32");
+                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_blue32x32");
                     }
                     else
                     {
-                        debugTextureRegion = app.assets.getObjectRegion("solid_white32x32");
+                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_white32x32");
                     }
 
                     drawRect
@@ -130,23 +111,23 @@ public class DebugRenderer implements Disposable
 
                 if (collisionObject.rectangle.colour == Color.BLUE)
                 {
-                    debugTextureRegion = app.assets.getObjectRegion("solid_blue32x32");
+                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_blue32x32");
                 }
                 else if ((collisionObject.rectangle.colour == Color.RED) || (collisionObject.action == ActionStates._COLLIDING))
                 {
-                    debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
+                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.YELLOW)
                 {
-                    debugTextureRegion = app.assets.getObjectRegion("solid_yellow32x32");
+                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_yellow32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.GREEN)
                 {
-                    debugTextureRegion = app.assets.getObjectRegion("solid_green32x32");
+                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_green32x32");
                 }
                 else
                 {
-                    debugTextureRegion = app.assets.getObjectRegion("solid_white32x32");
+                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_white32x32");
                 }
 
                 drawRect
@@ -164,7 +145,7 @@ public class DebugRenderer implements Disposable
 
     public static void drawRect(int x, int y, int width, int height, int thickness)
     {
-        debugTextureRegion = app.assets.getObjectRegion("solid_red32x32");
+        debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
 
         drawRect
             (
@@ -202,7 +183,7 @@ public class DebugRenderer implements Disposable
             asset = "solid_white32x32";
         }
 
-        debugTextureRegion = app.assets.getObjectRegion(asset);
+        debugTextureRegion = LibApp.assets.getObjectRegion(asset);
 
         drawRect
             (
@@ -219,10 +200,10 @@ public class DebugRenderer implements Disposable
     {
         try
         {
-            app.spriteBatch.draw(textureRegion, x, y, width, thickness);
-            app.spriteBatch.draw(textureRegion, x, y, thickness, height);
-            app.spriteBatch.draw(textureRegion, x, (y + height) - thickness, width, thickness);
-            app.spriteBatch.draw(textureRegion, (x + width) - thickness, y, thickness, height);
+            LibApp.spriteBatch.draw(textureRegion, x, y, width, thickness);
+            LibApp.spriteBatch.draw(textureRegion, x, y, thickness, height);
+            LibApp.spriteBatch.draw(textureRegion, x, (y + height) - thickness, width, thickness);
+            LibApp.spriteBatch.draw(textureRegion, (x + width) - thickness, y, thickness, height);
         }
         catch (NullPointerException exception)
         {
@@ -233,7 +214,6 @@ public class DebugRenderer implements Disposable
             Trace.dbg("width: " + width);
             Trace.dbg("height: " + height);
             Trace.dbg("thickness: " + thickness);
-            Trace.dbg("game: " + app);
             Trace.dbg("From: " + new Exception().getStackTrace()[1].getClassName());
 
             Stats.incMeter(Meters._NULL_POINTER_EXCEPTION.get());

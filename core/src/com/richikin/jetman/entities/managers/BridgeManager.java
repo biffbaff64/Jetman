@@ -4,7 +4,7 @@ import com.richikin.jetman.core.App;
 
 public class BridgeManager
 {
-    public BridgeManager(App _app)
+    public BridgeManager()
     {
 
     }

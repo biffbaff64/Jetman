@@ -50,13 +50,9 @@ public class MenuPage implements IUIPage, Disposable
     private int menuIndex;
     private int menuLoop;
 
-    private final App app;
-
-    public MenuPage(App _app)
+    public MenuPage()
     {
-        this.app = _app;
-
-        foreground = app.assets.loadSingleAsset("data/title_background.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("data/title_background.png", Texture.class);
 
         addMenu();
         addClickListeners();
@@ -131,16 +127,16 @@ public class MenuPage implements IUIPage, Disposable
         final float originX = -((float) (Gfx._HUD_WIDTH / 2));
         final float originY = -((float) (Gfx._HUD_HEIGHT / 2));
 
-        Trace.__FILE_FUNC("cameraX: " + app.baseRenderer.hudGameCamera.camera.position.x + ",  cameraY: " + app.baseRenderer.hudGameCamera.camera.position.y);
+        Trace.__FILE_FUNC("cameraX: " + App.baseRenderer.hudGameCamera.camera.position.x + ",  cameraY: " + App.baseRenderer.hudGameCamera.camera.position.y);
         Trace.__FILE_FUNC("originX: " + originX + ",  originY: " + originY);
 
-        Scene2DUtils.setup(app);
+        Scene2DUtils.setup();
 
         buttonStart = Scene2DUtils.makeImageButton("buttonStart", "buttonStart_pressed");
         buttonStart.setPosition((int) originX + 482, (int) originY + (720 - 417));
         buttonStart.setVisible(true);
         buttonStart.setZIndex(1);
-        app.stage.addActor(buttonStart);
+        App.stage.addActor(buttonStart);
 
         buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) originX + 545, (int) originY + (720 - 516));
         buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) originX + 591, (int) originY + (720 - 609));
@@ -148,15 +144,15 @@ public class MenuPage implements IUIPage, Disposable
         buttonOptions.setZIndex(1);
         buttonExit.setZIndex(1);
 
-        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
             Trace.dbg("Adding Heap Usage debug...");
 
             javaHeapLabel   = Scene2DUtils.addLabel("JAVA HEAP: ", (int) originX + 40, (int) originY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
             nativeHeapLabel = Scene2DUtils.addLabel("NATIVE HEAP: ", (int) originX + 40, (int) originY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
 
-            app.stage.addActor(javaHeapLabel);
-            app.stage.addActor(nativeHeapLabel);
+            App.stage.addActor(javaHeapLabel);
+            App.stage.addActor(nativeHeapLabel);
             javaHeapLabel.setZIndex(1);
             nativeHeapLabel.setZIndex(1);
         }
@@ -188,7 +184,7 @@ public class MenuPage implements IUIPage, Disposable
             {
                 decoration = Scene2DUtils.makeObjectsImage("poppy");
                 decoration.setPosition(originX + 1160, originY + (720 - 90));
-                app.stage.addActor(decoration);
+                App.stage.addActor(decoration);
             }
         }
         else
@@ -199,7 +195,7 @@ public class MenuPage implements IUIPage, Disposable
                 {
                     decoration = Scene2DUtils.makeObjectsImage("xmas_tree");
                     decoration.setPosition(originX + 1075, originY + (720 - 342));
-                    app.stage.addActor(decoration);
+                    App.stage.addActor(decoration);
                 }
             }
         }
@@ -245,12 +241,12 @@ public class MenuPage implements IUIPage, Disposable
      */
     private void updateGoogleButton()
     {
-        if ((buttonGoogle == null) && !app.googleServices.isSignedIn())
+        if ((buttonGoogle == null) && !App.googleServices.isSignedIn())
         {
             createGoogleButton();
         }
 
-        if ((buttonGoogle != null) && app.googleServices.isSignedIn())
+        if ((buttonGoogle != null) && App.googleServices.isSignedIn())
         {
             buttonGoogle.addAction(Actions.removeActor());
             buttonGoogle = null;
@@ -265,9 +261,9 @@ public class MenuPage implements IUIPage, Disposable
      */
     private void createGoogleButton()
     {
-        if (app.googleServices.isEnabled() && !app.googleServices.isSignedIn())
+        if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
         {
-            Scene2DUtils.setup(app);
+            Scene2DUtils.setup();
 
             buttonGoogle = Scene2DUtils.addButton
                 (
@@ -312,7 +308,7 @@ public class MenuPage implements IUIPage, Disposable
             buttonGoogle.setVisible(_visible);
         }
 
-        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {
@@ -337,7 +333,7 @@ public class MenuPage implements IUIPage, Disposable
         buttonOptions = null;
         buttonExit    = null;
 
-        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {
@@ -361,7 +357,7 @@ public class MenuPage implements IUIPage, Disposable
         versionLabel.addAction(Actions.removeActor());
         versionLabel = null;
 
-        app.assets.unloadAsset("data/title_background.png");
+        App.assets.unloadAsset("data/title_background.png");
 
         foreground = null;
         stopWatch  = null;
@@ -369,7 +365,7 @@ public class MenuPage implements IUIPage, Disposable
 
     private void menuPageDebug()
     {
-        if (Developer.isDevMode() && app.settings.isEnabled(Settings._MENU_HEAPS))
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
             if (javaHeapLabel != null)
             {

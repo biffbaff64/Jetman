@@ -27,7 +27,7 @@ public class PathUtils
         return paths;
     }
 
-    public boolean setup(final App app)
+    public boolean setup()
     {
         return false;
     }

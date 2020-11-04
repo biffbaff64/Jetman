@@ -5,46 +5,43 @@ import com.richikin.jetman.core.App;
 
 public class CameraUtils
 {
-    private final App app;
-
-    public CameraUtils(App _app)
+    public CameraUtils()
     {
-        this.app = _app;
     }
 
     public void resetCameraZoom()
     {
-        app.baseRenderer.parallaxGameCamera.camera.update();
-        app.baseRenderer.tiledGameCamera.camera.update();
-        app.baseRenderer.spriteGameCamera.camera.update();
-        app.baseRenderer.hudGameCamera.camera.update();
+        App.baseRenderer.parallaxGameCamera.camera.update();
+        App.baseRenderer.tiledGameCamera.camera.update();
+        App.baseRenderer.spriteGameCamera.camera.update();
+        App.baseRenderer.hudGameCamera.camera.update();
 
-        app.baseRenderer.gameZoom.stop();
-        app.baseRenderer.hudZoom.stop();
+        App.baseRenderer.gameZoom.stop();
+        App.baseRenderer.hudZoom.stop();
 
-        app.baseRenderer.parallaxGameCamera.camera.zoom = 1.0f;
-        app.baseRenderer.tiledGameCamera.camera.zoom    = 1.0f;
-        app.baseRenderer.spriteGameCamera.camera.zoom   = 1.0f;
-        app.baseRenderer.hudGameCamera.camera.zoom      = 1.0f;
+        App.baseRenderer.parallaxGameCamera.camera.zoom = 1.0f;
+        App.baseRenderer.tiledGameCamera.camera.zoom    = 1.0f;
+        App.baseRenderer.spriteGameCamera.camera.zoom   = 1.0f;
+        App.baseRenderer.hudGameCamera.camera.zoom      = 1.0f;
     }
 
     public void enableAllCameras()
     {
-        app.baseRenderer.parallaxGameCamera.isInUse = true;
-        app.baseRenderer.tiledGameCamera.isInUse    = true;
-        app.baseRenderer.spriteGameCamera.isInUse   = true;
-        app.baseRenderer.hudGameCamera.isInUse      = true;
+        App.baseRenderer.parallaxGameCamera.isInUse = true;
+        App.baseRenderer.tiledGameCamera.isInUse    = true;
+        App.baseRenderer.spriteGameCamera.isInUse   = true;
+        App.baseRenderer.hudGameCamera.isInUse      = true;
 
-        app.baseRenderer.isDrawingStage = true;
+        App.baseRenderer.isDrawingStage = true;
     }
 
     public void disableAllCameras()
     {
-        app.baseRenderer.parallaxGameCamera.isInUse = false;
-        app.baseRenderer.tiledGameCamera.isInUse    = false;
-        app.baseRenderer.spriteGameCamera.isInUse   = false;
-        app.baseRenderer.hudGameCamera.isInUse      = false;
+        App.baseRenderer.parallaxGameCamera.isInUse = false;
+        App.baseRenderer.tiledGameCamera.isInUse    = false;
+        App.baseRenderer.spriteGameCamera.isInUse   = false;
+        App.baseRenderer.hudGameCamera.isInUse      = false;
 
-        app.baseRenderer.isDrawingStage = false;
+        App.baseRenderer.isDrawingStage = false;
     }
 }

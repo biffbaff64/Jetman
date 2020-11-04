@@ -25,9 +25,9 @@ public class Rover extends GdxSprite
     public GdxSprite frontWheel;
     public GdxSprite backWheel;
 
-    public Rover(App _app)
+    public Rover()
     {
-        super(GraphicID.G_ROVER, _app);
+        super(GraphicID.G_ROVER);
     }
 
     /**
@@ -75,7 +75,7 @@ public class Rover extends GdxSprite
         direction.setX(Movement._DIRECTION_RIGHT);
         lookingAt.setX(direction.getX());
 
-        app.gameProgress.roverDestroyed = false;
+        App.gameProgress.roverDestroyed = false;
     }
 
     /**
@@ -90,17 +90,17 @@ public class Rover extends GdxSprite
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_WHEEL);
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_WHEEL);
-        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_WHEEL);
+        descriptor._INDEX         = App.entityData.entityMap.size;
 
         // Add the front wheel
         if (frontWheel == null)
         {
             Trace.__FILE_FUNC("Adding Rover Front Wheel.");
 
-            frontWheel = new GdxSprite(GraphicID.G_ROVER_WHEEL, app);
+            frontWheel = new GdxSprite(GraphicID.G_ROVER_WHEEL);
             frontWheel.create(descriptor);
-            app.entityData.addEntity(frontWheel);
+            App.entityData.addEntity(frontWheel);
         }
 
         // Add the back wheel
@@ -108,11 +108,11 @@ public class Rover extends GdxSprite
         {
             Trace.__FILE_FUNC("Adding Rover Back Wheel.");
 
-            descriptor._INDEX = app.entityData.entityMap.size;
+            descriptor._INDEX = App.entityData.entityMap.size;
 
-            backWheel = new GdxSprite(GraphicID.G_ROVER_WHEEL, app);
+            backWheel = new GdxSprite(GraphicID.G_ROVER_WHEEL);
             backWheel.create(descriptor);
-            app.entityData.addEntity(backWheel);
+            App.entityData.addEntity(backWheel);
         }
 
         // Add the back tray
@@ -122,14 +122,14 @@ public class Rover extends GdxSprite
 
             descriptor = Entities.getDescriptor(GraphicID.G_ROVER_BOOT);
             descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER_BOOT);
-            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BOOT);
-            descriptor._INDEX = app.entityData.entityMap.size;
+            descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BOOT);
+            descriptor._INDEX = App.entityData.entityMap.size;
 
-            roverBack = new GdxSprite(GraphicID.G_ROVER_BOOT, app);
+            roverBack = new GdxSprite(GraphicID.G_ROVER_BOOT);
             roverBack.create(descriptor);
             roverBack.bodyCategory = Gfx.CAT_GROUND;
             roverBack.collidesWith = Gfx.CAT_PLAYER;
-            app.entityData.addEntity(roverBack);
+            App.entityData.addEntity(roverBack);
         }
     }
 
@@ -167,10 +167,10 @@ public class Rover extends GdxSprite
             case _KILLED:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack, app);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel, app);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel);
 
                 collisionObject.setInvisibility(1000);
 
@@ -190,8 +190,8 @@ public class Rover extends GdxSprite
                 backWheel.setAction(ActionStates._DEAD);
                 roverBack.setAction(ActionStates._DEAD);
 
-                app.gameProgress.playerLifeOver = true;
-                app.gameProgress.roverDestroyed = true;
+                App.gameProgress.playerLifeOver = true;
+                App.gameProgress.roverDestroyed = true;
             }
             break;
 
@@ -218,7 +218,7 @@ public class Rover extends GdxSprite
     {
         if (getAction() == ActionStates._DEAD)
         {
-            app.gameProgress.lives.setToMinimum();
+            App.gameProgress.lives.setToMinimum();
         }
     }
 
@@ -226,7 +226,7 @@ public class Rover extends GdxSprite
     public void animate()
     {
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
     }
 
     @Override
@@ -276,7 +276,7 @@ public class Rover extends GdxSprite
 
     public void playerControl()
     {
-        app.getPlayer().buttons.checkButtons();
+        App.getPlayer().buttons.checkButtons();
 
         moveGunTurret();
 
@@ -287,7 +287,7 @@ public class Rover extends GdxSprite
             speed.set(3, 0);
             setAction(ActionStates._RUNNING);
 
-            app.googleServices.unlockAchievement(PlayServicesID.achievement_moon_rider.getID());
+            App.googleServices.unlockAchievement(PlayServicesID.achievement_moon_rider.getID());
         }
         else
         {
@@ -312,17 +312,17 @@ public class Rover extends GdxSprite
 //            y = ((int) collisionObject.rectangle.y / Gfx.getTileHeight()) - 1;
 //        }
 //
-//        return app.collisionUtils.getMarkerTileOn(x, y) == TileID._CRATER_TILE;
+//        return App.collisionUtils.getMarkerTileOn(x, y) == TileID._CRATER_TILE;
 
         return false;
     }
 
     private void obstacleCheck()
     {
-        app.getPlayer().isBlockedLeft = (collisionCheck(app.collisionUtils.getBoxHittingLeft(this).gid)
+        App.getPlayer().isBlockedLeft = (collisionCheck(App.collisionUtils.getBoxHittingLeft(this).gid)
             && (lookingAt.getX() == Movement._DIRECTION_LEFT));
 
-        app.getPlayer().isBlockedRight = (collisionCheck(app.collisionUtils.getBoxHittingRight(this).gid)
+        App.getPlayer().isBlockedRight = (collisionCheck(App.collisionUtils.getBoxHittingRight(this).gid)
             && (lookingAt.getX() == Movement._DIRECTION_RIGHT));
     }
 
@@ -355,27 +355,27 @@ public class Rover extends GdxSprite
     public void tidy(int _index)
     {
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 
     // TODO: 29/09/2018 - Move this to RoverGun() class
     private void moveGunTurret()
     {
-        if (app.getGun().isAttachedToRover)
+        if (App.getGun().isAttachedToRover)
         {
-            if (app.getHud().buttonUp.isPressed() && (app.getGun().gunTurretAngle >= 0.0f) && (app.getGun().gunTurretAngle < 90.0f))
+            if (App.getHud().buttonUp.isPressed() && (App.getGun().gunTurretAngle >= 0.0f) && (App.getGun().gunTurretAngle < 90.0f))
             {
-                app.getGun().gunTurretAngle++;
+                App.getGun().gunTurretAngle++;
             }
             else
             {
-                if (app.getHud().buttonDown.isPressed() && (app.getGun().gunTurretAngle <= 90.0f) && (app.getGun().gunTurretAngle > 0.0f))
+                if (App.getHud().buttonDown.isPressed() && (App.getGun().gunTurretAngle <= 90.0f) && (App.getGun().gunTurretAngle > 0.0f))
                 {
-                    app.getGun().gunTurretAngle--;
+                    App.getGun().gunTurretAngle--;
                 }
             }
 
-            app.getGun().gunTurret.sprite.setRotation(app.getGun().gunTurretAngle * this.direction.getX());
+            App.getGun().gunTurret.sprite.setRotation(App.getGun().gunTurretAngle * this.direction.getX());
         }
     }
 }

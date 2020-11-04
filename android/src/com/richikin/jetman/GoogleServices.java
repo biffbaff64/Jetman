@@ -23,8 +23,6 @@ public class GoogleServices implements IPlayServices
     private final AchievementsHandler achievementsHandler;
     private final LeaderboardHandler  leaderboardHandler;
 
-    private App app;
-
     GoogleServices(AndroidLauncher _androidLauncher)
     {
         this.androidLauncher     = _androidLauncher;
@@ -33,9 +31,8 @@ public class GoogleServices implements IPlayServices
     }
 
     @Override
-    public void setup(App _app)
+    public void setup()
     {
-        this.app = _app;
     }
 
     /**
@@ -70,15 +67,15 @@ public class GoogleServices implements IPlayServices
         {
             Trace.__FILE_FUNC("GPGS: signInResult: PASS:");
 
-            app.settings.prefs.putBoolean(Settings._SIGN_IN_STATUS, true);
-            app.settings.prefs.flush();
+            App.settings.getPrefs().putBoolean(Settings._SIGN_IN_STATUS, true);
+            App.settings.getPrefs().flush();
         }
         else
         {
             Trace.__FILE_FUNC("GPGS: signInResult: FAIL:");
 
-            app.settings.prefs.putBoolean(Settings._SIGN_IN_STATUS, false);
-            app.settings.prefs.flush();
+            App.settings.getPrefs().putBoolean(Settings._SIGN_IN_STATUS, false);
+            App.settings.getPrefs().flush();
         }
 
         Trace.__FILE_FUNC("GPGS: " + GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(androidLauncher), Games.SCOPE_GAMES_LITE));
@@ -118,8 +115,8 @@ public class GoogleServices implements IPlayServices
                         {
                             Trace.__FILE_FUNC("GPGS: signInResult: PASS:");
 
-                            app.settings.prefs.putBoolean(Settings._SIGN_IN_STATUS, true);
-                            app.settings.prefs.flush();
+                            App.settings.getPrefs().putBoolean(Settings._SIGN_IN_STATUS, true);
+                            App.settings.getPrefs().flush();
                         });
             }
         }
@@ -148,7 +145,7 @@ public class GoogleServices implements IPlayServices
     @Override
     public boolean isEnabled()
     {
-        return app.settings.prefs.getBoolean(Settings._PLAY_SERVICES);
+        return App.settings.getPrefs().getBoolean(Settings._PLAY_SERVICES);
     }
 
     void onActivityResult(int requestCode, Intent data)

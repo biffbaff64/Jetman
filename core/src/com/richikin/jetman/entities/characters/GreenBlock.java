@@ -16,9 +16,9 @@ import com.richikin.utilslib.physics.Movement;
 
 public class GreenBlock extends GdxSprite
 {
-    public GreenBlock(App _app)
+    public GreenBlock()
     {
-        super(GraphicID.G_GREEN_BLOCK, _app);
+        super(GraphicID.G_GREEN_BLOCK);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class GreenBlock extends GdxSprite
 
         setAction(ActionStates._RUNNING);
 
-        if (sprite.getX() < app.getPlayer().sprite.getX())
+        if (sprite.getX() < App.getPlayer().sprite.getX())
         {
             direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
         }
@@ -67,11 +67,11 @@ public class GreenBlock extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);
@@ -118,7 +118,7 @@ public class GreenBlock extends GdxSprite
             default:
             {
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
             }
             break;
         }

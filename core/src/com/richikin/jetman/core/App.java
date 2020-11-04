@@ -23,46 +23,47 @@ import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.developer.Developer;
-import com.richikin.utilslib.states.StateManager;
 
 public abstract class App extends LibApp
 {
     // =======================================================
     // Global access references
     //
-    public BaseRenderer   baseRenderer;
-    public CameraUtils    cameraUtils;
-    public WorldModel     worldModel;
-    public Settings       settings;
-    public InputManager   inputManager;
-    public MainMenuScreen mainMenuScreen;
-    public MainGameScreen mainGameScreen;
+    public static MainGame       mainGame;
+    public static BaseRenderer   baseRenderer;
+    public static CameraUtils    cameraUtils;
+    public static WorldModel     worldModel;
+    public static InputManager   inputManager;
+    public static MainMenuScreen mainMenuScreen;
+    public static MainGameScreen mainGameScreen;
 
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
-    public EntityUtils           entityUtils;
-    public MapUtils              mapUtils;
-    public PathUtils             pathUtils;
-    public EntityData            entityData;
-    public MapData               mapData;
-    public HeadsUpDisplay        hud;
-    public GameProgress          gameProgress;
-    public MapCreator            mapCreator;
-    public PanelManager          panelManager;
-    public LevelManager          levelManager;
-    public RoomManager           roomManager;
-    public EntityManager         entityManager;
-    public ParallaxManager       parallaxManager;
-    public RoverManager          roverManager;
-    public TeleportManager       teleportManager;
-    public MissileBaseManager    missileBaseManager;
-    public DefenceStationManager defenceStationManager;
-    public BombManager           bombManager;
+    public static EntityUtils           entityUtils;
+    public static MapUtils              mapUtils;
+    public static PathUtils             pathUtils;
+    public static EntityData            entityData;
+    public static MapData               mapData;
+    public static HeadsUpDisplay        hud;
+    public static GameProgress          gameProgress;
+    public static MapCreator            mapCreator;
+    public static ParallaxManager       parallaxManager;
+    public static PanelManager          panelManager;
+    public static LevelManager          levelManager;
+    public static RoomManager           roomManager;
+    public static EntityManager         entityManager;
+    public static RoverManager          roverManager;
+    public static TeleportManager       teleportManager;
+    public static MissileBaseManager    missileBaseManager;
+    public static DefenceStationManager defenceStationManager;
+    public static BombManager           bombManager;
 
-    public boolean optionsPageActive;
+    public static boolean optionsPageActive;
 
-    public MainPlayer getPlayer()
+    private App() {}
+
+    public static MainPlayer getPlayer()
     {
         MainPlayer player = null;
 
@@ -77,7 +78,7 @@ public abstract class App extends LibApp
         return player;
     }
 
-    public Rover getRover()
+    public static Rover getRover()
     {
         Rover rover = null;
 
@@ -91,14 +92,14 @@ public abstract class App extends LibApp
         return rover;
     }
 
-    public boolean doesRoverExist()
+    public static boolean doesRoverExist()
     {
         return ((roverManager != null)
             && (roverManager.getGID() == GraphicID.G_ROVER)
             && (roverManager.getActiveCount() > 0));
     }
 
-    public RoverGun getGun()
+    public static RoverGun getGun()
     {
         RoverGun gun = null;
 
@@ -112,7 +113,7 @@ public abstract class App extends LibApp
         return gun;
     }
 
-    public Bomb getBomb()
+    public static Bomb getBomb()
     {
         Bomb bomb = null;
 
@@ -126,7 +127,7 @@ public abstract class App extends LibApp
         return bomb;
     }
 
-    public MissileBase getBase()
+    public static MissileBase getBase()
     {
         MissileBase base = null;
 
@@ -140,7 +141,7 @@ public abstract class App extends LibApp
         return base;
     }
 
-    public Teleporter getTeleporter(int index)
+    public static Teleporter getTeleporter(int index)
     {
         Teleporter teleporter = null;
 
@@ -160,7 +161,7 @@ public abstract class App extends LibApp
      *
      * @return the lives.
      */
-    public int getLives()
+    public static int getLives()
     {
         int lives;
 
@@ -181,17 +182,17 @@ public abstract class App extends LibApp
      *
      * @return the level
      */
-    public int getLevel()
+    public static int getLevel()
     {
         return gameProgress.playerLevel;
     }
 
-    public boolean doTransportersExist()
+    public static boolean doTransportersExist()
     {
         return ((teleportManager != null) && (teleportManager.getActiveCount() > 0));
     }
 
-    public HeadsUpDisplay getHud()
+    public static HeadsUpDisplay getHud()
     {
         return hud;
     }

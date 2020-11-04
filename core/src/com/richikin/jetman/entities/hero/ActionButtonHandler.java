@@ -22,12 +22,8 @@ public class ActionButtonHandler implements Disposable
     private ActionMode actionMode;
     private ActionMode previousActionMode;
 
-    private final App app;
-
-    public ActionButtonHandler(App _app)
+    public ActionButtonHandler()
     {
-        this.app = _app;
-
         this.actionMode         = ActionMode._NO_ACTION;
         this.previousActionMode = ActionMode._NO_ACTION;
     }
@@ -35,65 +31,65 @@ public class ActionButtonHandler implements Disposable
     public void setAction()
     {
         if ((actionMode == ActionMode._NO_ACTION)
-            || ((actionMode == ActionMode._BOMB_CARRY) && app.getPlayer().collision.isTeleporterPresent())
-            || ((actionMode == ActionMode._GUN_CARRY) && app.getPlayer().collision.isTeleporterPresent()))
+            || ((actionMode == ActionMode._BOMB_CARRY) && App.getPlayer().collision.isTeleporterPresent())
+            || ((actionMode == ActionMode._GUN_CARRY) && App.getPlayer().collision.isTeleporterPresent()))
         {
-            if (app.doTransportersExist()
-                && !app.getPlayer().collision.isInRoverMiddle()
-                && app.getTeleporter(0).getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle()))
+            if (App.doTransportersExist()
+                && !App.getPlayer().collision.isInRoverMiddle()
+                && App.getTeleporter(0).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()))
             {
                 setActionMode(ActionMode._TELEPORTING);
 
-                app.teleportManager.teleportVisual(true);
+                App.teleportManager.teleportVisual(true);
                 teleportNumber = 0;
             }
-            else if (app.doTransportersExist()
-                && !app.getPlayer().collision.isInRoverMiddle()
-                && app.getTeleporter(1).getCollisionRectangle().contains(app.getPlayer().getCollisionRectangle()))
+            else if (App.doTransportersExist()
+                && !App.getPlayer().collision.isInRoverMiddle()
+                && App.getTeleporter(1).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()))
             {
                 setActionMode(ActionMode._TELEPORTING);
 
-                app.teleportManager.teleportVisual(true);
+                App.teleportManager.teleportVisual(true);
                 teleportNumber = 1;
             }
             else
             {
-                if ((app.getBomb() != null) && app.getPlayer().collision.isBombPresent())
+                if ((App.getBomb() != null) && App.getPlayer().collision.isBombPresent())
                 {
                     setActionMode(ActionMode._BOMB_CARRY);
 
-                    app.getPlayer().isCarrying       = true;
-                    app.getBomb().isAttachedToPlayer = true;
-                    app.getHud().buttonAction.release();
+                    App.getPlayer().isCarrying       = true;
+                    App.getBomb().isAttachedToPlayer = true;
+                    App.getHud().buttonAction.release();
                 }
-                else if ((app.getGun() != null)
-                    && (!app.getGun().isAttachedToRover || app.getPlayer().isOnRoverBack)
-                    && Intersector.overlaps(app.getPlayer().getCollisionRectangle(), app.getGun().getCollisionRectangle()))
+                else if ((App.getGun() != null)
+                    && (!App.getGun().isAttachedToRover || App.getPlayer().isOnRoverBack)
+                    && Intersector.overlaps(App.getPlayer().getCollisionRectangle(), App.getGun().getCollisionRectangle()))
                 {
                     setActionMode(ActionMode._GUN_CARRY);
 
-                    app.getPlayer().isCarrying      = true;
-                    app.getGun().isAttachedToPlayer = true;
-                    app.getHud().buttonAction.release();
+                    App.getPlayer().isCarrying      = true;
+                    App.getGun().isAttachedToPlayer = true;
+                    App.getHud().buttonAction.release();
                 }
-                else if ((app.getRover() != null)
-                    && Intersector.overlaps(app.getPlayer().getCollisionRectangle(), app.getRover().backWheel.getCollisionRectangle()))
+                else if ((App.getRover() != null)
+                    && Intersector.overlaps(App.getPlayer().getCollisionRectangle(), App.getRover().backWheel.getCollisionRectangle()))
                 {
                     setActionMode(ActionMode._BRIDGE_CARRY);
 
-                    app.getPlayer().isCarrying = true;
-                    app.getHud().buttonAction.release();
+                    App.getPlayer().isCarrying = true;
+                    App.getHud().buttonAction.release();
                 }
                 else
                 {
-                    if (app.getPlayer().collision.isInRoverMiddle())
+                    if (App.getPlayer().collision.isInRoverMiddle())
                     {
                         setActionMode(ActionMode._ROVER_RIDE);
 
-                        app.getPlayer().isCarrying    = false;
-                        app.getPlayer().isRidingRover = true;
-                        app.getPlayer().setAction(ActionStates._RIDING);
-                        app.getHud().buttonAction.release();
+                        App.getPlayer().isCarrying    = false;
+                        App.getPlayer().isRidingRover = true;
+                        App.getPlayer().setAction(ActionStates._RIDING);
+                        App.getHud().buttonAction.release();
                     }
                 }
             }
@@ -106,14 +102,14 @@ public class ActionButtonHandler implements Disposable
         {
             case _TELEPORTING:
             {
-                if (app.entityManager.teleportBeam != null)
+                if (App.entityManager.teleportBeam != null)
                 {
-                    if (app.entityManager.teleportBeam.update())
+                    if (App.entityManager.teleportBeam.update())
                     {
-                        app.entityManager.teleportBeam.dispose();
-                        app.entityManager.teleportBeam = null;
+                        App.entityManager.teleportBeam.dispose();
+                        App.entityManager.teleportBeam = null;
 
-                        app.teleportManager.setTeleporting(teleportNumber);
+                        App.teleportManager.setTeleporting(teleportNumber);
                     }
                 }
             }

@@ -25,16 +25,12 @@ public class GameEntity implements EntityComponent, Disposable
     public short        collidesWith;
     public ActionStates entityAction;
 
-    protected App app;
-
-    public GameEntity(App _app)
+    public GameEntity()
     {
-        this.app = _app;
     }
 
-    public GameEntity(GraphicID _gid, App _app)
+    public GameEntity(GraphicID _gid)
     {
-        this.app = _app;
         this.gid = _gid;
     }
 
@@ -47,7 +43,7 @@ public class GameEntity implements EntityComponent, Disposable
     @Override
     public void setCollisionObject(float _xPos, float _yPos)
     {
-        collisionObject = app.collisionUtils.newObject
+        collisionObject = App.collisionUtils.newObject
             (
                 (int) _xPos,
                 (int) _yPos,

@@ -41,11 +41,9 @@ public class Bouncer extends GdxSprite
     private StopWatch stopWatch;
     private float maxBounceSpeed;
 
-    public Bouncer(GraphicID graphicID, App _app)
+    public Bouncer(GraphicID graphicID)
     {
-        super(graphicID, _app);
-
-        this.app = _app;
+        super(graphicID);
     }
 
     @Override
@@ -121,7 +119,7 @@ public class Bouncer extends GdxSprite
             case _RUNNING:
             {
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
                 rotateSpeed = -4.0f * direction.getX();
 
@@ -133,11 +131,11 @@ public class Bouncer extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);
@@ -175,7 +173,7 @@ public class Bouncer extends GdxSprite
             {
                 if (animation != null)
                 {
-                    sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                    sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
                     elapsedAnimTime += Gdx.graphics.getDeltaTime();
                 }
             }

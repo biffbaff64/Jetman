@@ -13,9 +13,9 @@ import com.richikin.utilslib.physics.Movement;
 
 public class Ufo extends GdxSprite
 {
-    public Ufo(final App _app)
+    public Ufo()
     {
-        super(GraphicID.G_BACKGROUND_UFO, _app);
+        super(GraphicID.G_BACKGROUND_UFO);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Ufo extends GdxSprite
         if (isAnimating)
         {
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
-            sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+            sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         }
     }
 
@@ -66,9 +66,9 @@ public class Ufo extends GdxSprite
 //    {
 //        spriteBatch.draw
 //            (
-//                app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true),
-//                (app.mapData.mapPosition.x + (sprite.getX() - (Gfx._VIEW_WIDTH / 2.0f))),
-//                (app.mapData.mapPosition.y + (sprite.getY() - (Gfx._VIEW_HEIGHT / 2.0f)))
+//                App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true),
+//                (App.mapData.mapPosition.x + (sprite.getX() - (Gfx._VIEW_WIDTH / 2.0f))),
+//                (App.mapData.mapPosition.y + (sprite.getY() - (Gfx._VIEW_HEIGHT / 2.0f)))
 //            );
 //
 //        elapsedAnimTime += Gdx.graphics.getDeltaTime();
@@ -82,7 +82,7 @@ public class Ufo extends GdxSprite
         {
             xPos = MathUtils.random(Gfx.getMapWidth());
         }
-        while (app.mapData.viewportBox.contains(xPos, (app.mapData.mapPosition.getY() + 10)));
+        while (App.mapData.viewportBox.contains(xPos, (App.mapData.mapPosition.getY() + 10)));
 
         sprite.setX(xPos);
 

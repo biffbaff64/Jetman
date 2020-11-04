@@ -39,13 +39,9 @@ public class Bomb extends GdxSprite
     public boolean     isAttachedToRover;
     public boolean     isAttachedToPlayer;
 
-    private final App app;
-
-    public Bomb(App _app)
+    public Bomb()
     {
-        super(GraphicID.G_BOMB, _app);
-
-        this.app = _app;
+        super(GraphicID.G_BOMB);
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
         collidesWith = Gfx.CAT_GROUND | Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MISSILE_BASE;
@@ -78,14 +74,14 @@ public class Bomb extends GdxSprite
             {
                 if (isAttachedToPlayer)
                 {
-                    if (app.getPlayer().isOnGround
-                        || (app.getPlayer().sprite.getY() < (initXYZ.getY() + frameHeight)))
+                    if (App.getPlayer().isOnGround
+                        || (App.getPlayer().sprite.getY() < (initXYZ.getY() + frameHeight)))
                     {
-                        sprite.setPosition(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
+                        sprite.setPosition(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY());
                     }
                     else
                     {
-                        sprite.setPosition(app.getPlayer().sprite.getX(), (app.getPlayer().sprite.getY() - (frameHeight / 2)));
+                        sprite.setPosition(App.getPlayer().sprite.getX(), (App.getPlayer().sprite.getY() - (frameHeight / 2)));
                     }
 
                     isAttachedToRover = false;
@@ -94,13 +90,13 @@ public class Bomb extends GdxSprite
                 {
                     if (isAttachedToRover)
                     {
-                        if (app.getRover().lookingAt.getX() == Movement._DIRECTION_LEFT)
+                        if (App.getRover().lookingAt.getX() == Movement._DIRECTION_LEFT)
                         {
-                            sprite.setPosition(app.getRover().sprite.getX() + 194, app.getRover().sprite.getY() + (131 - 43));
+                            sprite.setPosition(App.getRover().sprite.getX() + 194, App.getRover().sprite.getY() + (131 - 43));
                         }
                         else
                         {
-                            sprite.setPosition(app.getRover().sprite.getX() + 67, app.getRover().sprite.getY() + (131 - 43));
+                            sprite.setPosition(App.getRover().sprite.getX() + 67, App.getRover().sprite.getY() + (131 - 43));
                         }
                     }
                 }
@@ -151,7 +147,7 @@ public class Bomb extends GdxSprite
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        if (!app.teleportManager.teleportActive)
+        if (!App.teleportManager.teleportActive)
         {
             super.draw(spriteBatch);
         }
@@ -161,13 +157,13 @@ public class Bomb extends GdxSprite
     public void animate()
     {
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
     }
 
     public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
         direction.setY(Movement._DIRECTION_STILL);
         speed.setY(0);
@@ -175,12 +171,12 @@ public class Bomb extends GdxSprite
         Entities.explode(this);
         elapsedAnimTime = 0;
 
-        CraterManager craterManager = new CraterManager(app);
+        CraterManager craterManager = new CraterManager();
 
         if (craterManager.canMakeCrater(this, false))
         {
             int x = (int) (sprite.getX() / Gfx.getTileWidth());
-            int y = (int) (app.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
+            int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
 
             craterManager.makeCrater(x, y);
         }
@@ -195,22 +191,22 @@ public class Bomb extends GdxSprite
             {
                 if (getAction() == ActionStates._FALLING)
                 {
-                    GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
+                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getBomb()).gid;
 
                     if (contactID == GraphicID._GROUND)
                     {
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
 
-                        float minX = app.entityData.defenceStations[0].sprite.getX();
-                        float maxX = app.entityData.defenceStations[1].sprite.getX()
-                            + app.entityData.defenceStations[1].frameWidth;
+                        float minX = App.entityData.defenceStations[0].sprite.getX();
+                        float maxX = App.entityData.defenceStations[1].sprite.getX()
+                            + App.entityData.defenceStations[1].frameWidth;
 
                         if ((sprite.getX() >= minX) && (sprite.getX() <= maxX))
                         {
                             explode();
 
-                            app.getBase().setAction(ActionStates._HURT);
+                            App.getBase().setAction(ActionStates._HURT);
                         }
                         else if (releaseXY.getY() > (initXYZ.getY() + Gfx.getTileHeight()))
                         {
@@ -230,7 +226,7 @@ public class Bomb extends GdxSprite
 
                         explode();
 
-                        app.getBase().setAction(ActionStates._HURT);
+                        App.getBase().setAction(ActionStates._HURT);
                     }
                     else if (contactID == GraphicID.G_ROVER_BOOT)
                     {
@@ -239,7 +235,7 @@ public class Bomb extends GdxSprite
                         speed.setY(0);
                         setAction(ActionStates._STANDING);
 
-                        app.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
+                        App.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
                     }
                 }
             }

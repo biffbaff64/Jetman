@@ -24,11 +24,9 @@ public class MessageManager
 
     private final Array<Message> messages;
     private       boolean        managerEnabled;
-    private final App     app;
 
-    public MessageManager(App _app)
+    public MessageManager()
     {
-        this.app = _app;
         this.messages = new Array<>();
     }
 
@@ -52,7 +50,7 @@ public class MessageManager
         {
             if (messages.get(i).enabled)
             {
-                messages.get(i).panel.draw(app.spriteBatch);
+                messages.get(i).panel.draw(App.spriteBatch);
             }
         }
     }
@@ -63,7 +61,7 @@ public class MessageManager
         {
             SlidePanel panel = new SlidePanel();
 
-            panel.initialise(app.assets.getObjectRegion(imageName), imageName);
+            panel.initialise(App.assets.getObjectRegion(imageName), imageName);
             panel.activate();
             panel.action = ActionStates._OPENING;
 
@@ -81,7 +79,7 @@ public class MessageManager
         {
             IUserInterfacePanel panel = new ZoomPanel();
 
-            if (app.assets.getTextRegion(imageName) == null)
+            if (App.assets.getTextRegion(imageName) == null)
             {
                 Trace.__FILE_FUNC("ERROR: " + imageName + " not loaded!");
             }
@@ -89,7 +87,7 @@ public class MessageManager
             {
                 panel.initialise
                     (
-                        app.assets.getTextRegion(imageName),
+                        App.assets.getTextRegion(imageName),
                         imageName,
                         /* _canPause   */(displayDelay > 0),
                         /* _bounceBack */ true

@@ -1,98 +1,72 @@
 
 package com.richikin.utilslib.google;
 
-import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.Trace;
 
 public class PlayServicesDesktop implements IPlayServices
 {
-    private App app;
-
     @Override
-    public void setup(App _app)
+    public void setup()
     {
-        this.app = _app;
     }
 
     @Override
     public void createApiClient()
     {
-        Trace.__FILE_FUNC();
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 
     @Override
     public void signIn()
     {
-        if (isEnabled())
-        {
-            if (!app.settings.isEnabled(Settings._SIGN_IN_STATUS))
-            {
-                Trace.__FILE_FUNC();
-
-                app.settings.enable(Settings._SIGN_IN_STATUS);
-            }
-        }
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 
     @Override
     public void signInSilently()
     {
-        if (isEnabled())
-        {
-            Trace.__FILE_FUNC();
-
-            signIn();
-        }
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 
     @Override
     public void signOut()
     {
-        if (isEnabled())
-        {
-            Trace.__FILE_FUNC();
-
-            app.settings.disable(Settings._SIGN_IN_STATUS);
-        }
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 
     @Override
     public boolean isSignedIn()
     {
-        return isEnabled() && app.settings.isEnabled(Settings._SIGN_IN_STATUS);
+        return false;
     }
 
     @Override
     public boolean isEnabled()
     {
-        return AppConfig.isAndroidApp() && app.settings.isEnabled(Settings._PLAY_SERVICES);
+        return false;
     }
 
     @Override
     public void submitScore(int score, int level)
     {
-        if (isEnabled())
-        {
-            Trace.__FILE_FUNC("" + score + ", " + level);
-        }
+        Trace.__FILE_FUNC("Desktop: Services not enabled1 : " + score + ", " + level);
     }
 
     @Override
     public void unlockAchievement(String achievementId)
     {
+        Trace.__FILE_FUNC("Desktop: Services not enabled1 : " + achievementId);
     }
 
     @Override
     public void showAchievementScreen()
     {
-        Trace.__FILE_FUNC();
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 
     @Override
     public void showLeaderboard()
     {
-        Trace.__FILE_FUNC();
+        Trace.__FILE_FUNC("Desktop: Services not enabled1");
     }
 }

@@ -47,20 +47,17 @@ public class ZapSprite extends GdxSprite
     private       StopWatch stopWatch;
     private       int       colourIndex;
     private       int       restingTime;
-    private final App       app;
     private final GdxSprite parent;
 
     /**
      * Constructor
      *
      * @param graphicID The {@link GraphicID of this sprite}
-     * @param _app     an instance of the {@link App}
      */
-    public ZapSprite(GraphicID graphicID, GdxSprite _parent, App _app)
+    public ZapSprite(GraphicID graphicID, GdxSprite _parent)
     {
-        super(graphicID, _app);
+        super(graphicID);
 
-        this.app = _app;
         this.parent = _parent;
     }
 
@@ -97,7 +94,7 @@ public class ZapSprite extends GdxSprite
                 }
                 else
                 {
-                    sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                    sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
                     elapsedAnimTime += Gdx.graphics.getDeltaTime();
                 }
 

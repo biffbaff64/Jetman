@@ -4,7 +4,7 @@ import com.richikin.jetman.core.App;
 
 public abstract class GameAudio
 {
-    public static void setup(App _app)
+    public static void setup()
     {
     }
 }

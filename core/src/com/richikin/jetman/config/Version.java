@@ -46,7 +46,7 @@ public final class Version
 
     // ------------------------------------------------------
 
-    public static void appDetails(App app)
+    public static void appDetails()
     {
         Trace.divider('*', 80);
         Trace.divider(80);
@@ -54,7 +54,7 @@ public final class Version
         Trace.dbg(getDisplayVersion());
         if (AppConfig.isAndroidApp())
         {
-            Trace.dbg("Signed in to Google?: " + app.googleServices.isSignedIn());
+            Trace.dbg("Signed in to Google?: " + App.googleServices.isSignedIn());
         }
 
         Trace.divider(80);

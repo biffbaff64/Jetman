@@ -29,20 +29,16 @@ import com.richikin.enumslib.GraphicID;
 
 public class Explosion extends GdxSprite
 {
-    private       GdxSprite parent;
-    private final App       app;
+    private GdxSprite parent;
 
     /**
      * Constructor
      *
      * @param graphicID The {@link GraphicID of this sprite}
-     * @param _app      an instance of the {@link App}
      */
-    public Explosion(GraphicID graphicID, App _app)
+    public Explosion(GraphicID graphicID)
     {
-        super(graphicID, _app);
-
-        this.app = _app;
+        super(graphicID);
     }
 
     @Override
@@ -63,7 +59,7 @@ public class Explosion extends GdxSprite
         sprite.setCenter(parent.sprite.getX() + (parent.frameWidth / 2), parent.sprite.getY() + (parent.frameHeight / 2));
         setAction(ActionStates._RUNNING);
 
-//        if (app.entityUtils.isOnScreen(this))
+//        if (App.entityUtils.isOnScreen(this))
 //        {
 //            Sfx.inst().startSound(Sfx.inst().SFX_EXPLOSION_1);
 //        }
@@ -92,19 +88,19 @@ public class Explosion extends GdxSprite
             {
                 parent.isDrawable = false;
 
-                if ((app.getBomb() != null)
-                    && !app.getBomb().isAttachedToRover
-                    && !app.getBomb().isAttachedToPlayer
-                    && (app.getBomb().getAction() == ActionStates._STANDING))
+                if ((App.getBomb() != null)
+                    && !App.getBomb().isAttachedToRover
+                    && !App.getBomb().isAttachedToPlayer
+                    && (App.getBomb().getAction() == ActionStates._STANDING))
                 {
-                    if (Intersector.overlaps(getCollisionRectangle(), app.getBomb().getCollisionRectangle()))
+                    if (Intersector.overlaps(getCollisionRectangle(), App.getBomb().getCollisionRectangle()))
                     {
-                        app.getBomb().explode();
+                        App.getBomb().explode();
                     }
                 }
             }
 
-            sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
+            sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
         }
     }
@@ -113,7 +109,7 @@ public class Explosion extends GdxSprite
     public void tidy(int _index)
     {
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
         parent = null;
     }
 }

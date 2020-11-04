@@ -12,16 +12,14 @@ public class StarField implements Disposable
     public final int   numStars = 5000;
 
     private ArrayList<StarObject> stars;
-    private App                   app;
 
-    public StarField(App _app)
+    public StarField()
     {
-        this.app   = _app;
         this.stars = new ArrayList<>();
 
         for (int i = 0; i < numStars; i++)
         {
-            stars.add(new StarObject(app));
+            stars.add(new StarObject());
         }
     }
 
@@ -41,6 +39,5 @@ public class StarField implements Disposable
     {
         stars.clear();
         stars = null;
-        app   = null;
     }
 }

@@ -24,15 +24,12 @@ public class ParallaxLayer implements Disposable
     public float     ySpeed;
 
     private final Box imageBox;
-    private final App app;
 
-    public ParallaxLayer(String textureName, App _app)
+    public ParallaxLayer(String textureName)
     {
-        this.app = _app;
-
         this.name = textureName;
 
-        Texture texture = app.assets.loadSingleAsset(textureName, Texture.class);
+        Texture texture = App.assets.loadSingleAsset(textureName, Texture.class);
 
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -53,7 +50,7 @@ public class ParallaxLayer implements Disposable
     {
         if (isActive)
         {
-            app.spriteBatch.draw(textureRegion, position.getX(), position.getY());
+            App.spriteBatch.draw(textureRegion, position.getX(), position.getY());
         }
     }
 
@@ -111,7 +108,7 @@ public class ParallaxLayer implements Disposable
     @Override
     public void dispose()
     {
-        app.assets.unloadAsset(name);
+        App.assets.unloadAsset(name);
         textureRegion.getTexture().dispose();
     }
 }

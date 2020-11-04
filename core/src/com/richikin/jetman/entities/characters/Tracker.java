@@ -27,9 +27,9 @@ public class Tracker extends GdxSprite
     private StopWatch stopWatch;
     private float restingTime;
 
-    public Tracker(GraphicID graphicID, App _app)
+    public Tracker(GraphicID graphicID)
     {
-        super(graphicID, _app);
+        super(graphicID);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Tracker extends GdxSprite
         distance.set(Gfx._VIEW_WIDTH * 6, 0);
         speed.set(1 + MathUtils.random(2), 0);
 
-        if (sprite.getX() < app.getPlayer().sprite.getX())
+        if (sprite.getX() < App.getPlayer().sprite.getX())
         {
             direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
         }
@@ -78,7 +78,7 @@ public class Tracker extends GdxSprite
                 // movement for a short period...
                 if (!proximity.isSilent())
                 {
-                    if(proximity.isRoughlyAbove(this, app.getPlayer()))
+                    if(proximity.isRoughlyAbove(this, App.getPlayer()))
                     {
                         stopWatch.reset();
                         restingTime = 5000;
@@ -92,7 +92,7 @@ public class Tracker extends GdxSprite
                     //
                     // ...otherwise, keep the horizontal movement updating
                     circular.setXOffset(circular.getXOffset() + (speed.getX() * direction.getX()));
-                    circular.setNextMove(this, app);
+                    circular.setNextMove(this);
 
                     wrap();
 
@@ -101,7 +101,7 @@ public class Tracker extends GdxSprite
                     // re-enable
                     if (proximity.isSilent())
                     {
-                        if (!Intersector.overlaps(sprite.getBoundingRectangle(), app.getPlayer().viewBox.getRectangle()))
+                        if (!Intersector.overlaps(sprite.getBoundingRectangle(), App.getPlayer().viewBox.getRectangle()))
                         {
                             proximity.setSilent(false);
                         }
@@ -112,7 +112,7 @@ public class Tracker extends GdxSprite
 
             case _CIRCLING:
             {
-                circular.setNextMove(this, app);
+                circular.setNextMove(this);
 
                 wrap();
 
@@ -127,11 +127,11 @@ public class Tracker extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);
@@ -168,7 +168,7 @@ public class Tracker extends GdxSprite
     public void animate()
     {
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
     }
 
     @Override
@@ -181,7 +181,7 @@ public class Tracker extends GdxSprite
 
     private void checkY()
     {
-        if ((sprite.getY() + frameHeight) < app.getPlayer().topEdge)
+        if ((sprite.getY() + frameHeight) < App.getPlayer().topEdge)
         {
             speed.setY(1);
             direction.setY(Movement._DIRECTION_UP);

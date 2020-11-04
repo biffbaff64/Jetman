@@ -4,25 +4,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
-import com.richikin.utilslib.developer.DebugRenderer;
 
 public class WorldRenderer implements IGameScreenRenderer
 {
-    private final App app;
-
-    public WorldRenderer(App _app)
+    public WorldRenderer()
     {
-        this.app = _app;
     }
 
     @Override
     public void render(SpriteBatch spriteBatch, OrthoGameCamera gameCamera)
     {
-        switch (app.appState.peek())
+        switch (App.appState.peek())
         {
             case _STATE_MAIN_MENU:
             {
-                app.mainMenuScreen.draw(spriteBatch, gameCamera);
+                App.mainMenuScreen.draw(spriteBatch, gameCamera);
             }
             break;
 
@@ -37,12 +33,10 @@ public class WorldRenderer implements IGameScreenRenderer
             case _STATE_TELEPORTING:
             case _STATE_DEBUG_HANG:
             {
-                if (!app.settings.isEnabled(Settings._USING_ASHLEY_ECS))
+                if (!App.settings.isEnabled(Settings._USING_ASHLEY_ECS))
                 {
-                    app.entityManager.drawSprites();
+                    App.entityManager.drawSprites();
                 }
-
-                DebugRenderer.drawBoxes();
             }
             break;
 

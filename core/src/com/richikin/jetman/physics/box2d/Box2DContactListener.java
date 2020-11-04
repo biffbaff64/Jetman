@@ -6,13 +6,11 @@ import net.dermetfan.gdx.Multiplexer;
 
 public class Box2DContactListener extends Multiplexer<ContactListener> implements ContactListener
 {
-    private final App app;
-
-    public Box2DContactListener(App _app)
+    public Box2DContactListener()
     {
+        //
+        // Initialises the Multiplexer.receivers array
         super();
-
-        this.app = _app;
     }
 
     /**

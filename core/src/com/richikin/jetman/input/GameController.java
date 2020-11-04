@@ -21,11 +21,8 @@ public class GameController implements ControllerListener
 {
     public Controller controller;
 
-    protected final App app;
-
-    public GameController(App _app)
+    public GameController()
     {
-        this.app = _app;
     }
 
     public boolean setup()
@@ -174,9 +171,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonAction != null)
+                if (App.getHud().buttonAction != null)
                 {
-                    app.getHud().buttonAction.press();
+                    App.getHud().buttonAction.press();
                 }
             }
         }
@@ -186,9 +183,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonAttack != null)
+                if (App.getHud().buttonAttack != null)
                 {
-                    app.getHud().buttonAttack.press();
+                    App.getHud().buttonAttack.press();
                 }
             }
         }
@@ -198,9 +195,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonX != null)
+                if (App.getHud().buttonX != null)
                 {
-                    app.getHud().buttonX.press();
+                    App.getHud().buttonX.press();
                 }
             }
         }
@@ -210,9 +207,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonY != null)
+                if (App.getHud().buttonY != null)
                 {
-                    app.getHud().buttonY.press();
+                    App.getHud().buttonY.press();
                 }
             }
         }
@@ -230,9 +227,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonPause != null)
+                if (App.getHud().buttonPause != null)
                 {
-                    app.getHud().buttonPause.press();
+                    App.getHud().buttonPause.press();
                 }
             }
         }
@@ -276,9 +273,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonAction != null)
+                if (App.getHud().buttonAction != null)
                 {
-                    app.getHud().buttonAction.release();
+                    App.getHud().buttonAction.release();
                 }
             }
         }
@@ -288,9 +285,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonAttack != null)
+                if (App.getHud().buttonAttack != null)
                 {
-                    app.getHud().buttonAttack.release();
+                    App.getHud().buttonAttack.release();
                 }
             }
         }
@@ -300,9 +297,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonX != null)
+                if (App.getHud().buttonX != null)
                 {
-                    app.getHud().buttonX.release();
+                    App.getHud().buttonX.release();
                 }
             }
         }
@@ -312,9 +309,9 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                if (app.getHud().buttonY != null)
+                if (App.getHud().buttonY != null)
                 {
-                    app.getHud().buttonY.release();
+                    App.getHud().buttonY.release();
                 }
             }
         }
@@ -379,7 +376,7 @@ public class GameController implements ControllerListener
 
         if ((axisCode == ControllerMap._AXIS_LEFT_X) || (axisCode == ControllerMap._AXIS_RIGHT_X))
         {
-            app.inputManager._horizontalValue = value;
+            App.inputManager._horizontalValue = value;
 
             if (ControllerMap.isInNegativeRange(value))
             {
@@ -388,10 +385,10 @@ public class GameController implements ControllerListener
 
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonLeft != null)
+                    if (App.getHud().buttonLeft != null)
                     {
-                        app.getHud().buttonRight.release();
-                        app.getHud().buttonLeft.press();
+                        App.getHud().buttonRight.release();
+                        App.getHud().buttonLeft.press();
                     }
                 }
             }
@@ -402,10 +399,10 @@ public class GameController implements ControllerListener
 
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonRight != null)
+                    if (App.getHud().buttonRight != null)
                     {
-                        app.getHud().buttonLeft.release();
-                        app.getHud().buttonRight.press();
+                        App.getHud().buttonLeft.release();
+                        App.getHud().buttonRight.press();
                     }
                 }
             }
@@ -413,10 +410,10 @@ public class GameController implements ControllerListener
             {
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonLeft != null)
+                    if (App.getHud().buttonLeft != null)
                     {
-                        app.getHud().buttonLeft.release();
-                        app.getHud().buttonRight.release();
+                        App.getHud().buttonLeft.release();
+                        App.getHud().buttonRight.release();
                     }
                 }
 
@@ -429,7 +426,7 @@ public class GameController implements ControllerListener
         }
         else if ((axisCode == ControllerMap._AXIS_LEFT_Y) || (axisCode == ControllerMap._AXIS_RIGHT_Y))
         {
-            app.inputManager._verticalValue = value;
+            App.inputManager._verticalValue = value;
 
             if (ControllerMap.isInNegativeRange(value))
             {
@@ -437,9 +434,9 @@ public class GameController implements ControllerListener
 
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonUp != null)
+                    if (App.getHud().buttonUp != null)
                     {
-                        app.getHud().buttonUp.press();
+                        App.getHud().buttonUp.press();
                     }
                 }
             }
@@ -449,9 +446,9 @@ public class GameController implements ControllerListener
 
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonDown != null)
+                    if (App.getHud().buttonDown != null)
                     {
-                        app.getHud().buttonDown.press();
+                        App.getHud().buttonDown.press();
                     }
                 }
             }
@@ -459,10 +456,10 @@ public class GameController implements ControllerListener
             {
                 if (AppConfig.hudExists)
                 {
-                    if (app.getHud().buttonUp != null)
+                    if (App.getHud().buttonUp != null)
                     {
-                        app.getHud().buttonUp.release();
-                        app.getHud().buttonDown.release();
+                        App.getHud().buttonUp.release();
+                        App.getHud().buttonDown.release();
                     }
                 }
 
@@ -482,7 +479,7 @@ public class GameController implements ControllerListener
 
             if (AppConfig.hudExists)
             {
-                app.getHud().releaseDirectionButtons();
+                App.getHud().releaseDirectionButtons();
             }
 
             ControllerData.controllerAxisCode  = -1;

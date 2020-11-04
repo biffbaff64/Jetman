@@ -13,15 +13,13 @@ import com.richikin.utilslib.screens.IBaseScreen;
 
 public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseScreen, Disposable
 {
-    protected final App          app;
     protected final StateManager flowState;
 
-    public AbstractBaseScreen(App _app)
+    public AbstractBaseScreen()
     {
         super();
 
         this.flowState  = new StateManager();
-        this.app        = _app;
     }
 
     @Override
@@ -39,13 +37,13 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
         {
             if (AppConfig.gameScreenActive())
             {
-                app.mapData.update();
+                App.mapData.update();
                 PointsManager.updatePointStacks();
             }
 
             //
             // Update any buttons that are animating/Scaling etc
-            for (IGDXButton button : app.inputManager.gameButtons)
+            for (IGDXButton button : App.inputManager.gameButtons)
             {
                 button.update();
             }
@@ -69,13 +67,13 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
     @Override
     public void resize(int _width, int _height)
     {
-        app.baseRenderer.resizeCameras(_width, _height);
+        App.baseRenderer.resizeCameras(_width, _height);
     }
 
     @Override
     public void pause()
     {
-        app.settings.prefs.flush();
+        App.settings.prefs.flush();
     }
 
     @Override
@@ -99,7 +97,7 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
     @Override
     public void render(float delta)
     {
-        app.baseRenderer.render();
+        App.baseRenderer.render();
     }
 
     @Override

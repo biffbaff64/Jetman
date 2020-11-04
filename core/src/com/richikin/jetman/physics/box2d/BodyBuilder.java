@@ -7,11 +7,8 @@ import com.richikin.utilslib.graphics.LibGfx;
 
 public class BodyBuilder
 {
-    private final App app;
-
-    public BodyBuilder(App _app)
+    public BodyBuilder()
     {
-        this.app = _app;
     }
 
     /**
@@ -153,7 +150,7 @@ public class BodyBuilder
 
     private Body buildBody(GameEntity _entity, BodyDef _bodyDef, FixtureDef _fixtureDef)
     {
-        Body body = app.worldModel.box2DWorld.createBody(_bodyDef);
+        Body body = App.worldModel.box2DWorld.createBody(_bodyDef);
         body.setUserData(new BodyIdentity(_entity, _entity.gid, _entity.type));
         body.createFixture(_fixtureDef);
 

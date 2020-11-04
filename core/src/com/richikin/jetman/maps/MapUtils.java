@@ -27,50 +27,47 @@ import com.richikin.enumslib.GraphicID;
 
 public class MapUtils
 {
-    private final App app;
-
-    public MapUtils(App _app)
+    public MapUtils()
     {
-        this.app = _app;
     }
 
     public void update() {}
 
     public void positionAt(int x, int y)
     {
-        app.mapData.previousMapPosition.set(app.mapData.mapPosition);
+        App.mapData.previousMapPosition.set(App.mapData.mapPosition);
 
         try
         {
-            app.mapData.mapPosition.setX
+            App.mapData.mapPosition.setX
                 (
-                    (int) Math.max(app.mapData.minScrollX,
-                        (x + (app.getPlayer().frameWidth / 2)) - (float) (Gfx._VIEW_WIDTH / 2))
+                    (int) Math.max(App.mapData.minScrollX,
+                        (x + (App.getPlayer().frameWidth / 2)) - (float) (Gfx._VIEW_WIDTH / 2))
                 );
 
-            app.mapData.mapPosition.setX(Math.min(app.mapData.mapPosition.getX(), app.mapData.maxScrollX));
+            App.mapData.mapPosition.setX(Math.min(App.mapData.mapPosition.getX(), App.mapData.maxScrollX));
 
-            app.mapData.mapPosition.setY
+            App.mapData.mapPosition.setY
                 (
-                    (int) Math.max(app.mapData.minScrollY,
-                        (y + (app.getPlayer().frameHeight / 2)) - (float) (Gfx._VIEW_HEIGHT / 2))
+                    (int) Math.max(App.mapData.minScrollY,
+                        (y + (App.getPlayer().frameHeight / 2)) - (float) (Gfx._VIEW_HEIGHT / 2))
                 );
 
-            app.mapData.mapPosition.setY(Math.min(app.mapData.mapPosition.getY(), app.mapData.maxScrollY));
+            App.mapData.mapPosition.setY(Math.min(App.mapData.mapPosition.getY(), App.mapData.maxScrollY));
         }
         catch (NullPointerException npe)
         {
-            app.mapData.mapPosition.set(0, 0);
+            App.mapData.mapPosition.set(0, 0);
         }
 
-        app.parallaxManager.scroll();
+        App.parallaxManager.scroll();
     }
 
     public Array<SpriteDescriptor> findMultiTiles(final GraphicID targetGID)
     {
         Array<SpriteDescriptor> tiles = new Array<>();
 
-        for (SpriteDescriptor marker : app.mapData.placementTiles)
+        for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {

@@ -46,9 +46,9 @@ public class UfoWeapon extends GdxSprite
 
     private int colourIndex;
 
-    public UfoWeapon(App _app)
+    public UfoWeapon()
     {
-        super(GraphicID.G_UFO_BULLET, _app);
+        super(GraphicID.G_UFO_BULLET);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class UfoWeapon extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this);
                 setAction(ActionStates._EXPLODING);
                 setAction(ActionStates._DEAD);
             }
@@ -152,7 +152,7 @@ public class UfoWeapon extends GdxSprite
     {
         if (getAction() == ActionStates._RUNNING)
         {
-            sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+            sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
         }
     }
@@ -161,6 +161,6 @@ public class UfoWeapon extends GdxSprite
     public void tidy(int _index)
     {
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 }

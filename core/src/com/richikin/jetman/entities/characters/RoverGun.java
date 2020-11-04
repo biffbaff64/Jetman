@@ -28,13 +28,9 @@ public class RoverGun extends GdxSprite
     public SimpleVec2F releaseXY;
     public GunTurret gunTurret;
 
-    private final App app;
-
-    public RoverGun(App _app)
+    public RoverGun()
     {
-        super(GraphicID.G_ROVER_GUN, _app);
-
-        this.app = _app;
+        super(GraphicID.G_ROVER_GUN);
     }
 
     @Override
@@ -66,12 +62,12 @@ public class RoverGun extends GdxSprite
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
-        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._INDEX         = App.entityData.entityMap.size;
 
-        gunTurret = new GunTurret(app);
+        gunTurret = new GunTurret();
         gunTurret.initialise(descriptor);
-        app.entityData.addEntity(gunTurret);
+        App.entityData.addEntity(gunTurret);
     }
 
     @Override
@@ -83,36 +79,36 @@ public class RoverGun extends GdxSprite
             {
                 if (isAttachedToPlayer)
                 {
-                    if (app.getPlayer().isOnGround
-                        || (app.getPlayer().sprite.getY() < (initXYZ.getY() + frameHeight)))
+                    if (App.getPlayer().isOnGround
+                        || (App.getPlayer().sprite.getY() < (initXYZ.getY() + frameHeight)))
                     {
-                        sprite.setPosition(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY());
+                        sprite.setPosition(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY());
                     }
                     else
                     {
-                        sprite.setPosition(app.getPlayer().sprite.getX(), app.getPlayer().sprite.getY() - (frameHeight / 2));
+                        sprite.setPosition(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY() - (frameHeight / 2));
                     }
 
                     isAttachedToRover = false;
                 }
                 else if (isAttachedToRover)
                 {
-                    isFlippedX = app.getRover().isFlippedX;
+                    isFlippedX = App.getRover().isFlippedX;
 
                     if (gunTurret != null)
                     {
-                        gunTurret.isFlippedX = app.getRover().isFlippedX;
+                        gunTurret.isFlippedX = App.getRover().isFlippedX;
                     }
 
                     if (isFlippedX)
                     {
-                        sprite.setPosition(app.getRover().sprite.getX() + 82,
-                            (app.getRover().sprite.getY() + app.getRover().frameHeight) - 48);
+                        sprite.setPosition(App.getRover().sprite.getX() + 82,
+                            (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
                     }
                     else
                     {
-                        sprite.setPosition(app.getRover().sprite.getX() + 99,
-                            (app.getRover().sprite.getY() + app.getRover().frameHeight) - 48);
+                        sprite.setPosition(App.getRover().sprite.getX() + 99,
+                            (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
                     }
                 }
             }
@@ -132,12 +128,12 @@ public class RoverGun extends GdxSprite
             case _KILLED:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
                 setAction(ActionStates._EXPLODING);
 
                 if (gunTurret != null)
                 {
-                    explosionManager.createExplosion(GraphicID.G_EXPLOSION64, gunTurret, app);
+                    explosionManager.createExplosion(GraphicID.G_EXPLOSION64, gunTurret);
                     gunTurret.setAction(ActionStates._EXPLODING);
                 }
             }
@@ -171,20 +167,20 @@ public class RoverGun extends GdxSprite
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 2))
             {
 //                EntityDescriptor descriptor = new EntityDescriptor();
-//                descriptor._ASSET         = app.assets.getAnimationsAtlas().findRegion(GameAssets._SPARKLE_WEAPON_ASSET);
+//                descriptor._ASSET         = App.assets.getAnimationsAtlas().findRegion(GameAssets._SPARKLE_WEAPON_ASSET);
 //                descriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
 //                descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
 //                descriptor._X             = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
 //                descriptor._Y             = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
-//                descriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
-//                descriptor._INDEX         = app.entityData.entityMap.size;
-//                descriptor._ENEMY         = app.entityUtils.setEnemyStatus(GraphicID.G_ROVER_BULLET);
-//                descriptor._UPDATEABLE    = app.entityUtils.canUpdate(GraphicID.G_ROVER_BULLET);
+//                descriptor._Z             = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
+//                descriptor._INDEX         = App.entityData.entityMap.size;
+//                descriptor._ENEMY         = App.entityUtils.setEnemyStatus(GraphicID.G_ROVER_BULLET);
+//                descriptor._UPDATEABLE    = App.entityUtils.canUpdate(GraphicID.G_ROVER_BULLET);
 //
 //                SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_ROVER_BULLET, app);
 //                weapon.initialise(descriptor);
 //
-//                app.entityData.addEntity(weapon);
+//                App.entityData.addEntity(weapon);
 
                 if (++shootCount >= 2)
                 {
@@ -225,7 +221,7 @@ public class RoverGun extends GdxSprite
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        if (isAttachedToPlayer && app.teleportManager.teleportActive)
+        if (isAttachedToPlayer && App.teleportManager.teleportActive)
         {
             isDrawable = false;
 
@@ -256,7 +252,7 @@ public class RoverGun extends GdxSprite
     @Override
     public void tidy(int _index)
     {
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 
     public void startShooting()
@@ -272,8 +268,8 @@ public class RoverGun extends GdxSprite
     public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION256, gunTurret, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION256, gunTurret);
 
         Entities.explode(this);
         Entities.explode(gunTurret);
@@ -291,13 +287,13 @@ public class RoverGun extends GdxSprite
             {
                 if (getAction() == ActionStates._FALLING)
                 {
-                    GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getGun()).gid;
+                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getGun()).gid;
 
                     if (contactID == GraphicID._GROUND)
                     {
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        Entities.stand(app.getGun());
+                        Entities.stand(App.getGun());
                     }
                     else if ((contactID == GraphicID.G_MISSILE_BASE)
                         || (contactID == GraphicID.G_MISSILE_LAUNCHER)
@@ -313,9 +309,9 @@ public class RoverGun extends GdxSprite
                         isAttachedToRover = true;
                         direction.setY(Movement._DIRECTION_STILL);
                         speed.setY(0);
-                        Entities.stand(app.getGun());
+                        Entities.stand(App.getGun());
 
-//                        app.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+//                        App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
                     }
                 }
             }

@@ -66,15 +66,12 @@ public class HiscorePage implements IUIPage, Disposable
     private final StopWatch    stopWatch;
     private       StateManager state;
     private       Texture foreground;
-    private final App     app;
 
     private int[]           colorIndex;
     private int             loopCount;
 
-    public HiscorePage(App _app)
+    public HiscorePage()
     {
-        this.app = _app;
-
         addItems();
         addClickListeners();
 
@@ -133,7 +130,7 @@ public class HiscorePage implements IUIPage, Disposable
 
         loopCount = 0;
 
-        if (app.highScoreUtils.newHighScoreAvailable)
+        if (App.highScoreUtils.newHighScoreAvailable)
         {
             state.set(StateID._STATE_NEW_HISCORE);
         }
@@ -150,7 +147,7 @@ public class HiscorePage implements IUIPage, Disposable
     {
         showItems(false);
 
-        app.highScoreUtils.newHighScoreAvailable = false;
+        App.highScoreUtils.newHighScoreAvailable = false;
     }
 
     @Override
@@ -167,25 +164,25 @@ public class HiscorePage implements IUIPage, Disposable
      */
     private void addItems()
     {
-        foreground = app.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
 
-        Scene2DUtils.setup(app);
+        Scene2DUtils.setup();
 
         rankLabels  = new Label[GameConstants._MAX_HISCORES];
         levelLabels = new Label[GameConstants._MAX_HISCORES];
         scoreLabels = new Label[GameConstants._MAX_HISCORES];
 
-        app.highScoreUtils.loadTableData();
+        App.highScoreUtils.loadTableData();
 
         HighScore highScore = new HighScore();
 
-        if (app.highScoreUtils.newHighScoreAvailable)
+        if (App.highScoreUtils.newHighScoreAvailable)
         {
-            highScore.score = app.gameProgress.score.getTotal();
-            highScore.level = app.gameProgress.playerLevel;
-            highScore.rank = app.highScoreUtils.findInsertLevel(highScore);
+            highScore.score = App.gameProgress.score.getTotal();
+            highScore.level = App.gameProgress.playerLevel;
+            highScore.rank = App.highScoreUtils.findInsertLevel(highScore);
 
-            app.highScoreUtils.addHighScore(highScore);
+            App.highScoreUtils.addHighScore(highScore);
         }
 
         colorIndex = new int[GameConstants._MAX_HISCORES];
@@ -209,7 +206,7 @@ public class HiscorePage implements IUIPage, Disposable
             // The game level achieved
             levelLabels[i] = Scene2DUtils.addLabel
                 (
-                    "" + app.highScoreUtils.getHighScoreTable()[i].level,
+                    "" + App.highScoreUtils.getHighScoreTable()[i].level,
                     _LEVEL_X - (Gfx._HUD_WIDTH / 2),
                     _Y_POS,
                     _FNT_SIZE,
@@ -220,7 +217,7 @@ public class HiscorePage implements IUIPage, Disposable
             // The player score
             scoreLabels[i] = Scene2DUtils.addLabel
                 (
-                    String.format(Locale.UK, "%8d", app.highScoreUtils.getHighScoreTable()[i].score),
+                    String.format(Locale.UK, "%8d", App.highScoreUtils.getHighScoreTable()[i].score),
                     _SCORE_X - (Gfx._HUD_WIDTH / 2),
                     _Y_POS,
                     _FNT_SIZE,
@@ -232,9 +229,9 @@ public class HiscorePage implements IUIPage, Disposable
 
             if (i < _DISPLAYED_HISCORES)
             {
-                app.stage.addActor(rankLabels[i]);
-                app.stage.addActor(levelLabels[i]);
-                app.stage.addActor(scoreLabels[i]);
+                App.stage.addActor(rankLabels[i]);
+                App.stage.addActor(levelLabels[i]);
+                App.stage.addActor(scoreLabels[i]);
             }
         }
     }

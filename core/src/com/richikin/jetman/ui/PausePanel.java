@@ -8,11 +8,8 @@ import com.richikin.utilslib.ui.BasicPanel;
 
 public class PausePanel extends BasicPanel
 {
-    private final App app;
-
-    public PausePanel(App _app)
+    public PausePanel()
     {
-        this.app = _app;
     }
 
     @Override

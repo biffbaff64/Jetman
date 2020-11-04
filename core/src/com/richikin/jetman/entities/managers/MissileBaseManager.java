@@ -28,9 +28,9 @@ public class MissileBaseManager extends GenericEntityManager
 
     private int activeBases;
 
-    public MissileBaseManager(App _app)
+    public MissileBaseManager()
     {
-        super( GraphicID.G_MISSILE_BASE, _app);
+        super( GraphicID.G_MISSILE_BASE);
     }
 
     @Override
@@ -85,11 +85,11 @@ public class MissileBaseManager extends GenericEntityManager
 
         SpriteDescriptor descriptor = createMissileBaseMarker();
 
-        MissileBase missileBase = new MissileBase(app);
+        MissileBase missileBase = new MissileBase();
         missileBase.initialise(descriptor);
-        app.entityData.addEntity(missileBase);
+        App.entityData.addEntity(missileBase);
 
-        app.entityManager._missileBaseIndex = missileBase.spriteNumber;
+        App.entityManager._missileBaseIndex = missileBase.spriteNumber;
 
         activeBases++;
     }
@@ -109,8 +109,8 @@ public class MissileBaseManager extends GenericEntityManager
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_MISSILE_BASE);
         descriptor._POSITION.x    = baseTileX;
         descriptor._POSITION.y    = baseTileY;
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_BASE);
-        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_MISSILE_BASE);
+        descriptor._INDEX         = App.entityData.entityMap.size;
 
         return descriptor;
     }
@@ -124,17 +124,17 @@ public class MissileBaseManager extends GenericEntityManager
     public void launch(float startX, float startY)
     {
 //        EntityDescriptor descriptor = new EntityDescriptor();
-//        descriptor._ASSET         = app.assets.getAnimationRegion(GameAssets._MISSILE_ASSET);
+//        descriptor._ASSET         = App.assets.getAnimationRegion(GameAssets._MISSILE_ASSET);
 //        descriptor._FRAMES        = GameAssets._MISSILE_FRAMES;
 //        descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
 //        descriptor._X             = (int) (startX / Gfx.getTileWidth());
 //        descriptor._Y             = (int) (startY / Gfx.getTileHeight());
-//        descriptor._Z             = app.entityUtils.getInitialZPosition(GraphicID.G_MISSILE);
-//        descriptor._INDEX         = app.entityData.entityMap.size;
+//        descriptor._Z             = App.entityUtils.getInitialZPosition(GraphicID.G_MISSILE);
+//        descriptor._INDEX         = App.entityData.entityMap.size;
 //
-//        Missile missile = new Missile(app);
+//        Missile missile = new Missile();
 //        missile.initialise(descriptor);
-//        app.entityData.addEntity(missile);
+//        App.entityData.addEntity(missile);
 //
 //        isMissileActive = true;
 //        activeMissiles++;
@@ -147,14 +147,14 @@ public class MissileBaseManager extends GenericEntityManager
             SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_BULLET);
             descriptor._POSITION.x    = (int) (station.sprite.getX() / Gfx.getTileWidth());
             descriptor._POSITION.y    = (int) (station.sprite.getY() / Gfx.getTileHeight()) + 2;
-            descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
+            descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_BULLET);
             descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_BULLET);
             descriptor._PARENT        = station;
-            descriptor._INDEX         = app.entityData.entityMap.size;
+            descriptor._INDEX         = App.entityData.entityMap.size;
 
-            DefenderBullet weapon = new DefenderBullet(GraphicID.G_DEFENDER_BULLET, app);
+            DefenderBullet weapon = new DefenderBullet(GraphicID.G_DEFENDER_BULLET);
             weapon.initialise(descriptor);
-            app.entityData.addEntity(weapon);
+            App.entityData.addEntity(weapon);
 
             activeSparklers++;
         }
@@ -162,13 +162,13 @@ public class MissileBaseManager extends GenericEntityManager
 
     public void killMissiles()
     {
-        if (app.entityData.entityMap != null)
+        if (App.entityData.entityMap != null)
         {
             GdxSprite currentEntity;
 
-            for (int i = 0; i < app.entityData.entityMap.size; i++)
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                currentEntity = (GdxSprite) app.entityData.entityMap.get(i);
+                currentEntity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if (currentEntity.gid == GraphicID.G_MISSILE)
                 {
@@ -180,13 +180,13 @@ public class MissileBaseManager extends GenericEntityManager
 
     public void pauseAllMissiles()
     {
-        if (app.entityData.entityMap != null)
+        if (App.entityData.entityMap != null)
         {
             GdxSprite currentEntity;
 
-            for (int i = 0; i < app.entityData.entityMap.size; i++)
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                currentEntity = (GdxSprite) app.entityData.entityMap.get(i);
+                currentEntity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if (currentEntity.gid == GraphicID.G_MISSILE)
                 {

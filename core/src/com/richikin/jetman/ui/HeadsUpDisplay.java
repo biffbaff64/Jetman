@@ -121,13 +121,9 @@ public class HeadsUpDisplay implements Disposable
     private BitmapFont      smallFont;
     private HighScoreUtils  highScoreUtils;
 
-    private final App app;
-
-    public HeadsUpDisplay(App _app)
+    public HeadsUpDisplay()
     {
         Trace.__FILE_FUNC();
-
-        this.app = _app;
     }
 
     public void createHud()
@@ -136,21 +132,21 @@ public class HeadsUpDisplay implements Disposable
 
         AppConfig.hudExists = false;
 
-        scorePanel                = app.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
+        scorePanel                = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
         GameAssets.hudPanelHeight = scorePanel.getHeight();
 
         highScoreUtils = new HighScoreUtils();
-        messageManager = new MessageManager(app);
-        pausePanel     = new PausePanel(app);
+        messageManager = new MessageManager();
+        pausePanel     = new PausePanel();
 
-        timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9", app);
-        fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9", app);
+        timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9");
+        fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9");
 
-        barDividerFuel = app.assets.getObjectRegion("bar_divider");
-        barDividerTime = app.assets.getObjectRegion("bar_divider");
+        barDividerFuel = App.assets.getObjectRegion("bar_divider");
+        barDividerTime = App.assets.getObjectRegion("bar_divider");
 
-        miniMen = new TextureRegion(app.assets.getObjectRegion("lives"));
+        miniMen = new TextureRegion(App.assets.getObjectRegion("lives"));
 
         createHUDButtons();
 
@@ -161,9 +157,9 @@ public class HeadsUpDisplay implements Disposable
         smallFont = fontUtils.createFont("data/fonts/videophreak.ttf", 14);
 
         arrows    = new TextureRegion[3];
-        arrows[0] = app.assets.getObjectRegion("arrow_left");
-        arrows[1] = app.assets.getObjectRegion("arrow_right");
-        arrows[2] = app.assets.getObjectRegion("arrow_down");
+        arrows[0] = App.assets.getObjectRegion("arrow_left");
+        arrows[1] = App.assets.getObjectRegion("arrow_right");
+        arrows[2] = App.assets.getObjectRegion("arrow_down");
 
         truckArrowIndex = _ARROW_DOWN;
         baseArrowIndex  = _ARROW_DOWN;
@@ -208,10 +204,10 @@ public class HeadsUpDisplay implements Disposable
                     messageManager.update();
 
                     if (!messageManager.doesPanelExist("ZoomPanel")
-                        && (app.appState.peek() != StateID._STATE_GAME)
-                        && app.missileBaseManager.isMissileActive)
+                        && (App.appState.peek() != StateID._STATE_GAME)
+                        && App.missileBaseManager.isMissileActive)
                     {
-                        app.appState.set(StateID._STATE_GAME);
+                        App.appState.set(StateID._STATE_GAME);
                     }
                 }
             }
@@ -249,26 +245,26 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateBars()
     {
-        if (!app.teleportManager.teleportActive)
+        if (!App.teleportManager.teleportActive)
         {
-            if ((app.getPlayer().getAction() == ActionStates._FLYING) || app.getPlayer().isJumpingCrater)
+            if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
             {
-                fuelBar.setSpeed(app.getPlayer().isCarrying ? 2 : 1);
+                fuelBar.setSpeed(App.getPlayer().isCarrying ? 2 : 1);
                 fuelBar.updateSlowDecrement();
             }
 
-            if (app.getBase() != null)
+            if (App.getBase() != null)
             {
-                if (app.getBase().getAction() != ActionStates._WAITING)
+                if (App.getBase().getAction() != ActionStates._WAITING)
                 {
                     timeBar.updateSlowDecrement();
                 }
 
                 if (timeBar.justEmptied)
                 {
-                    if (!app.missileBaseManager.isMissileActive)
+                    if (!App.missileBaseManager.isMissileActive)
                     {
-                        app.getBase().setAction(ActionStates._FIGHTING);
+                        App.getBase().setAction(ActionStates._FIGHTING);
                     }
                 }
             }
@@ -322,22 +318,22 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateArrowIndicators()
     {
-        if (app.gameProgress.baseDestroyed || app.gameProgress.roverDestroyed)
+        if (App.gameProgress.baseDestroyed || App.gameProgress.roverDestroyed)
         {
             baseArrowIndex  = _ARROW_DOWN;
             truckArrowIndex = _ARROW_DOWN;
         }
         else
         {
-            if (app.getBase() != null)
+            if (App.getBase() != null)
             {
-                if (app.entityUtils.isOnScreen(app.getBase()))
+                if (App.entityUtils.isOnScreen(App.getBase()))
                 {
                     baseArrowIndex = _ARROW_DOWN;
                 }
                 else
                 {
-                    if (app.getBase().sprite.getX() < app.getPlayer().sprite.getX())
+                    if (App.getBase().sprite.getX() < App.getPlayer().sprite.getX())
                     {
                         baseArrowIndex = _ARROW_LEFT;
                     }
@@ -348,13 +344,13 @@ public class HeadsUpDisplay implements Disposable
                 }
             }
 
-            if (app.getRover() != null)
+            if (App.getRover() != null)
             {
-                if (app.entityUtils.isOnScreen(app.getRover()))
+                if (App.entityUtils.isOnScreen(App.getRover()))
                 {
                     truckArrowIndex = _ARROW_DOWN;
                 }
-                else if (app.getRover().sprite.getX() < app.getPlayer().sprite.getX())
+                else if (App.getRover().sprite.getX() < App.getPlayer().sprite.getX())
                 {
                     truckArrowIndex = _ARROW_LEFT;
                 }
@@ -382,9 +378,9 @@ public class HeadsUpDisplay implements Disposable
             {
                 Developer.developerPanelActive = true;
 
-//                app.developerPanel.setup();
+//                App.developerPanel.setup();
                 buttonDevOptions.release();
-                app.appState.set(StateID._STATE_DEVELOPER_PANEL);
+                App.appState.set(StateID._STATE_DEVELOPER_PANEL);
             }
         }
     }
@@ -399,7 +395,7 @@ public class HeadsUpDisplay implements Disposable
             drawPanels();
             drawItems();
 
-            if (_canDrawControls && app.gameProgress.gameSetupDone)
+            if (_canDrawControls && App.gameProgress.gameSetupDone)
             {
                 drawControls(camera);
             }
@@ -410,7 +406,7 @@ public class HeadsUpDisplay implements Disposable
             //
             // Modify the position of the front parallax layer
             // so that aligns properly with the HUD
-            for (ParallaxLayer layer : new Array.ArrayIterator<>(app.baseRenderer.parallaxForeground.layers))
+            for (ParallaxLayer layer : new Array.ArrayIterator<>(App.baseRenderer.parallaxForeground.layers))
             {
                 layer.position.set(originX, originY);
             }
@@ -419,7 +415,7 @@ public class HeadsUpDisplay implements Disposable
             // Draw the Pause panel if activated
             if (stateID == StateID._STATE_PAUSED)
             {
-                pausePanel.draw(app.spriteBatch, camera, originX, originY);
+                pausePanel.draw(App.spriteBatch, camera, originX, originY);
             }
         }
     }
@@ -434,9 +430,9 @@ public class HeadsUpDisplay implements Disposable
             ActionButton.setVisible(true);
             AttackButton.setVisible(true);
 
-            if (app.inputManager.virtualJoystick != null)
+            if (App.inputManager.virtualJoystick != null)
             {
-                app.inputManager.virtualJoystick.show();
+                App.inputManager.virtualJoystick.show();
             }
         }
 
@@ -458,9 +454,9 @@ public class HeadsUpDisplay implements Disposable
             ActionButton.setVisible(false);
             AttackButton.setVisible(false);
 
-            if (app.inputManager.virtualJoystick != null)
+            if (App.inputManager.virtualJoystick != null)
             {
-                app.inputManager.virtualJoystick.hide();
+                App.inputManager.virtualJoystick.hide();
             }
         }
 
@@ -474,8 +470,8 @@ public class HeadsUpDisplay implements Disposable
 
     public void refillItems()
     {
-        app.getHud().getFuelBar().setToMaximum();
-        app.getHud().getTimeBar().setToMaximum();
+        App.getHud().getFuelBar().setToMaximum();
+        App.getHud().getTimeBar().setToMaximum();
     }
 
     public void releaseDirectionButtons()
@@ -493,7 +489,7 @@ public class HeadsUpDisplay implements Disposable
 
     public VirtualJoystick getJoystick()
     {
-        return app.inputManager.virtualJoystick;
+        return App.inputManager.virtualJoystick;
     }
 
     public com.richikin.utilslib.ui.ProgressBar getTimeBar()
@@ -511,7 +507,7 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawPanels()
     {
-        app.spriteBatch.draw(scorePanel, originX, originY + (720 - scorePanel.getHeight()));
+        App.spriteBatch.draw(scorePanel, originX, originY + (720 - scorePanel.getHeight()));
     }
 
     /**
@@ -522,22 +518,22 @@ public class HeadsUpDisplay implements Disposable
         fuelBar.draw((int) (originX + displayPos[_FUEL_BAR][_X1]), (int) (originY + displayPos[_FUEL_BAR][_Y]));
         timeBar.draw((int) (originX + displayPos[_TIME_BAR][_X1]), (int) (originY + displayPos[_TIME_BAR][_Y]));
 
-        app.spriteBatch.draw
+        App.spriteBatch.draw
             (
                 barDividerFuel,
                 (originX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
                 (originY + displayPos[_FUEL_BAR][_Y])
             );
-        app.spriteBatch.draw
+        App.spriteBatch.draw
             (
                 barDividerTime,
                 (originX + displayPos[_TIME_BAR][_X1] + timeBar.getTotal()),
                 (originY + displayPos[_TIME_BAR][_Y])
             );
 
-        for (int i = 0; i < app.gameProgress.lives.getTotal(); i++)
+        for (int i = 0; i < App.gameProgress.lives.getTotal(); i++)
         {
-            app.spriteBatch.draw
+            App.spriteBatch.draw
                 (
                     miniMen,
                     (originX + livesDisplay[i][0]),
@@ -552,15 +548,15 @@ public class HeadsUpDisplay implements Disposable
 
         bigFont.draw
             (
-                app.spriteBatch,
-                String.format(Locale.UK, "%06d", app.gameProgress.score.getTotal()),
+                App.spriteBatch,
+                String.format(Locale.UK, "%06d", App.gameProgress.score.getTotal()),
                 originX + 296,
                 originY + (720 - 4)
             );
 
         midFont.draw
             (
-                app.spriteBatch,
+                App.spriteBatch,
                 String.format(Locale.UK, "%06d", highScoreUtils.getHighScoreTable()[0].score),
                 originX + 660,
                 originY + (720 - 6)
@@ -571,12 +567,12 @@ public class HeadsUpDisplay implements Disposable
         midFont.setColor(Color.valueOf("8cb8edff"));
         midFont.draw
             (
-                app.spriteBatch,
+                App.spriteBatch,
                 String.format
                     (
                         Locale.UK,
                         "%02d",
-                        app.gameProgress.playerLevel
+                        App.gameProgress.playerLevel
                     ),
                 originX + 208,
                 originY + 714
@@ -592,20 +588,20 @@ public class HeadsUpDisplay implements Disposable
                 ActionButton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
                 AttackButton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
 
-                if (app.inputManager.virtualJoystick != null)
+                if (App.inputManager.virtualJoystick != null)
                 {
-                    app.inputManager.virtualJoystick.getTouchpad().setPosition
+                    App.inputManager.virtualJoystick.getTouchpad().setPosition
                         (
                             originX + displayPos[_JOYSTICK][_X1],
                             originY + displayPos[_JOYSTICK][_Y]
                         );
 
-                    app.inputManager.virtualJoystick.getTouchpad().setBounds
+                    App.inputManager.virtualJoystick.getTouchpad().setBounds
                         (
                             originX + displayPos[_JOYSTICK][_X1],
                             originY + displayPos[_JOYSTICK][_Y],
-                            app.inputManager.virtualJoystick.getTouchpad().getWidth(),
-                            app.inputManager.virtualJoystick.getTouchpad().getHeight()
+                            App.inputManager.virtualJoystick.getTouchpad().getWidth(),
+                            App.inputManager.virtualJoystick.getTouchpad().getHeight()
                         );
                 }
             }
@@ -618,8 +614,8 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawArrows()
     {
-        app.spriteBatch.draw(arrows[truckArrowIndex], (originX + displayPos[_TRUCK_ARROW][_X1]), (originY + displayPos[_TRUCK_ARROW][_Y]));
-        app.spriteBatch.draw(arrows[baseArrowIndex], (originX + displayPos[_BASE_ARROW][_X1]), (originY + displayPos[_BASE_ARROW][_Y]));
+        App.spriteBatch.draw(arrows[truckArrowIndex], (originX + displayPos[_TRUCK_ARROW][_X1]), (originY + displayPos[_TRUCK_ARROW][_Y]));
+        App.spriteBatch.draw(arrows[baseArrowIndex], (originX + displayPos[_BASE_ARROW][_X1]), (originY + displayPos[_BASE_ARROW][_Y]));
     }
 
     private void drawMessages()
@@ -639,7 +635,7 @@ public class HeadsUpDisplay implements Disposable
      */
     private void createHUDButtons()
     {
-        Scene2DUtils.setup(app);
+        Scene2DUtils.setup();
 
         buttonUp    = new Switch();
         buttonDown  = new Switch();
@@ -729,7 +725,7 @@ public class HeadsUpDisplay implements Disposable
         {
             if (scoreStopwatch.time(TimeUnit.MILLISECONDS) > 50)
             {
-                app.gameProgress.score.add
+                App.gameProgress.score.add
                     (
                         MathUtils.random(100),
                         GameConstants._MAX_SCORE
@@ -740,7 +736,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (livesStopwatch.time(TimeUnit.MILLISECONDS) > 750)
             {
-                app.gameProgress.lives.subtract(1, GameConstants._MAX_LIVES);
+                App.gameProgress.lives.subtract(1, GameConstants._MAX_LIVES);
 
                 livesStopwatch.reset();
             }
@@ -758,16 +754,16 @@ public class HeadsUpDisplay implements Disposable
         if (Developer.isDevMode())
         {
             smallFont.setColor(Color.WHITE);
-            smallFont.draw(app.spriteBatch, "DEV MODE", originX + 470, originY + (720 - 6));
+            smallFont.draw(App.spriteBatch, "DEV MODE", originX + 470, originY + (720 - 6));
 
             if (Developer.isGodMode())
             {
-                smallFont.draw(app.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
+                smallFont.draw(App.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
             }
 
             smallFont.draw
                 (
-                    app.spriteBatch,
+                    App.spriteBatch,
                     "FPS  : " + Gdx.graphics.getFramesPerSecond(),
                     originX + 20,
                     originY + 600
@@ -775,8 +771,8 @@ public class HeadsUpDisplay implements Disposable
 
             smallFont.draw
                 (
-                    app.spriteBatch,
-                    "ActionButton  : " + app.getPlayer().actionButton.getActionMode().name(),
+                    App.spriteBatch,
+                    "ActionButton  : " + App.getPlayer().actionButton.getActionMode().name(),
                     originX + 20,
                     originY + 570
                 );
@@ -793,7 +789,7 @@ public class HeadsUpDisplay implements Disposable
 
         messageManager = null;
 
-        app.assets.unloadAsset(GameAssets._HUD_PANEL_ASSET);
+        App.assets.unloadAsset(GameAssets._HUD_PANEL_ASSET);
 
         barDividerFuel = null;
         barDividerTime = null;

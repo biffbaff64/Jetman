@@ -28,11 +28,8 @@ public class CraterManager
             },
         };
 
-    private final App app;
-
-    public CraterManager(App _app)
+    public CraterManager()
     {
-        this.app = _app;
     }
 
     /**C
@@ -44,13 +41,13 @@ public class CraterManager
      */
     public void makeCrater(int x, int y)
     {
-        if ((app.gameProgress.activeCraterCount < app.roomManager.getMaxAllowed(GraphicID._CRATER))
-            && (app.mapData.mapBox.contains((x + 3) * Gfx.getTileWidth(), Gfx.getTileHeight())))
+        if ((App.gameProgress.activeCraterCount < App.roomManager.getMaxAllowed(GraphicID._CRATER))
+            && (App.mapData.mapBox.contains((x + 3) * Gfx.getTileWidth(), Gfx.getTileHeight())))
         {
             Trace.__FILE_FUNC();
 
             TiledMapTileLayer.Cell cell;
-            TiledMapTileSet floorTileSet = app.mapData.currentMap.getTileSets().getTileSet("items");
+            TiledMapTileSet floorTileSet = App.mapData.currentMap.getTileSets().getTileSet("items");
 
             int type = MathUtils.random(craters.length - 1);
 
@@ -60,13 +57,13 @@ public class CraterManager
                 {
                     cell = new TiledMapTileLayer.Cell();
                     cell.setTile(floorTileSet.getTile(craters[type][row][column] + 244));
-                    app.mapData.gameTilesLayer.setCell(x + column, y - row, cell);
+                    App.mapData.gameTilesLayer.setCell(x + column, y - row, cell);
 
                     // TODO: 25/10/2020 - need to add an appropriate collision box here
                 }
             }
 
-            app.gameProgress.activeCraterCount++;
+            App.gameProgress.activeCraterCount++;
         }
     }
 
@@ -86,9 +83,9 @@ public class CraterManager
     {
         //
         // No craters allowed under Rovers
-        if ((spriteObject.gid != GraphicID.G_ROVER) && (app.getRover() != null))
+        if ((spriteObject.gid != GraphicID.G_ROVER) && (App.getRover() != null))
         {
-            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), app.getRover().getCollisionRectangle()))
+            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getRover().getCollisionRectangle()))
             {
                 return false;
             }
@@ -96,9 +93,9 @@ public class CraterManager
 
         //
         // No craters allowed under Rover Guns
-        if ((spriteObject.gid != GraphicID.G_ROVER_GUN) && (app.getGun() != null))
+        if ((spriteObject.gid != GraphicID.G_ROVER_GUN) && (App.getGun() != null))
         {
-            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), app.getGun().getCollisionRectangle()))
+            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getGun().getCollisionRectangle()))
             {
                 return false;
             }
@@ -106,9 +103,9 @@ public class CraterManager
 
         //
         // No craters allowed under Bombs
-        if ((spriteObject.gid != GraphicID.G_BOMB) && (app.getBomb() != null))
+        if ((spriteObject.gid != GraphicID.G_BOMB) && (App.getBomb() != null))
         {
-            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), app.getBomb().getCollisionRectangle()))
+            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getBomb().getCollisionRectangle()))
             {
                 return false;
             }
@@ -116,12 +113,12 @@ public class CraterManager
 
         //
         // No craters allowed under Teleporters
-        if ((spriteObject.gid != GraphicID.G_TRANSPORTER) && app.doTransportersExist())
+        if ((spriteObject.gid != GraphicID.G_TRANSPORTER) && App.doTransportersExist())
         {
             if ((Intersector.overlaps(spriteObject.getCollisionRectangle(),
-                app.getTeleporter(0).getCollisionRectangle())
+                App.getTeleporter(0).getCollisionRectangle())
                 || (Intersector.overlaps(spriteObject.getCollisionRectangle(),
-                app.getTeleporter(1).getCollisionRectangle()))))
+                App.getTeleporter(1).getCollisionRectangle()))))
             {
                 return false;
             }
@@ -130,9 +127,9 @@ public class CraterManager
         //
         // LJM can leave a crater behind if he falls to his death
         // from a great height.
-        if ((spriteObject.gid != GraphicID.G_PLAYER) && (app.getPlayer() != null))
+        if ((spriteObject.gid != GraphicID.G_PLAYER) && (App.getPlayer() != null))
         {
-            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), app.getPlayer().getCollisionRectangle()))
+            if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getPlayer().getCollisionRectangle()))
             {
                 return false;
             }

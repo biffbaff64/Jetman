@@ -29,8 +29,6 @@ public class ExitPanel implements Disposable
     private boolean   showYes;
     private boolean   firstTime;
 
-    private final App app;
-
     private static final int _YES = 0;
     private static final int _NO  = 1;
 
@@ -40,9 +38,8 @@ public class ExitPanel implements Disposable
             {668, (720 - 520), 142, 66},   // No
         };
 
-    public ExitPanel(App _app)
+    public ExitPanel()
     {
-        this.app = _app;
     }
 
     public void open()
@@ -93,10 +90,10 @@ public class ExitPanel implements Disposable
 
     private void setup()
     {
-        panel     = app.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
-        darkLayer = app.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
+        panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
+        darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
 
-        Scene2DUtils.setup(app);
+        Scene2DUtils.setup();
 
         buttonYes = Scene2DUtils.addButton
             (
@@ -145,10 +142,10 @@ public class ExitPanel implements Disposable
         buttonYes.addAction(Actions.removeActor());
         buttonNo.addAction(Actions.removeActor());
 
-        app.assets.unloadAsset("data/exit_screen.png");
+        App.assets.unloadAsset("data/exit_screen.png");
         panel = null;
 
-        app.assets.unloadAsset("data/dark_screen.png");
+        App.assets.unloadAsset("data/dark_screen.png");
         darkLayer = null;
 
         buttonYes = null;

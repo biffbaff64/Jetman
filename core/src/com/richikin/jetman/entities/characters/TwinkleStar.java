@@ -29,13 +29,9 @@ import com.richikin.utilslib.logging.Trace;
 
 public class TwinkleStar extends GdxSprite
 {
-    private final App app;
-
-    public TwinkleStar(App _app)
+    public TwinkleStar()
     {
-        super(GraphicID.G_TWINKLE_STAR, _app);
-
-        this.app = _app;
+        super(GraphicID.G_TWINKLE_STAR);
     }
 
     @Override
@@ -74,7 +70,7 @@ public class TwinkleStar extends GdxSprite
     @Override
     public void animate()
     {
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
@@ -84,8 +80,8 @@ public class TwinkleStar extends GdxSprite
     {
         if (isDrawable)
         {
-            float originX = (app.baseRenderer.parallaxGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-            float originY = (app.baseRenderer.parallaxGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
+            float originX = (App.baseRenderer.parallaxGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+            float originY = (App.baseRenderer.parallaxGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
             sprite.setPosition(originX + initXYZ.getX(), originY + initXYZ.getY());
 

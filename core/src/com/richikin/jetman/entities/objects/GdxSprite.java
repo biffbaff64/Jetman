@@ -67,14 +67,14 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
     protected boolean preUpdateCommonDone;
 
-    public GdxSprite(App _app)
+    public GdxSprite()
     {
-        super(_app);
+        super();
     }
 
-    public GdxSprite(GraphicID _gid, App _app)
+    public GdxSprite(GraphicID _gid)
     {
-        super(_gid, _app);
+        super(_gid);
     }
 
     /**
@@ -101,7 +101,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         speed     = new Speed();
         distance  = new XYSetF();
         initXYZ   = new SimpleVec3F();
-        aabb      = new AABB(app);
+        aabb      = new AABB();
 
         strength            = GameConstants._MAX_STRENGTH;
         spriteNumber        = 0;
@@ -155,7 +155,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void addPhysicsBody()
     {
-//        b2dBody = app.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
+//        b2dBody = App.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
     }
 
     /**
@@ -177,7 +177,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void preUpdate()
     {
-        if (app.gameProgress.levelCompleted
+        if (App.gameProgress.levelCompleted
             && !isMainCharacter
             && (entityAction != ActionStates._DEAD)
             && (entityAction != ActionStates._DYING))
@@ -268,7 +268,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     {
         animFrames = new TextureRegion[_descriptor._FRAMES];
 
-        TextureRegion asset = app.assets.getAnimationRegion(_descriptor._ASSET);
+        TextureRegion asset = App.assets.getAnimationRegion(_descriptor._ASSET);
 
         if (_descriptor._SIZE != null)
         {
@@ -394,7 +394,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
                 if (collisionObject.action == ActionStates._COLLIDING)
                 {
-                    if (app.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
+                    if (App.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
                     {
                         if (collisionCallback != null)
                         {

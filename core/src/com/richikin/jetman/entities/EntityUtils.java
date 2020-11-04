@@ -15,11 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class EntityUtils
 {
-    private final App app;
-
-    public EntityUtils(App _app)
+    public EntityUtils()
     {
-        this.app = _app;
     }
 
     public Animation<TextureRegion> createAnimation(String filename, TextureRegion[] destinationFrames, int frameCount, Animation.PlayMode playmode)
@@ -28,7 +25,7 @@ public class EntityUtils
 
         try
         {
-            TextureRegion textureRegion = app.assets.getAnimationRegion(filename);
+            TextureRegion textureRegion = App.assets.getAnimationRegion(filename);
 
             TextureRegion[] tmpFrames = textureRegion.split
                 (
@@ -62,7 +59,7 @@ public class EntityUtils
 
         do
         {
-            randomSprite = (GdxSprite) app.entityData.entityMap.get(MathUtils.random(app.entityData.entityMap.size - 1));
+            randomSprite = (GdxSprite) App.entityData.entityMap.get(MathUtils.random(App.entityData.entityMap.size - 1));
         }
         while ((randomSprite.gid == oneToAvoid.gid)
                 || (randomSprite.sprite == null)
@@ -84,15 +81,15 @@ public class EntityUtils
 
         if (distantSprite != null)
         {
-            float distance = app.getPlayer().getPosition().dst(distantSprite.getPosition());
+            float distance = App.getPlayer().getPosition().dst(distantSprite.getPosition());
 
-            for (GameEntity entity : app.entityData.entityMap)
+            for (GameEntity entity : App.entityData.entityMap)
             {
                 if (entity.gid == _gid)
                 {
                     gdxSprite = (GdxSprite) entity;
 
-                    float tempDistance = app.getPlayer().getPosition().dst(gdxSprite.getPosition());
+                    float tempDistance = App.getPlayer().getPosition().dst(gdxSprite.getPosition());
 
                     if (Math.abs(tempDistance) < Math.abs(distance))
                     {
@@ -108,12 +105,12 @@ public class EntityUtils
 
     public GdxSprite getDistantSprite(GdxSprite _checkSprite)
     {
-        GdxSprite distantSprite = app.getPlayer();
+        GdxSprite distantSprite = App.getPlayer();
         GdxSprite gdxSprite;
 
         float distance = _checkSprite.getPosition().dst(distantSprite.getPosition());
 
-        for (GameEntity entity : app.entityData.entityMap)
+        for (GameEntity entity : App.entityData.entityMap)
         {
             gdxSprite = (GdxSprite) entity;
 
@@ -135,13 +132,13 @@ public class EntityUtils
      */
     public void resetAllPositions()
     {
-        if (app.entityData.entityMap != null)
+        if (App.entityData.entityMap != null)
         {
             GdxSprite entity;
 
-            for (int i = 0; i < app.entityData.entityMap.size; i++)
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                entity = (GdxSprite) app.entityData.entityMap.get(i);
+                entity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 entity.sprite.setPosition(entity.initXYZ.getX(), entity.initXYZ.getY());
             }
@@ -255,16 +252,16 @@ public class EntityUtils
 
     public boolean isOnScreen(@NotNull GdxSprite spriteObject)
     {
-        return app.mapData.viewportBox.overlaps(spriteObject.sprite.getBoundingRectangle());
+        return App.mapData.viewportBox.overlaps(spriteObject.sprite.getBoundingRectangle());
     }
 
     public void tidy()
     {
-        for (int i = 0; i < app.entityData.entityMap.size; i++)
+        for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
-            if (app.entityData.entityMap.get(i).entityAction == ActionStates._DEAD)
+            if (App.entityData.entityMap.get(i).entityAction == ActionStates._DEAD)
             {
-                app.entityData.entityMap.removeIndex(i);
+                App.entityData.entityMap.removeIndex(i);
             }
         }
     }
@@ -273,7 +270,7 @@ public class EntityUtils
     {
         GdxSprite gdxSprite = null;
 
-        for (GameEntity entity : app.entityData.entityMap)
+        for (GameEntity entity : App.entityData.entityMap)
         {
             if ((entity.gid == _gid) && (gdxSprite == null))
             {
@@ -288,7 +285,7 @@ public class EntityUtils
     {
         GdxSprite gdxSprite = null;
 
-        for (GameEntity entity : app.entityData.entityMap)
+        for (GameEntity entity : App.entityData.entityMap)
         {
             if (entity.gid == _gid)
             {

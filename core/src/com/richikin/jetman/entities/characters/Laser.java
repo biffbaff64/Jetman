@@ -32,13 +32,9 @@ public class Laser extends GdxSprite
             Color.YELLOW,
         };
 
-    private final App app;
-
-    public Laser(App _app)
+    public Laser()
     {
-        super(GraphicID.G_LASER, _app);
-
-        this.app = _app;
+        super(GraphicID.G_LASER);
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
         collidesWith = Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
@@ -55,13 +51,13 @@ public class Laser extends GdxSprite
         {
             x = descriptor._PARENT.sprite.getX() - frameWidth;
 
-            distance.set(x - app.mapData.mapPosition.getX(), 0);
+            distance.set(x - App.mapData.mapPosition.getX(), 0);
         }
         else
         {
             x = descriptor._PARENT.sprite.getX() + (descriptor._PARENT.collisionObject.rectangle.getWidth() + 1);
 
-            distance.set((app.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH) - x, 0);
+            distance.set((App.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH) - x, 0);
         }
 
         float y = (descriptor._PARENT.sprite.getY() + (descriptor._PARENT.frameHeight / 2)) - 2;
@@ -71,7 +67,7 @@ public class Laser extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
         direction.set(descriptor._PARENT.lookingAt.getX(), 0);
-        speed.set(Math.max((app.getPlayer().speed.getX() + 12), 24), 0);
+        speed.set(Math.max((App.getPlayer().speed.getX() + 12), 24), 0);
 
         sprite.setColor(colourList[((MainPlayer) descriptor._PARENT).laserColour]);
 
@@ -109,7 +105,7 @@ public class Laser extends GdxSprite
     @Override
     public void animate()
     {
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, false));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 }

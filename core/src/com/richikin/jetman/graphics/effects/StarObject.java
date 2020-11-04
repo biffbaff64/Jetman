@@ -25,12 +25,11 @@ public class StarObject implements Disposable
     private TextureRegion region;
     private App           app;
 
-    public StarObject(App _app)
+    public StarObject()
     {
-        app      = _app;
         position = new SimpleVec3F();
         velocity = new SimpleVec3F();
-        region   = app.assets.getObjectRegion("solid_white32x32");
+        region   = App.assets.getObjectRegion("solid_white32x32");
 
         resetPosition();
     }
@@ -49,7 +48,7 @@ public class StarObject implements Disposable
 
         float radius = ((_MAXIMUM_STAR_RADIUS - ((position.z * _MAXIMUM_STAR_RADIUS) * 0.001f)) * velocity.z) * 0.2f;
 
-        app.spriteBatch.draw(region, x, y, radius, radius);
+        App.spriteBatch.draw(region, x, y, radius, radius);
     }
 
     /**

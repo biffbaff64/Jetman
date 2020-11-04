@@ -30,9 +30,9 @@ public class MainGameScreen extends AbstractBaseScreen
      */
     public boolean firstTime;
 
-    public MainGameScreen(App _app)
+    public MainGameScreen()
     {
-        super(_app);
+        super();
 
         this.firstTime = true;
     }
@@ -46,31 +46,31 @@ public class MainGameScreen extends AbstractBaseScreen
             Trace.__FILE_FUNC("NEW GAME:");
             Trace.__FILE_FUNC("_DEVMODE: " + Developer.isDevMode());
             Trace.__FILE_FUNC("_GODMODE: " + Developer.isGodMode());
-            Trace.__FILE_FUNC("prefs : " + app.settings.prefs);
+            Trace.__FILE_FUNC("prefs : " + App.settings.prefs);
             Trace.divider();
 
-            endGameManager   = new EndgameManager(app);
-            gameControlLoop  = new GameControlLoop(app);
-            app.levelManager = new LevelManager(app);
+            endGameManager   = new EndgameManager();
+            gameControlLoop  = new GameControlLoop();
+            App.levelManager = new LevelManager();
 
             gameControlLoop.initialise();
-            app.levelManager.prepareNewGame();
+            App.levelManager.prepareNewGame();
 
-            app.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
+            App.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
         }
 
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            app.inputManager.virtualJoystick.show();
+            App.inputManager.virtualJoystick.show();
         }
 
-        Shake.setAllowed(app.settings.isEnabled(Settings._VIBRATIONS));
+        Shake.setAllowed(App.settings.isEnabled(Settings._VIBRATIONS));
     }
 
     @Override
     public void update()
     {
-        switch (app.appState.peek())
+        switch (App.appState.peek())
         {
             case _STATE_SETUP:
             case _STATE_GET_READY:
@@ -84,7 +84,7 @@ public class MainGameScreen extends AbstractBaseScreen
             case _STATE_GAME_FINISHED:
             case _STATE_END_GAME:
             {
-                gameControlLoop.update(app.appState);
+                gameControlLoop.update(App.appState);
             }
             break;
 
@@ -97,7 +97,7 @@ public class MainGameScreen extends AbstractBaseScreen
             default:
             {
                 Trace.__FILE_FUNC();
-                Trace.dbg("Unsupported game state: " + app.appState.peek());
+                Trace.dbg("Unsupported game state: " + App.appState.peek());
             }
         }
     }
@@ -117,13 +117,13 @@ public class MainGameScreen extends AbstractBaseScreen
 
         super.render(delta);
 
-        app.worldModel.worldStep();
+        App.worldModel.worldStep();
     }
 
     public void reset()
     {
         firstTime = true;
-        app.gameProgress.playerGameOver = false;
+        App.gameProgress.playerGameOver = false;
         AppConfig.gamePaused = false;
     }
 
@@ -133,11 +133,11 @@ public class MainGameScreen extends AbstractBaseScreen
         super.show();
 
         AppConfig.currentScreenID = ScreenID._GAME_SCREEN;
-        app.cameraUtils.disableAllCameras();
+        App.cameraUtils.disableAllCameras();
 
         initialise();
 
-        app.appState.set(StateID._STATE_SETUP);
+        App.appState.set(StateID._STATE_SETUP);
     }
 
     @Override
@@ -149,8 +149,8 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void loadImages()
     {
-        app.baseRenderer.parallaxBackground.setupLayers(app.mapData.backgroundLayers);
-        app.baseRenderer.parallaxForeground.setupLayers(app.mapData.foregroundLayers);
+        App.baseRenderer.parallaxBackground.setupLayers(App.mapData.backgroundLayers);
+        App.baseRenderer.parallaxForeground.setupLayers(App.mapData.foregroundLayers);
     }
 
     @Override
@@ -158,15 +158,15 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         super.dispose();
 
-        app.entityManager.dispose();
-        app.getHud().dispose();
+        App.entityManager.dispose();
+        App.getHud().dispose();
 
-        app.gameProgress.dispose();
+        App.gameProgress.dispose();
 
-        app.baseRenderer.gameZoom.setZoomValue(0.0f);
-        app.baseRenderer.hudZoom.setZoomValue(0.0f);
+        App.baseRenderer.gameZoom.setZoomValue(0.0f);
+        App.baseRenderer.hudZoom.setZoomValue(0.0f);
 
-        app.hud         = null;
+        App.hud         = null;
         endGameManager  = null;
         retryDelay      = null;
         gameControlLoop = null;

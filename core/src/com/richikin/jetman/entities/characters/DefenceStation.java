@@ -22,9 +22,9 @@ public class DefenceStation extends GdxSprite
     private       StopWatch shootTimer;
     private       float     shootInterval;
 
-    public DefenceStation(App _app)
+    public DefenceStation()
     {
-        super(GraphicID.G_DEFENDER, _app);
+        super(GraphicID.G_DEFENDER);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DefenceStation extends GdxSprite
         setAction(ActionStates._STANDING);
 
         shootTimer      = StopWatch.start();
-        shootInterval   = app.roomManager.getFireRate();
+        shootInterval   = App.roomManager.getFireRate();
     }
 
     @Override
@@ -52,14 +52,14 @@ public class DefenceStation extends GdxSprite
         {
             case _STANDING:
             {
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
 
                 if (shootTimer.time(TimeUnit.MILLISECONDS) > shootInterval)
                 {
-                    app.missileBaseManager.shoot(this);
+                    App.missileBaseManager.shoot(this);
 
-                    shootInterval = app.roomManager.getFireRate();
+                    shootInterval = App.roomManager.getFireRate();
                     shootTimer.reset();
                 }
             }
@@ -94,14 +94,14 @@ public class DefenceStation extends GdxSprite
     public void tidy(int _index)
     {
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 
     void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, zapSprite, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, zapSprite);
 
         Entities.explode(this);
         Entities.explode(zapSprite);
@@ -116,12 +116,12 @@ public class DefenceStation extends GdxSprite
         SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
         descriptor._POSITION.x    = (int) (sprite.getX() / Gfx.getTileWidth());
         descriptor._POSITION.y    = (int) ((sprite.getY() + frameHeight) / Gfx.getTileHeight());
-        descriptor._POSITION.z    = app.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);
+        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_DEFENDER_ZAP);
-        descriptor._INDEX         = app.entityData.entityMap.size;
+        descriptor._INDEX         = App.entityData.entityMap.size;
 
-        zapSprite = new ZapSprite(GraphicID.G_DEFENDER_ZAP, this, app);
+        zapSprite = new ZapSprite(GraphicID.G_DEFENDER_ZAP, this);
         zapSprite.initialise(descriptor);
-        app.entityData.addEntity(zapSprite);
+        App.entityData.addEntity(zapSprite);
     }
 }

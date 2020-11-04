@@ -30,7 +30,7 @@ public class AndroidLauncher extends AndroidApplication
 
 		initialize(mainGame, config);
 
-		Gdx.app.log("AndroidLauncher", "-------------------- APP START --------------------");
+		Gdx.App.log("AndroidLauncher", "-------------------- APP START --------------------");
 	}
 
 	@Override

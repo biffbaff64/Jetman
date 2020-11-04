@@ -14,16 +14,11 @@ import com.richikin.jetman.physics.aabb.CollisionObject;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {
-    private final App app;
-
     /**
      * Instantiates a new CollisionUtils object.
-     *
-     * @param _app the game
      */
-    public CollisionUtils(App _app)
+    public CollisionUtils()
     {
-        this.app = _app;
     }
 
     /**
@@ -147,7 +142,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     {
         TileID tileID = TileID._UNKNOWN;
 
-        for (SpriteDescriptor placementTile : app.mapData.placementTiles)
+        for (SpriteDescriptor placementTile : App.mapData.placementTiles)
         {
             if (placementTile._BOX.contains(x, y))
             {

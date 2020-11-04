@@ -40,9 +40,9 @@ public class ThreeBallsUFO extends GdxSprite
     private StopWatch stopWatch;
     private float restingTime;
 
-    public ThreeBallsUFO(App _app)
+    public ThreeBallsUFO()
     {
-        super(GraphicID.G_3BALLS_UFO, _app);
+        super(GraphicID.G_3BALLS_UFO);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ThreeBallsUFO extends GdxSprite
         distance.set(Gfx._VIEW_WIDTH * 6, 0);
         speed.set(1 + MathUtils.random(2), 0);
 
-        if (sprite.getX() < app.getPlayer().sprite.getX())
+        if (sprite.getX() < App.getPlayer().sprite.getX())
         {
             direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
         }
@@ -79,7 +79,7 @@ public class ThreeBallsUFO extends GdxSprite
         {
             case _RUNNING:
             {
-                if (app.entityUtils.isOnScreen(this)
+                if (App.entityUtils.isOnScreen(this)
                     && (stopWatch.time(TimeUnit.MILLISECONDS) > restingTime))
                 {
                     shoot();
@@ -96,11 +96,11 @@ public class ThreeBallsUFO extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);
@@ -136,7 +136,7 @@ public class ThreeBallsUFO extends GdxSprite
         if (getAction() == ActionStates._RUNNING)
         {
             elapsedAnimTime += Gdx.graphics.getDeltaTime();
-            sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+            sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         }
     }
 
@@ -173,15 +173,15 @@ public class ThreeBallsUFO extends GdxSprite
         descriptor._SIZE              = GameAssets.getAssetSize(GraphicID.G_UFO_BULLET);
         descriptor._POSITION.x        = (int) ((sprite.getX() + frameWidth) / Gfx.getTileWidth());
         descriptor._POSITION.y        = (int) (sprite.getY() / Gfx.getTileHeight());
-        descriptor._POSITION.z        = app.entityUtils.getInitialZPosition(GraphicID.G_UFO_BULLET);
+        descriptor._POSITION.z        = App.entityUtils.getInitialZPosition(GraphicID.G_UFO_BULLET);
 
         for (int i = 0; i < 15; i++)
         {
-            descriptor._INDEX = app.entityData.entityMap.size;
+            descriptor._INDEX = App.entityData.entityMap.size;
 
-            UfoWeapon weapon = new UfoWeapon(app);
+            UfoWeapon weapon = new UfoWeapon();
             weapon.initialise(descriptor);
-            app.entityData.addEntity(weapon);
+            App.entityData.addEntity(weapon);
         }
     }
 }

@@ -11,25 +11,20 @@ import com.richikin.utilslib.maths.SimpleVec2;
 public class GenericEntityManager implements EntityManagerComponent, Disposable
 {
     public       boolean          canPlace;
-    public final App              app;
     public       SpriteDescriptor descriptor;
     public       int              activeCount;
     public       GraphicID        graphicID;
 
     private final GraphicID managerID;
 
-    public GenericEntityManager(final App _app)
+    public GenericEntityManager()
     {
-        this.app = _app;
-
         this.graphicID    = GraphicID.G_NO_ID;
         this.managerID    = GraphicID.G_NO_ID;
     }
 
-    public GenericEntityManager(final GraphicID _graphicID, final App _app)
+    public GenericEntityManager(final GraphicID _graphicID)
     {
-        this.app = _app;
-
         this.graphicID    = _graphicID;
         this.managerID    = _graphicID;
     }
@@ -55,7 +50,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     {
         SimpleVec2 coords = new SimpleVec2();
 
-        for (SpriteDescriptor marker : app.mapData.placementTiles)
+        for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {
@@ -71,7 +66,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     {
         Array<SimpleVec2> coords = new Array<>();
 
-        for (SpriteDescriptor marker : app.mapData.placementTiles)
+        for (SpriteDescriptor marker : App.mapData.placementTiles)
         {
             if (marker._GID == targetGID)
             {

@@ -13,12 +13,10 @@ import com.richikin.utilslib.logging.Trace;
 
 public class LevelManager
 {
-    private       boolean isFirstTime;
-    private final App     app;
+    private boolean isFirstTime;
 
-    public LevelManager(App _app)
+    public LevelManager()
     {
-        app         = _app;
         isFirstTime = true;
     }
 
@@ -29,45 +27,45 @@ public class LevelManager
      */
     public void prepareCurrentLevel(boolean _firstTime)
     {
-        if (app.gameProgress.isRestarting)
+        if (App.gameProgress.isRestarting)
         {
             restartCurrentLevel();
         }
-        else if (_firstTime || app.gameProgress.levelCompleted)
+        else if (_firstTime || App.gameProgress.levelCompleted)
         {
             setupForNewLevel(_firstTime);
 
-            app.gameProgress.resetProgress();
+            App.gameProgress.resetProgress();
         }
 
         AppConfig.gamePaused      = false;
         AppConfig.quitToMainMenu  = false;
         AppConfig.forceQuitToMenu = false;
 
-        app.gameProgress.isRestarting   = false;
-        app.gameProgress.levelCompleted = false;
-        app.gameProgress.playerGameOver = false;
+        App.gameProgress.isRestarting   = false;
+        App.gameProgress.levelCompleted = false;
+        App.gameProgress.playerGameOver = false;
 
         //
         // Centre the camera on the player
-        if (app.getPlayer() != null)
+        if (App.getPlayer() != null)
         {
-            app.mapUtils.positionAt((int) app.getPlayer().sprite.getX(), (int) app.getPlayer().sprite.getY());
+            App.mapUtils.positionAt((int) App.getPlayer().sprite.getX(), (int) App.getPlayer().sprite.getY());
         }
 
         //
         // Reset the bars. Each level must start with full fuel and maximum time.
-        app.getHud().getFuelBar().setToMaximum();
-        app.getHud().getTimeBar().setToMaximum();
-        app.getHud().update();
+        App.getHud().getFuelBar().setToMaximum();
+        App.getHud().getTimeBar().setToMaximum();
+        App.getHud().update();
 
         //
         // The player is rewarded with an extra life every 4th level.
-        if (app.gameProgress.lives.getTotal() < GameConstants._MAX_LIVES)
+        if (App.gameProgress.lives.getTotal() < GameConstants._MAX_LIVES)
         {
-            if ((app.gameProgress.playerLevel % 4) == 0)
+            if ((App.gameProgress.playerLevel % 4) == 0)
             {
-                app.gameProgress.lives.add(1);
+                App.gameProgress.lives.add(1);
             }
         }
 
@@ -75,8 +73,8 @@ public class LevelManager
         // Reset the bars. Each level must start with full fuel and maximum time.
         if (_firstTime)
         {
-            app.getHud().refillItems();
-            app.getHud().update();
+            App.getHud().refillItems();
+            App.getHud().update();
         }
     }
 
@@ -87,17 +85,17 @@ public class LevelManager
     {
         Trace.__FILE_FUNC();
 
-        app.collisionUtils.initialise();
-        app.mapData.initialiseRoom();               // Load tiled map and create renderer
-        app.mapCreator.createMap();                 // Process the tiled map data
+        App.collisionUtils.initialise();
+        App.mapData.initialiseRoom();               // Load tiled map and create renderer
+        App.mapCreator.createMap();                 // Process the tiled map data
 
-        app.entityManager.initialiseForLevel();
+        App.entityManager.initialiseForLevel();
 
         //
         // Create entity paths if any relevant data
         // exists in the tilemap data.
-        app.pathUtils = new PathUtils();
-        app.pathUtils.setup(app);
+        App.pathUtils = new PathUtils();
+        App.pathUtils.setup();
 
         Trace.finishedMessage();
     }
@@ -106,13 +104,13 @@ public class LevelManager
     {
         //
         // Reset positions etc.
-        app.entityUtils.resetAllPositions();
+        App.entityUtils.resetAllPositions();
 
-        app.getPlayer().setup(false);
+        App.getPlayer().setup(false);
 
-        if (app.gameProgress.levelCompleted)
+        if (App.gameProgress.levelCompleted)
         {
-            app.entityManager.updateIndexes();
+            App.entityManager.updateIndexes();
         }
     }
 
@@ -125,18 +123,18 @@ public class LevelManager
      */
     public void closeCurrentLevel()
     {
-        for (int i=0; i< app.entityData.entityMap.size; i++)
+        for (int i=0; i< App.entityData.entityMap.size; i++)
         {
-            if (app.entityData.entityMap.get(i).gid != GraphicID.G_PLAYER)
+            if (App.entityData.entityMap.get(i).gid != GraphicID.G_PLAYER)
             {
-                app.entityData.entityMap.removeIndex(i);
+                App.entityData.entityMap.removeIndex(i);
             }
         }
 
-        app.mapData.placementTiles.clear();
+        App.mapData.placementTiles.clear();
 
-        app.mapData.enemyFreeZones.clear();
-        app.mapData.currentMap.dispose();
+        App.mapData.enemyFreeZones.clear();
+        App.mapData.currentMap.dispose();
     }
 
     /**
@@ -148,29 +146,29 @@ public class LevelManager
         {
             //
             // Initialise the room that the game will start in.
-            app.roomManager = new RoomManager(app);
-            app.roomManager.initialise();
+            App.roomManager = new RoomManager();
+            App.roomManager.initialise();
 
             //
             // Make sure all progress counters are initialised.
-            app.gameProgress.resetProgress();
+            App.gameProgress.resetProgress();
 
             //
             // Create collision and entity controllers.
-            app.collisionUtils = new CollisionUtils(app);
-            app.entityUtils    = new EntityUtils(app);
-            app.entityManager  = new EntityManager(app);
-            app.hud            = new HeadsUpDisplay(app);
+            App.collisionUtils = new CollisionUtils();
+            App.entityUtils    = new EntityUtils();
+            App.entityManager  = new EntityManager();
+            App.hud            = new HeadsUpDisplay();
 
-            app.cameraUtils.disableAllCameras();
-            app.baseRenderer.hudGameCamera.isInUse = true;
-            app.baseRenderer.isDrawingStage        = true;
+            App.cameraUtils.disableAllCameras();
+            App.baseRenderer.hudGameCamera.isInUse = true;
+            App.baseRenderer.isDrawingStage        = true;
 
-            app.entityData.createData();
+            App.entityData.createData();
             AABBData.createData();
-            app.entityManager.initialise();
-            app.mapData.update();
-            app.getHud().createHud();
+            App.entityManager.initialise();
+            App.mapData.update();
+            App.getHud().createHud();
         }
 
         isFirstTime = false;

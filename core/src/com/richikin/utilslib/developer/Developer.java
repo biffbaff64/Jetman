@@ -9,15 +9,12 @@ public abstract class Developer
     public static  boolean developerPanelActive = false;
 
     private static boolean _DEVMODE = false;
-    private static App app;
 
     /**
      * Set _DEVMODE from the _DEV_MODE Environment variable.
      */
-    public static void setMode(App _app)
+    public static void setMode()
     {
-        app = _app;
-
         if (AppConfig.isDesktopApp())
         {
             _DEVMODE = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
@@ -36,11 +33,11 @@ public abstract class Developer
 
     public static boolean isGodMode()
     {
-        return app.settings.isEnabled(Settings._GOD_MODE);
+        return App.settings.isEnabled(Settings._GOD_MODE);
     }
 
     public static boolean isAndroidOnDesktop()
     {
-        return app.settings.isEnabled(Settings._ANDROID_ON_DESKTOP);
+        return App.settings.isEnabled(Settings._ANDROID_ON_DESKTOP);
     }
 }

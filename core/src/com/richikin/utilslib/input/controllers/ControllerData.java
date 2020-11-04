@@ -2,7 +2,6 @@
 package com.richikin.utilslib.input.controllers;
 
 import com.badlogic.gdx.controllers.PovDirection;
-import com.richikin.jetman.core.App;
 
 public class ControllerData
 {
@@ -32,7 +31,7 @@ public class ControllerData
     public static boolean       controllerLeftPressed;
     public static boolean       controllerRightPressed;
 
-    public static void setup(App app)
+    public static void setup()
     {
         controllerAPressed          = false;
         controllerBPressed          = false;

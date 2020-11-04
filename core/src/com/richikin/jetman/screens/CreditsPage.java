@@ -14,13 +14,10 @@ public class CreditsPage implements IUIPage, Disposable
 {
     private Texture foreground;
     private StopWatch stopWatch;
-    private App       app;
 
-    CreditsPage(App _app)
+    public CreditsPage()
     {
-        this.app = _app;
-
-        foreground = app.assets.loadSingleAsset("data/credits_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("data/credits_foreground.png", Texture.class);
 
         this.stopWatch = StopWatch.start();
     }
@@ -64,10 +61,9 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void dispose()
     {
-        app.assets.unloadAsset("data/credits_foreground.png");
+        App.assets.unloadAsset("data/credits_foreground.png");
 
         stopWatch = null;
         foreground = null;
-        app = null;
     }
 }

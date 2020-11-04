@@ -25,7 +25,6 @@ public class GameButton extends Switch implements Disposable
 
     private       boolean _isDrawable;
     private final int     mapIndex;
-    private final App     app;
 
     /**
      * Define a GameButton
@@ -34,11 +33,10 @@ public class GameButton extends Switch implements Disposable
      * @param textureRegionPressed - Image used for PRESSED state
      * @param x                    - X Display co-ordinate
      * @param y                    - Y Display co-ordinate
-     * @param _app                 - Instance of the game
      */
-    public GameButton(TextureRegion textureRegion, TextureRegion textureRegionPressed, int x, int y, App _app)
+    public GameButton(TextureRegion textureRegion, TextureRegion textureRegionPressed, int x, int y)
     {
-        this(x, y, _app);
+        this(x, y);
 
         this.bg          = textureRegion;
         this.bgPressed   = textureRegionPressed;
@@ -53,11 +51,10 @@ public class GameButton extends Switch implements Disposable
      *
      * @param x    - X Display co-ordinate
      * @param y    - Y Display co-ordinate
-     * @param _app - Instance of the game
      */
-    public GameButton(int x, int y, App _app)
+    public GameButton(int x, int y)
     {
-        this(_app);
+        this();
 
         this.bg          = null;
         this.bgPressed   = null;
@@ -71,20 +68,17 @@ public class GameButton extends Switch implements Disposable
 
     /**
      * Define a GameButton
-     *
-     * @param _app - Instance of the game
      */
-    public GameButton(App _app)
+    public GameButton()
     {
         super();
 
-        this.app          = _app;
         this.buttonAction = ActionStates._NO_ACTION;
         this.buttonRect   = new Box();
 
-        mapIndex = app.inputManager.gameButtons.size;
+        mapIndex = App.inputManager.gameButtons.size;
 
-        app.inputManager.gameButtons.add(this);
+        App.inputManager.gameButtons.add(this);
     }
 
     @Override
@@ -147,11 +141,11 @@ public class GameButton extends Switch implements Disposable
                 textureRegion = bgDisabled;
             }
 
-            app.spriteBatch.draw
+            App.spriteBatch.draw
                 (
                     textureRegion,
-                    (app.baseRenderer.hudGameCamera.getPosition().x + (float) (x - (Gfx._HUD_WIDTH / 2))),
-                    (app.baseRenderer.hudGameCamera.getPosition().y + (float) (y - (Gfx._HUD_HEIGHT / 2))),
+                    (App.baseRenderer.hudGameCamera.getPosition().x + (float) (x - (Gfx._HUD_WIDTH / 2))),
+                    (App.baseRenderer.hudGameCamera.getPosition().y + (float) (y - (Gfx._HUD_HEIGHT / 2))),
                     width,
                     height
                 );
@@ -213,7 +207,7 @@ public class GameButton extends Switch implements Disposable
 
     public void delete()
     {
-        app.inputManager.gameButtons.removeIndex(mapIndex);
+        App.inputManager.gameButtons.removeIndex(mapIndex);
     }
 
     @Override

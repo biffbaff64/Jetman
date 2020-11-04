@@ -5,11 +5,8 @@ import com.richikin.utilslib.states.StateManager;
 
 public abstract class AbstractControlLoop implements IControlLoop
 {
-    final App app;
-
-    AbstractControlLoop(App _app)
+    public AbstractControlLoop()
     {
-        this.app = _app;
     }
 
     @Override

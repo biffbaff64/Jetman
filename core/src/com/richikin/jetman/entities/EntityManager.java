@@ -56,13 +56,9 @@ public class EntityManager implements IEntityManager
 
     public boolean _playerReady;
 
-    private final App app;
-
-    public EntityManager(App _app)
+    public EntityManager()
     {
-        this.app = _app;
-
-        this.renderSystem   = new RenderSystem(_app);
+        this.renderSystem   = new RenderSystem();
         this._teleportIndex = new int[2];
     }
 
@@ -83,9 +79,9 @@ public class EntityManager implements IEntityManager
 
             //
             // Update all non-player entities.
-            for (int i = 0; i < app.entityData.entityMap.size; i++)
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                entity = (GdxSprite) app.entityData.entityMap.get(i);
+                entity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if ((entity.getAction() != ActionStates._DEAD)
                     && (entity.gid != GraphicID.G_PLAYER))
@@ -99,21 +95,21 @@ public class EntityManager implements IEntityManager
             // Main Player, updated after all other entities.
             // Updated last to allow for possible reacting to
             // other entities actions.
-            if (!app.settings.isEnabled(Settings._SCROLL_DEMO))
+            if (!App.settings.isEnabled(Settings._SCROLL_DEMO))
             {
-                if (_playerReady && (app.getPlayer().getAction() != ActionStates._DEAD))
+                if (_playerReady && (App.getPlayer().getAction() != ActionStates._DEAD))
                 {
-                    app.getPlayer().preUpdate();
-                    app.getPlayer().update(_playerIndex);
+                    App.getPlayer().preUpdate();
+                    App.getPlayer().update(_playerIndex);
                 }
             }
 
             //
             // Update the various entity managers. These updates will check
             // to see if any entities need re-spawning etc.
-            if (!app.gameProgress.levelCompleted && !app.gameProgress.baseDestroyed)
+            if (!App.gameProgress.levelCompleted && !App.gameProgress.baseDestroyed)
             {
-                for (final EntityManagerComponent system : app.entityData.managerList)
+                for (final EntityManagerComponent system : App.entityData.managerList)
                 {
                     system.update();
                 }
@@ -129,13 +125,13 @@ public class EntityManager implements IEntityManager
     @Override
     public void tidySprites()
     {
-        if (app.entityData.entityMap != null)
+        if (App.entityData.entityMap != null)
         {
             GdxSprite entity;
 
-            for (int i = 0; i < app.entityData.entityMap.size; i++)
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                entity = (GdxSprite) app.entityData.entityMap.get(i);
+                entity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if (entity != null)
                 {
@@ -188,7 +184,7 @@ public class EntityManager implements IEntityManager
                                     releaseEntity(entity);
 
                                     entity.collisionObject.kill();
-                                    app.entityData.removeEntity(i);
+                                    App.entityData.removeEntity(i);
                                 }
                             }
                             break;
@@ -199,7 +195,7 @@ public class EntityManager implements IEntityManager
                 }
             }
 
-            app.collisionUtils.tidy();
+            App.collisionUtils.tidy();
         }
     }
 
@@ -229,7 +225,7 @@ public class EntityManager implements IEntityManager
 
             case G_MISSILE_BASE:
             {
-                app.missileBaseManager.free();
+                App.missileBaseManager.free();
             }
             break;
 
@@ -247,7 +243,7 @@ public class EntityManager implements IEntityManager
                 {
                     if (gid == entity.gid)
                     {
-                        app.entityData.managerList.get(_alienManagerIndex).free(gid);
+                        App.entityData.managerList.get(_alienManagerIndex).free(gid);
                     }
                 }
             }
@@ -272,9 +268,9 @@ public class EntityManager implements IEntityManager
         _teleportIndex[0] = 0;
         _teleportIndex[1] = 0;
 
-        for (int i = 0; i < app.entityData.entityMap.size; i++)
+        for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
-            entity = (GdxSprite) app.entityData.entityMap.get(i);
+            entity = (GdxSprite) App.entityData.entityMap.get(i);
 
             if (entity != null)
             {
@@ -319,14 +315,14 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        app.roverManager            = new RoverManager(app);
-        app.teleportManager         = new TeleportManager(app);
-        app.missileBaseManager      = new MissileBaseManager(app);
-        app.defenceStationManager   = new DefenceStationManager(app);
-        app.bombManager             = new BombManager(app);
+        App.roverManager            = new RoverManager();
+        App.teleportManager         = new TeleportManager();
+        App.missileBaseManager      = new MissileBaseManager();
+        App.defenceStationManager   = new DefenceStationManager();
+        App.bombManager             = new BombManager();
 
-        _bombManagerIndex = app.entityData.addManager(app.bombManager);
-        _alienManagerIndex = app.entityData.addManager(new AlienManager(app));
+        _bombManagerIndex = App.entityData.addManager(App.bombManager);
+        _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 
     public void initialiseForLevel()
@@ -335,16 +331,16 @@ public class EntityManager implements IEntityManager
 
         AppConfig.entitiesExist = false;
 
-        playerManager = new PlayerManager(app);
+        playerManager = new PlayerManager();
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
 
-        app.roverManager.init();
-        app.teleportManager.init();
-        app.missileBaseManager.init();
-        app.defenceStationManager.init();
+        App.roverManager.init();
+        App.teleportManager.init();
+        App.missileBaseManager.init();
+        App.defenceStationManager.init();
 
-        for (final EntityManagerComponent system : app.entityData.managerList)
+        for (final EntityManagerComponent system : App.entityData.managerList)
         {
             system.init();
         }
@@ -354,7 +350,7 @@ public class EntityManager implements IEntityManager
 
     public void addBackgroundEntities()
     {
-        BackgroundObjectsManager manager = new BackgroundObjectsManager(app);
+        BackgroundObjectsManager manager = new BackgroundObjectsManager();
         manager.addUFOs(6 + MathUtils.random(4));
         manager.addTwinkleStars();
     }

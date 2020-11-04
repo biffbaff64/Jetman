@@ -29,9 +29,9 @@ public class DefenderBullet extends GdxSprite
 
     private int colourIndex;
 
-    public DefenderBullet(GraphicID _gid, App _app)
+    public DefenderBullet(GraphicID _gid)
     {
-        super(_gid, _app);
+        super(_gid);
     }
 
     @Override
@@ -41,39 +41,39 @@ public class DefenderBullet extends GdxSprite
 
         if (gid == GraphicID.G_ROVER_BULLET)
         {
-//            float angle = Math.abs(app.getGun().gunTurret.sprite.getRotation());
+//            float angle = Math.abs(App.getGun().gunTurret.sprite.getRotation());
 //
 //            speed.setX(8 * MathUtils.cosDeg(angle));
 //            speed.setY(8 * MathUtils.sinDeg(angle));
 //
 //            direction.setX
 //                (
-//                    app.getGun().isFlippedX
+//                    App.getGun().isFlippedX
 //                        ? Movement._DIRECTION_LEFT
 //                        : Movement._DIRECTION_RIGHT
 //                );
 //
 //            direction.setY
 //                (
-//                    (app.getGun().gunTurret.sprite.getRotation() != 0.0f)
+//                    (App.getGun().gunTurret.sprite.getRotation() != 0.0f)
 //                        ? Movement._DIRECTION_UP
 //                        : Movement._DIRECTION_STILL
 //                );
 //
-//            if (app.getRover().isFlippedX)
+//            if (App.getRover().isFlippedX)
 //            {
 //                sprite.setPosition
 //                    (
-//                        (app.getGun().gunTurret.sprite.getX() + 46),
-//                        (app.getGun().gunTurret.sprite.getY() + 28)
+//                        (App.getGun().gunTurret.sprite.getX() + 46),
+//                        (App.getGun().gunTurret.sprite.getY() + 28)
 //                    );
 //            }
 //            else
 //            {
 //                sprite.setPosition
 //                    (
-//                        (app.getGun().gunTurret.sprite.getX() + 51),
-//                        (app.getGun().gunTurret.sprite.getY() + 28)
+//                        (App.getGun().gunTurret.sprite.getX() + 51),
+//                        (App.getGun().gunTurret.sprite.getY() + 28)
 //                    );
 //            }
 //
@@ -175,14 +175,14 @@ public class DefenderBullet extends GdxSprite
     @Override
     public void animate()
     {
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 
     @Override
     public void tidy(int _index)
     {
-        app.missileBaseManager.releaseSparkler();
-        app.entityData.removeEntity(_index);
+        App.missileBaseManager.releaseSparkler();
+        App.entityData.removeEntity(_index);
     }
 }

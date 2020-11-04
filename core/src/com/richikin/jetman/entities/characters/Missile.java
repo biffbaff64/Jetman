@@ -17,9 +17,9 @@ import com.richikin.utilslib.physics.Movement;
 
 public class Missile extends GdxSprite implements ICollisionListener
 {
-    public Missile(App _app)
+    public Missile()
     {
-        super(_app);
+        super();
     }
 
     @Override
@@ -28,22 +28,22 @@ public class Missile extends GdxSprite implements ICollisionListener
         create(entityDescriptor);
 
         direction.setY(((entityDescriptor._INDEX & 1) == 1) ? Movement._DIRECTION_UP : Movement._DIRECTION_DOWN);
-        direction.setX((sprite.getX() < app.getRover().sprite.getX()) ? Movement._DIRECTION_RIGHT : Movement._DIRECTION_LEFT);
+        direction.setX((sprite.getX() < App.getRover().sprite.getX()) ? Movement._DIRECTION_RIGHT : Movement._DIRECTION_LEFT);
 
         if (direction.getY() == Movement._DIRECTION_UP)
         {
             distance.set(Gfx._VIEW_WIDTH * 2, Gfx._VIEW_HEIGHT * 2);
             speed.set(12.0f, 8.0f);
 
-            sprite.setPosition(sprite.getX(), (app.getRover().sprite.getY() + app.getRover().frameHeight) - 4);
+            sprite.setPosition(sprite.getX(), (App.getRover().sprite.getY() + App.getRover().frameHeight) - 4);
             sprite.setRotation((90.0f - ((speed.getY() / speed.getX()) * 100)) * direction.getX());
         }
         else
         {
-            sprite.setPosition(sprite.getX(), (app.getRover().sprite.getY() + app.getRover().frameHeight) - 4);
+            sprite.setPosition(sprite.getX(), (App.getRover().sprite.getY() + App.getRover().frameHeight) - 4);
 
-            distance.setX(Math.abs(app.getRover().sprite.getX() - sprite.getX()));
-            distance.setY(Math.abs(sprite.getY() - (app.getRover().sprite.getY() + (app.getRover().frameHeight / 3))));
+            distance.setX(Math.abs(App.getRover().sprite.getX() - sprite.getX()));
+            distance.setY(Math.abs(sprite.getY() - (App.getRover().sprite.getY() + (App.getRover().frameHeight / 3))));
 
             speed.setX(12.0f);
             speed.setY(distance.getY() / (distance.getX() / speed.getX()));
@@ -62,10 +62,10 @@ public class Missile extends GdxSprite implements ICollisionListener
             case _PAUSED:
             case _RUNNING:
             {
-                if (!app.mapData.mapBox.contains(getCollisionRectangle()) || (collisionObject.idBottom == GraphicID._GROUND))
+                if (!App.mapData.mapBox.contains(getCollisionRectangle()) || (collisionObject.idBottom == GraphicID._GROUND))
                 {
                     ExplosionManager explosionManager = new ExplosionManager();
-                    explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
+                    explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
 
                     setAction(ActionStates._EXPLODING);
                 }
@@ -73,9 +73,9 @@ public class Missile extends GdxSprite implements ICollisionListener
                 {
                     if (distance.isEmpty())
                     {
-                        app.missileBaseManager.activeMissiles--;
+                        App.missileBaseManager.activeMissiles--;
 
-                        if (app.missileBaseManager.activeMissiles <= 0)
+                        if (App.missileBaseManager.activeMissiles <= 0)
                         {
                             reset();
                         }
@@ -140,18 +140,18 @@ public class Missile extends GdxSprite implements ICollisionListener
     @Override
     public void animate()
     {
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 
     public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
         if (getAction() == ActionStates._KILLED)
         {
-            app.gameProgress.score.add(PointsManager.getPoints(gid));
+            App.gameProgress.score.add(PointsManager.getPoints(gid));
         }
 
         setAction(ActionStates._EXPLODING);
@@ -159,8 +159,8 @@ public class Missile extends GdxSprite implements ICollisionListener
 
     private void reset()
     {
-        app.missileBaseManager.activeMissiles = 0;
-        app.missileBaseManager.isMissileActive = false;
+        App.missileBaseManager.activeMissiles = 0;
+        App.missileBaseManager.isMissileActive = false;
     }
 
     @Override
@@ -171,11 +171,11 @@ public class Missile extends GdxSprite implements ICollisionListener
             Shake.start();
 
             ExplosionManager explosionManager = new ExplosionManager();
-            explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this, app);
+            explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
 
             if (!Developer.isGodMode())
             {
-                app.getRover().setAction(ActionStates._HURT);
+                App.getRover().setAction(ActionStates._HURT);
             }
 
             setAction(ActionStates._EXPLODING);
@@ -194,18 +194,18 @@ public class Missile extends GdxSprite implements ICollisionListener
     @Override
     public void tidy(int _index)
     {
-        if (!app.gameProgress.roverDestroyed
-            && !app.gameProgress.baseDestroyed
+        if (!App.gameProgress.roverDestroyed
+            && !App.gameProgress.baseDestroyed
             && (direction.getY() != Movement._DIRECTION_UP))
         {
-            app.getHud().getTimeBar().setToMaximum();
-            app.getHud().getFuelBar().setToMaximum();
-            app.getHud().update();
+            App.getHud().getTimeBar().setToMaximum();
+            App.getHud().getFuelBar().setToMaximum();
+            App.getHud().update();
 
-            app.getBase().setAction(ActionStates._STANDING);
+            App.getBase().setAction(ActionStates._STANDING);
         }
 
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 }

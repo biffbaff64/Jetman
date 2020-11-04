@@ -15,50 +15,48 @@ public class PlayerManager
     public int playerTileX;
     public int playerTileY;
 
-    private       SpriteDescriptor descriptor;
-    private final App              app;
+    private SpriteDescriptor descriptor;
 
-    public PlayerManager(App _app)
+    public PlayerManager()
     {
-        this.app = _app;
     }
 
     public void setSpawnPoint()
     {
-        if ((app.mapData.placementTiles == null)
-            || (app.roomManager.getStartPosition().isEmpty()))
+        if ((App.mapData.placementTiles == null)
+            || (App.roomManager.getStartPosition().isEmpty()))
         {
             playerTileX = (((Gfx.getMapWidth() / Gfx.getTileWidth()) / 2) - 10) + MathUtils.random(20);
             playerTileY = 1;
         }
         else
         {
-            playerTileX = app.roomManager.getStartPosition().x;
-            playerTileY = app.roomManager.getStartPosition().y;
+            playerTileX = App.roomManager.getStartPosition().x;
+            playerTileY = App.roomManager.getStartPosition().y;
         }
 
         descriptor             = Entities.getDescriptor(GraphicID.G_PLAYER);
         descriptor._PLAYMODE   = Animation.PlayMode.LOOP;
         descriptor._POSITION.x = playerTileX;
         descriptor._POSITION.y = playerTileY;
-        descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_PLAYER);
-        descriptor._INDEX      = app.entityData.entityMap.size;
+        descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_PLAYER);
+        descriptor._INDEX      = App.entityData.entityMap.size;
         descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_PLAYER);
     }
 
     public void createPlayer()
     {
-        app.entityManager._playerIndex = 0;
-        app.entityManager._playerReady = false;
+        App.entityManager._playerIndex = 0;
+        App.entityManager._playerReady = false;
 
-        MainPlayer mainPlayer = new MainPlayer(app);
+        MainPlayer mainPlayer = new MainPlayer();
         mainPlayer.initialise(descriptor);
 
-        app.entityData.addEntity(mainPlayer);
-        app.entityManager.updateIndexes();
-        app.entityManager._playerReady = true;
-        app.entityManager._playerIndex = descriptor._INDEX;
+        App.entityData.addEntity(mainPlayer);
+        App.entityManager.updateIndexes();
+        App.entityManager._playerReady = true;
+        App.entityManager._playerIndex = descriptor._INDEX;
 
-        mainPlayer.addCollisionListener(app.getPlayer().collision);
+        mainPlayer.addCollisionListener(App.getPlayer().collision);
     }
 }

@@ -1,6 +1,5 @@
 package com.richikin.utilslib.ui;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**

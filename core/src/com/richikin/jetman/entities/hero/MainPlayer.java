@@ -73,9 +73,9 @@ public class MainPlayer extends GdxSprite
     public BridgeManager       bridgeManager;
     public CollisionRect       tileRectangle;
 
-    public MainPlayer(App _app)
+    public MainPlayer()
     {
-        super(GraphicID.G_PLAYER, _app);
+        super(GraphicID.G_PLAYER);
     }
 
     @Override
@@ -97,13 +97,13 @@ public class MainPlayer extends GdxSprite
         createPartners();
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
-        app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+        App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
 
         addPhysicsBody();
 
         setup(true);
 
-        bridgeSection = app.assets.getObjectRegion("bridge");
+        bridgeSection = App.assets.getObjectRegion("bridge");
         tileRectangle = new CollisionRect(this.gid);
         viewBox       = new Box();
     }
@@ -153,7 +153,7 @@ public class MainPlayer extends GdxSprite
     {
         if (getAction() == ActionStates._RESTARTING)
         {
-            sprite.setPosition(app.mapData.checkPoint.getX(), app.mapData.checkPoint.getY());
+            sprite.setPosition(App.mapData.checkPoint.getX(), App.mapData.checkPoint.getY());
 
             setAction(ActionStates._SPAWNING);
         }
@@ -164,14 +164,14 @@ public class MainPlayer extends GdxSprite
     @Override
     public void update(int spriteNum)
     {
-        if (app.appState.peek() == StateID._STATE_PAUSED)
+        if (App.appState.peek() == StateID._STATE_PAUSED)
         {
             setAction(ActionStates._PAUSED);
         }
 
         if (isRidingRover)
         {
-            app.getRover().playerControl();
+            App.getRover().playerControl();
         }
         else
         {
@@ -254,7 +254,7 @@ public class MainPlayer extends GdxSprite
             // Fall to the ground after being killed while flying
             case _FALLING_TO_GROUND:
             {
-                if (app.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
+                if (App.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
                 {
                     explode();
 
@@ -287,7 +287,7 @@ public class MainPlayer extends GdxSprite
 
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 5))
             {
-                laserManager.createLaser(this, app);
+                laserManager.createLaser(this);
 
                 if (++laserColour >= 8)
                 {
@@ -323,7 +323,7 @@ public class MainPlayer extends GdxSprite
 
             default:
             {
-                if (((app.getRover() != null) && (app.getRover().getAction() == ActionStates._EXPLODING))
+                if (((App.getRover() != null) && (App.getRover().getAction() == ActionStates._EXPLODING))
                     || ((strength <= 0) && isOnGround))
                 {
                     explode();
@@ -333,7 +333,7 @@ public class MainPlayer extends GdxSprite
                 else
                 {
                     if ((strength <= 0)
-                        || (getAction() == ActionStates._FLYING) && app.getHud().getFuelBar().isEmpty())
+                        || (getAction() == ActionStates._FLYING) && App.getHud().getFuelBar().isEmpty())
                     {
                         setAction(ActionStates._FALLING_TO_GROUND);
 
@@ -351,36 +351,36 @@ public class MainPlayer extends GdxSprite
 
     public void handleDying()
     {
-        if (app.gameProgress.playerLifeOver)
+        if (App.gameProgress.playerLifeOver)
         {
-            app.gameProgress.lives.setToMinimum();
+            App.gameProgress.lives.setToMinimum();
         }
         else
         {
-            app.gameProgress.lives.subtract(1);
+            App.gameProgress.lives.subtract(1);
         }
 
         // Restart if this player has more lives left...
-        if (app.gameProgress.lives.getTotal() > 0)
+        if (App.gameProgress.lives.getTotal() > 0)
         {
             setAction(ActionStates._RESETTING);
             isDrawable = false;
 
-            app.gameProgress.isRestarting   = true;
-            app.gameProgress.playerGameOver = false;
+            App.gameProgress.isRestarting   = true;
+            App.gameProgress.playerGameOver = false;
 
-            app.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+            App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
         }
         else
         {
             setAction(ActionStates._DEAD);
 
-            app.gameProgress.isRestarting   = false;
-            app.gameProgress.playerGameOver = true;
+            App.gameProgress.isRestarting   = false;
+            App.gameProgress.playerGameOver = true;
 
-            if (app.gameProgress.playerLifeOver)
+            if (App.gameProgress.playerLifeOver)
             {
-                app.gameProgress.lives.setToMinimum();
+                App.gameProgress.lives.setToMinimum();
             }
         }
     }
@@ -399,7 +399,7 @@ public class MainPlayer extends GdxSprite
 
             default:
             {
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
             }
             break;
@@ -499,7 +499,7 @@ public class MainPlayer extends GdxSprite
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        if (!isTeleporting && !isRidingRover && !app.teleportManager.teleportActive)
+        if (!isTeleporting && !isRidingRover && !App.teleportManager.teleportActive)
         {
             sprite.setFlip(isFlippedX, false);
 
@@ -517,7 +517,7 @@ public class MainPlayer extends GdxSprite
             {
                 spriteBatch.draw
                     (
-                        app.entityUtils.getKeyFrame(spawnAnim, elapsedSpawnTime, false),
+                        App.entityUtils.getKeyFrame(spawnAnim, elapsedSpawnTime, false),
                         this.sprite.getX(),
                         this.sprite.getY()
                     );
@@ -576,7 +576,7 @@ public class MainPlayer extends GdxSprite
     public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
-        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this, app);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
         setAction(ActionStates._EXPLODING);
         elapsedAnimTime = 0;
     }
@@ -599,7 +599,7 @@ public class MainPlayer extends GdxSprite
         {
             sprite.translate
                 (
-                    (speed.getX() * app.inputManager.getControllerXPercentage()),
+                    (speed.getX() * App.inputManager.getControllerXPercentage()),
                     (speed.getY() * direction.getY())
                 );
             speed.y += 0.025f;
@@ -608,11 +608,11 @@ public class MainPlayer extends GdxSprite
         {
             if (isMovingX || isMovingY)
             {
-                float movementXSpeed = (speed.getX() * app.inputManager.getControllerXPercentage());
-                float movementYSpeed = (speed.getY() * app.inputManager.getControllerYPercentage());
+                float movementXSpeed = (speed.getX() * App.inputManager.getControllerXPercentage());
+                float movementYSpeed = (speed.getY() * App.inputManager.getControllerYPercentage());
 
-                app.baseRenderer.parallaxForeground.layers.get(0).xSpeed = speed.getX();
-                app.baseRenderer.parallaxForeground.layers.get(1).xSpeed = speed.getX();
+                App.baseRenderer.parallaxForeground.layers.get(0).xSpeed = speed.getX();
+                App.baseRenderer.parallaxForeground.layers.get(1).xSpeed = speed.getX();
 
                 sprite.translate(movementXSpeed, movementYSpeed);
             }
@@ -634,20 +634,20 @@ public class MainPlayer extends GdxSprite
      */
     private void checkForFuelRefill()
     {
-        if (!app.getHud().getFuelBar().isFull() && collision.isInRoverMiddle())
+        if (!App.getHud().getFuelBar().isFull() && collision.isInRoverMiddle())
         {
-            app.getHud().getFuelBar().refill();
+            App.getHud().getFuelBar().refill();
         }
     }
 
     private void createPartners()
     {
-        buttons       = new ButtonInputHandler(app);
-        collision     = new CollisionHandler(app);
-        actionButton  = new ActionButtonHandler(app);
-        teleport      = new TeleportHandler(app);
-        laserManager  = new LaserManager(app);
-        bridgeManager = new BridgeManager(app);
+        buttons       = new ButtonInputHandler();
+        collision     = new CollisionHandler();
+        actionButton  = new ActionButtonHandler();
+        teleport      = new TeleportHandler();
+        laserManager  = new LaserManager();
+        bridgeManager = new BridgeManager();
     }
 
     private void createSpawnAnimation()
@@ -656,7 +656,7 @@ public class MainPlayer extends GdxSprite
         // Spawn frames are the same size as standard
         // LJM frames, so no need to modify frame sizes
         spawnFrames = new TextureRegion[_SPAWN_FRAMES];
-        spawnAnim   = app.entityUtils.createAnimation
+        spawnAnim   = App.entityUtils.createAnimation
             (
                 GameAssets._PLAYER_SPAWN,
                 spawnFrames,

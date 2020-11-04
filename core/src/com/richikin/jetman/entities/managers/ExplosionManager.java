@@ -31,7 +31,7 @@ public class ExplosionManager
             new ExplosionInfo(GraphicID.G_EXPLOSION256, 4.00f),
         };
 
-    public void createExplosion(GraphicID _gid, GdxSprite _parent, App _app)
+    public void createExplosion(GraphicID _gid, GdxSprite _parent)
     {
         for (ExplosionInfo explosionType : explosionTypes)
         {
@@ -44,12 +44,12 @@ public class ExplosionManager
                 descriptor._POSITION.x = (int) _parent.sprite.getX() / Gfx.getTileWidth();
                 descriptor._POSITION.y = (int) _parent.sprite.getY() / Gfx.getTileHeight();
                 descriptor._POSITION.z = _parent.zPosition;
-                descriptor._INDEX      = _app.entityData.entityMap.size;
+                descriptor._INDEX      = App.entityData.entityMap.size;
 
-                Explosion explosion = new Explosion(_gid, _app);
+                Explosion explosion = new Explosion(_gid);
                 explosion.initialise(descriptor);
                 explosion.sprite.setScale(explosionType.scale);
-                _app.entityData.addEntity(explosion);
+                App.entityData.addEntity(explosion);
             }
         }
     }

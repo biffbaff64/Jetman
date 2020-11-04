@@ -28,9 +28,9 @@ public class TeleportThief extends GdxSprite
     private int         carryTime;
     private float       restingTime;
 
-    public TeleportThief(GraphicID graphicID, App _app)
+    public TeleportThief(GraphicID graphicID)
     {
-        super(graphicID, _app);
+        super(graphicID);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TeleportThief extends GdxSprite
 
         setAction(ActionStates._RUNNING);
 
-        if (sprite.getX() < app.getPlayer().sprite.getX())
+        if (sprite.getX() < App.getPlayer().sprite.getX())
         {
             direction.set(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
         }
@@ -97,9 +97,9 @@ public class TeleportThief extends GdxSprite
                         && (sprite.getX() < (Gfx.getMapWidth() - (Gfx._VIEW_WIDTH * 2))))
                     {
                         attachedToTransporter = false;
-                        app.getTeleporter(heldTransporter).collector = null;
-                        app.getTeleporter(heldTransporter).isCollected = false;
-                        app.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
+                        App.getTeleporter(heldTransporter).collector = null;
+                        App.getTeleporter(heldTransporter).isCollected = false;
+                        App.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
 
                         collectTimer.reset();
                         setAction(ActionStates._RUNNING);
@@ -114,14 +114,14 @@ public class TeleportThief extends GdxSprite
                 {
                     attachedToTransporter = true;
 
-                    app.getTeleporter(heldTransporter).isCollected = true;
-                    app.getTeleporter(heldTransporter).collector = this;
-                    app.getTeleporter(heldTransporter).setAction(ActionStates._HELD);
+                    App.getTeleporter(heldTransporter).isCollected = true;
+                    App.getTeleporter(heldTransporter).collector = this;
+                    App.getTeleporter(heldTransporter).setAction(ActionStates._HELD);
 
                     sprite.setY
                         (
-                            app.getTeleporter(heldTransporter).sprite.getY()
-                                + app.getTeleporter(heldTransporter).frameHeight
+                            App.getTeleporter(heldTransporter).sprite.getY()
+                                + App.getTeleporter(heldTransporter).frameHeight
                         );
 
                     setAction(ActionStates._CLIMBING);
@@ -170,8 +170,8 @@ public class TeleportThief extends GdxSprite
 
                     sprite.setPosition
                         (
-                            app.getTeleporter(targetBooth).getCollisionRectangle().x,
-                            app.getTeleporter(targetBooth).getCollisionRectangle().y + this.frameHeight
+                            App.getTeleporter(targetBooth).getCollisionRectangle().x,
+                            App.getTeleporter(targetBooth).getCollisionRectangle().y + this.frameHeight
                         );
 
                     direction.setY(Movement._DIRECTION_UP);
@@ -214,16 +214,16 @@ public class TeleportThief extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 if (attachedToTransporter)
                 {
-                    app.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
+                    App.getTeleporter(heldTransporter).setAction(ActionStates._STANDING);
 
                 }
 
@@ -272,7 +272,7 @@ public class TeleportThief extends GdxSprite
             default:
             {
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
             }
             break;
         }
@@ -304,11 +304,11 @@ public class TeleportThief extends GdxSprite
             for (int i=0; i<2; i++)
             {
                 if (!attachedToTransporter
-                    && (sprite.getX() > app.getTeleporter(i).sprite.getX())
-                    && (sprite.getX() < (app.getTeleporter(i).sprite.getX() + (app.getTeleporter(i).frameWidth / 3)))
-                    && (sprite.getY() > (app.getTeleporter(i).sprite.getY() + app.getTeleporter(i).frameHeight)))
+                    && (sprite.getX() > App.getTeleporter(i).sprite.getX())
+                    && (sprite.getX() < (App.getTeleporter(i).sprite.getX() + (App.getTeleporter(i).frameWidth / 3)))
+                    && (sprite.getY() > (App.getTeleporter(i).sprite.getY() + App.getTeleporter(i).frameHeight)))
                 {
-                    if (!app.getTeleporter(i).isCollected && (MathUtils.random(100) < 25))
+                    if (!App.getTeleporter(i).isCollected && (MathUtils.random(100) < 25))
                     {
                         heldTransporter = i;
                         canTakeTransporter = false;
@@ -330,6 +330,6 @@ public class TeleportThief extends GdxSprite
      */
     public boolean isValidDropPoint()
     {
-        return  (app.collisionUtils.getMarkerTileOn(((int) sprite.getX() / Gfx.getTileWidth()), 1) == TileID._UNKNOWN);
+        return  (App.collisionUtils.getMarkerTileOn(((int) sprite.getX() / Gfx.getTileWidth()), 1) == TileID._UNKNOWN);
     }
 }

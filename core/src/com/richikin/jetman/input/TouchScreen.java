@@ -7,11 +7,8 @@ import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class TouchScreen
 {
-    private final App app;
-
-    public TouchScreen(App _app)
+    public TouchScreen()
     {
-        this.app = _app;
     }
 
     public boolean titleScreenTouchDown(int screenX, int screenY)
@@ -32,15 +29,15 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-//                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
+//                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {
-//                    app.getHud().buttonA.press();
+//                    App.getHud().buttonA.press();
 //                    returnFlag = true;
 //                }
 
-//                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
+//                if (((GameButton) App.getHud().buttonB).contains(screenX, screenY))
 //                {
-//                    app.getHud().buttonB.press();
+//                    App.getHud().buttonB.press();
 //                    returnFlag = true;
 //                }
             }
@@ -57,15 +54,15 @@ public class TouchScreen
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
-//                if (((GameButton) app.getHud().buttonA).contains(screenX, screenY))
+//                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {
-//                    app.getHud().buttonA.release();
+//                    App.getHud().buttonA.release();
 //                    returnFlag = true;
 //                }
 
-//                if (((GameButton) app.getHud().buttonB).contains(screenX, screenY))
+//                if (((GameButton) App.getHud().buttonB).contains(screenX, screenY))
 //                {
-//                    app.getHud().buttonB.release();
+//                    App.getHud().buttonB.release();
 //                    returnFlag = true;
 //                }
             }

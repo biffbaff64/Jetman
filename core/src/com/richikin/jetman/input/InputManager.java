@@ -30,19 +30,15 @@ public class InputManager
     public float            _horizontalValue;
     public float            _verticalValue;
 
-    protected final App app;
-
-    public InputManager(App _app)
+    public InputManager()
     {
-        this.app = _app;
-
         setup();
     }
 
     public boolean setup()
     {
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(app.stage);
+        inputMultiplexer.addProcessor(App.stage);
 
         currentRegisteredDirection = Movement.Dir._STILL;
         lastRegisteredDirection    = Movement.Dir._STILL;
@@ -53,7 +49,7 @@ public class InputManager
         {
             Trace.dbg("Initialising _VIRTUAL Controller Type");
 
-            virtualJoystick = new VirtualJoystick(app);
+            virtualJoystick = new VirtualJoystick();
             virtualJoystick.create();
         }
 
@@ -63,7 +59,7 @@ public class InputManager
         {
             Trace.dbg("Initialising _EXTERNAL Controller Type");
 
-            gameController = new GameController(app);
+            gameController = new GameController();
 
             if (!gameController.setup())
             {
@@ -73,13 +69,13 @@ public class InputManager
 
         mousePosition      = new Vector2();
         mouseWorldPosition = new Vector2();
-        keyboard           = new Keyboard(app);
-        touchScreen        = new TouchScreen(app);
+        keyboard           = new Keyboard();
+        touchScreen        = new TouchScreen();
         gameButtons        = new Array<>();
 
         inputMultiplexer.addProcessor(keyboard);
 
-        ControllerData.setup(app);
+        ControllerData.setup();
 
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
         Gdx.input.setCatchKey(Input.Keys.MENU, true);
@@ -92,7 +88,7 @@ public class InputManager
     {
         float xPercent = 0.0f;
 
-        if (app.getHud() != null)
+        if (App.getHud() != null)
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
@@ -113,7 +109,7 @@ public class InputManager
                     {
                         keyboard.translateXPercent();
 
-                        xPercent = app.getPlayer().direction.getX();
+                        xPercent = App.getPlayer().direction.getX();
                     }
                 }
             }
@@ -126,7 +122,7 @@ public class InputManager
     {
         float yPercent = 0.0f;
 
-        if (app.getHud() != null)
+        if (App.getHud() != null)
         {
             if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
@@ -161,7 +157,7 @@ public class InputManager
                     {
                         keyboard.translateYPercent();
 
-                        yPercent = app.getPlayer().direction.getY();
+                        yPercent = App.getPlayer().direction.getY();
                     }
                 }
             }

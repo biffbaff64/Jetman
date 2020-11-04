@@ -12,11 +12,8 @@ import com.richikin.enumslib.GraphicID;
 
 public class BackgroundObjectsManager
 {
-    private final App app;
-
-    public BackgroundObjectsManager(App _app)
+    public BackgroundObjectsManager()
     {
-        this.app = _app;
     }
 
     /**
@@ -32,13 +29,13 @@ public class BackgroundObjectsManager
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
             descriptor._POSITION.x = 0;
             descriptor._POSITION.y = 0;
-            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
-            descriptor._INDEX      = app.entityData.entityMap.size;
+            descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_BACKGROUND_UFO);
+            descriptor._INDEX      = App.entityData.entityMap.size;
 
-            Ufo ufo = new Ufo(app);
+            Ufo ufo = new Ufo();
             ufo.initialise(descriptor);
 
-            app.entityData.addEntity(ufo);
+            App.entityData.addEntity(ufo);
         }
     }
 
@@ -74,13 +71,13 @@ public class BackgroundObjectsManager
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
             descriptor._POSITION.x = position[0];
             descriptor._POSITION.y = (Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) - position[1];
-            descriptor._POSITION.z = app.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
-            descriptor._INDEX      = app.entityData.entityMap.size;
+            descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
+            descriptor._INDEX      = App.entityData.entityMap.size;
 
-            TwinkleStar twinkleStar = new TwinkleStar(app);
+            TwinkleStar twinkleStar = new TwinkleStar();
             twinkleStar.initialise(descriptor);
 
-            app.entityData.addEntity(twinkleStar);
+            App.entityData.addEntity(twinkleStar);
         }
     }
 }

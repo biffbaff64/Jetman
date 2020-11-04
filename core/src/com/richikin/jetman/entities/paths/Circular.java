@@ -47,7 +47,7 @@ public class Circular implements IPathMover
      * based on the current time interval, calculate
      * where the sphere is at on its orbit
      */
-    public void setNextMove(GdxSprite gdxSprite, App app)
+    public void setNextMove(GdxSprite gdxSprite)
     {
         double radian = (Math.PI / 75) * timeInterval;
 

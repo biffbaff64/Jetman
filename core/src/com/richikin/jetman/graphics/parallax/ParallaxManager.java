@@ -4,42 +4,39 @@ import com.richikin.jetman.core.App;
 
 public class ParallaxManager
 {
-    private final App app;
-
-    public ParallaxManager(App _app)
+    public ParallaxManager()
     {
-        this.app = _app;
     }
 
     public void scroll()
     {
-        if ((app.mapData.mapPosition.getX() > app.mapData.minScrollX)
-            && (app.mapData.mapPosition.getX() < app.mapData.maxScrollX))
+        if ((App.mapData.mapPosition.getX() > App.mapData.minScrollX)
+            && (App.mapData.mapPosition.getX() < App.mapData.maxScrollX))
         {
-            if (app.mapData.previousMapPosition.getX() > app.mapData.mapPosition.getX())
+            if (App.mapData.previousMapPosition.getX() > App.mapData.mapPosition.getX())
             {
-                app.baseRenderer.parallaxBackground.scrollLayersLeft();
-                app.baseRenderer.parallaxForeground.scrollLayersLeft();
+                App.baseRenderer.parallaxBackground.scrollLayersLeft();
+                App.baseRenderer.parallaxForeground.scrollLayersLeft();
             }
-            else if (app.mapData.previousMapPosition.getX() < app.mapData.mapPosition.getX())
+            else if (App.mapData.previousMapPosition.getX() < App.mapData.mapPosition.getX())
             {
-                app.baseRenderer.parallaxBackground.scrollLayersRight();
-                app.baseRenderer.parallaxForeground.scrollLayersRight();
+                App.baseRenderer.parallaxBackground.scrollLayersRight();
+                App.baseRenderer.parallaxForeground.scrollLayersRight();
             }
         }
 
-        if ((app.mapData.mapPosition.getY() > app.mapData.minScrollY)
-            && (app.mapData.mapPosition.getY() < app.mapData.maxScrollY))
+        if ((App.mapData.mapPosition.getY() > App.mapData.minScrollY)
+            && (App.mapData.mapPosition.getY() < App.mapData.maxScrollY))
         {
-            if (app.mapData.previousMapPosition.getY() > app.mapData.mapPosition.getY())
+            if (App.mapData.previousMapPosition.getY() > App.mapData.mapPosition.getY())
             {
-                app.baseRenderer.parallaxBackground.scrollLayersDown();
-                app.baseRenderer.parallaxForeground.scrollLayersDown();
+                App.baseRenderer.parallaxBackground.scrollLayersDown();
+                App.baseRenderer.parallaxForeground.scrollLayersDown();
             }
-            else if (app.mapData.previousMapPosition.getY() < app.mapData.mapPosition.getY())
+            else if (App.mapData.previousMapPosition.getY() < App.mapData.mapPosition.getY())
             {
-                app.baseRenderer.parallaxBackground.scrollLayersUp();
-                app.baseRenderer.parallaxForeground.scrollLayersUp();
+                App.baseRenderer.parallaxBackground.scrollLayersUp();
+                App.baseRenderer.parallaxForeground.scrollLayersUp();
             }
         }
     }

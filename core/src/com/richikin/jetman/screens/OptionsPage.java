@@ -61,16 +61,11 @@ public class OptionsPage implements IUIPage
     private boolean enteredDeveloperPanel;
     private boolean setupCompleted;
 
-    private final App app;
-
     /**
      * Instantiates a new Options page.
-     *
-     * @param _app the game
      */
-    public OptionsPage(App _app)
+    public OptionsPage()
     {
-        this.app = _app;
     }
 
     /**
@@ -79,7 +74,7 @@ public class OptionsPage implements IUIPage
     @Override
     public boolean update()
     {
-        if (app.optionsPageActive)
+        if (App.optionsPageActive)
         {
 //            if (activePanel == ScreenID._TEST_PANEL)
 //            {
@@ -170,7 +165,7 @@ public class OptionsPage implements IUIPage
             {
 //                if (Developer.developerPanelActive)
 //                {
-//                    app.developerPanel.draw(spriteBatch);
+//                    App.developerPanel.draw(spriteBatch);
 //                }
 //                else
                 {
@@ -196,7 +191,7 @@ public class OptionsPage implements IUIPage
     {
         setupCompleted = false;
 
-        foreground = app.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
@@ -210,7 +205,7 @@ public class OptionsPage implements IUIPage
 
         activePanel = ScreenID._SETTINGS_SCREEN;
 
-        app.optionsPageActive = true;
+        App.optionsPageActive = true;
         Developer.developerPanelActive = false;
 
         enteredDeveloperPanel = false;
@@ -222,7 +217,7 @@ public class OptionsPage implements IUIPage
      */
     public void hide()
     {
-        if (app.optionsPageActive)
+        if (App.optionsPageActive)
         {
             if (Developer.isDevMode())
             {
@@ -267,7 +262,7 @@ public class OptionsPage implements IUIPage
             }
             buttonSignOut = null;
 
-            app.assets.unloadAsset("data/settings_screen_template.png");
+            App.assets.unloadAsset("data/settings_screen_template.png");
 
             foreground = null;
             skin = null;
@@ -275,7 +270,7 @@ public class OptionsPage implements IUIPage
 //            privacyPanel = null;
 //            testPanel = null;
 
-            app.optionsPageActive = false;
+            App.optionsPageActive = false;
         }
     }
 
@@ -284,7 +279,7 @@ public class OptionsPage implements IUIPage
      */
     private void populateTable()
     {
-        Scene2DUtils.setup(app);
+        Scene2DUtils.setup();
 
         // ----------
         musicSlider = Scene2DUtils.addSlider(700, (720 - 208), skin);
@@ -313,7 +308,7 @@ public class OptionsPage implements IUIPage
         buttonExit.setSize(128, 64);
 
         // ----------
-        if (app.googleServices.isSignedIn())
+        if (App.googleServices.isSignedIn())
         {
             if (Developer.isDevMode() || (Version.majorVersion == 0))
             {
@@ -360,14 +355,14 @@ public class OptionsPage implements IUIPage
      */
     private void updateSettings()
     {
-//        app.settings.prefs.putBoolean(Settings._MUSIC_ENABLED, (Sfx.inst().getMusicVolume() != Sfx.inst()._SILENT));
-//        app.settings.prefs.putBoolean(Settings._SOUNDS_ENABLED, (Sfx.inst().getFXVolume() != Sfx.inst()._SILENT));
+//        App.settings.prefs.putBoolean(Settings._MUSIC_ENABLED, (Sfx.inst().getMusicVolume() != Sfx.inst()._SILENT));
+//        App.settings.prefs.putBoolean(Settings._SOUNDS_ENABLED, (Sfx.inst().getFXVolume() != Sfx.inst()._SILENT));
 
 //        Sfx.inst().setMusicVolume((int) musicSlider.getValue());
 //        Sfx.inst().setFXVolume((int) fxSlider.getValue());
 
-        app.settings.prefs.putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
-        app.settings.prefs.flush();
+        App.settings.prefs.putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
+        App.settings.prefs.flush();
     }
 
     /**
@@ -375,8 +370,8 @@ public class OptionsPage implements IUIPage
      */
     private void updateSettingsOnEntry()
     {
-//        vibrateCheckBox.setChecked(app.preferences.isEnabled(Preferences._VIBRATIONS));
-//        hintsCheckBox.setChecked(app.preferences.isEnabled(Preferences._SHOW_HINTS));
+//        vibrateCheckBox.setChecked(App.preferences.isEnabled(Preferences._VIBRATIONS));
+//        hintsCheckBox.setChecked(App.preferences.isEnabled(Preferences._SHOW_HINTS));
 
 //        musicSlider.setValue(Sfx.inst().getMusicVolume());
 //        musicLabel.setText("" + ((int) musicSlider.getValue() * 10) + "%");
@@ -444,7 +439,7 @@ public class OptionsPage implements IUIPage
 //                        justFinishedStatsPanel = false;
 //                        activePanel = ScreenID._STATS_SCREEN;
 //
-//                        statsPanel = new StatsPanel(app);
+//                        statsPanel = new StatsPanel();
 //                        statsPanel.setXOffset(0);
 //                        statsPanel.setYOffset(0);
 //                        statsPanel.open();
@@ -474,7 +469,7 @@ public class OptionsPage implements IUIPage
 //                        justFinishedPrivacyPanel = false;
 //                        activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
 //
-//                        privacyPanel = new PrivacyPolicyPanel(app);
+//                        privacyPanel = new PrivacyPolicyPanel();
 //                        privacyPanel.xOffset = 0;
 //                        privacyPanel.yOffset = 0;
 //                        privacyPanel.open();
@@ -504,7 +499,7 @@ public class OptionsPage implements IUIPage
 //                          justFinishedStoryPanel = false;
 //                          activePanel = ScreenID._INSTRUCTIONS_SCREEN;
 //
-//                          storyPanel = new InstructionsPanel(app);
+//                          storyPanel = new InstructionsPanel();
 //                          storyPanel.xOffset = 0;
 //                          storyPanel.yOffset = 0;
 //                          storyPanel.open();
@@ -523,7 +518,7 @@ public class OptionsPage implements IUIPage
                 {
 //                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
 
-                    app.googleServices.signOut();
+                    App.googleServices.signOut();
 
                     buttonSignOut.addAction(Actions.removeActor());
                     buttonSignOut = null;
@@ -547,7 +542,7 @@ public class OptionsPage implements IUIPage
 //                    justFinishedTestPanel = false;
 //                    activePanel = ScreenID._TEST_PANEL;
 //
-//                    testPanel = new DeveloperTests(app);
+//                    testPanel = new DeveloperTests();
 //                    testPanel.xOffset = 0;
 //                    testPanel.yOffset = 0;
 //                    testPanel.setup();
@@ -576,7 +571,7 @@ public class OptionsPage implements IUIPage
 //
 //                        showActors(false);
 //
-//                        app.developerPanel.setup();
+//                        App.developerPanel.setup();
 //                    }
                 }
             });

@@ -35,41 +35,38 @@ public class Keyboard extends InputAdapter
     public boolean ctrlButtonHeld;
     public boolean shiftButtonHeld;
 
-    private final App app;
-
-    public Keyboard(App _app)
+    public Keyboard()
     {
-        this.app        = _app;
         ctrlButtonHeld  = false;
         shiftButtonHeld = false;
     }
 
     public void update()
     {
-        if (app.getHud().buttonUp.isPressed())
+        if (App.getHud().buttonUp.isPressed())
         {
-            app.getPlayer().direction.setY(Movement._DIRECTION_UP);
+            App.getPlayer().direction.setY(Movement._DIRECTION_UP);
         }
-        else if (app.getHud().buttonDown.isPressed())
+        else if (App.getHud().buttonDown.isPressed())
         {
-            app.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
+            App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
         }
         else
         {
-            app.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+            App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
         }
 
-        if (app.getHud().buttonLeft.isPressed())
+        if (App.getHud().buttonLeft.isPressed())
         {
-            app.getPlayer().direction.setX(Movement._DIRECTION_LEFT);
+            App.getPlayer().direction.setX(Movement._DIRECTION_LEFT);
         }
-        else if (app.getHud().buttonRight.isPressed())
+        else if (App.getHud().buttonRight.isPressed())
         {
-            app.getPlayer().direction.setX(Movement._DIRECTION_RIGHT);
+            App.getPlayer().direction.setX(Movement._DIRECTION_RIGHT);
         }
         else
         {
-            app.getPlayer().direction.setX(Movement._DIRECTION_STILL);
+            App.getPlayer().direction.setX(Movement._DIRECTION_STILL);
         }
     }
 
@@ -82,7 +79,7 @@ public class Keyboard extends InputAdapter
         {
             if (AppConfig.gameScreenActive())
             {
-                app.getHud().buttonPause.press();
+                App.getHud().buttonPause.press();
             }
         }
 
@@ -103,32 +100,32 @@ public class Keyboard extends InputAdapter
 
         if (keycode == defaultValueLeft)
         {
-            app.getHud().buttonLeft.press();
+            App.getHud().buttonLeft.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueRight)
         {
-            app.getHud().buttonRight.press();
+            App.getHud().buttonRight.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueUp)
         {
-            app.getHud().buttonUp.press();
+            App.getHud().buttonUp.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueDown)
         {
-            app.getHud().buttonDown.press();
+            App.getHud().buttonDown.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueB)
         {
-            app.getHud().buttonAttack.press();
+            App.getHud().buttonAttack.press();
             returnFlag = true;
         }
         else if (keycode == defaultValueA)
         {
-            app.getHud().buttonAction.press();
+            App.getHud().buttonAction.press();
             returnFlag = true;
         }
         else
@@ -138,7 +135,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.ESCAPE:
                 case Input.Keys.BACK:
                 {
-                    app.getHud().buttonPause.press();
+                    App.getHud().buttonPause.press();
 
                     returnFlag = true;
                 }
@@ -148,7 +145,7 @@ public class Keyboard extends InputAdapter
                 {
                     if (Developer.isDevMode())
                     {
-                        app.cameraUtils.resetCameraZoom();
+                        App.cameraUtils.resetCameraZoom();
                     }
 
                     returnFlag = true;
@@ -159,7 +156,7 @@ public class Keyboard extends InputAdapter
                 {
                     if (Developer.isDevMode())
                     {
-                        app.getPlayer().kill();
+                        App.getPlayer().kill();
                     }
 
                     returnFlag = true;
@@ -170,7 +167,7 @@ public class Keyboard extends InputAdapter
                 {
                     if (Developer.isDevMode())
                     {
-                        app.gameProgress.gameCompleted = true;
+                        App.gameProgress.gameCompleted = true;
                     }
 
                     returnFlag = true;
@@ -179,7 +176,7 @@ public class Keyboard extends InputAdapter
 
                 case Input.Keys.O:
                 {
-                    app.getHud().buttonDevOptions.press();
+                    App.getHud().buttonDevOptions.press();
                     returnFlag = true;
                 }
                 break;
@@ -219,32 +216,32 @@ public class Keyboard extends InputAdapter
 
         if (keycode == defaultValueLeft)
         {
-            app.getHud().buttonLeft.release();
+            App.getHud().buttonLeft.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueRight)
         {
-            app.getHud().buttonRight.release();
+            App.getHud().buttonRight.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueUp)
         {
-            app.getHud().buttonUp.release();
+            App.getHud().buttonUp.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueDown)
         {
-            app.getHud().buttonDown.release();
+            App.getHud().buttonDown.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueB)
         {
-            app.getHud().buttonAttack.release();
+            App.getHud().buttonAttack.release();
             returnFlag = true;
         }
         else if (keycode == defaultValueA)
         {
-            app.getHud().buttonAction.release();
+            App.getHud().buttonAction.release();
             returnFlag = true;
         }
         else
@@ -254,7 +251,7 @@ public class Keyboard extends InputAdapter
                 case Input.Keys.ESCAPE:
                 case Input.Keys.BACK:
                 {
-                    app.getHud().buttonPause.release();
+                    App.getHud().buttonPause.release();
 
                     returnFlag = true;
                 }
@@ -278,7 +275,7 @@ public class Keyboard extends InputAdapter
 
                 case Input.Keys.O:
                 {
-                    app.getHud().buttonDevOptions.release();
+                    App.getHud().buttonDevOptions.release();
                     returnFlag = true;
                 }
                 break;
@@ -308,7 +305,7 @@ public class Keyboard extends InputAdapter
 
             if (AppConfig.gameScreenActive())
             {
-                app.getHud().buttonPause.release();
+                App.getHud().buttonPause.release();
             }
         }
 
@@ -327,21 +324,21 @@ public class Keyboard extends InputAdapter
     public boolean touchDown(int touchX, int touchY, int pointer, int button)
     {
         Vector2 newPoints = new Vector2(touchX, touchY);
-        newPoints = app.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
+        newPoints = App.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
 
-        int screenX = (int) (newPoints.x - app.mapData.mapPosition.getX());
-        int screenY = (int) (newPoints.y - app.mapData.mapPosition.getY());
+        int screenX = (int) (newPoints.x - App.mapData.mapPosition.getX());
+        int screenY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 
         boolean returnFlag = false;
 
         if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            returnFlag = app.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
+            returnFlag = App.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
         }
 
         if (AppConfig.gameScreenActive())
         {
-            returnFlag = app.inputManager.touchScreen.gameScreenTouchDown(screenX, screenY, pointer);
+            returnFlag = App.inputManager.touchScreen.gameScreenTouchDown(screenX, screenY, pointer);
         }
 
         return returnFlag;
@@ -351,21 +348,21 @@ public class Keyboard extends InputAdapter
     public boolean touchUp(int touchX, int touchY, int pointer, int button)
     {
         Vector2 newPoints = new Vector2(touchX, touchY);
-        newPoints = app.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
+        newPoints = App.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
 
-        int screenX = (int) (newPoints.x - app.mapData.mapPosition.getX());
-        int screenY = (int) (newPoints.y - app.mapData.mapPosition.getY());
+        int screenX = (int) (newPoints.x - App.mapData.mapPosition.getX());
+        int screenY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 
         boolean returnFlag = false;
 
         if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            returnFlag = app.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
+            returnFlag = App.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
         }
 
         if (AppConfig.gameScreenActive())
         {
-            returnFlag = app.inputManager.touchScreen.gameScreenTouchUp(screenX, screenY);
+            returnFlag = App.inputManager.touchScreen.gameScreenTouchUp(screenX, screenY);
         }
 
         return returnFlag;
@@ -381,19 +378,19 @@ public class Keyboard extends InputAdapter
     public boolean touchDragged(int screenX, int screenY, int pointer)
     {
 //        Vector2 newPoints = new Vector2(screenX, screenY);
-//        newPoints = app.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
+//        newPoints = App.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
 //
-//        int touchX = (int) (newPoints.x - app.mapData.mapPosition.getX());
-//        int touchY = (int) (newPoints.y - app.mapData.mapPosition.getY());
+//        int touchX = (int) (newPoints.x - App.mapData.mapPosition.getX());
+//        int touchY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 //
 //        boolean returnFlag = false;
 //
-//        if (app.currentScreenID == ScreenID._GAME_SCREEN)
+//        if (App.currentScreenID == ScreenID._GAME_SCREEN)
 //        {
-//            if ((app.getHud().buttonB.pointer == pointer)
-//                && !app.getHud().buttonB.contains(touchX, touchY))
+//            if ((App.getHud().buttonB.pointer == pointer)
+//                && !App.getHud().buttonB.contains(touchX, touchY))
 //            {
-//                app.getHud().buttonB.release();
+//                App.getHud().buttonB.release();
 //                returnFlag = true;
 //            }
 //        }
@@ -417,14 +414,14 @@ public class Keyboard extends InputAdapter
     public boolean mouseMoved(int screenX, int screenY)
     {
         Vector2 newPoints = new Vector2(screenX, screenY);
-        newPoints = app.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
+        newPoints = App.baseRenderer.hudGameCamera.viewport.unproject(newPoints);
 
-        app.inputManager.mouseWorldPosition.set(newPoints.x, newPoints.y);
+        App.inputManager.mouseWorldPosition.set(newPoints.x, newPoints.y);
 
-        int touchX = (int) (newPoints.x - app.mapData.mapPosition.getX());
-        int touchY = (int) (newPoints.y - app.mapData.mapPosition.getY());
+        int touchX = (int) (newPoints.x - App.mapData.mapPosition.getX());
+        int touchY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 
-        app.inputManager.mousePosition.set(touchX, touchY);
+        App.inputManager.mousePosition.set(touchX, touchY);
 
         return false;
     }
@@ -449,22 +446,22 @@ public class Keyboard extends InputAdapter
                 {
                     if (amount < 0)
                     {
-                        app.baseRenderer.gameZoom.out(0.10f);
+                        App.baseRenderer.gameZoom.out(0.10f);
                     }
                     else if (amount > 0)
                     {
-                        app.baseRenderer.gameZoom.in(0.10f);
+                        App.baseRenderer.gameZoom.in(0.10f);
                     }
                 }
                 if (shiftButtonHeld)
                 {
                     if (amount < 0)
                     {
-                        app.baseRenderer.hudZoom.out(0.10f);
+                        App.baseRenderer.hudZoom.out(0.10f);
                     }
                     else if (amount > 0)
                     {
-                        app.baseRenderer.hudZoom.in(0.10f);
+                        App.baseRenderer.hudZoom.in(0.10f);
                     }
                 }
             }
@@ -477,8 +474,8 @@ public class Keyboard extends InputAdapter
     {
         Direction direction = new Direction
             (
-                (int) app.inputManager._horizontalValue,
-                (int) app.inputManager._verticalValue
+                (int) App.inputManager._horizontalValue,
+                (int) App.inputManager._verticalValue
             );
 
         Movement.Dir keyDir = com.richikin.utilslib.input.DirectionMap.map[com.richikin.utilslib.input.DirectionMap.map.length - 1].translated;
@@ -491,18 +488,18 @@ public class Keyboard extends InputAdapter
             }
         }
 
-        app.inputManager.lastRegisteredDirection = keyDir;
+        App.inputManager.lastRegisteredDirection = keyDir;
 
         return keyDir;
     }
 
     public void translateXPercent()
     {
-        app.inputManager._horizontalValue = app.getPlayer().direction.getX();
+        App.inputManager._horizontalValue = App.getPlayer().direction.getX();
     }
 
     public void translateYPercent()
     {
-        app.inputManager._verticalValue = app.getPlayer().direction.getY();
+        App.inputManager._verticalValue = App.getPlayer().direction.getY();
     }
 }

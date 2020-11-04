@@ -1,20 +1,5 @@
 TODO LIST - UTILSLIB
 ====================
 
-MessageManager - remove references to jetman.
-
-PolygonCollisionObjectPool - remove references to jetman.
-
-ObjectPool - remove references to jetman.
-
-CollisionObjectPool - remove references to jetman.
-
-DebugRenderer - remove references to jetman.
-
-PlayServicesDesktop - remove references to jetman.
-
-PlayServices - remove references to jetman.
-
-Developer - remove references to jetman.
 
 

@@ -22,11 +22,8 @@ import com.richikin.utilslib.logging.Trace;
 
 public class MapCreator
 {
-    private final App app;
-
-    public MapCreator(App _app)
+    public MapCreator()
     {
-        this.app = _app;
     }
 
     /**
@@ -38,12 +35,12 @@ public class MapCreator
     {
         Trace.__FILE_FUNC();
 
-        for (EntityManagerComponent component : app.entityData.managerList)
+        for (EntityManagerComponent component : App.entityData.managerList)
         {
             component.setPlaceable(false);
         }
 
-        app.mapData.placementTiles.clear();
+        App.mapData.placementTiles.clear();
 
         parseMarkerTiles();
         createCollisionBoxes();
@@ -55,7 +52,7 @@ public class MapCreator
      */
     protected void parseMarkerTiles()
     {
-        for (MapObject mapObject : app.mapData.objectTiles)
+        for (MapObject mapObject : App.mapData.objectTiles)
         {
             if (mapObject instanceof TiledMapTileMapObject)
             {
@@ -148,27 +145,27 @@ public class MapCreator
             }
         }
 
-        app.mapData.placementTiles.add(markerTile);
+        App.mapData.placementTiles.add(markerTile);
     }
 
     protected void createCollisionBoxes()
     {
         GameEntity gameEntity;
 
-        gameEntity = new GameEntity(app);
+        gameEntity = new GameEntity();
         gameEntity.gid = GraphicID.G_NO_ID;
         gameEntity.type = GraphicID.G_NO_ID;
         gameEntity.position = new SimpleVec2F();
-        gameEntity.collisionObject = app.collisionUtils.newObject();
+        gameEntity.collisionObject = App.collisionUtils.newObject();
         AABBData.add(gameEntity.collisionObject);
 
-        for (MapObject mapObject : app.mapData.mapObjects)
+        for (MapObject mapObject : App.mapData.mapObjects)
         {
             if (mapObject instanceof RectangleMapObject)
             {
                 if (null != mapObject.getName())
                 {
-                    gameEntity = new GameEntity(app);
+                    gameEntity = new GameEntity();
 
                     switch (mapObject.getName().toLowerCase())
                     {
@@ -254,7 +251,7 @@ public class MapCreator
 
     private void debugPlacementsTiles()
     {
-        for (SpriteDescriptor tile : app.mapData.placementTiles)
+        for (SpriteDescriptor tile : App.mapData.placementTiles)
         {
             tile.debug();
         }

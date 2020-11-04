@@ -20,13 +20,10 @@ public class StairClimber extends GdxSprite
 {
     private StopWatch stopWatch;
     private       StairsPath stairsPath;
-    private final App        app;
 
-    public StairClimber(GraphicID _gid, App _app)
+    public StairClimber(GraphicID _gid)
     {
-        super(_gid, _app);
-
-        this.app = _app;
+        super(_gid);
 
         bodyCategory = Gfx.CAT_MOBILE_ENEMY;
         collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
@@ -56,7 +53,7 @@ public class StairClimber extends GdxSprite
             case _RUNNING:
             {
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
-                sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+                sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
                 move();
             }
@@ -66,11 +63,11 @@ public class StairClimber extends GdxSprite
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this, app);
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION64, this);
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    app.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.score.add(PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);

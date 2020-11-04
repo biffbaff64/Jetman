@@ -20,13 +20,10 @@ public abstract class FadeEffect
     private static float     height;
     private static Color     colour;
     private static NinePatch image;
-    private static App       app;
 
-    public static void createEffect(App _app, float _width, float _height)
+    public static void createEffect(float _width, float _height)
     {
-        app = _app;
-
-        image = new NinePatch(app.assets.getObjectRegion("bar9patch"), 1, 1, 1, 1);
+        image = new NinePatch(App.assets.getObjectRegion("bar9patch"), 1, 1, 1, 1);
 
         timer     = StopWatch.start();
         direction = Movement._DIRECTION_STILL;
@@ -64,7 +61,7 @@ public abstract class FadeEffect
             if (colour.a >= 0)
             {
                 image.setColor(colour);
-                image.draw(app.spriteBatch, 0, 0, width, height);
+                image.draw(App.spriteBatch, 0, 0, width, height);
             }
         }
     }

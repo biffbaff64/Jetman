@@ -14,14 +14,10 @@ public class AABB implements Disposable
     private Rectangle       topRectangle;
     private Rectangle       midRectangle;
     private Rectangle       botRectangle;
-    private App             app;
 
-    public AABB(App _app)
+    public AABB()
     {
-        super();
-
-        this.app          = _app;
-        this.contactBox   = app.collisionUtils.newObject();
+        this.contactBox   = App.collisionUtils.newObject();
         this.topRectangle = new Rectangle();
         this.midRectangle = new Rectangle();
         this.botRectangle = new Rectangle();
@@ -131,7 +127,6 @@ public class AABB implements Disposable
     @Override
     public void dispose()
     {
-        app          = null;
         contactBox   = null;
         topRectangle = null;
         midRectangle = null;

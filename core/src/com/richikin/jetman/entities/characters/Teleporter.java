@@ -18,13 +18,9 @@ public class Teleporter extends GdxSprite
     public boolean      isCollected;
     public GdxSprite    collector;
 
-    private final App app;
-
-    public Teleporter(App _app)
+    public Teleporter()
     {
-        super(GraphicID.G_TRANSPORTER, _app);
-
-        this.app = _app;
+        super(GraphicID.G_TRANSPORTER);
     }
 
     @Override
@@ -108,16 +104,16 @@ public class Teleporter extends GdxSprite
     @Override
     public void animate()
     {
-        sprite.setRegion(app.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
+        sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
         elapsedAnimTime += Gdx.graphics.getDeltaTime();
     }
 
     @Override
     public void tidy(int _index)
     {
-        app.entityManager._teleportIndex[teleporterNumber] = 0;
+        App.entityManager._teleportIndex[teleporterNumber] = 0;
         collisionObject.kill();
-        app.entityData.removeEntity(_index);
+        App.entityData.removeEntity(_index);
     }
 
     private void setCollisionListener()
@@ -129,7 +125,7 @@ public class Teleporter extends GdxSprite
             {
                 if (getAction() == ActionStates._FALLING)
                 {
-                    GraphicID contactID = app.collisionUtils.getBoxHittingBottom(app.getBomb()).gid;
+                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getBomb()).gid;
 
                     if (contactID == GraphicID._GROUND)
                     {

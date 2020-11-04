@@ -135,13 +135,9 @@ public class RoomManager
 
     public Room activeRoom;
 
-    private final App app;
-
-    public RoomManager(App _app)
+    public RoomManager()
     {
         Trace.__FILE_FUNC();
-
-        this.app = _app;
 
 //        worldWidth  = 1;
 //        worldHeight = roomMap.length;
@@ -154,7 +150,7 @@ public class RoomManager
     {
         Trace.__FILE_FUNC();
 
-        setRoom(app.getLevel());
+        setRoom(App.getLevel());
     }
 
     private void setRoom(int _index)
@@ -173,73 +169,73 @@ public class RoomManager
         {
             case G_STAIR_CLIMBER:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxStairClimbers);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxStairClimbers);
             }
             break;
 
             case G_3BALLS_UFO:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.max3BallAliens);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.max3BallAliens);
             }
             break;
 
             case G_3LEGS_ALIEN:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.max3LegAliens);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.max3LegAliens);
             }
             break;
 
             case G_ALIEN_WHEEL:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxWheels);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxWheels);
             }
             break;
 
             case G_ASTEROID:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxAsteroids);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxAsteroids);
             }
             break;
 
             case G_BLOB:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxBlobs);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxBlobs);
             }
             break;
 
             case G_DOG:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxDogs);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxDogs);
             }
             break;
 
             case G_GREEN_BLOCK:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxGreenBlocks);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxGreenBlocks);
             }
             break;
 
             case G_SPINNING_BALL:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxSpinningBalls);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxSpinningBalls);
             }
             break;
 
             case G_TWINKLES:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxTwinkles);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxTwinkles);
             }
             break;
 
             case G_TOPSPIN:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxTopSpinners);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxTopSpinners);
             }
             break;
 
             case G_STAR_SPINNER:
             {
-                thisMax = calculateEntityCount(roomMap[app.getLevel()].mapEntry.maxStarSpinners);
+                thisMax = calculateEntityCount(roomMap[App.getLevel()].mapEntry.maxStarSpinners);
             }
             break;
 
@@ -262,19 +258,19 @@ public class RoomManager
 
     public float getBaseOffset()
     {
-        return roomMap[app.getLevel()].mapEntry.baseOffset;
+        return roomMap[App.getLevel()].mapEntry.baseOffset;
     }
 
     public float getFireRate()
     {
-        return roomMap[app.getLevel()].mapEntry.fireRate;
+        return roomMap[App.getLevel()].mapEntry.fireRate;
     }
 
     private int calculateEntityCount(int initialValue)
     {
         if (initialValue > 0)
         {
-            return (int) ((float) initialValue * app.gameProgress.getGameDifficulty());
+            return (int) ((float) initialValue * App.gameProgress.getGameDifficulty());
         }
 
         return initialValue;
@@ -284,7 +280,7 @@ public class RoomManager
     {
         int index;
 
-        if ((index = app.getLevel()) > roomMap.length)
+        if ((index = App.getLevel()) > roomMap.length)
         {
             index = roomMap.length - 1;
         }
@@ -294,7 +290,7 @@ public class RoomManager
 
     public String getMapNameWithPath()
     {
-        return _MAPS_PATH + roomMap[app.getLevel()].roomName;
+        return _MAPS_PATH + roomMap[App.getLevel()].roomName;
     }
 
     @NotNull
@@ -307,7 +303,7 @@ public class RoomManager
     {
         SimpleVec2 position = new SimpleVec2();
 
-        for (SpriteDescriptor tile : app.mapData.placementTiles)
+        for (SpriteDescriptor tile : App.mapData.placementTiles)
         {
             if (tile._GID.equals(GraphicID.G_PLAYER))
             {

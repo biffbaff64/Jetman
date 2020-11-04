@@ -20,7 +20,6 @@ import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.utilslib.developer.DebugRenderer;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.misc.HighScoreUtils;
@@ -29,11 +28,8 @@ import com.richikin.utilslib.states.StateManager;
 
 public class Startup
 {
-    private final App app;
-
-    public Startup(App _app)
+    public Startup()
     {
-        this.app = _app;
     }
 
     public void startApp()
@@ -44,66 +40,65 @@ public class Startup
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Trace.__FILE_FUNC_WithDivider();
 
-        app.appState = new StateManager(StateID._STATE_POWER_UP);
+        App.appState = new StateManager(StateID._STATE_POWER_UP);
 
-        app.settings = new Settings();
-        app.settings.initialise();
+        App.settings = new Settings();
+        App.settings.initialise();
 
-        app.assets = new AssetLoader();
-        app.spriteBatch = new SpriteBatch();
+        App.assets = new AssetLoader();
+        App.spriteBatch = new SpriteBatch();
 
-        AppConfig.setup(app);
+        AppConfig.setup();
         AppConfig.freshInstallCheck();
 
         Gfx.setPPM(32.0f);
 
         if (AppConfig.isAndroidApp())
         {
-            app.googleServices.setup(app);
-            app.googleServices.createApiClient();
+            App.googleServices.setup();
+            App.googleServices.createApiClient();
         }
 
-        app.cameraUtils    = new CameraUtils(app);
-        app.worldModel     = new WorldModel(app);
-        app.baseRenderer   = new BaseRenderer(app);
+        App.cameraUtils    = new CameraUtils();
+        App.worldModel     = new WorldModel();
+        App.baseRenderer   = new BaseRenderer();
 
         //
         // This needs setting here as InputManager needs access to it.
-        app.stage = new Stage(app.baseRenderer.hudGameCamera.viewport, app.spriteBatch);
+        App.stage = new Stage(App.baseRenderer.hudGameCamera.viewport, App.spriteBatch);
 
-        app.inputManager   = new InputManager(app);
-        app.panelManager   = new PanelManager(app);
+        App.inputManager   = new InputManager();
+        App.panelManager   = new PanelManager();
 
-        app.highScoreUtils = new HighScoreUtils();
+        App.highScoreUtils = new HighScoreUtils();
 
         //
         // TODO: 19/08/2020
         // These objects should really be initialised when moving
         // from MainMenuScreen to MainGameScreen.
-        app.mapCreator     = new MapCreator(app);
-        app.entityData     = new EntityData();
-        app.mapData        = new MapData(app);
-        app.mapUtils       = new MapUtils(app);
-        app.gameProgress   = new GameProgress(app);
-        app.mainMenuScreen = new MainMenuScreen(app);
-        app.mainGameScreen = new MainGameScreen(app);
+        App.mapCreator     = new MapCreator();
+        App.entityData     = new EntityData();
+        App.mapData        = new MapData();
+        App.mapUtils       = new MapUtils();
+        App.gameProgress   = new GameProgress();
+        App.mainMenuScreen = new MainMenuScreen();
+        App.mainGameScreen = new MainGameScreen();
 
-        GameAudio.setup(app);
+        GameAudio.setup();
         Shake.setAllowed(false);
-        DebugRenderer.setup(app);
 
         Trace.divider();
     }
 
     public void closeStartup()
     {
-        if (Developer.isDevMode() && app.settings.isEnabled(Settings._DISABLE_MENU_SCREEN))
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._DISABLE_MENU_SCREEN))
         {
-            app.setScreen(app.mainGameScreen);
+            App.mainGame.setScreen(App.mainGameScreen);
         }
         else
         {
-            app.setScreen(app.mainMenuScreen);
+            App.mainGame.setScreen(App.mainMenuScreen);
         }
     }
 }

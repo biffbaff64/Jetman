@@ -142,16 +142,9 @@ public class TeleportBeam implements Disposable
     private SimpleVec2F[] positions;
 
     private       int[] colorIndex;
-    private final App   app;
 
-    /**
-     * Constructor
-     *
-     * @param _app an instance of the {@link App}
-     */
-    public TeleportBeam(App _app)
+    public TeleportBeam()
     {
-        this.app = _app;
     }
 
     public void entryVisual()
@@ -172,13 +165,13 @@ public class TeleportBeam implements Disposable
         positions   = new SimpleVec2F[beams.length];
         colorIndex  = new int[beams.length];
 
-        TextureRegion textureRegion = app.assets.getAnimationRegion("verticalblueflare");
+        TextureRegion textureRegion = App.assets.getAnimationRegion("verticalblueflare");
 
         int frameWidth  = textureRegion.getRegionWidth();
         int frameHeight = textureRegion.getRegionHeight();
 
-        float originX = (app.baseRenderer.spriteGameCamera.camera.position.x - Gfx._VIEW_HALF_WIDTH);
-        float originY = (app.baseRenderer.spriteGameCamera.camera.position.y - Gfx._VIEW_HALF_HEIGHT);
+        float originX = (App.baseRenderer.spriteGameCamera.camera.position.x - Gfx._VIEW_HALF_WIDTH);
+        float originY = (App.baseRenderer.spriteGameCamera.camera.position.y - Gfx._VIEW_HALF_HEIGHT);
 
         for (int i = 0; i < beams.length; i++)
         {
@@ -190,7 +183,7 @@ public class TeleportBeam implements Disposable
             directions[i] = new SimpleVec2(beams[i].direction);
             distances[i]  = new SimpleVec2(beams[i].distance);
 
-            int startXPos = (int) (app.getPlayer().sprite.getX() - originX);
+            int startXPos = (int) (App.getPlayer().sprite.getX() - originX);
 
             positions[i] = new SimpleVec2F
                 (

@@ -5,8 +5,8 @@ import com.richikin.enumslib.GraphicID;
 
 public class TopSpin extends TeleportThief
 {
-    public TopSpin(App _app)
+    public TopSpin()
     {
-        super(GraphicID.G_TOPSPIN, _app);
+        super(GraphicID.G_TOPSPIN);
     }
 }
