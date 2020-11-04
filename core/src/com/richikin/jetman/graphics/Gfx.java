@@ -1,6 +1,6 @@
 package com.richikin.jetman.graphics;
 
-import com.richikin.jetman.config.AppConfig;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.graphics.LibGfx;
 
 public class Gfx extends LibGfx
@@ -44,7 +44,7 @@ public class Gfx extends LibGfx
 
     public static void setPPM(final float newPPM)
     {
-        if (!AppConfig.camerasReady)
+        if (!AppSystem.camerasReady)
         {
             if (newPPM != _PPM)
             {

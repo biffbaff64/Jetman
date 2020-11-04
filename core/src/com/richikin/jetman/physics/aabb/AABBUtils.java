@@ -1,4 +1,4 @@
-package com.richikin.utilslib.physics.aabb;
+package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.math.Intersector;
 import com.richikin.jetman.entities.objects.GameEntity;

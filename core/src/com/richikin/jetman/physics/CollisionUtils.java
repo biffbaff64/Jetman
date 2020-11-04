@@ -1,5 +1,6 @@
 package com.richikin.jetman.physics;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
@@ -65,6 +66,42 @@ public class CollisionUtils implements ICollideUtils, Disposable
     public CollisionObject newObject(int x, int y, int width, int height, GraphicID graphicID)
     {
         return new CollisionObject(x, y, width, height, graphicID);
+    }
+
+    public boolean isTouchingAnother(int parentIndex)
+    {
+        boolean isTouching = false;
+
+        for (CollisionObject object : AABBData.boxes())
+        {
+            if (object.index != parentIndex)
+            {
+                if (Intersector.overlaps(AABBData.boxes().get(parentIndex).rectangle, object.rectangle))
+                {
+                    isTouching = true;
+                }
+            }
+        }
+
+        return isTouching;
+    }
+
+    public boolean isTouchingAnEntity(int parentIndex)
+    {
+        boolean isTouching = false;
+
+        for (CollisionObject object : AABBData.boxes())
+        {
+            if ((object.index != parentIndex) && !object.isObstacle)
+            {
+                if (Intersector.overlaps(AABBData.boxes().get(parentIndex).rectangle, object.rectangle))
+                {
+                    isTouching = true;
+                }
+            }
+        }
+
+        return isTouching;
     }
 
     /**

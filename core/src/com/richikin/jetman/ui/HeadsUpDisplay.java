@@ -20,6 +20,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.utilslib.developer.Developer;
@@ -130,7 +131,7 @@ public class HeadsUpDisplay implements Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppConfig.hudExists = false;
+        AppSystem.hudExists = false;
 
         scorePanel                = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
@@ -166,7 +167,7 @@ public class HeadsUpDisplay implements Disposable
 
         stateID = StateID._STATE_PANEL_START;
 
-        AppConfig.hudExists = true;
+        AppSystem.hudExists = true;
     }
 
     public void update()
@@ -371,7 +372,7 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateDeveloperItems()
     {
-        if (Developer.isDevMode() && !AppConfig.gamePaused)
+        if (Developer.isDevMode() && !AppSystem.gamePaused)
         {
             // DevOptions button which activates the Dev Settings panel
             if ((buttonDevOptions != null) && buttonDevOptions.isPressed() && !Developer.developerPanelActive)
@@ -387,7 +388,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void render(OrthographicCamera camera, boolean _canDrawControls)
     {
-        if (AppConfig.hudExists)
+        if (AppSystem.hudExists)
         {
             originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
@@ -422,7 +423,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void showControls()
     {
-        if (AppConfig.availableInputs.contains(com.richikin.utilslib.input.controllers.ControllerType._VIRTUAL, true))
+        if (AppSystem.availableInputs.contains(com.richikin.utilslib.input.controllers.ControllerType._VIRTUAL, true))
         {
             ActionButton.addAction(Actions.show());
             AttackButton.addAction(Actions.show());
@@ -446,7 +447,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void hideControls()
     {
-        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             ActionButton.addAction(Actions.hide());
             AttackButton.addAction(Actions.hide());
@@ -581,7 +582,7 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawControls(OrthographicCamera camera)
     {
-        if (!AppConfig.gamePaused)
+        if (!AppSystem.gamePaused)
         {
             if (showHUDControls)
             {
@@ -620,7 +621,7 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawMessages()
     {
-        if (!AppConfig.gamePaused)
+        if (!AppSystem.gamePaused)
         {
             if (messageManager.isEnabled())
             {
@@ -647,7 +648,7 @@ public class HeadsUpDisplay implements Disposable
 
         buttonPause = new Switch();
 
-        int xPos = AppConfig.virtualControllerPos == com.richikin.utilslib.input.controllers.ControllerPos._LEFT ? _X1 : _X2;
+        int xPos = AppSystem.virtualControllerPos == com.richikin.utilslib.input.controllers.ControllerPos._LEFT ? _X1 : _X2;
 
         buttonAction = new Switch();
         buttonAttack = new Switch();
@@ -677,7 +678,7 @@ public class HeadsUpDisplay implements Disposable
 
         hideControls();
 
-        AppConfig.gameButtonsReady = true;
+        AppSystem.gameButtonsReady = true;
 
         ActionButton.addListener(new ClickListener()
         {

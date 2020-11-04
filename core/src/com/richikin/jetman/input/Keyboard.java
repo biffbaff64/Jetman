@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.core.AppSystem;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.physics.Direction;
@@ -83,7 +83,7 @@ public class Keyboard extends InputAdapter
             }
         }
 
-        if (AppConfig.isDesktopApp())
+        if (AppSystem.isDesktopApp())
         {
             if (AppConfig.gameScreenActive())
             {
@@ -309,7 +309,7 @@ public class Keyboard extends InputAdapter
             }
         }
 
-        if (AppConfig.isDesktopApp())
+        if (AppSystem.isDesktopApp())
         {
             if (AppConfig.gameScreenActive())
             {
@@ -331,7 +331,7 @@ public class Keyboard extends InputAdapter
 
         boolean returnFlag = false;
 
-        if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
+        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
         {
             returnFlag = App.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
         }
@@ -355,7 +355,7 @@ public class Keyboard extends InputAdapter
 
         boolean returnFlag = false;
 
-        if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
+        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
         {
             returnFlag = App.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
         }

@@ -2,6 +2,7 @@
 package com.richikin.jetman.config;
 
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.logging.Trace;
 
 /**
@@ -52,7 +53,7 @@ public final class Version
         Trace.divider(80);
 
         Trace.dbg(getDisplayVersion());
-        if (AppConfig.isAndroidApp())
+        if (AppSystem.isAndroidApp())
         {
             Trace.dbg("Signed in to Google?: " + App.googleServices.isSignedIn());
         }

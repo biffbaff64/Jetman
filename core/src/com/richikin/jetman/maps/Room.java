@@ -1,7 +1,5 @@
 
-package com.richikin.utilslib.maps;
-
-import com.richikin.jetman.maps.MapEntry;
+package com.richikin.jetman.maps;
 
 public class Room
 {

@@ -10,7 +10,6 @@ import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maps.ObjectTileProperties;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.jetman.physics.aabb.AABBData;
@@ -66,7 +65,7 @@ public class MapCreator
                         {
                             if (descriptor._GID != GraphicID.G_NO_ID)
                             {
-                                com.richikin.utilslib.maps.ObjectTileProperties properties = setObjectTileProperties(descriptor);
+                                ObjectTileProperties properties = setObjectTileProperties(descriptor);
 
                                 createPlacementTile(mapObject, descriptor, properties);
                             }
@@ -77,7 +76,7 @@ public class MapCreator
         }
     }
 
-    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, com.richikin.utilslib.maps.ObjectTileProperties _properties)
+    private void createPlacementTile(MapObject _mapObject, SpriteDescriptor _descriptor, ObjectTileProperties _properties)
     {
         SpriteDescriptor markerTile = new SpriteDescriptor();
 
@@ -241,7 +240,7 @@ public class MapCreator
         }
     }
 
-    private com.richikin.utilslib.maps.ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
+    private ObjectTileProperties setObjectTileProperties(SpriteDescriptor _descriptor)
     {
         // TODO: 13/08/2020 - set properties based on the type of entity passed.
         // eg: The entity might have an initial direction and speed...

@@ -361,8 +361,8 @@ public class OptionsPage implements IUIPage
 //        Sfx.inst().setMusicVolume((int) musicSlider.getValue());
 //        Sfx.inst().setFXVolume((int) fxSlider.getValue());
 
-        App.settings.prefs.putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
-        App.settings.prefs.flush();
+        App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
+        App.settings.getPrefs().flush();
     }
 
     /**

@@ -4,13 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.effects.StarField;
 import com.richikin.jetman.ui.ExitPanel;
-import com.richikin.utilslib.core.AppSystem;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.Trace;
@@ -60,7 +59,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         panels.add(_CREDITS_PAGE, new CreditsPage());
         panels.add(_OPTIONS_PAGE, optionsPage);
 
-        if (AppConfig.isAndroidApp())
+        if (AppSystem.isAndroidApp())
         {
             App.googleServices.signInSilently();
         }
@@ -133,7 +132,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     if (option == exitPanel._YES_PRESSED)
                     {
                         exitPanel.dispose();
-                        AppConfig.shutDownActive = true;
+                        AppSystem.shutDownActive = true;
 
                         Gdx.app.exit();
                     }
@@ -290,7 +289,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        AppConfig.currentScreenID = ScreenID._MAIN_MENU;
+        AppSystem.currentScreenID = ScreenID._MAIN_MENU;
         App.appState.set(StateID._STATE_MAIN_MENU);
 
         super.show();

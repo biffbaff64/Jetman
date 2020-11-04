@@ -2,8 +2,8 @@
 package com.richikin.jetman.input;
 
 import com.badlogic.gdx.math.Vector2;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class InputUtils
@@ -25,6 +25,6 @@ public class InputUtils
 
     public static boolean isInputAvailable(ControllerType _inputType)
     {
-        return AppConfig.availableInputs.contains(_inputType, true);
+        return AppSystem.availableInputs.contains(_inputType, true);
     }
 }

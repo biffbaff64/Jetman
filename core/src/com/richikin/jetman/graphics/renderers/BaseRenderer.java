@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
@@ -48,7 +49,7 @@ public class BaseRenderer implements Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppConfig.camerasReady = false;
+        AppSystem.camerasReady = false;
 
         // --------------------------------------
         // Camera for parallax scrolling backgrounds
@@ -98,7 +99,7 @@ public class BaseRenderer implements Disposable
         cameraPos     = new SimpleVec3F();
 
         isDrawingStage         = false;
-        AppConfig.camerasReady = true;
+        AppSystem.camerasReady = true;
     }
 
     /**

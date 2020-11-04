@@ -11,6 +11,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.CameraUtils;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
@@ -53,7 +54,7 @@ public class Startup
 
         Gfx.setPPM(32.0f);
 
-        if (AppConfig.isAndroidApp())
+        if (AppSystem.isAndroidApp())
         {
             App.googleServices.setup();
             App.googleServices.createApiClient();

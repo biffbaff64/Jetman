@@ -3,7 +3,6 @@ package com.richikin.jetman.maps;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maps.Room;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.Trace;
 import org.jetbrains.annotations.NotNull;
@@ -15,12 +14,12 @@ public class RoomManager
 
     private static final String _MAPS_PATH = "data/maps/";
 
-    private final com.richikin.utilslib.maps.Room[] roomMap =
+    private final Room[] roomMap =
         {
             null,
             // ####################################################################
             // Test Level
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -31,7 +30,7 @@ public class RoomManager
                         )
                 ),
             // ####################################################################
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -41,7 +40,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -51,7 +50,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -61,7 +60,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -71,7 +70,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -81,7 +80,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 1
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -91,7 +90,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -101,7 +100,7 @@ public class RoomManager
                             0, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -111,7 +110,7 @@ public class RoomManager
                             1, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry
@@ -121,7 +120,7 @@ public class RoomManager
                             2, 0, 0, 0, 0, 0
                         )
                 ),
-            new com.richikin.utilslib.maps.Room
+            new Room
                 (
                     "level1.tmx",
                     new MapEntry

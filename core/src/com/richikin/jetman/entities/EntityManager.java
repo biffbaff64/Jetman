@@ -1,11 +1,11 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -73,7 +73,7 @@ public class EntityManager implements IEntityManager
     @Override
     public void updateSprites()
     {
-        if (isEntityUpdateAllowed() && !AppConfig.gamePaused)
+        if (isEntityUpdateAllowed() && !AppSystem.gamePaused)
         {
             GdxSprite entity;
 
@@ -308,7 +308,7 @@ public class EntityManager implements IEntityManager
     @Override
     public boolean isEntityUpdateAllowed()
     {
-        return (AppConfig.entitiesExist && !AppConfig.quitToMainMenu);
+        return (AppSystem.entitiesExist && !AppSystem.quitToMainMenu);
     }
 
     private void initialiseManagerList()
@@ -329,7 +329,7 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        AppConfig.entitiesExist = false;
+        AppSystem.entitiesExist = false;
 
         playerManager = new PlayerManager();
         playerManager.setSpawnPoint();
@@ -345,7 +345,7 @@ public class EntityManager implements IEntityManager
             system.init();
         }
 
-        AppConfig.entitiesExist = true;
+        AppSystem.entitiesExist = true;
     }
 
     public void addBackgroundEntities()

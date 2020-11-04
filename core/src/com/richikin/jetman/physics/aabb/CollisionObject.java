@@ -16,7 +16,6 @@
 
 package com.richikin.jetman.physics.aabb;
 
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.utilslib.physics.aabb.CollisionRect;
@@ -41,7 +40,7 @@ public class CollisionObject implements Disposable
     public GraphicID    gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
     public GraphicID                                        contactGid;        // ID of contact object
-    public com.richikin.utilslib.physics.aabb.CollisionRect rectangle;         // The actual collision rectangle
+    public CollisionRect rectangle;         // The actual collision rectangle
     public GameEntity                                       parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
@@ -113,42 +112,6 @@ public class CollisionObject implements Disposable
     public void kill()
     {
         action = ActionStates._DEAD;
-    }
-
-    public boolean isTouchingAnother(int parentIndex)
-    {
-        boolean isTouching = false;
-
-        for (CollisionObject object : AABBData.boxes())
-        {
-            if (object.index != parentIndex)
-            {
-                if (Intersector.overlaps(this.rectangle, object.rectangle))
-                {
-                    isTouching = true;
-                }
-            }
-        }
-
-        return isTouching;
-    }
-
-    public boolean isTouchingAnEntity(int parentIndex)
-    {
-        boolean isTouching = false;
-
-        for (CollisionObject object : AABBData.boxes())
-        {
-            if ((object.index != parentIndex) && !object.isObstacle)
-            {
-                if (Intersector.overlaps(this.rectangle, object.rectangle))
-                {
-                    isTouching = true;
-                }
-            }
-        }
-
-        return isTouching;
     }
 
     public void clearCollision()

@@ -1,30 +1,24 @@
 package com.richikin.jetman.config;
 
-import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.LibAppConfig;
-import com.richikin.utilslib.core.AppSystem;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.states.StateID;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.utilslib.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
-public class AppConfig extends LibAppConfig
+public class AppConfig
 {
-    // =================================================================
-    //
     public static final String _PREFS_FILE_NAME = "com.richikin.jetman.preferences";
-
-    // =================================================================
-    //
 
     public static void setup()
     {
         Trace.__FILE_FUNC();
+
+        AppSystem.initialise();
 
         App.settings.enable(Settings._ANDROID_ON_DESKTOP);
 
@@ -39,8 +33,8 @@ public class AppConfig extends LibAppConfig
         if (Developer.isDevMode())
         {
             Trace.divider();
-            Trace.dbg("Android App         : " + isAndroidApp());
-            Trace.dbg("Desktop App         : " + isDesktopApp());
+            Trace.dbg("Android App         : " + AppSystem.isAndroidApp());
+            Trace.dbg("Desktop App         : " + AppSystem.isDesktopApp());
             Trace.dbg("Android On Desktop  : " + Developer.isAndroidOnDesktop());
             Trace.divider();
             Trace.dbg("isDevMode()         : " + Developer.isDevMode());
@@ -53,19 +47,19 @@ public class AppConfig extends LibAppConfig
             Trace.dbg("_HUD_WIDTH          : " + Gfx._HUD_WIDTH);
             Trace.dbg("_HUD_HEIGHT         : " + Gfx._HUD_HEIGHT);
             Trace.divider();
-            Trace.dbg("_VIRTUAL?           : " + availableInputs.contains(ControllerType._VIRTUAL, true));
-            Trace.dbg("_EXTERNAL?          : " + availableInputs.contains(ControllerType._EXTERNAL, true));
-            Trace.dbg("_KEYBOARD?          : " + availableInputs.contains(ControllerType._KEYBOARD, true));
-            Trace.dbg("controllerPos       : " + virtualControllerPos);
-            Trace.dbg("controllersFitted   : " + controllersFitted);
-            Trace.dbg("usedController      : " + usedController);
+            Trace.dbg("_VIRTUAL?           : " + AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true));
+            Trace.dbg("_EXTERNAL?          : " + AppSystem.availableInputs.contains(ControllerType._EXTERNAL, true));
+            Trace.dbg("_KEYBOARD?          : " + AppSystem.availableInputs.contains(ControllerType._KEYBOARD, true));
+            Trace.dbg("controllerPos       : " + AppSystem.virtualControllerPos);
+            Trace.dbg("controllersFitted   : " + AppSystem.controllersFitted);
+            Trace.dbg("usedController      : " + AppSystem.usedController);
             Trace.divider();
         }
     }
 
     public static boolean gameScreenActive()
     {
-        return currentScreenID == ScreenID._GAME_SCREEN;
+        return AppSystem.currentScreenID == ScreenID._GAME_SCREEN;
     }
 
     public static void freshInstallCheck()
@@ -93,7 +87,7 @@ public class AppConfig extends LibAppConfig
     {
         App.appState.set(StateID._STATE_PAUSED);
         App.getHud().hudStateID = StateID._STATE_PAUSED;
-        gamePaused              = true;
+        AppSystem.gamePaused    = true;
     }
 
     /**
@@ -103,6 +97,6 @@ public class AppConfig extends LibAppConfig
     {
         App.appState.set(StateID._STATE_GAME);
         App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
-        gamePaused              = false;
+        AppSystem.gamePaused    = false;
     }
 }

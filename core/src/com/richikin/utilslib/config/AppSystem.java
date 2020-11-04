@@ -4,14 +4,16 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.utilslib.core.AppSystem;
 import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Stats;
 
-public class LibAppConfig
+public class AppSystem
 {
+    public static Switch                fullScreenButton;
+    public static Switch                systemBackButton;
     public static boolean               quitToMainMenu;             // Game over, back to menu screen
     public static boolean               forceQuitToMenu;            // Quit to main menu, forced via pause mode for example.
     public static boolean               gamePaused;                 // TRUE / FALSE Game Paused flag
@@ -28,37 +30,39 @@ public class LibAppConfig
 
     public static void initialise()
     {
-        quitToMainMenu    = false;
-        forceQuitToMenu   = false;
-        gamePaused        = false;
-        camerasReady      = false;
-        shutDownActive    = false;
-        entitiesExist     = false;
-        hudExists         = false;
-        controllersFitted = false;
-        gameButtonsReady  = false;
-        usedController    = "None";
+        AppSystem.quitToMainMenu    = false;
+        AppSystem.forceQuitToMenu   = false;
+        AppSystem.gamePaused        = false;
+        AppSystem.camerasReady      = false;
+        AppSystem.shutDownActive    = false;
+        AppSystem.entitiesExist     = false;
+        AppSystem.hudExists         = false;
+        AppSystem.controllersFitted = false;
+        AppSystem.gameButtonsReady  = false;
+        AppSystem.usedController    = "None";
 
-        availableInputs = new Array<>();
+        AppSystem.availableInputs = new Array<>();
 
         Developer.setMode();
 
-        if (isAndroidApp() || Developer.isAndroidOnDesktop())
+        if (AppSystem.isAndroidApp() || Developer.isAndroidOnDesktop())
         {
-            availableInputs.add(ControllerType._VIRTUAL);
+            AppSystem.availableInputs.add(ControllerType._VIRTUAL);
 
-            virtualControllerPos = ControllerPos._LEFT;
+            AppSystem.virtualControllerPos = ControllerPos._LEFT;
         }
         else
         {
-            availableInputs.add(ControllerType._EXTERNAL);
-            availableInputs.add(ControllerType._KEYBOARD);
+            AppSystem.availableInputs.add(ControllerType._EXTERNAL);
+            AppSystem.availableInputs.add(ControllerType._KEYBOARD);
 
-            virtualControllerPos = ControllerPos._HIDDEN;
+            AppSystem.virtualControllerPos = ControllerPos._HIDDEN;
         }
 
         Stats.setup();
-        AppSystem.initialise();
+
+        fullScreenButton = new Switch();
+        systemBackButton = new Switch();
     }
 
     /**

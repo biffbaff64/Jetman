@@ -4,7 +4,7 @@ package com.richikin.utilslib.pooling;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.LibApp;
+import com.richikin.utilslib.core.LibApp;
 
 public class PolygonCollisionObjectPool<T>
 {

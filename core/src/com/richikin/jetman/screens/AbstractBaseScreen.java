@@ -73,7 +73,7 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
     @Override
     public void pause()
     {
-        App.settings.prefs.flush();
+        App.settings.getPrefs().flush();
     }
 
     @Override

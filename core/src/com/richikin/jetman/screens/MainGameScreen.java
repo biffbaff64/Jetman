@@ -1,8 +1,8 @@
 package com.richikin.jetman.screens;
 
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.*;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.ui.GameCompletedPanel;
 import com.richikin.utilslib.input.controllers.ControllerType;
@@ -46,7 +46,7 @@ public class MainGameScreen extends AbstractBaseScreen
             Trace.__FILE_FUNC("NEW GAME:");
             Trace.__FILE_FUNC("_DEVMODE: " + Developer.isDevMode());
             Trace.__FILE_FUNC("_GODMODE: " + Developer.isGodMode());
-            Trace.__FILE_FUNC("prefs : " + App.settings.prefs);
+            Trace.__FILE_FUNC("prefs : " + App.settings.getPrefs());
             Trace.divider();
 
             endGameManager   = new EndgameManager();
@@ -59,7 +59,7 @@ public class MainGameScreen extends AbstractBaseScreen
             App.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
         }
 
-        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             App.inputManager.virtualJoystick.show();
         }
@@ -124,7 +124,7 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         firstTime = true;
         App.gameProgress.playerGameOver = false;
-        AppConfig.gamePaused = false;
+        AppSystem.gamePaused            = false;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         super.show();
 
-        AppConfig.currentScreenID = ScreenID._GAME_SCREEN;
+        AppSystem.currentScreenID = ScreenID._GAME_SCREEN;
         App.cameraUtils.disableAllCameras();
 
         initialise();

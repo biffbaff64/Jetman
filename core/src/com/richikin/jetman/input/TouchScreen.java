@@ -1,8 +1,7 @@
 
 package com.richikin.jetman.input;
 
-import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.core.App;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class TouchScreen
@@ -25,9 +24,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (!AppConfig.gamePaused)
+        if (!AppSystem.gamePaused)
         {
-            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+            if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
 //                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {
@@ -50,9 +49,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (!AppConfig.gamePaused)
+        if (!AppSystem.gamePaused)
         {
-            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+            if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
 //                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {

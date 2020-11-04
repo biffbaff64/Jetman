@@ -1,7 +1,6 @@
 package com.richikin.jetman.core;
 
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
 import com.richikin.jetman.entities.paths.PathUtils;
@@ -9,6 +8,7 @@ import com.richikin.jetman.maps.RoomManager;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.ui.HeadsUpDisplay;
+import com.richikin.utilslib.config.AppSystem;
 import com.richikin.utilslib.logging.Trace;
 
 public class LevelManager
@@ -38,9 +38,9 @@ public class LevelManager
             App.gameProgress.resetProgress();
         }
 
-        AppConfig.gamePaused      = false;
-        AppConfig.quitToMainMenu  = false;
-        AppConfig.forceQuitToMenu = false;
+        AppSystem.gamePaused      = false;
+        AppSystem.quitToMainMenu  = false;
+        AppSystem.forceQuitToMenu = false;
 
         App.gameProgress.isRestarting   = false;
         App.gameProgress.levelCompleted = false;

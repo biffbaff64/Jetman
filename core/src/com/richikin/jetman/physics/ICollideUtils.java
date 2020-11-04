@@ -30,11 +30,11 @@ public interface ICollideUtils
 
     int getYBelow(GdxSprite spriteObj);
 
-//    CollisionObject getBoxHittingTop(GdxSprite spriteObject);
-//
-//    CollisionObject getBoxHittingBottom(GdxSprite spriteObject);
-//
-//    CollisionObject getBoxHittingLeft(GdxSprite spriteObject);
-//
-//    CollisionObject getBoxHittingRight(GdxSprite spriteObject);
+    CollisionObject getBoxHittingTop(GdxSprite spriteObject);
+
+    CollisionObject getBoxHittingBottom(GdxSprite spriteObject);
+
+    CollisionObject getBoxHittingLeft(GdxSprite spriteObject);
+
+    CollisionObject getBoxHittingRight(GdxSprite spriteObject);
 }
