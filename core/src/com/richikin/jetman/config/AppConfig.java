@@ -18,17 +18,18 @@ public class AppConfig
     {
         Trace.__FILE_FUNC();
 
+        Developer.setMode();
+
+        // ------------------------------------------------
+        Developer.setAndroidOnDesktop(true);
+        Developer.setGodMode(true);
+
+        App.settings.enable(Settings._DISABLE_MENU_SCREEN);
+        App.settings.disable(Settings._SPRITE_BOXES);
+        App.settings.disable(Settings._TILE_BOXES);
+        // ------------------------------------------------
+
         AppSystem.initialise();
-
-        App.settings.enable(Settings._ANDROID_ON_DESKTOP);
-
-        if (Developer.isDevMode())
-        {
-            App.settings.enable(Settings._GOD_MODE);
-            App.settings.disable(Settings._DISABLE_MENU_SCREEN);
-            App.settings.disable(Settings._SPRITE_BOXES);
-            App.settings.disable(Settings._TILE_BOXES);
-        }
 
         if (Developer.isDevMode())
         {

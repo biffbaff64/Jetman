@@ -14,22 +14,25 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.input.*;
+import com.richikin.utilslib.core.HighScoreUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.utilslib.input.GameButtonRegion;
+import com.richikin.utilslib.input.IGDXButton;
+import com.richikin.utilslib.input.Switch;
+import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.core.HighScoreUtils;
-import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.ui.ProgressBar;
 
 import java.util.Locale;
@@ -92,7 +95,7 @@ public class HeadsUpDisplay implements Disposable
     public IGDXButton buttonX;
     public IGDXButton buttonY;
     public Switch     buttonPause;
-    public Switch    buttonDevOptions;
+    public Switch     buttonDevOptions;
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
@@ -423,7 +426,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void showControls()
     {
-        if (AppSystem.availableInputs.contains(com.richikin.utilslib.input.controllers.ControllerType._VIRTUAL, true))
+        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             ActionButton.addAction(Actions.show());
             AttackButton.addAction(Actions.show());
@@ -431,15 +434,12 @@ public class HeadsUpDisplay implements Disposable
             ActionButton.setVisible(true);
             AttackButton.setVisible(true);
 
+            getJoystick().show();
+
             if (App.inputManager.virtualJoystick != null)
             {
                 App.inputManager.virtualJoystick.show();
             }
-        }
-
-        if (Developer.isDevMode())
-        {
-            buttonDevOptions.setDrawable(true);
         }
 
         showHUDControls = true;
@@ -455,15 +455,12 @@ public class HeadsUpDisplay implements Disposable
             ActionButton.setVisible(false);
             AttackButton.setVisible(false);
 
+            getJoystick().hide();
+
             if (App.inputManager.virtualJoystick != null)
             {
                 App.inputManager.virtualJoystick.hide();
             }
-        }
-
-        if (Developer.isDevMode())
-        {
-            buttonDevOptions.setDrawable(true);
         }
 
         showHUDControls = false;
@@ -493,7 +490,7 @@ public class HeadsUpDisplay implements Disposable
         return App.inputManager.virtualJoystick;
     }
 
-    public com.richikin.utilslib.ui.ProgressBar getTimeBar()
+    public ProgressBar getTimeBar()
     {
         return timeBar;
     }
@@ -636,50 +633,54 @@ public class HeadsUpDisplay implements Disposable
      */
     private void createHUDButtons()
     {
-        Scene2DUtils.setup();
-
-        buttonUp    = new Switch();
-        buttonDown  = new Switch();
-        buttonLeft  = new Switch();
-        buttonRight = new Switch();
-
-        buttonX = new Switch();
-        buttonY = new Switch();
-
-        buttonPause = new Switch();
-
-        int xPos = AppSystem.virtualControllerPos == com.richikin.utilslib.input.controllers.ControllerPos._LEFT ? _X1 : _X2;
-
+        buttonUp     = new Switch();
+        buttonDown   = new Switch();
+        buttonLeft   = new Switch();
+        buttonRight  = new Switch();
+        buttonX      = new Switch();
+        buttonY      = new Switch();
+        buttonPause  = new Switch();
         buttonAction = new Switch();
         buttonAttack = new Switch();
 
-        ActionButton = Scene2DUtils.addButton
-            (
-                "button_a",
-                "button_a_pressed",
-                displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
-            );
-
-        AttackButton = Scene2DUtils.addButton
-            (
-                "button_b",
-                "button_b_pressed",
-                displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
-            );
-
-        if (Developer.isDevMode())
+        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            buttonDevOptions = new GameButtonRegion
+            Scene2DUtils.setup();
+
+            int xPos = AppSystem.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
+
+            ActionButton = Scene2DUtils.addButton
                 (
-                    displayPos[_DEV_OPTIONS][xPos], displayPos[_DEV_OPTIONS][_Y],
-                    displayPos[_DEV_OPTIONS][_WIDTH], displayPos[_DEV_OPTIONS][_HEIGHT]
+                    "button_a",
+                    "button_a_pressed",
+                    displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
                 );
+
+            AttackButton = Scene2DUtils.addButton
+                (
+                    "button_b",
+                    "button_b_pressed",
+                    displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
+                );
+
+            if (Developer.isDevMode())
+            {
+                buttonDevOptions = new GameButtonRegion
+                    (
+                        displayPos[_DEV_OPTIONS][xPos], displayPos[_DEV_OPTIONS][_Y],
+                        displayPos[_DEV_OPTIONS][_WIDTH], displayPos[_DEV_OPTIONS][_HEIGHT]
+                    );
+            }
+
+            addButtonListeners();
+            hideControls();
         }
 
-        hideControls();
-
         AppSystem.gameButtonsReady = true;
+    }
 
+    private void addButtonListeners()
+    {
         ActionButton.addListener(new ClickListener()
         {
             @Override
@@ -783,9 +784,9 @@ public class HeadsUpDisplay implements Disposable
     @Override
     public void dispose()
     {
-        buttonAction = null;
-        buttonAttack = null;
-        buttonPause  = null;
+        buttonAction     = null;
+        buttonAttack     = null;
+        buttonPause      = null;
         buttonDevOptions = null;
 
         messageManager = null;

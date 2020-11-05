@@ -23,7 +23,7 @@ import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.Bomb;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.maps.TileID;
+import com.richikin.enumslib.TileID;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;

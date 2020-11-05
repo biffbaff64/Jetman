@@ -49,8 +49,6 @@ public final class AppSystem
 
         availableInputs = new Array<>();
 
-        Developer.setMode();
-
         if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
             availableInputs.add(ControllerType._VIRTUAL);

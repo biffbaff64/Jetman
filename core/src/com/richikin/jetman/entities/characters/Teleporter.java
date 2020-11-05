@@ -3,20 +3,21 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 public class Teleporter extends GdxSprite
 {
-    public int          teleporterNumber;
-    public boolean      isCollected;
-    public GdxSprite    collector;
+    public boolean   hasPlayerInside;
+    public int       teleporterNumber;
+    public boolean   isCollected;
+    public GdxSprite collector;
 
     public Teleporter()
     {
@@ -32,9 +33,10 @@ public class Teleporter extends GdxSprite
 
         animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
-        isAnimating = true;
-        isCollected = false;
-        isDrawable  = true;
+        isAnimating     = true;
+        isCollected     = false;
+        isDrawable      = true;
+        hasPlayerInside = false;
 
         bodyCategory = Gfx.CAT_TELEPORTER;
         collidesWith = Gfx.CAT_PLAYER
@@ -75,7 +77,7 @@ public class Teleporter extends GdxSprite
             case _FALLING:
             {
                 isCollected = false;
-                collector = null;
+                collector   = null;
 
                 speed.y += 0.2f;
 
@@ -125,7 +127,7 @@ public class Teleporter extends GdxSprite
             {
                 if (getAction() == ActionStates._FALLING)
                 {
-                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getBomb()).gid;
+                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getTeleporter(teleporterNumber)).gid;
 
                     if (contactID == GraphicID._GROUND)
                     {
@@ -133,6 +135,14 @@ public class Teleporter extends GdxSprite
                         speed.setY(0);
                         setAction(ActionStates._STANDING);
                     }
+                }
+                else
+                {
+                    hasPlayerInside = collisionObject.rectangle.contains
+                                        (
+                                            App.getPlayer().sprite.getOriginX(),
+                                            App.getPlayer().sprite.getOriginY()
+                                        );
                 }
             }
 
@@ -146,5 +156,10 @@ public class Teleporter extends GdxSprite
             {
             }
         });
+    }
+
+    private void checkPlayerAtDoor()
+    {
+
     }
 }

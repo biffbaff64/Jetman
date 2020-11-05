@@ -3,7 +3,7 @@ package com.richikin.jetman.physics;
 import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.maps.TileID;
+import com.richikin.enumslib.TileID;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 
 public interface ICollideUtils

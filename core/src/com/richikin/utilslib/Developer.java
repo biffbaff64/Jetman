@@ -1,5 +1,8 @@
 package com.richikin.utilslib;
 
+import com.richikin.jetman.config.Settings;
+import com.richikin.jetman.core.App;
+
 public abstract class Developer
 {
     public static boolean developerPanelActive = false;
@@ -20,17 +23,17 @@ public abstract class Developer
         }
     }
 
-    public void setDevMode(boolean _state)
+    public static void setDevMode(boolean _state)
     {
         _DEVMODE = _state;
     }
 
-    public void setGodMode(boolean _state)
+    public static void setGodMode(boolean _state)
     {
         _GOD_MODE = _state;
     }
 
-    public void setAndroidOnDesktop(boolean _state)
+    public static void setAndroidOnDesktop(boolean _state)
     {
         _ANDROID_ON_DESKTOP = _state;
     }

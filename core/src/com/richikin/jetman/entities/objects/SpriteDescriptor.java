@@ -2,7 +2,7 @@ package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.maps.TileID;
+import com.richikin.enumslib.TileID;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
