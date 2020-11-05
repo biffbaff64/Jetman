@@ -1,10 +1,10 @@
 package com.richikin.jetman.core;
 
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.google.DummyAdsController;
 import com.richikin.utilslib.google.IPlayServices;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.enumslib.StateID;
 
 public class MainGame extends com.badlogic.gdx.Game
 {

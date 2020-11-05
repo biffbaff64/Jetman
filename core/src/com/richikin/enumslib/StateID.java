@@ -1,5 +1,5 @@
 
-package com.richikin.utilslib.states;
+package com.richikin.enumslib;
 
 public enum StateID
 {

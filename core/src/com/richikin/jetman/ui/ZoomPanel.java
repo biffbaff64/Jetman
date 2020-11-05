@@ -3,7 +3,7 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;

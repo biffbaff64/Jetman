@@ -1,4 +1,4 @@
-package com.richikin.utilslib.misc;
+package com.richikin.utilslib.core;
 
 public class HighScore
 {

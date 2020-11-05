@@ -13,9 +13,9 @@ import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.misc.HighScore;
-import com.richikin.utilslib.states.StateID;
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.utilslib.core.HighScore;
+import com.richikin.enumslib.StateID;
+import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.Locale;

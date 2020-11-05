@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.core.LibApp;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;

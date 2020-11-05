@@ -1,6 +1,6 @@
 package com.richikin.utilslib.core;
 
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.utilslib.logging.StateManager;
 
 public interface IControlLoop
 {

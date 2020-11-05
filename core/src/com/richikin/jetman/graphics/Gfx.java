@@ -1,6 +1,6 @@
 package com.richikin.jetman.graphics;
 
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.LibGfx;
 
 public class Gfx extends LibGfx

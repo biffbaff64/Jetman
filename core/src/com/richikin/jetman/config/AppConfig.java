@@ -1,12 +1,12 @@
 package com.richikin.jetman.config;
 
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.AppSystem;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.utilslib.AppSystem;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 

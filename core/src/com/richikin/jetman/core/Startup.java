@@ -11,7 +11,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.CameraUtils;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
@@ -21,11 +21,11 @@ import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.misc.HighScoreUtils;
-import com.richikin.utilslib.states.StateID;
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.utilslib.core.HighScoreUtils;
+import com.richikin.enumslib.StateID;
+import com.richikin.utilslib.logging.StateManager;
 
 public class Startup
 {

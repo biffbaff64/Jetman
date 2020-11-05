@@ -2,15 +2,15 @@ package com.richikin.jetman.screens;
 
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.*;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.jetman.ui.GameCompletedPanel;
 import com.richikin.utilslib.input.controllers.ControllerType;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.enumslib.StateID;
 
 public class MainGameScreen extends AbstractBaseScreen
 {
@@ -56,7 +56,7 @@ public class MainGameScreen extends AbstractBaseScreen
             gameControlLoop.initialise();
             App.levelManager.prepareNewGame();
 
-            App.appState.set(com.richikin.utilslib.states.StateID._STATE_SETUP);
+            App.appState.set(StateID._STATE_SETUP);
         }
 
         if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))

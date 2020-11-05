@@ -4,7 +4,7 @@ package com.richikin.utilslib.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.core.LibApp;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.maths.ItemF;
 import com.richikin.utilslib.logging.StopWatch;
 

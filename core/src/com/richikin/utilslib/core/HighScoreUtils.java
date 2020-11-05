@@ -1,4 +1,4 @@
-package com.richikin.utilslib.misc;
+package com.richikin.utilslib.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -173,7 +173,7 @@ public class HighScoreUtils
      */
     private void setDefaultHiscoreTable()
     {
-        HighScore[] defaultTable =
+        final HighScore[] defaultTable =
             {
                 new HighScore(11, 1, 0, "TABLE END"),
                 new HighScore(10, 1, 1000, "CHUCKY"),

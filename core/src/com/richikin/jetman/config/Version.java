@@ -2,7 +2,7 @@
 package com.richikin.jetman.config;
 
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.Trace;
 
 /**

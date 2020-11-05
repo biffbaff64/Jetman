@@ -8,7 +8,7 @@ import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.controllers.ControllerMap;
 import com.richikin.utilslib.input.controllers.ControllerPos;

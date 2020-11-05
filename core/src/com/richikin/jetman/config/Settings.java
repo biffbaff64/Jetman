@@ -3,8 +3,8 @@ package com.richikin.jetman.config;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.richikin.jetman.audio.AudioData;
-import com.richikin.utilslib.config.ISettings;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.core.ISettings;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 public class Settings implements ISettings

@@ -1,4 +1,4 @@
-package com.richikin.utilslib.config;
+package com.richikin.utilslib.core;
 
 public interface ISettings
 {

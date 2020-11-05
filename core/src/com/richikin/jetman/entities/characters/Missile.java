@@ -11,7 +11,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.graphics.camera.Shake;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 

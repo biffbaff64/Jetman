@@ -2,11 +2,11 @@ package com.richikin.jetman.core;
 
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.screens.MainGameScreen;
-import com.richikin.utilslib.config.AppSystem;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.AppSystem;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.states.StateID;
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.enumslib.StateID;
+import com.richikin.utilslib.logging.StateManager;
 
 import java.util.concurrent.TimeUnit;
 

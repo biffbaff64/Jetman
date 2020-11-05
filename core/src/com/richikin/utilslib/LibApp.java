@@ -1,14 +1,14 @@
-package com.richikin.utilslib.core;
+package com.richikin.utilslib;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.richikin.jetman.physics.CollisionUtils;
-import com.richikin.utilslib.assets.IAssets;
-import com.richikin.utilslib.config.ISettings;
+import com.richikin.utilslib.core.HighScoreUtils;
+import com.richikin.utilslib.graphics.IAssets;
+import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.google.IAdsController;
 import com.richikin.utilslib.google.IPlayServices;
-import com.richikin.utilslib.misc.HighScoreUtils;
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.utilslib.logging.StateManager;
 
 public abstract class LibApp
 {

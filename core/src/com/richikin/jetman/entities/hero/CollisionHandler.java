@@ -9,7 +9,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.AABBUtils;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 public class CollisionHandler implements ICollisionListener, Disposable

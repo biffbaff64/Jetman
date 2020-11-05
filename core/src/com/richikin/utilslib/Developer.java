@@ -1,11 +1,10 @@
-package com.richikin.utilslib.developer;
-
-import com.richikin.utilslib.config.AppSystem;
+package com.richikin.utilslib;
 
 public abstract class Developer
 {
     public static boolean developerPanelActive = false;
 
+    // TODO: 05/11/2020
     private static boolean _ANDROID_ON_DESKTOP = false;
     private static boolean _GOD_MODE = false;
     private static boolean _DEVMODE = false;

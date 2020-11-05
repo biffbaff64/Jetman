@@ -7,7 +7,7 @@ import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.Speed;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.ui.IUserInterfacePanel;
 
 public class PanelManager

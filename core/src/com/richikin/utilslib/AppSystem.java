@@ -1,19 +1,19 @@
-package com.richikin.utilslib.config;
+package com.richikin.utilslib;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.utilslib.developer.Developer;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Stats;
 
-public class AppSystem
+// TODO: 05/11/2020
+@SuppressWarnings("UtilityClassCanBeEnum")
+public final class AppSystem
 {
-    public static Switch                fullScreenButton;
-    public static Switch                systemBackButton;
     public static boolean               quitToMainMenu;             // Game over, back to menu screen
     public static boolean               forceQuitToMenu;            // Quit to main menu, forced via pause mode for example.
     public static boolean               gamePaused;                 // TRUE / FALSE Game Paused flag
@@ -27,36 +27,42 @@ public class AppSystem
     public static String                usedController;             // The name of the controller being used
     public static ControllerPos         virtualControllerPos;       // Virtual (on-screen) joystick position (LEFT or RIGHT)
     public static Array<ControllerType> availableInputs;            // ...
+    public static Switch                fullScreenButton;
+    public static Switch                systemBackButton;
+
+    private AppSystem()
+    {
+    }
 
     public static void initialise()
     {
-        AppSystem.quitToMainMenu    = false;
-        AppSystem.forceQuitToMenu   = false;
-        AppSystem.gamePaused        = false;
-        AppSystem.camerasReady      = false;
-        AppSystem.shutDownActive    = false;
-        AppSystem.entitiesExist     = false;
-        AppSystem.hudExists         = false;
-        AppSystem.controllersFitted = false;
-        AppSystem.gameButtonsReady  = false;
-        AppSystem.usedController    = "None";
+        quitToMainMenu    = false;
+        forceQuitToMenu   = false;
+        gamePaused        = false;
+        camerasReady      = false;
+        shutDownActive    = false;
+        entitiesExist     = false;
+        hudExists         = false;
+        controllersFitted = false;
+        gameButtonsReady  = false;
+        usedController    = "None";
 
-        AppSystem.availableInputs = new Array<>();
+        availableInputs = new Array<>();
 
         Developer.setMode();
 
-        if (AppSystem.isAndroidApp() || Developer.isAndroidOnDesktop())
+        if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
-            AppSystem.availableInputs.add(ControllerType._VIRTUAL);
+            availableInputs.add(ControllerType._VIRTUAL);
 
-            AppSystem.virtualControllerPos = ControllerPos._LEFT;
+            virtualControllerPos = ControllerPos._LEFT;
         }
         else
         {
-            AppSystem.availableInputs.add(ControllerType._EXTERNAL);
-            AppSystem.availableInputs.add(ControllerType._KEYBOARD);
+            availableInputs.add(ControllerType._EXTERNAL);
+            availableInputs.add(ControllerType._KEYBOARD);
 
-            AppSystem.virtualControllerPos = ControllerPos._HIDDEN;
+            virtualControllerPos = ControllerPos._HIDDEN;
         }
 
         Stats.setup();

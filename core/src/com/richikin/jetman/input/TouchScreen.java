@@ -1,7 +1,7 @@
 
 package com.richikin.jetman.input;
 
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class TouchScreen

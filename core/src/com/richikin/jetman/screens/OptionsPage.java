@@ -11,19 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.ui.InstructionsPanel;
-import com.richikin.jetman.ui.PrivacyPolicyPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.developer.Developer;
-import com.richikin.utilslib.input.controllers.ControllerPos;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.ui.IUIPage;
 
 @SuppressWarnings("WeakerAccess")

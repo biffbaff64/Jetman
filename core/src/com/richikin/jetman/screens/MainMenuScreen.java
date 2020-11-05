@@ -9,12 +9,12 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.effects.StarField;
 import com.richikin.jetman.ui.ExitPanel;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.states.StateID;
-import com.richikin.utilslib.states.StateManager;
+import com.richikin.enumslib.StateID;
+import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.ArrayList;

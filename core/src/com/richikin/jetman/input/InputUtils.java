@@ -3,7 +3,7 @@ package com.richikin.jetman.input;
 
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class InputUtils

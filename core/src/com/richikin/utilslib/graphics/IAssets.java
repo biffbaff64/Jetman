@@ -1,5 +1,5 @@
 
-package com.richikin.utilslib.assets;
+package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

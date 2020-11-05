@@ -7,7 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.config.AppSystem;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.controllers.ControllerType;

@@ -1,5 +1,5 @@
 
-package com.richikin.utilslib.misc;
+package com.richikin.utilslib.entities;
 
 public interface ILinker
 {

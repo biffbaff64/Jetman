@@ -3,7 +3,7 @@ package com.richikin.utilslib.ui;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.states.StateID;
+import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Speed;

@@ -1,4 +1,6 @@
-package com.richikin.utilslib.states;
+package com.richikin.utilslib.logging;
+
+import com.richikin.enumslib.StateID;
 
 import java.util.Stack;
 
