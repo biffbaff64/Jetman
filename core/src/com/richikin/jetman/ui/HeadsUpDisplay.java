@@ -529,7 +529,7 @@ public class HeadsUpDisplay implements Disposable
                 (originY + displayPos[_TIME_BAR][_Y])
             );
 
-        for (int i = 0; i < App.gameProgress.lives.getTotal(); i++)
+        for (int i = 0; i < App.gameProgress.getLives().getTotal(); i++)
         {
             App.spriteBatch.draw
                 (
@@ -547,7 +547,7 @@ public class HeadsUpDisplay implements Disposable
         bigFont.draw
             (
                 App.spriteBatch,
-                String.format(Locale.UK, "%06d", App.gameProgress.score.getTotal()),
+                String.format(Locale.UK, "%06d", App.gameProgress.getScore().getTotal()),
                 originX + 296,
                 originY + (720 - 4)
             );
@@ -727,7 +727,7 @@ public class HeadsUpDisplay implements Disposable
         {
             if (scoreStopwatch.time(TimeUnit.MILLISECONDS) > 50)
             {
-                App.gameProgress.score.add
+                App.gameProgress.getScore().add
                     (
                         MathUtils.random(100),
                         GameConstants._MAX_SCORE
@@ -738,7 +738,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (livesStopwatch.time(TimeUnit.MILLISECONDS) > 750)
             {
-                App.gameProgress.lives.subtract(1, GameConstants._MAX_LIVES);
+                App.gameProgress.getLives().subtract(1, GameConstants._MAX_LIVES);
 
                 livesStopwatch.reset();
             }

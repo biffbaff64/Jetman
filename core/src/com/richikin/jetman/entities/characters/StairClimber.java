@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -67,7 +68,7 @@ public class StairClimber extends GdxSprite
 
                 if (getAction() == ActionStates._KILLED)
                 {
-                    App.gameProgress.score.add(PointsManager.getPoints(gid));
+                    App.gameProgress.stackPush(GameProgress.Stack._SCORE, PointsManager.getPoints(gid));
                 }
 
                 setAction(ActionStates._EXPLODING);

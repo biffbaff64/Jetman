@@ -178,7 +178,7 @@ public class HiscorePage implements IUIPage, Disposable
 
         if (App.highScoreUtils.newHighScoreAvailable)
         {
-            highScore.score = App.gameProgress.score.getTotal();
+            highScore.score = App.gameProgress.getScore().getTotal();
             highScore.level = App.gameProgress.playerLevel;
             highScore.rank = App.highScoreUtils.findInsertLevel(highScore);
 

@@ -302,7 +302,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.baseRenderer.hudGameCamera.isInUse    = true;
         App.baseRenderer.isDrawingStage           = true;
 
-        currentPage = (App.highScoreUtils.canAddNewEntry(App.gameProgress.score)) ? _HISCORE_PAGE : _MENU_PAGE;
+        currentPage = (App.highScoreUtils.canAddNewEntry(App.gameProgress.getScore())) ? _HISCORE_PAGE : _MENU_PAGE;
 
         panels.get(currentPage).show();
 

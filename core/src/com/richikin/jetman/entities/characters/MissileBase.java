@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
@@ -101,7 +102,7 @@ public class MissileBase extends GdxSprite
 
                 App.gameProgress.baseDestroyed = true;
 
-                App.gameProgress.score.add(PointsManager.getPoints(gid));
+                App.gameProgress.stackPush(GameProgress.Stack._SCORE, PointsManager.getPoints(gid));
 
                 setAction(ActionStates._DEAD);
             }

@@ -20,15 +20,15 @@ public class GameProgress implements Disposable
     public boolean playerGameOver;
     public float   gameDiffculty;
 
-    public Item score;
-    public Item lives;
-
     public enum Stack
     {
         _SCORE,
         _TIME,
         _FUEL
     }
+
+    private final Item score;
+    private final Item lives;
 
     private int scoreStack;
     private int timeStack;
@@ -150,6 +150,16 @@ public class GameProgress implements Disposable
         playerLevel           = 1;
         playerGameOver        = false;
         gameDiffculty         = 1.0f;
+    }
+
+    public Item getScore()
+    {
+        return score;
+    }
+
+    public Item getLives()
+    {
+        return lives;
     }
 
     public void closeLastGame()

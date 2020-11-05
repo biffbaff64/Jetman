@@ -218,7 +218,7 @@ public class Rover extends GdxSprite
     {
         if (getAction() == ActionStates._DEAD)
         {
-            App.gameProgress.lives.setToMinimum();
+            App.gameProgress.getLives().setToMinimum();
         }
     }
 

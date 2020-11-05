@@ -355,15 +355,15 @@ public class MainPlayer extends GdxSprite
     {
         if (App.gameProgress.playerLifeOver)
         {
-            App.gameProgress.lives.setToMinimum();
+            App.gameProgress.getLives().setToMinimum();
         }
         else
         {
-            App.gameProgress.lives.subtract(1);
+            App.gameProgress.getLives().subtract(1);
         }
 
         // Restart if this player has more lives left...
-        if (App.gameProgress.lives.getTotal() > 0)
+        if (App.gameProgress.getLives().getTotal() > 0)
         {
             setAction(ActionStates._RESETTING);
             isDrawable = false;
@@ -382,7 +382,7 @@ public class MainPlayer extends GdxSprite
 
             if (App.gameProgress.playerLifeOver)
             {
-                App.gameProgress.lives.setToMinimum();
+                App.gameProgress.getLives().setToMinimum();
             }
         }
     }

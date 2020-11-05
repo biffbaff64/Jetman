@@ -171,7 +171,7 @@ public abstract class App extends LibApp
         }
         else
         {
-            lives = gameProgress.lives.getTotal();
+            lives = gameProgress.getLives().getTotal();
         }
 
         return lives;
