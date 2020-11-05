@@ -191,6 +191,8 @@ public class MainPlayer extends GdxSprite
         animate();
 
         updateCommon();
+
+        actionButton.update();
     }
 
     private void updateMainPlayer()

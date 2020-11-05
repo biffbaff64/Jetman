@@ -130,16 +130,10 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isPresent = false;
 
-//        if (App.doTransportersExist())
-//        {
-//            isPresent = App.getTeleporter(0).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle())
-//                || (App.getTeleporter(1).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()));
-//        }
-
-        if ((App.getPlayer().collisionObject.contactEntity.gid == GraphicID.G_TRANSPORTER)
-            && (App.getPlayer().collisionObject.rectangle.contains(App.getPlayer().collisionObject.rectangle)))
+        if (App.doTransportersExist())
         {
-            isPresent = true;
+            isPresent = App.getTeleporter(0).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle())
+                || (App.getTeleporter(1).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()));
         }
 
         return isPresent;

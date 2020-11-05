@@ -19,6 +19,14 @@ public class TeleportHandler
         App.getPlayer().setAction(ActionStates._TELEPORTING);
         App.getPlayer().speed.set(App.teleportManager.targetDistance.getX() / 25, App.teleportManager.targetDistance.getY() / 25);
         App.getPlayer().collisionObject.action = ActionStates._INACTIVE;
+
+        App.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
+
+        if ((App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
+            || (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY))
+        {
+            App.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
+        }
     }
 
     public boolean update()
@@ -91,13 +99,5 @@ public class TeleportHandler
         }
 
         App.getPlayer().collisionObject.action = ActionStates._COLLIDABLE;
-
-        App.googleServices.unlockAchievement(PlayServicesID.achievement_beam_me_up.getID());
-
-        if ((App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)
-            || (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._GUN_CARRY))
-        {
-            App.googleServices.unlockAchievement(PlayServicesID.achievement_courier_services.getID());
-        }
     }
 }

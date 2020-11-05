@@ -1,13 +1,17 @@
 package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.graphics.text.TextUtils;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
@@ -104,6 +108,15 @@ public class Teleporter extends GdxSprite
     }
 
     @Override
+    public void updateCollisionBox()
+    {
+        collisionObject.rectangle.x      = sprite.getX();
+        collisionObject.rectangle.y      = sprite.getY() - 4;
+        collisionObject.rectangle.width  = frameWidth;
+        collisionObject.rectangle.height = frameHeight + 4;
+    }
+
+    @Override
     public void animate()
     {
         sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
@@ -136,14 +149,13 @@ public class Teleporter extends GdxSprite
                         setAction(ActionStates._STANDING);
                     }
                 }
-                else
-                {
-                    hasPlayerInside = collisionObject.rectangle.contains
-                                        (
-                                            App.getPlayer().sprite.getOriginX(),
-                                            App.getPlayer().sprite.getOriginY()
-                                        );
-                }
+//                else
+//                {
+//                    hasPlayerInside = collisionObject.rectangle.contains
+//                                        (
+//                                            App.getPlayer().getCollisionRectangle()
+//                                        );
+//                }
             }
 
             @Override
@@ -156,10 +168,5 @@ public class Teleporter extends GdxSprite
             {
             }
         });
-    }
-
-    private void checkPlayerAtDoor()
-    {
-
     }
 }

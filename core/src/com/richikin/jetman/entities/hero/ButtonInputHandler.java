@@ -67,8 +67,6 @@ public class ButtonInputHandler implements Disposable
         {
             if (App.getPlayer().collision.isTeleporterPresent())
             {
-                Trace.__FILE_FUNC_LINE();
-
                 App.getPlayer().actionButton.setAction();
             }
             else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._BOMB_CARRY)

@@ -82,6 +82,8 @@ public class MainGameScreen extends AbstractBaseScreen
             case _STATE_LEVEL_FINISHED:
             case _STATE_GAME_OVER:
             case _STATE_GAME_FINISHED:
+            case _STATE_ANNOUNCE_MISSILE:
+            case _STATE_TELEPORTING:
             case _STATE_END_GAME:
             {
                 gameControlLoop.update(App.appState);

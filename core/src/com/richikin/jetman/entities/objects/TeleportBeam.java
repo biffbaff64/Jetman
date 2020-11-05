@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
@@ -188,7 +189,7 @@ public class TeleportBeam implements Disposable
             positions[i] = new SimpleVec2F
                 (
                     originX + startXPos,
-                    originY //+ beams[i].startPos.getY()
+                    originY + beams[i].startPos.getY()
                 );
 
             if (!_enteredTeleporter)
@@ -234,8 +235,8 @@ public class TeleportBeam implements Disposable
                         beams[i].speed.getY() * directions[i].getY()
                     );
 
-//                distances[i].subX(beams[i].speed.getX());
-//                distances[i].subY(beams[i].speed.getY());
+                distances[i].subX(beams[i].speed.getX());
+                distances[i].subY(beams[i].speed.getY());
             }
             else
             {
