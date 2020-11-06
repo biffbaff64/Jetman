@@ -60,6 +60,7 @@ public class Settings implements ISettings
         Trace.__FILE_FUNC();
     }
 
+    @SuppressWarnings("FeatureEnvy")
     public void initialise()
     {
         Trace.__FILE_FUNC();
