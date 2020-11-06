@@ -86,7 +86,7 @@
   <object id="40" name="Teleporter" gid="2" x="13472" y="992" width="32" height="32"/>
   <object id="49" name="Base Defender" gid="4" x="15552" y="992" width="32" height="32"/>
   <object id="51" name="Base Defender" gid="4" x="16128" y="992" width="32" height="32"/>
-  <object id="54" name="Player" gid="1" x="4800" y="640" width="32" height="32"/>
+  <object id="54" name="Player" gid="1" x="9536" y="608" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffaa00" id="5" name="collision">
   <object id="1" name="Ground" x="6016" y="992" width="2560" height="96"/>

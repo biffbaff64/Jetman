@@ -12,48 +12,23 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.google.PlayServicesID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 
-public class RoverGun extends GdxSprite
+public class RoverGun extends Carryable
 {
-    public boolean isAttachedToRover;
-    public boolean isAttachedToPlayer;
     public boolean isShooting;
     public float gunTurretAngle;
     public float shootRate;
     public int shootCount;
-    public SimpleVec2F releaseXY;
     public GunTurret gunTurret;
 
     public RoverGun()
     {
         super(GraphicID.G_ROVER_GUN);
-    }
-
-    @Override
-    public void initialise(SpriteDescriptor descriptor)
-    {
-        create(descriptor);
-
-        initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
-
-        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER;
-
-        setAction(ActionStates._STANDING);
-
-        animation.setPlayMode(Animation.PlayMode.NORMAL);
-
-        distance.set(0, 0);
-
-        releaseXY = new SimpleVec2F();
-        isAttachedToRover = false;
-        isAttachedToPlayer = false;
-
-        setCollisionListener();
     }
 
     public void addTurret()
@@ -71,59 +46,32 @@ public class RoverGun extends GdxSprite
     }
 
     @Override
+    public void updateAttachedToRover()
+    {
+        isFlippedX = App.getRover().isFlippedX;
+
+        if (gunTurret != null)
+        {
+            gunTurret.isFlippedX = App.getRover().isFlippedX;
+        }
+
+        if (isFlippedX)
+        {
+            sprite.setPosition(App.getRover().sprite.getX() + 82,
+                (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
+        }
+        else
+        {
+            sprite.setPosition(App.getRover().sprite.getX() + 99,
+                (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
+        }
+    }
+
+    @Override
     public void update(int spriteNum)
     {
-        switch(getAction())
+        switch (getAction())
         {
-            case _STANDING:
-            {
-                if (isAttachedToPlayer)
-                {
-                    if (App.getPlayer().isOnGround
-                        || (App.getPlayer().sprite.getY() < (initXYZ.getY() + frameHeight)))
-                    {
-                        sprite.setPosition(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY());
-                    }
-                    else
-                    {
-                        sprite.setPosition(App.getPlayer().sprite.getX(), App.getPlayer().sprite.getY() - (frameHeight / 2));
-                    }
-
-                    isAttachedToRover = false;
-                }
-                else if (isAttachedToRover)
-                {
-                    isFlippedX = App.getRover().isFlippedX;
-
-                    if (gunTurret != null)
-                    {
-                        gunTurret.isFlippedX = App.getRover().isFlippedX;
-                    }
-
-                    if (isFlippedX)
-                    {
-                        sprite.setPosition(App.getRover().sprite.getX() + 82,
-                            (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
-                    }
-                    else
-                    {
-                        sprite.setPosition(App.getRover().sprite.getX() + 99,
-                            (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
-                    }
-                }
-            }
-            break;
-
-            case _FALLING:
-            {
-                isAttachedToRover = false;
-                isAttachedToPlayer = false;
-
-                direction.setY(Movement._DIRECTION_DOWN);
-                speed.y += 0.2f;
-            }
-            break;
-
             case _HURT:
             case _KILLED:
             {
@@ -139,12 +87,6 @@ public class RoverGun extends GdxSprite
             }
             break;
 
-            case _FIGHTING:
-            case _EXPLODING:
-            {
-            }
-            break;
-
             case _DYING:
             {
                 setAction(ActionStates._DEAD);
@@ -155,7 +97,7 @@ public class RoverGun extends GdxSprite
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported spriteAction: " + getAction());
+                super.update(spriteNum);
             }
             break;
         }
@@ -265,6 +207,7 @@ public class RoverGun extends GdxSprite
         }
     }
 
+    @Override
     public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
@@ -278,7 +221,8 @@ public class RoverGun extends GdxSprite
         gunTurret.elapsedAnimTime = 0;
     }
 
-    private void setCollisionListener()
+    @Override
+    public void setCollisionListener()
     {
         addCollisionListener(new ICollisionListener()
         {
@@ -311,7 +255,7 @@ public class RoverGun extends GdxSprite
                         speed.setY(0);
                         Entities.stand(App.getGun());
 
-//                        App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+                        App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
                     }
                 }
             }
