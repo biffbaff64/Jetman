@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
@@ -124,10 +125,15 @@ public class HeadsUpDisplay implements Disposable
     private BitmapFont      midFont;
     private BitmapFont      smallFont;
     private HighScoreUtils  highScoreUtils;
+    private Drawable        imageFuelLow;
+    private boolean         canShowFuelLow;
+    private boolean         fuelLowState;
+    private StopWatch       fuelLowTimer;
+    private int             fuelLowDelay;
+
 
     public HeadsUpDisplay()
     {
-        Trace.__FILE_FUNC();
     }
 
     public void createHud()
@@ -191,11 +197,11 @@ public class HeadsUpDisplay implements Disposable
                     buttonPause.release();
                 }
 
-                if (Developer.isDevMode())
-                {
-                    developmentHUDUpdate();
-                }
-                else
+//                if (Developer.isDevMode())
+//                {
+//                    developmentHUDUpdate();
+//                }
+//                else
                 {
                     updateBars();
                 }
@@ -421,6 +427,8 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.draw(App.spriteBatch, camera, originX, originY);
             }
+
+            drawFuelLow();
         }
     }
 
@@ -623,6 +631,31 @@ public class HeadsUpDisplay implements Disposable
             if (messageManager.isEnabled())
             {
                 messageManager.draw();
+            }
+        }
+    }
+
+    private void drawFuelLow(StateID _stateID)
+    {
+        if (_stateID == StateID._INIT)
+        {
+            imageFuelLow   = Scene2DUtils.createDrawable("fuel_low", App.assets.getAnimationsLoader());
+            fuelLowState = true;
+            fuelLowTimer = StopWatch.start();
+            fuelLowDelay = 1000;
+        }
+        else
+        {
+            if (fuelLowTimer.time(TimeUnit.MILLISECONDS) > fuelLowDelay)
+            {
+                fuelLowState = !fuelLowState;
+                fuelLowTimer.reset();
+                fuelLowDelay = fuelLowState ? 1000 : 250;
+            }
+
+            if (canShowFuelLow)
+            {
+                imageFuelLow.draw(App.spriteBatch, 587, (720 - 697), 120, 216);
             }
         }
     }

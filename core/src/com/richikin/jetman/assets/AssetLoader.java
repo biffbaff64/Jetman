@@ -101,6 +101,42 @@ public class AssetLoader implements IAssets, Disposable
         return assetManager.get(_ACHIEVEMENTS_ATLAS, TextureAtlas.class).findRegion(_name);
     }
 
+    @Override
+    public AssetManager getAssetManager()
+    {
+        return assetManager;
+    }
+
+    @Override
+    public TextureAtlas getButtonsLoader()
+    {
+        return assetManager.get(_BUTTONS_ATLAS, TextureAtlas.class);
+    }
+
+    @Override
+    public TextureAtlas getAnimationsLoader()
+    {
+        return assetManager.get(_ANIMATIONS_ATLAS, TextureAtlas.class);
+    }
+
+    @Override
+    public TextureAtlas getObjectsLoader()
+    {
+        return assetManager.get(_OBJECTS_ATLAS, TextureAtlas.class);
+    }
+
+    @Override
+    public TextureAtlas getTextsLoader()
+    {
+        return assetManager.get(_TEXT_ATLAS, TextureAtlas.class);
+    }
+
+    @Override
+    public TextureAtlas getAchievementsLoader()
+    {
+        return assetManager.get(_ACHIEVEMENTS_ATLAS, TextureAtlas.class);
+    }
+
     /**
      * Load single asset, and ensures that it is loaded.
      * It then returns an object of the specified type.
