@@ -55,7 +55,7 @@ base_instructions
   index: -1
 bomb
   rotate: false
-  xy: 1898, 1205
+  xy: 1412, 343
   size: 84, 53
   orig: 84, 53
   offset: 0, 0
@@ -93,6 +93,13 @@ eyebitter
   xy: 644, 382
   size: 512, 256
   orig: 512, 256
+  offset: 0, 0
+  index: -1
+fuel_low
+  rotate: false
+  xy: 1898, 1042
+  size: 120, 216
+  orig: 120, 216
   offset: 0, 0
   index: -1
 green_block

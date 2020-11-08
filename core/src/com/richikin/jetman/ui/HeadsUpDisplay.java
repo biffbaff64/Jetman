@@ -126,11 +126,10 @@ public class HeadsUpDisplay implements Disposable
     private BitmapFont      smallFont;
     private HighScoreUtils  highScoreUtils;
     private Drawable        imageFuelLow;
-    private boolean         canShowFuelLow;
+    private boolean         fuelLowWarning;
     private boolean         fuelLowState;
     private StopWatch       fuelLowTimer;
     private int             fuelLowDelay;
-
 
     public HeadsUpDisplay()
     {
@@ -174,6 +173,8 @@ public class HeadsUpDisplay implements Disposable
         truckArrowIndex = _ARROW_DOWN;
         baseArrowIndex  = _ARROW_DOWN;
 
+        drawFuelLow(StateID._INIT, 0, 0);
+
         stateID = StateID._STATE_PANEL_START;
 
         AppSystem.hudExists = true;
@@ -197,11 +198,11 @@ public class HeadsUpDisplay implements Disposable
                     buttonPause.release();
                 }
 
-//                if (Developer.isDevMode())
-//                {
-//                    developmentHUDUpdate();
-//                }
-//                else
+                if (Developer.isDevMode())
+                {
+                    developmentHUDUpdate();
+                }
+                else
                 {
                     updateBars();
                 }
@@ -289,11 +290,14 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateBarColours()
     {
-        if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 3))
+        fuelLowWarning = false;
+
+        if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
         {
-            if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 8))
+            if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
             {
                 fuelBar.setColor(Color.RED);
+                fuelLowWarning = true;
             }
             else
             {
@@ -305,9 +309,9 @@ public class HeadsUpDisplay implements Disposable
             fuelBar.setColor(Color.GREEN);
         }
 
-        if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 3))
+        if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
         {
-            if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 8))
+            if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
             {
                 timeBar.setColor(Color.RED);
             }
@@ -427,8 +431,13 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.draw(App.spriteBatch, camera, originX, originY);
             }
-
-            drawFuelLow();
+            else
+            {
+                if (fuelLowWarning)
+                {
+                    drawFuelLow(StateID._UPDATE, originX, originY);
+                }
+            }
         }
     }
 
@@ -635,11 +644,11 @@ public class HeadsUpDisplay implements Disposable
         }
     }
 
-    private void drawFuelLow(StateID _stateID)
+    private void drawFuelLow(StateID _stateID, float originX, float originY)
     {
         if (_stateID == StateID._INIT)
         {
-            imageFuelLow   = Scene2DUtils.createDrawable("fuel_low", App.assets.getAnimationsLoader());
+            imageFuelLow   = Scene2DUtils.createDrawable("fuel_low", App.assets.getTextsLoader());
             fuelLowState = true;
             fuelLowTimer = StopWatch.start();
             fuelLowDelay = 1000;
@@ -650,12 +659,12 @@ public class HeadsUpDisplay implements Disposable
             {
                 fuelLowState = !fuelLowState;
                 fuelLowTimer.reset();
-                fuelLowDelay = fuelLowState ? 1000 : 250;
+                fuelLowDelay = fuelLowState ? 750 : 250;
             }
 
-            if (canShowFuelLow)
+            if (fuelLowState)
             {
-                imageFuelLow.draw(App.spriteBatch, 587, (720 - 697), 120, 216);
+                imageFuelLow.draw(App.spriteBatch, originX + 480, originY + (720 - 140), 320, 27);
             }
         }
     }
@@ -811,6 +820,30 @@ public class HeadsUpDisplay implements Disposable
                     originX + 20,
                     originY + 570
                 );
+
+            if (App.getBomb() != null)
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "Bomb : " + App.getBomb().isAttachedToPlayer
+                            + " : " + App.getBomb().isAttachedToRover,
+                        originX + 20,
+                        originY + 540
+                    );
+            }
+
+            if (App.getGun() != null)
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "Gun : " + App.getGun().isAttachedToPlayer
+                            + " : " + App.getGun().isAttachedToRover,
+                        originX + 20,
+                        originY + 510
+                    );
+            }
         }
     }
 
