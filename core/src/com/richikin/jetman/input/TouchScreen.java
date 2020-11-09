@@ -12,12 +12,28 @@ public class TouchScreen
 
     public boolean titleScreenTouchDown(int screenX, int screenY)
     {
-        return false;
+        boolean returnFlag = false;
+
+        if (AppSystem.fullScreenButton.contains(screenX, screenY))
+        {
+            AppSystem.fullScreenButton.press();
+            returnFlag = true;
+        }
+
+        return returnFlag;
     }
 
     public boolean titleScreenTouchUp(int screenX, int screenY)
     {
-        return false;
+        boolean returnFlag = false;
+
+        if (AppSystem.fullScreenButton.contains(screenX, screenY))
+        {
+            AppSystem.fullScreenButton.release();
+            returnFlag = true;
+        }
+
+        return returnFlag;
     }
 
     public boolean gameScreenTouchDown(int screenX, int screenY, int pointer)

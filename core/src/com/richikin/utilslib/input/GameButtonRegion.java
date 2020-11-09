@@ -9,6 +9,8 @@ public class GameButtonRegion extends Switch
 
     public GameButtonRegion(int _x, int _y, int _width, int _height)
     {
+        super();
+
         this.region = new Box(_x, _y, _width, _height);
     }
 

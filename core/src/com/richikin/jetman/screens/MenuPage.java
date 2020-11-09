@@ -37,12 +37,12 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonExit;
     public ImageButton buttonGoogle;
 
-    private Texture       foreground;
-    private StopWatch     stopWatch;
-    private Image         decoration;
-    private Label         javaHeapLabel;
-    private Label         nativeHeapLabel;
-    private Label         versionLabel;
+    private Texture   foreground;
+    private StopWatch stopWatch;
+    private Image     decoration;
+    private Label     javaHeapLabel;
+    private Label     nativeHeapLabel;
+    private Label     versionLabel;
 
     private int menuIndex;
     private int menuLoop;
@@ -123,9 +123,6 @@ public class MenuPage implements IUIPage, Disposable
     {
         final float originX = -((float) (Gfx._HUD_WIDTH / 2));
         final float originY = -((float) (Gfx._HUD_HEIGHT / 2));
-
-        Trace.__FILE_FUNC("cameraX: " + App.baseRenderer.hudGameCamera.camera.position.x + ",  cameraY: " + App.baseRenderer.hudGameCamera.camera.position.y);
-        Trace.__FILE_FUNC("originX: " + originX + ",  originY: " + originY);
 
         Scene2DUtils.setup();
 

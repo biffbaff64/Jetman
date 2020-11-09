@@ -86,6 +86,7 @@ public class MissileBase extends GdxSprite
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION256, topSection);
 
+                App.defenceStationManager.killStations();
                 App.missileBaseManager.killMissiles();
 
                 setAction(ActionStates._EXPLODING);

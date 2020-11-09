@@ -1,7 +1,7 @@
 package com.richikin.jetman.entities.characters;
 
-import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.entities.types.StairClimber;
 
 public class Twinkle extends StairClimber
 {

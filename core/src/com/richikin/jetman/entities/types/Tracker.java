@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.types;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

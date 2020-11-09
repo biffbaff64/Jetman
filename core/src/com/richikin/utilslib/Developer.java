@@ -1,16 +1,12 @@
 package com.richikin.utilslib;
 
-import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.App;
-
 public abstract class Developer
 {
     public static boolean developerPanelActive = false;
 
-    // TODO: 05/11/2020
-    private static boolean _ANDROID_ON_DESKTOP = false;
-    private static boolean _GOD_MODE = false;
-    private static boolean _DEVMODE = false;
+    private static boolean isAndroidOnDesktop = false;
+    private static boolean isGodMode          = false;
+    private static boolean isDevMode          = false;
 
     /**
      * Set _DEVMODE from the _DEV_MODE Environment variable.
@@ -19,37 +15,37 @@ public abstract class Developer
     {
         if (AppSystem.isDesktopApp())
         {
-            _DEVMODE = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
+            isDevMode = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
         }
     }
 
     public static void setDevMode(boolean _state)
     {
-        _DEVMODE = _state;
+        isDevMode = _state;
     }
 
     public static void setGodMode(boolean _state)
     {
-        _GOD_MODE = _state;
+        isGodMode = _state;
     }
 
     public static void setAndroidOnDesktop(boolean _state)
     {
-        _ANDROID_ON_DESKTOP = _state;
+        isAndroidOnDesktop = _state;
     }
 
     public static boolean isDevMode()
     {
-        return !AppSystem.isAndroidApp() && _DEVMODE;
+        return !AppSystem.isAndroidApp() && isDevMode;
     }
 
     public static boolean isGodMode()
     {
-        return !AppSystem.isAndroidApp() && _GOD_MODE;
+        return !AppSystem.isAndroidApp() && isGodMode;
     }
 
     public static boolean isAndroidOnDesktop()
     {
-        return _ANDROID_ON_DESKTOP;
+        return isAndroidOnDesktop;
     }
 }

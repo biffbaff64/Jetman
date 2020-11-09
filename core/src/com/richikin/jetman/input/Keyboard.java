@@ -331,14 +331,13 @@ public class Keyboard extends InputAdapter
 
         boolean returnFlag = false;
 
-        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
-        {
-            returnFlag = App.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
-        }
-
         if (AppConfig.gameScreenActive())
         {
             returnFlag = App.inputManager.touchScreen.gameScreenTouchDown(screenX, screenY, pointer);
+        }
+        else
+        {
+            returnFlag = App.inputManager.touchScreen.titleScreenTouchDown(screenX, screenY);
         }
 
         return returnFlag;
@@ -355,14 +354,13 @@ public class Keyboard extends InputAdapter
 
         boolean returnFlag = false;
 
-        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
-        {
-            returnFlag = App.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
-        }
-
         if (AppConfig.gameScreenActive())
         {
             returnFlag = App.inputManager.touchScreen.gameScreenTouchUp(screenX, screenY);
+        }
+        else
+        {
+            returnFlag = App.inputManager.touchScreen.titleScreenTouchUp(screenX, screenY);
         }
 
         return returnFlag;

@@ -6,6 +6,8 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.DefenceStation;
+import com.richikin.jetman.entities.characters.Missile;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.maps.RoomManager;
@@ -101,5 +103,23 @@ public class DefenceStationManager extends GenericEntityManager
         App.entityData.defenceStations[1].initialise(descriptors[1]);
         App.entityData.addEntity(App.entityData.defenceStations[1]);
         App.entityData.defenceStations[1].addZapper();
+    }
+
+    public void killStations()
+    {
+        if (App.entityData.entityMap != null)
+        {
+            GdxSprite currentEntity;
+
+            for (int i = 0; i < App.entityData.entityMap.size; i++)
+            {
+                currentEntity = (GdxSprite) App.entityData.entityMap.get(i);
+
+                if (currentEntity.gid == GraphicID.G_DEFENDER)
+                {
+                    ((DefenceStation) currentEntity).explode();
+                }
+            }
+        }
     }
 }

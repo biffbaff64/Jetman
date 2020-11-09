@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.types;
 
 public interface ICarryable
 {

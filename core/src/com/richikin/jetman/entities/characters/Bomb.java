@@ -9,6 +9,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
+import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.google.PlayServicesID;
 import com.richikin.utilslib.physics.Movement;
@@ -46,7 +47,7 @@ public class Bomb extends Carryable
         direction.setY(Movement._DIRECTION_STILL);
         speed.setY(0);
 
-        Entities.explode(this);
+        setAction(ActionStates._EXPLODING);
         elapsedAnimTime = 0;
 
         CraterManager craterManager = new CraterManager();
@@ -72,49 +73,58 @@ public class Bomb extends Carryable
                 {
                     GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getBomb()).gid;
 
-                    if (contactID == GraphicID._GROUND)
+                    switch (contactID)
                     {
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
-
-                        float minX = App.entityData.defenceStations[0].sprite.getX();
-                        float maxX = App.entityData.defenceStations[1].sprite.getX()
-                            + App.entityData.defenceStations[1].frameWidth;
-
-                        if ((sprite.getX() >= minX) && (sprite.getX() <= maxX))
+                        case _GROUND:
                         {
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
+
+                            float minX = App.entityData.defenceStations[0].sprite.getX();
+                            float maxX = App.entityData.defenceStations[1].sprite.getX()
+                                + App.entityData.defenceStations[1].frameWidth;
+
+                            if ((sprite.getX() >= minX) && (sprite.getX() <= maxX))
+                            {
+                                explode();
+
+                                App.getBase().setAction(ActionStates._HURT);
+                            }
+                            else if (releaseXY.getY() > (initXYZ.getY() + Gfx.getTileHeight()))
+                            {
+                                explode();
+                            }
+                            else
+                            {
+                                setAction(ActionStates._STANDING);
+                            }
+                        }
+                        break;
+
+                        case G_MISSILE_BASE:
+                        case G_MISSILE_LAUNCHER:
+                        case G_DEFENDER:
+                        {
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
+
                             explode();
 
                             App.getBase().setAction(ActionStates._HURT);
                         }
-                        else if (releaseXY.getY() > (initXYZ.getY() + Gfx.getTileHeight()))
+                        break;
+
+                        case G_ROVER:
+                        case G_ROVER_BOOT:
                         {
-                            explode();
-                        }
-                        else
-                        {
+                            isAttachedToRover = true;
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
                             setAction(ActionStates._STANDING);
+
+                            App.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
                         }
-                    }
-                    else if ((contactID == GraphicID.G_MISSILE_BASE)
-                        || (contactID == GraphicID.G_MISSILE_LAUNCHER)
-                        || (contactID == GraphicID.G_DEFENDER))
-                    {
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
-
-                        explode();
-
-                        App.getBase().setAction(ActionStates._HURT);
-                    }
-                    else if (contactID == GraphicID.G_ROVER_BOOT)
-                    {
-                        isAttachedToRover = true;
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
-                        setAction(ActionStates._STANDING);
-
-                        App.googleServices.unlockAchievement(PlayServicesID.achievement_bomb_collector.getID());
+                        break;
                     }
                 }
             }

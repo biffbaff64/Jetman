@@ -5,6 +5,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.*;
+import com.richikin.jetman.entities.types.StairClimber;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.graphics.GraphicIndex;
@@ -148,7 +149,7 @@ public class AlienManager extends GenericEntityManager
 
                 case G_STAIR_CLIMBER:
                 {
-                    StairClimber stairClimber = new StairClimber(GraphicID.G_STAIR_CLIMBER);
+                    com.richikin.jetman.entities.types.StairClimber stairClimber = new StairClimber(GraphicID.G_STAIR_CLIMBER);
                     stairClimber.initialise(descriptor);
                     App.entityData.addEntity(stairClimber);
                 }

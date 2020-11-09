@@ -1,22 +1,19 @@
 package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
+import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.google.PlayServicesID;
-import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.logging.Trace;
 
 public class RoverGun extends Carryable
 {
@@ -65,6 +62,8 @@ public class RoverGun extends Carryable
             sprite.setPosition(App.getRover().sprite.getX() + 99,
                 (App.getRover().sprite.getY() + App.getRover().frameHeight) - 48);
         }
+
+        isAttachedToPlayer = false;
     }
 
     @Override
@@ -214,8 +213,8 @@ public class RoverGun extends Carryable
         explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
         explosionManager.createExplosion(GraphicID.G_EXPLOSION256, gunTurret);
 
-        Entities.explode(this);
-        Entities.explode(gunTurret);
+        setAction(ActionStates._EXPLODING);
+        gunTurret.setAction(ActionStates._EXPLODING);
 
         elapsedAnimTime = 0;
         gunTurret.elapsedAnimTime = 0;
@@ -233,29 +232,38 @@ public class RoverGun extends Carryable
                 {
                     GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getGun()).gid;
 
-                    if (contactID == GraphicID._GROUND)
+                    switch (contactID)
                     {
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
-                        Entities.stand(App.getGun());
-                    }
-                    else if ((contactID == GraphicID.G_MISSILE_BASE)
-                        || (contactID == GraphicID.G_MISSILE_LAUNCHER)
-                        || (contactID == GraphicID.G_DEFENDER))
-                    {
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
+                        case _GROUND:
+                        {
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
+                            setAction(ActionStates._STANDING);
+                        }
+                        break;
 
-                        explode();
-                    }
-                    else if (contactID == GraphicID.G_ROVER_BOOT)
-                    {
-                        isAttachedToRover = true;
-                        direction.setY(Movement._DIRECTION_STILL);
-                        speed.setY(0);
-                        Entities.stand(App.getGun());
+                        case G_MISSILE_BASE:
+                        case G_MISSILE_LAUNCHER:
+                        case G_DEFENDER:
+                        {
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
 
-                        App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+                            explode();
+                        }
+                        break;
+
+                        case G_ROVER:
+                        case G_ROVER_BOOT:
+                        {
+                            isAttachedToRover = true;
+                            direction.setY(Movement._DIRECTION_STILL);
+                            speed.setY(0);
+                            setAction(ActionStates._STANDING);
+
+                            App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+                        }
+                        break;
                     }
                 }
             }
@@ -269,7 +277,9 @@ public class RoverGun extends Carryable
                 }
                 else
                 {
-                    if (collisionObject.idBottom == GraphicID.G_NO_ID)
+                    if (!isAttachedToPlayer
+                        && !isAttachedToRover
+                        && (collisionObject.idBottom == GraphicID.G_NO_ID))
                     {
                         setAction(ActionStates._FALLING);
                     }

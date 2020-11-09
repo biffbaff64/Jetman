@@ -97,14 +97,14 @@ public class DefenceStation extends GdxSprite
         App.entityData.removeEntity(_index);
     }
 
-    void explode()
+    public void explode()
     {
         ExplosionManager explosionManager = new ExplosionManager();
         explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
         explosionManager.createExplosion(GraphicID.G_EXPLOSION64, zapSprite);
 
-        Entities.explode(this);
-        Entities.explode(zapSprite);
+        setAction(ActionStates._EXPLODING);
+        zapSprite.setAction(ActionStates._EXPLODING);
     }
 
     /**

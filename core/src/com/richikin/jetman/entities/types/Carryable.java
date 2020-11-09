@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.types;
 
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
@@ -88,7 +88,7 @@ public class Carryable extends GdxSprite implements ICarryable
             case _DYING:
             {
                 setAction(ActionStates._DEAD);
-                releaseXY    = null;
+                releaseXY = null;
             }
             break;
 
@@ -136,6 +136,8 @@ public class Carryable extends GdxSprite implements ICarryable
         {
             sprite.setPosition(App.getRover().sprite.getX() + 67, App.getRover().sprite.getY() + (131 - 43));
         }
+
+        isAttachedToPlayer = false;
     }
 
     @Override

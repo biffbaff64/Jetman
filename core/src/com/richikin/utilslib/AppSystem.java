@@ -4,7 +4,9 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
@@ -27,7 +29,7 @@ public final class AppSystem
     public static String                usedController;             // The name of the controller being used
     public static ControllerPos         virtualControllerPos;       // Virtual (on-screen) joystick position (LEFT or RIGHT)
     public static Array<ControllerType> availableInputs;            // ...
-    public static Switch                fullScreenButton;
+    public static GameButtonRegion      fullScreenButton;
     public static Switch                systemBackButton;
 
     private AppSystem()
@@ -65,7 +67,7 @@ public final class AppSystem
 
         Stats.setup();
 
-        fullScreenButton = new Switch();
+        fullScreenButton = new GameButtonRegion(0, 0, Gfx._HUD_WIDTH, Gfx._HUD_HEIGHT);
         systemBackButton = new Switch();
     }
 

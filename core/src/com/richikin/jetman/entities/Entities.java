@@ -329,14 +329,4 @@ public abstract class Entities
     {
         return entityList[getDescriptorIndex(_gid)];
     }
-
-    public static void stand(GameEntity _gameEntity)
-    {
-        _gameEntity.setAction(ActionStates._STANDING);
-    }
-
-    public static void explode(GameEntity _gameEntity)
-    {
-        _gameEntity.setAction(ActionStates._EXPLODING);
-    }
 }

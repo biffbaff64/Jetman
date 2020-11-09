@@ -174,7 +174,7 @@ public class Rover extends GdxSprite
 
                 collisionObject.setInvisibility(1000);
 
-                Entities.explode(this);
+                setAction(ActionStates._EXPLODING);
             }
             break;
 
