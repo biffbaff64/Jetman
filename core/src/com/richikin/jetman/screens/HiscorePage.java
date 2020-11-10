@@ -5,17 +5,18 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.core.HighScore;
-import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.logging.StateManager;
+import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.Locale;
@@ -57,18 +58,18 @@ public class HiscorePage implements IUIPage, Disposable
             Color.SKY,
             Color.SKY,
             Color.CYAN,
-        };
+            };
 
-    private Label[]         levelLabels;
-    private Label[]         rankLabels;
-    private Label[]         scoreLabels;
+    private Label[] levelLabels;
+    private Label[] rankLabels;
+    private Label[] scoreLabels;
 
     private final StopWatch    stopWatch;
     private       StateManager state;
-    private       Texture foreground;
+    private       Texture      foreground;
 
-    private int[]           colorIndex;
-    private int             loopCount;
+    private int[] colorIndex;
+    private int   loopCount;
 
     public HiscorePage()
     {
@@ -112,7 +113,8 @@ public class HiscorePage implements IUIPage, Disposable
                 }
 
                 stopWatch.reset();
-            }        }
+            }
+        }
 
         return isFinished;
     }
@@ -156,6 +158,8 @@ public class HiscorePage implements IUIPage, Disposable
         if (foreground != null)
         {
             spriteBatch.draw(foreground, originX, originY);
+
+            backButton.setPosition(originX + 20, originY + (720 - 100));
         }
     }
 
@@ -180,15 +184,15 @@ public class HiscorePage implements IUIPage, Disposable
         {
             highScore.score = App.gameProgress.getScore().getTotal();
             highScore.level = App.gameProgress.playerLevel;
-            highScore.rank = App.highScoreUtils.findInsertLevel(highScore);
+            highScore.rank  = App.highScoreUtils.findInsertLevel(highScore);
 
             App.highScoreUtils.addHighScore(highScore);
         }
 
         colorIndex = new int[GameConstants._MAX_HISCORES];
-        loopCount = 0;
+        loopCount  = 0;
 
-        for (int i=0; i<GameConstants._MAX_HISCORES; i++)
+        for (int i = 0; i < GameConstants._MAX_HISCORES; i++)
         {
             int _Y_POS = (_TABLE_Y - (Gfx._HUD_HEIGHT / 2)) - (_SPACING * i);
 
@@ -266,6 +270,9 @@ public class HiscorePage implements IUIPage, Disposable
                 label.setVisible(_visible);
             }
         }
+
+        backButton.setVisible(_visible);
+        backButton.setDisabled(!_visible);
     }
 
     @Override
@@ -295,11 +302,11 @@ public class HiscorePage implements IUIPage, Disposable
             }
         }
 
-        colorIndex = null;
-        rankLabels = null;
+        colorIndex  = null;
+        rankLabels  = null;
         levelLabels = null;
         scoreLabels = null;
-        state = null;
+        state       = null;
     }
 
     private void addClickListeners()

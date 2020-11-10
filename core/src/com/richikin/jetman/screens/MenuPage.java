@@ -36,6 +36,7 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonOptions;
     public ImageButton buttonExit;
     public ImageButton buttonGoogle;
+    public ImageButton backButton;
 
     private Texture   foreground;
     private StopWatch stopWatch;
@@ -137,6 +138,8 @@ public class MenuPage implements IUIPage, Disposable
         buttonStart.setZIndex(1);
         buttonOptions.setZIndex(1);
         buttonExit.setZIndex(1);
+
+        backButton = Scene2DUtils.addButton("new_back_button", "new_back_button_pressed", 0, 0);
 
         if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {

@@ -1,6 +1,5 @@
 package com.richikin.utilslib.input;
 
-import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.maths.Box;
 
 public class GameButtonRegion extends Switch
