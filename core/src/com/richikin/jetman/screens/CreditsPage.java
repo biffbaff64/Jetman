@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.ui.IUIPage;
 
@@ -41,20 +42,26 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void show()
     {
+        AppSystem.backButton.setVisible(true);
+        AppSystem.backButton.setDisabled(false);
+        AppSystem.backButton.setChecked(false);
+
         stopWatch.reset();
     }
 
     @Override
     public void hide()
     {
+        AppSystem.backButton.setVisible(false);
+        AppSystem.backButton.setDisabled(true);
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch, float originX, float originY)
+    public void draw(SpriteBatch spriteBatch)
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, originX, originY);
+            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
         }
     }
 

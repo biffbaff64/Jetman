@@ -16,6 +16,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.ui.Scene2DUtils;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.ui.IUIPage;
 
@@ -36,7 +37,9 @@ public class OptionsPage implements IUIPage
     private CheckBox  fxCheckBox;
     private TextField fxLabel;
     private Slider    fxSlider;
+    private CheckBox  controllerCheckBox;
     private CheckBox  vibrateCheckBox;
+    private CheckBox  hintsCheckBox;
 
     private Texture   foreground;
     private Skin      skin;
@@ -145,7 +148,7 @@ public class OptionsPage implements IUIPage
      *
      * @param spriteBatch the sprite batch
      */
-    public void draw(SpriteBatch spriteBatch, float originX, float originY)
+    public void draw(SpriteBatch spriteBatch)
     {
         switch (activePanel)
         {
@@ -164,7 +167,7 @@ public class OptionsPage implements IUIPage
                 {
                     if (foreground != null)
                     {
-                        spriteBatch.draw(foreground, originX, originY);
+                        spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
                     }
                 }
             }
@@ -275,25 +278,27 @@ public class OptionsPage implements IUIPage
         Scene2DUtils.setup();
 
         // ----------
-        musicSlider = Scene2DUtils.addSlider(700, (720 - 208), skin);
-        musicCheckBox = Scene2DUtils.addCheckBox(600, (720 - 208), Color.WHITE, skin);
-        musicLabel = Scene2DUtils.addTextField("0%", 1000, (720 - 208), Color.WHITE, true, skin);
+        musicSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 208), skin);
+        musicCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, skin);
+        musicLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, true, skin);
         musicLabel.setSize(64, 48);
 
         // ----------
-        fxSlider = Scene2DUtils.addSlider(700, (720 - 278), skin);
-        fxCheckBox = Scene2DUtils.addCheckBox(600, (720 - 278), Color.WHITE, skin);
-        fxLabel = Scene2DUtils.addTextField("0%", 1000, (720 - 278), Color.WHITE, true, skin);
+        fxSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 278), skin);
+        fxCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, skin);
+        fxLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, true, skin);
         fxLabel.setSize(64, 48);
 
         // ----------
-        vibrateCheckBox = Scene2DUtils.addCheckBox(600, (720 - 498), Color.WHITE, skin);
+        controllerCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 428), Color.WHITE, skin);
+        vibrateCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 498), Color.WHITE, skin);
+        hintsCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 568), Color.WHITE, skin);
 
         // ----------
-        buttonStats = Scene2DUtils.addButton("new_stats_button", "new_stats_button_pressed", 986, (720 - 540));
-        buttonPrivacy = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", 986, (720 - 600));
-        buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", 986, (720 - 660));
-        buttonExit = Scene2DUtils.addButton("new_back_button", "new_back_button_pressed", 20, (720 - 100));
+        buttonStats = Scene2DUtils.addButton("new_stats_button", "new_stats_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 540));
+        buttonPrivacy = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 600));
+        buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 660));
+        buttonExit = Scene2DUtils.addButton("new_back_button", "new_back_button_pressed", (int) AppSystem.hudOriginX + 20, (int) AppSystem.hudOriginY + (720 - 100));
 
         buttonStats.setSize(210, 40);
         buttonPrivacy.setSize(210, 40);
@@ -309,8 +314,8 @@ public class OptionsPage implements IUIPage
                     (
                         "btn_google_signout_dark",
                         "btn_google_signout_dark_pressed",
-                        986,
-                        (720 - 80)
+                        (int) AppSystem.hudOriginX + 986,
+                        (int) AppSystem.hudOriginY + (720 - 80)
                     );
 
                 buttonSignOut.setSize(191, 46);
@@ -324,16 +329,16 @@ public class OptionsPage implements IUIPage
                 (
                     "new_test_access_button",
                     "new_test_access_button_pressed",
-                    986,
-                    (720 - 480)
+                    (int) AppSystem.hudOriginX + 986,
+                    (int) AppSystem.hudOriginY + (720 - 480)
                 );
 
             buttonDevOptions = Scene2DUtils.addButton
                 (
                     "new_developer_options_button",
                     "new_developer_options_button_pressed",
-                    986,
-                    (720 - 420)
+                    (int) AppSystem.hudOriginX + 986,
+                    (int) AppSystem.hudOriginY + (720 - 420)
                 );
 
             testButton.setSize(210, 40);
@@ -406,7 +411,9 @@ public class OptionsPage implements IUIPage
         fxSlider.setVisible(_visibilty);
         fxCheckBox.setVisible(_visibilty);
 
+        controllerCheckBox.setVisible(_visibilty);
         vibrateCheckBox.setVisible(_visibilty);
+        hintsCheckBox.setVisible(_visibilty);
     }
 
     /**
@@ -424,8 +431,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
 //                    if (statsPanel == null)
 //                    {
 //                        showActors(false);
@@ -454,8 +459,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
 //                    if (privacyPanel == null)
 //                    {
 //                        showActors(false);
@@ -484,8 +487,6 @@ public class OptionsPage implements IUIPage
               {
                   public void clicked(InputEvent event, float x, float y)
                   {
-//                      Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
 //                      if (storyPanel == null)
 //                      {
 //                          showActors(false);
@@ -509,8 +510,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
                     App.googleServices.signOut();
 
                     buttonSignOut.addAction(Actions.removeActor());
@@ -529,8 +528,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
 //                    showActors(false);
 //                    justFinishedTestPanel = false;
 //                    activePanel = ScreenID._TEST_PANEL;
@@ -555,8 +552,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
 //                    if (!Developer.developerPanelActive)
 //                    {
 //                        Developer.developerPanelActive = true;
@@ -576,8 +571,6 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
-
                     updateSettings();
 
                     switch (activePanel)
@@ -681,6 +674,51 @@ public class OptionsPage implements IUIPage
 //                            Sfx.inst().setFXVolume(Sfx.inst()._SILENT);
                         }
                     }
+                }
+            });
+        }
+
+        if (controllerCheckBox != null)
+        {
+            controllerCheckBox.addListener(new ChangeListener()
+            {
+                /**
+                 * @param event the {@link ChangeEvent}
+                 * @param actor The event target, which is the actor that emitted the change event.
+                 */
+                @Override
+                public void changed(ChangeEvent event, Actor actor)
+                {
+                }
+            });
+        }
+
+        if (vibrateCheckBox != null)
+        {
+            vibrateCheckBox.addListener(new ChangeListener()
+            {
+                /**
+                 * @param event the {@link ChangeEvent}
+                 * @param actor The event target, which is the actor that emitted the change event.
+                 */
+                @Override
+                public void changed(ChangeEvent event, Actor actor)
+                {
+                }
+            });
+        }
+
+        if (hintsCheckBox != null)
+        {
+            hintsCheckBox.addListener(new ChangeListener()
+            {
+                /**
+                 * @param event the {@link ChangeEvent}
+                 * @param actor The event target, which is the actor that emitted the change event.
+                 */
+                @Override
+                public void changed(ChangeEvent event, Actor actor)
+                {
                 }
             });
         }

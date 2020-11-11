@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
@@ -12,9 +13,8 @@ import com.richikin.jetman.ui.ExitPanel;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.input.controllers.ControllerData;
-import com.richikin.utilslib.logging.Trace;
-import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.logging.StateManager;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.ArrayList;
@@ -49,6 +49,9 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
+        App.mapData.mapPosition.set(0, 0);
+        AppSystem.addBackButton();
+
         optionsPage = new OptionsPage();
         menuPage    = new MenuPage();
         panels      = new ArrayList<>();
@@ -63,8 +66,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             App.googleServices.signInSilently();
         }
-
-        App.mapData.mapPosition.set(0, 0);
     }
 
     /**
@@ -159,6 +160,7 @@ public class MainMenuScreen extends AbstractBaseScreen
             // If currently showing Hiscore or Credits pages, return to menupage
             // if the screen is tapped (or controller start button pressed)
             if (AppSystem.fullScreenButton.isPressed()
+                || AppSystem.backButton.isChecked()
                 || ControllerData.controllerFirePressed
                 || ControllerData.controllerStartPressed)
             {
@@ -171,6 +173,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 }
 
                 AppSystem.fullScreenButton.release();
+                AppSystem.backButton.setChecked(false);
             }
 
             //
@@ -249,8 +252,8 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
-            float originX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-            float originY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
+            AppSystem.hudOriginX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+            AppSystem.hudOriginY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
             switch (currentPage)
             {
@@ -260,13 +263,13 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _OPTIONS_PAGE:
                 case _EXIT_PAGE:
                 {
-                    spriteBatch.draw(background, originX, originY);
+                    spriteBatch.draw(background, AppSystem.hudOriginX, AppSystem.hudOriginY);
 
                     starField.render();
 
                     if (exitPanel == null)
                     {
-                        panels.get(currentPage).draw(spriteBatch, originX, originY);
+                        panels.get(currentPage).draw(spriteBatch);
                     }
                     else
                     {
@@ -323,6 +326,11 @@ public class MainMenuScreen extends AbstractBaseScreen
     public void loadImages()
     {
         background = App.assets.loadSingleAsset("data/empty_screen_dark.png", Texture.class);
+    }
+
+    public MenuPage getMenuPage()
+    {
+        return menuPage;
     }
 
     /**

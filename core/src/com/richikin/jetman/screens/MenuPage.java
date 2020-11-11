@@ -20,6 +20,7 @@ import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
@@ -36,7 +37,6 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonOptions;
     public ImageButton buttonExit;
     public ImageButton buttonGoogle;
-    public ImageButton backButton;
 
     private Texture   foreground;
     private StopWatch stopWatch;
@@ -110,11 +110,11 @@ public class MenuPage implements IUIPage, Disposable
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch, float originX, float originY)
+    public void draw(SpriteBatch spriteBatch)
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, originX, originY);
+            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
         }
 
         menuPageDebug();
@@ -122,31 +122,29 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addMenu()
     {
-        final float originX = -((float) (Gfx._HUD_WIDTH / 2));
-        final float originY = -((float) (Gfx._HUD_HEIGHT / 2));
+        AppSystem.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
+        AppSystem.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
 
         Scene2DUtils.setup();
 
         buttonStart = Scene2DUtils.makeImageButton("buttonStart", "buttonStart_pressed");
-        buttonStart.setPosition((int) originX + 482, (int) originY + (720 - 417));
+        buttonStart.setPosition((int) AppSystem.hudOriginX + 482, (int) AppSystem.hudOriginY + (720 - 417));
         buttonStart.setVisible(true);
         buttonStart.setZIndex(1);
         App.stage.addActor(buttonStart);
 
-        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) originX + 545, (int) originY + (720 - 516));
-        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) originX + 591, (int) originY + (720 - 609));
+        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppSystem.hudOriginX + 545, (int) AppSystem.hudOriginY + (720 - 516));
+        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 591, (int) AppSystem.hudOriginY + (720 - 609));
         buttonStart.setZIndex(1);
         buttonOptions.setZIndex(1);
         buttonExit.setZIndex(1);
-
-        backButton = Scene2DUtils.addButton("new_back_button", "new_back_button_pressed", 0, 0);
 
         if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
             Trace.dbg("Adding Heap Usage debug...");
 
-            javaHeapLabel   = Scene2DUtils.addLabel("JAVA HEAP: ", (int) originX + 40, (int) originY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
-            nativeHeapLabel = Scene2DUtils.addLabel("NATIVE HEAP: ", (int) originX + 40, (int) originY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
+            javaHeapLabel   = Scene2DUtils.addLabel("JAVA HEAP: ", (int) AppSystem.hudOriginX + 40, (int) AppSystem.hudOriginY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
+            nativeHeapLabel = Scene2DUtils.addLabel("NATIVE HEAP: ", (int) AppSystem.hudOriginX + 40, (int) AppSystem.hudOriginY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
 
             App.stage.addActor(javaHeapLabel);
             App.stage.addActor(nativeHeapLabel);
@@ -158,15 +156,15 @@ public class MenuPage implements IUIPage, Disposable
         versionLabel = Scene2DUtils.addLabel
             (
                 Version.getAppVersion(),
-                (int) (originX + 10),
-                (int) (originY + (720 - 30)),
+                (int) (AppSystem.hudOriginX + 10),
+                (int) (AppSystem.hudOriginY + (720 - 30)),
                 Color.WHITE,
                 skin
             );
         versionLabel.setVisible(true);
         versionLabel.setZIndex(1);
 
-        addDateSpecificItems(originX, originY);
+        addDateSpecificItems(AppSystem.hudOriginX, AppSystem.hudOriginY);
     }
 
     private void addDateSpecificItems(float originX, float originY)

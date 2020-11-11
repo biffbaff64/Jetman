@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
@@ -14,6 +13,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.core.HighScore;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.logging.StopWatch;
@@ -25,15 +25,12 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class HiscorePage implements IUIPage, Disposable
 {
-    private static final int _RANK_X  = 360;
-    private static final int _LEVEL_X = 580;
-    private static final int _SCORE_X = 760;
-
-    private static final int _TABLE_Y = 460;
-    private static final int _SPACING = 64;
-
-    private static final int _FNT_SIZE = 48;
-
+    private static final int _RANK_X             = 360;
+    private static final int _LEVEL_X            = 580;
+    private static final int _SCORE_X            = 760;
+    private static final int _TABLE_Y            = 460;
+    private static final int _SPACING            = 64;
+    private static final int _FNT_SIZE           = 48;
     private static final int _DISPLAYED_HISCORES = 6;
 
     private final Color[] colours =
@@ -76,8 +73,7 @@ public class HiscorePage implements IUIPage, Disposable
         addItems();
         addClickListeners();
 
-        state = new StateManager();
-
+        state     = new StateManager();
         stopWatch = StopWatch.start();
 
         showItems(false);
@@ -153,13 +149,13 @@ public class HiscorePage implements IUIPage, Disposable
     }
 
     @Override
-    public void draw(final SpriteBatch spriteBatch, float originX, float originY)
+    public void draw(final SpriteBatch spriteBatch)
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, originX, originY);
+            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
 
-            backButton.setPosition(originX + 20, originY + (720 - 100));
+            AppSystem.backButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + (720 - 100));
         }
     }
 
@@ -271,8 +267,9 @@ public class HiscorePage implements IUIPage, Disposable
             }
         }
 
-        backButton.setVisible(_visible);
-        backButton.setDisabled(!_visible);
+        AppSystem.backButton.setVisible(_visible);
+        AppSystem.backButton.setDisabled(!_visible);
+        AppSystem.backButton.setChecked(false);
     }
 
     @Override

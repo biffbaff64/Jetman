@@ -15,7 +15,7 @@ public interface IUIPage
 
     void hide();
 
-    void draw(SpriteBatch spriteBatch, float originX, float originY);
+    void draw(SpriteBatch spriteBatch);
 
     void reset();
 

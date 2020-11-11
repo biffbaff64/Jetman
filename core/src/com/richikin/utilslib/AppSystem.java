@@ -2,9 +2,15 @@ package com.richikin.utilslib;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
+import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
@@ -29,8 +35,12 @@ public final class AppSystem
     public static String                usedController;             // The name of the controller being used
     public static ControllerPos         virtualControllerPos;       // Virtual (on-screen) joystick position (LEFT or RIGHT)
     public static Array<ControllerType> availableInputs;            // ...
-    public static GameButtonRegion      fullScreenButton;
-    public static Switch                systemBackButton;
+    public static GameButtonRegion      fullScreenButton;           // ...
+    public static Switch                systemBackButton;           // ...
+    public static ImageButton           backButton;                 // ...
+
+    public static float hudOriginX;
+    public static float hudOriginY;
 
     private AppSystem()
     {
@@ -67,8 +77,30 @@ public final class AppSystem
 
         Stats.setup();
 
+        hudOriginX = 0;
+        hudOriginY = 0;
+
         fullScreenButton = new GameButtonRegion(0, 0, Gfx._HUD_WIDTH, Gfx._HUD_HEIGHT);
         systemBackButton = new Switch();
+    }
+
+    public static void addBackButton()
+    {
+        // TODO: 11/11/2020 - Use Scene2DUtils instead when its has been moved to UtilsLib
+        Image imageUp   = new Image(App.assets.getButtonRegion("new_back_button"));
+        Image imageDown = new Image(App.assets.getButtonRegion("new_back_button_pressed"));
+        backButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
+        backButton.setPosition(0, 0);
+        backButton.setVisible(false);
+        App.stage.addActor(backButton);
+
+        backButton.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                backButton.setChecked(true);
+            }
+        });
     }
 
     /**
