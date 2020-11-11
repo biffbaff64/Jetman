@@ -50,7 +50,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         Trace.__FILE_FUNC();
 
         App.mapData.mapPosition.set(0, 0);
-        AppSystem.addBackButton();
 
         optionsPage = new OptionsPage();
         menuPage    = new MenuPage();

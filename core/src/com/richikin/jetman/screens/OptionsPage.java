@@ -249,8 +249,12 @@ public class OptionsPage implements IUIPage
             fxSlider = null;
             fxCheckBox = null;
 
+            controllerCheckBox.addAction(Actions.removeActor());
             vibrateCheckBox.addAction(Actions.removeActor());
+            hintsCheckBox.addAction(Actions.removeActor());
+            controllerCheckBox = null;
             vibrateCheckBox = null;
+            hintsCheckBox = null;
 
             if (buttonSignOut != null)
             {

@@ -88,6 +88,8 @@ public class Startup
         GameAudio.setup();
         Shake.setAllowed(false);
 
+        AppSystem.addBackButton();
+
         Trace.divider();
     }
 
