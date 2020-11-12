@@ -8,13 +8,14 @@ import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Speed;
-import com.richikin.utilslib.ui.BasicPanel;
+import com.richikin.utilslib.ui.DefaultPanel;
+import com.richikin.utilslib.ui.IUserInterfacePanel;
 
-public class SlidePanel extends BasicPanel
+public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
 {
-    public  Speed     speed;
-    public  Direction direction;
-    public  XYSetF    distance;
+    public  Speed        speed;
+    public  Direction    direction;
+    public  XYSetF       distance;
     public  XYSetF       distanceReset;
     public  ActionStates action;
     private boolean      isInPlace;
@@ -51,6 +52,7 @@ public class SlidePanel extends BasicPanel
         this.speed.set(speed);
     }
 
+    @Override
     public boolean update()
     {
         if (getActiveState())

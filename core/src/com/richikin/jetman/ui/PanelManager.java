@@ -95,7 +95,7 @@ public class PanelManager
         {
             Trace.__FILE_FUNC(imageName);
 
-            com.richikin.utilslib.ui.IUserInterfacePanel panel = new ZoomPanel();
+            IUserInterfacePanel panel = new ZoomPanel();
 
             if (App.assets.getTextRegion(imageName) == null)
             {

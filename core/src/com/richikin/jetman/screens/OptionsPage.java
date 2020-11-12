@@ -15,6 +15,8 @@ import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.ui.InstructionsPanel;
+import com.richikin.jetman.ui.PrivacyPolicyPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
@@ -44,11 +46,11 @@ public class OptionsPage implements IUIPage
     private Texture   foreground;
     private Skin      skin;
 
-//    private DeveloperTests    testPanel;
+//    private DeveloperTests     testPanel;
 //    private StatsPanel         statsPanel;
-//    private PrivacyPolicyPanel privacyPanel;
-//    private InstructionsPanel storyPanel;
-    private ScreenID          activePanel;
+    private PrivacyPolicyPanel privacyPanel;
+    private InstructionsPanel  storyPanel;
+    private ScreenID           activePanel;
 
     private boolean justFinishedStatsPanel;
     private boolean justFinishedPrivacyPanel;

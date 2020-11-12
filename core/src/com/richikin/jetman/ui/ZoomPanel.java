@@ -7,7 +7,8 @@ import com.richikin.enumslib.StateID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.ui.BasicPanel;
+import com.richikin.utilslib.ui.DefaultPanel;
+import com.richikin.utilslib.ui.IUserInterfacePanel;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A Stationary panel which zooms in and out
  */
-public class ZoomPanel extends BasicPanel
+public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
 {
     private final static int    _DEFAULT_PAUSE_TIME = 1500;
     private final static float  _DEFAULT_SPEED      = 0.04f;
@@ -188,7 +189,6 @@ public class ZoomPanel extends BasicPanel
         }
     }
 
-    @Override
     public void forceZoomOut()
     {
         zoomSpeed = _DEFAULT_SPEED;
@@ -196,7 +196,6 @@ public class ZoomPanel extends BasicPanel
         setState(StateID._STATE_ZOOM_OUT);
     }
 
-    @Override
     public void setPauseTime(final int _time)
     {
         pauseTime = _time;

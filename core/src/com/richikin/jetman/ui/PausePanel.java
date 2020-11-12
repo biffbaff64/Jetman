@@ -3,10 +3,9 @@ package com.richikin.jetman.ui;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.richikin.jetman.core.App;
-import com.richikin.utilslib.ui.BasicPanel;
+import com.richikin.utilslib.ui.DefaultPanel;
 
-public class PausePanel extends BasicPanel
+public class PausePanel extends DefaultPanel
 {
     public PausePanel()
     {
