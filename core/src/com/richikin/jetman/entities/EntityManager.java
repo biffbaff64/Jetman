@@ -351,7 +351,7 @@ public class EntityManager implements IEntityManager
     public void addBackgroundEntities()
     {
         BackgroundObjectsManager manager = new BackgroundObjectsManager();
-        manager.addUFOs(6 + MathUtils.random(4));
+        manager.addUFOs(2 + MathUtils.random(2));
         manager.addTwinkleStars();
     }
 

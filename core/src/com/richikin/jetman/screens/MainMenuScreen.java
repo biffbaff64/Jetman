@@ -272,7 +272,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     }
                     else
                     {
-                        exitPanel.draw(spriteBatch, _camera.camera);
+                        exitPanel.draw(spriteBatch);
                     }
                 }
                 break;

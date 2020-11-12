@@ -141,7 +141,7 @@ public class HeadsUpDisplay implements Disposable
 
         AppSystem.hudExists = false;
 
-        scorePanel                = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
+        scorePanel = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
         GameAssets.hudPanelHeight = scorePanel.getHeight();
 
@@ -198,15 +198,8 @@ public class HeadsUpDisplay implements Disposable
                     buttonPause.release();
                 }
 
-                if (Developer.isDevMode())
-                {
-                    developmentHUDUpdate();
-                }
-                else
-                {
-                    updateBars();
-                }
-
+                updateBars();
+                updateBarColours();
                 updateArrowIndicators();
                 updateDeveloperItems();
 
@@ -260,7 +253,7 @@ public class HeadsUpDisplay implements Disposable
         {
             if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
             {
-                fuelBar.setSpeed(App.getPlayer().isCarrying ? 2 : 1);
+                fuelBar.setSpeed(App.getPlayer().isCarrying ? 1 : 0.25f);
                 fuelBar.updateSlowDecrement();
             }
 
@@ -280,8 +273,6 @@ public class HeadsUpDisplay implements Disposable
                 }
             }
         }
-
-        updateBarColours();
     }
 
     /**
@@ -812,38 +803,6 @@ public class HeadsUpDisplay implements Disposable
                     originX + 20,
                     originY + 600
                 );
-
-            smallFont.draw
-                (
-                    App.spriteBatch,
-                    "ActionButton  : " + App.getPlayer().actionButton.getActionMode().name(),
-                    originX + 20,
-                    originY + 570
-                );
-
-            if (App.getBomb() != null)
-            {
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "Bomb : " + App.getBomb().isAttachedToPlayer
-                            + " : " + App.getBomb().isAttachedToRover,
-                        originX + 20,
-                        originY + 540
-                    );
-            }
-
-            if (App.getGun() != null)
-            {
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "Gun : " + App.getGun().isAttachedToPlayer
-                            + " : " + App.getGun().isAttachedToRover,
-                        originX + 20,
-                        originY + 510
-                    );
-            }
         }
     }
 

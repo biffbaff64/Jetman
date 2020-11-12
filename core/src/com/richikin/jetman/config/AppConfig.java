@@ -24,7 +24,7 @@ public class AppConfig
         Developer.setAndroidOnDesktop(true);
         Developer.setGodMode(true);
 
-        App.settings.disable(Settings._DISABLE_MENU_SCREEN);
+        App.settings.enable(Settings._DISABLE_MENU_SCREEN);
         App.settings.disable(Settings._SPRITE_BOXES);
         App.settings.disable(Settings._TILE_BOXES);
         // ------------------------------------------------

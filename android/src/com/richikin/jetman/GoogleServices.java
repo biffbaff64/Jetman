@@ -23,7 +23,7 @@ public class GoogleServices implements IPlayServices
     private final AchievementsHandler achievementsHandler;
     private final LeaderboardHandler  leaderboardHandler;
 
-    GoogleServices(AndroidLauncher _androidLauncher)
+    public GoogleServices(AndroidLauncher _androidLauncher)
     {
         this.androidLauncher     = _androidLauncher;
         this.achievementsHandler = new AchievementsHandler(androidLauncher);

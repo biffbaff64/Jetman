@@ -1,8 +1,9 @@
 package com.richikin.jetman;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -10,40 +11,43 @@ import com.richikin.jetman.core.MainGame;
 
 public class AndroidLauncher extends AndroidApplication
 {
-	private GoogleServices googleServices;
+    private GoogleServices googleServices;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
 
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 
-		config.useImmersiveMode     = true;
-		config.useWakelock          = true;
-		config.hideStatusBar        = true;
-		config.useAccelerometer     = false;
+        config.useImmersiveMode = true;
+        config.useWakelock      = true;
+        config.hideStatusBar    = true;
+        config.useAccelerometer = false;
 
-		googleServices = new GoogleServices(this);
+        // lock the current device orientation
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-		MainGame mainGame = new MainGame(googleServices);
+        googleServices = new GoogleServices(this);
 
-		initialize(mainGame, config);
+        MainGame mainGame = new MainGame(googleServices);
 
-		Gdx.App.log("AndroidLauncher", "-------------------- APP START --------------------");
-	}
+        initialize(mainGame, config);
 
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-	}
+        Gdx.app.log("AndroidLauncher", "-------------------- APP START --------------------");
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+    }
 
-		googleServices.onActivityResult(requestCode, data);
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        googleServices.onActivityResult(requestCode, data);
+    }
 }

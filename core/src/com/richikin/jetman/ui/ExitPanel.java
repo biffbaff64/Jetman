@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
@@ -82,10 +83,10 @@ public class ExitPanel implements Disposable
         return action;
     }
 
-    public void draw(SpriteBatch spriteBatch, OrthographicCamera camera)
+    public void draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.draw(darkLayer, 0, 0);
-        spriteBatch.draw(panel, 0, 0);
+        spriteBatch.draw(darkLayer, AppSystem.hudOriginX, AppSystem.hudOriginY);
+        spriteBatch.draw(panel, AppSystem.hudOriginX, AppSystem.hudOriginY);
     }
 
     private void setup()
@@ -99,16 +100,16 @@ public class ExitPanel implements Disposable
             (
                 "button_yes",
                 "button_yes_pressed",
-                displayPos[_YES][0],
-                displayPos[_YES][1]
+                (int) AppSystem.hudOriginX + displayPos[_YES][0],
+                (int) AppSystem.hudOriginY + displayPos[_YES][1]
             );
 
         buttonNo = Scene2DUtils.addButton
             (
                 "button_no",
                 "button_no_pressed",
-                displayPos[_NO][0],
-                displayPos[_NO][1]
+                (int) AppSystem.hudOriginX + displayPos[_NO][0],
+                (int) AppSystem.hudOriginY + displayPos[_NO][1]
             );
 
         buttonYes.setZIndex(1);

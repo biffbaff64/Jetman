@@ -1,19 +1,19 @@
 android {
-    signingConfigs {
-        releaseconfig {
-            storeFile file('D:/Issued_Software/Keystore/android.jks')
-            keyAlias 'jetmanRelease'
-            keyPassword 'c646510'
-            storePassword 'felix1964'
-        }
+//    signingConfigs {
+//        releaseconfig {
+//            storeFile file('D:/Issued_Software/Keystore/android.jks')
+//            keyAlias 'jetmanRelease'
+//            keyPassword 'c646510'
+//            storePassword 'felix1964'
+//        }
 
-        debugconfig {
-            storeFile file('D:/Issued_Software/Keystore/android.jks')
-            keyAlias 'jetmanDebug'
-            keyPassword 'dfg67hj'
-            storePassword 'felix1964'
-        }
-    }
+//        debugconfig {
+//            storeFile file('D:/Issued_Software/Keystore/android.jks')
+//            keyAlias 'jetmanDebug'
+//            keyPassword 'dfg67hj'
+//            storePassword 'felix1964'
+//        }
+//    }
 
     buildToolsVersion '29.0.2'
     compileSdkVersion 30
@@ -41,12 +41,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.releaseconfig
+//            signingConfig signingConfigs.releaseconfig
         }
 
         debug {
             minifyEnabled false
-            signingConfig signingConfigs.debugconfig
+//            signingConfig signingConfigs.debugconfig
         }
     }
     compileOptions {
