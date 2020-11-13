@@ -21,7 +21,7 @@ public interface IDefaultUIPanel
 
     void setup();
 
-    void draw(SpriteBatch spriteBatch);
+    void draw();
 
     void activate();
 

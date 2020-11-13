@@ -19,10 +19,7 @@ public class Settings implements ISettings
 
     //
     // Development options
-    public static final String _DEV_MODE            = "dev mode";           // Enables/Disables DEV Mode
-    public static final String _GOD_MODE            = "god mode";           //
     public static final String _USING_ASHLEY_ECS    = "ashley ecs";         // Enables use of Ashley Entity Component System
-    public static final String _DISABLE_ENEMIES     = "disable enemies";    // Disables all enemy entities
     public static final String _SCROLL_DEMO         = "scroll demo";        // Enables Game Scroll Demo mode
     public static final String _SPRITE_BOXES        = "sprite boxes";       // Shows sprite AABB Boxes
     public static final String _TILE_BOXES          = "tile boxes";         // Shows game tile AABB Boxes
@@ -121,9 +118,6 @@ public class Settings implements ISettings
             prefs.putBoolean(_DEFAULT_OFF, _PREF_FALSE_DEFAULT);
 
             // ---------- Development Flags ----------
-            prefs.putBoolean(_DEV_MODE, Developer.isDevMode());
-            prefs.putBoolean(_GOD_MODE, _PREF_FALSE_DEFAULT);
-            prefs.putBoolean(_DISABLE_ENEMIES, _PREF_FALSE_DEFAULT);
             prefs.putBoolean(_DISABLE_MENU_SCREEN, _PREF_FALSE_DEFAULT);
             prefs.putBoolean(_SCROLL_DEMO, _PREF_FALSE_DEFAULT);
             prefs.putBoolean(_SPRITE_BOXES, _PREF_FALSE_DEFAULT);

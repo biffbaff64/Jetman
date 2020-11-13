@@ -94,33 +94,33 @@ public class OptionsPage implements IUIPage
 //            showActors(true);
 //        }
 
-//        if (justFinishedPrivacyPanel)
-//        {
-//            if (privacyPanel != null)
-//            {
-//                privacyPanel.dispose();
-//            }
-//
-//            justFinishedPrivacyPanel = false;
-//            privacyPanel = null;
-//            activePanel = ScreenID._SETTINGS_SCREEN;
-//
-//            showActors(true);
-//        }
+        if (justFinishedPrivacyPanel)
+        {
+            if (privacyPanel != null)
+            {
+                privacyPanel.dispose();
+            }
 
-//        if (justFinishedStoryPanel)
-//        {
-//            if (storyPanel != null)
-//            {
-//                storyPanel.dispose();
-//            }
-//
-//            justFinishedStoryPanel = false;
-//            storyPanel = null;
-//            activePanel = ScreenID._SETTINGS_SCREEN;
-//
-//            showActors(true);
-//        }
+            justFinishedPrivacyPanel = false;
+            privacyPanel = null;
+            activePanel = ScreenID._SETTINGS_SCREEN;
+
+            showActors(true);
+        }
+
+        if (justFinishedStoryPanel)
+        {
+            if (storyPanel != null)
+            {
+                storyPanel.dispose();
+            }
+
+            justFinishedStoryPanel = false;
+            storyPanel = null;
+            activePanel = ScreenID._SETTINGS_SCREEN;
+
+            showActors(true);
+        }
 
 //        if (justFinishedTestPanel)
 //        {
@@ -155,8 +155,8 @@ public class OptionsPage implements IUIPage
         switch (activePanel)
         {
 //            case _STATS_SCREEN:             statsPanel.draw();      break;
-//            case _PRIVACY_POLICY_SCREEN:    privacyPanel.draw();    break;
-//            case _INSTRUCTIONS_SCREEN:      storyPanel.draw();      break;
+            case _PRIVACY_POLICY_SCREEN:    privacyPanel.draw();    break;
+            case _INSTRUCTIONS_SCREEN:      storyPanel.draw();      break;
 //            case _TEST_PANEL:               testPanel.draw();       break;
 
             default:
@@ -269,7 +269,8 @@ public class OptionsPage implements IUIPage
             foreground = null;
             skin = null;
 //            statsPanel = null;
-//            privacyPanel = null;
+            privacyPanel = null;
+            storyPanel = null;
 //            testPanel = null;
 
             App.optionsPageActive = false;
@@ -465,19 +466,17 @@ public class OptionsPage implements IUIPage
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    if (privacyPanel == null)
-//                    {
-//                        showActors(false);
-//                        justFinishedPrivacyPanel = false;
-//                        activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
-//
-//                        privacyPanel = new PrivacyPolicyPanel();
-//                        privacyPanel.xOffset = 0;
-//                        privacyPanel.yOffset = 0;
-//                        privacyPanel.open();
-//
-//                        buttonExit.setVisible(true);
-//                    }
+                    if (privacyPanel == null)
+                    {
+                        showActors(false);
+                        justFinishedPrivacyPanel = false;
+                        activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
+
+                        privacyPanel = new PrivacyPolicyPanel();
+                        privacyPanel.open();
+
+                        buttonExit.setVisible(true);
+                    }
                 }
             });
         }
@@ -493,19 +492,17 @@ public class OptionsPage implements IUIPage
               {
                   public void clicked(InputEvent event, float x, float y)
                   {
-//                      if (storyPanel == null)
-//                      {
-//                          showActors(false);
-//                          justFinishedStoryPanel = false;
-//                          activePanel = ScreenID._INSTRUCTIONS_SCREEN;
-//
-//                          storyPanel = new InstructionsPanel();
-//                          storyPanel.xOffset = 0;
-//                          storyPanel.yOffset = 0;
-//                          storyPanel.open();
-//
-//                          buttonExit.setVisible(true);
-//                      }
+                      if (storyPanel == null)
+                      {
+                          showActors(false);
+                          justFinishedStoryPanel = false;
+                          activePanel = ScreenID._INSTRUCTIONS_SCREEN;
+
+                          storyPanel = new InstructionsPanel();
+                          storyPanel.open();
+
+                          buttonExit.setVisible(true);
+                      }
                   }
               });
         }

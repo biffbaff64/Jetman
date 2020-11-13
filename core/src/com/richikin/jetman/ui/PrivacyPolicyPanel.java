@@ -26,8 +26,7 @@ import java.io.IOException;
 
 public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePanel
 {
-    private final String _FILE_NAME = "documents/privacy_policy.txt";
-//    private final String _BACKGROUND    = "data/empty_screen.png";
+    private static final String _FILE_NAME = "documents/privacy_policy.txt";
 
     private Image title;
 
@@ -49,18 +48,15 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
         Image   image = new Image(new TextureRegion(sky));
         buffer.setBackground(image.getDrawable());
 
-//        texture = app.assets.loadSingleAsset(_BACKGROUND, Texture.class);
-
         createTitle();
-
         populateTable();
 
         scrollPane = new ScrollPane(buffer, skin);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setFadeScrollBars(false);
-        scrollPane.setWidth(Gfx._VIEW_WIDTH - 80);
-        scrollPane.setHeight((float) (Gfx._VIEW_HEIGHT / 8) * 6);
-        scrollPane.setPosition(AppSystem.hudOriginX + 40, AppSystem.hudOriginY + 40);
+        scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
+        scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
+        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
 
         App.stage.addActor(scrollPane);
         App.stage.addActor(title);
@@ -118,15 +114,12 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
         buffer.clear();
         scrollPane.clear();
 
-//        app.assets.unloadAsset(_BACKGROUND);
-
         buffer.addAction(Actions.removeActor());
         scrollPane.addAction(Actions.removeActor());
         title.addAction(Actions.removeActor());
 
         title = null;
         skin  = null;
-//        texture = null;
     }
 
     private void createTitle()

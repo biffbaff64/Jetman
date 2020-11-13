@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
+import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -58,11 +59,11 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     }
 
     @Override
-    public void draw(SpriteBatch spriteBatch)
+    public void draw()
     {
         if (isActive && (textureRegion != null))
         {
-            spriteBatch.draw(textureRegion, position.x, position.y, panelWidth, panelHeight);
+            App.spriteBatch.draw(textureRegion, position.x, position.y, panelWidth, panelHeight);
         }
     }
 

@@ -50,7 +50,7 @@ public class MessageManager
         {
             if (messages.get(i).enabled)
             {
-                messages.get(i).panel.draw(App.spriteBatch);
+                messages.get(i).panel.draw();
             }
         }
     }

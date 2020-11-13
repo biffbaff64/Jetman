@@ -165,7 +165,7 @@ public abstract class App extends LibApp
     {
         int lives;
 
-        if (Developer.isDevMode() && settings.isEnabled(Settings._GOD_MODE))
+        if (Developer.isDevMode() && Developer.isGodMode())
         {
             lives = GameConstants._MAX_LIVES;
         }

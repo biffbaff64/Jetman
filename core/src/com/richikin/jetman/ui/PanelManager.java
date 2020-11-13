@@ -46,7 +46,7 @@ public class PanelManager
     {
         if (currentPanel != null)
         {
-            currentPanel.draw(App.spriteBatch);
+            currentPanel.draw();
         }
     }
 
