@@ -35,11 +35,11 @@ public class Settings implements ISettings
     public static final String _B2D_RENDERER        = "b2d renderer";       // Enables/Disables the Box2D Debug Renderer
     public static final String _GL_PROFILER         = "gl profiler";        // Enables/Disables the LibGdx OpenGL Profiler
     public static final String _ANDROID_ON_DESKTOP  = "android desktop";    //
+    public static final String _SHOW_HINTS          = "show hints";         // Enables/Disables In-Game Hints
 
     //
     // Game settings
     public static final String _INSTALLED      = "installed";          //
-    public static final String _SHOW_HINTS     = "show hints";         // Enables/Disables In-Game Hints
     public static final String _VIBRATIONS     = "vibrations";         // Enables/Disables device vibrations
     public static final String _MUSIC_ENABLED  = "music enabled";      // Enables/Disables Music
     public static final String _SOUNDS_ENABLED = "sound enabled";      // Enables/Disables Sound FX

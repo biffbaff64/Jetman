@@ -23,6 +23,7 @@ import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.core.ISettings;
 
 public abstract class App extends LibApp
 {
@@ -195,5 +196,10 @@ public abstract class App extends LibApp
     public static HeadsUpDisplay getHud()
     {
         return hud;
+    }
+
+    public static com.badlogic.gdx.Preferences getPrefs()
+    {
+        return settings.getPrefs();
     }
 }

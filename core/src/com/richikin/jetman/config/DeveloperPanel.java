@@ -1,0 +1,629 @@
+package com.richikin.jetman.config;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.profiling.GLProfiler;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
+import com.richikin.jetman.core.App;
+import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.AppSystem;
+import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.logging.Stats;
+import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.ui.DefaultPanel;
+
+public class DeveloperPanel extends DefaultPanel
+{
+    private static final DeveloperPanel _INSTANCE;
+
+    // Instance initialiser block
+    static
+    {
+        try
+        {
+            _INSTANCE = new DeveloperPanel();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public static DeveloperPanel inst()
+    {
+        return _INSTANCE;
+    }
+
+    //
+    // The elements below are all initialised in quickSetup()
+    private int glProfilerRow;
+    private int glProfilerColumn;
+    private int androidOnDesktopColumn;
+    private int androidOnDesktopRow;
+
+    static class DMEntry
+    {
+        final String  string;
+        final String  prefName;
+        final boolean isEnemy;
+
+        DMEntry(String _string, String _pref, boolean _isEnemy)
+        {
+            this.string   = _string;
+            this.prefName = _pref;
+            this.isEnemy  = _isEnemy;
+        }
+    }
+
+    private static final int _TABLE_COLUMNS = 3;
+
+    private DMEntry[][] devMenu;
+
+    private Texture      foreground;
+    private CheckBox[][] buttons;
+    private TextField    heading;
+    private Table        table;
+    private GLProfiler   glProfiler;
+    private TextButton   exitButton;
+    private TextButton   buttonResetPrefs;
+    private TextButton   buttonResetHiScores;
+    private TextButton   buttonResetStats;
+    private TextButton   buttonGLProfiler;
+    private TextButton   buttonCollisionDump;
+
+    private boolean okToResetPrefs;
+
+    public DeveloperPanel()
+    {
+        super();
+
+        // OpenGL Profiler
+        if (Developer.isDevMode())
+        {
+            glProfiler = new GLProfiler(Gdx.graphics);
+        }
+    }
+
+    public void setup()
+    {
+        Trace.__FILE_FUNC();
+
+        AppSystem.gamePaused = true;
+
+        loadDevMenu();
+
+        quickSetup();
+
+        foreground = App.assets.loadSingleAsset("data/empty_screen.png", Texture.class);
+
+        okToResetPrefs = false;
+
+        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+
+        table = createTable();
+        createHeading(skin);
+        createButtons(skin);
+
+        populateTable(table, skin);
+
+        // Wrap the table in a scrollpane.
+        scrollPane = new ScrollPane(table, skin);
+
+        scrollPane.setScrollingDisabled(false, false);
+        scrollPane.setFadeScrollBars(false);
+        scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
+        scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
+        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
+        scrollPane.setScrollbarsOnTop(true);
+
+        App.stage.addActor(scrollPane);
+        App.stage.addActor(heading);
+        App.stage.addActor(exitButton);
+        App.stage.addActor(buttonResetPrefs);
+        App.stage.addActor(buttonResetHiScores);
+        App.stage.addActor(buttonResetStats);
+        App.stage.addActor(buttonGLProfiler);
+        App.stage.addActor(buttonCollisionDump);
+
+        updatePreferencesOnEntry();
+
+        if (Developer.isDevMode())
+        {
+            glProfilerUpdate();
+        }
+    }
+
+    private void close(boolean update)
+    {
+        if (update)
+        {
+            updatePreferencesOnExit();
+        }
+
+        Developer.developerPanelActive = false;
+        AppSystem.gamePaused           = false;
+
+        clearActors();
+    }
+
+    private Table createTable()
+    {
+        Table table = new Table();
+        table.top().left();
+        table.pad(20, 10, 10, 10);
+
+        Texture texture    = App.assets.loadSingleAsset("data/night_sky.png", Texture.class);
+        Image   background = new Image(new TextureRegion(texture));
+        table.setBackground(background.getDrawable());
+
+        return table;
+    }
+
+    private void createHeading(Skin skin)
+    {
+        heading = new TextField("DEVELOPER OPTIONS", skin);
+        heading.setWidth(180);
+        heading.setPosition(AppSystem.hudOriginX + 610, AppSystem.hudOriginY + 680, Align.center);
+        heading.setDisabled(true);
+    }
+
+    private void createButtons(Skin skin)
+    {
+        exitButton          = new TextButton("Back", skin);
+        buttonResetPrefs    = new TextButton("Reset Preferences To Default", skin);
+        buttonResetHiScores = new TextButton("Reset HiScore Table", skin);
+        buttonResetStats    = new TextButton("Reset Stats Meters", skin);
+        buttonGLProfiler    = new TextButton("GLProfiler Dump", skin);
+        buttonCollisionDump = new TextButton("CollisionObject Breakdown", skin);
+
+        int x = 20;
+
+        buttonResetPrefs.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+
+        x += buttonResetPrefs.getWidth() + 20;
+
+        buttonResetHiScores.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+
+        x += buttonResetHiScores.getWidth() + 20;
+
+        buttonResetStats.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+
+        x += buttonResetStats.getWidth() + 20;
+
+        buttonGLProfiler.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+
+        x += buttonGLProfiler.getWidth() + 20;
+
+        buttonCollisionDump.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+
+        exitButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + 620);
+        exitButton.setSize(48, 48);
+
+        createButtonListeners();
+    }
+
+    private void populateTable(Table table, Skin skin)
+    {
+        TextField[] label = new TextField[_TABLE_COLUMNS];
+
+        buttons = new CheckBox[devMenu.length][_TABLE_COLUMNS];
+
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                label[column] = new TextField(devMenu[row][column].string, skin);
+                label[column].setAlignment(Align.center);
+                label[column].setDisabled(true);
+
+                buttons[row][column] = new CheckBox("", skin);
+                buttons[row][column].setChecked(App.settings.isEnabled(devMenu[row][column].prefName));
+                buttons[row][column].setText(App.settings.isEnabled(devMenu[row][column].prefName) ? " ON" : " OFF");
+            }
+
+            createCheckBoxListener(row);
+
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                Label num = new Label("" + row + ": ", skin);
+                table.add(num).padLeft(20);
+                table.add(label[column]).prefWidth(90);
+                table.add(buttons[row][column]).prefWidth(50);
+
+                if ("".equals(label[column].getText()))
+                {
+                    num.setVisible(false);
+                    label[column].setVisible(false);
+                    buttons[row][column].setVisible(false);
+                }
+            }
+
+            table.row();
+        }
+
+        table.setVisible(true);
+    }
+
+    public void createButtonListeners()
+    {
+        exitButton.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                close(true);
+            }
+        });
+
+        buttonResetPrefs.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                resetPreferencesToDefaults();
+            }
+        });
+
+        buttonResetStats.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                Stats.resetAllMeters();
+            }
+        });
+
+        buttonResetHiScores.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                if (Developer.isDevMode())
+                {
+                    App.highScoreUtils.resetTable();
+
+                    Trace.__FILE_FUNC("HISCORE Table reset to defaults.");
+                }
+            }
+        });
+
+        buttonGLProfiler.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                if (Developer.isDevMode())
+                {
+                    Trace.dbg
+                        (
+                            "  Drawcalls: " + glProfiler.getDrawCalls()
+                                + ", Calls: " + glProfiler.getCalls()
+                                + ", TextureBindings: " + glProfiler.getTextureBindings()
+                                + ", ShaderSwitches:  " + glProfiler.getShaderSwitches()
+                                + "vertexCount: " + glProfiler.getVertexCount().value
+                        );
+
+                    glProfiler.reset();
+                }
+            }
+        });
+    }
+
+    private void createCheckBoxListener(int index)
+    {
+        for (int column = 0; column < _TABLE_COLUMNS; column++)
+        {
+            buttons[index][column].addListener(new ChangeListener()
+            {
+                @Override
+                public void changed(ChangeEvent event, Actor actor)
+                {
+                    if (!okToResetPrefs)
+                    {
+                        updatePreferences();
+                    }
+                }
+            });
+        }
+    }
+
+    public boolean update()
+    {
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                buttons[row][column].setText(buttons[row][column].isChecked() ? " ON" : " OFF");
+            }
+        }
+
+        return false;
+    }
+
+    public void draw(SpriteBatch spriteBatch)
+    {
+        if (foreground != null)
+        {
+            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+        }
+    }
+
+    private void updatePreferencesOnEntry()
+    {
+        if (!Developer.isDevMode())
+        {
+            App.settings.getPrefs().putBoolean(Settings._MENU_HEAPS, false);
+            App.settings.getPrefs().flush();
+        }
+
+        updatePreferences();
+    }
+
+    private void updatePreferences()
+    {
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                buttons[row][column].setText(buttons[row][column].isChecked() ? " ON" : " OFF");
+                App.settings.getPrefs().putBoolean(devMenu[row][column].prefName, buttons[row][column].isChecked());
+            }
+        }
+
+        if (Developer.isDevMode())
+        {
+            glProfilerUpdate();
+        }
+
+        App.settings.getPrefs().flush();
+    }
+
+    private void updatePreferencesOnExit()
+    {
+        Trace.__FILE_FUNC();
+    }
+
+    private void glProfilerUpdate()
+    {
+        if (Developer.isDevMode())
+        {
+            if (buttons[glProfilerRow][glProfilerColumn].isChecked())
+            {
+                // Profiling should be disabled on release software, hence
+                // the warning suppression. Normally, not a good idea to
+                // suppress such warnings but this if..else... is only
+                // executed in Developer Mode.
+
+                //noinspection LibGDXProfilingCode
+                glProfiler.enable();
+            }
+            else
+            {
+                glProfiler.disable();
+            }
+        }
+    }
+
+    /**
+     * Either ENABLE or DISABLE all enemy entities.
+     *
+     * @param _disable boolean TRUE to disable
+     *                 boolean FALSE to enable.
+     */
+    private void setAllEnemiesEnableStatus(boolean _disable)
+    {
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                if (devMenu[row][column].isEnemy)
+                {
+                    buttons[row][column].setChecked(!_disable);
+                }
+            }
+        }
+    }
+
+    private void resetPreferencesToDefaults()
+    {
+        okToResetPrefs = true;
+
+        App.settings.resetToDefaults();
+
+        App.settings.getPrefs().putBoolean(Settings._SIGN_IN_STATUS, App.googleServices.isSignedIn());
+        App.settings.getPrefs().putBoolean(Settings._ANDROID_ON_DESKTOP, AppSystem.isDesktopApp());
+
+        App.settings.getPrefs().flush();
+
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                boolean isChecked = App.settings.isEnabled(devMenu[row][column].prefName);
+
+                buttons[row][column].setChecked(isChecked);
+                buttons[row][column].setText(isChecked ? " ON" : " OFF");
+            }
+        }
+
+        okToResetPrefs = false;
+    }
+
+    private void clearActors()
+    {
+        table.addAction(Actions.removeActor());
+        scrollPane.addAction(Actions.removeActor());
+        exitButton.addAction(Actions.removeActor());
+        buttonResetHiScores.addAction(Actions.removeActor());
+        buttonResetPrefs.addAction(Actions.removeActor());
+        buttonGLProfiler.addAction(Actions.removeActor());
+        buttonResetStats.addAction(Actions.removeActor());
+        buttonCollisionDump.addAction(Actions.removeActor());
+        heading.addAction(Actions.removeActor());
+
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                buttons[row][column].addAction(Actions.removeActor());
+            }
+        }
+    }
+
+    // TODO: 14/04/2019 - Why is this called quickSetup() ???
+    private void quickSetup()
+    {
+        for (int row = 0; row < devMenu.length; row++)
+        {
+            int length = devMenu[row].length;
+
+            for (int column = 0; column < length; column++)
+            {
+                String prefName = devMenu[row][column].prefName;
+
+                if (prefName.equals(Settings._GL_PROFILER))
+                {
+                    glProfilerColumn = column;
+                    glProfilerRow    = row;
+                }
+                else if (prefName.equals(Settings._ANDROID_ON_DESKTOP))
+                {
+                    androidOnDesktopColumn = column;
+                    androidOnDesktopRow    = row;
+                }
+            }
+        }
+    }
+
+    private void loadDevMenu()
+    {
+        DMEntry[][] devMenuDefaults =
+            {
+                {
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Scroll Demo", Settings._SCROLL_DEMO, false),
+                    new DMEntry("Using Box2D", Settings._BOX2D_PHYSICS, false),
+                    new DMEntry("Installed", Settings._INSTALLED, false)
+                },
+                {
+                    new DMEntry("Sprite Boxes", Settings._SPRITE_BOXES, false),
+                    new DMEntry("B2D Renderer", Settings._B2D_RENDERER, false),
+                    new DMEntry("Vibrations", Settings._VIBRATIONS, false)
+                },
+                {
+                    new DMEntry("Tile Boxes", Settings._TILE_BOXES, false),
+                    new DMEntry("Use Ashley ECS", Settings._USING_ASHLEY_ECS, false),
+                    new DMEntry("Enable Music", Settings._MUSIC_ENABLED, false)
+                },
+                {
+                    new DMEntry("Button Outlines", Settings._BUTTON_BOXES, false),
+                    new DMEntry("Shader Program", Settings._SHADER_PROGRAM, false),
+                    new DMEntry("Enable Sounds", Settings._SOUNDS_ENABLED, false)
+                },
+                {
+                    new DMEntry("Show FPS", Settings._SHOW_FPS, false),
+                    new DMEntry("GLProfiler", Settings._GL_PROFILER, false),
+                    new DMEntry("Challenges", Settings._CHALLENGES, false)
+                },
+                {
+                    new DMEntry("Show Debug", Settings._SHOW_DEBUG, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
+                },
+                {
+                    new DMEntry("Show Hints", Settings._SHOW_HINTS, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Spawnpoints", Settings._SPAWNPOINTS, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Menu Page Heaps", Settings._MENU_HEAPS, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Disable Menu Screen", Settings._DISABLE_MENU_SCREEN, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Cull Sprites", Settings._CULL_SPRITES, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("Android on Desktop", Settings._ANDROID_ON_DESKTOP, false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+                {
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false),
+                    new DMEntry("", "", false)
+                },
+            };
+
+        devMenu = new DMEntry[devMenuDefaults.length][_TABLE_COLUMNS];
+
+        for (int row = 0; row < devMenuDefaults.length; row++)
+        {
+            for (int column = 0; column < _TABLE_COLUMNS; column++)
+            {
+                devMenu[row][column] = devMenuDefaults[row][column];
+            }
+        }
+    }
+
+    public void debugReport()
+    {
+        Trace.__FILE_FUNC_WithDivider();
+
+        for (DMEntry[] entry : devMenu)
+        {
+            for (DMEntry dmEntry : entry)
+            {
+                if (!dmEntry.string.isEmpty())
+                {
+                    Trace.dbg(dmEntry.string + ": " + App.settings.getPrefs().getBoolean(dmEntry.prefName));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void dispose()
+    {
+        super.dispose();
+
+        foreground.dispose();
+        exitButton.clear();
+        buttonResetPrefs.clear();
+        buttonResetHiScores.clear();
+        buttonResetStats.clear();
+        buttonGLProfiler.clear();
+        heading.clear();
+        table.clear();
+        scrollPane.clear();
+
+        foreground          = null;
+        exitButton          = null;
+        buttonResetPrefs    = null;
+        buttonResetHiScores = null;
+        buttonResetStats    = null;
+        buttonGLProfiler    = null;
+        heading             = null;
+        table               = null;
+        scrollPane          = null;
+    }
+}

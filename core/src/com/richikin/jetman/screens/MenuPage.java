@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.audio.AudioData;
+import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
@@ -202,7 +204,7 @@ public class MenuPage implements IUIPage, Disposable
         {
             public void clicked(InputEvent event, float x, float y)
             {
-//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+                GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
                 buttonStart.setChecked(true);
             }
@@ -212,7 +214,7 @@ public class MenuPage implements IUIPage, Disposable
         {
             public void clicked(InputEvent event, float x, float y)
             {
-//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+                GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
                 buttonOptions.setChecked(true);
             }
@@ -222,7 +224,7 @@ public class MenuPage implements IUIPage, Disposable
         {
             public void clicked(InputEvent event, float x, float y)
             {
-//                Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+                GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
                 buttonExit.setChecked(true);
             }
@@ -274,7 +276,7 @@ public class MenuPage implements IUIPage, Disposable
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
-//                    Sfx.inst().startSound(Sfx.inst().SFX_BEEP);
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
                     buttonGoogle.setChecked(true);
                 }

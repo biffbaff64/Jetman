@@ -85,7 +85,7 @@ public class Startup
         App.mainMenuScreen = new MainMenuScreen();
         App.mainGameScreen = new MainGameScreen();
 
-        GameAudio.setup();
+        GameAudio.inst().setup();
         Shake.setAllowed(false);
 
         AppSystem.addBackButton();
