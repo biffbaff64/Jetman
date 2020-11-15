@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
+import com.richikin.jetman.audio.AudioData;
+import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
@@ -92,10 +94,10 @@ public class MainMenuScreen extends AbstractBaseScreen
 
     private StateManager update(final StateManager state)
     {
-//        if (!Sfx.inst().isTunePlaying(Sfx.inst().MUS_TITLE))
-//        {
-//            Sfx.inst().playTitleTune(true);
-//        }
+        if (!GameAudio.inst().isTunePlaying(AudioData.MUS_TITLE))
+        {
+            GameAudio.inst().playTitleTune(true);
+        }
 
         if (state.peek() == StateID._STATE_MAIN_MENU)
         {
@@ -183,7 +185,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 Trace.dbg(" ***** START PRESSED ***** ");
                 Trace.divider('#', 100);
 
-//                Sfx.inst().playTitleTune(false);
+                GameAudio.inst().playTitleTune(false);
 
                 menuPage.buttonStart.setChecked(false);
 
@@ -202,6 +204,24 @@ public class MainMenuScreen extends AbstractBaseScreen
                         changePageTo(_OPTIONS_PAGE);
 
                         menuPage.buttonOptions.setChecked(false);
+                    }
+
+                    //
+                    // Check HISCORES button, open hiscores page if pressed
+                    if ((menuPage.buttonHiScores != null) && menuPage.buttonHiScores.isChecked())
+                    {
+                        changePageTo(_HISCORE_PAGE);
+
+                        menuPage.buttonHiScores.setChecked(false);
+                    }
+
+                    //
+                    // Check CREDITS button, open credits page if pressed
+                    if ((menuPage.buttonCredits != null) && menuPage.buttonCredits.isChecked())
+                    {
+                        changePageTo(_CREDITS_PAGE);
+
+                        menuPage.buttonCredits.setChecked(false);
                     }
 
                     //

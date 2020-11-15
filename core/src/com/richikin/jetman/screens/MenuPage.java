@@ -37,6 +37,8 @@ public class MenuPage implements IUIPage, Disposable
 {
     public ImageButton buttonStart;
     public ImageButton buttonOptions;
+    public ImageButton buttonHiScores;
+    public ImageButton buttonCredits;
     public ImageButton buttonExit;
     public ImageButton buttonGoogle;
 
@@ -129,16 +131,16 @@ public class MenuPage implements IUIPage, Disposable
 
         Scene2DUtils.setup();
 
-        buttonStart = Scene2DUtils.makeImageButton("buttonStart", "buttonStart_pressed");
-        buttonStart.setPosition((int) AppSystem.hudOriginX + 482, (int) AppSystem.hudOriginY + (720 - 417));
-        buttonStart.setVisible(true);
-        buttonStart.setZIndex(1);
-        App.stage.addActor(buttonStart);
+        buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppSystem.hudOriginX + 515, (int) AppSystem.hudOriginY + (720 - 379));
+        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 437));
+        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 596, (int) AppSystem.hudOriginY + (720 - 614));
+        buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppSystem.hudOriginX + 543, (int) AppSystem.hudOriginY + (720 - 496));
+        buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 554));
 
-        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppSystem.hudOriginX + 545, (int) AppSystem.hudOriginY + (720 - 516));
-        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 591, (int) AppSystem.hudOriginY + (720 - 609));
         buttonStart.setZIndex(1);
         buttonOptions.setZIndex(1);
+        buttonHiScores.setZIndex(1);
+        buttonCredits.setZIndex(1);
         buttonExit.setZIndex(1);
 
         if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
@@ -220,6 +222,26 @@ public class MenuPage implements IUIPage, Disposable
             }
         });
 
+        buttonHiScores.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+
+                buttonHiScores.setChecked(true);
+            }
+        });
+
+        buttonCredits.addListener(new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+
+                buttonCredits.setChecked(true);
+            }
+        });
+
         buttonExit.addListener(new ClickListener()
         {
             public void clicked(InputEvent event, float x, float y)
@@ -293,6 +315,8 @@ public class MenuPage implements IUIPage, Disposable
     {
         buttonStart.setVisible(_visible);
         buttonOptions.setVisible(_visible);
+        buttonHiScores.setVisible(_visible);
+        buttonCredits.setVisible(_visible);
         buttonExit.setVisible(_visible);
 
         if (decoration != null)
@@ -324,10 +348,14 @@ public class MenuPage implements IUIPage, Disposable
     {
         buttonStart.addAction(Actions.removeActor());
         buttonOptions.addAction(Actions.removeActor());
+        buttonHiScores.addAction(Actions.removeActor());
+        buttonCredits.addAction(Actions.removeActor());
         buttonExit.addAction(Actions.removeActor());
 
         buttonStart   = null;
         buttonOptions = null;
+        buttonHiScores = null;
+        buttonCredits = null;
         buttonExit    = null;
 
         if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
