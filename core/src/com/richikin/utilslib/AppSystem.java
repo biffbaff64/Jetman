@@ -10,16 +10,12 @@ import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Stats;
 
-// TODO: 05/11/2020
-@SuppressWarnings("UtilityClassCanBeEnum")
 public final class AppSystem
 {
     public static boolean               quitToMainMenu;             // Game over, back to menu screen

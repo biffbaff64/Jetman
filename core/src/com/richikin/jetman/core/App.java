@@ -25,7 +25,8 @@ import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.core.ISettings;
 
-public abstract class App extends LibApp
+// TODO: 16/11/2020
+public final class App extends LibApp
 {
     // =======================================================
     // Global access references
@@ -64,6 +65,10 @@ public abstract class App extends LibApp
 
     private App() {}
 
+    public static void initialise()
+    {
+    }
+
     public static MainPlayer getPlayer()
     {
         MainPlayer player = null;
@@ -73,6 +78,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._playerIndex) != null)
             && (entityData.entityMap.get(entityManager._playerIndex) instanceof MainPlayer))
         {
+            // TODO: 16/11/2020
             player = ((MainPlayer) entityData.entityMap.get(entityManager._playerIndex));
         }
 
@@ -87,6 +93,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._roverIndex) != null)
             && (entityData.entityMap.get(entityManager._roverIndex) instanceof Rover))
         {
+            // TODO: 16/11/2020
             rover = ((Rover) entityData.entityMap.get(entityManager._roverIndex));
         }
 
@@ -108,6 +115,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
             && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
         {
+            // TODO: 16/11/2020
             gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
         }
 
@@ -122,6 +130,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._bombIndex) != null)
             && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
         {
+            // TODO: 16/11/2020
             bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
         }
 
@@ -136,6 +145,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
             && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
         {
+            // TODO: 16/11/2020
             base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
         }
 
@@ -150,6 +160,7 @@ public abstract class App extends LibApp
             && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
             && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
         {
+            // TODO: 16/11/2020
             teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
         }
 

@@ -3,8 +3,10 @@ package com.richikin.jetman.config;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.richikin.jetman.audio.AudioData;
+import com.richikin.jetman.core.App;
 import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
 public class Settings implements ISettings
@@ -75,6 +77,21 @@ public class Settings implements ISettings
         }
     }
 
+    public void freshInstallCheck()
+    {
+        if (!isEnabled(Settings._INSTALLED))
+        {
+            Trace.dbg("FRESH INSTALL.");
+
+            resetToDefaults();
+
+            Trace.dbg("Setting all Statistical logging meters to zero.");
+            Stats.resetAllMeters();
+
+            enable(Settings._INSTALLED);
+        }
+    }
+
     @Override
     public Preferences getPrefs()
     {
@@ -112,7 +129,7 @@ public class Settings implements ISettings
     {
         if (prefs != null)
         {
-            Trace.__FILE_FUNC();
+            Trace.dbg("Initialising all App settings to default values.");
 
             prefs.putBoolean(_DEFAULT_ON, _PREF_TRUE_DEFAULT);
             prefs.putBoolean(_DEFAULT_OFF, _PREF_FALSE_DEFAULT);

@@ -12,5 +12,7 @@ public interface ISettings
 
     void resetToDefaults();
 
+    void freshInstallCheck();
+
     com.badlogic.gdx.Preferences getPrefs();
 }

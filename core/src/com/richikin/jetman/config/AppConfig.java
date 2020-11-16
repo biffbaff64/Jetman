@@ -14,6 +14,8 @@ public class AppConfig
 {
     public static final String _PREFS_FILE_NAME = "com.richikin.jetman.preferences";
 
+    private AppConfig() {}
+
     public static void setup()
     {
         Trace.__FILE_FUNC();

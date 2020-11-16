@@ -41,6 +41,8 @@ public class Startup
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         Trace.__FILE_FUNC_WithDivider();
 
+        App.initialise();
+
         App.appState = new StateManager(StateID._STATE_POWER_UP);
 
         App.settings = new Settings();
@@ -50,8 +52,9 @@ public class Startup
         App.spriteBatch = new SpriteBatch();
 
         AppConfig.setup();
-        AppConfig.freshInstallCheck();
+        App.settings.freshInstallCheck();
 
+        // TODO: 16/11/2020
         Gfx.setPPM(32.0f);
 
         if (AppSystem.isAndroidApp())
