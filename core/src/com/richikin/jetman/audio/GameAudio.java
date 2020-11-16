@@ -233,24 +233,24 @@ public class GameAudio
             AudioData.music[currentTune].setVolume(getUsableVolume(volume));
         }
 
-        App.getPrefs().putInteger(Settings._MUSIC_VOLUME, volume);
-        App.getPrefs().flush();
+        App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, volume);
+        App.settings.getPrefs().flush();
     }
 
     public void setFXVolume(int volume)
     {
-        App.getPrefs().putInteger(Settings._FX_VOLUME, volume);
-        App.getPrefs().flush();
+        App.settings.getPrefs().putInteger(Settings._FX_VOLUME, volume);
+        App.settings.getPrefs().flush();
     }
 
     public int getMusicVolume()
     {
-        return App.getPrefs().getInteger(Settings._MUSIC_VOLUME);
+        return App.settings.getPrefs().getInteger(Settings._MUSIC_VOLUME);
     }
 
     public int getFXVolume()
     {
-        return App.getPrefs().getInteger(Settings._FX_VOLUME);
+        return App.settings.getPrefs().getInteger(Settings._FX_VOLUME);
     }
 
     public float getUsableFxVolume()

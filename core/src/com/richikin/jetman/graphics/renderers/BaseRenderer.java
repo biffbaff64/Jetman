@@ -252,7 +252,7 @@ public class BaseRenderer implements Disposable
         }
 
         // ----- Draw the Stage, if enabled -----
-        if (isDrawingStage)
+        if (isDrawingStage && (App.stage != null))
         {
             App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
             App.stage.draw();

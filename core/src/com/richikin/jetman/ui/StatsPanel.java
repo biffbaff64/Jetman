@@ -73,8 +73,6 @@ public class StatsPanel extends DefaultPanel
     @Override
     public void setup()
     {
-        Scene2DUtils.setup();
-
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
         buffer = new Table();

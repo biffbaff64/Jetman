@@ -24,14 +24,14 @@ public class CreditsPage implements IUIPage, Disposable
     }
 
     @Override
+    public void initialise()
+    {
+    }
+
+    @Override
     public boolean update()
     {
-        if (stopWatch == null)
-        {
-            return false;
-        }
-
-        return (stopWatch.time(TimeUnit.MILLISECONDS) >= 5000);
+        return false;
     }
 
     @Override

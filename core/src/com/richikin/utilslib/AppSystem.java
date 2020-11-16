@@ -80,11 +80,11 @@ public final class AppSystem
         systemBackButton = new Switch();
     }
 
-    public static void addBackButton()
+    public static void addBackButton(String _default, String _pressed)
     {
         // TODO: 11/11/2020 - Use Scene2DUtils instead when its has been moved to UtilsLib
-        Image imageUp   = new Image(App.assets.getButtonRegion("new_back_button"));
-        Image imageDown = new Image(App.assets.getButtonRegion("new_back_button_pressed"));
+        Image imageUp   = new Image(App.assets.getButtonRegion(_default));
+        Image imageDown = new Image(App.assets.getButtonRegion(_pressed));
         backButton = new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
         backButton.setPosition(0, 0);
         backButton.setVisible(false);
@@ -97,6 +97,24 @@ public final class AppSystem
                 backButton.setChecked(true);
             }
         });
+    }
+
+    public static void setBackButtonState(boolean _visible, boolean _enabled)
+    {
+        backButton.setVisible(_visible);
+        backButton.setDisabled(!_enabled);
+    }
+
+    public static void showAndEnableBackButton()
+    {
+        backButton.setVisible(true);
+        backButton.setDisabled(false);
+    }
+
+    public static void hideAndDisableBackButton()
+    {
+        backButton.setVisible(false);
+        backButton.setDisabled(true);
     }
 
     /**

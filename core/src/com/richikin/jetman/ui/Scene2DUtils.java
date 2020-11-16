@@ -138,6 +138,7 @@ public class Scene2DUtils
 
         imageButton.setPosition(x, y);
         imageButton.setVisible(true);
+        imageButton.setZIndex(1);
 
         App.stage.addActor(imageButton);
 

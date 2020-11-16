@@ -24,11 +24,11 @@ import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.jetman.ui.StatsPanel;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
 
 public class OptionsPage implements IUIPage
 {
-    private ImageButton buttonExit;
     private ImageButton buttonStats;
     private ImageButton buttonPrivacy;
     private ImageButton buttonStoryLine;
@@ -53,6 +53,7 @@ public class OptionsPage implements IUIPage
     private InstructionsPanel  storyPanel;
     private ScreenID           activePanel;
 
+    private boolean isJustFinishedOptionsPanel;
     private boolean justFinishedStatsPanel;
     private boolean justFinishedPrivacyPanel;
     private boolean justFinishedStoryPanel;
@@ -63,6 +64,11 @@ public class OptionsPage implements IUIPage
      * Instantiates a new Options page.
      */
     public OptionsPage()
+    {
+    }
+
+    @Override
+    public void initialise()
     {
     }
 
@@ -82,7 +88,6 @@ public class OptionsPage implements IUIPage
             justFinishedStatsPanel = false;
             statsPanel = null;
             activePanel = ScreenID._SETTINGS_SCREEN;
-
             showActors(true);
         }
 
@@ -96,7 +101,6 @@ public class OptionsPage implements IUIPage
             justFinishedPrivacyPanel = false;
             privacyPanel = null;
             activePanel = ScreenID._SETTINGS_SCREEN;
-
             showActors(true);
         }
 
@@ -110,7 +114,6 @@ public class OptionsPage implements IUIPage
             justFinishedStoryPanel = false;
             storyPanel = null;
             activePanel = ScreenID._SETTINGS_SCREEN;
-
             showActors(true);
         }
 
@@ -120,7 +123,7 @@ public class OptionsPage implements IUIPage
             showActors(true);
         }
 
-        return false;
+        return isJustFinishedOptionsPanel;
     }
 
     public void draw(SpriteBatch spriteBatch)
@@ -162,6 +165,15 @@ public class OptionsPage implements IUIPage
     {
         setupCompleted = false;
 
+        AppSystem.backButton.setVisible(true);
+        AppSystem.backButton.setDisabled(false);
+        AppSystem.backButton.setChecked(false);
+
+        if (AppSystem.backButton.getClickListener() != null)
+        {
+            AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
+        }
+
         foreground = App.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
@@ -176,11 +188,10 @@ public class OptionsPage implements IUIPage
 
         activePanel = ScreenID._SETTINGS_SCREEN;
 
-        App.optionsPageActive = true;
         Developer.developerPanelActive = false;
-
         enteredDeveloperPanel = false;
         setupCompleted = true;
+        isJustFinishedOptionsPanel = false;
     }
 
     /**
@@ -188,56 +199,84 @@ public class OptionsPage implements IUIPage
      */
     public void hide()
     {
-        if (App.optionsPageActive)
-        {
-            buttonExit.addAction(Actions.removeActor());
-            buttonStats.addAction(Actions.removeActor());
-            buttonPrivacy.addAction(Actions.removeActor());
-            buttonStoryLine.addAction(Actions.removeActor());
-            buttonDevOptions.addAction(Actions.removeActor());
-            buttonExit = null;
-            buttonStats = null;
-            buttonPrivacy = null;
-            buttonStoryLine = null;
-            buttonDevOptions = null;
+        AppSystem.backButton.setVisible(false);
+        AppSystem.backButton.setDisabled(true);
 
+        if (buttonStats != null)
+        {
+            buttonStats.addAction(Actions.removeActor());
+            buttonStats = null;
+        }
+
+        if (buttonPrivacy != null)
+        {
+            buttonPrivacy.addAction(Actions.removeActor());
+            buttonPrivacy = null;
+        }
+
+        if (buttonStoryLine != null)
+        {
+            buttonStoryLine.addAction(Actions.removeActor());
+            buttonStoryLine = null;
+        }
+
+        if (buttonDevOptions != null)
+        {
+            buttonDevOptions.addAction(Actions.removeActor());
+            buttonDevOptions = null;
+        }
+
+        if (musicLabel != null)
+        {
             musicLabel.addAction(Actions.removeActor());
             musicSlider.addAction(Actions.removeActor());
             musicCheckBox.addAction(Actions.removeActor());
-            musicLabel = null;
-            musicSlider = null;
+            musicLabel    = null;
+            musicSlider   = null;
             musicCheckBox = null;
+        }
 
+        if (fxLabel != null)
+        {
             fxLabel.addAction(Actions.removeActor());
             fxSlider.addAction(Actions.removeActor());
             fxCheckBox.addAction(Actions.removeActor());
-            fxLabel = null;
-            fxSlider = null;
+            fxLabel    = null;
+            fxSlider   = null;
             fxCheckBox = null;
-
-            controllerCheckBox.addAction(Actions.removeActor());
-            vibrateCheckBox.addAction(Actions.removeActor());
-            hintsCheckBox.addAction(Actions.removeActor());
-            controllerCheckBox = null;
-            vibrateCheckBox = null;
-            hintsCheckBox = null;
-
-            if (buttonSignOut != null)
-            {
-                buttonSignOut.addAction(Actions.removeActor());
-            }
-            buttonSignOut = null;
-
-            App.assets.unloadAsset("data/settings_screen_template.png");
-
-            foreground = null;
-            skin = null;
-            statsPanel = null;
-            privacyPanel = null;
-            storyPanel = null;
-
-            App.optionsPageActive = false;
         }
+
+        if (controllerCheckBox != null)
+        {
+            controllerCheckBox.addAction(Actions.removeActor());
+            controllerCheckBox = null;
+        }
+
+        if (vibrateCheckBox != null)
+        {
+            vibrateCheckBox.addAction(Actions.removeActor());
+            vibrateCheckBox = null;
+        }
+
+        if (hintsCheckBox != null)
+        {
+            hintsCheckBox.addAction(Actions.removeActor());
+            hintsCheckBox = null;
+        }
+
+        if (buttonSignOut != null)
+        {
+            buttonSignOut.addAction(Actions.removeActor());
+            buttonSignOut = null;
+        }
+
+        App.assets.unloadAsset("data/settings_screen_template.png");
+
+        foreground = null;
+        skin = null;
+        statsPanel = null;
+        privacyPanel = null;
+        storyPanel = null;
     }
 
     /**
@@ -245,7 +284,7 @@ public class OptionsPage implements IUIPage
      */
     private void populateTable()
     {
-        Scene2DUtils.setup();
+        Trace.__FILE_FUNC();
 
         // ----------
         musicSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 208), skin);
@@ -268,12 +307,10 @@ public class OptionsPage implements IUIPage
         buttonStats = Scene2DUtils.addButton("new_stats_button", "new_stats_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 540));
         buttonPrivacy = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 600));
         buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 660));
-        buttonExit = Scene2DUtils.addButton("new_back_button", "new_back_button_pressed", (int) AppSystem.hudOriginX + 20, (int) AppSystem.hudOriginY + (720 - 100));
 
         buttonStats.setSize(210, 40);
         buttonPrivacy.setSize(210, 40);
         buttonStoryLine.setSize(210, 40);
-        buttonExit.setSize(128, 64);
 
         // ----------
         if (App.googleServices.isSignedIn())
@@ -314,8 +351,8 @@ public class OptionsPage implements IUIPage
      */
     private void updateSettings()
     {
-        App.getPrefs().putBoolean(Settings._MUSIC_ENABLED, (GameAudio.inst().getMusicVolume() != AudioData._SILENT));
-        App.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, (GameAudio.inst().getFXVolume() != AudioData._SILENT));
+        App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, (GameAudio.inst().getMusicVolume() != AudioData._SILENT));
+        App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, (GameAudio.inst().getFXVolume() != AudioData._SILENT));
 
         GameAudio.inst().setMusicVolume((int) musicSlider.getValue());
         GameAudio.inst().setFXVolume((int) fxSlider.getValue());
@@ -358,7 +395,6 @@ public class OptionsPage implements IUIPage
             buttonSignOut.setVisible(_visibilty);
         }
 
-        buttonExit.setVisible(_visibilty);
         buttonStats.setVisible(_visibilty);
         buttonPrivacy.setVisible(_visibilty);
         buttonStoryLine.setVisible(_visibilty);
@@ -399,8 +435,6 @@ public class OptionsPage implements IUIPage
 
                         statsPanel = new StatsPanel();
                         statsPanel.open();
-
-                        buttonExit.setVisible(true);
                     }
                 }
             });
@@ -425,8 +459,6 @@ public class OptionsPage implements IUIPage
 
                         privacyPanel = new PrivacyPolicyPanel();
                         privacyPanel.open();
-
-                        buttonExit.setVisible(true);
                     }
                 }
             });
@@ -451,8 +483,6 @@ public class OptionsPage implements IUIPage
 
                           storyPanel = new InstructionsPanel();
                           storyPanel.open();
-
-                          buttonExit.setVisible(true);
                       }
                   }
               });
@@ -495,46 +525,44 @@ public class OptionsPage implements IUIPage
             });
         }
 
-        if (buttonExit != null)
+        AppSystem.backButton.addListener(new ClickListener()
         {
-            buttonExit.addListener(new ClickListener()
+            public void clicked(InputEvent event, float x, float y)
             {
-                public void clicked(InputEvent event, float x, float y)
+                updateSettings();
+
+                switch (activePanel)
                 {
-                    updateSettings();
-
-                    switch (activePanel)
+                    case _SETTINGS_SCREEN:
                     {
-                        case _SETTINGS_SCREEN:
-                        {
-                            hide();
-                        }
-                        break;
-
-                        case _STATS_SCREEN:
-                        {
-                            justFinishedStatsPanel = true;
-                        }
-                        break;
-
-                        case _INSTRUCTIONS_SCREEN:
-                        {
-                            justFinishedStoryPanel = true;
-                        }
-                        break;
-
-                        case _PRIVACY_POLICY_SCREEN:
-                        {
-                            justFinishedPrivacyPanel = true;
-                        }
-                        break;
-
-                        default:
-                            break;
+                        isJustFinishedOptionsPanel = true;
+                        hide();
                     }
+                    break;
+
+                    case _STATS_SCREEN:
+                    {
+                        justFinishedStatsPanel = true;
+                    }
+                    break;
+
+                    case _INSTRUCTIONS_SCREEN:
+                    {
+                        justFinishedStoryPanel = true;
+                    }
+                    break;
+
+                    case _PRIVACY_POLICY_SCREEN:
+                    {
+                        justFinishedPrivacyPanel = true;
+                    }
+                    break;
+
+                    default:
+                        break;
                 }
-            });
-        }
+            }
+        });
     }
 
     /**

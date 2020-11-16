@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public interface IUIPage
 {
+    void initialise();
+
     boolean update();
 
     void show();

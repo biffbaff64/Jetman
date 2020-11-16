@@ -61,8 +61,6 @@ public final class App extends LibApp
     public static DefenceStationManager defenceStationManager;
     public static BombManager           bombManager;
 
-    public static boolean optionsPageActive;
-
     private App() {}
 
     public static void initialise()
@@ -207,10 +205,5 @@ public final class App extends LibApp
     public static HeadsUpDisplay getHud()
     {
         return hud;
-    }
-
-    public static com.badlogic.gdx.Preferences getPrefs()
-    {
-        return settings.getPrefs();
     }
 }

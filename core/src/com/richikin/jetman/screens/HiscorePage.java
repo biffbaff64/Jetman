@@ -80,10 +80,13 @@ public class HiscorePage implements IUIPage, Disposable
     }
 
     @Override
+    public void initialise()
+    {
+    }
+
+    @Override
     public boolean update()
     {
-        boolean isFinished = false;
-
         if (state.peek() != StateID._STATE_NEW_HISCORE)
         {
             if (stopWatch.time(TimeUnit.MILLISECONDS) >= 75)
@@ -97,14 +100,6 @@ public class HiscorePage implements IUIPage, Disposable
                     if (--colorIndex[i] < 0)
                     {
                         colorIndex[i] = (colours.length - 1);
-
-                        if (i == 0)
-                        {
-                            if (++loopCount >= 10)
-                            {
-                                isFinished = true;
-                            }
-                        }
                     }
                 }
 
@@ -112,7 +107,7 @@ public class HiscorePage implements IUIPage, Disposable
             }
         }
 
-        return isFinished;
+        return false;
     }
 
     @Override
@@ -154,8 +149,6 @@ public class HiscorePage implements IUIPage, Disposable
         if (foreground != null)
         {
             spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
-
-            AppSystem.backButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + (720 - 100));
         }
     }
 
@@ -165,8 +158,6 @@ public class HiscorePage implements IUIPage, Disposable
     private void addItems()
     {
         foreground = App.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
-
-        Scene2DUtils.setup();
 
         rankLabels  = new Label[GameConstants._MAX_HISCORES];
         levelLabels = new Label[GameConstants._MAX_HISCORES];

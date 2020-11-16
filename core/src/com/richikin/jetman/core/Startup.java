@@ -91,7 +91,7 @@ public class Startup
         GameAudio.inst().setup();
         Shake.setAllowed(false);
 
-        AppSystem.addBackButton();
+        AppSystem.addBackButton("back_arrow", "back_arrow_pressed");
 
         Trace.divider();
     }

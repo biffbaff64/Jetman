@@ -49,68 +49,27 @@ public class MenuPage implements IUIPage, Disposable
     private Label     nativeHeapLabel;
     private Label     versionLabel;
 
-    private int menuIndex;
-    private int menuLoop;
-
     public MenuPage()
     {
         foreground = App.assets.loadSingleAsset("data/title_background.png", Texture.class);
 
-        addMenu();
+        populateMenuScreen();
         addClickListeners();
 
         this.stopWatch = StopWatch.start();
     }
 
     @Override
-    public void reset()
+    public void initialise()
     {
-        menuIndex = 0;
-        menuLoop  = 0;
-    }
-
-    @Override
-    public void show()
-    {
-        showItems(true);
-
-        stopWatch.reset();
-
-        menuIndex = 0;
-        menuLoop  = 0;
-    }
-
-    @Override
-    public void hide()
-    {
-        showItems(false);
     }
 
     @Override
     public boolean update()
     {
-        boolean menuClosed = false;
+        updateGoogleButton();
 
-        if (menuLoop >= 5)
-        {
-            menuClosed = true;
-        }
-        else
-        {
-            if (stopWatch.time(TimeUnit.MILLISECONDS) >= 1000)
-            {
-                stopWatch.reset();
-
-                if (menuIndex == 0)
-                {
-                    menuLoop++;
-                }
-            }
-
-            updateGoogleButton();
-        }
-
-        return menuClosed;
+        return false;
     }
 
     @Override
@@ -124,24 +83,35 @@ public class MenuPage implements IUIPage, Disposable
         menuPageDebug();
     }
 
-    private void addMenu()
+    @Override
+    public void reset()
+    {
+    }
+
+    @Override
+    public void show()
+    {
+        showItems(true);
+
+        stopWatch.reset();
+    }
+
+    @Override
+    public void hide()
+    {
+        showItems(false);
+    }
+
+    private void populateMenuScreen()
     {
         AppSystem.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
         AppSystem.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
-
-        Scene2DUtils.setup();
 
         buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppSystem.hudOriginX + 515, (int) AppSystem.hudOriginY + (720 - 379));
         buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 437));
         buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 596, (int) AppSystem.hudOriginY + (720 - 614));
         buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppSystem.hudOriginX + 543, (int) AppSystem.hudOriginY + (720 - 496));
         buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 554));
-
-        buttonStart.setZIndex(1);
-        buttonOptions.setZIndex(1);
-        buttonHiScores.setZIndex(1);
-        buttonCredits.setZIndex(1);
-        buttonExit.setZIndex(1);
 
         if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
         {
@@ -202,55 +172,70 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addClickListeners()
     {
-        buttonStart.addListener(new ClickListener()
+        if (buttonStart != null)
         {
-            public void clicked(InputEvent event, float x, float y)
+            buttonStart.addListener(new ClickListener()
             {
-                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                buttonStart.setChecked(true);
-            }
-        });
+                    buttonStart.setChecked(true);
+                }
+            });
+        }
 
-        buttonOptions.addListener(new ClickListener()
+        if (buttonOptions != null)
         {
-            public void clicked(InputEvent event, float x, float y)
+            buttonOptions.addListener(new ClickListener()
             {
-                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                buttonOptions.setChecked(true);
-            }
-        });
+                    buttonOptions.setChecked(true);
+                }
+            });
+        }
 
-        buttonHiScores.addListener(new ClickListener()
+        if (buttonHiScores != null)
         {
-            public void clicked(InputEvent event, float x, float y)
+            buttonHiScores.addListener(new ClickListener()
             {
-                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                buttonHiScores.setChecked(true);
-            }
-        });
+                    buttonHiScores.setChecked(true);
+                }
+            });
+        }
 
-        buttonCredits.addListener(new ClickListener()
+        if (buttonCredits != null)
         {
-            public void clicked(InputEvent event, float x, float y)
+            buttonCredits.addListener(new ClickListener()
             {
-                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                buttonCredits.setChecked(true);
-            }
-        });
+                    buttonCredits.setChecked(true);
+                }
+            });
+        }
 
-        buttonExit.addListener(new ClickListener()
+        if (buttonExit != null)
         {
-            public void clicked(InputEvent event, float x, float y)
+            buttonExit.addListener(new ClickListener()
             {
-                GameAudio.inst().startSound(AudioData.SFX_BEEP);
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                buttonExit.setChecked(true);
-            }
-        });
+                    buttonExit.setChecked(true);
+                }
+            });
+        }
     }
 
     /**
@@ -282,8 +267,6 @@ public class MenuPage implements IUIPage, Disposable
     {
         if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
         {
-            Scene2DUtils.setup();
-
             buttonGoogle = Scene2DUtils.addButton
                 (
                     "btn_google_signin_dark",
@@ -313,11 +296,11 @@ public class MenuPage implements IUIPage, Disposable
      */
     private void showItems(boolean _visible)
     {
-        buttonStart.setVisible(_visible);
-        buttonOptions.setVisible(_visible);
-        buttonHiScores.setVisible(_visible);
-        buttonCredits.setVisible(_visible);
-        buttonExit.setVisible(_visible);
+        if (buttonStart != null) buttonStart.setVisible(_visible);
+        if (buttonOptions != null) buttonOptions.setVisible(_visible);
+        if (buttonHiScores != null) buttonHiScores.setVisible(_visible);
+        if (buttonCredits != null) buttonCredits.setVisible(_visible);
+        if (buttonExit != null) buttonExit.setVisible(_visible);
 
         if (decoration != null)
         {
@@ -343,14 +326,46 @@ public class MenuPage implements IUIPage, Disposable
         }
     }
 
+    private void menuPageDebug()
+    {
+        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
+        {
+            if (javaHeapLabel != null)
+            {
+                javaHeapLabel.setText
+                    (
+                        String.format
+                            (
+                                Locale.UK,
+                                "JAVA HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
+                            )
+                    );
+            }
+
+            if (nativeHeapLabel != null)
+            {
+                nativeHeapLabel.setText
+                    (
+                        String.format
+                            (
+                                Locale.UK,
+                                "NATIVE HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
+                            )
+                    );
+            }
+        }
+    }
+
     @Override
     public void dispose()
     {
-        buttonStart.addAction(Actions.removeActor());
-        buttonOptions.addAction(Actions.removeActor());
-        buttonHiScores.addAction(Actions.removeActor());
-        buttonCredits.addAction(Actions.removeActor());
-        buttonExit.addAction(Actions.removeActor());
+        if (buttonStart != null) buttonStart.addAction(Actions.removeActor());
+        if (buttonOptions != null) buttonOptions.addAction(Actions.removeActor());
+        if (buttonHiScores != null) buttonHiScores.addAction(Actions.removeActor());
+        if (buttonCredits != null) buttonCredits.addAction(Actions.removeActor());
+        if (buttonExit != null) buttonExit.addAction(Actions.removeActor());
 
         buttonStart   = null;
         buttonOptions = null;
@@ -386,37 +401,5 @@ public class MenuPage implements IUIPage, Disposable
 
         foreground = null;
         stopWatch  = null;
-    }
-
-    private void menuPageDebug()
-    {
-        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
-        {
-            if (javaHeapLabel != null)
-            {
-                javaHeapLabel.setText
-                    (
-                        String.format
-                            (
-                                Locale.UK,
-                                "JAVA HEAP: %3.2fMB",
-                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
-                            )
-                    );
-            }
-
-            if (nativeHeapLabel != null)
-            {
-                nativeHeapLabel.setText
-                    (
-                        String.format
-                            (
-                                Locale.UK,
-                                "NATIVE HEAP: %3.2fMB",
-                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
-                            )
-                    );
-            }
-        }
     }
 }

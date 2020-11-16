@@ -678,8 +678,6 @@ public class HeadsUpDisplay implements Disposable
 
         if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            Scene2DUtils.setup();
-
             int xPos = AppSystem.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
             ActionButton = Scene2DUtils.addButton

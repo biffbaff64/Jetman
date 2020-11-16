@@ -94,8 +94,6 @@ public class ExitPanel implements Disposable
         panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
         darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
 
-        Scene2DUtils.setup();
-
         buttonYes = Scene2DUtils.addButton
             (
                 "button_yes",

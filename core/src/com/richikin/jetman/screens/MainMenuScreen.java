@@ -27,10 +27,10 @@ import java.util.ArrayList;
 public class MainMenuScreen extends AbstractBaseScreen
 {
     private static final int _MENU_PAGE      = 0;
-    private static final int _HISCORE_PAGE   = 1;
-    private static final int _CREDITS_PAGE   = 2;
-    private static final int _NUM_MAIN_PAGES = 3;
-    private static final int _OPTIONS_PAGE   = 3;
+    private static final int _OPTIONS_PAGE   = 1;
+    private static final int _HISCORE_PAGE   = 2;
+    private static final int _CREDITS_PAGE   = 3;
+    private static final int _NUM_MAIN_PAGES = 4;
     private static final int _EXIT_PAGE      = 4;
 
     private ExitPanel          exitPanel;
@@ -59,9 +59,9 @@ public class MainMenuScreen extends AbstractBaseScreen
         starField   = new StarField();
 
         panels.add(_MENU_PAGE, menuPage);
+        panels.add(_OPTIONS_PAGE, optionsPage);
         panels.add(_HISCORE_PAGE, new HiscorePage());
         panels.add(_CREDITS_PAGE, new CreditsPage());
-        panels.add(_OPTIONS_PAGE, optionsPage);
 
         if (AppSystem.isAndroidApp())
         {
@@ -106,22 +106,12 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _MENU_PAGE:
                 case _HISCORE_PAGE:
                 case _CREDITS_PAGE:
+                case _OPTIONS_PAGE:
                 {
                     if (panels.get(currentPage).update())
                     {
                         panels.get(currentPage).reset();
 
-                        changePageTo((currentPage + 1) % _NUM_MAIN_PAGES);
-                    }
-                }
-                break;
-
-                case _OPTIONS_PAGE:
-                {
-                    optionsPage.update();
-
-                    if (!App.optionsPageActive)
-                    {
                         changePageTo(_MENU_PAGE);
                     }
                 }
@@ -165,14 +155,10 @@ public class MainMenuScreen extends AbstractBaseScreen
                 || ControllerData.controllerFirePressed
                 || ControllerData.controllerStartPressed)
             {
-                if ((currentPage == _HISCORE_PAGE) || (currentPage == _CREDITS_PAGE))
-                {
-                    changePageTo(_MENU_PAGE);
+                changePageTo(_MENU_PAGE);
 
-                    ControllerData.controllerFirePressed  = false;
-                    ControllerData.controllerStartPressed = false;
-                }
-
+                ControllerData.controllerFirePressed  = false;
+                ControllerData.controllerStartPressed = false;
                 AppSystem.fullScreenButton.release();
                 AppSystem.backButton.setChecked(false);
             }
@@ -293,6 +279,11 @@ public class MainMenuScreen extends AbstractBaseScreen
                     else
                     {
                         exitPanel.draw(spriteBatch);
+                    }
+
+                    if (AppSystem.backButton.isVisible())
+                    {
+                        AppSystem.backButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + 20);
                     }
                 }
                 break;
