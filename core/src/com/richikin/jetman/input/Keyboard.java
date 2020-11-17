@@ -152,35 +152,6 @@ public class Keyboard extends InputAdapter
                 }
                 break;
 
-                case Input.Keys.K:
-                {
-                    if (Developer.isDevMode())
-                    {
-                        App.getPlayer().kill();
-                    }
-
-                    returnFlag = true;
-                }
-                break;
-
-                case Input.Keys.G:
-                {
-                    if (Developer.isDevMode())
-                    {
-                        App.gameProgress.gameCompleted = true;
-                    }
-
-                    returnFlag = true;
-                }
-                break;
-
-                case Input.Keys.O:
-                {
-                    App.getHud().buttonDevOptions.press();
-                    returnFlag = true;
-                }
-                break;
-
                 case Input.Keys.SHIFT_LEFT:
                 case Input.Keys.SHIFT_RIGHT:
                 {
@@ -270,13 +241,6 @@ public class Keyboard extends InputAdapter
                 {
                     ctrlButtonHeld = false;
                     returnFlag     = true;
-                }
-                break;
-
-                case Input.Keys.O:
-                {
-                    App.getHud().buttonDevOptions.release();
-                    returnFlag = true;
                 }
                 break;
 
