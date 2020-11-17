@@ -1,12 +1,15 @@
 package com.richikin.jetman.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.AppSystem;
@@ -29,6 +32,11 @@ public class ExitPanel implements Disposable
     private StopWatch stopWatch;
     private boolean   showYes;
     private boolean   firstTime;
+
+    private ImageButton.ImageButtonStyle styleRedYes;
+    private ImageButton.ImageButtonStyle styleRedNo;
+    private ImageButton.ImageButtonStyle styleBlueYes;
+    private ImageButton.ImageButtonStyle styleBlueNo;
 
     private static final int _YES = 0;
     private static final int _NO  = 1;
@@ -59,19 +67,13 @@ public class ExitPanel implements Disposable
         {
             if (showYes)
             {
-                buttonYes.setVisible(true);
-                buttonNo.setVisible(false);
-
-                buttonYes.setDisabled(false);
-                buttonNo.setDisabled(true);
+                buttonYes.setStyle(styleBlueYes);
+                buttonNo.setStyle(styleRedNo);
             }
             else
             {
-                buttonYes.setVisible(false);
-                buttonNo.setVisible(true);
-
-                buttonYes.setDisabled(true);
-                buttonNo.setDisabled(false);
+                buttonYes.setStyle(styleRedYes);
+                buttonNo.setStyle(styleBlueNo);
             }
 
             showYes   = !showYes;
@@ -96,7 +98,7 @@ public class ExitPanel implements Disposable
 
         buttonYes = Scene2DUtils.addButton
             (
-                "button_yes",
+                "button_yes_blue",
                 "button_yes_pressed",
                 (int) AppSystem.hudOriginX + displayPos[_YES][0],
                 (int) AppSystem.hudOriginY + displayPos[_YES][1]
@@ -104,7 +106,7 @@ public class ExitPanel implements Disposable
 
         buttonNo = Scene2DUtils.addButton
             (
-                "button_no",
+                "button_no_red",
                 "button_no_pressed",
                 (int) AppSystem.hudOriginX + displayPos[_NO][0],
                 (int) AppSystem.hudOriginY + displayPos[_NO][1]
@@ -133,6 +135,16 @@ public class ExitPanel implements Disposable
                 action = _NO_PRESSED;
             }
         });
+
+        styleRedYes = new ImageButton.ImageButtonStyle();
+        styleRedNo = new ImageButton.ImageButtonStyle();
+        styleRedYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_red"));
+        styleRedNo.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_red"));
+
+        styleBlueYes = new ImageButton.ImageButtonStyle();
+        styleBlueNo = new ImageButton.ImageButtonStyle();
+        styleBlueYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_blue"));
+        styleBlueNo.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_blue"));
     }
 
     @Override
@@ -149,5 +161,10 @@ public class ExitPanel implements Disposable
 
         buttonYes = null;
         buttonNo  = null;
+
+        styleRedYes = null;
+        styleRedNo = null;
+        styleBlueYes = null;
+        styleBlueNo = null;
     }
 }

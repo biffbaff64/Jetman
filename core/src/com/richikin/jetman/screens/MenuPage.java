@@ -31,7 +31,6 @@ import com.richikin.utilslib.ui.IUIPage;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class MenuPage implements IUIPage, Disposable
 {
@@ -43,25 +42,20 @@ public class MenuPage implements IUIPage, Disposable
     public ImageButton buttonGoogle;
 
     private Texture   foreground;
-    private StopWatch stopWatch;
     private Image     decoration;
-    private Label     javaHeapLabel;
-    private Label     nativeHeapLabel;
     private Label     versionLabel;
 
     public MenuPage()
     {
-        foreground = App.assets.loadSingleAsset("data/title_background.png", Texture.class);
-
-        populateMenuScreen();
-        addClickListeners();
-
-        this.stopWatch = StopWatch.start();
     }
 
     @Override
     public void initialise()
     {
+        foreground = App.assets.loadSingleAsset("data/title_background.png", Texture.class);
+
+        populateMenuScreen();
+        addClickListeners();
     }
 
     @Override
@@ -79,27 +73,47 @@ public class MenuPage implements IUIPage, Disposable
         {
             spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
         }
-
-        menuPageDebug();
-    }
-
-    @Override
-    public void reset()
-    {
     }
 
     @Override
     public void show()
     {
         showItems(true);
-
-        stopWatch.reset();
     }
 
     @Override
     public void hide()
     {
         showItems(false);
+    }
+
+    @Override
+    public void dispose()
+    {
+        if (buttonStart != null) buttonStart.addAction(Actions.removeActor());
+        if (buttonOptions != null) buttonOptions.addAction(Actions.removeActor());
+        if (buttonHiScores != null) buttonHiScores.addAction(Actions.removeActor());
+        if (buttonCredits != null) buttonCredits.addAction(Actions.removeActor());
+        if (buttonExit != null) buttonExit.addAction(Actions.removeActor());
+
+        buttonStart   = null;
+        buttonOptions = null;
+        buttonHiScores = null;
+        buttonCredits = null;
+        buttonExit    = null;
+
+        if (decoration != null)
+        {
+            decoration.addAction(Actions.removeActor());
+            decoration = null;
+        }
+
+        versionLabel.addAction(Actions.removeActor());
+        versionLabel = null;
+
+        App.assets.unloadAsset("data/title_background.png");
+
+        foreground = null;
     }
 
     private void populateMenuScreen()
@@ -112,19 +126,6 @@ public class MenuPage implements IUIPage, Disposable
         buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 596, (int) AppSystem.hudOriginY + (720 - 614));
         buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppSystem.hudOriginX + 543, (int) AppSystem.hudOriginY + (720 - 496));
         buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 554));
-
-        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
-        {
-            Trace.dbg("Adding Heap Usage debug...");
-
-            javaHeapLabel   = Scene2DUtils.addLabel("JAVA HEAP: ", (int) AppSystem.hudOriginX + 40, (int) AppSystem.hudOriginY + (720 - 400), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
-            nativeHeapLabel = Scene2DUtils.addLabel("NATIVE HEAP: ", (int) AppSystem.hudOriginX + 40, (int) AppSystem.hudOriginY + (720 - 425), 20, Color.WHITE, GameAssets._BENZOIC_FONT);
-
-            App.stage.addActor(javaHeapLabel);
-            App.stage.addActor(nativeHeapLabel);
-            javaHeapLabel.setZIndex(1);
-            nativeHeapLabel.setZIndex(1);
-        }
 
         Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
         versionLabel = Scene2DUtils.addLabel
@@ -247,45 +248,40 @@ public class MenuPage implements IUIPage, Disposable
     {
         if ((buttonGoogle == null) && !App.googleServices.isSignedIn())
         {
-            createGoogleButton();
+            /*
+             * Create the 'Sign in with Google' button.
+             * This button will be shown if auto sign-in
+             * fails, allowing the player to manually sign
+             * in to Google Play Services.
+             */
+            if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
+            {
+                buttonGoogle = Scene2DUtils.addButton
+                    (
+                        "btn_google_signin_dark",
+                        "btn_google_signin_dark_pressed",
+                        1040,
+                        30
+                    );
+
+                buttonGoogle.setZIndex(1);
+
+                buttonGoogle.addListener(new ClickListener()
+                {
+                    public void clicked(InputEvent event, float x, float y)
+                    {
+                        GameAudio.inst().startSound(AudioData.SFX_BEEP);
+
+                        buttonGoogle.setChecked(true);
+                    }
+                });
+            }
         }
 
         if ((buttonGoogle != null) && App.googleServices.isSignedIn())
         {
             buttonGoogle.addAction(Actions.removeActor());
             buttonGoogle = null;
-        }
-    }
-
-    /**
-     * Create the 'Sign in with Google' button.
-     * This button will be shown if auto sign-in
-     * fails, allowing the player to manually sign
-     * in to Google Play Services.
-     */
-    private void createGoogleButton()
-    {
-        if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
-        {
-            buttonGoogle = Scene2DUtils.addButton
-                (
-                    "btn_google_signin_dark",
-                    "btn_google_signin_dark_pressed",
-                    1040,
-                    30
-                );
-
-            buttonGoogle.setZIndex(1);
-
-            buttonGoogle.addListener(new ClickListener()
-            {
-                public void clicked(InputEvent event, float x, float y)
-                {
-                    GameAudio.inst().startSound(AudioData.SFX_BEEP);
-
-                    buttonGoogle.setChecked(true);
-                }
-            });
         }
     }
 
@@ -311,95 +307,5 @@ public class MenuPage implements IUIPage, Disposable
         {
             buttonGoogle.setVisible(_visible);
         }
-
-        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
-        {
-            if (javaHeapLabel != null)
-            {
-                javaHeapLabel.setVisible(_visible);
-            }
-
-            if (nativeHeapLabel != null)
-            {
-                nativeHeapLabel.setVisible(_visible);
-            }
-        }
-    }
-
-    private void menuPageDebug()
-    {
-        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
-        {
-            if (javaHeapLabel != null)
-            {
-                javaHeapLabel.setText
-                    (
-                        String.format
-                            (
-                                Locale.UK,
-                                "JAVA HEAP: %3.2fMB",
-                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
-                            )
-                    );
-            }
-
-            if (nativeHeapLabel != null)
-            {
-                nativeHeapLabel.setText
-                    (
-                        String.format
-                            (
-                                Locale.UK,
-                                "NATIVE HEAP: %3.2fMB",
-                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
-                            )
-                    );
-            }
-        }
-    }
-
-    @Override
-    public void dispose()
-    {
-        if (buttonStart != null) buttonStart.addAction(Actions.removeActor());
-        if (buttonOptions != null) buttonOptions.addAction(Actions.removeActor());
-        if (buttonHiScores != null) buttonHiScores.addAction(Actions.removeActor());
-        if (buttonCredits != null) buttonCredits.addAction(Actions.removeActor());
-        if (buttonExit != null) buttonExit.addAction(Actions.removeActor());
-
-        buttonStart   = null;
-        buttonOptions = null;
-        buttonHiScores = null;
-        buttonCredits = null;
-        buttonExit    = null;
-
-        if (Developer.isDevMode() && App.settings.isEnabled(Settings._MENU_HEAPS))
-        {
-            if (javaHeapLabel != null)
-            {
-                javaHeapLabel.addAction(Actions.removeActor());
-                javaHeapLabel = null;
-            }
-
-            if (nativeHeapLabel != null)
-            {
-                nativeHeapLabel.addAction(Actions.removeActor());
-                nativeHeapLabel = null;
-            }
-        }
-
-        if (decoration != null)
-        {
-            decoration.addAction(Actions.removeActor());
-            decoration = null;
-        }
-
-        versionLabel.addAction(Actions.removeActor());
-        versionLabel = null;
-
-        App.assets.unloadAsset("data/title_background.png");
-
-        foreground = null;
-        stopWatch  = null;
     }
 }

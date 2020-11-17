@@ -61,27 +61,26 @@ public class HiscorePage implements IUIPage, Disposable
     private Label[] rankLabels;
     private Label[] scoreLabels;
 
-    private final StopWatch    stopWatch;
-    private       StateManager state;
-    private       Texture      foreground;
+    private StopWatch    stopWatch;
+    private StateManager state;
+    private Texture      foreground;
 
     private int[] colorIndex;
     private int   loopCount;
 
     public HiscorePage()
     {
-        addItems();
-        addClickListeners();
-
-        state     = new StateManager();
-        stopWatch = StopWatch.start();
-
-        showItems(false);
     }
 
     @Override
     public void initialise()
     {
+        addItems();
+
+        state     = new StateManager();
+        stopWatch = StopWatch.start();
+
+        showItems(false);
     }
 
     @Override
@@ -108,12 +107,6 @@ public class HiscorePage implements IUIPage, Disposable
         }
 
         return false;
-    }
-
-    @Override
-    public void reset()
-    {
-        loopCount = 0;
     }
 
     @Override
@@ -295,9 +288,5 @@ public class HiscorePage implements IUIPage, Disposable
         levelLabels = null;
         scoreLabels = null;
         state       = null;
-    }
-
-    private void addClickListeners()
-    {
     }
 }

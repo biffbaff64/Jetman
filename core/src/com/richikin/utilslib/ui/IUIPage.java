@@ -19,7 +19,5 @@ public interface IUIPage
 
     void draw(SpriteBatch spriteBatch);
 
-    void reset();
-
     void dispose();
 }

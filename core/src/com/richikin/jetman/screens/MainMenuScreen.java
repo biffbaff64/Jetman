@@ -63,6 +63,9 @@ public class MainMenuScreen extends AbstractBaseScreen
         panels.add(_HISCORE_PAGE, new HiscorePage());
         panels.add(_CREDITS_PAGE, new CreditsPage());
 
+        menuPage.initialise();
+        menuPage.show();
+
         if (AppSystem.isAndroidApp())
         {
             App.googleServices.signInSilently();
@@ -108,12 +111,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _CREDITS_PAGE:
                 case _OPTIONS_PAGE:
                 {
-                    if (panels.get(currentPage).update())
-                    {
-                        panels.get(currentPage).reset();
-
-                        changePageTo(_MENU_PAGE);
-                    }
+                    panels.get(currentPage).update();
                 }
                 break;
 
@@ -142,7 +140,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
                 default:
                 {
-                    // TODO: 09/01/2019 - Add error handling here for illegal panel
+                    Trace.__FILE_FUNC("ERROR:  illegal page - " + currentPage);
                 }
                 break;
             }
@@ -187,41 +185,37 @@ public class MainMenuScreen extends AbstractBaseScreen
                     // Check OPTIONS button, open settings page if pressed
                     if ((menuPage.buttonOptions != null) && menuPage.buttonOptions.isChecked())
                     {
-                        changePageTo(_OPTIONS_PAGE);
-
                         menuPage.buttonOptions.setChecked(false);
+                        changePageTo(_OPTIONS_PAGE);
                     }
 
                     //
                     // Check HISCORES button, open hiscores page if pressed
                     if ((menuPage.buttonHiScores != null) && menuPage.buttonHiScores.isChecked())
                     {
-                        changePageTo(_HISCORE_PAGE);
-
                         menuPage.buttonHiScores.setChecked(false);
+                        changePageTo(_HISCORE_PAGE);
                     }
 
                     //
                     // Check CREDITS button, open credits page if pressed
                     if ((menuPage.buttonCredits != null) && menuPage.buttonCredits.isChecked())
                     {
-                        changePageTo(_CREDITS_PAGE);
-
                         menuPage.buttonCredits.setChecked(false);
+                        changePageTo(_CREDITS_PAGE);
                     }
 
                     //
                     // Check EXIT button, open exit panel if pressed
                     if ((menuPage.buttonExit != null) && menuPage.buttonExit.isChecked())
                     {
+                        menuPage.buttonExit.setChecked(false);
                         panels.get(currentPage).hide();
 
                         exitPanel = new ExitPanel();
                         exitPanel.open();
 
                         currentPage = _EXIT_PAGE;
-
-                        menuPage.buttonExit.setChecked(false);
                     }
 
                     //
@@ -315,7 +309,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.baseRenderer.hudGameCamera.isInUse    = true;
         App.baseRenderer.isDrawingStage           = true;
 
-        currentPage = (App.highScoreUtils.canAddNewEntry(App.gameProgress.getScore())) ? _HISCORE_PAGE : _MENU_PAGE;
+        currentPage = _MENU_PAGE;
 
         panels.get(currentPage).show();
 
@@ -343,58 +337,48 @@ public class MainMenuScreen extends AbstractBaseScreen
         return menuPage;
     }
 
-    /**
-     * Clear up all used resources
-     */
-    @Override
-    public void dispose()
-    {
-        Trace.__FILE_FUNC();
-
-        super.dispose();
-
-        hideAllPages();
-
-        App.assets.unloadAsset("empty_screen_dark.png");
-        background = null;
-
-        starField.dispose();
-        starField = null;
-
-        exitPanel   = null;
-        optionsPage = null;
-    }
-
-    /**
-     * Calls the hide method for main front end pages.
-     */
-    private void hideAllPages()
-    {
-        if (panels != null)
-        {
-            for (final IUIPage page : panels)
-            {
-                page.hide();
-                page.dispose();
-            }
-
-            panels.clear();
-            panels = null;
-        }
-    }
-
-    private void changePageTo(final int _nextPage)
+    private void changePageTo(int _nextPage)
     {
         if (panels.get(currentPage) != null)
         {
             panels.get(currentPage).hide();
+            panels.get(currentPage).dispose();
         }
 
         currentPage = _nextPage;
 
         if (panels.get(_nextPage) != null)
         {
+            panels.get(currentPage).initialise();
             panels.get(currentPage).show();
         }
+    }
+
+    /**
+     * Clear up all used resources
+     */
+    @Override
+    public void dispose()
+    {
+        super.dispose();
+
+        App.assets.unloadAsset("empty_screen_dark.png");
+
+        menuPage.hide();
+        menuPage.dispose();
+
+        starField.dispose();
+        starField = null;
+
+        if (panels != null)
+        {
+            panels.clear();
+            panels = null;
+        }
+
+        background = null;
+        exitPanel   = null;
+        optionsPage = null;
+        menuPage = null;
     }
 }

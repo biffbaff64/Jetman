@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
@@ -53,6 +54,8 @@ public class OptionsPage implements IUIPage
     private InstructionsPanel  storyPanel;
     private ScreenID           activePanel;
 
+    private Array<Actor> actors;
+
     private boolean isJustFinishedOptionsPanel;
     private boolean justFinishedStatsPanel;
     private boolean justFinishedPrivacyPanel;
@@ -70,6 +73,37 @@ public class OptionsPage implements IUIPage
     @Override
     public void initialise()
     {
+        setupCompleted = false;
+
+        AppSystem.backButton.setVisible(true);
+        AppSystem.backButton.setDisabled(false);
+        AppSystem.backButton.setChecked(false);
+
+        if (AppSystem.backButton.getClickListener() != null)
+        {
+            AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
+        }
+
+        foreground = App.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
+
+        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+
+        actors = new Array<>();
+
+        populateTable();
+
+        createButtonListeners();
+        createSliderListeners();
+        createCheckboxListeners();
+
+        updateSettingsOnEntry();
+
+        activePanel = ScreenID._SETTINGS_SCREEN;
+
+        Developer.developerPanelActive = false;
+        enteredDeveloperPanel = false;
+        setupCompleted = true;
+        isJustFinishedOptionsPanel = false;
     }
 
     /**
@@ -153,45 +187,12 @@ public class OptionsPage implements IUIPage
         }
     }
 
-    @Override
-    public void reset()
-    {
-    }
-
     /**
      * Show.
      */
     public void show()
     {
-        setupCompleted = false;
-
-        AppSystem.backButton.setVisible(true);
-        AppSystem.backButton.setDisabled(false);
-        AppSystem.backButton.setChecked(false);
-
-        if (AppSystem.backButton.getClickListener() != null)
-        {
-            AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
-        }
-
-        foreground = App.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
-
-        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-
-        populateTable();
-
-        createButtonListeners();
-        createSliderListeners();
-        createCheckboxListeners();
-
-        updateSettingsOnEntry();
-
-        activePanel = ScreenID._SETTINGS_SCREEN;
-
-        Developer.developerPanelActive = false;
-        enteredDeveloperPanel = false;
-        setupCompleted = true;
-        isJustFinishedOptionsPanel = false;
+        showActors(true);
     }
 
     /**
@@ -199,84 +200,7 @@ public class OptionsPage implements IUIPage
      */
     public void hide()
     {
-        AppSystem.backButton.setVisible(false);
-        AppSystem.backButton.setDisabled(true);
-
-        if (buttonStats != null)
-        {
-            buttonStats.addAction(Actions.removeActor());
-            buttonStats = null;
-        }
-
-        if (buttonPrivacy != null)
-        {
-            buttonPrivacy.addAction(Actions.removeActor());
-            buttonPrivacy = null;
-        }
-
-        if (buttonStoryLine != null)
-        {
-            buttonStoryLine.addAction(Actions.removeActor());
-            buttonStoryLine = null;
-        }
-
-        if (buttonDevOptions != null)
-        {
-            buttonDevOptions.addAction(Actions.removeActor());
-            buttonDevOptions = null;
-        }
-
-        if (musicLabel != null)
-        {
-            musicLabel.addAction(Actions.removeActor());
-            musicSlider.addAction(Actions.removeActor());
-            musicCheckBox.addAction(Actions.removeActor());
-            musicLabel    = null;
-            musicSlider   = null;
-            musicCheckBox = null;
-        }
-
-        if (fxLabel != null)
-        {
-            fxLabel.addAction(Actions.removeActor());
-            fxSlider.addAction(Actions.removeActor());
-            fxCheckBox.addAction(Actions.removeActor());
-            fxLabel    = null;
-            fxSlider   = null;
-            fxCheckBox = null;
-        }
-
-        if (controllerCheckBox != null)
-        {
-            controllerCheckBox.addAction(Actions.removeActor());
-            controllerCheckBox = null;
-        }
-
-        if (vibrateCheckBox != null)
-        {
-            vibrateCheckBox.addAction(Actions.removeActor());
-            vibrateCheckBox = null;
-        }
-
-        if (hintsCheckBox != null)
-        {
-            hintsCheckBox.addAction(Actions.removeActor());
-            hintsCheckBox = null;
-        }
-
-        if (buttonSignOut != null)
-        {
-            buttonSignOut.addAction(Actions.removeActor());
-            buttonSignOut = null;
-        }
-
-        App.assets.unloadAsset("data/settings_screen_template.png");
-
-        foreground = null;
-        skin = null;
-        statsPanel = null;
-        privacyPanel = null;
-        storyPanel = null;
+        showActors(false);
     }
 
     /**
@@ -291,17 +215,28 @@ public class OptionsPage implements IUIPage
         musicCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, skin);
         musicLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, true, skin);
         musicLabel.setSize(64, 48);
+        actors.add(musicSlider);
+        actors.add(musicCheckBox);
+        actors.add(musicLabel);
+
 
         // ----------
         fxSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 278), skin);
         fxCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, skin);
         fxLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, true, skin);
         fxLabel.setSize(64, 48);
+        actors.add(fxSlider);
+        actors.add(fxCheckBox);
+        actors.add(fxLabel);
 
         // ----------
         controllerCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 428), Color.WHITE, skin);
         vibrateCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 498), Color.WHITE, skin);
         hintsCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 568), Color.WHITE, skin);
+
+        actors.add(controllerCheckBox);
+        actors.add(vibrateCheckBox);
+        actors.add(hintsCheckBox);
 
         // ----------
         buttonStats = Scene2DUtils.addButton("new_stats_button", "new_stats_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 540));
@@ -311,6 +246,10 @@ public class OptionsPage implements IUIPage
         buttonStats.setSize(210, 40);
         buttonPrivacy.setSize(210, 40);
         buttonStoryLine.setSize(210, 40);
+
+        actors.add(buttonStats);
+        actors.add(buttonPrivacy);
+        actors.add(buttonStoryLine);
 
         // ----------
         if (App.googleServices.isSignedIn())
@@ -326,6 +265,8 @@ public class OptionsPage implements IUIPage
                     );
 
                 buttonSignOut.setSize(191, 46);
+
+                actors.add(buttonSignOut);
             }
         }
 
@@ -341,6 +282,8 @@ public class OptionsPage implements IUIPage
                 );
 
             buttonDevOptions.setSize(210, 40);
+
+            actors.add(buttonDevOptions);
         }
 
         showActors(true);
@@ -353,9 +296,6 @@ public class OptionsPage implements IUIPage
     {
         App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, (GameAudio.inst().getMusicVolume() != AudioData._SILENT));
         App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, (GameAudio.inst().getFXVolume() != AudioData._SILENT));
-
-        GameAudio.inst().setMusicVolume((int) musicSlider.getValue());
-        GameAudio.inst().setFXVolume((int) fxSlider.getValue());
 
         App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
         App.settings.getPrefs().flush();
@@ -728,5 +668,83 @@ public class OptionsPage implements IUIPage
     @Override
     public void dispose()
     {
+        AppSystem.backButton.setVisible(false);
+        AppSystem.backButton.setDisabled(true);
+
+        if (buttonStats != null)
+        {
+            buttonStats.addAction(Actions.removeActor());
+            buttonStats = null;
+        }
+
+        if (buttonPrivacy != null)
+        {
+            buttonPrivacy.addAction(Actions.removeActor());
+            buttonPrivacy = null;
+        }
+
+        if (buttonStoryLine != null)
+        {
+            buttonStoryLine.addAction(Actions.removeActor());
+            buttonStoryLine = null;
+        }
+
+        if (buttonDevOptions != null)
+        {
+            buttonDevOptions.addAction(Actions.removeActor());
+            buttonDevOptions = null;
+        }
+
+        if (musicLabel != null)
+        {
+            musicLabel.addAction(Actions.removeActor());
+            musicSlider.addAction(Actions.removeActor());
+            musicCheckBox.addAction(Actions.removeActor());
+            musicLabel    = null;
+            musicSlider   = null;
+            musicCheckBox = null;
+        }
+
+        if (fxLabel != null)
+        {
+            fxLabel.addAction(Actions.removeActor());
+            fxSlider.addAction(Actions.removeActor());
+            fxCheckBox.addAction(Actions.removeActor());
+            fxLabel    = null;
+            fxSlider   = null;
+            fxCheckBox = null;
+        }
+
+        if (controllerCheckBox != null)
+        {
+            controllerCheckBox.addAction(Actions.removeActor());
+            controllerCheckBox = null;
+        }
+
+        if (vibrateCheckBox != null)
+        {
+            vibrateCheckBox.addAction(Actions.removeActor());
+            vibrateCheckBox = null;
+        }
+
+        if (hintsCheckBox != null)
+        {
+            hintsCheckBox.addAction(Actions.removeActor());
+            hintsCheckBox = null;
+        }
+
+        if (buttonSignOut != null)
+        {
+            buttonSignOut.addAction(Actions.removeActor());
+            buttonSignOut = null;
+        }
+
+        App.assets.unloadAsset("data/settings_screen_template.png");
+
+        foreground = null;
+        skin = null;
+        statsPanel = null;
+        privacyPanel = null;
+        storyPanel = null;
     }
 }

@@ -18,25 +18,20 @@ public class CreditsPage implements IUIPage, Disposable
 
     public CreditsPage()
     {
+    }
+
+    @Override
+    public void initialise()
+    {
         foreground = App.assets.loadSingleAsset("data/credits_foreground.png", Texture.class);
 
         this.stopWatch = StopWatch.start();
     }
 
     @Override
-    public void initialise()
-    {
-    }
-
-    @Override
     public boolean update()
     {
         return false;
-    }
-
-    @Override
-    public void reset()
-    {
     }
 
     @Override
