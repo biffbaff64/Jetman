@@ -2,7 +2,7 @@ package com.richikin.utilslib.core;
 
 public interface ISettings
 {
-    void initialise();
+    void createPreferencesObject();
 
     boolean isEnabled(final String preference);
 

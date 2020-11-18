@@ -32,7 +32,6 @@ public class InputManager
 
     public InputManager()
     {
-        setup();
     }
 
     public boolean setup()

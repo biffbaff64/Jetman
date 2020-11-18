@@ -20,9 +20,15 @@ public class AppConfig
     {
         Trace.__FILE_FUNC();
 
+        if (App.settings.getPrefs() == null)
+        {
+            App.settings.createPreferencesObject();
+        }
+
         Developer.setMode();
 
         // ------------------------------------------------
+        // Temporary development settings
         Developer.setAndroidOnDesktop(true);
         Developer.setGodMode(true);
 

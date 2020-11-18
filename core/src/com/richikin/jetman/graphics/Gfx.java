@@ -42,6 +42,8 @@ public class Gfx extends LibGfx
     public static       float _GAME_SCENE_WIDTH  = (_VIEW_WIDTH / _PPM);
     public static       float _GAME_SCENE_HEIGHT = (_VIEW_HEIGHT / _PPM);
 
+    public static final float _PPM_SETTING = 32.0f;
+
     public static void setPPM(final float newPPM)
     {
         if (!AppSystem.camerasReady)

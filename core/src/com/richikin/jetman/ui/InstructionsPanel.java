@@ -51,7 +51,7 @@ public class InstructionsPanel extends DefaultPanel
     @Override
     public boolean update()
     {
-        return false;
+        return AppSystem.backButton.isChecked();
     }
 
     /**

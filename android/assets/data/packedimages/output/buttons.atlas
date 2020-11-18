@@ -34,16 +34,16 @@ arrow_right_blue_pressed
   index: -1
 back_arrow
   rotate: false
-  xy: 2000, 424
-  size: 36, 46
-  orig: 36, 46
+  xy: 1252, 350
+  size: 54, 54
+  orig: 54, 54
   offset: 0, 0
   index: -1
 back_arrow_pressed
   rotate: false
-  xy: 809, 112
-  size: 36, 46
-  orig: 36, 46
+  xy: 1252, 294
+  size: 54, 54
+  orig: 54, 54
   offset: 0, 0
   index: -1
 btn_google_signin_dark

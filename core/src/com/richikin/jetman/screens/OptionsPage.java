@@ -57,9 +57,9 @@ public class OptionsPage implements IUIPage
     private Array<Actor> actors;
 
     private boolean isJustFinishedOptionsPanel;
-    private boolean justFinishedStatsPanel;
-    private boolean justFinishedPrivacyPanel;
-    private boolean justFinishedStoryPanel;
+//    private boolean justFinishedStatsPanel;
+//    private boolean justFinishedPrivacyPanel;
+//    private boolean justFinishedStoryPanel;
     private boolean enteredDeveloperPanel;
     private boolean setupCompleted;
 
@@ -112,43 +112,54 @@ public class OptionsPage implements IUIPage
     @Override
     public boolean update()
     {
-        if (justFinishedStatsPanel)
+        if (AppSystem.backButton.isChecked())
         {
-            if (statsPanel != null)
+            switch (activePanel)
             {
-                statsPanel.dispose();
+                case _STATS_SCREEN:
+                {
+                    if (statsPanel != null)
+                    {
+                        statsPanel.dispose();
+                    }
+                    statsPanel = null;
+                    isJustFinishedOptionsPanel = false;
+                }
+                break;
+
+                case _PRIVACY_POLICY_SCREEN:
+                {
+                    if (privacyPanel != null)
+                    {
+                        privacyPanel.dispose();
+                    }
+                    privacyPanel = null;
+                    isJustFinishedOptionsPanel = false;
+                }
+                break;
+
+                case _INSTRUCTIONS_SCREEN:
+                {
+                    if (storyPanel != null)
+                    {
+                        storyPanel.dispose();
+                    }
+                    storyPanel = null;
+                    isJustFinishedOptionsPanel = false;
+                }
+                break;
+
+                default:
+                    isJustFinishedOptionsPanel = true;
+                    break;
             }
 
-            justFinishedStatsPanel = false;
-            statsPanel = null;
-            activePanel = ScreenID._SETTINGS_SCREEN;
-            showActors(true);
-        }
-
-        if (justFinishedPrivacyPanel)
-        {
-            if (privacyPanel != null)
+            if (!isJustFinishedOptionsPanel)
             {
-                privacyPanel.dispose();
+                showActors(true);
+                activePanel = ScreenID._SETTINGS_SCREEN;
+                AppSystem.backButton.setChecked(false);
             }
-
-            justFinishedPrivacyPanel = false;
-            privacyPanel = null;
-            activePanel = ScreenID._SETTINGS_SCREEN;
-            showActors(true);
-        }
-
-        if (justFinishedStoryPanel)
-        {
-            if (storyPanel != null)
-            {
-                storyPanel.dispose();
-            }
-
-            justFinishedStoryPanel = false;
-            storyPanel = null;
-            activePanel = ScreenID._SETTINGS_SCREEN;
-            showActors(true);
         }
 
         if (enteredDeveloperPanel && !Developer.developerPanelActive)
@@ -370,7 +381,7 @@ public class OptionsPage implements IUIPage
                     if (statsPanel == null)
                     {
                         showActors(false);
-                        justFinishedStatsPanel = false;
+//                        justFinishedStatsPanel = false;
                         activePanel = ScreenID._STATS_SCREEN;
 
                         statsPanel = new StatsPanel();
@@ -394,7 +405,7 @@ public class OptionsPage implements IUIPage
                     if (privacyPanel == null)
                     {
                         showActors(false);
-                        justFinishedPrivacyPanel = false;
+//                        justFinishedPrivacyPanel = false;
                         activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
 
                         privacyPanel = new PrivacyPolicyPanel();
@@ -418,7 +429,7 @@ public class OptionsPage implements IUIPage
                       if (storyPanel == null)
                       {
                           showActors(false);
-                          justFinishedStoryPanel = false;
+//                          justFinishedStoryPanel = false;
                           activePanel = ScreenID._INSTRUCTIONS_SCREEN;
 
                           storyPanel = new InstructionsPanel();
@@ -465,44 +476,44 @@ public class OptionsPage implements IUIPage
             });
         }
 
-        AppSystem.backButton.addListener(new ClickListener()
-        {
-            public void clicked(InputEvent event, float x, float y)
-            {
-                updateSettings();
-
-                switch (activePanel)
-                {
-                    case _SETTINGS_SCREEN:
-                    {
-                        isJustFinishedOptionsPanel = true;
-                        hide();
-                    }
-                    break;
-
-                    case _STATS_SCREEN:
-                    {
-                        justFinishedStatsPanel = true;
-                    }
-                    break;
-
-                    case _INSTRUCTIONS_SCREEN:
-                    {
-                        justFinishedStoryPanel = true;
-                    }
-                    break;
-
-                    case _PRIVACY_POLICY_SCREEN:
-                    {
-                        justFinishedPrivacyPanel = true;
-                    }
-                    break;
-
-                    default:
-                        break;
-                }
-            }
-        });
+//        AppSystem.backButton.addListener(new ClickListener()
+//        {
+//            public void clicked(InputEvent event, float x, float y)
+//            {
+//                updateSettings();
+//
+//                switch (activePanel)
+//                {
+//                    case _SETTINGS_SCREEN:
+//                    {
+//                        isJustFinishedOptionsPanel = true;
+//                        hide();
+//                    }
+//                    break;
+//
+//                    case _STATS_SCREEN:
+//                    {
+//                        justFinishedStatsPanel = true;
+//                    }
+//                    break;
+//
+//                    case _INSTRUCTIONS_SCREEN:
+//                    {
+//                        justFinishedStoryPanel = true;
+//                    }
+//                    break;
+//
+//                    case _PRIVACY_POLICY_SCREEN:
+//                    {
+//                        justFinishedPrivacyPanel = true;
+//                    }
+//                    break;
+//
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
     }
 
     /**
@@ -746,5 +757,15 @@ public class OptionsPage implements IUIPage
         statsPanel = null;
         privacyPanel = null;
         storyPanel = null;
+    }
+
+    public void setActivePanel(ScreenID screenID)
+    {
+        activePanel = screenID;
+    }
+
+    public ScreenID getActivePanel()
+    {
+        return activePanel;
     }
 }

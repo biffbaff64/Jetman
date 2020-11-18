@@ -72,29 +72,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         }
     }
 
-    /**
-     * Update and draw the screen.
-     *
-     * @param delta elapsed time since last update
-     */
-    @Override
-    public void render(final float delta)
-    {
-        super.update();
-
-        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
-        {
-            StateID tempState;
-
-            if ((tempState = update(App.appState).peek()) != StateID._STATE_MAIN_MENU)
-            {
-                App.appState.set(tempState);
-            }
-
-            super.render(delta);
-        }
-    }
-
     private StateManager update(final StateManager state)
     {
         if (!GameAudio.inst().isTunePlaying(AudioData.MUS_TITLE))
@@ -106,12 +83,27 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             switch (currentPage)
             {
-                case _MENU_PAGE:
                 case _HISCORE_PAGE:
                 case _CREDITS_PAGE:
-                case _OPTIONS_PAGE:
                 {
                     panels.get(currentPage).update();
+
+                    if (AppSystem.backButton.isChecked())
+                    {
+                        AppSystem.backButton.setChecked(false);
+                        changePageTo(_MENU_PAGE);
+                    }
+                }
+                break;
+
+                case _MENU_PAGE:
+                case _OPTIONS_PAGE:
+                {
+                    if (panels.get(_OPTIONS_PAGE).update())
+                    {
+                        AppSystem.backButton.setChecked(false);
+                        changePageTo(_MENU_PAGE);
+                    }
                 }
                 break;
 
@@ -123,7 +115,6 @@ public class MainMenuScreen extends AbstractBaseScreen
                     {
                         exitPanel.dispose();
                         AppSystem.shutDownActive = true;
-
                         Gdx.app.exit();
                     }
                     else if (option == exitPanel._NO_PRESSED)
@@ -148,18 +139,22 @@ public class MainMenuScreen extends AbstractBaseScreen
             //
             // If currently showing Hiscore or Credits pages, return to menupage
             // if the screen is tapped (or controller start button pressed)
-            if (AppSystem.fullScreenButton.isPressed()
-                || AppSystem.backButton.isChecked()
-                || ControllerData.controllerFirePressed
-                || ControllerData.controllerStartPressed)
-            {
-                changePageTo(_MENU_PAGE);
-
-                ControllerData.controllerFirePressed  = false;
-                ControllerData.controllerStartPressed = false;
-                AppSystem.fullScreenButton.release();
-                AppSystem.backButton.setChecked(false);
-            }
+//            if (AppSystem.fullScreenButton.isPressed()
+//                || AppSystem.backButton.isChecked()
+//                || ControllerData.controllerFirePressed
+//                || ControllerData.controllerStartPressed)
+//            {
+//                if ((currentPage != _OPTIONS_PAGE)
+//                    || (((OptionsPage) panels.get(_OPTIONS_PAGE)).getActivePanel() == ScreenID._SETTINGS_SCREEN))
+//                {
+//                    changePageTo(_MENU_PAGE);
+//                }
+//
+//                ControllerData.controllerFirePressed  = false;
+//                ControllerData.controllerStartPressed = false;
+//                AppSystem.fullScreenButton.release();
+//                AppSystem.backButton.setChecked(false);
+//            }
 
             //
             // Start button check
@@ -239,6 +234,29 @@ public class MainMenuScreen extends AbstractBaseScreen
         }
 
         return state;
+    }
+
+    /**
+     * Update and draw the screen.
+     *
+     * @param delta elapsed time since last update
+     */
+    @Override
+    public void render(final float delta)
+    {
+        super.update();
+
+        if (App.appState.peek() == StateID._STATE_MAIN_MENU)
+        {
+            StateID tempState;
+
+            if ((tempState = update(App.appState).peek()) != StateID._STATE_MAIN_MENU)
+            {
+                App.appState.set(tempState);
+            }
+
+            super.render(delta);
+        }
     }
 
     /**
@@ -337,6 +355,12 @@ public class MainMenuScreen extends AbstractBaseScreen
         return menuPage;
     }
 
+    /**
+     * Closes down the current page, and
+     * switches to a new one.
+     *
+     * @param _nextPage The ID of the next page.
+     */
     private void changePageTo(int _nextPage)
     {
         if (panels.get(currentPage) != null)

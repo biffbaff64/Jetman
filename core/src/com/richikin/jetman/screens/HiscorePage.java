@@ -15,6 +15,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.core.HighScore;
+import com.richikin.utilslib.core.HighScoreUtils;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.ui.IUIPage;
@@ -28,10 +29,10 @@ public class HiscorePage implements IUIPage, Disposable
     private static final int _RANK_X             = 360;
     private static final int _LEVEL_X            = 580;
     private static final int _SCORE_X            = 760;
-    private static final int _TABLE_Y            = 460;
+    private static final int _TABLE_Y            = 420;
     private static final int _SPACING            = 64;
     private static final int _FNT_SIZE           = 48;
-    private static final int _DISPLAYED_HISCORES = 6;
+    private static final int _DISPLAYED_HISCORES = 5;
 
     private final Color[] colours =
         {
@@ -152,9 +153,9 @@ public class HiscorePage implements IUIPage, Disposable
     {
         foreground = App.assets.loadSingleAsset("data/hiscore_foreground.png", Texture.class);
 
-        rankLabels  = new Label[GameConstants._MAX_HISCORES];
-        levelLabels = new Label[GameConstants._MAX_HISCORES];
-        scoreLabels = new Label[GameConstants._MAX_HISCORES];
+        rankLabels  = new Label[_DISPLAYED_HISCORES];
+        levelLabels = new Label[_DISPLAYED_HISCORES];
+        scoreLabels = new Label[_DISPLAYED_HISCORES];
 
         App.highScoreUtils.loadTableData();
 
@@ -169,10 +170,10 @@ public class HiscorePage implements IUIPage, Disposable
             App.highScoreUtils.addHighScore(highScore);
         }
 
-        colorIndex = new int[GameConstants._MAX_HISCORES];
+        colorIndex = new int[_DISPLAYED_HISCORES];
         loopCount  = 0;
 
-        for (int i = 0; i < GameConstants._MAX_HISCORES; i++)
+        for (int i = 0; i < _DISPLAYED_HISCORES; i++)
         {
             int _Y_POS = (_TABLE_Y - (Gfx._HUD_HEIGHT / 2)) - (_SPACING * i);
 
@@ -211,12 +212,9 @@ public class HiscorePage implements IUIPage, Disposable
 
             colorIndex[i] = i;
 
-            if (i < _DISPLAYED_HISCORES)
-            {
-                App.stage.addActor(rankLabels[i]);
-                App.stage.addActor(levelLabels[i]);
-                App.stage.addActor(scoreLabels[i]);
-            }
+            App.stage.addActor(rankLabels[i]);
+            App.stage.addActor(levelLabels[i]);
+            App.stage.addActor(scoreLabels[i]);
         }
     }
 

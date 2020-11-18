@@ -63,6 +63,12 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
     }
 
     @Override
+    public boolean update()
+    {
+        return AppSystem.backButton.isChecked();
+    }
+
+    @Override
     public void populateTable()
     {
         try
@@ -129,11 +135,5 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
 
         title = new Image(drawable);
         title.setPosition(AppSystem.hudOriginX + 351, AppSystem.hudOriginY + (720 - 159));
-    }
-
-    @Override
-    public boolean update()
-    {
-        return false;
     }
 }

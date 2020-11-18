@@ -35,8 +35,8 @@ public class StatsPanel extends DefaultPanel
         }
     }
 
-    private static final String _SCROLL_PANE_NAME  = "policyScrollPane";
-    private static final String _BUFFER_NAME       = "policyBuffer";
+    private static final String _SCROLL_PANE_NAME  = "statsScrollPane";
+    private static final String _BUFFER_NAME       = "statsBuffer";
 
     private Image title;
 
@@ -116,7 +116,7 @@ public class StatsPanel extends DefaultPanel
     @Override
     public boolean update()
     {
-        return false;
+        return AppSystem.backButton.isChecked();
     }
 
     /**
