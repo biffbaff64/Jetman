@@ -14,23 +14,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class MenuPage implements IUIPage, Disposable
 {
@@ -52,6 +47,8 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public void initialise()
     {
+        Trace.__FILE_FUNC();
+
         foreground = App.assets.loadSingleAsset("data/title_background.png", Texture.class);
 
         populateMenuScreen();

@@ -1,19 +1,19 @@
 android {
-    signingConfigs {
-        releaseconfig {
-            storeFile file('D:/Issued_Software/Keystore/Jetman Release.jks')
-            keyAlias 'jetmanRelease'
-            keyPassword 'c646510'
-            storePassword 'felix1964'
-        }
-
-        debugconfig {
-            storeFile file('D:/Issued_Software/Keystore/Jetman Release.jks')
-            keyAlias 'jetmanRelease'
-            keyPassword 'c646510'
-            storePassword 'felix1964'
-        }
-    }
+//    signingConfigs {
+//        releaseconfig {
+//            storeFile file('D:/Issued_Software/Keystore/Jetman Release.jks')
+//            keyAlias 'jetmanRelease'
+//            keyPassword 'c646510'
+//            storePassword 'felix1964'
+//        }
+//
+//        debugconfig {
+//            storeFile file('D:/Issued_Software/Keystore/Jetman Release.jks')
+//            keyAlias 'jetmanRelease'
+//            keyPassword 'c646510'
+//            storePassword 'felix1964'
+//        }
+//    }
 
     buildToolsVersion '29.0.2'
     compileSdkVersion 30
@@ -41,12 +41,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.releaseconfig
+//            signingConfig signingConfigs.releaseconfig
         }
 
         debug {
             minifyEnabled false
-            signingConfig signingConfigs.debugconfig
+//            signingConfig signingConfigs.debugconfig
         }
     }
     compileOptions {
@@ -141,9 +141,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-games:20.0.1'
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
-    //noinspection GradleCompatible
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.android.gms:play-services-games:21.0.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
