@@ -279,6 +279,12 @@ public class AnimatedButton implements IGDXButton, Disposable
     }
 
     @Override
+    public void pressConditional(boolean condition)
+    {
+        _isPressed = condition;
+    }
+
+    @Override
     public void release()
     {
         _isPressed = false;

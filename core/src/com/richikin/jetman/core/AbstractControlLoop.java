@@ -13,5 +13,5 @@ public abstract class AbstractControlLoop implements IControlLoop
     public abstract void initialise();
 
     @Override
-    public abstract void update(StateManager gameState);
+    public abstract void update();
 }

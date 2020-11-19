@@ -75,19 +75,27 @@ public class Keyboard extends InputAdapter
     {
         boolean returnFlag = false;
 
-        if (keycode == Input.Keys.BACK)
-        {
-            if (AppConfig.gameScreenActive())
-            {
-                App.getHud().buttonPause.press();
-            }
-        }
-
         if (AppSystem.isDesktopApp())
         {
             if (AppConfig.gameScreenActive())
             {
                 returnFlag = maingameKeyDown(keycode);
+            }
+        }
+
+        return returnFlag;
+    }
+
+    @Override
+    public boolean keyUp(int keycode)
+    {
+        boolean returnFlag = false;
+
+        if (AppSystem.isDesktopApp())
+        {
+            if (AppConfig.gameScreenActive())
+            {
+                returnFlag = maingameKeyUp(keycode);
             }
         }
 
@@ -252,32 +260,6 @@ public class Keyboard extends InputAdapter
                     returnFlag = false;
                 }
                 break;
-            }
-        }
-
-        return returnFlag;
-    }
-
-    @Override
-    public boolean keyUp(int keycode)
-    {
-        boolean returnFlag = false;
-
-        if (keycode == Input.Keys.BACK)
-        {
-            AppSystem.systemBackButton.release();
-
-            if (AppConfig.gameScreenActive())
-            {
-                App.getHud().buttonPause.release();
-            }
-        }
-
-        if (AppSystem.isDesktopApp())
-        {
-            if (AppConfig.gameScreenActive())
-            {
-                returnFlag = maingameKeyUp(keycode);
             }
         }
 

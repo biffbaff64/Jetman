@@ -86,7 +86,7 @@ public class MainGameScreen extends AbstractBaseScreen
             case _STATE_TELEPORTING:
             case _STATE_END_GAME:
             {
-                gameControlLoop.update(App.appState);
+                gameControlLoop.update();
             }
             break;
 

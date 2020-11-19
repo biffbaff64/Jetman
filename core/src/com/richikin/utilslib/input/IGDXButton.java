@@ -11,6 +11,8 @@ public interface IGDXButton
 
     void press();
 
+    void pressConditional(boolean condition);
+
     boolean isPressed();
 
     boolean isDisabled();

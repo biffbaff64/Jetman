@@ -97,6 +97,11 @@ public class MainMenuScreen extends AbstractBaseScreen
                 break;
 
                 case _MENU_PAGE:
+                {
+                    panels.get(_MENU_PAGE).update();
+                }
+                break;
+
                 case _OPTIONS_PAGE:
                 {
                     if (panels.get(_OPTIONS_PAGE).update())

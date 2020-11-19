@@ -42,6 +42,12 @@ public class Switch implements IGDXButton
     }
 
     @Override
+    public void pressConditional(boolean condition)
+    {
+        _isPressed = condition;
+    }
+
+    @Override
     public void release()
     {
         _isPressed = false;

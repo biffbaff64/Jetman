@@ -251,6 +251,13 @@ public class EntityManager implements IEntityManager
         }
     }
 
+    public boolean doesRoverExist()
+    {
+        return ((App.roverManager != null)
+            && (App.roverManager.getGID() == GraphicID.G_ROVER)
+            && (App.roverManager.getActiveCount() > 0));
+    }
+
     /**
      * Update the indexes into the entity map
      * for the main entities

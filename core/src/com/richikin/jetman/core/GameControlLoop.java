@@ -21,9 +21,9 @@ public class GameControlLoop extends AbstractControlLoop
     {
     }
 
-    public void update(StateManager gameState)
+    public void update()
     {
-        switch (gameState.peek())
+        switch (App.appState.peek())
         {
             //
             // Initialise the current level.
@@ -105,7 +105,7 @@ public class GameControlLoop extends AbstractControlLoop
 
             default:
             {
-                Trace.__FILE_FUNC("Unsupported gameState: " + gameState.peek());
+                Trace.__FILE_FUNC("Unsupported gameState: " + App.appState.peek());
             }
             break;
         }

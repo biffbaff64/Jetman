@@ -29,6 +29,7 @@
     <application
             android:allowBackup="true"
             android:fullBackupContent="true"
+            android:importantForAccessibility="no"
             android:largeHeap="true"
             android:screenOrientation="landscape"
             android:icon="@drawable/ic_launcher"

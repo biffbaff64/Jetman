@@ -87,16 +87,16 @@ public class HeadsUpDisplay implements Disposable
         };
     //@formatter:on
 
-    public IGDXButton buttonUp;
-    public IGDXButton buttonDown;
-    public IGDXButton buttonLeft;
-    public IGDXButton buttonRight;
-    public IGDXButton buttonAction;
-    public IGDXButton buttonAttack;
-    public IGDXButton buttonX;
-    public IGDXButton buttonY;
-    public Switch     buttonPause;
-    public Switch     buttonDevOptions;
+    public Switch buttonUp;
+    public Switch buttonDown;
+    public Switch buttonLeft;
+    public Switch buttonRight;
+    public Switch buttonAction;
+    public Switch buttonAttack;
+    public Switch buttonX;
+    public Switch buttonY;
+    public Switch buttonPause;
+    public Switch buttonDevOptions;
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
@@ -110,7 +110,6 @@ public class HeadsUpDisplay implements Disposable
 
     private float           originX;
     private float           originY;
-    private StateID         stateID;
     private ProgressBar     timeBar;
     private ProgressBar     fuelBar;
     private Texture         scorePanel;
@@ -175,18 +174,18 @@ public class HeadsUpDisplay implements Disposable
 
         drawFuelLow(StateID._INIT, 0, 0);
 
-        stateID = StateID._STATE_PANEL_START;
+        hudStateID = StateID._STATE_PANEL_START;
 
         AppSystem.hudExists = true;
     }
 
     public void update()
     {
-        switch (stateID)
+        switch (hudStateID)
         {
             case _STATE_PANEL_START:
             {
-                stateID = StateID._STATE_PANEL_UPDATE;
+                hudStateID = StateID._STATE_PANEL_UPDATE;
             }
             break;
 
@@ -196,6 +195,7 @@ public class HeadsUpDisplay implements Disposable
                 {
                     AppConfig.pause();
                     buttonPause.release();
+                    pausePanel.setup();
                 }
 
                 updateBars();
@@ -224,12 +224,11 @@ public class HeadsUpDisplay implements Disposable
                 if (buttonPause.isPressed())
                 {
                     AppConfig.unPause();
+                    buttonPause.release();
+                    pausePanel.dispose();
 
                     showHUDControls = true;
-
-                    buttonPause.release();
-
-                    stateID = StateID._STATE_PANEL_UPDATE;
+                    hudStateID = StateID._STATE_PANEL_UPDATE;
                 }
             }
             break;
@@ -418,7 +417,7 @@ public class HeadsUpDisplay implements Disposable
 
             //
             // Draw the Pause panel if activated
-            if (stateID == StateID._STATE_PAUSED)
+            if (hudStateID == StateID._STATE_PAUSED)
             {
                 pausePanel.draw(App.spriteBatch, camera, originX, originY);
             }
@@ -747,39 +746,6 @@ public class HeadsUpDisplay implements Disposable
                 buttonAttack.release();
             }
         });
-    }
-
-    StopWatch scoreStopwatch = StopWatch.start();
-    StopWatch livesStopwatch = StopWatch.start();
-
-    private void developmentHUDUpdate()
-    {
-        if (Developer.isDevMode())
-        {
-            if (scoreStopwatch.time(TimeUnit.MILLISECONDS) > 50)
-            {
-                App.gameProgress.getScore().add
-                    (
-                        MathUtils.random(100),
-                        GameConstants._MAX_SCORE
-                    );
-
-                scoreStopwatch.reset();
-            }
-
-            if (livesStopwatch.time(TimeUnit.MILLISECONDS) > 750)
-            {
-                App.gameProgress.getLives().subtract(1, GameConstants._MAX_LIVES);
-
-                livesStopwatch.reset();
-            }
-
-            fuelBar.setSpeed(1);
-            timeBar.setSpeed(2);
-            fuelBar.updateSlowDecrementWithWrap((int) fuelBar.getMax());
-            timeBar.updateSlowDecrementWithWrap((int) timeBar.getMax());
-            updateBarColours();
-        }
     }
 
     private void hudDebug()

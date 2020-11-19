@@ -132,13 +132,6 @@ public final class App extends LibApp
         return rover;
     }
 
-    public static boolean doesRoverExist()
-    {
-        return ((roverManager != null)
-            && (roverManager.getGID() == GraphicID.G_ROVER)
-            && (roverManager.getActiveCount() > 0));
-    }
-
     public static RoverGun getGun()
     {
         RoverGun gun = null;

@@ -164,7 +164,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isInMiddle = false;
 
-        if (App.doesRoverExist())
+        if (App.entityManager.doesRoverExist())
         {
             isInMiddle = AABBUtils.contains(App.getRover(), App.getPlayer())
                         && !AABBUtils.overlaps(App.getRover().frontWheel, App.getPlayer())

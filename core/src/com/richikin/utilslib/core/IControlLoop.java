@@ -6,5 +6,5 @@ public interface IControlLoop
 {
     void initialise();
 
-    void update(StateManager gameState);
+    void update();
 }
