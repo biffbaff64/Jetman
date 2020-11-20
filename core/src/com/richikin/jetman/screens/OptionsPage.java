@@ -223,7 +223,7 @@ public class OptionsPage implements IUIPage
 
         // ----------
         musicSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 208), skin);
-        musicCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, skin);
+        musicCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, skin);
         musicLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, true, skin);
         musicLabel.setSize(64, 48);
         actors.add(musicSlider);
@@ -233,7 +233,7 @@ public class OptionsPage implements IUIPage
 
         // ----------
         fxSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 278), skin);
-        fxCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, skin);
+        fxCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, skin);
         fxLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, true, skin);
         fxLabel.setSize(64, 48);
         actors.add(fxSlider);
@@ -241,9 +241,9 @@ public class OptionsPage implements IUIPage
         actors.add(fxLabel);
 
         // ----------
-        controllerCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 428), Color.WHITE, skin);
-        vibrateCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 498), Color.WHITE, skin);
-        hintsCheckBox = Scene2DUtils.addCheckBox((int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 568), Color.WHITE, skin);
+        controllerCheckBox = Scene2DUtils.addCheckBox("toggle_left", "toggle_right", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 428), Color.WHITE, skin);
+        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 498), Color.WHITE, skin);
+        hintsCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 568), Color.WHITE, skin);
 
         actors.add(controllerCheckBox);
         actors.add(vibrateCheckBox);

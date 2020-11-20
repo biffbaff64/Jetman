@@ -33,23 +33,13 @@ public class MainGame extends com.badlogic.gdx.Game
     }
 
     /**
-     * Handles window resizing
-     *
-     * @param width  The new window width
-     * @param height The new window height
-     */
-    @Override
-    public void resize(int width, int height)
-    {
-        super.resize(width, height);
-    }
-
-    /**
      * Pause the app
      */
     @Override
     public void pause()
     {
+        super.pause();
+
         if (!Developer.isDevMode()
             && (App.appState != null)
             && (App.appState.equalTo(StateID._STATE_GAME)))
@@ -64,6 +54,8 @@ public class MainGame extends com.badlogic.gdx.Game
     @Override
     public void resume()
     {
+        super.resume();
+
         if (!Developer.isDevMode()
             && (App.appState != null)
             && (App.appState.equalTo(StateID._STATE_GAME)))

@@ -22,7 +22,7 @@ public class SavedGamesHandler implements OnSuccessListener<Intent>
         androidLauncher.startActivityForResult(intent, RCConstants.RC_SAVED_GAMES_UI.value);
     }
 
-    void showSavedGamesUI()
+    public void showSavedGamesUI()
     {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(androidLauncher);
 

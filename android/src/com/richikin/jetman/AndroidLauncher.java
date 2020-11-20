@@ -2,7 +2,6 @@ package com.richikin.jetman;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -35,12 +34,6 @@ public class AndroidLauncher extends AndroidApplication
         initialize(mainGame, config);
 
         Gdx.app.log("AndroidLauncher", "-------------------- APP START --------------------");
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
     }
 
     @Override

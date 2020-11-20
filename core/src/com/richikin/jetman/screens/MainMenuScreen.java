@@ -68,7 +68,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         if (AppSystem.isAndroidApp())
         {
-            App.googleServices.signInSilently();
+            App.googleServices.signIn();
         }
     }
 

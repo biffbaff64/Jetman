@@ -170,4 +170,51 @@ public class Settings implements ISettings
             prefs.flush();
         }
     }
+
+    @Override
+    public void debugReport()
+    {
+        Trace.__FILE_FUNC_WithDivider();
+
+        Trace.divider();
+        Trace.dbg("Configuration Settings.");
+        Trace.divider();
+        Trace.dbg("Setting: " + _SHADER_PROGRAM + " = ",                  prefs.getBoolean(_SHADER_PROGRAM));
+        Trace.dbg("Setting: " + _USING_ASHLEY_ECS + " = ",                prefs.getBoolean(_USING_ASHLEY_ECS));
+        Trace.dbg("Setting: " + _BOX2D_PHYSICS + " = ",                   prefs.getBoolean(_BOX2D_PHYSICS));
+        Trace.dbg("Setting: " + _INSTALLED + " = ",                       prefs.getBoolean(_INSTALLED));
+        Trace.dbg("Setting: " + _SHOW_HINTS + " = ",                      prefs.getBoolean(_SHOW_HINTS));
+        Trace.dbg("Setting: " + _VIBRATIONS + " = ",                      prefs.getBoolean(_VIBRATIONS));
+        Trace.dbg("Setting: " + _MUSIC_ENABLED + " = ",                   prefs.getBoolean(_MUSIC_ENABLED));
+        Trace.dbg("Setting: " + _SOUNDS_ENABLED + " = ",                  prefs.getBoolean(_SOUNDS_ENABLED));
+        Trace.dbg("Setting: " + _FX_VOLUME + " = ",                       prefs.getInteger(_FX_VOLUME));
+        Trace.dbg("Setting: " + _MUSIC_VOLUME + " = ",                    prefs.getInteger(_MUSIC_VOLUME));
+
+        Trace.divider();
+        Trace.dbg("Google Play Settings.");
+        Trace.divider();
+        Trace.dbg("Setting: " + _PLAY_SERVICES + " = ",                   prefs.getBoolean(_PLAY_SERVICES));
+        Trace.dbg("Setting: " + _ACHIEVEMENTS + " = ",                    prefs.getBoolean(_ACHIEVEMENTS));
+        Trace.dbg("Setting: " + _CHALLENGES + " = ",                      prefs.getBoolean(_CHALLENGES));
+        Trace.dbg("Setting: " + _SIGN_IN_STATUS + " = ",                  prefs.getBoolean(_SIGN_IN_STATUS));
+
+        Trace.divider();
+        Trace.dbg("Development Settings.");
+        Trace.divider();
+        Trace.dbg("Setting: " + _DISABLE_MENU_SCREEN + " = ",             prefs.getBoolean(_DISABLE_MENU_SCREEN));
+        Trace.dbg("Setting: " + _SCROLL_DEMO + " = ",                     prefs.getBoolean(_SCROLL_DEMO));
+        Trace.dbg("Setting: " + _SPRITE_BOXES + " = ",                    prefs.getBoolean(_SPRITE_BOXES));
+        Trace.dbg("Setting: " + _TILE_BOXES + " = ",                      prefs.getBoolean(_TILE_BOXES));
+        Trace.dbg("Setting: " + _BUTTON_BOXES + " = ",                    prefs.getBoolean(_BUTTON_BOXES));
+        Trace.dbg("Setting: " + _SHOW_FPS + " = ",                        prefs.getBoolean(_SHOW_FPS));
+        Trace.dbg("Setting: " + _SHOW_DEBUG + " = ",                      prefs.getBoolean(_SHOW_DEBUG));
+        Trace.dbg("Setting: " + _SPAWNPOINTS + " = ",                     prefs.getBoolean(_SPAWNPOINTS));
+        Trace.dbg("Setting: " + _MENU_HEAPS + " = ",                      prefs.getBoolean(_MENU_HEAPS));
+        Trace.dbg("Setting: " + _CULL_SPRITES + " = ",                    prefs.getBoolean(_CULL_SPRITES));
+        Trace.dbg("Setting: " + _B2D_RENDERER + " = ",                    prefs.getBoolean(_B2D_RENDERER));
+        Trace.dbg("Setting: " + _GL_PROFILER + " = ",                     prefs.getBoolean(_GL_PROFILER));
+        Trace.dbg("Setting: " + _ANDROID_ON_DESKTOP + " = ",              prefs.getBoolean(_ANDROID_ON_DESKTOP));
+        Trace.divider();
+        Trace.divider();
+    }
 }

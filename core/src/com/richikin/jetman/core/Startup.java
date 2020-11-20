@@ -25,7 +25,6 @@ public class Startup
     public void startApp()
     {
         //
-
         // Initialise DEBUG classes
         //noinspection LibGDXLogLevel
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
@@ -36,12 +35,15 @@ public class Startup
         App.settings.createPreferencesObject();
         AppConfig.setup();
         App.settings.freshInstallCheck();
+        App.settings.debugReport();
         App.inputManager.setup();
 
         Gfx.setPPM(Gfx._PPM_SETTING);
 
         if (AppSystem.isAndroidApp())
         {
+            Trace.__FILE_FUNC("Initialising Google Play Services.");
+
             App.googleServices.setup();
             App.googleServices.createApiClient();
         }

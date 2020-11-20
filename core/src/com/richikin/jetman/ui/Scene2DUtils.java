@@ -181,9 +181,9 @@ public class Scene2DUtils
         return slider;
     }
 
-    public static CheckBox addCheckBox(int x, int y, Color color, Skin skin)
+    public static CheckBox addCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
-        CheckBox checkBox = makeCheckBox(x, y, color, skin);
+        CheckBox checkBox = makeCheckBox(imageOn, imageOff, x, y, color, skin);
 
         App.stage.addActor(checkBox);
 
@@ -286,10 +286,10 @@ public class Scene2DUtils
         return slider;
     }
 
-    public static CheckBox makeCheckBox(int x, int y, Color color, Skin skin)
+    public static CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
-        TextureRegion regionOn  = App.assets.getButtonRegion("toggle_on");
-        TextureRegion regionOff = App.assets.getButtonRegion("toggle_off");
+        TextureRegion regionOn  = App.assets.getButtonRegion(imageOn);
+        TextureRegion regionOff = App.assets.getButtonRegion(imageOff);
 
         CheckBox               checkBox = new CheckBox("", skin);
         CheckBox.CheckBoxStyle style    = checkBox.getStyle();

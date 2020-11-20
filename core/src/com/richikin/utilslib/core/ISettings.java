@@ -15,4 +15,6 @@ public interface ISettings
     void freshInstallCheck();
 
     com.badlogic.gdx.Preferences getPrefs();
+
+    void debugReport();
 }

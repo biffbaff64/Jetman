@@ -7,7 +7,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.richikin.utilslib.google.RCConstants;
-import com.richikin.utilslib.logging.Trace;
 
 public class AchievementsHandler implements OnSuccessListener<Intent>
 {
@@ -35,8 +34,6 @@ public class AchievementsHandler implements OnSuccessListener<Intent>
 
         if (account != null)
         {
-            Trace.__FILE_FUNC(achievementId);
-
             Games.getAchievementsClient(androidLauncher, account).unlock(achievementId);
         }
     }
@@ -46,8 +43,6 @@ public class AchievementsHandler implements OnSuccessListener<Intent>
      */
     void showAchievementScreen()
     {
-        Trace.__FILE_FUNC();
-
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(androidLauncher);
 
         if (account != null)
