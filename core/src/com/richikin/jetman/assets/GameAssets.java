@@ -44,8 +44,8 @@ public class GameAssets
     public static final String _MISSILE_BASE_ASSET     = "launcher_base";
     public static final String _MISSILE_LAUNCHER_ASSET = "launcher_top";
     public static final String _MISSILE_ASSET          = "rocket";
-    public static final String _POWER_BEAM_ASSET       = "verticalblueflare";
-    public static final String _POWER_BEAM_SMALL_ASSET = "verticalblueflare_small";
+    public static final String _POWER_BEAM_ASSET       = "powerbeam";
+    public static final String _POWER_BEAM_SMALL_ASSET = "powerbeam_small";
     public static final String _ROVER_WHEEL_ASSET      = "rover_wheel";
     public static final String _ROVER_IDLE_ASSET       = "rover_idle";
     public static final String _ROVER_BOOT_ASSET       = "rover_boot";
@@ -56,6 +56,7 @@ public class GameAssets
     public static final String _SPINNING_BALL_ASSET    = "jm_spinningball";
     public static final String _DEFENDER_BULLET_ASSET  = "defence_sparkle";
     public static final String _TRANSPORTER_ASSET      = "transporter_v3";
+    public static final String _TRANSPORTER_BEAM_ASSET = "transporter_beam";
     public static final String _TOPSPIN_ASSET          = "topspin";
     public static final String _TWINKLES_ASSET         = "twinkles2";
     public static final String _UFO_BULLET_ASSET       = "ufo_bullet";
@@ -89,6 +90,7 @@ public class GameAssets
     public static final int _SPINNING_BALL_FRAMES    = 32;
     public static final int _DEFENDER_BULLET_FRAMES  = 10;
     public static final int _TRANSPORTER_FRAMES      = 21;
+    public static final int _TRANSPORTER_BEAM_FRAMES = 1;
     public static final int _TOPSPIN_FRAMES          = 32;
     public static final int _TWINKLES_FRAMES         = 32;
     public static final int _UFO_BULLET_FRAMES       = 10;
@@ -132,6 +134,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
 
             new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
+            new AssetSize(GraphicID.G_TRANSPORTER_BEAM,  64, 512),
             new AssetSize(GraphicID.G_LASER,            324,   8),
             new AssetSize(GraphicID.G_UFO_BULLET,         9,   9),
 
@@ -148,8 +151,9 @@ public class GameAssets
             new AssetSize(GraphicID.G_TOPSPIN,           72,  72),
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
 
-            new AssetSize(GraphicID.G_POWER_BEAM,        64, 512),
-            new AssetSize(GraphicID.G_POWER_BEAM_SMALL,  64, 128),
+            new AssetSize(GraphicID.G_POWER_BEAM,       120, 563),
+            new AssetSize(GraphicID.G_POWER_BEAM_SMALL, 120, 179),
+            new AssetSize(GraphicID.G_POWER_BEAM_BASE,  120,  51),
 
             new AssetSize(GraphicID.G_EXPLOSION12,       64,  64),
             new AssetSize(GraphicID.G_EXPLOSION64,       64,  64),

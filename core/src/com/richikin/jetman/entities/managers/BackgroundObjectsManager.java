@@ -41,20 +41,20 @@ public class BackgroundObjectsManager
 
     private final int[][] twinklestarPositions =
         {
-            { 3,  7},    // 0
+            { 3, 12},    // 0
             { 6, 16},    // 1
             {10, 20},    // 2
             {11, 10},    // 3
             {15, 17},    // 4
-            {19,  7},    // 5
+            {19, 12},    // 5
             {22, 13},    // 6
             {29, 19},    // 7
-            {29,  8},    // 8
+            {29, 13},    // 8
             {34, 14},    // 9
-            {41,  7},    // 10
+            {41, 12},    // 10
             {41, 18},    // 11
             {44, 13},    // 12
-            {51,  8},    // 13
+            {51, 13},    // 13
             {51, 18},    // 14
             {56, 11},    // 15
             {53, 15},    // 16
@@ -67,10 +67,9 @@ public class BackgroundObjectsManager
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
             SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
-            descriptor._ASSET      = asset;
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
             descriptor._POSITION.x = position[0];
-            descriptor._POSITION.y = (Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) - position[1];
+            descriptor._POSITION.y = position[1];
             descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_TWINKLE_STAR);
             descriptor._INDEX      = App.entityData.entityMap.size;
 

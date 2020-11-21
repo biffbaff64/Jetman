@@ -181,6 +181,8 @@ public class EntityUtils
             case G_DEFENDER_BULLET:
             case G_ROVER_BULLET:
             case G_POWER_BEAM:
+            case G_POWER_BEAM_SMALL:
+            case G_POWER_BEAM_BASE:
             {
                 zed = 8;
             }

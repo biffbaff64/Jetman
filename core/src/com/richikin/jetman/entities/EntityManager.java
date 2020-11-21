@@ -360,6 +360,10 @@ public class EntityManager implements IEntityManager
         BackgroundObjectsManager manager = new BackgroundObjectsManager();
         manager.addUFOs(2 + MathUtils.random(2));
         manager.addTwinkleStars();
+
+        BarrierManager barrierManager = new BarrierManager();
+        barrierManager.init();
+        barrierManager.create();
     }
 
     @Override

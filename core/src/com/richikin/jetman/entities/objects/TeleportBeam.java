@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
@@ -166,7 +167,7 @@ public class TeleportBeam implements Disposable
         positions   = new SimpleVec2F[beams.length];
         colorIndex  = new int[beams.length];
 
-        TextureRegion textureRegion = App.assets.getAnimationRegion("verticalblueflare");
+        TextureRegion textureRegion = App.assets.getAnimationRegion(GameAssets._TRANSPORTER_BEAM_ASSET);
 
         int frameWidth  = textureRegion.getRegionWidth();
         int frameHeight = textureRegion.getRegionHeight();

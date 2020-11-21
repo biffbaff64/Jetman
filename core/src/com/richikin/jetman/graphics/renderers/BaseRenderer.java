@@ -123,7 +123,7 @@ public class BaseRenderer implements Disposable
                 {
                     App.mapUtils.positionAt
                         (
-                            (int) (App.getRover().sprite.getX() + 96),
+                            (int) (App.getRover().sprite.getX() + 96), // TODO: 21/11/2020
                             (int) (App.getRover().sprite.getY())
                         );
                 }
@@ -147,32 +147,33 @@ public class BaseRenderer implements Disposable
         // ----- Draw the first set of Parallax Layers, if enabled -----
         if (parallaxGameCamera.isInUse)
         {
-            parallaxGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
             App.spriteBatch.begin();
+
+            parallaxGameCamera.viewport.apply();
 
             cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
             cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
             cameraPos.z = 0;
 
             parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-
             parallaxBackground.render();
-            App.entityManager.renderSystem.drawBackgroundSprites();
 
+            App.entityManager.renderSystem.drawBackgroundSprites();
             App.spriteBatch.end();
         }
+
+        cameraPos.x = (float) (App.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
+        cameraPos.y = (float) (App.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
+        cameraPos.z = 0;
 
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
         {
-            tiledGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.x = (float) (App.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
-            cameraPos.y = (float) (App.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
-            cameraPos.z = 0;
+            tiledGameCamera.viewport.apply();
 
             if (tiledGameCamera.isLerpingEnabled)
             {
@@ -184,27 +185,19 @@ public class BaseRenderer implements Disposable
             }
 
             App.mapData.render(tiledGameCamera.camera);
-
-            //
-            // Deleted but, for future reference, the
-            // MarkerTile layer was drawn here...
-
             App.spriteBatch.end();
         }
 
         // ----- Draw the game sprites, if enabled -----
         if (spriteGameCamera.isInUse)
         {
-            spriteGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
             App.spriteBatch.begin();
 
+            spriteGameCamera.viewport.apply();
+
             if (AppConfig.gameScreenActive())
             {
-                cameraPos.x = (float) (App.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
-                cameraPos.y = (float) (App.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
-                cameraPos.z = 0;
-
                 if (spriteGameCamera.isLerpingEnabled)
                 {
                     spriteGameCamera.lerpTo(cameraPos, Gfx._LERP_SPEED, gameZoom.getZoomValue(), true);
@@ -223,13 +216,7 @@ public class BaseRenderer implements Disposable
                 spriteGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
             }
 
-            if (!App.settings.isEnabled(Settings._USING_ASHLEY_ECS))
-            {
-                if (!Developer.developerPanelActive)
-                {
-                    worldRenderer.render(App.spriteBatch, spriteGameCamera);
-                }
-            }
+            worldRenderer.render(App.spriteBatch, spriteGameCamera);
 
             App.spriteBatch.end();
         }
@@ -237,9 +224,10 @@ public class BaseRenderer implements Disposable
         // ----- Draw the HUD and any related objects, if enabled -----
         if (hudGameCamera.isInUse)
         {
-            hudGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             App.spriteBatch.begin();
+
+            hudGameCamera.viewport.apply();
 
             cameraPos.setEmpty();
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);

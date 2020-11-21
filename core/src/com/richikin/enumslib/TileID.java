@@ -27,7 +27,7 @@ public enum TileID
     _ROVER_TILE                 (17),
     _BOMB_TILE                  (18),
     _MISSILE_BASE_TILE          (19),
-    _U20_TILE                   (20),
+    _BARRIER_BASE_TILE          (20),
 
     // Row 3
     _CRATER_TILE                (21),
