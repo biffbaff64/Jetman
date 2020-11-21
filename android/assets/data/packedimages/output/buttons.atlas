@@ -34,14 +34,14 @@ arrow_right_blue_pressed
   index: -1
 back_arrow
   rotate: false
-  xy: 1252, 350
+  xy: 1252, 284
   size: 54, 54
   orig: 54, 54
   offset: 0, 0
   index: -1
 back_arrow_pressed
   rotate: false
-  xy: 1252, 294
+  xy: 1308, 284
   size: 54, 54
   orig: 54, 54
   offset: 0, 0
@@ -436,6 +436,20 @@ new_test_access_button_pressed
   xy: 358, 150
   size: 210, 40
   orig: 210, 40
+  offset: 0, 0
+  index: -1
+pause_button
+  rotate: false
+  xy: 1252, 340
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+pause_button_pressed
+  rotate: false
+  xy: 1318, 340
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 slice02

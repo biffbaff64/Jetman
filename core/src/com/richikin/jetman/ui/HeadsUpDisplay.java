@@ -52,8 +52,8 @@ public class HeadsUpDisplay implements Disposable
     private static final int _HEIGHT = 4;
 
     private static final int _JOYSTICK    = 0;
-    private static final int _ATTACK      = 1;
-    private static final int _ACTION      = 2;
+    private static final int _ACTION      = 1;
+    private static final int _ATTACK      = 2;
     private static final int _PAUSE       = 3;
     private static final int _DEV_OPTIONS = 4;
     private static final int _CONSOLE     = 5;
@@ -68,7 +68,7 @@ public class HeadsUpDisplay implements Disposable
             {  25, 1016, (720 - 695), 240, 240},    // Joystick
             { 987,   44, (720 - 687),  96,  96},    // Attack
             {1109,  158, (720 - 600),  96,  96},    // Action
-            {1206, 1206, (720 - 177),  66,  66},    // Pause Button
+            {1200, 1200, (720 - 177),  64,  64},    // Pause Button
             {   0,    0, (720 - 101),  99,  86},    // Dev Options
             {1180, 1180, (720 - 101),  99,  86},    // Debug Console
             {  18,   18, (720 -  92),   0,   0},    // Truck Arrow
@@ -100,6 +100,7 @@ public class HeadsUpDisplay implements Disposable
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
+    public ImageButton PauseButton;
 
     public MessageManager messageManager;
     public PausePanel     pausePanel;
@@ -437,9 +438,11 @@ public class HeadsUpDisplay implements Disposable
         {
             ActionButton.addAction(Actions.show());
             AttackButton.addAction(Actions.show());
+            PauseButton.addAction(Actions.show());
 
             ActionButton.setVisible(true);
             AttackButton.setVisible(true);
+            PauseButton.setVisible(true);
 
             getJoystick().show();
 
@@ -458,9 +461,11 @@ public class HeadsUpDisplay implements Disposable
         {
             ActionButton.addAction(Actions.hide());
             AttackButton.addAction(Actions.hide());
+            PauseButton.addAction(Actions.hide());
 
             ActionButton.setVisible(false);
             AttackButton.setVisible(false);
+            PauseButton.setVisible(false);
 
             getJoystick().hide();
 
@@ -485,6 +490,7 @@ public class HeadsUpDisplay implements Disposable
         buttonLeft.release();
         buttonUp.release();
         buttonDown.release();
+        buttonPause.release();
     }
 
     public void setStateID(StateID _newState)
@@ -592,6 +598,7 @@ public class HeadsUpDisplay implements Disposable
             {
                 ActionButton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
                 AttackButton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
+                PauseButton.setPosition(originX + displayPos[_PAUSE][_X1], originY + displayPos[_PAUSE][_Y]);
 
                 if (App.inputManager.virtualJoystick != null)
                 {
@@ -679,18 +686,25 @@ public class HeadsUpDisplay implements Disposable
         {
             int xPos = AppSystem.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-            ActionButton = Scene2DUtils.addButton
+            AttackButton = Scene2DUtils.addButton
                 (
                     "button_a",
                     "button_a_pressed",
-                    displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
+                    displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
                 );
 
-            AttackButton = Scene2DUtils.addButton
+            ActionButton = Scene2DUtils.addButton
                 (
                     "button_b",
                     "button_b_pressed",
-                    displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
+                    displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
+                );
+
+            PauseButton = Scene2DUtils.addButton
+                (
+                    "pause_button",
+                    "pause_button_pressed",
+                    displayPos[_PAUSE][xPos], displayPos[_PAUSE][_Y]
                 );
 
             if (Developer.isDevMode())
@@ -746,6 +760,24 @@ public class HeadsUpDisplay implements Disposable
                 buttonAttack.release();
             }
         });
+
+        PauseButton.addListener(new ClickListener()
+        {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonPause.press();
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
+            {
+                event.handle();
+                buttonPause.release();
+            }
+        });
     }
 
     private void hudDebug()
@@ -777,6 +809,10 @@ public class HeadsUpDisplay implements Disposable
         buttonAttack     = null;
         buttonPause      = null;
         buttonDevOptions = null;
+
+        AttackButton = null;
+        ActionButton = null;
+        PauseButton = null;
 
         messageManager = null;
 
