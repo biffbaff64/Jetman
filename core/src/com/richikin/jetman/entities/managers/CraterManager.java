@@ -41,11 +41,11 @@ public class CraterManager
      */
     public void makeCrater(int x, int y)
     {
+        y = 2;
+
         if ((App.gameProgress.activeCraterCount < App.roomManager.getMaxAllowed(GraphicID._CRATER))
             && (App.mapData.mapBox.contains((x + 3) * Gfx.getTileWidth(), Gfx.getTileHeight())))
         {
-            Trace.__FILE_FUNC();
-
             TiledMapTileLayer.Cell cell;
             TiledMapTileSet floorTileSet = App.mapData.currentMap.getTileSets().getTileSet("items");
 
@@ -74,20 +74,27 @@ public class CraterManager
      * allow the asteroid to leave a crater behind.
      *
      * @param spriteObject  The GdxSprite making the crater
-     * @param force         TRUE to force crater creation if
-     *                      the position is valid.
      *
      * @return boolean.
      */
-    public boolean canMakeCrater(GdxSprite spriteObject, boolean force)
+    public boolean canMakeCrater(GdxSprite spriteObject)
     {
+        boolean isOk = true;
+
+        //
+        // No craters allowed in mid-air
+        if (spriteObject.collisionObject.idBottom == GraphicID.G_NO_ID)
+        {
+            isOk = false;
+        }
+
         //
         // No craters allowed under Rovers
         if ((spriteObject.gid != GraphicID.G_ROVER) && (App.getRover() != null))
         {
             if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getRover().getCollisionRectangle()))
             {
-                return false;
+                isOk =  false;
             }
         }
 
@@ -97,7 +104,7 @@ public class CraterManager
         {
             if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getGun().getCollisionRectangle()))
             {
-                return false;
+                isOk =  false;
             }
         }
 
@@ -107,7 +114,7 @@ public class CraterManager
         {
             if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getBomb().getCollisionRectangle()))
             {
-                return false;
+                isOk =  false;
             }
         }
 
@@ -120,7 +127,17 @@ public class CraterManager
                 || (Intersector.overlaps(spriteObject.getCollisionRectangle(),
                 App.getTeleporter(1).getCollisionRectangle()))))
             {
-                return false;
+                isOk =  false;
+            }
+        }
+
+        //
+        // No craters allowed under Laser Barriers
+        if (spriteObject.gid != GraphicID.G_POWER_BEAM_BASE)
+        {
+            if (App.collisionUtils.getBoxHittingBottom(spriteObject).gid == GraphicID.G_POWER_BEAM_BASE)
+            {
+                isOk = false;
             }
         }
 
@@ -131,16 +148,17 @@ public class CraterManager
         {
             if (Intersector.overlaps(spriteObject.getCollisionRectangle(), App.getPlayer().getCollisionRectangle()))
             {
-                return false;
+                isOk =  false;
             }
         }
 
         //
-        // No need for null check here. Bridges either exist or don't,
+        // No need for null check here. Bridges and Craters either exist or don't,
         // there's no sprite to check.
-        if (spriteObject.collisionObject.idBottom == GraphicID._BRIDGE)
+        if ((spriteObject.collisionObject.idBottom == GraphicID._BRIDGE)
+            || (spriteObject.collisionObject.idBottom == GraphicID._CRATER))
         {
-            return false;
+            isOk =  false;
         }
 
         //
@@ -148,6 +166,6 @@ public class CraterManager
         // to where this one would be created.
 
 
-        return (force || (MathUtils.random(100) < 5));
+        return isOk;
     }
 }

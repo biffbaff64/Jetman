@@ -51,7 +51,7 @@ public class Bomb extends Carryable
 
         CraterManager craterManager = new CraterManager();
 
-        if (craterManager.canMakeCrater(this, false))
+        if (craterManager.canMakeCrater(this))
         {
             int x = (int) (sprite.getX() / Gfx.getTileWidth());
             int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;

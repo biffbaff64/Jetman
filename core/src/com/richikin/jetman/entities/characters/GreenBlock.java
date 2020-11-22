@@ -60,7 +60,11 @@ public class GreenBlock extends GdxSprite
 
                 wrap();
 
-                isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
+                if (collisionObject.isHittingPlayer)
+                {
+                    setAction(ActionStates._HURT);
+                    elapsedAnimTime = 0;
+                }
             }
             break;
 

@@ -268,7 +268,13 @@ public class BaseRenderer implements Disposable
         spriteGameCamera.dispose();
         hudGameCamera.dispose();
 
+        parallaxBackground.dispose();
+        parallaxMiddle.dispose();
+        parallaxForeground.dispose();
+
         parallaxBackground = null;
+        parallaxMiddle = null;
+        parallaxForeground = null;
 
         gameZoom = null;
         hudZoom  = null;

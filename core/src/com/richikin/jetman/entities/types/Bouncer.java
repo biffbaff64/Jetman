@@ -3,6 +3,7 @@ package com.richikin.jetman.entities.types;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
@@ -65,11 +66,11 @@ public class Bouncer extends GdxSprite
                 }
                 else
                 {
-//                    if (graphicID == GraphicID.G_PLAYER)
-//                    {
-//                        setAction(Actions._HURT);
-//                    }
-//                    else
+                    if (graphicID == GraphicID.G_PLAYER)
+                    {
+                        setAction(ActionStates._HURT);
+                    }
+                    else
                     {
                         if (graphicID == GraphicID._CRATER)
                         {

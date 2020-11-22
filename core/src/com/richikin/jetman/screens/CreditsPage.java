@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.concurrent.TimeUnit;
@@ -63,6 +64,8 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         App.assets.unloadAsset("data/credits_foreground.png");
 
         stopWatch = null;

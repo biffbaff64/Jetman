@@ -140,6 +140,17 @@ public class Keyboard extends InputAdapter
         {
             switch (keycode)
             {
+                case Input.Keys.K:
+                {
+                    if (Developer.isDevMode())
+                    {
+                        App.getPlayer().strength = 0;
+                    }
+
+                    returnFlag = true;
+                }
+                break;
+
                 case Input.Keys.ESCAPE:
                 case Input.Keys.BACK:
                 {

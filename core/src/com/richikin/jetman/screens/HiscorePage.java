@@ -18,6 +18,7 @@ import com.richikin.utilslib.core.HighScore;
 import com.richikin.utilslib.core.HighScoreUtils;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
 
 import java.util.Locale;
@@ -257,6 +258,8 @@ public class HiscorePage implements IUIPage, Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         if (rankLabels != null)
         {
             for (Label label : rankLabels)

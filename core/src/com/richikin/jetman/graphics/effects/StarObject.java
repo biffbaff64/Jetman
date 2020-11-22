@@ -23,7 +23,6 @@ public class StarObject implements Disposable
     private SimpleVec3F   position;
     private SimpleVec3F   velocity;
     private TextureRegion region;
-    private App           app;
 
     public StarObject()
     {
@@ -103,6 +102,5 @@ public class StarObject implements Disposable
         position = null;
         velocity = null;
         region   = null;
-        app      = null;
     }
 }

@@ -2,7 +2,7 @@
 package com.richikin.jetman.graphics.effects;
 
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.App;
+import com.richikin.utilslib.logging.Trace;
 
 import java.util.ArrayList;
 
@@ -37,6 +37,13 @@ public class StarField implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
+        for (StarObject starObject : stars)
+        {
+            starObject.dispose();
+        }
+
         stars.clear();
         stars = null;
     }

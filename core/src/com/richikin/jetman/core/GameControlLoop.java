@@ -1,6 +1,7 @@
 package com.richikin.jetman.core;
 
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
@@ -198,11 +199,6 @@ public class GameControlLoop extends AbstractControlLoop
         }
         else
         {
-//            boolean isLerpingEnabled = (App.appState.peek() == StateID._STATE_GAME);
-//
-//            App.baseRenderer.tiledGameCamera.isLerpingEnabled    = isLerpingEnabled;
-//            App.baseRenderer.spriteGameCamera.isLerpingEnabled   = isLerpingEnabled;
-
             App.mapUtils.update();
             App.entityManager.updateSprites();
             App.entityManager.tidySprites();
@@ -238,6 +234,10 @@ public class GameControlLoop extends AbstractControlLoop
             if (AppSystem.quitToMainMenu)
             {
                 App.appState.set(StateID._STATE_GAME_OVER);
+
+                App.getHud().hideControls();
+                App.getHud().messageManager.enable();
+                App.getHud().messageManager.addZoomMessage(GameAssets._GAMEOVER_MSG_ASSET, 3000);
             }
             else
             {
@@ -289,6 +289,7 @@ public class GameControlLoop extends AbstractControlLoop
         //
         // If the game has a 'Completed Panel' this is
         // a good place to update it and check for it closing.
+
         //
         // App.appState should be set to _STATE_END_GAME when appropriate.
         App.appState.set(StateID._STATE_END_GAME);
@@ -300,6 +301,8 @@ public class GameControlLoop extends AbstractControlLoop
     private void stateSetForEndGame()
     {
         Trace.megaDivider("***** GAME OVER *****");
+
+        GameAudio.inst().playGameTune(false);
 
         App.gameProgress.closeLastGame();
 

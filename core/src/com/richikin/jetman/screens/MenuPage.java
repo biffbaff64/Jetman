@@ -87,6 +87,8 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         if (buttonStart != null) buttonStart.addAction(Actions.removeActor());
         if (buttonOptions != null) buttonOptions.addAction(Actions.removeActor());
         if (buttonHiScores != null) buttonHiScores.addAction(Actions.removeActor());

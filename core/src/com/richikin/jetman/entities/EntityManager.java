@@ -369,5 +369,6 @@ public class EntityManager implements IEntityManager
     @Override
     public void dispose()
     {
+        App.entityData.dispose();
     }
 }

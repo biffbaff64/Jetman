@@ -158,7 +158,7 @@ public class MainGameScreen extends AbstractBaseScreen
     @Override
     public void dispose()
     {
-        super.dispose();
+        Trace.__FILE_FUNC();
 
         App.entityManager.dispose();
         App.getHud().dispose();

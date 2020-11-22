@@ -805,6 +805,8 @@ public class HeadsUpDisplay implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         buttonAction     = null;
         buttonAttack     = null;
         buttonPause      = null;

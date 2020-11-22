@@ -32,4 +32,6 @@ public interface EntityManagerComponent
     boolean isPlaceable();
 
     void setPlaceable(boolean placeable);
+
+    void dispose();
 }

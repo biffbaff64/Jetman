@@ -100,7 +100,7 @@ public class Asteroid extends GdxSprite
                 CraterManager craterManager = new CraterManager();
 
                 if ((collisionObject.idBottom == GraphicID._GROUND)
-                    && (craterManager.canMakeCrater(this, false)))
+                    && (craterManager.canMakeCrater(this)))
                 {
                     int x = (int) (sprite.getX() / Gfx.getTileWidth());
                     int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;

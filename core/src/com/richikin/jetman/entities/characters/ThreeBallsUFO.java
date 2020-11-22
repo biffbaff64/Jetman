@@ -90,6 +90,12 @@ public class ThreeBallsUFO extends GdxSprite
                 }
 
                 move();
+
+                if (collisionObject.isHittingPlayer)
+                {
+                    setAction(ActionStates._HURT);
+                    elapsedAnimTime = 0;
+                }
             }
             break;
 

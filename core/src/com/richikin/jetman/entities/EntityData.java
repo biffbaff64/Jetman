@@ -77,12 +77,19 @@ public class EntityData implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         for (int i = 0; i < entityMap.size; i++)
         {
             if (entityMap.get(i) != null)
             {
                 entityMap.get(i).dispose();
             }
+        }
+
+        for (EntityManagerComponent manager : managerList)
+        {
+            manager.dispose();
         }
 
         entityMap.clear();

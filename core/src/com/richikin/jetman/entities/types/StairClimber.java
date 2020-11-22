@@ -57,6 +57,12 @@ public class StairClimber extends GdxSprite
                 sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
                 move();
+
+                if (collisionObject.isHittingPlayer)
+                {
+                    setAction(ActionStates._HURT);
+                    elapsedAnimTime = 0;
+                }
             }
             break;
 

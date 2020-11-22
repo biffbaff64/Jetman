@@ -14,7 +14,6 @@ import com.richikin.jetman.graphics.effects.StarField;
 import com.richikin.jetman.ui.ExitPanel;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
-import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
@@ -66,7 +65,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         menuPage.initialise();
         menuPage.show();
 
-        if (AppSystem.isAndroidApp())
+        if (AppSystem.isAndroidApp() && !App.googleServices.isSignedIn())
         {
             App.googleServices.signIn();
         }
@@ -324,6 +323,8 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         super.show();
 
+        currentPage = _MENU_PAGE;
+
         initialise();
 
         App.cameraUtils.resetCameraZoom();
@@ -331,10 +332,6 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.baseRenderer.spriteGameCamera.isInUse = true;
         App.baseRenderer.hudGameCamera.isInUse    = true;
         App.baseRenderer.isDrawingStage           = true;
-
-        currentPage = _MENU_PAGE;
-
-        panels.get(currentPage).show();
 
         Version.appDetails();
     }
@@ -389,7 +386,7 @@ public class MainMenuScreen extends AbstractBaseScreen
     @Override
     public void dispose()
     {
-        super.dispose();
+        Trace.__FILE_FUNC();
 
         App.assets.unloadAsset("empty_screen_dark.png");
 

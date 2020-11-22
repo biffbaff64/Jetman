@@ -679,6 +679,8 @@ public class OptionsPage implements IUIPage
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         AppSystem.backButton.setVisible(false);
         AppSystem.backButton.setDisabled(true);
 

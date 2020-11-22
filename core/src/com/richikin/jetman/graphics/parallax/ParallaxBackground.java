@@ -102,6 +102,8 @@ public class ParallaxBackground implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         for (int i = 0; i < layers.size; i++)
         {
             layers.get(i).dispose();
