@@ -3,27 +3,27 @@ package com.richikin.jetman.entities.objects;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.App;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.utilslib.entities.components.EntityComponent;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.jetman.core.App;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.utilslib.entities.components.EntityComponent;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GameEntity implements EntityComponent, Disposable
 {
     public GraphicID       gid;
     public GraphicID       type;
-    public SimpleVec2F     position;
+    public SimpleVec2      position;
     public int             zPosition;
-    public float           frameWidth;
-    public float           frameHeight;
+    public int           frameWidth;
+    public int           frameHeight;
     public CollisionObject collisionObject;
     public Body            b2dBody;
     public short           bodyCategory;
-    public short        collidesWith;
-    public ActionStates entityAction;
+    public short           collidesWith;
+    public ActionStates    entityAction;
 
     public GameEntity()
     {
@@ -37,18 +37,12 @@ public class GameEntity implements EntityComponent, Disposable
     @Override
     public void setCollisionObject(int _xPos, int _yPos)
     {
-        setCollisionObject((float) _xPos, (float) _yPos);
-    }
-
-    @Override
-    public void setCollisionObject(float _xPos, float _yPos)
-    {
         collisionObject = App.collisionUtils.newObject
             (
-                (int) _xPos,
-                (int) _yPos,
-                (int) frameWidth,
-                (int) frameHeight,
+                _xPos,
+                _yPos,
+                frameWidth,
+                frameHeight,
                 GraphicID._ENTITY
             );
 
@@ -60,6 +54,12 @@ public class GameEntity implements EntityComponent, Disposable
         {
             AABBData.add(collisionObject);
         }
+    }
+
+    @Override
+    public void setCollisionObject(float _xPos, float _yPos)
+    {
+        setCollisionObject((int) _xPos, (int) _yPos);
     }
 
     @Override

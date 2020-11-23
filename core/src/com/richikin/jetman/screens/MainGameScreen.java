@@ -162,8 +162,11 @@ public class MainGameScreen extends AbstractBaseScreen
 
         App.entityManager.dispose();
         App.getHud().dispose();
-
         App.gameProgress.dispose();
+
+        App.baseRenderer.parallaxBackground.dispose();
+        App.baseRenderer.parallaxMiddle.dispose();
+        App.baseRenderer.parallaxForeground.dispose();
 
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);

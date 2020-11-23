@@ -3,6 +3,7 @@ package com.richikin.utilslib.entities.components;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
+import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.utilslib.maths.SimpleVec3F;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
@@ -12,7 +13,7 @@ public interface SpriteComponent
 
     void create(SpriteDescriptor descriptor);
 
-    void initPosition(SimpleVec3F vec3F);
+    void initPosition(SimpleVec3 vec3F);
 
     void preUpdate();
 

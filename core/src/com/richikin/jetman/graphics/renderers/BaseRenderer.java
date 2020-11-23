@@ -3,20 +3,19 @@ package com.richikin.jetman.graphics.renderers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.enumslib.StateID;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.graphics.parallax.ParallaxBackground;
+import com.richikin.jetman.graphics.parallax.ParallaxManager;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.graphics.camera.ViewportType;
 import com.richikin.utilslib.graphics.camera.Zoom;
-import com.richikin.jetman.graphics.parallax.ParallaxBackground;
-import com.richikin.jetman.graphics.parallax.ParallaxManager;
-import com.richikin.utilslib.maths.SimpleVec3F;
-import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec3F;
 
 public class BaseRenderer implements Disposable
 {
@@ -147,22 +146,26 @@ public class BaseRenderer implements Disposable
         // ----- Draw the first set of Parallax Layers, if enabled -----
         if (parallaxGameCamera.isInUse)
         {
-            App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            Gdx.app.debug("BR:", "ParallaxGameCamera");
 
             parallaxGameCamera.viewport.apply();
+            App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
+            App.spriteBatch.begin();
 
             cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
             cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
             cameraPos.z = 0;
 
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
+            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(),false);
             parallaxBackground.render();
 
             App.entityManager.renderSystem.drawBackgroundSprites();
             App.spriteBatch.end();
         }
 
+        //
+        // Camera position settings are the same
+        // for TiledGameCamera and SpriteGameCamera.
         cameraPos.x = (float) (App.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
         cameraPos.y = (float) (App.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
         cameraPos.z = 0;
@@ -170,10 +173,11 @@ public class BaseRenderer implements Disposable
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
         {
-            App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            Gdx.app.debug("BR:", "TiledGameCamera");
 
             tiledGameCamera.viewport.apply();
+            App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
+            App.spriteBatch.begin();
 
             if (tiledGameCamera.isLerpingEnabled)
             {
@@ -191,28 +195,18 @@ public class BaseRenderer implements Disposable
         // ----- Draw the game sprites, if enabled -----
         if (spriteGameCamera.isInUse)
         {
+            Gdx.app.debug("BR:", "SpriteGameCamera");
+
+            spriteGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            spriteGameCamera.viewport.apply();
-
-            if (AppConfig.gameScreenActive())
+            if (spriteGameCamera.isLerpingEnabled)
             {
-                if (spriteGameCamera.isLerpingEnabled)
-                {
-                    spriteGameCamera.lerpTo(cameraPos, Gfx._LERP_SPEED, gameZoom.getZoomValue(), true);
-                }
-                else
-                {
-                    spriteGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
-                }
+                spriteGameCamera.lerpTo(cameraPos, Gfx._LERP_SPEED, gameZoom.getZoomValue(), true);
             }
             else
             {
-                cameraPos.x = (float) App.mapData.mapPosition.getX();
-                cameraPos.y = (float) App.mapData.mapPosition.getY();
-                cameraPos.z = 0;
-
                 spriteGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
             }
 
@@ -222,19 +216,24 @@ public class BaseRenderer implements Disposable
         }
 
         // ----- Draw the HUD and any related objects, if enabled -----
+        // ----- The Front End should only be using this camera -------
         if (hudGameCamera.isInUse)
         {
-            App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
-            App.spriteBatch.begin();
+            Gdx.app.debug("BR:", "HUDGameCamera");
 
             hudGameCamera.viewport.apply();
+            App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
+            App.spriteBatch.begin();
 
             cameraPos.setEmpty();
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
 
             hudRenderer.render(App.spriteBatch, hudGameCamera);
 
-            App.baseRenderer.parallaxForeground.render();
+            if (AppConfig.gameScreenActive())
+            {
+                App.baseRenderer.parallaxForeground.render();
+            }
 
             App.spriteBatch.end();
         }

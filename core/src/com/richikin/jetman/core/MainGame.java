@@ -1,5 +1,7 @@
 package com.richikin.jetman.core;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.google.DummyAdsController;
@@ -13,7 +15,6 @@ public class MainGame extends com.badlogic.gdx.Game
      */
     public MainGame(IPlayServices _services)
     {
-        // TODO: 04/11/2020 - Can these be moved to Startup?
         App.googleServices = _services;
         App.adsController  = new DummyAdsController();
     }
@@ -30,6 +31,14 @@ public class MainGame extends com.badlogic.gdx.Game
         Startup startup = new Startup();
         startup.startApp();
         startup.closeStartup();
+    }
+
+    @Override
+    public void setScreen(Screen screen)
+    {
+        Gdx.app.debug("MG: ", ("" + screen.getClass()));
+
+        super.setScreen(screen);
     }
 
     /**

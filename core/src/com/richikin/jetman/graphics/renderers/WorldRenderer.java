@@ -16,12 +16,6 @@ public class WorldRenderer implements IGameScreenRenderer
     {
         switch (App.appState.peek())
         {
-            case _STATE_MAIN_MENU:
-            {
-                App.mainMenuScreen.draw(spriteBatch, gameCamera);
-            }
-            break;
-
             case _STATE_SETUP:
             case _STATE_GET_READY:
             case _STATE_PAUSED:
@@ -40,13 +34,10 @@ public class WorldRenderer implements IGameScreenRenderer
             }
             break;
 
+            case _STATE_MAIN_MENU:
             case _STATE_CLOSING:
             case _STATE_GAME_OVER:
             case _STATE_END_GAME:
-            {
-            }
-            break;
-
             default:
                 break;
         }

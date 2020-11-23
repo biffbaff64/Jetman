@@ -13,11 +13,9 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABB;
 import com.richikin.utilslib.graphics.LibGfx;
+import com.richikin.utilslib.maths.*;
 import com.richikin.utilslib.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.utilslib.maths.SimpleVec3F;
-import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.Speed;
@@ -27,11 +25,11 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     // -----------------------------------------------
     // properties etc
     //
-    public SimpleVec3F initXYZ;                 // The entity's start map coordinates
-    public int         spriteNumber;
-    public float       rotateSpeed;
-    public float       rotation;
-    public int         link;
+    public SimpleVec3 initXYZ;                 // The entity's start map coordinates
+    public int        spriteNumber;
+    public float      rotateSpeed;
+    public float      rotation;
+    public int        link;
 
     // -----------------------------------------------
     // Collision Related
@@ -100,7 +98,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         lookingAt = new Direction();
         speed     = new Speed();
         distance  = new XYSetF();
-        initXYZ   = new SimpleVec3F();
+        initXYZ   = new SimpleVec3();
         aabb      = new AABB();
 
         strength            = GameConstants._MAX_STRENGTH;
@@ -123,7 +121,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
             setAnimation(descriptor, descriptor._ANIM_RATE);
         }
 
-        initPosition(new SimpleVec3F
+        initPosition(new SimpleVec3
             (
                 descriptor._POSITION.x,
                 descriptor._POSITION.y,
@@ -137,7 +135,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     @Override
-    public void initPosition(SimpleVec3F vec3F)
+    public void initPosition(SimpleVec3 vec3F)
     {
         sprite.setSize(frameWidth, frameHeight);
 
@@ -146,7 +144,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 
-        position  = new SimpleVec2F(sprite.getX(), sprite.getY());
+        position  = new SimpleVec2((int) sprite.getX(), (int) sprite.getY());
         zPosition = (int) vec3F.z;
 
         initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
@@ -277,15 +275,11 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         }
         else
         {
-            frameWidth  = (float) (asset.getRegionWidth() / _descriptor._FRAMES);
+            frameWidth  = asset.getRegionWidth() / _descriptor._FRAMES;
             frameHeight = asset.getRegionHeight();
         }
 
-        TextureRegion[][] tmpFrames = asset.split
-            (
-                (int) frameWidth,
-                (int) frameHeight
-            );
+        TextureRegion[][] tmpFrames = asset.split(frameWidth, frameHeight);
 
         int i = 0;
 

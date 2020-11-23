@@ -58,6 +58,8 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public boolean update()
     {
+        Trace.__FILE_FUNC();
+
         updateGoogleButton();
 
         return false;
@@ -117,6 +119,8 @@ public class MenuPage implements IUIPage, Disposable
 
     private void populateMenuScreen()
     {
+        Trace.__FILE_FUNC();
+
         AppSystem.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
         AppSystem.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
 
@@ -143,6 +147,8 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addDateSpecificItems(float originX, float originY)
     {
+        Trace.__FILE_FUNC();
+
         Date     date     = new Date(TimeUtils.millis());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -172,6 +178,8 @@ public class MenuPage implements IUIPage, Disposable
 
     private void addClickListeners()
     {
+        Trace.__FILE_FUNC();
+
         if (buttonStart != null)
         {
             buttonStart.addListener(new ClickListener()

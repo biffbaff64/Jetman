@@ -3,21 +3,22 @@ package com.richikin.jetman.maps;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maths.Box;
-import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.utilslib.entities.components.EntityManagerComponent;
+import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.maths.Box;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.physics.Speed;
-import com.richikin.utilslib.logging.Trace;
 
 public class MapCreator
 {
@@ -94,8 +95,8 @@ public class MapCreator
         // Create the bounding box for this placement tile.
         markerTile._BOX = new Box
             (
-                (int) (((TiledMapTileMapObject)  _mapObject).getX()),
-                (int) (((TiledMapTileMapObject)  _mapObject).getY()),
+                (int) (((TiledMapTileMapObject) _mapObject).getX()),
+                (int) (((TiledMapTileMapObject) _mapObject).getY()),
                 Gfx.getTileWidth(),
                 Gfx.getTileHeight()
             );
@@ -151,10 +152,10 @@ public class MapCreator
     {
         GameEntity gameEntity;
 
-        gameEntity = new GameEntity();
-        gameEntity.gid = GraphicID.G_NO_ID;
-        gameEntity.type = GraphicID.G_NO_ID;
-        gameEntity.position = new SimpleVec2F();
+        gameEntity                 = new GameEntity();
+        gameEntity.gid             = GraphicID.G_NO_ID;
+        gameEntity.type            = GraphicID.G_NO_ID;
+        gameEntity.position        = new SimpleVec2();
         gameEntity.collisionObject = App.collisionUtils.newObject();
         AABBData.add(gameEntity.collisionObject);
 
@@ -170,8 +171,8 @@ public class MapCreator
                     {
                         case "ceiling":
                         {
-                            gameEntity.gid = GraphicID._CEILING;
-                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.gid          = GraphicID._CEILING;
+                            gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_CEILING;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER;
                         }
@@ -179,8 +180,8 @@ public class MapCreator
 
                         case "crater":
                         {
-                            gameEntity.gid = GraphicID._CRATER;
-                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.gid          = GraphicID._CRATER;
+                            gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
@@ -193,8 +194,8 @@ public class MapCreator
 
                         case "bridge":
                         {
-                            gameEntity.gid = GraphicID._BRIDGE;
-                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.gid          = GraphicID._BRIDGE;
+                            gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
@@ -208,8 +209,8 @@ public class MapCreator
                         case "ground":
                         case "wall":
                         {
-                            gameEntity.gid = GraphicID._GROUND;
-                            gameEntity.type = GraphicID._OBSTACLE;
+                            gameEntity.gid          = GraphicID._GROUND;
+                            gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
@@ -226,13 +227,13 @@ public class MapCreator
 
                     if (gameEntity.gid != GraphicID.G_NO_ID)
                     {
-                        gameEntity.position = new SimpleVec2F
+                        gameEntity.position = new SimpleVec2
                             (
-                                (float) mapObject.getProperties().get("x"),
-                                (float) mapObject.getProperties().get("y")
+                                (int) ((float) mapObject.getProperties().get("x")),
+                                (int) ((float) mapObject.getProperties().get("y"))
                             );
-                        gameEntity.frameWidth   = (float) mapObject.getProperties().get("width");
-                        gameEntity.frameHeight  = (float) mapObject.getProperties().get("height");
+                        gameEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
+                        gameEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));
                         gameEntity.setCollisionObject(gameEntity.position.x, gameEntity.position.y);
                     }
                 }

@@ -66,7 +66,7 @@ public class MapData
     // window (0, 0) into the game currentMap
     public SimpleVec2  mapPosition;
     public SimpleVec2  previousMapPosition;
-    public SimpleVec2F checkPoint;
+    public SimpleVec2  checkPoint;
     public Rectangle   viewportBox;
     public Rectangle   innerViewportBox;
     public Rectangle   extendedViewportBox;
@@ -89,7 +89,7 @@ public class MapData
 
         mapPosition         = new SimpleVec2();
         previousMapPosition = new SimpleVec2();
-        checkPoint          = new SimpleVec2F();
+        checkPoint          = new SimpleVec2();
         tmxMapLoader        = new TmxMapLoader();
         viewportBox         = new Rectangle();
         innerViewportBox    = new Rectangle();

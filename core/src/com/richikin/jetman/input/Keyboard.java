@@ -151,6 +151,13 @@ public class Keyboard extends InputAdapter
                 }
                 break;
 
+                case Input.Keys.E:
+                {
+                    App.gameProgress.getLives().setTotal(1);
+                    returnFlag = true;
+                }
+                break;
+
                 case Input.Keys.ESCAPE:
                 case Input.Keys.BACK:
                 {

@@ -67,6 +67,13 @@ public class SimpleVec3
         this.z = z;
     }
 
+    public void set(float x, float y, float z)
+    {
+        this.x = (int) x;
+        this.y = (int) y;
+        this.z = (int) z;
+    }
+
     public void set(SimpleVec3 vec2)
     {
         this.x = vec2.x;
@@ -91,7 +98,7 @@ public class SimpleVec3
         return x;
     }
 
-    public void setX(final int x)
+    public void setX(int x)
     {
         this.x = x;
     }
@@ -101,7 +108,7 @@ public class SimpleVec3
         return y;
     }
 
-    public void setY(final int y)
+    public void setY(int y)
     {
         this.y = y;
     }
@@ -111,7 +118,7 @@ public class SimpleVec3
         return z;
     }
 
-    public void setZ(final int z)
+    public void setZ(int z)
     {
         this.z = z;
     }

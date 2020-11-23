@@ -56,6 +56,12 @@ public class SimpleVec2F
         this.y -= value;
     }
 
+    public void set(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
     public void set(float x, float y)
     {
         this.x = x;

@@ -90,6 +90,12 @@ public class SimpleVec2
         this.y = _y;
     }
 
+    public void set(float _x, float _y)
+    {
+        this.x = (int) _x;
+        this.y = (int) _y;
+    }
+
     public void set(SimpleVec2 vec2)
     {
         this.x = vec2.x;
