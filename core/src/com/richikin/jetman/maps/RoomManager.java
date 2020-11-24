@@ -156,6 +156,11 @@ public class RoomManager
     {
         if (roomMap[_index] != null)
         {
+            if (activeRoom == null)
+            {
+                activeRoom = new Room();
+            }
+
             activeRoom.set(roomMap[_index]);
         }
     }

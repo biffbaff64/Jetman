@@ -69,6 +69,8 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             App.googleServices.signIn();
         }
+
+        Trace.finishedMessage();
     }
 
     /**
@@ -97,8 +99,6 @@ public class MainMenuScreen extends AbstractBaseScreen
      */
     public void draw(final SpriteBatch spriteBatch, final OrthoGameCamera _camera)
     {
-        Trace.__FILE_FUNC(App.appState.peek());
-
         if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
             AppSystem.hudOriginX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
@@ -151,8 +151,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
-            Trace.__FILE_FUNC(App.appState.peek());
-
             switch (currentPage)
             {
                 case _HISCORE_PAGE:
@@ -296,19 +294,22 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.currentScreenID = ScreenID._MAIN_MENU;
-        App.appState.set(StateID._STATE_MAIN_MENU);
-
         super.show();
 
         initialise();
 
         App.cameraUtils.resetCameraZoom();
         App.cameraUtils.disableAllCameras();
-        App.baseRenderer.hudGameCamera.isInUse    = true;
-        App.baseRenderer.isDrawingStage           = true;
+
+        App.baseRenderer.hudGameCamera.isInUse  = true;
+        App.baseRenderer.isDrawingStage         = true;
 
         Version.appDetails();
+
+        AppSystem.currentScreenID = ScreenID._MAIN_MENU;
+        App.appState.set(StateID._STATE_MAIN_MENU);
+
+        Trace.finishedMessage();
     }
 
     @Override

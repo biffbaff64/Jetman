@@ -25,7 +25,6 @@ public class BaseRenderer implements Disposable
     public OrthoGameCamera parallaxGameCamera;
 
     public ParallaxBackground parallaxBackground;
-    public ParallaxBackground parallaxMiddle;
     public ParallaxBackground parallaxForeground;
     public Zoom               gameZoom;
     public Zoom               hudZoom;
@@ -60,7 +59,6 @@ public class BaseRenderer implements Disposable
             );
 
         parallaxBackground  = new ParallaxBackground();
-        parallaxMiddle      = new ParallaxBackground();
         parallaxForeground  = new ParallaxBackground();
         App.parallaxManager = new ParallaxManager();
 
@@ -146,8 +144,6 @@ public class BaseRenderer implements Disposable
         // ----- Draw the first set of Parallax Layers, if enabled -----
         if (parallaxGameCamera.isInUse)
         {
-            Gdx.app.debug("BR:", "ParallaxGameCamera");
-
             parallaxGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
             App.spriteBatch.begin();
@@ -173,8 +169,6 @@ public class BaseRenderer implements Disposable
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
         {
-            Gdx.app.debug("BR:", "TiledGameCamera");
-
             tiledGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
             App.spriteBatch.begin();
@@ -195,8 +189,6 @@ public class BaseRenderer implements Disposable
         // ----- Draw the game sprites, if enabled -----
         if (spriteGameCamera.isInUse)
         {
-            Gdx.app.debug("BR:", "SpriteGameCamera");
-
             spriteGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
             App.spriteBatch.begin();
@@ -219,8 +211,6 @@ public class BaseRenderer implements Disposable
         // ----- The Front End should only be using this camera -------
         if (hudGameCamera.isInUse)
         {
-            Gdx.app.debug("BR:", "HUDGameCamera");
-
             hudGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             App.spriteBatch.begin();
@@ -268,11 +258,9 @@ public class BaseRenderer implements Disposable
         hudGameCamera.dispose();
 
         parallaxBackground.dispose();
-        parallaxMiddle.dispose();
         parallaxForeground.dispose();
 
         parallaxBackground = null;
-        parallaxMiddle = null;
         parallaxForeground = null;
 
         gameZoom = null;

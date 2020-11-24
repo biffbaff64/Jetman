@@ -1,13 +1,12 @@
 package com.richikin.jetman.core;
 
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.enumslib.StateID;
-import com.richikin.utilslib.logging.StateManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -104,6 +103,11 @@ public class GameControlLoop extends AbstractControlLoop
             }
             break;
 
+            case _STATE_CLOSING:
+            {
+            }
+            break;
+
             default:
             {
                 Trace.__FILE_FUNC("Unsupported gameState: " + App.appState.peek());
@@ -129,18 +133,13 @@ public class GameControlLoop extends AbstractControlLoop
         App.baseRenderer.tiledGameCamera.isLerpingEnabled    = false;
         App.baseRenderer.spriteGameCamera.isLerpingEnabled   = false;
 
-//        if (scr().firstTime)
-//        {
-            // This is a good place to start the game tune
-            // and initialise a 'GET READY' message if needed.
-            // eg:
-            /*
-            *  Sfx.inst().playGameTune(true);
-            *
-            *  App.messageManager.enable();
-            *  App.messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
-            */
-//        }
+        if (scr().firstTime)
+        {
+            GameAudio.inst().playGameTune(true);
+
+            App.getHud().messageManager.enable();
+            App.getHud().messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
+        }
 
         App.appState.set(StateID._STATE_GET_READY);
         App.gameProgress.gameSetupDone = true;
@@ -309,8 +308,6 @@ public class GameControlLoop extends AbstractControlLoop
         scr().dispose();
 
         App.mainGame.setScreen(App.mainMenuScreen);
-
-        App.appState.set(StateID._STATE_CLOSING);
     }
 
     private MainGameScreen scr()

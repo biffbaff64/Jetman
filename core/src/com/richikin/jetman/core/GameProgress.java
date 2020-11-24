@@ -54,7 +54,19 @@ public class GameProgress implements Disposable
         gameSetupDone  = false;
         gameDiffculty  = 1.0f;
 
-        resetData();
+        score.setRefillAmount(0);
+        lives.setRefillAmount(GameConstants._MAX_LIVES);
+
+        score.setToMinimum();
+        lives.setToMaximum();
+
+        baseDestroyed         = false;
+        roverDestroyed        = false;
+        activeCraterCount     = 0;
+        playerLifeOver        = false;
+        playerLevel           = 1;
+        playerGameOver        = false;
+        gameDiffculty         = 1.0f;
     }
 
     public void update()
@@ -128,28 +140,6 @@ public class GameProgress implements Disposable
             App.getHud().getFuelBar().add(amount);
             fuelStack -= amount;
         }
-    }
-
-    /**
-     * Create player data for the Heads Up Display,
-     * data for anything that is displayed on the HUD.
-     * (Scores, Lives, Level etc.)
-     */
-    private void resetData()
-    {
-        score.setRefillAmount(0);
-        lives.setRefillAmount(GameConstants._MAX_LIVES);
-
-        score.setToMinimum();
-        lives.setToMaximum();
-
-        baseDestroyed         = false;
-        roverDestroyed        = false;
-        activeCraterCount     = 0;
-        playerLifeOver        = false;
-        playerLevel           = 1;
-        playerGameOver        = false;
-        gameDiffculty         = 1.0f;
     }
 
     public Item getScore()

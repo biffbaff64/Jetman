@@ -5,21 +5,17 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
-import com.richikin.enumslib.StateID;
-import com.richikin.utilslib.logging.StateManager;
 import com.richikin.jetman.graphics.effects.FadeEffect;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.IGDXButton;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.screens.IBaseScreen;
 
 public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseScreen, Disposable
 {
-    protected final StateManager flowState;
-
     public AbstractBaseScreen()
     {
         super();
-
-        this.flowState  = new StateManager();
     }
 
     @Override
@@ -30,7 +26,6 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
             if (FadeEffect.update())
             {
                 FadeEffect.end();
-                flowState.set(StateID._STATE_GAME);
             }
         }
         else
@@ -54,14 +49,12 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
     public void triggerFadeIn()
     {
         FadeEffect.triggerFadeIn();
-        flowState.set(StateID._STATE_FADE_IN);
     }
 
     @Override
     public void triggerFadeOut()
     {
         FadeEffect.triggerFadeOut();
-        flowState.set(StateID._STATE_FADE_OUT);
     }
 
     @Override
@@ -84,8 +77,6 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
     @Override
     public void show()
     {
-        flowState.set(StateID._STATE_GAME);
-
         loadImages();
     }
 

@@ -114,8 +114,8 @@ public class GameAssets
     public static int hudPanelWidth;      // Set when object is loaded
     public static int hudPanelHeight;     //
 
-    public static final String _GETREADY_MSG_ASSET = "get_ready";
-    public static final String _GAMEOVER_MSG_ASSET = "game_over";
+    public static final String _GETREADY_MSG_ASSET = "getready";
+    public static final String _GAMEOVER_MSG_ASSET = "gameover";
 
     private static final AssetSize[] assetSizes =
         {

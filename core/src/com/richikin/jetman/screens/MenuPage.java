@@ -77,12 +77,16 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public void show()
     {
+        Trace.__FILE_FUNC();
+
         showItems(true);
     }
 
     @Override
     public void hide()
     {
+        Trace.__FILE_FUNC();
+
         showItems(false);
     }
 

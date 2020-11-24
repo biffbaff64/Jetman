@@ -1,16 +1,20 @@
 package com.richikin.jetman.screens;
 
-import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.core.*;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.camera.Shake;
-import com.richikin.jetman.ui.GameCompletedPanel;
-import com.richikin.utilslib.input.controllers.ControllerType;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.logging.Trace;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
+import com.richikin.jetman.config.AppConfig;
+import com.richikin.jetman.config.Settings;
+import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.EndgameManager;
+import com.richikin.jetman.core.GameControlLoop;
+import com.richikin.jetman.core.LevelManager;
+import com.richikin.jetman.ui.GameCompletedPanel;
+import com.richikin.utilslib.AppSystem;
+import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.graphics.camera.Shake;
+import com.richikin.utilslib.input.controllers.ControllerType;
+import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 public class MainGameScreen extends AbstractBaseScreen
 {
@@ -53,8 +57,8 @@ public class MainGameScreen extends AbstractBaseScreen
             gameControlLoop  = new GameControlLoop();
             App.levelManager = new LevelManager();
 
-            gameControlLoop.initialise();
             App.levelManager.prepareNewGame();
+            gameControlLoop.initialise();
 
             App.appState.set(StateID._STATE_SETUP);
         }
@@ -72,6 +76,12 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         switch (App.appState.peek())
         {
+            case _STATE_MAIN_MENU:
+            case _STATE_CLOSING:
+            {
+            }
+            break;
+
             case _STATE_SETUP:
             case _STATE_GET_READY:
             case _STATE_DEVELOPER_PANEL:
@@ -87,12 +97,6 @@ public class MainGameScreen extends AbstractBaseScreen
             case _STATE_END_GAME:
             {
                 gameControlLoop.update();
-            }
-            break;
-
-            case _STATE_PREPARE_GAME_END:
-            case _STATE_CLOSING:
-            {
             }
             break;
 
@@ -115,16 +119,20 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         super.update();
 
-        update();
+        if (AppConfig.gameScreenActive())
+        {
+            update();
 
-        super.render(delta);
+            super.render(delta);
 
-        App.worldModel.worldStep();
+            App.worldModel.worldStep();
+        }
     }
 
     public void reset()
     {
         firstTime = true;
+
         App.gameProgress.playerGameOver = false;
         AppSystem.gamePaused            = false;
     }
@@ -165,15 +173,17 @@ public class MainGameScreen extends AbstractBaseScreen
         App.gameProgress.dispose();
 
         App.baseRenderer.parallaxBackground.dispose();
-        App.baseRenderer.parallaxMiddle.dispose();
         App.baseRenderer.parallaxForeground.dispose();
 
         App.baseRenderer.gameZoom.setZoomValue(0.0f);
         App.baseRenderer.hudZoom.setZoomValue(0.0f);
 
-        App.hud         = null;
-        endGameManager  = null;
-        retryDelay      = null;
-        gameControlLoop = null;
+        App.hud          = null;
+        App.levelManager = null;
+        endGameManager   = null;
+        retryDelay       = null;
+        gameControlLoop  = null;
+
+        Trace.finishedMessage();
     }
 }

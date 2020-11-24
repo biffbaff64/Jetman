@@ -145,13 +145,13 @@ public class LevelManager
         if (isFirstTime)
         {
             //
+            // Make sure all progress counters are initialised.
+            App.gameProgress.resetProgress();
+
+            //
             // Initialise the room that the game will start in.
             App.roomManager = new RoomManager();
             App.roomManager.initialise();
-
-            //
-            // Make sure all progress counters are initialised.
-            App.gameProgress.resetProgress();
 
             //
             // Create collision and entity controllers.

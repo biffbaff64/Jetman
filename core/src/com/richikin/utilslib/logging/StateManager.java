@@ -1,54 +1,46 @@
 package com.richikin.utilslib.logging;
 
+import com.badlogic.gdx.utils.StringBuilder;
 import com.richikin.enumslib.StateID;
-
-import java.util.Stack;
 
 public class StateManager
 {
-    private final Stack<StateID> stateStack;
+    private StateID currentState;
 
-    /**
-     * Construct a new StateManager, and set
-     * the current state to the supplied {@link StateID}.
-     *
-     * @param _state    the Supplied StateID.
-     */
     public StateManager(StateID _state)
     {
         this();
 
-        push(_state);
+        currentState = _state;
     }
 
     public StateManager()
     {
-        stateStack = new Stack<>();
+        currentState = StateID._INACTIVE;
     }
 
     public void push(StateID _state)
     {
-        stateStack.push(_state);
-    }
-
-    public void pop()
-    {
-        stateStack.pop();
+        currentState = _state;
     }
 
     public void set(StateID _state)
     {
-        if (!stateStack.isEmpty())
-        {
-            stateStack.pop();
-        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(_state);
+        sb.append("   :   From: ");
+        sb.append(new Throwable().getStackTrace()[1].getFileName());
+        sb.append("::");
+        sb.append(new Throwable().getStackTrace()[1].getMethodName());
 
-        stateStack.push(_state);
+        Trace.__FILE_FUNC(sb.toString());
+
+        currentState = _state;
     }
 
     public StateID peek()
     {
-        return stateStack.peek();
+        return currentState;
     }
 
     public boolean equalTo(StateID state)
