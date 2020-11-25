@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameProgress;
+import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
@@ -50,7 +53,8 @@ public class Asteroid extends GdxSprite
         setAction(ActionStates._RUNNING);
         isRotating      = true;
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
-        isDebuggable    = true;
+
+        addCollisionListener(new GenericCollisionListener(this));
     }
 
     @Override
@@ -79,12 +83,18 @@ public class Asteroid extends GdxSprite
             }
             break;
 
+            case _KILLED:
             case _HURT:
             {
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
 
                 setAction(ActionStates._EXPLODING);
+
+                if (getAction() == ActionStates._KILLED)
+                {
+                    App.gameProgress.stackPush(GameProgress.Stack._SCORE, PointsManager.getPoints(this.gid));
+                }
             }
             break;
 
@@ -140,6 +150,7 @@ public class Asteroid extends GdxSprite
             }
             break;
 
+            case _KILLED:
             case _DYING:
             case _EXPLODING:
             default:

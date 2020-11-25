@@ -58,8 +58,6 @@ public class MenuPage implements IUIPage, Disposable
     @Override
     public boolean update()
     {
-        Trace.__FILE_FUNC();
-
         updateGoogleButton();
 
         return false;

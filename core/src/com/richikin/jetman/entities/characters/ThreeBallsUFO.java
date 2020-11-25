@@ -27,6 +27,7 @@ import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
@@ -71,6 +72,8 @@ public class ThreeBallsUFO extends GdxSprite
         setAction(ActionStates._RUNNING);
         stopWatch = StopWatch.start();
         restingTime = (MathUtils.random(30, 50) * 100);
+
+        addCollisionListener(new GenericCollisionListener(this));
     }
 
     @Override

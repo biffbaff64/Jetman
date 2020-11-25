@@ -46,7 +46,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public boolean isFlippedY;
     public boolean isAnimating;
     public boolean isLinked;
-    public boolean isDebuggable;
     public boolean isMainCharacter;
     public boolean isEnemy;
 
@@ -109,7 +108,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         isFlippedX          = false;
         isFlippedY          = false;
         preUpdateCommonDone = false;
-        isDebuggable        = false;
         isMainCharacter     = false;
 
         spriteNumber = descriptor._INDEX;

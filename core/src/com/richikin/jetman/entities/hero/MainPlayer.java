@@ -57,10 +57,9 @@ public class MainPlayer extends GdxSprite
     public float maxMoveSpeed;
     public Box   viewBox;
 
-    private SpriteDescriptor         descriptor;
-    private TextureRegion   bridgeSection;
-    public  int             laserColour;
-    private TextureRegion[] spawnFrames;
+    private TextureRegion            bridgeSection;
+    public  int                      laserColour;
+    private TextureRegion[]          spawnFrames;
     private Animation<TextureRegion> spawnAnim;
     private float                    elapsedSpawnTime;
     private StopWatch                stopWatch;
@@ -81,15 +80,13 @@ public class MainPlayer extends GdxSprite
     @Override
     public void initialise(SpriteDescriptor _descriptor)
     {
-        this.descriptor = _descriptor;
-
         create(_descriptor);
 
         bodyCategory = Gfx.CAT_PLAYER;
         collidesWith = Gfx.CAT_MOBILE_ENEMY
-            | Gfx.CAT_FIXED_ENEMY
-            | Gfx.CAT_GROUND
-            | Gfx.CAT_CEILING;
+                    | Gfx.CAT_FIXED_ENEMY
+                    | Gfx.CAT_GROUND
+                    | Gfx.CAT_CEILING;
 
         isMainCharacter = true;
         stopWatch       = StopWatch.start();
@@ -340,8 +337,8 @@ public class MainPlayer extends GdxSprite
                         setAction(ActionStates._FALLING_TO_GROUND);
 
                         speed.setY(2.0f);
-                        isRotating = true;
-                        rotateSpeed = 6.0f;
+                        isRotating      = true;
+                        rotateSpeed     = 6.0f;
                         elapsedAnimTime = 0;
                         stopWatch.reset();
                     }
@@ -555,9 +552,9 @@ public class MainPlayer extends GdxSprite
             viewBox.y += (Math.abs(viewBox.y));
         }
 
-        tileRectangle.x = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
-        tileRectangle.y = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
-        tileRectangle.width = Gfx.getTileWidth();
+        tileRectangle.x      = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+        tileRectangle.y      = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
+        tileRectangle.width  = Gfx.getTileWidth();
         tileRectangle.height = Gfx.getTileHeight();
 
         rightEdge = sprite.getX() + frameWidth;

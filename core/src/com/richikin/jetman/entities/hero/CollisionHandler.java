@@ -34,6 +34,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 // Objects that can be collided with, and which
                 // make up the 'Ground' group i.e. can be stood on.
                 case _GROUND:
+                case _CEILING:
                 case _BRIDGE:
                 case _CRATER:
                 case G_ROVER_BOOT:

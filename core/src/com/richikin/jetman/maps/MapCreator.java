@@ -184,11 +184,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
+                                                    | Gfx.CAT_PLAYER_WEAPON
+                                                    | Gfx.CAT_MOBILE_ENEMY
+                                                    | Gfx.CAT_MISSILE_BASE
+                                                    | Gfx.CAT_TELEPORTER
+                                                    | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -198,11 +198,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
+                                                    | Gfx.CAT_PLAYER_WEAPON
+                                                    | Gfx.CAT_MOBILE_ENEMY
+                                                    | Gfx.CAT_MISSILE_BASE
+                                                    | Gfx.CAT_TELEPORTER
+                                                    | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -213,11 +213,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                | Gfx.CAT_PLAYER_WEAPON
-                                | Gfx.CAT_MOBILE_ENEMY
-                                | Gfx.CAT_MISSILE_BASE
-                                | Gfx.CAT_TELEPORTER
-                                | Gfx.CAT_FIXED_ENEMY;
+                                                    | Gfx.CAT_PLAYER_WEAPON
+                                                    | Gfx.CAT_MOBILE_ENEMY
+                                                    | Gfx.CAT_MISSILE_BASE
+                                                    | Gfx.CAT_TELEPORTER
+                                                    | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 

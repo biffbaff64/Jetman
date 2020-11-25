@@ -8,11 +8,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.DeveloperPanel;
@@ -36,18 +39,13 @@ public class OptionsPage implements IUIPage
     private ImageButton buttonDevOptions;
     private ImageButton buttonSignOut;
 
-    private CheckBox  musicCheckBox;
-    private TextField musicLabel;
-    private Slider    musicSlider;
-    private CheckBox  fxCheckBox;
-    private TextField fxLabel;
-    private Slider    fxSlider;
-    private CheckBox  controllerCheckBox;
-    private CheckBox  vibrateCheckBox;
-    private CheckBox  hintsCheckBox;
+    private CheckBox musicCheckBox;
+    private CheckBox fxCheckBox;
+    private CheckBox vibrateCheckBox;
+    private CheckBox hintsCheckBox;
 
-    private Texture   foreground;
-    private Skin      skin;
+    private Texture foreground;
+    private Skin    skin;
 
     private StatsPanel         statsPanel;
     private PrivacyPolicyPanel privacyPanel;
@@ -57,9 +55,6 @@ public class OptionsPage implements IUIPage
     private Array<Actor> actors;
 
     private boolean isJustFinishedOptionsPanel;
-//    private boolean justFinishedStatsPanel;
-//    private boolean justFinishedPrivacyPanel;
-//    private boolean justFinishedStoryPanel;
     private boolean enteredDeveloperPanel;
     private boolean setupCompleted;
 
@@ -84,7 +79,7 @@ public class OptionsPage implements IUIPage
             AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
         }
 
-        foreground = App.assets.loadSingleAsset("data/options_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
 
         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
@@ -93,7 +88,6 @@ public class OptionsPage implements IUIPage
         populateTable();
 
         createButtonListeners();
-        createSliderListeners();
         createCheckboxListeners();
 
         updateSettingsOnEntry();
@@ -101,9 +95,9 @@ public class OptionsPage implements IUIPage
         activePanel = ScreenID._SETTINGS_SCREEN;
 
         Developer.developerPanelActive = false;
-        enteredDeveloperPanel = false;
-        setupCompleted = true;
-        isJustFinishedOptionsPanel = false;
+        enteredDeveloperPanel          = false;
+        setupCompleted                 = true;
+        isJustFinishedOptionsPanel     = false;
     }
 
     /**
@@ -122,7 +116,7 @@ public class OptionsPage implements IUIPage
                     {
                         statsPanel.dispose();
                     }
-                    statsPanel = null;
+                    statsPanel                 = null;
                     isJustFinishedOptionsPanel = false;
                 }
                 break;
@@ -133,7 +127,7 @@ public class OptionsPage implements IUIPage
                     {
                         privacyPanel.dispose();
                     }
-                    privacyPanel = null;
+                    privacyPanel               = null;
                     isJustFinishedOptionsPanel = false;
                 }
                 break;
@@ -144,7 +138,7 @@ public class OptionsPage implements IUIPage
                     {
                         storyPanel.dispose();
                     }
-                    storyPanel = null;
+                    storyPanel                 = null;
                     isJustFinishedOptionsPanel = false;
                 }
                 break;
@@ -166,6 +160,9 @@ public class OptionsPage implements IUIPage
         {
             enteredDeveloperPanel = false;
             showActors(true);
+
+            AppSystem.backButton.setVisible(true);
+            AppSystem.backButton.setDisabled(false);
         }
 
         return isJustFinishedOptionsPanel;
@@ -175,9 +172,15 @@ public class OptionsPage implements IUIPage
     {
         switch (activePanel)
         {
-            case _STATS_SCREEN:             statsPanel.draw();      break;
-            case _PRIVACY_POLICY_SCREEN:    privacyPanel.draw();    break;
-            case _INSTRUCTIONS_SCREEN:      storyPanel.draw();      break;
+            case _STATS_SCREEN:
+                statsPanel.draw();
+                break;
+            case _PRIVACY_POLICY_SCREEN:
+                privacyPanel.draw();
+                break;
+            case _INSTRUCTIONS_SCREEN:
+                storyPanel.draw();
+                break;
             case _DEVELOPER_PANEL:
 
             default:
@@ -222,43 +225,20 @@ public class OptionsPage implements IUIPage
         Trace.__FILE_FUNC();
 
         // ----------
-        musicSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 208), skin);
-        musicCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, skin);
-        musicLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 208), Color.WHITE, true, skin);
-        musicLabel.setSize(64, 48);
-        actors.add(musicSlider);
+        musicCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 279), Color.WHITE, skin);
+        fxCheckBox      = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 330), Color.WHITE, skin);
+        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 382), Color.WHITE, skin);
+        hintsCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 435), Color.WHITE, skin);
+
         actors.add(musicCheckBox);
-        actors.add(musicLabel);
-
-
-        // ----------
-        fxSlider = Scene2DUtils.addSlider((int) AppSystem.hudOriginX + 700, (int) AppSystem.hudOriginY + (720 - 278), skin);
-        fxCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, skin);
-        fxLabel = Scene2DUtils.addTextField("0%", (int) AppSystem.hudOriginX + 1000, (int) AppSystem.hudOriginY + (720 - 278), Color.WHITE, true, skin);
-        fxLabel.setSize(64, 48);
-        actors.add(fxSlider);
         actors.add(fxCheckBox);
-        actors.add(fxLabel);
-
-        // ----------
-        controllerCheckBox = Scene2DUtils.addCheckBox("toggle_left", "toggle_right", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 428), Color.WHITE, skin);
-        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 498), Color.WHITE, skin);
-        hintsCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 600, (int) AppSystem.hudOriginY + (720 - 568), Color.WHITE, skin);
-
-        actors.add(controllerCheckBox);
         actors.add(vibrateCheckBox);
         actors.add(hintsCheckBox);
 
         // ----------
-        buttonStats = Scene2DUtils.addButton("new_stats_button", "new_stats_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 540));
-        buttonPrivacy = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 600));
-        buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 986, (int) AppSystem.hudOriginY + (720 - 660));
+        buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 511));
+        buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 558));
 
-        buttonStats.setSize(210, 40);
-        buttonPrivacy.setSize(210, 40);
-        buttonStoryLine.setSize(210, 40);
-
-        actors.add(buttonStats);
         actors.add(buttonPrivacy);
         actors.add(buttonStoryLine);
 
@@ -288,12 +268,19 @@ public class OptionsPage implements IUIPage
                 (
                     "new_developer_options_button",
                     "new_developer_options_button_pressed",
-                    (int) AppSystem.hudOriginX + 986,
-                    (int) AppSystem.hudOriginY + (720 - 420)
+                    (int) AppSystem.hudOriginX + 648,
+                    (int) AppSystem.hudOriginY + (720 - 511)
                 );
 
-            buttonDevOptions.setSize(210, 40);
+            buttonStats = Scene2DUtils.addButton
+                (
+                    "new_stats_button",
+                    "new_stats_button_pressed",
+                    (int) AppSystem.hudOriginX + 648,
+                    (int) AppSystem.hudOriginY + (720 - 558)
+                );
 
+            actors.add(buttonStats);
             actors.add(buttonDevOptions);
         }
 
@@ -320,12 +307,7 @@ public class OptionsPage implements IUIPage
         vibrateCheckBox.setChecked(App.settings.isEnabled(Settings._VIBRATIONS));
         hintsCheckBox.setChecked(App.settings.isEnabled(Settings._SHOW_HINTS));
 
-        musicSlider.setValue(GameAudio.inst().getMusicVolume());
-        musicLabel.setText("" + ((int) musicSlider.getValue() * 10) + "%");
         musicCheckBox.setChecked(GameAudio.inst().getMusicVolume() > 0);
-
-        fxSlider.setValue(GameAudio.inst().getFXVolume());
-        fxLabel.setText("" + ((int) fxSlider.getValue() * 10) + "%");
         fxCheckBox.setChecked(GameAudio.inst().getFXVolume() > 0);
     }
 
@@ -339,6 +321,7 @@ public class OptionsPage implements IUIPage
         if (Developer.isDevMode())
         {
             buttonDevOptions.setVisible(_visibilty);
+            buttonStats.setVisible(_visibilty);
         }
 
         if (buttonSignOut != null)
@@ -346,19 +329,11 @@ public class OptionsPage implements IUIPage
             buttonSignOut.setVisible(_visibilty);
         }
 
-        buttonStats.setVisible(_visibilty);
         buttonPrivacy.setVisible(_visibilty);
         buttonStoryLine.setVisible(_visibilty);
 
-        musicLabel.setVisible(_visibilty);
-        musicSlider.setVisible(_visibilty);
         musicCheckBox.setVisible(_visibilty);
-
-        fxLabel.setVisible(_visibilty);
-        fxSlider.setVisible(_visibilty);
         fxCheckBox.setVisible(_visibilty);
-
-        controllerCheckBox.setVisible(_visibilty);
         vibrateCheckBox.setVisible(_visibilty);
         hintsCheckBox.setVisible(_visibilty);
     }
@@ -368,29 +343,6 @@ public class OptionsPage implements IUIPage
      */
     private void createButtonListeners()
     {
-        /*
-         * Statistics button.
-         * Displays the in-game statistics.
-         */
-        if (buttonStats != null)
-        {
-            buttonStats.addListener(new ClickListener()
-            {
-                public void clicked(InputEvent event, float x, float y)
-                {
-                    if (statsPanel == null)
-                    {
-                        showActors(false);
-//                        justFinishedStatsPanel = false;
-                        activePanel = ScreenID._STATS_SCREEN;
-
-                        statsPanel = new StatsPanel();
-                        statsPanel.open();
-                    }
-                }
-            });
-        }
-
         /*
          * Privacy policy button.
          * Displays the privacy policy on screen, for
@@ -405,7 +357,6 @@ public class OptionsPage implements IUIPage
                     if (privacyPanel == null)
                     {
                         showActors(false);
-//                        justFinishedPrivacyPanel = false;
                         activePanel = ScreenID._PRIVACY_POLICY_SCREEN;
 
                         privacyPanel = new PrivacyPolicyPanel();
@@ -423,20 +374,19 @@ public class OptionsPage implements IUIPage
         if (buttonStoryLine != null)
         {
             buttonStoryLine.addListener(new ClickListener()
-              {
-                  public void clicked(InputEvent event, float x, float y)
-                  {
-                      if (storyPanel == null)
-                      {
-                          showActors(false);
-//                          justFinishedStoryPanel = false;
-                          activePanel = ScreenID._INSTRUCTIONS_SCREEN;
+            {
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    if (storyPanel == null)
+                    {
+                        showActors(false);
+                        activePanel = ScreenID._INSTRUCTIONS_SCREEN;
 
-                          storyPanel = new InstructionsPanel();
-                          storyPanel.open();
-                      }
-                  }
-              });
+                        storyPanel = new InstructionsPanel();
+                        storyPanel.open();
+                    }
+                }
+            });
         }
 
         if (buttonSignOut != null)
@@ -454,6 +404,28 @@ public class OptionsPage implements IUIPage
         }
 
         /*
+         * Statistics button.
+         * Displays the in-game statistics.
+         */
+        if (buttonStats != null)
+        {
+            buttonStats.addListener(new ClickListener()
+            {
+                public void clicked(InputEvent event, float x, float y)
+                {
+                    if (statsPanel == null)
+                    {
+                        showActors(false);
+                        activePanel = ScreenID._STATS_SCREEN;
+
+                        statsPanel = new StatsPanel();
+                        statsPanel.open();
+                    }
+                }
+            });
+        }
+
+        /*
          * Developer Options Button.
          * Provides a button for accessing DEV MODE ONLY game option settings
          */
@@ -466,54 +438,18 @@ public class OptionsPage implements IUIPage
                     if (!Developer.developerPanelActive)
                     {
                         Developer.developerPanelActive = true;
-                        enteredDeveloperPanel = true;
+                        enteredDeveloperPanel          = true;
 
                         showActors(false);
+
+                        AppSystem.backButton.setVisible(false);
+                        AppSystem.backButton.setDisabled(true);
 
                         DeveloperPanel.inst().setup();
                     }
                 }
             });
         }
-
-//        AppSystem.backButton.addListener(new ClickListener()
-//        {
-//            public void clicked(InputEvent event, float x, float y)
-//            {
-//                updateSettings();
-//
-//                switch (activePanel)
-//                {
-//                    case _SETTINGS_SCREEN:
-//                    {
-//                        isJustFinishedOptionsPanel = true;
-//                        hide();
-//                    }
-//                    break;
-//
-//                    case _STATS_SCREEN:
-//                    {
-//                        justFinishedStatsPanel = true;
-//                    }
-//                    break;
-//
-//                    case _INSTRUCTIONS_SCREEN:
-//                    {
-//                        justFinishedStoryPanel = true;
-//                    }
-//                    break;
-//
-//                    case _PRIVACY_POLICY_SCREEN:
-//                    {
-//                        justFinishedPrivacyPanel = true;
-//                    }
-//                    break;
-//
-//                    default:
-//                        break;
-//                }
-//            }
-//        });
     }
 
     /**
@@ -536,14 +472,12 @@ public class OptionsPage implements IUIPage
                     {
                         GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                        if (musicCheckBox.isChecked() && (musicSlider.getValue() == 0))
+                        if (musicCheckBox.isChecked())
                         {
-                            musicSlider.setValue(musicSlider.getMaxValue() / 10);
-                            GameAudio.inst().setMusicVolume((int) musicSlider.getValue());
+                            GameAudio.inst().setMusicVolume(AudioData._MAX_VOLUME);
                         }
-                        else if (!musicCheckBox.isChecked() && (musicSlider.getValue() > 0))
+                        else if (!musicCheckBox.isChecked())
                         {
-                            musicSlider.setValue(0);
                             GameAudio.inst().setMusicVolume(AudioData._SILENT);
                         }
                     }
@@ -566,32 +500,15 @@ public class OptionsPage implements IUIPage
                     {
                         GameAudio.inst().startSound(AudioData.SFX_BEEP);
 
-                        if (fxCheckBox.isChecked() && (fxSlider.getValue() == 0))
+                        if (fxCheckBox.isChecked())
                         {
-                            fxSlider.setValue(fxSlider.getMaxValue() / 10);
-                            GameAudio.inst().setFXVolume((int) fxSlider.getValue());
+                            GameAudio.inst().setFXVolume(AudioData._MAX_VOLUME);
                         }
-                        else if (!fxCheckBox.isChecked() && (fxSlider.getValue() > 0))
+                        else if (!fxCheckBox.isChecked())
                         {
-                            fxSlider.setValue(0);
                             GameAudio.inst().setFXVolume(AudioData._SILENT);
                         }
                     }
-                }
-            });
-        }
-
-        if (controllerCheckBox != null)
-        {
-            controllerCheckBox.addListener(new ChangeListener()
-            {
-                /**
-                 * @param event the {@link ChangeEvent}
-                 * @param actor The event target, which is the actor that emitted the change event.
-                 */
-                @Override
-                public void changed(ChangeEvent event, Actor actor)
-                {
                 }
             });
         }
@@ -622,55 +539,6 @@ public class OptionsPage implements IUIPage
                 @Override
                 public void changed(ChangeEvent event, Actor actor)
                 {
-                }
-            });
-        }
-    }
-
-    /**
-     * Create slider listeners.
-     */
-    private void createSliderListeners()
-    {
-        if (musicSlider != null)
-        {
-            musicSlider.addListener(new ChangeListener()
-            {
-                @Override
-                public void changed(ChangeEvent event, Actor actor)
-                {
-                    if (setupCompleted)
-                    {
-                        musicLabel.setText("" + ((int) musicSlider.getValue() * 10) + "%");
-                        GameAudio.inst().setMusicVolume((int) musicSlider.getValue());
-
-                        musicCheckBox.setChecked(musicSlider.getValue() > 0);
-
-                        updateSettings();
-                    }
-                }
-            });
-        }
-
-        if (fxSlider != null)
-        {
-            fxSlider.addListener(new ChangeListener()
-            {
-                @Override
-                public void changed(ChangeEvent event, Actor actor)
-                {
-                    if (setupCompleted)
-                    {
-                        fxLabel.setText("" + ((int) fxSlider.getValue() * 10) + "%");
-                        GameAudio.inst().setFXVolume((int) fxSlider.getValue());
-
-                        long id = GameAudio.inst().startSound(AudioData.SFX_TEST_SOUND);
-                        AudioData.sounds[AudioData.SFX_TEST_SOUND].setVolume(id, GameAudio.inst().getUsableFxVolume());
-
-                        fxCheckBox.setChecked(fxSlider.getValue() > 0);
-
-                        updateSettings();
-                    }
                 }
             });
         }
@@ -708,31 +576,10 @@ public class OptionsPage implements IUIPage
             buttonDevOptions = null;
         }
 
-        if (musicLabel != null)
-        {
-            musicLabel.addAction(Actions.removeActor());
-            musicSlider.addAction(Actions.removeActor());
-            musicCheckBox.addAction(Actions.removeActor());
-            musicLabel    = null;
-            musicSlider   = null;
-            musicCheckBox = null;
-        }
-
-        if (fxLabel != null)
-        {
-            fxLabel.addAction(Actions.removeActor());
-            fxSlider.addAction(Actions.removeActor());
-            fxCheckBox.addAction(Actions.removeActor());
-            fxLabel    = null;
-            fxSlider   = null;
-            fxCheckBox = null;
-        }
-
-        if (controllerCheckBox != null)
-        {
-            controllerCheckBox.addAction(Actions.removeActor());
-            controllerCheckBox = null;
-        }
+        musicCheckBox.addAction(Actions.removeActor());
+        musicCheckBox = null;
+        fxCheckBox.addAction(Actions.removeActor());
+        fxCheckBox = null;
 
         if (vibrateCheckBox != null)
         {
@@ -752,13 +599,13 @@ public class OptionsPage implements IUIPage
             buttonSignOut = null;
         }
 
-        App.assets.unloadAsset("data/settings_screen_template.png");
+        App.assets.unloadAsset(GameAssets._OPTIONS_PANEL_ASSET);
 
-        foreground = null;
-        skin = null;
-        statsPanel = null;
+        foreground   = null;
+        skin         = null;
+        statsPanel   = null;
         privacyPanel = null;
-        storyPanel = null;
+        storyPanel   = null;
     }
 
     public void setActivePanel(ScreenID screenID)

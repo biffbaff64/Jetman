@@ -4,6 +4,7 @@ import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.screens.MainGameScreen;
+import com.richikin.jetman.ui.MessageManager;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.Developer;
 import com.richikin.utilslib.logging.Trace;
@@ -138,7 +139,7 @@ public class GameControlLoop extends AbstractControlLoop
             GameAudio.inst().playGameTune(true);
 
             App.getHud().messageManager.enable();
-            App.getHud().messageManager.addZoomMessag(GameAssets._GETREADY_MSG_ASSET, 1500);
+            App.getHud().messageManager.addZoomMessage(GameAssets._GETREADY_MSG_ASSET, 1500);
         }
 
         App.appState.set(StateID._STATE_GET_READY);

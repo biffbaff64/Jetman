@@ -20,6 +20,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Intersector;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.audio.AudioData;
+import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -56,13 +58,13 @@ public class Explosion extends GdxSprite
         animation.setFrameDuration(0.4f / 6.0f);
         animation.setPlayMode(Animation.PlayMode.NORMAL);
 
-        sprite.setCenter(parent.sprite.getX() + (parent.frameWidth / 2), parent.sprite.getY() + (parent.frameHeight / 2));
+        sprite.setCenter(parent.sprite.getX() + ((float) parent.frameWidth / 2), parent.sprite.getY() + ((float) parent.frameHeight / 2));
         setAction(ActionStates._RUNNING);
 
-//        if (App.entityUtils.isOnScreen(this))
-//        {
-//            Sfx.inst().startSound(Sfx.inst().SFX_EXPLOSION_1);
-//        }
+        if (App.entityUtils.isOnScreen(this))
+        {
+            GameAudio.inst().startSound(AudioData.SFX_EXPLOSION_1);
+        }
     }
 
     @Override

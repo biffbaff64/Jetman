@@ -222,14 +222,22 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.update();
 
-                if (buttonPause.isPressed())
+                if (buttonPause.isPressed() || AppSystem.quitToMainMenu)
                 {
                     AppConfig.unPause();
                     buttonPause.release();
                     pausePanel.dispose();
 
-                    showHUDControls = true;
-                    hudStateID = StateID._STATE_PANEL_UPDATE;
+                    if (AppSystem.quitToMainMenu)
+                    {
+                        showHUDControls = false;
+                        hudStateID = StateID._STATE_CLOSING;
+                    }
+                    else
+                    {
+                        showHUDControls = true;
+                        hudStateID = StateID._STATE_PANEL_UPDATE;
+                    }
                 }
             }
             break;

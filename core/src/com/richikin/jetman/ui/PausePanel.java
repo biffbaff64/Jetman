@@ -3,16 +3,20 @@ package com.richikin.jetman.ui;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.StateID;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.input.buttons.GameButton;
+import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.ui.DefaultPanel;
 
 public class PausePanel extends DefaultPanel
 {
-    public GameButton buttonMusicVolume;
-    public GameButton buttonFXVolume;
-    public GameButton buttonHome;
+    public ImageButton buttonMusicVolume;
+    public ImageButton buttonFXVolume;
+    public ImageButton buttonHome;
 
     private static final int _MSG   = 0;
     private static final int _MUSIC = 1;
@@ -38,56 +42,120 @@ public class PausePanel extends DefaultPanel
     {
         pauseMessage = App.assets.getTextRegion("paused");
 
-        buttonMusicVolume = new GameButton
+        buttonMusicVolume = Scene2DUtils.addButton
             (
-                App.assets.getButtonRegion("buttonMusicOn"),
-                App.assets.getButtonRegion("buttonMusicOff"),
-                displayPos[_MUSIC][0], displayPos[_MUSIC][1]
+                "buttonMusicOn",
+                "buttonMusicOff",
+                (int) AppSystem.hudOriginX + displayPos[_MUSIC][0],
+                (int) AppSystem.hudOriginY + displayPos[_MUSIC][1]
             );
 
-        buttonFXVolume = new GameButton
+        buttonFXVolume = Scene2DUtils.addButton
             (
-                App.assets.getButtonRegion("buttonFXOn"),
-                App.assets.getButtonRegion("buttonFXOff"),
-                displayPos[_FX][0], displayPos[_FX][1]
+                "buttonFXOn",
+                "buttonFXOff",
+                (int) AppSystem.hudOriginX + displayPos[_FX][0],
+                (int) AppSystem.hudOriginY + displayPos[_FX][1]
             );
 
-        buttonHome = new GameButton
+        buttonHome = Scene2DUtils.addButton
             (
-                App.assets.getButtonRegion("buttonHome"),
-                App.assets.getButtonRegion("buttonHomePressed"),
-                displayPos[_EXIT][0], displayPos[_EXIT][1]
+                "buttonHome",
+                "buttonHomePressed",
+                (int) AppSystem.hudOriginX + displayPos[_EXIT][0],
+                (int) AppSystem.hudOriginY + displayPos[_EXIT][1]
             );
 
-        buttonMusicVolume.setSize(96, 96);
-        buttonFXVolume.setSize(96, 96);
-        buttonHome.setSize(96, 96);
+        buttonMusicVolume.setSize(displayPos[_MUSIC][2], displayPos[_MUSIC][3]);
+        buttonFXVolume.setSize(displayPos[_FX][2], displayPos[_FX][3]);
+        buttonHome.setSize(displayPos[_EXIT][2], displayPos[_EXIT][3]);
 
-        buttonMusicVolume.pressConditional(GameAudio.inst().getMusicVolume() == 0);
-        buttonFXVolume.pressConditional(GameAudio.inst().getFXVolume() == 0);
+        buttonMusicVolume.setChecked(GameAudio.inst().getMusicVolume() != 0);
+        buttonFXVolume.setChecked(GameAudio.inst().getFXVolume() != 0);
     }
 
     @Override
     public boolean update()
     {
+        if (buttonMusicVolume.isChecked() && (GameAudio.inst().getMusicVolume() > 0))
+        {
+            GameAudio.inst().saveMusicVolume();
+            GameAudio.inst().setMusicVolume(0);
+        }
+        else
+        {
+            if (!buttonMusicVolume.isChecked() && (GameAudio.inst().getMusicVolume() == 0))
+            {
+                GameAudio.inst().setMusicVolume(GameAudio.inst().getMusicVolumeSave());
+            }
+        }
+
+        if (buttonFXVolume.isChecked() && (GameAudio.inst().getFXVolume() > 0))
+        {
+            GameAudio.inst().saveFXVolume();
+            GameAudio.inst().setFXVolume(0);
+        }
+        else
+        {
+            if (!buttonFXVolume.isChecked() && (GameAudio.inst().getFXVolume() == 0))
+            {
+                GameAudio.inst().setFXVolume(GameAudio.inst().getFXVolumeSave());
+            }
+        }
+
+        if (buttonHome.isChecked())
+        {
+            setQuitToTitle();
+
+            App.appState.set(StateID._STATE_LEVEL_RETRY);
+            AppSystem.quitToMainMenu = true;
+        }
+
         return false;
     }
 
     public void draw(SpriteBatch spriteBatch, OrthographicCamera camera, float originX, float originY)
     {
-        spriteBatch.draw(pauseMessage, originX + displayPos[_MSG][0], originY + displayPos[_MSG][1]);
+        if (pauseMessage != null)
+        {
+            spriteBatch.draw(pauseMessage, originX + displayPos[_MSG][0], originY + displayPos[_MSG][1]);
+        }
+    }
 
-        buttonMusicVolume.draw();
-        buttonFXVolume.draw();
-        buttonHome.draw();
+    private void setQuitToTitle()
+    {
+        if (App.getPlayer() != null)
+        {
+            App.getPlayer().setAction(ActionStates._DEAD);
+        }
+
+        App.gameProgress.toMinimum();
+
+        App.getHud().getFuelBar().setToMinimum();
+        App.getHud().getTimeBar().setToMinimum();
+
+        buttonHome.setChecked(false);
+
+        dispose();
     }
 
     @Override
     public void dispose()
     {
-        buttonHome.dispose();
-        buttonMusicVolume.dispose();
-        buttonFXVolume.dispose();
+        if (buttonHome != null)
+        {
+            buttonHome.addAction(Actions.removeActor());
+        }
+
+        if (buttonMusicVolume != null)
+        {
+            buttonMusicVolume.addAction(Actions.removeActor());
+        }
+
+        if (buttonFXVolume != null)
+        {
+            buttonFXVolume.addAction(Actions.removeActor());
+        }
 
         buttonHome = null;
         buttonMusicVolume = null;

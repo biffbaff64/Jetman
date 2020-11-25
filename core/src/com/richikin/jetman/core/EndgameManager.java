@@ -83,7 +83,7 @@ public class EndgameManager
             // For example, from pause menu...
             else if (AppSystem.forceQuitToMenu)
             {
-                App.appState.set(StateID._STATE_END_GAME);
+                App.appState.set(StateID._STATE_GAME_OVER);
                 returnFlag = true;
             }
         }

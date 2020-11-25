@@ -36,12 +36,12 @@ public class CollisionObject implements Disposable
      * _COLLIDING   -   In Collision.
      * _DEAD        -   To be removed from the list.
      */
-    public ActionStates action;
-    public GraphicID    gid;               // ID of THIS object
+    public ActionStates  action;
+    public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GraphicID                                        contactGid;        // ID of contact object
+    public GraphicID     contactGid;        // ID of contact object
     public CollisionRect rectangle;         // The actual collision rectangle
-    public GameEntity                                       parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 

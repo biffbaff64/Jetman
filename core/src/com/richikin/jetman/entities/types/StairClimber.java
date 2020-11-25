@@ -9,6 +9,7 @@ import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.paths.StairsPath;
 import com.richikin.jetman.graphics.Gfx;
@@ -44,6 +45,8 @@ public class StairClimber extends GdxSprite
 
         setAction(ActionStates._RUNNING);
         stopWatch = StopWatch.start();
+
+        addCollisionListener(new GenericCollisionListener(this));
     }
 
     @Override
