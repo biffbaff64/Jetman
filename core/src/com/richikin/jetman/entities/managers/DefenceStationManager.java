@@ -79,7 +79,7 @@ public class DefenceStationManager extends GenericEntityManager
 
         //
         // Add a Defence Station to the left of the base
-        descriptors[0]             = Entities.getDescriptor(GraphicID.G_DEFENDER);
+        descriptors[0]             = App.entities.getDescriptor(GraphicID.G_DEFENDER);
         descriptors[0]._POSITION.x = vec2.get(0).x;
         descriptors[0]._POSITION.y = vec2.get(0).y;
         descriptors[0]._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER);

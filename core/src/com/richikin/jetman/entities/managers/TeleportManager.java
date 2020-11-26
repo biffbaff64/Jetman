@@ -73,28 +73,31 @@ public class TeleportManager extends GenericEntityManager
             else
             {
                 SpriteDescriptor descriptor;
-                index       = new int[RoomManager._MAX_TELEPORTERS];
+
+                index = new int[RoomManager._MAX_TELEPORTERS];
+
+                App.entities.teleporters = new Teleporter[RoomManager._MAX_TELEPORTERS];
 
                 for (int i = 0; i < RoomManager._MAX_TELEPORTERS; i++)
                 {
-                    descriptor             = Entities.getDescriptor(GraphicID.G_TRANSPORTER);
+                    descriptor             = App.entities.getDescriptor(GraphicID.G_TRANSPORTER);
                     descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TRANSPORTER);
                     descriptor._POSITION.x = coords.get(i).x;
                     descriptor._POSITION.y = coords.get(i).y;
                     descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_TRANSPORTER);
                     descriptor._INDEX      = App.entityData.entityMap.size;
 
-                    Teleporter teleporter = new Teleporter();
-                    teleporter.initialise(descriptor);
-                    teleporter.teleporterNumber = activeCount;
+                    App.entities.teleporters[activeCount] = new Teleporter();
+                    App.entities.teleporters[activeCount].initialise(descriptor);
+                    App.entities.teleporters[activeCount].teleporterNumber = activeCount;
 
-                    App.entityData.addEntity(teleporter);
+                    App.entityData.addEntity(App.entities.teleporters[activeCount]);
                     App.entityManager._teleportIndex[activeCount] = descriptor._INDEX;
 
                     //
                     // Store the map positions of each teleporter
                     // for future use
-                    mapPositions.add(new SimpleVec2((int) teleporter.sprite.getX(), 0));
+                    mapPositions.add(new SimpleVec2((int) App.entities.teleporters[activeCount].sprite.getX(), 0));
 
                     index[activeCount] = descriptor._INDEX;
 

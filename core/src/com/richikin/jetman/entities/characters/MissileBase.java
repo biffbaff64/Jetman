@@ -190,7 +190,7 @@ public class MissileBase extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_MISSILE_LAUNCHER);
+        SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_MISSILE_LAUNCHER);
         descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
         descriptor._POSITION.x    = (int) (this.sprite.getX() / Gfx.getTileWidth());
         descriptor._POSITION.y    = (int) (this.sprite.getY() / Gfx.getTileHeight()) - 1;

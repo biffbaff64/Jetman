@@ -6,6 +6,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.AssetLoader;
 import com.richikin.jetman.config.Settings;
+import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
@@ -48,6 +49,7 @@ public final class App extends LibApp
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
     public static EntityUtils           entityUtils;
+    public static Entities              entities;
     public static MapUtils              mapUtils;
     public static PathUtils             pathUtils;
     public static EntityData            entityData;
@@ -66,25 +68,27 @@ public final class App extends LibApp
     public static DefenceStationManager defenceStationManager;
     public static BombManager           bombManager;
 
-    private App() {}
+    private App()
+    {
+    }
 
     public static void initialiseObjects()
     {
         appState = new StateManager(StateID._STATE_POWER_UP);
 
-        settings = new Settings();
-        assets = new AssetLoader();
-        spriteBatch = new SpriteBatch();
-        cameraUtils = new CameraUtils();
-        worldModel = new WorldModel();
+        settings     = new Settings();
+        assets       = new AssetLoader();
+        spriteBatch  = new SpriteBatch();
+        cameraUtils  = new CameraUtils();
+        worldModel   = new WorldModel();
         baseRenderer = new BaseRenderer();
 
         //
         // This needs setting here as InputManager needs access to it.
         stage = new Stage(baseRenderer.hudGameCamera.viewport, spriteBatch);
 
-        inputManager = new InputManager();
-        panelManager = new PanelManager();
+        inputManager   = new InputManager();
+        panelManager   = new PanelManager();
         highScoreUtils = new HighScoreUtils();
 
         //
@@ -93,6 +97,7 @@ public final class App extends LibApp
         // from MainMenuScreen to MainGameScreen.
         mapCreator     = new MapCreator();
         entityData     = new EntityData();
+        entities       = new Entities();
         mapData        = new MapData();
         mapUtils       = new MapUtils();
         gameProgress   = new GameProgress();
@@ -102,93 +107,99 @@ public final class App extends LibApp
 
     public static MainPlayer getPlayer()
     {
-        MainPlayer player = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.size > 0)
-            && (entityData.entityMap.get(entityManager._playerIndex) != null)
-            && (entityData.entityMap.get(entityManager._playerIndex) instanceof MainPlayer))
-        {
+        return entities.mainPlayer;
+//        MainPlayer player = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.size > 0)
+//            && (entityData.entityMap.get(entityManager._playerIndex) != null)
+//            && (entityData.entityMap.get(entityManager._playerIndex) instanceof MainPlayer))
+//        {
             // TODO: 16/11/2020
-            player = ((MainPlayer) entityData.entityMap.get(entityManager._playerIndex));
-        }
-
-        return player;
+//            player = ((MainPlayer) entityData.entityMap.get(entityManager._playerIndex));
+//        }
+//
+//        return player;
     }
 
     public static Rover getRover()
     {
-        Rover rover = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.get(entityManager._roverIndex) != null)
-            && (entityData.entityMap.get(entityManager._roverIndex) instanceof Rover))
-        {
+        return entities.rover;
+//        Rover rover = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.get(entityManager._roverIndex) != null)
+//            && (entityData.entityMap.get(entityManager._roverIndex) instanceof Rover))
+//        {
             // TODO: 16/11/2020
-            rover = ((Rover) entityData.entityMap.get(entityManager._roverIndex));
-        }
-
-        return rover;
+//            rover = ((Rover) entityData.entityMap.get(entityManager._roverIndex));
+//        }
+//
+//        return rover;
     }
 
     public static RoverGun getGun()
     {
-        RoverGun gun = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
-            && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
-        {
+        return entities.roverGun;
+//        RoverGun gun = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
+//            && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
+//        {
             // TODO: 16/11/2020
-            gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
-        }
-
-        return gun;
+//            gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
+//        }
+//
+//        return gun;
     }
 
     public static Bomb getBomb()
     {
-        Bomb bomb = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.get(entityManager._bombIndex) != null)
-            && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
-        {
+        return entities.bomb;
+//        Bomb bomb = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.get(entityManager._bombIndex) != null)
+//            && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
+//        {
             // TODO: 16/11/2020
-            bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
-        }
-
-        return bomb;
+//            bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
+//        }
+//
+//        return bomb;
     }
 
     public static MissileBase getBase()
     {
-        MissileBase base = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
-            && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
-        {
+        return entities.missileBase;
+//        MissileBase base = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
+//            && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
+//        {
             // TODO: 16/11/2020
-            base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
-        }
-
-        return base;
+//            base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
+//        }
+//
+//        return base;
     }
 
     public static Teleporter getTeleporter(int index)
     {
-        Teleporter teleporter = null;
-
-        if ((entityData.entityMap != null)
-            && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
-            && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
-        {
+        return entities.teleporters[index];
+//        Teleporter teleporter = null;
+//
+//        if ((entityData.entityMap != null)
+//            && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
+//            && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
+//        {
             // TODO: 16/11/2020
-            teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
-        }
-
-        return teleporter;
+//            teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
+//        }
+//
+//        return teleporter;
     }
 
     /**

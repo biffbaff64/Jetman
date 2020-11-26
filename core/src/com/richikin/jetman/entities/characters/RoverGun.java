@@ -30,7 +30,7 @@ public class RoverGun extends Carryable
 
     public void addTurret()
     {
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
+        SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;

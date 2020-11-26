@@ -43,7 +43,7 @@ public class LaserManager implements Disposable
 
     public void createLaser(GdxSprite parent)
     {
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_LASER);
+        SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_LASER);
         descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_LASER);
         descriptor._ANIM_RATE = 5f / 6f;
         descriptor._POSITION.x = 0;

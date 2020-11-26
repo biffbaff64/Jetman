@@ -25,7 +25,7 @@ public class BackgroundObjectsManager
     {
         for (int i = 0; i < numUfos; i++)
         {
-            SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
+            SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_BACKGROUND_UFO);
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BACKGROUND_UFO);
             descriptor._POSITION.x = 0;
             descriptor._POSITION.y = 0;
@@ -66,7 +66,7 @@ public class BackgroundObjectsManager
         {
             String asset = (MathUtils.random(100) < 50) ? GameAssets._TWINKLE_STAR1_ASSET : GameAssets._TWINKLE_STAR2_ASSET;
 
-            SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
+            SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_TWINKLE_STAR);
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_TWINKLE_STAR);
             descriptor._POSITION.x = position[0];
             descriptor._POSITION.y = position[1];

@@ -356,6 +356,10 @@ public class EntityManager implements IEntityManager
         AppSystem.entitiesExist = true;
     }
 
+    /**
+     * Background entities which are essentially just
+     * decorations, such as ufos and twinkling stars.
+     */
     public void addBackgroundEntities()
     {
         BackgroundObjectsManager manager = new BackgroundObjectsManager();

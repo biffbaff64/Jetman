@@ -95,17 +95,17 @@ public class BombManager extends GenericEntityManager
 
             if (isValidPosition(markerX))
             {
-                descriptor             = Entities.getDescriptor(GraphicID.G_BOMB);
+                descriptor             = App.entities.getDescriptor(GraphicID.G_BOMB);
                 descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_BOMB);
                 descriptor._POSITION.x = markerX;
                 descriptor._POSITION.y = (int) (App.getRover().getPosition().y / Gfx.getTileHeight());
                 descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_BOMB);
                 descriptor._INDEX      = App.entityData.entityMap.size;
 
-                Bomb bomb = new Bomb();
-                bomb.initialise(descriptor);
-                App.entityData.addEntity(bomb);
-                App.entityManager._bombIndex = bomb.spriteNumber;
+                App.entities.bomb = new Bomb();
+                App.entities.bomb.initialise(descriptor);
+                App.entityData.addEntity(App.entities.bomb);
+                App.entityManager._bombIndex = App.entities.bomb.spriteNumber;
 
                 activeCount++;
                 totalBombsUsed++;

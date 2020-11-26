@@ -60,7 +60,7 @@ public class MapCreator
                 // Find the objects details ready for parsing
                 if (null != mapObject.getName())
                 {
-                    for (SpriteDescriptor descriptor : Entities.entityList)
+                    for (SpriteDescriptor descriptor : App.entities.entityList)
                     {
                         if (mapObject.getName().equals(descriptor._NAME))
                         {

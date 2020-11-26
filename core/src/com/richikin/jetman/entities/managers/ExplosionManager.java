@@ -38,7 +38,7 @@ public class ExplosionManager
             if (explosionType.graphicID == _gid)
             {
                 SpriteDescriptor descriptor;
-                descriptor             = Entities.getDescriptor(_gid);
+                descriptor             = App.entities.getDescriptor(_gid);
                 descriptor._PARENT     = _parent;
                 descriptor._SIZE       = GameAssets.getAssetSize(_gid);
                 descriptor._POSITION.x = (int) _parent.sprite.getX() / Gfx.getTileWidth();

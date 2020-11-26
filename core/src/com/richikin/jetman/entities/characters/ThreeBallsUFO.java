@@ -179,7 +179,7 @@ public class ThreeBallsUFO extends GdxSprite
 
     private void shoot()
     {
-        SpriteDescriptor descriptor   = Entities.getDescriptor(GraphicID.G_UFO_BULLET);
+        SpriteDescriptor descriptor   = App.entities.getDescriptor(GraphicID.G_UFO_BULLET);
         descriptor._SIZE              = GameAssets.getAssetSize(GraphicID.G_UFO_BULLET);
         descriptor._POSITION.x        = (int) ((sprite.getX() + frameWidth) / Gfx.getTileWidth());
         descriptor._POSITION.y        = (int) (sprite.getY() / Gfx.getTileHeight());

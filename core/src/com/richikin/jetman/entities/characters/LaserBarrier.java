@@ -77,11 +77,11 @@ public class LaserBarrier extends GdxSprite
         restingTime = onTimer;
         stopWatch   = StopWatch.start();
 
-        onDescriptor = Entities.getDescriptor(GraphicID.G_POWER_BEAM);
+        onDescriptor = App.entities.getDescriptor(GraphicID.G_POWER_BEAM);
         onDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_POWER_BEAM);
         onDescriptor._INDEX = entityDescriptor._INDEX;
 
-        offDescriptor = Entities.getDescriptor(GraphicID.G_POWER_BEAM_SMALL);
+        offDescriptor = App.entities.getDescriptor(GraphicID.G_POWER_BEAM_SMALL);
         offDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_POWER_BEAM_SMALL);
         offDescriptor._INDEX = entityDescriptor._INDEX;
     }

@@ -428,7 +428,7 @@ public class MainPlayer extends GdxSprite
                 case _FALLING_TO_GROUND:
                 case _DYING:
                 {
-                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._PLAYER_DYING;
                     descriptor._FRAMES   = GameAssets._PLAYER_DYING_FRAMES;
@@ -445,7 +445,7 @@ public class MainPlayer extends GdxSprite
                 case _FALLING:
                 case _HOVERING:
                 {
-                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._PLAYER_FLY;
                     descriptor._FRAMES   = GameAssets._PLAYER_FLY_FRAMES;
@@ -459,7 +459,7 @@ public class MainPlayer extends GdxSprite
 
                 case _RUNNING:
                 {
-                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._PLAYER_RUN;
                     descriptor._FRAMES   = GameAssets._PLAYER_RUN_FRAMES;
@@ -476,7 +476,7 @@ public class MainPlayer extends GdxSprite
                 case _STANDING:
                 default:
                 {
-                    SpriteDescriptor descriptor = Entities.getDescriptor(this.gid);
+                    SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
                     descriptor._ASSET    = GameAssets._PLAYER_IDLE;
                     descriptor._FRAMES   = GameAssets._PLAYER_STAND_FRAMES;

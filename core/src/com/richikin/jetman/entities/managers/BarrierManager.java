@@ -28,7 +28,7 @@ public class BarrierManager extends GenericEntityManager
 
         for (SimpleVec2 coord : coords)
         {
-            descriptor             = Entities.getDescriptor(GraphicID.G_POWER_BEAM);
+            descriptor             = App.entities.getDescriptor(GraphicID.G_POWER_BEAM);
             descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_POWER_BEAM);
             descriptor._POSITION.x = coord.x;
             descriptor._POSITION.y = coord.y;

@@ -9,19 +9,21 @@ import com.richikin.jetman.entities.characters.Bomb;
 import com.richikin.jetman.entities.characters.MissileBase;
 import com.richikin.jetman.entities.characters.Rover;
 import com.richikin.jetman.entities.characters.RoverGun;
+import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
 
 public class Entities
 {
-    public static MainPlayer  mainPlayer;
-    public static Rover       rover;
-    public static RoverGun    roverGun;
-    public static Bomb        bomb;
-    public static MissileBase missileBase;
+    public MainPlayer   mainPlayer;
+    public Rover        rover;
+    public RoverGun     roverGun;
+    public Bomb         bomb;
+    public MissileBase  missileBase;
+    public Teleporter[] teleporters;
 
-    public static final SpriteDescriptor[] entityList =
+    public final SpriteDescriptor[] entityList =
         {
             // Main Characters
             new SpriteDescriptor
@@ -333,11 +335,11 @@ public class Entities
                 ),
         };
 
-    private Entities()
+    public Entities()
     {
     }
 
-    public static int getDescriptorIndex(GraphicID _gid)
+    public int getDescriptorIndex(GraphicID _gid)
     {
         int     index      = 0;
         int     defsIndex  = 0;
@@ -362,7 +364,7 @@ public class Entities
         return defsIndex;
     }
 
-    public static SpriteDescriptor getDescriptor(GraphicID _gid)
+    public SpriteDescriptor getDescriptor(GraphicID _gid)
     {
         return entityList[getDescriptorIndex(_gid)];
     }

@@ -116,7 +116,7 @@ public class DefenceStation extends GdxSprite
      */
     public void addZapper()
     {
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
+        SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_DEFENDER_ZAP);
         descriptor._POSITION.x    = (int) (sprite.getX() / Gfx.getTileWidth());
         descriptor._POSITION.y    = (int) ((sprite.getY() + frameHeight) / Gfx.getTileHeight());
         descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_DEFENDER_ZAP);

@@ -74,7 +74,7 @@ public class AlienManager extends GenericEntityManager
         {
             SimpleVec2 markerPos = setInitialPosition(graphicID);
 
-            descriptor             = Entities.getDescriptor(graphicID);
+            descriptor             = App.entities.getDescriptor(graphicID);
             descriptor._SIZE       = GameAssets.getAssetSize(graphicID);
             descriptor._POSITION.x = markerPos.getX();
             descriptor._POSITION.y = markerPos.getY();

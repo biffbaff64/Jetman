@@ -86,7 +86,7 @@ public class Rover extends GdxSprite
     {
         Trace.__FILE_FUNC();
 
-        SpriteDescriptor descriptor = Entities.getDescriptor(GraphicID.G_ROVER_WHEEL);
+        SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_WHEEL);
         descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_WHEEL);
         descriptor._POSITION.x    = 0;
         descriptor._POSITION.y    = 0;
@@ -120,7 +120,7 @@ public class Rover extends GdxSprite
         {
             Trace.__FILE_FUNC("Adding Rover Boot.");
 
-            descriptor = Entities.getDescriptor(GraphicID.G_ROVER_BOOT);
+            descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_BOOT);
             descriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_ROVER_BOOT);
             descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BOOT);
             descriptor._INDEX = App.entityData.entityMap.size;
