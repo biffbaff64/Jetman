@@ -2,16 +2,25 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.richikin.jetman.assets.GameAssets;
-import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.entities.objects.GameEntity;
-import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
+import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.entities.characters.Bomb;
+import com.richikin.jetman.entities.characters.MissileBase;
+import com.richikin.jetman.entities.characters.Rover;
+import com.richikin.jetman.entities.characters.RoverGun;
+import com.richikin.jetman.entities.hero.MainPlayer;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
 
-public abstract class Entities
+public class Entities
 {
+    public static MainPlayer  mainPlayer;
+    public static Rover       rover;
+    public static RoverGun    roverGun;
+    public static Bomb        bomb;
+    public static MissileBase missileBase;
+
     public static final SpriteDescriptor[] entityList =
         {
             // Main Characters
@@ -324,17 +333,21 @@ public abstract class Entities
                 ),
         };
 
+    private Entities()
+    {
+    }
+
     public static int getDescriptorIndex(GraphicID _gid)
     {
-        int index = 0;
-        int defsIndex = 0;
+        int     index      = 0;
+        int     defsIndex  = 0;
         boolean foundIndex = false;
 
         for (SpriteDescriptor descriptor : entityList)
         {
             if (descriptor._GID == _gid)
             {
-                defsIndex = index;
+                defsIndex  = index;
                 foundIndex = true;
             }
 

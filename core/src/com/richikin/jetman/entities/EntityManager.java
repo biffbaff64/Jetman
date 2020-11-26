@@ -5,6 +5,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
+import com.richikin.jetman.maps.RoomManager;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.jetman.entities.managers.*;
@@ -59,7 +60,7 @@ public class EntityManager implements IEntityManager
     public EntityManager()
     {
         this.renderSystem   = new RenderSystem();
-        this._teleportIndex = new int[2];
+        this._teleportIndex = new int[RoomManager._MAX_TELEPORTERS];
     }
 
     @Override
