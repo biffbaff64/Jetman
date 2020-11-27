@@ -25,20 +25,20 @@ public final class Version
 {
     public static final int majorVersion    = 0;
     public static final int minorVersion    = 0;
-    public static final int issueNumber     = 1;
+    public static final int issueNumber     = 2;
 
     static final String appVersion  = "" + majorVersion + "." + minorVersion + "." + issueNumber;
     static final String projectID   = "Jetman";
-    static final String googleAppID = "000000000000";
+    static final String googleAppID = "146820815538";
 
     //
     // Release Version
-    static final String clientID    = "000000000000-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
+    static final String clientID    = "146820815538-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
     static final String sha1        = "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00";
 
     //
     // Debug Version
-    static final String clientID_debug = "000000000000-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
+    static final String clientID_debug = "146820815538-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
     static final String sha1_debug     = "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00";
 
     //

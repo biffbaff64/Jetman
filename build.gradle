@@ -35,6 +35,7 @@ allprojects {
         commonsLangVersion = '3.4'
         inGameConsoleVersion = '1.0.0'
         daggerVersion = '2.29.1'
+        firebaseBomVersion = '26.1.0'
     }
 
     repositories {
@@ -115,6 +116,7 @@ project(":core") {
     apply plugin: "java"
 
     dependencies {
+
 //        implementation "com.google.dagger:dagger:$daggerVersion"
 //        annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
