@@ -5,14 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Intersector;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.enumslib.GraphicID;
 
 public class Explosion extends GdxSprite
 {

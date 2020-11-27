@@ -1,6 +1,7 @@
 package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
@@ -77,6 +78,18 @@ public class BackgroundObjectsManager
             twinkleStar.initialise(descriptor);
 
             App.entityData.addEntity(twinkleStar);
+        }
+    }
+
+    public void removeBackgroundEntities()
+    {
+        for (int i=0; i<App.entityData.entityMap.size; i++)
+        {
+            if ((App.entityData.entityMap.get(i).gid == GraphicID.G_TWINKLE_STAR)
+                || (App.entityData.entityMap.get(i).gid == GraphicID.G_BACKGROUND_UFO))
+            {
+                App.entityData.entityMap.get(i).setAction(ActionStates._DEAD);
+            }
         }
     }
 }

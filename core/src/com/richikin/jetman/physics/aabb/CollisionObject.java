@@ -58,7 +58,6 @@ public class CollisionObject implements Disposable
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
-    public boolean isInvisibilityAllowed;
 
     private StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ingored for
@@ -106,7 +105,6 @@ public class CollisionObject implements Disposable
         contactGid            = GraphicID.G_NO_ID;
         action                = ActionStates._COLLIDABLE;
         invisibilityTimer     = StopWatch.start();
-        isInvisibilityAllowed = true;
     }
 
     public void kill()
@@ -148,13 +146,12 @@ public class CollisionObject implements Disposable
     {
         action            = ActionStates._INVISIBLE;
         invisibilityDelay = timeInMilliseconds;
-
         invisibilityTimer.reset();
     }
 
     public void checkInvisibility()
     {
-        if ((action != ActionStates._COLLIDABLE) && isInvisibilityAllowed)
+        if (action != ActionStates._COLLIDABLE)
         {
             if (invisibilityTimer.time(TimeUnit.MILLISECONDS) >= invisibilityDelay)
             {

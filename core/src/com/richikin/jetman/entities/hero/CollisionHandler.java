@@ -77,17 +77,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case G_NO_ID:
                 default:
                 {
-                    if (!Developer.isGodMode())
+                    if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
+                        && (App.getPlayer().getAction() != ActionStates._DYING))
                     {
-                        if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
-                            && (App.getPlayer().getAction() != ActionStates._DYING))
-                        {
-                            App.getPlayer().kill();
+                        App.getPlayer().strength = 0;
 
-                            if ((graphicID != GraphicID.G_MISSILE_BASE) && (graphicID != GraphicID.G_MISSILE_LAUNCHER))
-                            {
-                                App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
-                            }
+                        if ((graphicID != GraphicID.G_MISSILE_BASE) && (graphicID != GraphicID.G_MISSILE_LAUNCHER))
+                        {
+                            App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
                         }
                     }
                 }

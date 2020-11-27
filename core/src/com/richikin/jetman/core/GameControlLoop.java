@@ -165,8 +165,6 @@ public class GameControlLoop extends AbstractControlLoop
 
             App.getHud().showControls();
 
-            App.entityManager.addBackgroundEntities();
-
             scr().firstTime = false;
 
             //

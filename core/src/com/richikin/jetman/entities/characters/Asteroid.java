@@ -89,12 +89,14 @@ public class Asteroid extends GdxSprite
                 ExplosionManager explosionManager = new ExplosionManager();
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION128, this);
 
-                setAction(ActionStates._EXPLODING);
-
                 if (getAction() == ActionStates._KILLED)
                 {
                     App.gameProgress.stackPush(GameProgress.Stack._SCORE, PointsManager.getPoints(this.gid));
                 }
+
+                setAction(ActionStates._EXPLODING);
+                bodyCategory = Gfx.CAT_NOTHING;
+                collidesWith = Gfx.CAT_NOTHING;
             }
             break;
 

@@ -807,6 +807,8 @@ public class HeadsUpDisplay implements Disposable
                     originX + 20,
                     originY + 600
                 );
+
+            smallFont.draw(App.spriteBatch, "Dying Entities: " + App.entityUtils.numDyingEntities(), originX + 20, originY + 570);
         }
     }
 

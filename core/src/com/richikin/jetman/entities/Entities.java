@@ -2,15 +2,18 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Bomb;
 import com.richikin.jetman.entities.characters.MissileBase;
 import com.richikin.jetman.entities.characters.Rover;
 import com.richikin.jetman.entities.characters.RoverGun;
 import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.hero.MainPlayer;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.logging.Trace;
 
@@ -367,5 +370,43 @@ public class Entities
     public SpriteDescriptor getDescriptor(GraphicID _gid)
     {
         return entityList[getDescriptorIndex(_gid)];
+    }
+
+    public void setAllEnemyStatuses()
+    {
+        for (int i = 0; i < App.entityData.entityMap.size; i++)
+        {
+            switch (App.entityData.entityMap.get(i).gid)
+            {
+                case G_BACKGROUND_UFO:
+                case G_TWINKLE_STAR:
+                case G_PRIZE_BALLOON:
+                case G_MESSAGE_BUBBLE:
+                case G_ROVER_BULLET:
+                case G_TRANSPORTER:
+                case G_ROVER_GUN:
+                case G_ROVER_GUN_BARREL:
+                case G_ROVER:
+                case G_ROVER_BOOT:
+                case G_ROVER_WHEEL:
+                case G_LASER:
+                case G_BOMB:
+                case G_PLAYER:
+                case G_EXPLOSION12:
+                case G_EXPLOSION64:
+                case G_EXPLOSION128:
+                case G_EXPLOSION256:
+                {
+                    ((GdxSprite) App.entityData.entityMap.get(i)).isEnemy = false;
+                }
+                break;
+
+                default:
+                {
+                    ((GdxSprite) App.entityData.entityMap.get(i)).isEnemy = true;
+                }
+                break;
+            }
+        }
     }
 }

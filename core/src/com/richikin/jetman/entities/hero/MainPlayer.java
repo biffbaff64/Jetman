@@ -199,6 +199,7 @@ public class MainPlayer extends GdxSprite
             case _TELEPORTING:
             case _RIDING:
             case _DYING:
+            case _HURT:
             case _EXPLODING:
             case _RESETTING:
             case _RESTARTING:
@@ -320,28 +321,28 @@ public class MainPlayer extends GdxSprite
             }
             break;
 
+            case _FLYING:
+            {
+                if (App.getHud().getFuelBar().isEmpty())
+                {
+                    setAction(ActionStates._FALLING_TO_GROUND);
+
+                    speed.setY(2.0f);
+                    isRotating      = true;
+                    rotateSpeed     = 6.0f;
+                    elapsedAnimTime = 0;
+                    stopWatch.reset();
+                }
+            }
+            break;
+
             default:
             {
-                if (((App.getRover() != null) && (App.getRover().getAction() == ActionStates._EXPLODING))
-                    || ((strength <= 0) && isOnGround))
+                if (strength <= 0)
                 {
                     explode();
 
                     stopWatch.reset();
-                }
-                else
-                {
-                    if ((strength <= 0)
-                        || (getAction() == ActionStates._FLYING) && App.getHud().getFuelBar().isEmpty())
-                    {
-                        setAction(ActionStates._FALLING_TO_GROUND);
-
-                        speed.setY(2.0f);
-                        isRotating      = true;
-                        rotateSpeed     = 6.0f;
-                        elapsedAnimTime = 0;
-                        stopWatch.reset();
-                    }
                 }
             }
             break;
@@ -350,13 +351,16 @@ public class MainPlayer extends GdxSprite
 
     public void handleDying()
     {
-        if (App.gameProgress.playerLifeOver)
+        if (!Developer.isGodMode())
         {
-            App.gameProgress.getLives().setToMinimum();
-        }
-        else
-        {
-            App.gameProgress.getLives().subtract(1);
+            if (App.gameProgress.playerLifeOver)
+            {
+                App.gameProgress.getLives().setToMinimum();
+            }
+            else
+            {
+                App.gameProgress.getLives().subtract(1);
+            }
         }
 
         // Restart if this player has more lives left...
@@ -536,9 +540,9 @@ public class MainPlayer extends GdxSprite
         }
         else
         {
-            collisionObject.rectangle.x      = (sprite.getX() + (frameWidth / 4));
+            collisionObject.rectangle.x      = (sprite.getX() + ((float) frameWidth / 4));
             collisionObject.rectangle.y      = sprite.getY();
-            collisionObject.rectangle.width  = (frameWidth / 2);
+            collisionObject.rectangle.width  = ((float) frameWidth / 2);
             collisionObject.rectangle.height = frameHeight;
         }
 
@@ -552,21 +556,13 @@ public class MainPlayer extends GdxSprite
             viewBox.y += (Math.abs(viewBox.y));
         }
 
-        tileRectangle.x      = (((collisionObject.rectangle.x + (frameWidth / 2)) / Gfx.getTileWidth()));
+        tileRectangle.x      = (((collisionObject.rectangle.x + ((float) frameWidth / 2)) / Gfx.getTileWidth()));
         tileRectangle.y      = ((collisionObject.rectangle.y - Gfx.getTileHeight()) / Gfx.getTileHeight());
         tileRectangle.width  = Gfx.getTileWidth();
         tileRectangle.height = Gfx.getTileHeight();
 
         rightEdge = sprite.getX() + frameWidth;
         topEdge   = sprite.getY() + frameHeight;
-    }
-
-    public void kill()
-    {
-        if (!Developer.isGodMode())
-        {
-            strength = 0;
-        }
     }
 
     /**

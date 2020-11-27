@@ -51,6 +51,10 @@ public class EntityManager implements IEntityManager
     public int   _missileBaseIndex;
     public int[] _teleportIndex;
 
+    // --------------------------------------------------
+    //
+    private BackgroundObjectsManager backgroundObjectsManager;
+    
     public TeleportBeam  teleportBeam;
     public PlayerManager playerManager;
     public RenderSystem  renderSystem;
@@ -343,6 +347,8 @@ public class EntityManager implements IEntityManager
         playerManager.setSpawnPoint();
         playerManager.createPlayer();
 
+        addBackgroundEntities();
+
         App.roverManager.init();
         App.teleportManager.init();
         App.missileBaseManager.init();
@@ -353,6 +359,8 @@ public class EntityManager implements IEntityManager
             system.init();
         }
 
+        App.entities.setAllEnemyStatuses();
+
         AppSystem.entitiesExist = true;
     }
 
@@ -362,9 +370,9 @@ public class EntityManager implements IEntityManager
      */
     public void addBackgroundEntities()
     {
-        BackgroundObjectsManager manager = new BackgroundObjectsManager();
-        manager.addUFOs(2 + MathUtils.random(2));
-        manager.addTwinkleStars();
+        backgroundObjectsManager = new BackgroundObjectsManager();
+        backgroundObjectsManager.addUFOs(2 + MathUtils.random(2));
+        backgroundObjectsManager.addTwinkleStars();
 
         BarrierManager barrierManager = new BarrierManager();
         barrierManager.init();

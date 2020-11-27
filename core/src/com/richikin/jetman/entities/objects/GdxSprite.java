@@ -164,8 +164,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         {
             sprite.setPosition
                 (
-                    (b2dBody.getPosition().x * LibGfx._PPM) - (frameWidth / 2),
-                    (b2dBody.getPosition().y * LibGfx._PPM) - (frameHeight / 2)
+                    (b2dBody.getPosition().x * LibGfx._PPM) - (frameWidth >> 1),
+                    (b2dBody.getPosition().y * LibGfx._PPM) - (frameHeight >> 1)
                 );
         }
     }
@@ -382,10 +382,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                 if (aabb.checkHittingBox(this))
                 {
                     collisionObject.action = ActionStates._COLLIDING;
-                }
 
-                if (collisionObject.action == ActionStates._COLLIDING)
-                {
                     if (App.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
                     {
                         if (collisionCallback != null)
@@ -394,11 +391,21 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                         }
                     }
 
-                    if (isEnemy && collisionObject.isInvisibilityAllowed)
-                    {
-                        collisionObject.setInvisibility(1000);
-                    }
+                    collisionObject.setInvisibility(1000);
                 }
+
+//                if (collisionObject.action == ActionStates._COLLIDING)
+//                {
+//                    if (App.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
+//                    {
+//                        if (collisionCallback != null)
+//                        {
+//                            collisionCallback.onPositiveCollision(collisionObject.contactEntity.gid);
+//                        }
+//                    }
+//
+//                    collisionObject.setInvisibility(1000);
+//                }
 
                 //
                 // collisionObject.action might have changed at this point.

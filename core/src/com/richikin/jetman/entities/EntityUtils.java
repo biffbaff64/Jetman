@@ -268,6 +268,34 @@ public class EntityUtils
         }
     }
 
+    public int numDyingEntities()
+    {
+        int dyingCount = 0;
+
+        for (int i = 0; i < App.entityData.entityMap.size; i++)
+        {
+            switch (App.entityData.entityMap.get(i).gid)
+            {
+                case G_EXPLOSION12:
+                case G_EXPLOSION64:
+                case G_EXPLOSION128:
+                case G_EXPLOSION256:
+                {
+                    if (App.entityData.entityMap.get(i).entityAction == ActionStates._RUNNING)
+                    {
+                        dyingCount++;
+                    }
+                }
+                break;
+
+                default:
+                    break;
+            }
+        }
+
+        return dyingCount;
+    }
+
     public GdxSprite findFirstOf(final GraphicID _gid)
     {
         GdxSprite gdxSprite = null;
