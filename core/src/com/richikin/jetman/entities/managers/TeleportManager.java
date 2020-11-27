@@ -1,21 +1,20 @@
 package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.core.App;
-import com.richikin.enumslib.StateID;
-import com.richikin.jetman.entities.Entities;
-import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.entities.characters.Teleporter;
-import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.enumslib.StateID;
+import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.characters.Teleporter;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
+import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.maps.RoomManager;
+import com.richikin.utilslib.Developer;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.logging.Trace;
 
 public class TeleportManager extends GenericEntityManager
 {
