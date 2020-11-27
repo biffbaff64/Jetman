@@ -4,13 +4,12 @@ package com.richikin.jetman.screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.IUIPage;
-
-import java.util.concurrent.TimeUnit;
 
 public class CreditsPage implements IUIPage, Disposable
 {
@@ -24,7 +23,7 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void initialise()
     {
-        foreground = App.assets.loadSingleAsset("data/credits_foreground.png", Texture.class);
+        foreground = App.assets.loadSingleAsset(GameAssets._CREDITS_PANEL_ASSET, Texture.class);
 
         this.stopWatch = StopWatch.start();
     }
@@ -66,7 +65,7 @@ public class CreditsPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        App.assets.unloadAsset("data/credits_foreground.png");
+        App.assets.unloadAsset(GameAssets._CREDITS_PANEL_ASSET);
 
         stopWatch = null;
         foreground = null;

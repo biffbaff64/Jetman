@@ -206,8 +206,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
             case _BRIDGE:
             case G_ROVER_BOOT:
             {
-                Trace.__FILE_FUNC_LINE();
-
                 App.getPlayer().isInMidAir = false;
                 App.getPlayer().isOnGround = true;
                 App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);

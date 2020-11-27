@@ -13,12 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
-import com.richikin.jetman.config.DeveloperPanel;
+import com.richikin.jetman.ui.DeveloperPanel;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
@@ -33,30 +32,24 @@ import com.richikin.utilslib.ui.IUIPage;
 
 public class OptionsPage implements IUIPage
 {
-    private ImageButton buttonStats;
-    private ImageButton buttonPrivacy;
-    private ImageButton buttonStoryLine;
-    private ImageButton buttonDevOptions;
-    private ImageButton buttonSignOut;
-
-    private CheckBox musicCheckBox;
-    private CheckBox fxCheckBox;
-    private CheckBox vibrateCheckBox;
-    private CheckBox hintsCheckBox;
-
-    private Texture foreground;
-    private Skin    skin;
-
+    private ImageButton        buttonStats;
+    private ImageButton        buttonPrivacy;
+    private ImageButton        buttonStoryLine;
+    private ImageButton        buttonDevOptions;
+    private ImageButton        buttonSignOut;
+    private CheckBox           musicCheckBox;
+    private CheckBox           fxCheckBox;
+    private CheckBox           vibrateCheckBox;
+    private CheckBox           hintsCheckBox;
+    private Texture            foreground;
+    private Skin               skin;
     private StatsPanel         statsPanel;
     private PrivacyPolicyPanel privacyPanel;
     private InstructionsPanel  storyPanel;
     private ScreenID           activePanel;
-
-    private Array<Actor> actors;
-
-    private boolean isJustFinishedOptionsPanel;
-    private boolean enteredDeveloperPanel;
-    private boolean setupCompleted;
+    private boolean            isJustFinishedOptionsPanel;
+    private boolean            enteredDeveloperPanel;
+    private boolean            setupCompleted;
 
     /**
      * Instantiates a new Options page.
@@ -70,26 +63,25 @@ public class OptionsPage implements IUIPage
     {
         setupCompleted = false;
 
-        AppSystem.backButton.setVisible(true);
-        AppSystem.backButton.setDisabled(false);
-        AppSystem.backButton.setChecked(false);
-
-        if (AppSystem.backButton.getClickListener() != null)
+        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
         {
-            AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
+            AppSystem.backButton.setVisible(true);
+            AppSystem.backButton.setDisabled(false);
+            AppSystem.backButton.setChecked(false);
+
+            if (AppSystem.backButton.getClickListener() != null)
+            {
+                AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
+            }
         }
 
         foreground = App.assets.loadSingleAsset(GameAssets._OPTIONS_PANEL_ASSET, Texture.class);
 
-        skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-
-        actors = new Array<>();
+        skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
         populateTable();
-
         createButtonListeners();
         createCheckboxListeners();
-
         updateSettingsOnEntry();
 
         activePanel = ScreenID._SETTINGS_SCREEN;
@@ -144,6 +136,7 @@ public class OptionsPage implements IUIPage
                 break;
 
                 default:
+                    updateSettings();
                     isJustFinishedOptionsPanel = true;
                     break;
             }
@@ -161,8 +154,11 @@ public class OptionsPage implements IUIPage
             enteredDeveloperPanel = false;
             showActors(true);
 
-            AppSystem.backButton.setVisible(true);
-            AppSystem.backButton.setDisabled(false);
+            if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
+            {
+                AppSystem.backButton.setVisible(true);
+                AppSystem.backButton.setDisabled(false);
+            }
         }
 
         return isJustFinishedOptionsPanel;
@@ -173,16 +169,24 @@ public class OptionsPage implements IUIPage
         switch (activePanel)
         {
             case _STATS_SCREEN:
+            {
                 statsPanel.draw();
-                break;
-            case _PRIVACY_POLICY_SCREEN:
-                privacyPanel.draw();
-                break;
-            case _INSTRUCTIONS_SCREEN:
-                storyPanel.draw();
-                break;
-            case _DEVELOPER_PANEL:
+            }
+            break;
 
+            case _PRIVACY_POLICY_SCREEN:
+            {
+                privacyPanel.draw();
+            }
+            break;
+
+            case _INSTRUCTIONS_SCREEN:
+            {
+                storyPanel.draw();
+            }
+            break;
+
+            case _DEVELOPER_PANEL:
             default:
             {
                 if (Developer.developerPanelActive)
@@ -230,34 +234,27 @@ public class OptionsPage implements IUIPage
         vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 382), Color.WHITE, skin);
         hintsCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 435), Color.WHITE, skin);
 
-        actors.add(musicCheckBox);
-        actors.add(fxCheckBox);
-        actors.add(vibrateCheckBox);
-        actors.add(hintsCheckBox);
-
         // ----------
-        buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 511));
-        buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 558));
-
-        actors.add(buttonPrivacy);
-        actors.add(buttonStoryLine);
-
-        // ----------
-        if (App.googleServices.isSignedIn())
+        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
         {
-            if (Developer.isDevMode() || (Version.majorVersion == 0))
+            buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 511));
+            buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 558));
+
+            // ----------
+            if (App.googleServices.isSignedIn())
             {
-                buttonSignOut = Scene2DUtils.addButton
-                    (
-                        "btn_google_signout_dark",
-                        "btn_google_signout_dark_pressed",
-                        (int) AppSystem.hudOriginX + 986,
-                        (int) AppSystem.hudOriginY + (720 - 80)
-                    );
+                if (Developer.isDevMode() || (Version.majorVersion == 0))
+                {
+                    buttonSignOut = Scene2DUtils.addButton
+                        (
+                            "btn_google_signout_dark",
+                            "btn_google_signout_dark_pressed",
+                            (int) AppSystem.hudOriginX + 986,
+                            (int) AppSystem.hudOriginY + (720 - 80)
+                        );
 
-                buttonSignOut.setSize(191, 46);
-
-                actors.add(buttonSignOut);
+                    buttonSignOut.setSize(191, 46);
+                }
             }
         }
 
@@ -279,9 +276,6 @@ public class OptionsPage implements IUIPage
                     (int) AppSystem.hudOriginX + 648,
                     (int) AppSystem.hudOriginY + (720 - 558)
                 );
-
-            actors.add(buttonStats);
-            actors.add(buttonDevOptions);
         }
 
         showActors(true);
@@ -329,8 +323,15 @@ public class OptionsPage implements IUIPage
             buttonSignOut.setVisible(_visibilty);
         }
 
-        buttonPrivacy.setVisible(_visibilty);
-        buttonStoryLine.setVisible(_visibilty);
+        if (buttonPrivacy != null)
+        {
+            buttonPrivacy.setVisible(_visibilty);
+        }
+
+        if (buttonStoryLine != null)
+        {
+            buttonStoryLine.setVisible(_visibilty);
+        }
 
         musicCheckBox.setVisible(_visibilty);
         fxCheckBox.setVisible(_visibilty);

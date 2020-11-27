@@ -26,15 +26,6 @@ public class StateManager
 
     public void set(StateID _state)
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append(_state);
-        sb.append("   :   From: ");
-        sb.append(new Throwable().getStackTrace()[1].getFileName());
-        sb.append("::");
-        sb.append(new Throwable().getStackTrace()[1].getMethodName());
-
-        Trace.__FILE_FUNC(sb.toString());
-
         currentState = _state;
     }
 

@@ -95,8 +95,12 @@ public class AppConfig
     public static void pause()
     {
         App.appState.set(StateID._STATE_PAUSED);
-        App.getHud().hudStateID = StateID._STATE_PAUSED;
         AppSystem.gamePaused    = true;
+
+        if (App.getHud().hudStateID != StateID._STATE_SETTINGS_PANEL)
+        {
+            App.getHud().hudStateID = StateID._STATE_PAUSED;
+        }
     }
 
     /**
@@ -105,7 +109,7 @@ public class AppConfig
     public static void unPause()
     {
         App.appState.set(StateID._STATE_GAME);
-        App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
         AppSystem.gamePaused    = false;
+        App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
     }
 }

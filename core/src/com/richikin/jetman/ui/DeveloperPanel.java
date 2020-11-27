@@ -1,4 +1,4 @@
-package com.richikin.jetman.config;
+package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.AppSystem;
@@ -46,8 +47,6 @@ public class DeveloperPanel extends DefaultPanel
     // The elements below are all initialised in quickSetup()
     private int glProfilerRow;
     private int glProfilerColumn;
-    private int androidOnDesktopColumn;
-    private int androidOnDesktopRow;
 
     static class DMEntry
     {
@@ -149,7 +148,6 @@ public class DeveloperPanel extends DefaultPanel
         }
 
         Developer.developerPanelActive = false;
-        AppSystem.gamePaused           = false;
 
         clearActors();
     }
@@ -488,11 +486,6 @@ public class DeveloperPanel extends DefaultPanel
                 {
                     glProfilerColumn = column;
                     glProfilerRow    = row;
-                }
-                else if (prefName.equals(Settings._ANDROID_ON_DESKTOP))
-                {
-                    androidOnDesktopColumn = column;
-                    androidOnDesktopRow    = row;
                 }
             }
         }
