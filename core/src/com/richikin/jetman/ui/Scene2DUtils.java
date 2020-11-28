@@ -14,22 +14,15 @@ import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.ui.ScrollPaneObject;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Scene2DUtils
 {
     public static void setup()
     {
     }
 
-    public static SimpleVec2F getHUDOffset()
-    {
-        return new SimpleVec2F
-            (
-                (App.baseRenderer.hudGameCamera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2)),
-                (App.baseRenderer.hudGameCamera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2))
-            );
-    }
-
-    public static Table createTable(int x, int y, int width, int height, Skin skin)
+    public static @NotNull Table createTable(int x, int y, int width, int height, Skin skin)
     {
         Table table = new Table(skin);
         table.setSize(width, height);
@@ -38,14 +31,14 @@ public class Scene2DUtils
         return table;
     }
 
-    public static Image createImage(TextureRegion region)
+    public static @NotNull Image createImage(TextureRegion region)
     {
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         return new Image(drawable);
     }
 
-    public static Image createImage(String imageName, TextureAtlas atlasLoader)
+    public static @NotNull Image createImage(String imageName, @NotNull TextureAtlas atlasLoader)
     {
         TextureRegion         region   = atlasLoader.findRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
@@ -53,14 +46,14 @@ public class Scene2DUtils
         return new Image(drawable);
     }
 
-    public static Drawable createDrawable(String imageName, TextureAtlas atlasLoader)
+    public static @NotNull Drawable createDrawable(String imageName, @NotNull TextureAtlas atlasLoader)
     {
         TextureRegion region = atlasLoader.findRegion(imageName);
 
         return new TextureRegionDrawable(region);
     }
 
-    public static ScrollPane createScrollPane(ScrollPaneObject paneObject)
+    public static @NotNull ScrollPane createScrollPane(@NotNull ScrollPaneObject paneObject)
     {
         ScrollPane scrollPane = new ScrollPane(paneObject.table, paneObject.skin);
 
@@ -69,7 +62,7 @@ public class Scene2DUtils
         return scrollPane;
     }
 
-    public static ScrollPane createScrollPane(Table table, Skin skin, String name)
+    public static @NotNull ScrollPane createScrollPane(Table table, Skin skin, String name)
     {
         ScrollPane scrollPane = new ScrollPane(table, skin);
 
@@ -78,7 +71,7 @@ public class Scene2DUtils
         return scrollPane;
     }
 
-    public static Label addLabel(String labelText, int x, int y, int size, Color color, String fontName)
+    public static @NotNull Label addLabel(String labelText, int x, int y, int size, Color color, String fontName)
     {
         FontUtils fontUtils = new FontUtils();
 
@@ -94,7 +87,7 @@ public class Scene2DUtils
         return label;
     }
 
-    public static Label addLabel(String labelText, int x, int y, Color color, Skin skin)
+    public static @NotNull Label addLabel(String labelText, int x, int y, Color color, Skin skin)
     {
         Label label = makeLabel(labelText, x, y, color, skin);
 
@@ -103,7 +96,7 @@ public class Scene2DUtils
         return label;
     }
 
-    public static TextField addTextField(String string, int x, int y, Color color, boolean disabled, Skin skin)
+    public static @NotNull TextField addTextField(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
         TextField textField = makeTextField(string, x, y, color, disabled, skin);
 
@@ -112,7 +105,7 @@ public class Scene2DUtils
         return textField;
     }
 
-    public static TextField addTextField(String string, int x, int y, int size, boolean disabled, Color color, String fontName)
+    public static @NotNull TextField addTextField(String string, int x, int y, int size, boolean disabled, Color color, String fontName)
     {
         FontUtils fontUtils = new FontUtils();
 
@@ -130,7 +123,7 @@ public class Scene2DUtils
         return textField;
     }
 
-    public static ImageButton addButton(String upButton, String downButton, int x, int y)
+    public static @NotNull ImageButton addButton(String upButton, String downButton, int x, int y)
     {
         Image       imageUp     = new Image(App.assets.getButtonRegion(upButton));
         Image       imageDown   = new Image(App.assets.getButtonRegion(downButton));
@@ -145,7 +138,7 @@ public class Scene2DUtils
         return imageButton;
     }
 
-    public static TextButton addButton(String string, int x, int y, Color color, boolean disabled, Skin skin)
+    public static @NotNull TextButton addButton(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
         TextButton textButton = makeButton(string, x, y, color, disabled, skin);
 
@@ -154,7 +147,7 @@ public class Scene2DUtils
         return textButton;
     }
 
-    public static TextButton addButton(String text, int x, int y, int textSize, String fontName)
+    public static @NotNull TextButton addButton(String text, int x, int y, int textSize, String fontName)
     {
         FontUtils fontUtils = new FontUtils();
 
@@ -172,7 +165,7 @@ public class Scene2DUtils
         return textButton;
     }
 
-    public static Slider addSlider(int x, int y, Skin skin)
+    public static @NotNull Slider addSlider(int x, int y, Skin skin)
     {
         Slider slider = makeSlider(x, y, skin);
 
@@ -181,7 +174,7 @@ public class Scene2DUtils
         return slider;
     }
 
-    public static CheckBox addCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
+    public static @NotNull CheckBox addCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
         CheckBox checkBox = makeCheckBox(imageOn, imageOff, x, y, color, skin);
 
@@ -190,7 +183,7 @@ public class Scene2DUtils
         return checkBox;
     }
 
-    public static SelectBox<String> addSelectBox(int x, int y, Skin skin)
+    public static @NotNull SelectBox<String> addSelectBox(int x, int y, Skin skin)
     {
         SelectBox<String> list = new SelectBox<>(skin);
 
@@ -222,7 +215,7 @@ public class Scene2DUtils
 
     // ---------------------------------------------------------------------------------
 
-    public static Table makeTable(int x, int y, int width, int height, Skin skin)
+    public static @NotNull Table makeTable(int x, int y, int width, int height, Skin skin)
     {
         Table table = new Table(skin);
         table.setSize(width, height);
@@ -231,7 +224,7 @@ public class Scene2DUtils
         return table;
     }
 
-    public static Label makeLabel(String string, int x, int y, Color color, Skin skin)
+    public static @NotNull Label makeLabel(String string, int x, int y, Color color, Skin skin)
     {
         Label            label = new Label(string, skin);
         Label.LabelStyle style = label.getStyle();
@@ -245,7 +238,7 @@ public class Scene2DUtils
         return label;
     }
 
-    public static TextField makeTextField(String string, int x, int y, Color color, boolean disabled, Skin skin)
+    public static @NotNull TextField makeTextField(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
         TextField                textField      = new TextField(string, skin);
         TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle(textField.getStyle());
@@ -260,7 +253,7 @@ public class Scene2DUtils
         return textField;
     }
 
-    public static TextButton makeButton(String string, int x, int y, Color color, boolean disabled, Skin skin)
+    public static @NotNull TextButton makeButton(String string, int x, int y, Color color, boolean disabled, Skin skin)
     {
         TextButton                 textButton = new TextButton(string, skin);
         TextButton.TextButtonStyle style      = new TextButton.TextButtonStyle(textButton.getStyle());
@@ -275,7 +268,7 @@ public class Scene2DUtils
         return textButton;
     }
 
-    public static Slider makeSlider(int x, int y, Skin skin)
+    public static @NotNull Slider makeSlider(int x, int y, Skin skin)
     {
         Slider             slider = new Slider(0, 10, 1, false, skin);
         Slider.SliderStyle style  = slider.getStyle();
@@ -286,7 +279,7 @@ public class Scene2DUtils
         return slider;
     }
 
-    public static CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
+    public static @NotNull CheckBox makeCheckBox(String imageOn, String imageOff, int x, int y, Color color, Skin skin)
     {
         TextureRegion regionOn  = App.assets.getButtonRegion(imageOn);
         TextureRegion regionOff = App.assets.getButtonRegion(imageOff);
@@ -305,7 +298,7 @@ public class Scene2DUtils
         return checkBox;
     }
 
-    public static ImageButton makeImageButton(String upButton, String downButton)
+    public static @NotNull ImageButton makeImageButton(String upButton, String downButton)
     {
         Image       imageUp     = new Image(App.assets.getButtonRegion(upButton));
         Image       imageDown   = new Image(App.assets.getButtonRegion(downButton));
@@ -313,7 +306,7 @@ public class Scene2DUtils
         return new ImageButton(imageUp.getDrawable(), imageDown.getDrawable());
     }
 
-    public static Image makeAchievementsImage(String imageName)
+    public static @NotNull Image makeAchievementsImage(String imageName)
     {
         TextureRegion         region   = App.assets.getAchievementRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
@@ -321,7 +314,7 @@ public class Scene2DUtils
         return new Image(drawable);
     }
 
-    public static Image makeObjectsImage(String imageName)
+    public static @NotNull Image makeObjectsImage(String imageName)
     {
         TextureRegion         region   = App.assets.getObjectRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
@@ -329,7 +322,7 @@ public class Scene2DUtils
         return new Image(drawable);
     }
 
-    public static Image makeTextImage(String imageName)
+    public static @NotNull Image makeTextImage(String imageName)
     {
         TextureRegion         region   = App.assets.getTextRegion(imageName);
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
@@ -337,14 +330,14 @@ public class Scene2DUtils
         return new Image(drawable);
     }
 
-    public static Drawable makeButtonDrawable(String imageName)
+    public static @NotNull Drawable makeButtonDrawable(String imageName)
     {
         TextureRegion region = App.assets.getButtonRegion(imageName);
 
         return new TextureRegionDrawable(region);
     }
 
-    public static Drawable makeDrawable(String imageName)
+    public static @NotNull Drawable makeDrawable(String imageName)
     {
         TextureRegion region = App.assets.getObjectRegion(imageName);
 

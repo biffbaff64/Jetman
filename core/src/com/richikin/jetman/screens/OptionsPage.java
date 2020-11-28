@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -50,6 +51,7 @@ public class OptionsPage implements IUIPage
     private boolean            isJustFinishedOptionsPanel;
     private boolean            enteredDeveloperPanel;
     private boolean            setupCompleted;
+    private Label              versionLabel;
 
     /**
      * Instantiates a new Options page.
@@ -258,6 +260,15 @@ public class OptionsPage implements IUIPage
             }
         }
 
+        versionLabel = Scene2DUtils.addLabel
+            (
+                Version.getDisplayVersion(),
+                (int) AppSystem.hudOriginX + 390,
+                (int) AppSystem.hudOriginY + (720 - 586),
+                Color.WHITE,
+                skin
+            );
+
         // ----------
         if (Developer.isDevMode())
         {
@@ -332,6 +343,8 @@ public class OptionsPage implements IUIPage
         {
             buttonStoryLine.setVisible(_visibilty);
         }
+
+        versionLabel.setVisible(_visibilty);
 
         musicCheckBox.setVisible(_visibilty);
         fxCheckBox.setVisible(_visibilty);
@@ -576,6 +589,9 @@ public class OptionsPage implements IUIPage
             buttonDevOptions.addAction(Actions.removeActor());
             buttonDevOptions = null;
         }
+
+        versionLabel.addAction(Actions.removeActor());
+        versionLabel = null;
 
         musicCheckBox.addAction(Actions.removeActor());
         musicCheckBox = null;

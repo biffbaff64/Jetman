@@ -513,22 +513,22 @@ public class DeveloperPanel extends DefaultPanel
                 {
                     new DMEntry("Tile Boxes", Settings._TILE_BOXES, false),
                     new DMEntry("Use Ashley ECS", Settings._USING_ASHLEY_ECS, false),
-                    new DMEntry("Enable Music", Settings._MUSIC_ENABLED, false)
+                    new DMEntry("Challenges", Settings._CHALLENGES, false)
                 },
                 {
                     new DMEntry("Button Outlines", Settings._BUTTON_BOXES, false),
                     new DMEntry("Shader Program", Settings._SHADER_PROGRAM, false),
-                    new DMEntry("Enable Sounds", Settings._SOUNDS_ENABLED, false)
+                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
                 },
                 {
                     new DMEntry("Show FPS", Settings._SHOW_FPS, false),
                     new DMEntry("GLProfiler", Settings._GL_PROFILER, false),
-                    new DMEntry("Challenges", Settings._CHALLENGES, false)
+                    new DMEntry("", "", false),
                 },
                 {
                     new DMEntry("Show Debug", Settings._SHOW_DEBUG, false),
                     new DMEntry("", "", false),
-                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
+                    new DMEntry("", "", false),
                 },
                 {
                     new DMEntry("Show Hints", Settings._SHOW_HINTS, false),

@@ -79,6 +79,14 @@ public class Entities
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_BOOT_TILE
                 ),
+            new SpriteDescriptor
+                (
+                    "Rover Bullet",
+                    GraphicID.G_ROVER_BULLET, GraphicID._MAIN,
+                    GameAssets._DEFENDER_BULLET_ASSET, GameAssets._DEFENDER_BULLET_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._ROVER_BULLET_TILE
+                ),
 
             // Lasers, Bullets, etc
             new SpriteDescriptor

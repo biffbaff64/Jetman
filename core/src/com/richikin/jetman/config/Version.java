@@ -81,4 +81,9 @@ public final class Version
     {
         return "V." + appVersion;
     }
+
+    public static String getProjectID()
+    {
+        return projectID;
+    }
 }

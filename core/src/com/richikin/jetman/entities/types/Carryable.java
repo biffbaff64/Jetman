@@ -28,8 +28,10 @@ public class Carryable extends GdxSprite implements ICarryable
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
-        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MISSILE_BASE;
+        //
+        // Extending classes must set these to appropriate values
+        bodyCategory = Gfx.CAT_NOTHING;
+        collidesWith = Gfx.CAT_NOTHING;
 
         setAction(ActionStates._STANDING);
 

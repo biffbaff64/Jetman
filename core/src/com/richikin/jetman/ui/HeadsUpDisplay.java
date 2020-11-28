@@ -36,7 +36,6 @@ import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.ProgressBar;
 
 import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class HeadsUpDisplay implements Disposable
@@ -70,7 +69,7 @@ public class HeadsUpDisplay implements Disposable
             { 987,   44, (720 - 687),  96,  96},    // Attack
             {1109,  158, (720 - 600),  96,  96},    // Action
             {1200, 1200, (720 - 177),  64,  64},    // Pause Button
-            {1120, 1120, (720 - 177),  64,  64},    // Settings Button
+            {  20,   20, (720 - 177),  64,  64},    // Settings Button
             {   0,    0, (720 - 101),  99,  86},    // Dev Options
             {1180, 1180, (720 - 101),  99,  86},    // Debug Console
             {  18,   18, (720 -  92),   0,   0},    // Truck Arrow
@@ -100,17 +99,14 @@ public class HeadsUpDisplay implements Disposable
     public Switch buttonX;
     public Switch buttonY;
     public Switch buttonPause;
-    public Switch buttonSettings;
     public Switch buttonDevOptions;
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
     public ImageButton PauseButton;
-    public ImageButton SettingsButton;
 
     public MessageManager messageManager;
     public PausePanel     pausePanel;
-    public OptionsPage    settingsPanel;
     public StateID        hudStateID;
 
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
@@ -121,7 +117,6 @@ public class HeadsUpDisplay implements Disposable
     private ProgressBar     timeBar;
     private ProgressBar     fuelBar;
     private Texture         scorePanel;
-    private Texture         settingsBackground;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
     private TextureRegion   miniMen;
@@ -206,21 +201,6 @@ public class HeadsUpDisplay implements Disposable
                     buttonPause.release();
                     pausePanel.setup();
                     hideControls();
-                    showSettingsButton(false);
-                }
-                else if (buttonSettings.isPressed())
-                {
-                    buttonSettings.release();
-
-                    hudStateID = StateID._STATE_SETTINGS_PANEL;
-
-                    settingsPanel = new OptionsPage();
-                    settingsPanel.initialise();
-                    settingsPanel.show();
-
-                    hideControls();
-                    showPauseButton(false);
-                    AppConfig.pause();
                 }
                 else
                 {
@@ -261,7 +241,6 @@ public class HeadsUpDisplay implements Disposable
 
                         hideControls();
                         showPauseButton(false);
-                        showSettingsButton(false);
                     }
                     else
                     {
@@ -270,29 +249,7 @@ public class HeadsUpDisplay implements Disposable
 
                         showControls();
                         showPauseButton(true);
-                        showSettingsButton(true);
                     }
-                }
-            }
-            break;
-
-            case _STATE_SETTINGS_PANEL:
-            {
-                settingsPanel.update();
-
-                if (buttonSettings.isPressed())
-                {
-                    buttonSettings.release();
-
-                    settingsPanel.hide();
-                    settingsPanel.dispose();
-                    settingsPanel = null;
-
-                    showControls();
-                    showPauseButton(true);
-
-                    AppConfig.unPause();
-                    hudStateID = StateID._STATE_PANEL_UPDATE;
                 }
             }
             break;
@@ -537,12 +494,6 @@ public class HeadsUpDisplay implements Disposable
         PauseButton.setDisabled(!_state);
     }
 
-    public void showSettingsButton(boolean _state)
-    {
-        SettingsButton.setVisible(_state);
-        SettingsButton.setDisabled(!_state);
-    }
-
     public void refillItems()
     {
         App.getHud().getFuelBar().setToMaximum();
@@ -583,11 +534,6 @@ public class HeadsUpDisplay implements Disposable
     private void drawPanels()
     {
         App.spriteBatch.draw(scorePanel, originX, originY + (720 - scorePanel.getHeight()));
-
-        if ((settingsPanel != null) && (hudStateID == StateID._STATE_SETTINGS_PANEL))
-        {
-            settingsPanel.draw(App.spriteBatch);
-        }
     }
 
     /**
@@ -668,7 +614,6 @@ public class HeadsUpDisplay implements Disposable
                 ActionButton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
                 AttackButton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
                 PauseButton.setPosition(originX + displayPos[_PAUSE][_X1], originY + displayPos[_PAUSE][_Y]);
-                SettingsButton.setPosition(originX + displayPos[_SETTINGS][_X1], originY + displayPos[_SETTINGS][_Y]);
 
                 if (App.inputManager.virtualJoystick != null)
                 {
@@ -749,7 +694,6 @@ public class HeadsUpDisplay implements Disposable
         buttonX        = new Switch();
         buttonY        = new Switch();
         buttonPause    = new Switch();
-        buttonSettings = new Switch();
         buttonAction   = new Switch();
         buttonAttack   = new Switch();
 
@@ -776,13 +720,6 @@ public class HeadsUpDisplay implements Disposable
                     "pause_button",
                     "pause_button_pressed",
                     displayPos[_PAUSE][xPos], displayPos[_PAUSE][_Y]
-                );
-
-            SettingsButton = Scene2DUtils.addButton
-                (
-                    "settings_button",
-                    "settings_button_pressed",
-                    displayPos[_SETTINGS][xPos], displayPos[_SETTINGS][_Y]
                 );
 
             if (Developer.isDevMode())
@@ -856,24 +793,6 @@ public class HeadsUpDisplay implements Disposable
                 buttonPause.release();
             }
         });
-
-        SettingsButton.addListener(new ClickListener()
-        {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {
-                event.handle();
-                buttonSettings.press();
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
-            {
-                event.handle();
-                buttonSettings.release();
-            }
-        });
     }
 
     private void hudDebug()
@@ -909,18 +828,15 @@ public class HeadsUpDisplay implements Disposable
         buttonAction     = null;
         buttonAttack     = null;
         buttonPause      = null;
-        buttonSettings   = null;
         buttonDevOptions = null;
 
         AttackButton.addAction(Actions.removeActor());
         ActionButton.addAction(Actions.removeActor());
         PauseButton.addAction(Actions.removeActor());
-        SettingsButton.addAction(Actions.removeActor());
 
         AttackButton   = null;
         ActionButton   = null;
         PauseButton    = null;
-        SettingsButton = null;
 
         messageManager = null;
 

@@ -1,6 +1,7 @@
 package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
@@ -17,10 +18,10 @@ import com.richikin.utilslib.physics.aabb.ICollisionListener;
 
 public class RoverGun extends Carryable
 {
-    public boolean isShooting;
-    public float gunTurretAngle;
-    public float shootRate;
-    public int shootCount;
+    public boolean   isShooting;
+    public float     gunTurretAngle;
+    public float     shootRate;
+    public int       shootCount;
     public GunTurret gunTurret;
 
     public RoverGun()
@@ -28,14 +29,23 @@ public class RoverGun extends Carryable
         super(GraphicID.G_ROVER_GUN);
     }
 
+    @Override
+    public void initialise(SpriteDescriptor descriptor)
+    {
+        super.initialise(descriptor);
+
+        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
+        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MISSILE_BASE | Gfx.CAT_VEHICLE;
+    }
+
     public void addTurret()
     {
         SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_GUN_BARREL);
-        descriptor._SIZE          = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
-        descriptor._POSITION.x    = 0;
-        descriptor._POSITION.y    = 0;
-        descriptor._POSITION.z    = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
-        descriptor._INDEX         = App.entityData.entityMap.size;
+        descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._POSITION.x = 0;
+        descriptor._POSITION.y = 0;
+        descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
+        descriptor._INDEX      = App.entityData.entityMap.size;
 
         gunTurret = new GunTurret();
         gunTurret.initialise(descriptor);
@@ -107,21 +117,16 @@ public class RoverGun extends Carryable
 
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 2))
             {
-//                EntityDescriptor descriptor = new EntityDescriptor();
-//                descriptor._ASSET         = App.assets.getAnimationsAtlas().findRegion(GameAssets._SPARKLE_WEAPON_ASSET);
-//                descriptor._FRAMES        = GameAssets._SPARKLE_WEAPON_FRAMES;
-//                descriptor._PLAYMODE      = Animation.PlayMode.LOOP;
-//                descriptor._X             = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
-//                descriptor._Y             = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
-//                descriptor._Z             = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
-//                descriptor._INDEX         = App.entityData.entityMap.size;
-//                descriptor._ENEMY         = App.entityUtils.setEnemyStatus(GraphicID.G_ROVER_BULLET);
-//                descriptor._UPDATEABLE    = App.entityUtils.canUpdate(GraphicID.G_ROVER_BULLET);
-//
-//                SparkleWeapon weapon = new SparkleWeapon(GraphicID.G_ROVER_BULLET, app);
-//                weapon.initialise(descriptor);
-//
-//                App.entityData.addEntity(weapon);
+                SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_BULLET);
+                descriptor._POSITION.x = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
+                descriptor._POSITION.x = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
+                descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
+                descriptor._INDEX      = App.entityData.entityMap.size;
+
+                DefenderBullet weapon = new DefenderBullet(GraphicID.G_ROVER_BULLET);
+                weapon.initialise(descriptor);
+
+                App.entityData.addEntity(weapon);
 
                 if (++shootCount >= 2)
                 {
@@ -153,9 +158,9 @@ public class RoverGun extends Carryable
     @Override
     public void updateCollisionBox()
     {
-        collisionObject.rectangle.x = sprite.getX() + Gfx.getTileWidth();
-        collisionObject.rectangle.y = sprite.getY() - 2;
-        collisionObject.rectangle.width = (float) (frameWidth - (Gfx.getTileWidth() * 1.5));
+        collisionObject.rectangle.x      = sprite.getX() + Gfx.getTileWidth();
+        collisionObject.rectangle.y      = sprite.getY() - 2;
+        collisionObject.rectangle.width  = (float) (frameWidth - (Gfx.getTileWidth() * 1.5));
         collisionObject.rectangle.height = frameHeight;
     }
 
@@ -202,7 +207,7 @@ public class RoverGun extends Carryable
         {
             isShooting = true;
             shootCount = 0;
-            shootRate = 0;
+            shootRate  = 0;
         }
     }
 
@@ -216,7 +221,7 @@ public class RoverGun extends Carryable
         setAction(ActionStates._EXPLODING);
         gunTurret.setAction(ActionStates._EXPLODING);
 
-        elapsedAnimTime = 0;
+        elapsedAnimTime           = 0;
         gunTurret.elapsedAnimTime = 0;
     }
 
@@ -273,7 +278,7 @@ public class RoverGun extends Carryable
             {
                 if ((sprite.getY() + frameHeight) < 0)
                 {
-                     setAction(ActionStates._DEAD);
+                    setAction(ActionStates._DEAD);
                 }
                 else
                 {

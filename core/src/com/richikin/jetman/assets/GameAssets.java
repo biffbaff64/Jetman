@@ -118,6 +118,7 @@ public class GameAssets
     public static final String _GAMEOVER_MSG_ASSET  = "gameover";
     public static final String _CREDITS_PANEL_ASSET = "data/credits_panel.png";
     public static final String _OPTIONS_PANEL_ASSET = "data/options_panel.png";
+    public static final String _PAUSE_PANEL_ASSET   = "data/pause_panel.png";
     public static final String _UISKIN_ASSET        = "data/uiskin.json";
 
     private static final AssetSize[] assetSizes =

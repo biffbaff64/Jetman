@@ -38,7 +38,6 @@ public class MenuPage implements IUIPage, Disposable
 
     private Texture   foreground;
     private Image     decoration;
-    private Label     versionLabel;
 
     public MenuPage()
     {
@@ -111,9 +110,6 @@ public class MenuPage implements IUIPage, Disposable
             decoration = null;
         }
 
-        versionLabel.addAction(Actions.removeActor());
-        versionLabel = null;
-
         App.assets.unloadAsset("data/title_background.png");
 
         foreground = null;
@@ -131,18 +127,6 @@ public class MenuPage implements IUIPage, Disposable
         buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 596, (int) AppSystem.hudOriginY + (720 - 614));
         buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppSystem.hudOriginX + 543, (int) AppSystem.hudOriginY + (720 - 496));
         buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 554));
-
-        Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-        versionLabel = Scene2DUtils.addLabel
-            (
-                Version.getAppVersion(),
-                (int) (AppSystem.hudOriginX + 10),
-                (int) (AppSystem.hudOriginY + (720 - 30)),
-                Color.WHITE,
-                skin
-            );
-        versionLabel.setVisible(true);
-        versionLabel.setZIndex(1);
 
         addDateSpecificItems(AppSystem.hudOriginX, AppSystem.hudOriginY);
     }

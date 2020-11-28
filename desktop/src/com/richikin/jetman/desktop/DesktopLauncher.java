@@ -56,7 +56,7 @@ public class DesktopLauncher
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.addIcon("data/icon32x32.png", Files.FileType.Internal);
 
-		config.title         = Version.getDisplayVersion();
+		config.title         = Version.getProjectID();
 		config.width         = Gfx._DESKTOP_WIDTH;
 		config.height        = Gfx._DESKTOP_HEIGHT;
 		config.backgroundFPS = (int) Gfx._FPS;

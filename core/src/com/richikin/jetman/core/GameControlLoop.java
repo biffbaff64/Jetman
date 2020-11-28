@@ -164,7 +164,6 @@ public class GameControlLoop extends AbstractControlLoop
             App.getHud().setStateID(StateID._STATE_PANEL_UPDATE);
 
             App.getHud().showControls();
-            App.getHud().showSettingsButton(true);
             App.getHud().showPauseButton(true);
 
             scr().firstTime = false;
