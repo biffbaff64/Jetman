@@ -51,10 +51,6 @@ public class EntityManager implements IEntityManager
     public int   _missileBaseIndex;
     public int[] _teleportIndex;
 
-    // --------------------------------------------------
-    //
-    private BackgroundObjectsManager backgroundObjectsManager;
-    
     public TeleportBeam  teleportBeam;
     public PlayerManager playerManager;
     public RenderSystem  renderSystem;
@@ -88,8 +84,7 @@ public class EntityManager implements IEntityManager
             {
                 entity = (GdxSprite) App.entityData.entityMap.get(i);
 
-                if ((entity.getAction() != ActionStates._DEAD)
-                    && (entity.gid != GraphicID.G_PLAYER))
+                if ((entity.getAction() != ActionStates._DEAD) && (entity.gid != GraphicID.G_PLAYER))
                 {
                     entity.preUpdate();
                     entity.update(entity.spriteNumber);
@@ -168,6 +163,8 @@ public class EntityManager implements IEntityManager
                             case G_MISSILE_BASE:
                             case G_DEFENDER:
                             case G_ROVER:
+                            case G_ROVER_BULLET:
+                            case G_ROVER_WHEEL:
                             case G_DEFENDER_BULLET:
                             case G_UFO_BULLET:
                             case G_EXPLOSION12:
@@ -181,6 +178,7 @@ public class EntityManager implements IEntityManager
 
                             case G_BOMB:
                             case G_ROVER_GUN:
+                            case G_ROVER_GUN_BARREL:
                             case G_ASTEROID:
                             default:
                             {
@@ -370,7 +368,9 @@ public class EntityManager implements IEntityManager
      */
     public void addBackgroundEntities()
     {
-        backgroundObjectsManager = new BackgroundObjectsManager();
+        // --------------------------------------------------
+        //
+        BackgroundObjectsManager backgroundObjectsManager = new BackgroundObjectsManager();
         backgroundObjectsManager.addUFOs(2 + MathUtils.random(2));
         backgroundObjectsManager.addTwinkleStars();
 

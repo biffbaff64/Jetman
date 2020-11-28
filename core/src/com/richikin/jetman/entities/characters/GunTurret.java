@@ -9,8 +9,6 @@ import com.richikin.utilslib.logging.Trace;
 
 public class GunTurret extends GdxSprite
 {
-    private float turretAngle;
-
     public GunTurret()
     {
         super(GraphicID.G_ROVER_GUN_BARREL);
@@ -25,7 +23,6 @@ public class GunTurret extends GdxSprite
         setAction(ActionStates._STANDING);
 
         sprite.setOrigin(65, frameHeight - 17);
-        turretAngle = 0.0f;
     }
 
     @Override
@@ -58,12 +55,11 @@ public class GunTurret extends GdxSprite
         updateCommon();
     }
 
-    //
-    // TODO: 28/01/2019 - For now, drawing and animation is taken care of
-    //                    by the main RoverGun class.
-    //                    This should be brought into here...
-//    @Override public void animate() {}
-//    @Override public void draw(final SpriteBatch spriteBatch) {}
+    @Override
+    public void tidy(int _index)
+    {
+        App.entityData.removeEntity(_index);
+    }
 
     @Override
     public void updateCollisionBox()

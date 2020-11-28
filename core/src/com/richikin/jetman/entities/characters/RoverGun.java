@@ -219,9 +219,9 @@ public class RoverGun extends Carryable
         explosionManager.createExplosion(GraphicID.G_EXPLOSION256, gunTurret);
 
         setAction(ActionStates._EXPLODING);
-        gunTurret.setAction(ActionStates._EXPLODING);
+        elapsedAnimTime = 0;
 
-        elapsedAnimTime           = 0;
+        gunTurret.setAction(ActionStates._EXPLODING);
         gunTurret.elapsedAnimTime = 0;
     }
 
