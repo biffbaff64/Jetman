@@ -45,10 +45,6 @@ public class EntityManager implements IEntityManager
     // --------------------------------------------------
     // Indexes into entity list
     public int   _playerIndex;
-    public int   _roverIndex;
-    public int   _roverGunIndex;
-    public int   _bombIndex;
-    public int   _missileBaseIndex;
     public int[] _teleportIndex;
 
     public TeleportBeam  teleportBeam;
@@ -271,10 +267,6 @@ public class EntityManager implements IEntityManager
         GdxSprite entity;
 
         _playerIndex      = 0;
-        _roverIndex       = 0;
-        _roverGunIndex    = 0;
-        _bombIndex        = 0;
-        _missileBaseIndex = 0;
         _teleportIndex[0] = 0;
         _teleportIndex[1] = 0;
 
@@ -290,25 +282,9 @@ public class EntityManager implements IEntityManager
                 }
                 else
                 {
-                    switch (entity.gid)
+                    if (entity.gid == GraphicID.G_PLAYER)
                     {
-                        case G_PLAYER:
-                            _playerIndex = i;
-                            break;
-                        case G_ROVER:
-                            _roverIndex = i;
-                            break;
-                        case G_ROVER_GUN:
-                            _roverGunIndex = i;
-                            break;
-                        case G_BOMB:
-                            _bombIndex = i;
-                            break;
-                        case G_MISSILE_BASE:
-                            _missileBaseIndex = i;
-                            break;
-                        default:
-                            break;
+                        _playerIndex = i;
                     }
                 }
             }

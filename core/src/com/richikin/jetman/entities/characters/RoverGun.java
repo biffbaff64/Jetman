@@ -36,6 +36,11 @@ public class RoverGun extends Carryable
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
         collidesWith = Gfx.CAT_GROUND | Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MISSILE_BASE | Gfx.CAT_VEHICLE;
+
+        isShooting = false;
+        gunTurretAngle = 0f;
+        shootCount = 0;
+        shootRate = 0f;
     }
 
     public void addTurret()
@@ -47,6 +52,7 @@ public class RoverGun extends Carryable
         descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._INDEX      = App.entityData.entityMap.size;
 
+        // TODO: 29/11/2020 - Does the turret need to be added to the entity list?
         gunTurret = new GunTurret();
         gunTurret.initialise(descriptor);
         App.entityData.addEntity(gunTurret);
@@ -167,23 +173,11 @@ public class RoverGun extends Carryable
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        if (isAttachedToPlayer && App.teleportManager.teleportActive)
-        {
-            isDrawable = false;
+        isDrawable = (isAttachedToPlayer && App.teleportManager.teleportActive);
 
-            if (gunTurret != null)
-            {
-                gunTurret.isDrawable = false;
-            }
-        }
-        else
+        if (gunTurret != null)
         {
-            isDrawable = true;
-
-            if (gunTurret != null)
-            {
-                gunTurret.isDrawable = true;
-            }
+            gunTurret.isDrawable = this.isDrawable;
         }
 
         super.draw(spriteBatch);

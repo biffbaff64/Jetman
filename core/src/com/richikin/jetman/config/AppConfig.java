@@ -30,7 +30,7 @@ public class AppConfig
         // ------------------------------------------------
         // Temporary development settings
         Developer.setAndroidOnDesktop(true);
-        Developer.setGodMode(true);
+        Developer.setGodMode(false);
 
         App.settings.disable(Settings._DISABLE_MENU_SCREEN);
         App.settings.disable(Settings._SPRITE_BOXES);

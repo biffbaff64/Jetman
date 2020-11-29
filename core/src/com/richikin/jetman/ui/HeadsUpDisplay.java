@@ -66,8 +66,8 @@ public class HeadsUpDisplay implements Disposable
     private static final int[][] displayPos = new int[][]
         {
             {  25, 1016, (720 - 695), 240, 240},    // Joystick
-            { 987,   44, (720 - 687),  96,  96},    // Attack
-            {1109,  158, (720 - 600),  96,  96},    // Action
+            {1007,   44, (720 - 677),  96,  96},    // Action
+            {1129,  158, (720 - 590),  96,  96},    // Attack
             {1200, 1200, (720 - 177),  64,  64},    // Pause Button
             {  20,   20, (720 - 177),  64,  64},    // Settings Button
             {   0,    0, (720 - 101),  99,  86},    // Dev Options
@@ -815,6 +815,17 @@ public class HeadsUpDisplay implements Disposable
                         "FPS  : " + Gdx.graphics.getFramesPerSecond(),
                         originX + 20,
                         originY + 600
+                    );
+            }
+
+            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "PLYR : " + App.getPlayer().getAction(),
+                        originX + 20,
+                        originY + 570
                     );
             }
         }

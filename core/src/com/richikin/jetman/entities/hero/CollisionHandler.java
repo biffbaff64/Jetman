@@ -42,8 +42,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                         && (graphicID != GraphicID.G_ROVER_BOOT))
                     {
-                        App.getPlayer().explode();
+                        Trace.__FILE_FUNC_LINE();
 
+                        App.getPlayer().explode();
                         App.getPlayer().isRotating = false;
                         App.getPlayer().rotateSpeed = 0;
                     }

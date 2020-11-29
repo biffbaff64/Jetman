@@ -57,13 +57,6 @@ public class MainPlayer extends GdxSprite
     public float maxMoveSpeed;
     public Box   viewBox;
 
-    private TextureRegion            bridgeSection;
-    public  int                      laserColour;
-    private TextureRegion[]          spawnFrames;
-    private Animation<TextureRegion> spawnAnim;
-    private float                    elapsedSpawnTime;
-    private StopWatch                stopWatch;
-
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
     public ActionButtonHandler actionButton;
@@ -71,6 +64,13 @@ public class MainPlayer extends GdxSprite
     public LaserManager        laserManager;
     public BridgeManager       bridgeManager;
     public CollisionRect       tileRectangle;
+
+    private TextureRegion            bridgeSection;
+    public  int                      laserColour;
+    private TextureRegion[]          spawnFrames;
+    private Animation<TextureRegion> spawnAnim;
+    private float                    elapsedSpawnTime;
+    private StopWatch                stopWatch;
 
     public MainPlayer()
     {
@@ -256,6 +256,8 @@ public class MainPlayer extends GdxSprite
             {
                 if (App.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
                 {
+                    Trace.__FILE_FUNC_LINE();
+
                     explode();
 
                     isRotating  = false;
@@ -338,12 +340,14 @@ public class MainPlayer extends GdxSprite
 
             default:
             {
-                if (strength <= 0)
-                {
-                    explode();
-
-                    stopWatch.reset();
-                }
+//                if (strength <= 0)
+//                {
+//                    Trace.__FILE_FUNC_LINE();
+//
+//                    explode();
+//
+//                    stopWatch.reset();
+//                }
             }
             break;
         }

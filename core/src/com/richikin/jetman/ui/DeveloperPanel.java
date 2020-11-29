@@ -531,7 +531,7 @@ public class DeveloperPanel extends DefaultPanel
                     new DMEntry("", "", false),
                 },
                 {
-                    new DMEntry("Show Hints", Settings._SHOW_HINTS, false),
+                    new DMEntry("Android on Desktop", Settings._ANDROID_ON_DESKTOP, false),
                     new DMEntry("", "", false),
                     new DMEntry("", "", false)
                 },
@@ -556,7 +556,7 @@ public class DeveloperPanel extends DefaultPanel
                     new DMEntry("", "", false)
                 },
                 {
-                    new DMEntry("Android on Desktop", Settings._ANDROID_ON_DESKTOP, false),
+                    new DMEntry("", "", false),
                     new DMEntry("", "", false),
                     new DMEntry("", "", false)
                 },

@@ -98,8 +98,6 @@ public class RoverManager extends GenericEntityManager
             App.entityData.addEntity(App.entities.rover);
             App.entities.rover.addPartners();
 
-            App.entityManager._roverIndex = App.entities.rover.spriteNumber;
-
             roverCount++;
         }
     }
@@ -147,8 +145,6 @@ public class RoverManager extends GenericEntityManager
                 App.entities.roverGun = new RoverGun();
                 App.entities.roverGun.initialise(descriptor);
                 App.entityData.addEntity(App.entities.roverGun);
-
-                App.entityManager._roverGunIndex = App.entities.roverGun.spriteNumber;
 
                 App.entities.roverGun.addTurret();
 

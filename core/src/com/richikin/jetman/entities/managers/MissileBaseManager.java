@@ -89,8 +89,6 @@ public class MissileBaseManager extends GenericEntityManager
         App.entities.missileBase.initialise(descriptor);
         App.entityData.addEntity(App.entities.missileBase);
 
-        App.entityManager._missileBaseIndex = App.entities.missileBase.spriteNumber;
-
         activeBases++;
     }
 

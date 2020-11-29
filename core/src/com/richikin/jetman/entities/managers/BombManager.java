@@ -105,7 +105,6 @@ public class BombManager extends GenericEntityManager
                 App.entities.bomb = new Bomb();
                 App.entities.bomb.initialise(descriptor);
                 App.entityData.addEntity(App.entities.bomb);
-                App.entityManager._bombIndex = App.entities.bomb.spriteNumber;
 
                 activeCount++;
                 totalBombsUsed++;
