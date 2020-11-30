@@ -8,6 +8,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
+import com.richikin.jetman.entities.BaseEnemy;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.GenericCollisionListener;
