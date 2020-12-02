@@ -38,7 +38,6 @@ public class EntityManager implements IEntityManager
 
     // --------------------------------------------------
     // Indexes into manager list
-    public int _laserManagerIndex;
     public int _bombManagerIndex;
     public int _alienManagerIndex;
 

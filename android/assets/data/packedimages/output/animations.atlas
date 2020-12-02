@@ -55,7 +55,7 @@ base_instructions
   index: -1
 bomb
   rotate: false
-  xy: 1820, 1679
+  xy: 1488, 229
   size: 84, 53
   orig: 84, 53
   offset: 0, 0
@@ -69,21 +69,21 @@ defence_sparkle
   index: -1
 enter_rover
   rotate: false
-  xy: 1764, 1245
+  xy: 1062, 150
   size: 128, 69
   orig: 128, 69
   offset: 0, 0
   index: -1
 enter_teleporter
   rotate: false
-  xy: 1062, 150
+  xy: 1062, 79
   size: 128, 69
   orig: 128, 69
   offset: 0, 0
   index: -1
 explosion64
   rotate: false
-  xy: 1764, 1316
+  xy: 1754, 930
   size: 256, 192
   orig: 256, 192
   offset: 0, 0
@@ -132,14 +132,14 @@ launcher_top
   index: -1
 launcher_top_empty
   rotate: false
-  xy: 1634, 1002
+  xy: 1488, 284
   size: 90, 120
   orig: 90, 120
   offset: 0, 0
   index: -1
 lives
   rotate: false
-  xy: 1634, 955
+  xy: 1316, 165
   size: 64, 45
   orig: 64, 45
   offset: 0, 0
@@ -196,15 +196,8 @@ plus_blob
 powerbeam
   rotate: false
   xy: 1512, 945
-  size: 120, 563
-  orig: 120, 563
-  offset: 0, 0
-  index: -1
-powerbeam_small
-  rotate: false
-  xy: 1488, 225
-  size: 120, 179
-  orig: 120, 179
+  size: 240, 563
+  orig: 240, 563
   offset: 0, 0
   index: -1
 rocket
@@ -223,21 +216,21 @@ rover
   index: -1
 rover_boot
   rotate: false
-  xy: 2, 10
+  xy: 1688, 914
   size: 108, 14
   orig: 108, 14
   offset: 0, 0
   index: -1
 rover_gun
   rotate: false
-  xy: 1764, 1184
+  xy: 1820, 1673
   size: 122, 59
   orig: 122, 59
   offset: 0, 0
   index: -1
 rover_gun_barrel
   rotate: false
-  xy: 1894, 1255
+  xy: 1192, 151
   size: 122, 59
   orig: 122, 59
   offset: 0, 0
@@ -251,7 +244,7 @@ rover_idle
   index: -1
 rover_wheel
   rotate: false
-  xy: 1062, 80
+  xy: 1192, 81
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
@@ -272,7 +265,7 @@ topspin
   index: -1
 tower
   rotate: false
-  xy: 1634, 1124
+  xy: 1754, 1124
   size: 128, 384
   orig: 128, 384
   offset: 0, 0
@@ -314,7 +307,7 @@ twinkles2
   index: -1
 ufo_bullet
   rotate: false
-  xy: 1488, 214
+  xy: 2, 15
   size: 90, 9
   orig: 90, 9
   offset: 0, 0

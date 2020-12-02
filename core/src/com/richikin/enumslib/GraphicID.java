@@ -33,8 +33,6 @@ public enum GraphicID
 
     // ----------------------------
     G_POWER_BEAM,
-    G_POWER_BEAM_SMALL,
-    G_POWER_BEAM_BASE,
 
     // ----------------------------
     G_TOWER,

@@ -75,6 +75,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
                 // Objects that can be collided with, and
                 // which WILL hurt LJM.
+                case G_POWER_BEAM:
                 case G_NO_ID:
                 default:
                 {
@@ -83,9 +84,20 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     {
                         App.getPlayer().strength = 0;
 
-                        if ((graphicID != GraphicID.G_MISSILE_BASE) && (graphicID != GraphicID.G_MISSILE_LAUNCHER))
+                        switch (graphicID)
                         {
-                            App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
+                            case G_MISSILE_BASE:
+                            case G_MISSILE_LAUNCHER:
+                            case G_POWER_BEAM:
+                            {
+                            }
+                            break;
+
+                            default:
+                            {
+                                App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
+                            }
+                            break;
                         }
                     }
                 }

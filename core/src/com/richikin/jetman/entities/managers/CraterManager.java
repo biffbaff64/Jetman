@@ -133,9 +133,9 @@ public class CraterManager
 
         //
         // No craters allowed under Laser Barriers
-        if (spriteObject.gid != GraphicID.G_POWER_BEAM_BASE)
+        if (spriteObject.gid != GraphicID.G_POWER_BEAM)
         {
-            if (App.collisionUtils.getBoxHittingBottom(spriteObject).gid == GraphicID.G_POWER_BEAM_BASE)
+            if (App.collisionUtils.getBoxHittingBottom(spriteObject).gid == GraphicID.G_POWER_BEAM)
             {
                 isOk = false;
             }

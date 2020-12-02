@@ -164,9 +164,9 @@ public class HeadsUpDisplay implements Disposable
 
         FontUtils fontUtils = new FontUtils();
 
-        bigFont   = fontUtils.createFont("data/fonts/videophreak.ttf", 28);
-        midFont   = fontUtils.createFont("data/fonts/videophreak.ttf", 22);
-        smallFont = fontUtils.createFont("data/fonts/videophreak.ttf", 14);
+        bigFont   = fontUtils.createFont(GameAssets._VIDEO_PHREAK_FONT, 28);
+        midFont   = fontUtils.createFont(GameAssets._VIDEO_PHREAK_FONT, 22);
+        smallFont = fontUtils.createFont(GameAssets._PRO_WINDOWS_FONT, 14);
 
         arrows    = new TextureRegion[3];
         arrows[0] = App.assets.getObjectRegion("arrow_left");
@@ -823,7 +823,7 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "PLYR : " + App.getPlayer().getAction(),
+                        "MAP : " + App.mapData.mapPosition.toString(),
                         originX + 20,
                         originY + 570
                     );

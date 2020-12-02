@@ -3,6 +3,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.richikin.enumslib.ActionStates;
@@ -43,15 +44,14 @@ public class LaserBarrier extends GdxSprite
             Color.GREEN,
             Color.CYAN,
             Color.MAROON,
-        };
+            };
 
-    private int              colourIndex;
-    private int              onTimer;
-    private int              offTimer;
-    private SpriteDescriptor onDescriptor;
-    private SpriteDescriptor offDescriptor;
-    private StopWatch        stopWatch;
-    private float            restingTime;
+    private int       colourIndex;
+    private int       onTimer;
+    private int       offTimer;
+    private StopWatch stopWatch;
+    private float     restingTime;
+    private int       frameNumber;
 
     public LaserBarrier(final GraphicID _gid)
     {
@@ -70,20 +70,14 @@ public class LaserBarrier extends GdxSprite
         setAction(ActionStates._STANDING);
 
         bodyCategory = Gfx.CAT_FIXED_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE | Gfx.CAT_PLAYER_WEAPON;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE;
 
         onTimer     = 20 + MathUtils.random(10);
         offTimer    = 5 + MathUtils.random(10);
         restingTime = onTimer;
         stopWatch   = StopWatch.start();
-
-        onDescriptor = App.entities.getDescriptor(GraphicID.G_POWER_BEAM);
-        onDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_POWER_BEAM);
-        onDescriptor._INDEX = entityDescriptor._INDEX;
-
-        offDescriptor = App.entities.getDescriptor(GraphicID.G_POWER_BEAM_SMALL);
-        offDescriptor._SIZE = GameAssets.getAssetSize(GraphicID.G_POWER_BEAM_SMALL);
-        offDescriptor._INDEX = entityDescriptor._INDEX;
+        isAnimating = false;
+        frameNumber = 0;
     }
 
     @Override
@@ -105,19 +99,15 @@ public class LaserBarrier extends GdxSprite
                 {
                     if (getAction() == ActionStates._STANDING)
                     {
-                        setAnimation(offDescriptor, 1.0f);
                         setAction(ActionStates._HIDING);
-                        restingTime  = offTimer;
-
-                        sprite.setSize(offDescriptor._SIZE.x, offDescriptor._SIZE.y);
+                        frameNumber = 1;
+                        restingTime = offTimer;
                     }
                     else
                     {
-                        setAnimation(onDescriptor, 1.0f);
                         setAction(ActionStates._STANDING);
-                        restingTime  = onTimer;
-
-                        sprite.setSize(onDescriptor._SIZE.x, onDescriptor._SIZE.y);
+                        frameNumber = 0;
+                        restingTime = onTimer;
                     }
 
                     stopWatch.reset();
@@ -142,6 +132,22 @@ public class LaserBarrier extends GdxSprite
             }
             break;
         }
+
+        animate();
+
+        updateCommon();
+    }
+
+    @Override
+    public void animate()
+    {
+        sprite.setRegion(animFrames[frameNumber]);
+    }
+
+    @Override
+    public void draw(SpriteBatch spriteBatch)
+    {
+        super.draw(spriteBatch);
     }
 
     public void explode()

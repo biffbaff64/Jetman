@@ -45,7 +45,6 @@ public class GameAssets
     public static final String _MISSILE_LAUNCHER_ASSET = "launcher_top";
     public static final String _MISSILE_ASSET          = "rocket";
     public static final String _POWER_BEAM_ASSET       = "powerbeam";
-    public static final String _POWER_BEAM_SMALL_ASSET = "powerbeam_small";
     public static final String _ROVER_WHEEL_ASSET      = "rover_wheel";
     public static final String _ROVER_IDLE_ASSET       = "rover_idle";
     public static final String _ROVER_BOOT_ASSET       = "rover_boot";
@@ -79,7 +78,7 @@ public class GameAssets
     public static final int _MISSILE_BASE_FRAMES     = 1;
     public static final int _MISSILE_LAUNCHER_FRAMES = 32;
     public static final int _MISSILE_FRAMES          = 2;
-    public static final int _POWER_BEAM_FRAMES       = 1;
+    public static final int _POWER_BEAM_FRAMES       = 2;
     public static final int _ROVER_FRAMES            = 4;
     public static final int _ROVER_BOOT_FRAMES       = 1;
     public static final int _ROVER_GUN_FRAMES        = 1;
@@ -109,6 +108,7 @@ public class GameAssets
     public static final String _BENZOIC_FONT       = "data/fonts/paraaminobenzoic.ttf";
     public static final String _ORBITRON_BOLD_FONT = "data/fonts/Orbitron Bold.ttf";
     public static final String _PRO_WINDOWS_FONT   = "data/fonts/ProFontWindows.ttf";
+    public static final String _VIDEO_PHREAK_FONT  = "data/fonts/ProFontWindows.ttf";
     public static final String _HUD_PANEL_ASSET    = "data/hud_panel.png";
 
     public static int hudPanelWidth;      // Set when object is loaded
@@ -156,8 +156,6 @@ public class GameAssets
             new AssetSize(GraphicID.G_TWINKLES,          48,  48),
 
             new AssetSize(GraphicID.G_POWER_BEAM,       120, 563),
-            new AssetSize(GraphicID.G_POWER_BEAM_SMALL, 120, 179),
-            new AssetSize(GraphicID.G_POWER_BEAM_BASE,  120,  51),
 
             new AssetSize(GraphicID.G_EXPLOSION12,       64,  64),
             new AssetSize(GraphicID.G_EXPLOSION64,       64,  64),

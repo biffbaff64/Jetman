@@ -203,25 +203,9 @@ public class Entities
                 ),
             new SpriteDescriptor
                 (
-                    "Barrier Base",
-                    GraphicID.G_POWER_BEAM_BASE, GraphicID._ENEMY,
-                    GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES,
-                    Animation.PlayMode.LOOP,
-                    TileID._BARRIER_BASE_TILE
-                ),
-            new SpriteDescriptor
-                (
                     "Laser Barrier",
                     GraphicID.G_POWER_BEAM, GraphicID._ENEMY,
                     GameAssets._POWER_BEAM_ASSET, GameAssets._POWER_BEAM_FRAMES,
-                    Animation.PlayMode.LOOP,
-                    TileID._BEAM_TILE
-                ),
-            new SpriteDescriptor
-                (
-                    "Laser Barrier Small",
-                    GraphicID.G_POWER_BEAM_SMALL, GraphicID._ENEMY,
-                    GameAssets._POWER_BEAM_SMALL_ASSET, GameAssets._POWER_BEAM_FRAMES,
                     Animation.PlayMode.LOOP,
                     TileID._BEAM_TILE
                 ),
