@@ -112,8 +112,7 @@ public class BaseRenderer implements Disposable
         if (AppConfig.gameScreenActive())
         {
             if ((App.getPlayer() != null)
-                && App.appState.after(StateID._STATE_SETUP)
-                && !App.settings.isEnabled(Settings._SCROLL_DEMO))
+                && App.appState.after(StateID._STATE_SETUP))
             {
                 if (App.getPlayer().isRidingRover)
                 {

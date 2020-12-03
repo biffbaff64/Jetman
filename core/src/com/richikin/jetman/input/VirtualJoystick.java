@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.input.Touchpad;

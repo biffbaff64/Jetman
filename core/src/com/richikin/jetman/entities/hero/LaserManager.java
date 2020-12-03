@@ -9,6 +9,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Laser;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.pooling.IObjectPoolFactory;
 import com.richikin.utilslib.pooling.ObjectPool;
 
 public class LaserManager implements Disposable
@@ -17,7 +18,7 @@ public class LaserManager implements Disposable
 
     public LaserManager()
     {
-        ObjectPool.ObjectPoolFactory<Laser> laserFactory = new ObjectPool.ObjectPoolFactory<Laser>()
+        IObjectPoolFactory<Laser> laserFactory = new IObjectPoolFactory<Laser>()
         {
             @Override
             public Laser createObject()
@@ -35,6 +36,12 @@ public class LaserManager implements Disposable
             public Laser createObject(int x, int y, int width, int height, GraphicID type)
             {
                 return new Laser();
+            }
+
+            @Override
+            public void finaliseObject()
+            {
+
             }
         };
 

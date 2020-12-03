@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.enumslib.StateID;
@@ -15,10 +16,11 @@ import com.richikin.jetman.entities.managers.BridgeManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.jetman.physics.aabb.CollisionRect;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.StopWatch;
@@ -606,8 +608,8 @@ public class MainPlayer extends GdxSprite
         {
             if (isMovingX || isMovingY)
             {
-                float movementXSpeed = (speed.getX() * App.inputManager.getControllerXPercentage());
-                float movementYSpeed = (speed.getY() * App.inputManager.getControllerYPercentage());
+                float movementXSpeed = (speed.getX() * getXDirection());
+                float movementYSpeed = (speed.getY() * getYDirection());
 
                 App.baseRenderer.parallaxForeground.layers.get(0).xSpeed = speed.getX();
                 App.baseRenderer.parallaxForeground.layers.get(1).xSpeed = speed.getX();
@@ -619,11 +621,49 @@ public class MainPlayer extends GdxSprite
             {
                 sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
             }
-            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_WIDTH)
+            else if ((sprite.getX() + frameWidth) < Gfx._VIEW_HALF_WIDTH)
             {
                 sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
             }
         }
+    }
+
+    private float getXDirection()
+    {
+        float dir = 0;
+
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            dir = App.inputManager.getControllerXPercentage();
+        }
+        else
+        {
+            if (AppConfig.availableInputs.contains(ControllerType._KEYBOARD, true))
+            {
+                dir = direction.getX();
+            }
+        }
+
+        return dir;
+    }
+
+    private float getYDirection()
+    {
+        float dir = 0;
+
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            dir = App.inputManager.getControllerYPercentage();
+        }
+        else
+        {
+            if (AppConfig.availableInputs.contains(ControllerType._KEYBOARD, true))
+            {
+                dir = direction.getY();
+            }
+        }
+
+        return dir;
     }
 
     /**

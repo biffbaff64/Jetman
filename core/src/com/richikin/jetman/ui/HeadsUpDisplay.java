@@ -21,8 +21,9 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
+import com.richikin.jetman.input.InputUtils;
 import com.richikin.jetman.input.VirtualJoystick;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.core.HighScoreUtils;
 import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.input.GameButtonRegion;
@@ -487,8 +488,11 @@ public class HeadsUpDisplay implements Disposable
 
     public void showPauseButton(boolean _state)
     {
-        PauseButton.setVisible(_state);
-        PauseButton.setDisabled(!_state);
+        if (PauseButton != null)
+        {
+            PauseButton.setVisible(_state);
+            PauseButton.setDisabled(!_state);
+        }
     }
 
     public void refillItems()
@@ -824,6 +828,17 @@ public class HeadsUpDisplay implements Disposable
                         originX + 20,
                         originY + 570
                     );
+
+                if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+                {
+                    smallFont.draw
+                        (
+                            App.spriteBatch,
+                            "JOY : " + InputUtils.getJoystickAngle(),
+                            originX + 20,
+                            originY + 540
+                        );
+                }
             }
         }
     }
@@ -838,9 +853,12 @@ public class HeadsUpDisplay implements Disposable
         buttonPause      = null;
         buttonDevOptions = null;
 
-        AttackButton.addAction(Actions.removeActor());
-        ActionButton.addAction(Actions.removeActor());
-        PauseButton.addAction(Actions.removeActor());
+        if(AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        {
+            AttackButton.addAction(Actions.removeActor());
+            ActionButton.addAction(Actions.removeActor());
+            PauseButton.addAction(Actions.removeActor());
+        }
 
         AttackButton   = null;
         ActionButton   = null;

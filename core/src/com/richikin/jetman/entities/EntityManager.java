@@ -88,13 +88,10 @@ public class EntityManager implements IEntityManager
             // Main Player, updated after all other entities.
             // Updated last to allow for possible reacting to
             // other entities actions.
-            if (!App.settings.isEnabled(Settings._SCROLL_DEMO))
+            if (_playerReady && (App.getPlayer().getAction() != ActionStates._DEAD))
             {
-                if (_playerReady && (App.getPlayer().getAction() != ActionStates._DEAD))
-                {
-                    App.getPlayer().preUpdate();
-                    App.getPlayer().update(_playerIndex);
-                }
+                App.getPlayer().preUpdate();
+                App.getPlayer().update(_playerIndex);
             }
 
             //

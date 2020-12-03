@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.jetman.physics.Direction;
 import com.richikin.jetman.physics.DirectionValue;
@@ -430,7 +430,7 @@ public class Keyboard extends InputAdapter
         return false;
     }
 
-    private Movement.Dir evaluateKeyboardDirection()
+    public Movement.Dir evaluateKeyboardDirection()
     {
         Direction direction = new Direction
             (
@@ -438,7 +438,7 @@ public class Keyboard extends InputAdapter
                 (int) App.inputManager._verticalValue
             );
 
-        Movement.Dir keyDir = com.richikin.utilslib.input.DirectionMap.map[com.richikin.utilslib.input.DirectionMap.map.length - 1].translated;
+        Movement.Dir keyDir = DirectionMap.map[DirectionMap.map.length - 1].translated;
 
         for (DirectionValue dv : DirectionMap.map)
         {
@@ -455,11 +455,11 @@ public class Keyboard extends InputAdapter
 
     public void translateXPercent()
     {
-        App.inputManager._horizontalValue = App.getPlayer().direction.getX();
+        App.inputManager._horizontalValue = App.getPlayer().lookingAt.getX();
     }
 
     public void translateYPercent()
     {
-        App.inputManager._verticalValue = App.getPlayer().direction.getY();
+        App.inputManager._verticalValue = App.getPlayer().lookingAt.getY();
     }
 }

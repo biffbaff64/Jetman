@@ -1,4 +1,4 @@
-package com.richikin.jetman.ui;
+package com.richikin.jetman.developer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,7 +16,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.ui.DefaultPanel;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 

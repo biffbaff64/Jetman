@@ -66,20 +66,6 @@ public class ParallaxLayer implements Disposable
                 isChanged = true;
             }
 
-//            if (xDirection == Movement._DIRECTION_LEFT)
-//            {
-//                offset.addXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
-//                isChanged = true;
-//            }
-//            else
-//            {
-//                if (xDirection == Movement._DIRECTION_RIGHT)
-//                {
-//                    offset.subXWrapped(xSpeed, 0.0f, imageBox.width - Gfx._VIEW_WIDTH);
-//                    isChanged = true;
-//                }
-//            }
-
             if (isChanged)
             {
                 setTextureRegion();

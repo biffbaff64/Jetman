@@ -9,7 +9,7 @@ import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.graphics.camera.Shake;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 public class Startup

@@ -37,8 +37,6 @@ public class Bouncer extends GdxSprite
     {
         create(entityDescriptor);
 
-        initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
-
         bodyCategory = Gfx.CAT_MOBILE_ENEMY;
         collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON | Gfx.CAT_GROUND;
 

@@ -1,5 +1,5 @@
 
-package com.richikin.jetman;
+package com.richikin.jetman.developer;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

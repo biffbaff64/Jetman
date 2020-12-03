@@ -138,6 +138,7 @@ public class PausePanel extends DefaultPanel
 
         App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, buttonVibrations.isChecked());
         App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, buttonGameHints.isChecked());
+        App.settings.getPrefs().flush();
 
         if (buttonHome.isChecked())
         {

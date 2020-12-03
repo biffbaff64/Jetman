@@ -109,8 +109,13 @@ public class Gfx
         }
     }
 
+    public static int visibleMapWidth()
+    {
+        return mapWidth - (_VIEW_HALF_WIDTH * 2);
+    }
+
     public static int visibleMapRight()
     {
-        return mapWidth - _VIEW_WIDTH;
+        return mapWidth - _VIEW_HALF_WIDTH;
     }
 }

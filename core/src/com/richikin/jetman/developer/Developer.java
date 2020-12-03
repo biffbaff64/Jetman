@@ -1,4 +1,4 @@
-package com.richikin.jetman;
+package com.richikin.jetman.developer;
 
 import com.richikin.jetman.config.AppConfig;
 

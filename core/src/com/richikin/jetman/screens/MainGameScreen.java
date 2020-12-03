@@ -9,7 +9,7 @@ import com.richikin.jetman.core.EndgameManager;
 import com.richikin.jetman.core.GameControlLoop;
 import com.richikin.jetman.core.LevelManager;
 import com.richikin.jetman.ui.GameCompletedPanel;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;

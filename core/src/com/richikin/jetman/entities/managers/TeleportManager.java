@@ -10,7 +10,7 @@ import com.richikin.jetman.entities.characters.Teleporter;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.maps.RoomManager;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;

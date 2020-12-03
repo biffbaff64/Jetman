@@ -322,13 +322,13 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     {
         if ((direction.getX() == Movement._DIRECTION_LEFT) && ((sprite.getX() + frameWidth) < 0))
         {
-            sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_RIGHT);
+            sprite.translateX(Gfx.visibleMapWidth() * Movement._DIRECTION_RIGHT);
         }
         else
         {
             if ((direction.getX() == Movement._DIRECTION_RIGHT) && (sprite.getX() > Gfx.getMapWidth()))
             {
-                sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_LEFT);
+                sprite.translateX(Gfx.visibleMapWidth() * Movement._DIRECTION_LEFT);
             }
         }
     }

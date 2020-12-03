@@ -18,7 +18,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.ui.DeveloperPanel;
+import com.richikin.jetman.developer.DeveloperPanel;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
@@ -26,7 +26,7 @@ import com.richikin.jetman.ui.InstructionsPanel;
 import com.richikin.jetman.ui.PrivacyPolicyPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.jetman.ui.StatsPanel;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.jetman.ui.IUIPage;
 

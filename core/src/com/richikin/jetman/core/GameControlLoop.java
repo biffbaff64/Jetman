@@ -5,7 +5,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.screens.MainGameScreen;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.concurrent.TimeUnit;

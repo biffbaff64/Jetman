@@ -3,7 +3,7 @@ package com.richikin.jetman.core;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.google.DummyAdsController;
 import com.richikin.utilslib.google.IPlayServices;
 import com.richikin.enumslib.StateID;

@@ -108,7 +108,7 @@ public class InputManager
                     {
                         keyboard.translateXPercent();
 
-                        xPercent = App.getPlayer().direction.getX();
+                        xPercent = App.getPlayer().lookingAt.getX();
                     }
                 }
             }
@@ -156,7 +156,7 @@ public class InputManager
                     {
                         keyboard.translateYPercent();
 
-                        yPercent = App.getPlayer().direction.getY();
+                        yPercent = App.getPlayer().lookingAt.getY();
                     }
                 }
             }

@@ -15,7 +15,7 @@ import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.enumslib.ScreenID;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
@@ -58,10 +58,11 @@ public class AppConfig
 
         // ------------------------------------------------
         // Temporary development settings
-        Developer.setAndroidOnDesktop(true);
+        Developer.setAndroidOnDesktop(false);
         Developer.setGodMode(false);
 
-        App.settings.disable(Settings._DISABLE_MENU_SCREEN);
+        App.settings.enable(Settings._DISABLE_MENU_SCREEN);
+        App.settings.disable(Settings._SCROLL_DEMO);
         App.settings.disable(Settings._SPRITE_BOXES);
         App.settings.disable(Settings._TILE_BOXES);
         // ------------------------------------------------

@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.box2d.BodyBuilder;
 import com.richikin.jetman.physics.box2d.Box2DContactListener;
-import com.richikin.jetman.Developer;
+import com.richikin.jetman.developer.Developer;
 
 public class WorldModel
 {

@@ -18,6 +18,7 @@ package com.richikin.jetman.entities.hero;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.Movement;

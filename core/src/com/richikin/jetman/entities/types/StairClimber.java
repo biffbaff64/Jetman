@@ -26,9 +26,6 @@ public class StairClimber extends GdxSprite
     public StairClimber(GraphicID _gid)
     {
         super(_gid);
-
-        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
-        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
     }
 
     @Override
@@ -39,6 +36,9 @@ public class StairClimber extends GdxSprite
         animation.setFrameDuration(0.25f / 6f);
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
+
+        bodyCategory = Gfx.CAT_MOBILE_ENEMY;
+        collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_PLAYER_WEAPON;
 
         stairsPath = new StairsPath();
         stairsPath.setNextPathData(this);
@@ -133,5 +133,7 @@ public class StairClimber extends GdxSprite
         distance.subY(speed.getY());
 
         isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
+
+        wrap();
     }
 }
