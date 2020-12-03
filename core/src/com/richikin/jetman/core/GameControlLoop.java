@@ -3,10 +3,9 @@ package com.richikin.jetman.core;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.screens.MainGameScreen;
-import com.richikin.jetman.ui.MessageManager;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.concurrent.TimeUnit;
@@ -210,7 +209,7 @@ public class GameControlLoop extends AbstractControlLoop
                 // Tasks to perform if the game has not ended
                 if (App.appState.peek() == StateID._STATE_PAUSED)
                 {
-                    if (!AppSystem.gamePaused)
+                    if (!AppConfig.gamePaused)
                     {
                         App.appState.set(StateID._STATE_GAME);
                     }
@@ -230,7 +229,7 @@ public class GameControlLoop extends AbstractControlLoop
 
         if (scr().retryDelay.time(TimeUnit.MILLISECONDS) > 2000)
         {
-            if (AppSystem.quitToMainMenu)
+            if (AppConfig.quitToMainMenu)
             {
                 App.appState.set(StateID._STATE_GAME_OVER);
 

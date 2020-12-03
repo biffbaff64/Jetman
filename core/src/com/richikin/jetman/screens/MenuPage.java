@@ -1,28 +1,23 @@
 
 package com.richikin.jetman.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
-import com.richikin.jetman.config.Version;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIPage;
+import com.richikin.jetman.ui.IUIPage;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -67,7 +62,7 @@ public class MenuPage implements IUIPage, Disposable
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+            spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
         }
     }
 
@@ -119,16 +114,16 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
-        AppSystem.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
+        AppConfig.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
+        AppConfig.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
 
-        buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppSystem.hudOriginX + 515, (int) AppSystem.hudOriginY + (720 - 379));
-        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 437));
-        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppSystem.hudOriginX + 596, (int) AppSystem.hudOriginY + (720 - 614));
-        buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppSystem.hudOriginX + 543, (int) AppSystem.hudOriginY + (720 - 496));
-        buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppSystem.hudOriginX + 558, (int) AppSystem.hudOriginY + (720 - 554));
+        buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppConfig.hudOriginX + 515, (int) AppConfig.hudOriginY + (720 - 379));
+        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 437));
+        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppConfig.hudOriginX + 596, (int) AppConfig.hudOriginY + (720 - 614));
+        buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppConfig.hudOriginX + 543, (int) AppConfig.hudOriginY + (720 - 496));
+        buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 554));
 
-        addDateSpecificItems(AppSystem.hudOriginX, AppSystem.hudOriginY);
+        addDateSpecificItems(AppConfig.hudOriginX, AppConfig.hudOriginY);
     }
 
     private void addDateSpecificItems(float originX, float originY)

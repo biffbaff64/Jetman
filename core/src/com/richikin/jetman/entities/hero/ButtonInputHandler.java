@@ -20,8 +20,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public class ButtonInputHandler implements Disposable
 {

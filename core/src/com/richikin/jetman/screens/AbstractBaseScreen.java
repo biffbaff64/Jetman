@@ -6,10 +6,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.graphics.effects.FadeEffect;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.IGDXButton;
-import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.screens.IBaseScreen;
 
 public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseScreen, Disposable
 {

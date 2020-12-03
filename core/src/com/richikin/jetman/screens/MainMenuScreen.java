@@ -7,16 +7,15 @@ import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.effects.StarField;
 import com.richikin.jetman.ui.ExitPanel;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
-import com.richikin.utilslib.logging.StateManager;
+import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIPage;
+import com.richikin.jetman.ui.IUIPage;
 
 import java.util.ArrayList;
 
@@ -65,7 +64,7 @@ public class MainMenuScreen extends AbstractBaseScreen
         menuPage.initialise();
         menuPage.show();
 
-        if (AppSystem.isAndroidApp() && !App.googleServices.isSignedIn())
+        if (AppConfig.isAndroidApp() && !App.googleServices.isSignedIn())
         {
             App.googleServices.signIn();
         }
@@ -101,8 +100,8 @@ public class MainMenuScreen extends AbstractBaseScreen
     {
         if (App.appState.peek() == StateID._STATE_MAIN_MENU)
         {
-            AppSystem.hudOriginX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-            AppSystem.hudOriginY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
+            AppConfig.hudOriginX = (_camera.camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+            AppConfig.hudOriginY = (_camera.camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
             switch (currentPage)
             {
@@ -112,7 +111,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 case _OPTIONS_PAGE:
                 case _EXIT_PAGE:
                 {
-                    spriteBatch.draw(background, AppSystem.hudOriginX, AppSystem.hudOriginY);
+                    spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
                     starField.render();
 
@@ -125,9 +124,9 @@ public class MainMenuScreen extends AbstractBaseScreen
                         exitPanel.draw(spriteBatch);
                     }
 
-                    if (AppSystem.backButton.isVisible())
+                    if (AppConfig.backButton.isVisible())
                     {
-                        AppSystem.backButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + 20);
+                        AppConfig.backButton.setPosition(AppConfig.hudOriginX + 20, AppConfig.hudOriginY + 20);
                     }
                 }
                 break;
@@ -158,9 +157,9 @@ public class MainMenuScreen extends AbstractBaseScreen
                 {
                     panels.get(currentPage).update();
 
-                    if (AppSystem.backButton.isChecked())
+                    if (AppConfig.backButton.isChecked())
                     {
-                        AppSystem.backButton.setChecked(false);
+                        AppConfig.backButton.setChecked(false);
                         changePageTo(_MENU_PAGE);
                     }
                 }
@@ -176,7 +175,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                 {
                     if (panels.get(_OPTIONS_PAGE).update())
                     {
-                        AppSystem.backButton.setChecked(false);
+                        AppConfig.backButton.setChecked(false);
                         changePageTo(_MENU_PAGE);
                     }
                 }
@@ -189,7 +188,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     if (option == exitPanel._YES_PRESSED)
                     {
                         exitPanel.dispose();
-                        AppSystem.shutDownActive = true;
+                        AppConfig.shutDownActive = true;
                         Gdx.app.exit();
                     }
                     else if (option == exitPanel._NO_PRESSED)
@@ -306,7 +305,7 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         Version.appDetails();
 
-        AppSystem.currentScreenID = ScreenID._MAIN_MENU;
+        AppConfig.currentScreenID = ScreenID._MAIN_MENU;
         App.appState.set(StateID._STATE_MAIN_MENU);
 
         Trace.finishedMessage();

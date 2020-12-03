@@ -4,15 +4,13 @@ package com.richikin.jetman.input;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
-import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.input.DirectionMap;
-import com.richikin.utilslib.physics.Direction;
-import com.richikin.utilslib.physics.DirectionValue;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.DirectionValue;
+import com.richikin.jetman.physics.Movement;
 
 @SuppressWarnings("WeakerAccess")
 public class Keyboard extends InputAdapter
@@ -75,7 +73,7 @@ public class Keyboard extends InputAdapter
     {
         boolean returnFlag = false;
 
-        if (AppSystem.isDesktopApp())
+        if (AppConfig.isDesktopApp())
         {
             if (AppConfig.gameScreenActive())
             {
@@ -91,7 +89,7 @@ public class Keyboard extends InputAdapter
     {
         boolean returnFlag = false;
 
-        if (AppSystem.isDesktopApp())
+        if (AppConfig.isDesktopApp())
         {
             if (AppConfig.gameScreenActive())
             {

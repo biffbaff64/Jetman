@@ -8,10 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.ui.DefaultPanel;
 
 public class InstructionsPanel extends DefaultPanel
 {
@@ -43,7 +42,7 @@ public class InstructionsPanel extends DefaultPanel
         scrollPane.setFadeScrollBars(false);
         scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
         scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
-        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
+        scrollPane.setPosition(AppConfig.hudOriginX + 200, AppConfig.hudOriginY + 100);
 
         App.stage.addActor(scrollPane);
     }
@@ -51,7 +50,7 @@ public class InstructionsPanel extends DefaultPanel
     @Override
     public boolean update()
     {
-        return AppSystem.backButton.isChecked();
+        return AppConfig.backButton.isChecked();
     }
 
     /**

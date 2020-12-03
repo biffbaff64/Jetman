@@ -7,20 +7,11 @@ import com.richikin.enumslib.GraphicID;
 
 public class ObjectPool<T>
 {
-    public interface ObjectPoolFactory<T>
-    {
-        T createObject();
+    private final Array<T>              freeObjects;
+    private final IObjectPoolFactory<T> factory;
+    private final int                   maxSize;
 
-        T createObject(Rectangle rectangle);
-
-        T createObject(int x, int y, int width, int height, GraphicID type);
-    }
-
-    private final Array<T>             freeObjects;
-    private final ObjectPoolFactory<T> factory;
-    private final int                  maxSize;
-
-    public ObjectPool(ObjectPoolFactory<T> factory, int maxSize)
+    public ObjectPool(IObjectPoolFactory<T> factory, int maxSize)
     {
         this.factory = factory;
         this.maxSize = maxSize;
@@ -79,6 +70,8 @@ public class ObjectPool<T>
     {
         if (object != null)
         {
+            factory.finaliseObject();
+
             if (freeObjects.size < maxSize)
             {
                 freeObjects.add(object);

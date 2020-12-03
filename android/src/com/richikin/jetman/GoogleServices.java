@@ -12,7 +12,6 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.tasks.Task;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.google.IPlayServices;
 import com.richikin.utilslib.google.RCConstants;
 import com.richikin.utilslib.logging.Trace;
@@ -146,7 +145,7 @@ public class GoogleServices implements IPlayServices
     @Override
     public boolean isEnabled()
     {
-        return AppSystem.isAndroidApp() || App.settings.getPrefs().getBoolean(Settings._PLAY_SERVICES);
+        return AppConfig.isAndroidApp() || App.settings.getPrefs().getBoolean(Settings._PLAY_SERVICES);
     }
 
     void onActivityResult(int requestCode, Intent data)

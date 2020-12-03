@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.input.Touchpad;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public class VirtualJoystick
 {

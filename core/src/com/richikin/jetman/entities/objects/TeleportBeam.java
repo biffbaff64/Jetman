@@ -9,10 +9,9 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public class TeleportBeam implements Disposable
 {

@@ -9,9 +9,8 @@ import com.richikin.jetman.core.EndgameManager;
 import com.richikin.jetman.core.GameControlLoop;
 import com.richikin.jetman.core.LevelManager;
 import com.richikin.jetman.ui.GameCompletedPanel;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.graphics.camera.Shake;
+import com.richikin.jetman.Developer;
+import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
@@ -63,7 +62,7 @@ public class MainGameScreen extends AbstractBaseScreen
             App.appState.set(StateID._STATE_SETUP);
         }
 
-        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             App.inputManager.virtualJoystick.show();
         }
@@ -134,7 +133,7 @@ public class MainGameScreen extends AbstractBaseScreen
         firstTime = true;
 
         App.gameProgress.playerGameOver = false;
-        AppSystem.gamePaused            = false;
+        AppConfig.gamePaused            = false;
     }
 
     @Override
@@ -142,7 +141,7 @@ public class MainGameScreen extends AbstractBaseScreen
     {
         super.show();
 
-        AppSystem.currentScreenID = ScreenID._GAME_SCREEN;
+        AppConfig.currentScreenID = ScreenID._GAME_SCREEN;
         App.cameraUtils.disableAllCameras();
 
         initialise();

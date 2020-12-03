@@ -8,7 +8,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public class Carryable extends GdxSprite implements ICarryable
 {

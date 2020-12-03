@@ -9,7 +9,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.graphics.LibGfx;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 
@@ -160,7 +160,7 @@ public class EntityUtils
             case G_TWINKLE_STAR:
             case G_BACKGROUND_UFO:
             {
-                zed = LibGfx._MAXIMUM_Z_DEPTH-1;
+                zed = Gfx._MAXIMUM_Z_DEPTH-1;
             }
             break;
 
@@ -242,7 +242,7 @@ public class EntityUtils
 
             default:
             {
-                zed = LibGfx._MAXIMUM_Z_DEPTH + 1;
+                zed = Gfx._MAXIMUM_Z_DEPTH + 1;
             }
             break;
         }

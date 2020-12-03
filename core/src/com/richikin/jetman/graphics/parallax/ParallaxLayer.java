@@ -8,8 +8,8 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.XYSetF;
-import com.richikin.utilslib.physics.Direction;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.Movement;
 
 public class ParallaxLayer implements Disposable
 {

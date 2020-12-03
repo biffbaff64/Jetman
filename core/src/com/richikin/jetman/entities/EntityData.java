@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.entities.characters.DefenceStation;
 import com.richikin.jetman.entities.objects.GameEntity;
-import com.richikin.utilslib.entities.components.EntityManagerComponent;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.ArrayList;

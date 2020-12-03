@@ -8,11 +8,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.core.App;
 import com.richikin.utilslib.LibApp;
-import com.richikin.utilslib.physics.aabb.CollisionRect;
+import com.richikin.jetman.physics.aabb.CollisionRect;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
-import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
@@ -38,12 +39,12 @@ public class DebugRenderer implements Disposable
 
     public static void drawBoxes()
     {
-        if (LibApp.settings.isEnabled(Settings._TILE_BOXES))
+        if (App.settings.isEnabled(Settings._TILE_BOXES))
         {
             drawTileLayerBoxes();
         }
 
-        if (LibApp.settings.isEnabled(Settings._SPRITE_BOXES))
+        if (App.settings.isEnabled(Settings._SPRITE_BOXES))
         {
             drawSpriteCollisionBoxes();
         }
@@ -67,15 +68,15 @@ public class DebugRenderer implements Disposable
 
                     if (collisionObject.action == ActionStates._COLLIDABLE)
                     {
-                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
+                        debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
                     }
                     else if (collisionObject.action == ActionStates._COLLIDING)
                     {
-                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_blue32x32");
+                        debugTextureRegion = App.assets.getObjectRegion("solid_blue32x32");
                     }
                     else
                     {
-                        debugTextureRegion = LibApp.assets.getObjectRegion("solid_white32x32");
+                        debugTextureRegion = App.assets.getObjectRegion("solid_white32x32");
                     }
 
                     drawRect
@@ -111,23 +112,23 @@ public class DebugRenderer implements Disposable
 
                 if (collisionObject.rectangle.colour == Color.BLUE)
                 {
-                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_blue32x32");
+                    debugTextureRegion = App.assets.getObjectRegion("solid_blue32x32");
                 }
                 else if ((collisionObject.rectangle.colour == Color.RED) || (collisionObject.action == ActionStates._COLLIDING))
                 {
-                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
+                    debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.YELLOW)
                 {
-                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_yellow32x32");
+                    debugTextureRegion = App.assets.getObjectRegion("solid_yellow32x32");
                 }
                 else if (collisionObject.rectangle.colour == Color.GREEN)
                 {
-                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_green32x32");
+                    debugTextureRegion = App.assets.getObjectRegion("solid_green32x32");
                 }
                 else
                 {
-                    debugTextureRegion = LibApp.assets.getObjectRegion("solid_white32x32");
+                    debugTextureRegion = App.assets.getObjectRegion("solid_white32x32");
                 }
 
                 drawRect
@@ -145,7 +146,7 @@ public class DebugRenderer implements Disposable
 
     public static void drawRect(int x, int y, int width, int height, int thickness)
     {
-        debugTextureRegion = LibApp.assets.getObjectRegion("solid_red32x32");
+        debugTextureRegion = App.assets.getObjectRegion("solid_red32x32");
 
         drawRect
             (
@@ -183,7 +184,7 @@ public class DebugRenderer implements Disposable
             asset = "solid_white32x32";
         }
 
-        debugTextureRegion = LibApp.assets.getObjectRegion(asset);
+        debugTextureRegion = App.assets.getObjectRegion(asset);
 
         drawRect
             (

@@ -10,13 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIPage;
+import com.richikin.jetman.ui.IUIPage;
 
 public class CreditsPage implements IUIPage, Disposable
 {
@@ -36,8 +36,8 @@ public class CreditsPage implements IUIPage, Disposable
         versionLabel = Scene2DUtils.addLabel
             (
                 Version.getDisplayVersion(),
-                (int) AppSystem.hudOriginX + 364,
-                (int) AppSystem.hudOriginY + (720 - 608),
+                (int) AppConfig.hudOriginX + 364,
+                (int) AppConfig.hudOriginY + (720 - 608),
                 Color.WHITE,
                 new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET))
             );
@@ -54,9 +54,9 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void show()
     {
-        AppSystem.backButton.setVisible(true);
-        AppSystem.backButton.setDisabled(false);
-        AppSystem.backButton.setChecked(false);
+        AppConfig.backButton.setVisible(true);
+        AppConfig.backButton.setDisabled(false);
+        AppConfig.backButton.setChecked(false);
 
         versionLabel.setVisible(true);
 
@@ -66,8 +66,8 @@ public class CreditsPage implements IUIPage, Disposable
     @Override
     public void hide()
     {
-        AppSystem.backButton.setVisible(false);
-        AppSystem.backButton.setDisabled(true);
+        AppConfig.backButton.setVisible(false);
+        AppConfig.backButton.setDisabled(true);
 
         versionLabel.setVisible(false);
     }
@@ -77,7 +77,7 @@ public class CreditsPage implements IUIPage, Disposable
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+            spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
         }
     }
 

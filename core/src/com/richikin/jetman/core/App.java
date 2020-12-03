@@ -2,7 +2,6 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.AssetLoader;
 import com.richikin.jetman.config.Settings;
@@ -15,6 +14,7 @@ import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.paths.PathUtils;
 import com.richikin.jetman.graphics.CameraUtils;
+import com.richikin.jetman.graphics.IAssets;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.graphics.renderers.BaseRenderer;
 import com.richikin.jetman.input.InputManager;
@@ -22,13 +22,13 @@ import com.richikin.jetman.maps.MapCreator;
 import com.richikin.jetman.maps.MapData;
 import com.richikin.jetman.maps.MapUtils;
 import com.richikin.jetman.maps.RoomManager;
+import com.richikin.jetman.physics.CollisionUtils;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.LibApp;
-import com.richikin.utilslib.core.HighScoreUtils;
 import com.richikin.utilslib.logging.StateManager;
 
 // TODO: 16/11/2020
@@ -44,10 +44,14 @@ public final class App extends LibApp
     public static InputManager   inputManager;
     public static MainMenuScreen mainMenuScreen;
     public static MainGameScreen mainGameScreen;
+    public static IAssets        assets;
+    public static ISettings      settings;
 
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
+    public static CollisionUtils        collisionUtils;
+    public static HighScoreUtils        highScoreUtils;
     public static EntityUtils           entityUtils;
     public static Entities              entities;
     public static MapUtils              mapUtils;
@@ -115,7 +119,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._playerIndex) != null)
 //            && (entityData.entityMap.get(entityManager._playerIndex) instanceof MainPlayer))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            player = ((MainPlayer) entityData.entityMap.get(entityManager._playerIndex));
 //        }
 //
@@ -131,7 +135,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._roverIndex) != null)
 //            && (entityData.entityMap.get(entityManager._roverIndex) instanceof Rover))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            rover = ((Rover) entityData.entityMap.get(entityManager._roverIndex));
 //        }
 //
@@ -147,7 +151,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
 //            && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
 //        }
 //
@@ -163,7 +167,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._bombIndex) != null)
 //            && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
 //        }
 //
@@ -179,7 +183,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
 //            && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
 //        }
 //
@@ -195,7 +199,7 @@ public final class App extends LibApp
 //            && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
 //            && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
 //        {
-            // TODO: 16/11/2020
+        // TODO: 16/11/2020
 //            teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
 //        }
 //

@@ -8,9 +8,8 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.camera.Shake;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.graphics.camera.Shake;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.logging.Trace;
 
 public class Startup
@@ -40,7 +39,7 @@ public class Startup
 
         Gfx.setPPM(Gfx._PPM_SETTING);
 
-        if (AppSystem.isAndroidApp())
+        if (AppConfig.isAndroidApp())
         {
             Trace.__FILE_FUNC("Initialising Google Play Services.");
 
@@ -51,7 +50,7 @@ public class Startup
         GameAudio.inst().setup();
         Shake.setAllowed(false);
 
-        AppSystem.addBackButton("back_arrow", "back_arrow_pressed");
+        AppConfig.addBackButton("back_arrow", "back_arrow_pressed");
 
         Trace.divider();
     }

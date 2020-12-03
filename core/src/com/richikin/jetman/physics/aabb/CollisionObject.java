@@ -18,7 +18,6 @@ package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.utilslib.physics.aabb.CollisionRect;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.enumslib.GraphicID;

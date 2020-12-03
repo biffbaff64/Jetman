@@ -1,7 +1,7 @@
 
 package com.richikin.jetman.input;
 
-import com.richikin.utilslib.AppSystem;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class TouchScreen
@@ -14,9 +14,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (AppSystem.fullScreenButton.contains(screenX, screenY))
+        if (AppConfig.fullScreenButton.contains(screenX, screenY))
         {
-            AppSystem.fullScreenButton.press();
+            AppConfig.fullScreenButton.press();
             returnFlag = true;
         }
 
@@ -27,9 +27,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (AppSystem.fullScreenButton.contains(screenX, screenY))
+        if (AppConfig.fullScreenButton.contains(screenX, screenY))
         {
-            AppSystem.fullScreenButton.release();
+            AppConfig.fullScreenButton.release();
             returnFlag = true;
         }
 
@@ -40,9 +40,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (!AppSystem.gamePaused)
+        if (!AppConfig.gamePaused)
         {
-            if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
 //                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {
@@ -65,9 +65,9 @@ public class TouchScreen
     {
         boolean returnFlag = false;
 
-        if (!AppSystem.gamePaused)
+        if (!AppConfig.gamePaused)
         {
-            if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+            if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
             {
 //                if (((GameButton) App.getHud().buttonA).contains(screenX, screenY))
 //                {

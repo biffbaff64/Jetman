@@ -11,7 +11,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.maths.Box;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 import org.jetbrains.annotations.NotNull;
 
 public class AnimatedButton implements IGDXButton, Disposable

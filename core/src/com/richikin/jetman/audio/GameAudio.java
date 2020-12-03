@@ -2,9 +2,9 @@ package com.richikin.jetman.audio;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.Trace;
 
 public class GameAudio
@@ -64,7 +64,7 @@ public class GameAudio
     {
         if (soundsLoaded)
         {
-            if (AppSystem.gamePaused)
+            if (AppConfig.gamePaused)
             {
                 if ((AudioData.music[currentTune] != null) && AudioData.music[currentTune].isPlaying())
                 {

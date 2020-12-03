@@ -3,8 +3,7 @@ package com.richikin.jetman.graphics.parallax;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.core.App;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
 public class ParallaxBackground implements Disposable

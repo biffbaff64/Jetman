@@ -7,8 +7,8 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.controllers.ControllerMap;
 import com.richikin.utilslib.input.controllers.ControllerPos;
@@ -27,12 +27,12 @@ public class GameController implements ControllerListener
 
     public boolean setup()
     {
-        AppSystem.controllersFitted = false;
-        AppSystem.gameButtonsReady  = false;
+        AppConfig.controllersFitted = false;
+        AppConfig.gameButtonsReady  = false;
 
         addExternalController();
 
-        if (!AppSystem.controllersFitted)
+        if (!AppConfig.controllersFitted)
         {
             if (Controllers.getControllers().size > 0)
             {
@@ -53,7 +53,7 @@ public class GameController implements ControllerListener
             Controllers.clearListeners();
         }
 
-        return AppSystem.controllersFitted;
+        return AppConfig.controllersFitted;
     }
 
     public void addExternalController()
@@ -68,7 +68,7 @@ public class GameController implements ControllerListener
                 {
                     Trace.__FILE_FUNC("Controller [" + controller.getName() + "] found");
 
-                    AppSystem.controllersFitted = true;
+                    AppConfig.controllersFitted = true;
 
                     createControllerMap();
 
@@ -88,25 +88,25 @@ public class GameController implements ControllerListener
 
             disableExternalControllers();
 
-            if (AppSystem.isAndroidApp())
+            if (AppConfig.isAndroidApp())
             {
                 Trace.dbg("::Switched to _VIRTUAL");
 
-                if (!AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+                if (!AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
                 {
-                    AppSystem.availableInputs.add(ControllerType._VIRTUAL);
+                    AppConfig.availableInputs.add(ControllerType._VIRTUAL);
                 }
-                AppSystem.virtualControllerPos = ControllerPos._LEFT;
+                AppConfig.virtualControllerPos = ControllerPos._LEFT;
             }
             else
             {
                 Trace.dbg("::Switched to _KEYBOARD");
 
-                if (!AppSystem.availableInputs.contains(ControllerType._KEYBOARD, true))
+                if (!AppConfig.availableInputs.contains(ControllerType._KEYBOARD, true))
                 {
-                    AppSystem.availableInputs.add(ControllerType._KEYBOARD);
+                    AppConfig.availableInputs.add(ControllerType._KEYBOARD);
                 }
-                AppSystem.virtualControllerPos = ControllerPos._HIDDEN;
+                AppConfig.virtualControllerPos = ControllerPos._HIDDEN;
             }
         }
     }
@@ -117,7 +117,7 @@ public class GameController implements ControllerListener
         {
             controller = null;
 
-            AppSystem.controllersFitted = false;
+            AppConfig.controllersFitted = false;
 
             Controllers.removeListener(this);
         }
@@ -135,7 +135,7 @@ public class GameController implements ControllerListener
     @Override
     public void connected(Controller controller)
     {
-        AppSystem.controllersFitted = true;
+        AppConfig.controllersFitted = true;
     }
 
     /**
@@ -146,7 +146,7 @@ public class GameController implements ControllerListener
     @Override
     public void disconnected(Controller controller)
     {
-        AppSystem.controllersFitted = false;
+        AppConfig.controllersFitted = false;
     }
 
     /**
@@ -169,7 +169,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerAPressed = true;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonAction != null)
                 {
@@ -181,7 +181,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerBPressed = true;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonAttack != null)
                 {
@@ -193,7 +193,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerXPressed = true;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonX != null)
                 {
@@ -205,7 +205,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerYPressed = true;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonY != null)
                 {
@@ -225,7 +225,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerStartPressed = true;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonPause != null)
                 {
@@ -271,7 +271,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerAPressed = false;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonAction != null)
                 {
@@ -283,7 +283,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerBPressed = false;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonAttack != null)
                 {
@@ -295,7 +295,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerXPressed = false;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonX != null)
                 {
@@ -307,7 +307,7 @@ public class GameController implements ControllerListener
         {
             ControllerData.controllerYPressed = false;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 if (App.getHud().buttonY != null)
                 {
@@ -383,7 +383,7 @@ public class GameController implements ControllerListener
                 ControllerData.controllerLeftPressed  = true;
                 ControllerData.controllerRightPressed = false;
 
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonLeft != null)
                     {
@@ -397,7 +397,7 @@ public class GameController implements ControllerListener
                 ControllerData.controllerRightPressed = true;
                 ControllerData.controllerLeftPressed  = false;
 
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonRight != null)
                     {
@@ -408,7 +408,7 @@ public class GameController implements ControllerListener
             }
             else
             {
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonLeft != null)
                     {
@@ -432,7 +432,7 @@ public class GameController implements ControllerListener
             {
                 ControllerData.controllerUpPressed = true;
 
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonUp != null)
                     {
@@ -444,7 +444,7 @@ public class GameController implements ControllerListener
             {
                 ControllerData.controllerDownPressed = true;
 
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonDown != null)
                     {
@@ -454,7 +454,7 @@ public class GameController implements ControllerListener
             }
             else
             {
-                if (AppSystem.hudExists)
+                if (AppConfig.hudExists)
                 {
                     if (App.getHud().buttonUp != null)
                     {
@@ -477,7 +477,7 @@ public class GameController implements ControllerListener
             ControllerData.controllerLeftPressed  = false;
             ControllerData.controllerRightPressed = false;
 
-            if (AppSystem.hudExists)
+            if (AppConfig.hudExists)
             {
                 App.getHud().releaseDirectionButtons();
             }

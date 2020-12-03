@@ -9,7 +9,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
 public class DefenderBullet extends GdxSprite

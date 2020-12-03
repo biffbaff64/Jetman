@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.PlayServicesID;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
 public class Rover extends GdxSprite

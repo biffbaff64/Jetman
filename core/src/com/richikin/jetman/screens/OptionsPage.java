@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -18,6 +17,7 @@ import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.ui.DeveloperPanel;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.config.Version;
@@ -26,10 +26,9 @@ import com.richikin.jetman.ui.InstructionsPanel;
 import com.richikin.jetman.ui.PrivacyPolicyPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.jetman.ui.StatsPanel;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIPage;
+import com.richikin.jetman.ui.IUIPage;
 
 public class OptionsPage implements IUIPage
 {
@@ -64,15 +63,15 @@ public class OptionsPage implements IUIPage
     {
         setupCompleted = false;
 
-        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
+        if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            AppSystem.backButton.setVisible(true);
-            AppSystem.backButton.setDisabled(false);
-            AppSystem.backButton.setChecked(false);
+            AppConfig.backButton.setVisible(true);
+            AppConfig.backButton.setDisabled(false);
+            AppConfig.backButton.setChecked(false);
 
-            if (AppSystem.backButton.getClickListener() != null)
+            if (AppConfig.backButton.getClickListener() != null)
             {
-                AppSystem.backButton.removeListener(AppSystem.backButton.getClickListener());
+                AppConfig.backButton.removeListener(AppConfig.backButton.getClickListener());
             }
         }
 
@@ -99,7 +98,7 @@ public class OptionsPage implements IUIPage
     @Override
     public boolean update()
     {
-        if (AppSystem.backButton.isChecked())
+        if (AppConfig.backButton.isChecked())
         {
             switch (activePanel)
             {
@@ -146,7 +145,7 @@ public class OptionsPage implements IUIPage
             {
                 showActors(true);
                 activePanel = ScreenID._SETTINGS_SCREEN;
-                AppSystem.backButton.setChecked(false);
+                AppConfig.backButton.setChecked(false);
             }
         }
 
@@ -155,10 +154,10 @@ public class OptionsPage implements IUIPage
             enteredDeveloperPanel = false;
             showActors(true);
 
-            if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
+            if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
             {
-                AppSystem.backButton.setVisible(true);
-                AppSystem.backButton.setDisabled(false);
+                AppConfig.backButton.setVisible(true);
+                AppConfig.backButton.setDisabled(false);
             }
         }
 
@@ -198,7 +197,7 @@ public class OptionsPage implements IUIPage
                 {
                     if (foreground != null)
                     {
-                        spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+                        spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
                     }
                 }
             }
@@ -230,16 +229,16 @@ public class OptionsPage implements IUIPage
         Trace.__FILE_FUNC();
 
         // ----------
-        musicCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 279), Color.WHITE, skin);
-        fxCheckBox      = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 330), Color.WHITE, skin);
-        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 382), Color.WHITE, skin);
-        hintsCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppSystem.hudOriginX + 800, (int) AppSystem.hudOriginY + (720 - 435), Color.WHITE, skin);
+        musicCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 279), Color.WHITE, skin);
+        fxCheckBox      = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 330), Color.WHITE, skin);
+        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 382), Color.WHITE, skin);
+        hintsCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 435), Color.WHITE, skin);
 
         // ----------
-        if (AppSystem.currentScreenID == ScreenID._MAIN_MENU)
+        if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 511));
-            buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppSystem.hudOriginX + 401, (int) AppSystem.hudOriginY + (720 - 558));
+            buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 511));
+            buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 558));
 
             // ----------
             if (App.googleServices.isSignedIn())
@@ -250,8 +249,8 @@ public class OptionsPage implements IUIPage
                         (
                             "btn_google_signout_dark",
                             "btn_google_signout_dark_pressed",
-                            (int) AppSystem.hudOriginX + 986,
-                            (int) AppSystem.hudOriginY + (720 - 80)
+                            (int) AppConfig.hudOriginX + 986,
+                            (int) AppConfig.hudOriginY + (720 - 80)
                         );
 
                     buttonSignOut.setSize(191, 46);
@@ -266,16 +265,16 @@ public class OptionsPage implements IUIPage
                 (
                     "new_developer_options_button",
                     "new_developer_options_button_pressed",
-                    (int) AppSystem.hudOriginX + 648,
-                    (int) AppSystem.hudOriginY + (720 - 511)
+                    (int) AppConfig.hudOriginX + 648,
+                    (int) AppConfig.hudOriginY + (720 - 511)
                 );
 
             buttonStats = Scene2DUtils.addButton
                 (
                     "new_stats_button",
                     "new_stats_button_pressed",
-                    (int) AppSystem.hudOriginX + 648,
-                    (int) AppSystem.hudOriginY + (720 - 558)
+                    (int) AppConfig.hudOriginX + 648,
+                    (int) AppConfig.hudOriginY + (720 - 558)
                 );
         }
 
@@ -444,8 +443,8 @@ public class OptionsPage implements IUIPage
 
                         showActors(false);
 
-                        AppSystem.backButton.setVisible(false);
-                        AppSystem.backButton.setDisabled(true);
+                        AppConfig.backButton.setVisible(false);
+                        AppConfig.backButton.setDisabled(true);
 
                         DeveloperPanel.inst().setup();
                     }
@@ -551,8 +550,8 @@ public class OptionsPage implements IUIPage
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.backButton.setVisible(false);
-        AppSystem.backButton.setDisabled(true);
+        AppConfig.backButton.setVisible(false);
+        AppConfig.backButton.setDisabled(true);
 
         if (buttonStats != null)
         {

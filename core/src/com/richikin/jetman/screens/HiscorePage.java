@@ -9,17 +9,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.core.HighScore;
-import com.richikin.utilslib.core.HighScoreUtils;
+import com.richikin.jetman.core.HighScore;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.IUIPage;
+import com.richikin.jetman.ui.IUIPage;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -143,7 +141,7 @@ public class HiscorePage implements IUIPage, Disposable
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+            spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
         }
     }
 
@@ -250,9 +248,9 @@ public class HiscorePage implements IUIPage, Disposable
             }
         }
 
-        AppSystem.backButton.setVisible(_visible);
-        AppSystem.backButton.setDisabled(!_visible);
-        AppSystem.backButton.setChecked(false);
+        AppConfig.backButton.setVisible(_visible);
+        AppConfig.backButton.setDisabled(!_visible);
+        AppConfig.backButton.setChecked(false);
     }
 
     @Override

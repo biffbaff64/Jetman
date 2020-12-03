@@ -1,9 +1,9 @@
 package com.richikin.jetman.graphics.renderers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
+import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class HUDRenderer implements IGameScreenRenderer
@@ -15,7 +15,7 @@ public class HUDRenderer implements IGameScreenRenderer
     @Override
     public void render(SpriteBatch spriteBatch, OrthoGameCamera hudCamera)
     {
-        if (!AppSystem.shutDownActive)
+        if (!AppConfig.shutDownActive)
         {
             switch (App.appState.peek())
             {
@@ -41,7 +41,7 @@ public class HUDRenderer implements IGameScreenRenderer
                 {
                     if (App.getHud() != null)
                     {
-                        App.getHud().render(hudCamera.camera, (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true)));
+                        App.getHud().render(hudCamera.camera, (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true)));
                     }
                 }
                 break;

@@ -1,7 +1,7 @@
 package com.richikin.jetman.core;
 
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.ui.GameCompletedPanel;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
@@ -29,7 +29,7 @@ public class EndgameManager
             App.appState.set(StateID._STATE_LEVEL_RETRY);
             App.mainGameScreen.retryDelay = StopWatch.start();
 
-            AppSystem.quitToMainMenu = true;
+            AppConfig.quitToMainMenu = true;
 
             returnFlag = true;
         }
@@ -81,7 +81,7 @@ public class EndgameManager
             //
             // Forcing quit to main menu screen.
             // For example, from pause menu...
-            else if (AppSystem.forceQuitToMenu)
+            else if (AppConfig.forceQuitToMenu)
             {
                 App.appState.set(StateID._STATE_GAME_OVER);
                 returnFlag = true;

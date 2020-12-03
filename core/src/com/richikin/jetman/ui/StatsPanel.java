@@ -12,14 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.DefaultPanel;
 
 public class StatsPanel extends DefaultPanel
 {
@@ -86,7 +85,7 @@ public class StatsPanel extends DefaultPanel
         buffer.setBackground(image.getDrawable());
 
         title = Scene2DUtils.createImage("title_small", App.assets.getTextsLoader());
-        title.setPosition(AppSystem.hudOriginX + 350, AppSystem.hudOriginY + (720 - 160));
+        title.setPosition(AppConfig.hudOriginX + 350, AppConfig.hudOriginY + (720 - 160));
 
         populateTable(buffer, skin);
 
@@ -96,7 +95,7 @@ public class StatsPanel extends DefaultPanel
         scrollPane.setFadeScrollBars(false);
         scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
         scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
-        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
+        scrollPane.setPosition(AppConfig.hudOriginX + 200, AppConfig.hudOriginY + 100);
 
         App.stage.addActor(scrollPane);
         App.stage.addActor(title);
@@ -116,7 +115,7 @@ public class StatsPanel extends DefaultPanel
     @Override
     public boolean update()
     {
-        return AppSystem.backButton.isChecked();
+        return AppConfig.backButton.isChecked();
     }
 
     /**

@@ -1,7 +1,7 @@
 
 package com.richikin.utilslib.input.controllers;
 
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public enum ControllerPos
 {

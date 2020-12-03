@@ -17,14 +17,14 @@ public enum Meters
     _NULL_POINTER_EXCEPTION                 (10),   // System Log Counter 6
     _ILLEGAL_STATE_EXCEPTION                (11),   // System Log Counter 7
     _GDX_RUNTIME_EXCEPTION                  (12),   // System Log Counter 8
+    _ENTITY_DATA_EXCEPTION                  (13),   // System Log Counter 11
 
-    _UNKNOWN_EXCEPTION                      (13),   // System Log Counter 9
-    _DUMMY_METER                            (14),   // System Log Counter 10
+    _UNKNOWN_EXCEPTION                      (14),   // System Log Counter 9
+    _DUMMY_METER                            (15),   // System Log Counter 10
 
     //
     // Add any new meters here
     //
-    _ENTITY_DATA_EXCEPTION                  (15),   // System Log Counter 11
 
     _MAX_STATS_METERS                       (16);
 

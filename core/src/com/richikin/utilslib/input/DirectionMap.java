@@ -1,8 +1,8 @@
 
 package com.richikin.utilslib.input;
 
-import com.richikin.utilslib.physics.DirectionValue;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.DirectionValue;
+import com.richikin.jetman.physics.Movement;
 
 public abstract class DirectionMap
 {

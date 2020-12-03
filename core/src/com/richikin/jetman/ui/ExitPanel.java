@@ -1,18 +1,15 @@
 package com.richikin.jetman.ui;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
@@ -87,8 +84,8 @@ public class ExitPanel implements Disposable
 
     public void draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.draw(darkLayer, AppSystem.hudOriginX, AppSystem.hudOriginY);
-        spriteBatch.draw(panel, AppSystem.hudOriginX, AppSystem.hudOriginY);
+        spriteBatch.draw(darkLayer, AppConfig.hudOriginX, AppConfig.hudOriginY);
+        spriteBatch.draw(panel, AppConfig.hudOriginX, AppConfig.hudOriginY);
     }
 
     private void setup()
@@ -100,16 +97,16 @@ public class ExitPanel implements Disposable
             (
                 "button_yes_blue",
                 "button_yes_pressed",
-                (int) AppSystem.hudOriginX + displayPos[_YES][0],
-                (int) AppSystem.hudOriginY + displayPos[_YES][1]
+                (int) AppConfig.hudOriginX + displayPos[_YES][0],
+                (int) AppConfig.hudOriginY + displayPos[_YES][1]
             );
 
         buttonNo = Scene2DUtils.addButton
             (
                 "button_no_red",
                 "button_no_pressed",
-                (int) AppSystem.hudOriginX + displayPos[_NO][0],
-                (int) AppSystem.hudOriginY + displayPos[_NO][1]
+                (int) AppConfig.hudOriginX + displayPos[_NO][0],
+                (int) AppConfig.hudOriginY + displayPos[_NO][1]
             );
 
         buttonYes.setZIndex(1);

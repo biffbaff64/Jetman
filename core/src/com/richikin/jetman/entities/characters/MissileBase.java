@@ -9,14 +9,13 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.graphics.camera.Shake;
+import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.utilslib.logging.Trace;
 
 public class MissileBase extends GdxSprite

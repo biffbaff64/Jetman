@@ -10,10 +10,9 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.camera.OrthoGameCamera;
-import com.richikin.utilslib.graphics.camera.ViewportType;
-import com.richikin.utilslib.graphics.camera.Zoom;
+import com.richikin.jetman.graphics.camera.OrthoGameCamera;
+import com.richikin.jetman.graphics.camera.ViewportType;
+import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec3F;
 
@@ -47,7 +46,7 @@ public class BaseRenderer implements Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.camerasReady = false;
+        AppConfig.camerasReady = false;
 
         // --------------------------------------
         // Camera for parallax scrolling backgrounds
@@ -96,7 +95,7 @@ public class BaseRenderer implements Disposable
         cameraPos     = new SimpleVec3F();
 
         isDrawingStage         = false;
-        AppSystem.camerasReady = true;
+        AppConfig.camerasReady = true;
     }
 
     /**

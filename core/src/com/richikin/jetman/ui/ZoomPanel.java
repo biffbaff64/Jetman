@@ -1,15 +1,13 @@
 
 package com.richikin.jetman.ui;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.graphics.camera.Zoom;
+import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
-import com.richikin.utilslib.ui.DefaultPanel;
-import com.richikin.utilslib.ui.IUserInterfacePanel;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;

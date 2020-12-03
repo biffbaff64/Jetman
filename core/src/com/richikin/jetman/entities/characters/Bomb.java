@@ -11,8 +11,8 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.core.PlayServicesID;
-import com.richikin.utilslib.physics.Movement;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
+import com.richikin.jetman.physics.Movement;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 
 public class Bomb extends Carryable
 {

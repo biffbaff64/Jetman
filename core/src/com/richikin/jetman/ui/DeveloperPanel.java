@@ -12,14 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
+import com.richikin.jetman.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.DefaultPanel;
 
 public class DeveloperPanel extends DefaultPanel
 {
@@ -95,7 +94,7 @@ public class DeveloperPanel extends DefaultPanel
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.gamePaused = true;
+        AppConfig.gamePaused = true;
 
         loadDevMenu();
 
@@ -120,7 +119,7 @@ public class DeveloperPanel extends DefaultPanel
         scrollPane.setFadeScrollBars(false);
         scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
         scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
-        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
+        scrollPane.setPosition(AppConfig.hudOriginX + 200, AppConfig.hudOriginY + 100);
         scrollPane.setScrollbarsOnTop(true);
 
         App.stage.addActor(scrollPane);
@@ -169,7 +168,7 @@ public class DeveloperPanel extends DefaultPanel
     {
         heading = new TextField("DEVELOPER OPTIONS", skin);
         heading.setWidth(180);
-        heading.setPosition(AppSystem.hudOriginX + 610, AppSystem.hudOriginY + 680, Align.center);
+        heading.setPosition(AppConfig.hudOriginX + 610, AppConfig.hudOriginY + 680, Align.center);
         heading.setDisabled(true);
     }
 
@@ -184,25 +183,25 @@ public class DeveloperPanel extends DefaultPanel
 
         int x = 20;
 
-        buttonResetPrefs.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+        buttonResetPrefs.setPosition(AppConfig.hudOriginX + x, AppConfig.hudOriginY + 15);
 
         x += buttonResetPrefs.getWidth() + 20;
 
-        buttonResetHiScores.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+        buttonResetHiScores.setPosition(AppConfig.hudOriginX + x, AppConfig.hudOriginY + 15);
 
         x += buttonResetHiScores.getWidth() + 20;
 
-        buttonResetStats.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+        buttonResetStats.setPosition(AppConfig.hudOriginX + x, AppConfig.hudOriginY + 15);
 
         x += buttonResetStats.getWidth() + 20;
 
-        buttonGLProfiler.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+        buttonGLProfiler.setPosition(AppConfig.hudOriginX + x, AppConfig.hudOriginY + 15);
 
         x += buttonGLProfiler.getWidth() + 20;
 
-        buttonCollisionDump.setPosition(AppSystem.hudOriginX + x, AppSystem.hudOriginY + 15);
+        buttonCollisionDump.setPosition(AppConfig.hudOriginX + x, AppConfig.hudOriginY + 15);
 
-        exitButton.setPosition(AppSystem.hudOriginX + 20, AppSystem.hudOriginY + 620);
+        exitButton.setPosition(AppConfig.hudOriginX + 20, AppConfig.hudOriginY + 620);
         exitButton.setSize(48, 48);
 
         createButtonListeners();
@@ -345,7 +344,7 @@ public class DeveloperPanel extends DefaultPanel
     {
         if (foreground != null)
         {
-            spriteBatch.draw(foreground, AppSystem.hudOriginX, AppSystem.hudOriginY);
+            spriteBatch.draw(foreground, AppConfig.hudOriginX, AppConfig.hudOriginY);
         }
     }
 
@@ -432,7 +431,7 @@ public class DeveloperPanel extends DefaultPanel
         App.settings.resetToDefaults();
 
         App.settings.getPrefs().putBoolean(Settings._SIGN_IN_STATUS, App.googleServices.isSignedIn());
-        App.settings.getPrefs().putBoolean(Settings._ANDROID_ON_DESKTOP, AppSystem.isDesktopApp());
+        App.settings.getPrefs().putBoolean(Settings._ANDROID_ON_DESKTOP, AppConfig.isDesktopApp());
 
         App.settings.getPrefs().flush();
 

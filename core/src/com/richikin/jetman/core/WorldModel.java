@@ -6,8 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.box2d.BodyBuilder;
 import com.richikin.jetman.physics.box2d.Box2DContactListener;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.graphics.LibGfx;
+import com.richikin.jetman.Developer;
 
 public class WorldModel
 {
@@ -22,8 +21,8 @@ public class WorldModel
             (
                 new Vector2
                     (
-                        (Gfx._WORLD_GRAVITY.x * LibGfx._PPM),
-                        (Gfx._WORLD_GRAVITY.y * LibGfx._PPM)
+                        (Gfx._WORLD_GRAVITY.x * Gfx._PPM),
+                        (Gfx._WORLD_GRAVITY.y * Gfx._PPM)
                     ),
                 false
             );
@@ -57,7 +56,7 @@ public class WorldModel
             b2dr.render
                 (
                     box2DWorld,
-                    App.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(LibGfx._PPM, LibGfx._PPM, 0)
+                    App.baseRenderer.spriteGameCamera.camera.combined.cpy().scale(Gfx._PPM, Gfx._PPM, 0)
                 );
         }
     }

@@ -7,8 +7,8 @@ import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.SimpleVec3;
-import com.richikin.utilslib.physics.Direction;
-import com.richikin.utilslib.physics.Speed;
+import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.Speed;
 import com.richikin.utilslib.logging.Trace;
 
 /**

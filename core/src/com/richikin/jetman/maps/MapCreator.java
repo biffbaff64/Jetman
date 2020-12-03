@@ -5,20 +5,19 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.utilslib.entities.components.EntityManagerComponent;
+import com.richikin.jetman.entities.EntityManagerComponent;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.utilslib.physics.Direction;
-import com.richikin.utilslib.physics.Movement;
-import com.richikin.utilslib.physics.Speed;
+import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.Movement;
+import com.richikin.jetman.physics.Speed;
 
 public class MapCreator
 {

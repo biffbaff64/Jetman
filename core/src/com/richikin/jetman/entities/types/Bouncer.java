@@ -3,7 +3,6 @@ package com.richikin.jetman.entities.types;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
@@ -13,10 +12,10 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.physics.Movement;
 
 public class Bouncer extends GdxSprite
 {

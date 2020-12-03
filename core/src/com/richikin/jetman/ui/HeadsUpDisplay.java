@@ -22,18 +22,15 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.input.VirtualJoystick;
-import com.richikin.jetman.screens.OptionsPage;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.Developer;
-import com.richikin.utilslib.core.HighScoreUtils;
-import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.jetman.Developer;
+import com.richikin.jetman.core.HighScoreUtils;
+import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.ProgressBar;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -142,7 +139,7 @@ public class HeadsUpDisplay implements Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppSystem.hudExists = false;
+        AppConfig.hudExists = false;
 
         scorePanel                = App.assets.loadSingleAsset(GameAssets._HUD_PANEL_ASSET, Texture.class);
         GameAssets.hudPanelWidth  = scorePanel.getWidth();
@@ -180,7 +177,7 @@ public class HeadsUpDisplay implements Disposable
 
         hudStateID = StateID._STATE_PANEL_START;
 
-        AppSystem.hudExists = true;
+        AppConfig.hudExists = true;
     }
 
     public void update()
@@ -228,13 +225,13 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.update();
 
-                if (buttonPause.isPressed() || AppSystem.quitToMainMenu)
+                if (buttonPause.isPressed() || AppConfig.quitToMainMenu)
                 {
                     AppConfig.unPause();
                     buttonPause.release();
                     pausePanel.dispose();
 
-                    if (AppSystem.quitToMainMenu)
+                    if (AppConfig.quitToMainMenu)
                     {
                         showHUDControls = false;
                         hudStateID      = StateID._STATE_CLOSING;
@@ -396,7 +393,7 @@ public class HeadsUpDisplay implements Disposable
      */
     private void updateDeveloperItems()
     {
-        if (Developer.isDevMode() && !AppSystem.gamePaused)
+        if (Developer.isDevMode() && !AppConfig.gamePaused)
         {
             // DevOptions button which activates the Dev Settings panel
             if ((buttonDevOptions != null) && buttonDevOptions.isPressed() && !Developer.developerPanelActive)
@@ -412,7 +409,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void render(OrthographicCamera camera, boolean _canDrawControls)
     {
-        if (AppSystem.hudExists)
+        if (AppConfig.hudExists)
         {
             originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
@@ -454,7 +451,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void showControls()
     {
-        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             ActionButton.setVisible(true);
             AttackButton.setVisible(true);
@@ -472,7 +469,7 @@ public class HeadsUpDisplay implements Disposable
 
     public void hideControls()
     {
-        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             ActionButton.setVisible(false);
             AttackButton.setVisible(false);
@@ -607,7 +604,7 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawControls(OrthographicCamera camera)
     {
-        if (!AppSystem.gamePaused)
+        if (!AppConfig.gamePaused)
         {
             if (showHUDControls)
             {
@@ -647,7 +644,7 @@ public class HeadsUpDisplay implements Disposable
 
     private void drawMessages()
     {
-        if (!AppSystem.gamePaused)
+        if (!AppConfig.gamePaused)
         {
             if (messageManager.isEnabled())
             {
@@ -697,9 +694,9 @@ public class HeadsUpDisplay implements Disposable
         buttonAction   = new Switch();
         buttonAttack   = new Switch();
 
-        if (AppSystem.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
-            int xPos = AppSystem.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
+            int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
             AttackButton = Scene2DUtils.addButton
                 (
@@ -735,7 +732,7 @@ public class HeadsUpDisplay implements Disposable
             hideControls();
         }
 
-        AppSystem.gameButtonsReady = true;
+        AppConfig.gameButtonsReady = true;
     }
 
     private void addButtonListeners()

@@ -11,15 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.text.FontUtils;
+import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.ui.DefaultPanel;
-import com.richikin.utilslib.ui.IUserInterfacePanel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +54,7 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
         scrollPane.setFadeScrollBars(false);
         scrollPane.setWidth(Gfx._HUD_WIDTH - 400);
         scrollPane.setHeight((float) Gfx._HUD_HEIGHT - 200);
-        scrollPane.setPosition(AppSystem.hudOriginX + 200, AppSystem.hudOriginY + 100);
+        scrollPane.setPosition(AppConfig.hudOriginX + 200, AppConfig.hudOriginY + 100);
 
         App.stage.addActor(scrollPane);
         App.stage.addActor(title);
@@ -65,7 +63,7 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
     @Override
     public boolean update()
     {
-        return AppSystem.backButton.isChecked();
+        return AppConfig.backButton.isChecked();
     }
 
     @Override
@@ -134,6 +132,6 @@ public class PrivacyPolicyPanel extends DefaultPanel implements IUserInterfacePa
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
 
         title = new Image(drawable);
-        title.setPosition(AppSystem.hudOriginX + 351, AppSystem.hudOriginY + (720 - 159));
+        title.setPosition(AppConfig.hudOriginX + 351, AppConfig.hudOriginY + (720 - 159));
     }
 }

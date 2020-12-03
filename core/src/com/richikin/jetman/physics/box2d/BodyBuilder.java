@@ -3,7 +3,7 @@ package com.richikin.jetman.physics.box2d;
 import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
-import com.richikin.utilslib.graphics.LibGfx;
+import com.richikin.jetman.graphics.Gfx;
 
 public class BodyBuilder
 {
@@ -27,7 +27,7 @@ public class BodyBuilder
     public Body createDynamicCircle(GameEntity _entity, float _density, float _friction, float _restitution)
     {
         CircleShape shape = new CircleShape();
-        shape.setRadius((_entity.frameWidth / 2) / LibGfx._PPM);
+        shape.setRadius((_entity.frameWidth / 2) / Gfx._PPM);
 
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
@@ -53,8 +53,8 @@ public class BodyBuilder
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
             (
-                ((_entity.frameWidth / 2) / LibGfx._PPM),
-                ((_entity.frameHeight / 2) / LibGfx._PPM)
+                ((_entity.frameWidth / 2) / Gfx._PPM),
+                ((_entity.frameHeight / 2) / Gfx._PPM)
             );
 
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.DynamicBody, _entity);
@@ -84,8 +84,8 @@ public class BodyBuilder
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
             (
-                ((_entity.frameWidth / 2) / LibGfx._PPM),
-                ((_entity.frameHeight / 2) / LibGfx._PPM)
+                ((_entity.frameWidth / 2) / Gfx._PPM),
+                ((_entity.frameHeight / 2) / Gfx._PPM)
             );
 
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.KinematicBody, _entity);
@@ -109,8 +109,8 @@ public class BodyBuilder
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
             (
-                ((_entity.frameWidth / 2) / LibGfx._PPM),
-                ((_entity.frameHeight / 2) / LibGfx._PPM)
+                ((_entity.frameWidth / 2) / Gfx._PPM),
+                ((_entity.frameHeight / 2) / Gfx._PPM)
             );
 
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
@@ -138,8 +138,8 @@ public class BodyBuilder
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
             (
-                ((_entity.frameWidth / 2) / LibGfx._PPM),
-                ((_entity.frameHeight / 2) / LibGfx._PPM)
+                ((_entity.frameWidth / 2) / Gfx._PPM),
+                ((_entity.frameHeight / 2) / Gfx._PPM)
             );
 
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
@@ -165,8 +165,8 @@ public class BodyBuilder
 
         bodyDef.position.set
             (
-                (_entity.position.x + (_entity.frameWidth / 2)) / LibGfx._PPM,
-                (_entity.position.y + (_entity.frameHeight / 2)) / LibGfx._PPM
+                (_entity.position.x + (_entity.frameWidth / 2)) / Gfx._PPM,
+                (_entity.position.y + (_entity.frameHeight / 2)) / Gfx._PPM
             );
 
         return bodyDef;

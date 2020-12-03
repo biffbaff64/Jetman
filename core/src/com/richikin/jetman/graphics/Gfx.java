@@ -1,9 +1,9 @@
 package com.richikin.jetman.graphics;
 
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.graphics.LibGfx;
+import com.badlogic.gdx.math.Vector2;
+import com.richikin.jetman.config.AppConfig;
 
-public class Gfx extends LibGfx
+public class Gfx
 {
     //
     // Entity collision types
@@ -23,6 +23,30 @@ public class Gfx extends LibGfx
     public static final short _UNDEFINED_13     = 0x1000;   // - 13 (4096  )
     public static final short _UNDEFINED_14     = 0x2000;   // - 14 (8192  )
     public static final short _UNDEFINED_15     = 0x4000;   // - 15 (16384 )
+
+    //
+    // Pixels Per Meter in the Box2D World
+    // In this instance, a meter is the length of a single TiledMap tile.
+    public static float _PPM       = 32.0f;
+    public static float _PPM_RATIO = (1.0f / _PPM);
+
+    //
+    // Maximum Z-sorting depth for sprites
+    public static final int _MAXIMUM_Z_DEPTH = 20;
+
+    //
+    // The desired Frame Rate
+    public static final float _FPS     = 60f;
+    public static final float _MIN_FPS = 30f;
+
+    //
+    // Values for Box2D.step()
+    public static final float   _STEP_TIME           = (1.0f / 60f);
+    public static final int     _VELOCITY_ITERATIONS = 8;
+    public static final int     _POSITION_ITERATIONS = 3;
+    public static final Vector2 _WORLD_GRAVITY       = new Vector2(0, -9.8f);
+    public static final int     _FALL_GRAVITY        = 10;
+    public static final int     _TERMINAL_VELOCITY   = (int) (_PPM * _FALL_GRAVITY);
 
     public static final int _HUD_WIDTH      = 1280;
     public static final int _HUD_HEIGHT     = 720;
@@ -44,9 +68,36 @@ public class Gfx extends LibGfx
 
     public static final float _PPM_SETTING = 32.0f;
 
+    //
+    // Initialised in MapData
+    public static int mapWidth;
+    public static int mapHeight;
+    public static int tileWidth;
+    public static int tileHeight;
+
+    public static int getTileWidth()
+    {
+        return tileWidth;
+    }
+
+    public static int getTileHeight()
+    {
+        return tileHeight;
+    }
+
+    public static int getMapWidth()
+    {
+        return mapWidth;
+    }
+
+    public static int getMapHeight()
+    {
+        return mapHeight;
+    }
+
     public static void setPPM(final float newPPM)
     {
-        if (!AppSystem.camerasReady)
+        if (!AppConfig.camerasReady)
         {
             if (newPPM != _PPM)
             {

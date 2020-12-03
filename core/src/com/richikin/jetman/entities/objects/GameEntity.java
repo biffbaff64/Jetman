@@ -8,7 +8,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.utilslib.entities.components.EntityComponent;
+import com.richikin.jetman.entities.EntityComponent;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class GameEntity implements EntityComponent, Disposable

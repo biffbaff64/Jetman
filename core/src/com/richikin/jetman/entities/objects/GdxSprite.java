@@ -8,17 +8,16 @@ import com.badlogic.gdx.math.Vector3;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
-import com.richikin.utilslib.entities.components.SpriteComponent;
+import com.richikin.jetman.entities.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABB;
-import com.richikin.utilslib.graphics.LibGfx;
 import com.richikin.utilslib.maths.*;
-import com.richikin.utilslib.physics.aabb.ICollisionListener;
+import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.utilslib.physics.Direction;
-import com.richikin.utilslib.physics.Movement;
-import com.richikin.utilslib.physics.Speed;
+import com.richikin.jetman.physics.Direction;
+import com.richikin.jetman.physics.Movement;
+import com.richikin.jetman.physics.Speed;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {
@@ -164,8 +163,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         {
             sprite.setPosition
                 (
-                    (b2dBody.getPosition().x * LibGfx._PPM) - (frameWidth >> 1),
-                    (b2dBody.getPosition().y * LibGfx._PPM) - (frameHeight >> 1)
+                    (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth >> 1),
+                    (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight >> 1)
                 );
         }
     }

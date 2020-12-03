@@ -13,10 +13,9 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.utilslib.AppSystem;
-import com.richikin.utilslib.ui.DefaultPanel;
 
 public class PausePanel extends DefaultPanel
 {
@@ -58,8 +57,8 @@ public class PausePanel extends DefaultPanel
             (
                 "toggle_on",
                 "toggle_off",
-                (int) AppSystem.hudOriginX + displayPos[_MUSIC][0],
-                (int) AppSystem.hudOriginY + displayPos[_MUSIC][1],
+                (int) AppConfig.hudOriginX + displayPos[_MUSIC][0],
+                (int) AppConfig.hudOriginY + displayPos[_MUSIC][1],
                 Color.WHITE,
                 skin
             );
@@ -68,8 +67,8 @@ public class PausePanel extends DefaultPanel
             (
                 "toggle_on",
                 "toggle_off",
-                (int) AppSystem.hudOriginX + displayPos[_FX][0],
-                (int) AppSystem.hudOriginY + displayPos[_FX][1],
+                (int) AppConfig.hudOriginX + displayPos[_FX][0],
+                (int) AppConfig.hudOriginY + displayPos[_FX][1],
                 Color.WHITE,
                 skin
             );
@@ -78,8 +77,8 @@ public class PausePanel extends DefaultPanel
             (
                 "toggle_on",
                 "toggle_off",
-                (int) AppSystem.hudOriginX + displayPos[_VIBRATE][0],
-                (int) AppSystem.hudOriginY + displayPos[_VIBRATE][1],
+                (int) AppConfig.hudOriginX + displayPos[_VIBRATE][0],
+                (int) AppConfig.hudOriginY + displayPos[_VIBRATE][1],
                 Color.WHITE,
                 skin
             );
@@ -88,8 +87,8 @@ public class PausePanel extends DefaultPanel
             (
                 "toggle_on",
                 "toggle_off",
-                (int) AppSystem.hudOriginX + displayPos[_HINTS][0],
-                (int) AppSystem.hudOriginY + displayPos[_HINTS][1],
+                (int) AppConfig.hudOriginX + displayPos[_HINTS][0],
+                (int) AppConfig.hudOriginY + displayPos[_HINTS][1],
                 Color.WHITE,
                 skin
             );
@@ -98,8 +97,8 @@ public class PausePanel extends DefaultPanel
             (
                 "button_quit_to_title",
                 "button_quit_to_title_pressed",
-                (int) AppSystem.hudOriginX + displayPos[_EXIT][0],
-                (int) AppSystem.hudOriginY + displayPos[_EXIT][1]
+                (int) AppConfig.hudOriginX + displayPos[_EXIT][0],
+                (int) AppConfig.hudOriginY + displayPos[_EXIT][1]
             );
 
         buttonMusicVolume.setChecked(GameAudio.inst().getMusicVolume() != 0);
@@ -145,7 +144,7 @@ public class PausePanel extends DefaultPanel
             setQuitToTitle();
 
             App.appState.set(StateID._STATE_LEVEL_RETRY);
-            AppSystem.quitToMainMenu = true;
+            AppConfig.quitToMainMenu = true;
         }
 
         return false;
