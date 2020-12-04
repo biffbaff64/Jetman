@@ -22,6 +22,10 @@ import com.richikin.jetman.physics.Speed;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {
+    // TODO: 04/12/2020 - Move these to a more suitable class
+    public static final float DEFAULT_FRICTION    = 0.2f;
+    public static final float DEFAULT_RESTITUTION = 0.1f;
+
     // -----------------------------------------------
     // properties etc
     //
@@ -62,15 +66,13 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public Speed     speed;
     public int       strength;
 
-    protected boolean preUpdateCommonDone;
-
     // --------------------------------------------------------------
     // Code
     // --------------------------------------------------------------
 
-    public GdxSprite(GraphicID _gid)
+    public GdxSprite(GraphicID gid)
     {
-        super(_gid);
+        super(gid);
     }
 
     /**
@@ -106,7 +108,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         isRotating          = false;
         isFlippedX          = false;
         isFlippedY          = false;
-        preUpdateCommonDone = false;
         isMainCharacter     = false;
 
         spriteNumber = descriptor._INDEX;
@@ -143,7 +144,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         sprite.setOriginCenter();
 
         position  = new SimpleVec2((int) sprite.getX(), (int) sprite.getY());
-        zPosition = (int) vec3F.z;
+        zPosition = vec3F.z;
 
         initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
     }
@@ -153,7 +154,13 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     {
         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
         {
-            b2dBody = App.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
+            b2dBody = App.worldModel.bodyBuilder.createDynamicBox
+                (
+                    this,
+                    1.0f,
+                    DEFAULT_FRICTION,
+                    DEFAULT_RESTITUTION
+                );
         }
     }
 
@@ -192,8 +199,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
             updateCollisionCheck();
         }
-
-        preUpdateCommonDone = true;
     }
 
     /**
@@ -210,6 +215,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     /**
      * Common updates needed for all entities
      */
+    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
+    @SuppressWarnings("FeatureEnvy")
     @Override
     public void updateCommon()
     {
@@ -249,26 +256,26 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     @Override
-    public void setAnimation(SpriteDescriptor _entityDescriptor)
+    public void setAnimation(SpriteDescriptor entityDescriptor)
     {
-        setAnimation(_entityDescriptor, _entityDescriptor._ANIM_RATE);
+        setAnimation(entityDescriptor, entityDescriptor._ANIM_RATE);
     }
 
     @Override
-    public void setAnimation(SpriteDescriptor _descriptor, float _frameRate)
+    public void setAnimation(SpriteDescriptor descriptor, float frameRate)
     {
-        animFrames = new TextureRegion[_descriptor._FRAMES];
+        animFrames = new TextureRegion[descriptor._FRAMES];
 
-        TextureRegion asset = App.assets.getAnimationRegion(_descriptor._ASSET);
+        TextureRegion asset = App.assets.getAnimationRegion(descriptor._ASSET);
 
-        if (_descriptor._SIZE != null)
+        if (descriptor._SIZE != null)
         {
-            frameWidth  = _descriptor._SIZE.x;
-            frameHeight = _descriptor._SIZE.y;
+            frameWidth  = descriptor._SIZE.x;
+            frameHeight = descriptor._SIZE.y;
         }
         else
         {
-            frameWidth  = asset.getRegionWidth() / _descriptor._FRAMES;
+            frameWidth  = asset.getRegionWidth() / descriptor._FRAMES;
             frameHeight = asset.getRegionHeight();
         }
 
@@ -280,15 +287,15 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         {
             for (final TextureRegion textureRegion : tmpFrame)
             {
-                if (i < _descriptor._FRAMES)
+                if (i < descriptor._FRAMES)
                 {
                     animFrames[i++] = textureRegion;
                 }
             }
         }
 
-        animation = new Animation<>(_frameRate / 6f, animFrames);
-        animation.setPlayMode(_descriptor._PLAYMODE);
+        animation = new Animation<>(frameRate / 6f, animFrames);
+        animation.setPlayMode(descriptor._PLAYMODE);
 
         sprite.setRegion(animFrames[0]);
     }
@@ -313,6 +320,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
      * Wrap an entities position in the map if it
      * has gone beyond either if the maps borders.
      */
+    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
+    @SuppressWarnings("FeatureEnvy")
     @Override
     public void wrap()
     {
@@ -353,6 +362,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     /**
      * Check for any collisions.
      */
+    // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
+    @SuppressWarnings("FeatureEnvy")
     @Override
     public void updateCollisionCheck()
     {
@@ -388,19 +399,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
                     collisionObject.setInvisibility(1000);
                 }
-
-//                if (collisionObject.action == ActionStates._COLLIDING)
-//                {
-//                    if (App.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
-//                    {
-//                        if (collisionCallback != null)
-//                        {
-//                            collisionCallback.onPositiveCollision(collisionObject.contactEntity.gid);
-//                        }
-//                    }
-//
-//                    collisionObject.setInvisibility(1000);
-//                }
 
                 //
                 // collisionObject.action might have changed at this point.
