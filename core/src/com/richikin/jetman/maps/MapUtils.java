@@ -33,7 +33,6 @@ public class MapUtils
 
     public void update()
     {
-
     }
 
     public void positionAt(int x, int y)
@@ -45,7 +44,7 @@ public class MapUtils
             App.mapData.mapPosition.setX
                 (
                     (int) Math.max(App.mapData.minScrollX,
-                        (float) ((x + (App.getPlayer().frameWidth / 2)) - (Gfx._VIEW_WIDTH / 2)))
+                    (float) ((x + (App.getPlayer().frameWidth / 2)) - (Gfx._VIEW_WIDTH / 2)))
                 );
 
             App.mapData.mapPosition.setX(Math.min(App.mapData.mapPosition.getX(), App.mapData.maxScrollX));
@@ -53,17 +52,17 @@ public class MapUtils
             App.mapData.mapPosition.setY
                 (
                     (int) Math.max(App.mapData.minScrollY,
-                        (float) ((y + (App.getPlayer().frameHeight / 2)) - (Gfx._VIEW_HEIGHT / 2)))
+                    (float) ((y + (App.getPlayer().frameHeight / 2)) - (Gfx._VIEW_HEIGHT / 2)))
                 );
 
             App.mapData.mapPosition.setY(Math.min(App.mapData.mapPosition.getY(), App.mapData.maxScrollY));
+
+            App.parallaxManager.scroll();
         }
         catch (NullPointerException npe)
         {
             App.mapData.mapPosition.set(0, 0);
         }
-
-        App.parallaxManager.scroll();
     }
 
     public Array<SpriteDescriptor> findMultiTiles(final GraphicID targetGID)

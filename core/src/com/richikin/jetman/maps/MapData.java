@@ -192,7 +192,7 @@ public class MapData
         Gfx.mapWidth   = (currentMap.getProperties().get("width", Integer.class) * Gfx.tileWidth);
         Gfx.mapHeight  = (currentMap.getProperties().get("height", Integer.class) * Gfx.tileHeight);
 
-        maxScrollX = Gfx.mapWidth - Gfx._VIEW_WIDTH;
+        maxScrollX = Gfx.mapWidth - Gfx._VIEW_HALF_WIDTH;
         maxScrollY = Gfx.mapHeight - Gfx._VIEW_HEIGHT;
         minScrollX = 0;
         minScrollY = 0;

@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameProgress;
+import com.richikin.jetman.core.PointsManager;
+import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
@@ -155,8 +158,24 @@ public class DefenderBullet extends GdxSprite
             }
             break;
 
+            case _KILLED:
             case _HURT:
             {
+                ExplosionManager explosionManager = new ExplosionManager();
+                explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this);
+
+                setAction(ActionStates._EXPLODING);
+            }
+            break;
+
+            case _EXPLODING:
+            {
+            }
+            break;
+
+            case _DYING:
+            {
+                setAction(ActionStates._DEAD);
             }
             break;
 

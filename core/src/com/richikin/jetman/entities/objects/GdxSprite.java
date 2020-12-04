@@ -70,6 +70,11 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     // Code
     // --------------------------------------------------------------
 
+    public GdxSprite()
+    {
+        super();
+    }
+
     public GdxSprite(GraphicID gid)
     {
         super(gid);

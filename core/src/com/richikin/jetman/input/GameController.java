@@ -16,7 +16,6 @@ import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.input.controllers.DefaultControllerMap;
 import com.richikin.utilslib.logging.Trace;
 
-@SuppressWarnings("WeakerAccess")
 public class GameController implements ControllerListener
 {
     public Controller controller;
