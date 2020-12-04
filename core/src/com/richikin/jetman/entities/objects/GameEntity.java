@@ -27,6 +27,7 @@ public class GameEntity implements EntityComponent, Disposable
 
     public GameEntity()
     {
+        this.gid = GraphicID.G_NO_ID;
     }
 
     public GameEntity(GraphicID _gid)

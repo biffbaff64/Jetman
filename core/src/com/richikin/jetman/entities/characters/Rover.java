@@ -49,8 +49,6 @@ public class Rover extends GdxSprite
 
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
 
-        addPhysicsBody();
-
         setup();
     }
 

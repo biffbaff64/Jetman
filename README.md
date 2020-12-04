@@ -3,9 +3,12 @@
 TODO Items
 ----------
 
-    - (More apparent on device). Ufos are being created in clusters at the screen left edge.
-       The should be no more than 3 at any one time.
-    -
+    - Use GameButton/Switch instead of Scene2D button classes? If not, should GameButton/AnimatedButton
+        be removed?
+    - Implement keyboard controls for desktop version
+    - Implement external controller for desktop version
+    - Implement External controller for android version
+    -     
 
     Dispose Instances checklist
     ---------------------------

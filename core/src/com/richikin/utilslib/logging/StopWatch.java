@@ -3,8 +3,7 @@ package com.richikin.utilslib.logging;
 
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("WeakerAccess")
-public class StopWatch
+public final class StopWatch
 {
     private long starts;
 

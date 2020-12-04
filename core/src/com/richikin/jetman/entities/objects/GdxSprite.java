@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.jetman.entities.SpriteComponent;
@@ -63,10 +64,9 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
     protected boolean preUpdateCommonDone;
 
-    public GdxSprite()
-    {
-        super();
-    }
+    // --------------------------------------------------------------
+    // Code
+    // --------------------------------------------------------------
 
     public GdxSprite(GraphicID _gid)
     {
@@ -111,6 +111,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
 
         spriteNumber = descriptor._INDEX;
         isAnimating  = (descriptor._FRAMES > 1);
+
         setAction(ActionStates._NO_ACTION);
 
         if (descriptor._ASSET != null)
@@ -150,7 +151,10 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void addPhysicsBody()
     {
-//        b2dBody = App.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
+        if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
+        {
+            b2dBody = App.worldModel.bodyBuilder.createDynamicBox(this, 1.0f, 0.2f, 0.1f);
+        }
     }
 
     /**
@@ -220,18 +224,10 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         // A sprite can be looking left but moving right etc...
         // (This does, of course, rely on all animations
         // facing RIGHT by default)
-        if (isFlippedX)
-        {
-            lookingAt.setX(Movement._DIRECTION_LEFT);
-        }
-        else
-        {
-            lookingAt.setX(Movement._DIRECTION_RIGHT);
-        }
+        lookingAt.setX(isFlippedX ? Movement._DIRECTION_LEFT : Movement._DIRECTION_RIGHT);
 
         // By default, sprites are always looking DOWN
-        if ((lookingAt.getY() != Movement._DIRECTION_DOWN)
-            && (lookingAt.getY() != Movement._DIRECTION_UP))
+        if (lookingAt.getY() == Movement._DIRECTION_STILL)
         {
             lookingAt.setY(Movement._DIRECTION_DOWN);
         }
