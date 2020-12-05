@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.input.DirectionMap;
@@ -75,9 +76,17 @@ public class Keyboard extends InputAdapter
 
         if (AppConfig.isDesktopApp())
         {
-            if (AppConfig.gameScreenActive())
+            if (App.settings.isEnabled(Settings._SCROLL_DEMO))
             {
-                returnFlag = maingameKeyDown(keycode);
+                App.getHud().buttonRight.press();
+                returnFlag = true;
+            }
+            else
+            {
+                if (AppConfig.gameScreenActive())
+                {
+                    returnFlag = maingameKeyDown(keycode);
+                }
             }
         }
 

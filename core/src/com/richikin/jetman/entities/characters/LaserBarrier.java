@@ -39,7 +39,7 @@ public class LaserBarrier extends GdxSprite
             Color.GREEN,
             Color.CYAN,
             Color.MAROON,
-            };
+        };
 
     private int       colourIndex;
     private int       onTimer;
@@ -143,6 +143,15 @@ public class LaserBarrier extends GdxSprite
     public void draw(SpriteBatch spriteBatch)
     {
         super.draw(spriteBatch);
+    }
+
+    @Override
+    public void updateCollisionBox()
+    {
+        collisionObject.rectangle.x      = sprite.getX();
+        collisionObject.rectangle.y      = sprite.getY() + 1;
+        collisionObject.rectangle.width  = frameWidth;
+        collisionObject.rectangle.height = frameHeight - 1;
     }
 
     public void explode()

@@ -112,6 +112,8 @@ public class UfoWeapon extends GdxSprite
                 explosionManager.createExplosion(GraphicID.G_EXPLOSION12, this);
                 setAction(ActionStates._EXPLODING);
                 setAction(ActionStates._DEAD);
+                bodyCategory = Gfx.CAT_NOTHING;
+                collidesWith = Gfx.CAT_NOTHING;
             }
             break;
 

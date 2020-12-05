@@ -68,7 +68,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="12" name="object tiles" visible="0">
+ <objectgroup id="12" name="object tiles">
   <object id="25" name="Rover" gid="17" x="10592" y="800" width="32" height="32"/>
   <object id="38" name="Missile Base" gid="19" x="15808" y="800" width="32" height="32"/>
   <object id="39" name="Teleporter" gid="2" x="4512" y="800" width="32" height="32"/>
@@ -80,29 +80,14 @@
   <object id="83" name="Laser Barrier" gid="12" x="5216" y="800" width="32" height="32"/>
   <object id="84" name="Laser Barrier" gid="12" x="7712" y="800" width="32" height="32"/>
  </objectgroup>
- <objectgroup color="#ffaa00" id="5" name="collision" visible="0">
-  <object id="1" name="Ground" x="6016" y="800" width="2560" height="96"/>
-  <object id="59" name="Ground" x="0" y="800" width="4384" height="96"/>
+ <objectgroup color="#ffaa00" id="5" name="collision">
+  <object id="1" name="Ground" x="6016" y="800" width="5728" height="96"/>
+  <object id="59" name="Ground" x="0" y="800" width="5824" height="96"/>
   <object id="60" name="Ground" x="5824" y="822.83" width="192" height="73.125"/>
   <object id="61" name="Crater" x="5824" y="800" width="192" height="32"/>
   <object id="63" name="Crater" x="11744" y="800" width="192" height="32"/>
   <object id="64" name="Ground" x="11744" y="832" width="192" height="64"/>
-  <object id="65" name="Ground" x="16224" y="800" width="3008" height="96"/>
-  <object id="66" name="Ceiling" x="0" y="0" width="19232" height="160"/>
-  <object id="67" name="Ground" x="4384" y="832" width="384" height="64"/>
-  <object id="68" name="Ground" x="4768" y="800" width="1056" height="95.955"/>
-  <object id="69" name="Bridge" x="4384" y="800" width="384" height="32"/>
-  <object id="70" name="Bridge" x="8576" y="800" width="512" height="32"/>
-  <object id="71" name="Bridge" x="10464" y="800" width="512" height="32"/>
-  <object id="72" name="Bridge" x="13280" y="800" width="448" height="32"/>
-  <object id="73" name="Bridge" x="15520" y="800" width="704" height="32"/>
-  <object id="74" name="Ground" x="9088" y="800" width="1376" height="96"/>
-  <object id="75" name="Ground" x="10976" y="800" width="768" height="96"/>
-  <object id="76" name="Ground" x="11936" y="800" width="1344" height="96"/>
-  <object id="77" name="Ground" x="13728" y="800" width="1792" height="96"/>
-  <object id="78" name="Ground" x="15520" y="832" width="704" height="64"/>
-  <object id="79" name="Ground" x="13280" y="832" width="448" height="64"/>
-  <object id="80" name="Ground" x="10464" y="832" width="512" height="64"/>
-  <object id="81" name="Ground" x="8576" y="832" width="512" height="64"/>
+  <object id="66" name="Ceiling" x="0" y="0" width="19200" height="160"/>
+  <object id="76" name="Ground" x="11936" y="800" width="7264" height="96"/>
  </objectgroup>
 </map>

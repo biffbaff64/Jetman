@@ -139,11 +139,15 @@ public class Tracker extends GdxSprite
                 }
 
                 setAction(ActionStates._EXPLODING);
+                bodyCategory = Gfx.CAT_NOTHING;
+                collidesWith = Gfx.CAT_NOTHING;
             }
             break;
 
             case _EXPLODING:
             {
+                //
+                // Do nothing while waiting for the explosion to finish
             }
             break;
 

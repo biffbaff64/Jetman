@@ -81,6 +81,8 @@ public class StairClimber extends GdxSprite
                 }
 
                 setAction(ActionStates._EXPLODING);
+                bodyCategory = Gfx.CAT_NOTHING;
+                collidesWith = Gfx.CAT_NOTHING;
             }
             break;
 

@@ -8,6 +8,7 @@ import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
@@ -59,6 +60,8 @@ public class TeleportThief extends GdxSprite
         {
             direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
         }
+
+        addCollisionListener(new GenericCollisionListener(this));
 
         collectTimer = StopWatch.start();
         stopWatch = StopWatch.start();
@@ -229,6 +232,8 @@ public class TeleportThief extends GdxSprite
                 }
 
                 setAction(ActionStates._EXPLODING);
+                bodyCategory = Gfx.CAT_NOTHING;
+                collidesWith = Gfx.CAT_NOTHING;
             }
             break;
 
