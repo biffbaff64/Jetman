@@ -8,6 +8,7 @@ import com.richikin.jetman.entities.types.StairClimber;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.GraphicIndex;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class AlienManager extends GenericEntityManager
@@ -36,10 +37,14 @@ public class AlienManager extends GenericEntityManager
     @Override
     public void init()
     {
+        Trace.__FILE_FUNC();
+
         for (GraphicIndex item : aliens)
         {
             item.value = 0;
         }
+
+        update();
     }
 
     @Override
@@ -197,11 +202,12 @@ public class AlienManager extends GenericEntityManager
     {
         SimpleVec2 initPos = new SimpleVec2();
 
+        initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
+
         switch (graphicID)
         {
             case G_3BALLS_UFO:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(6, 11);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -213,7 +219,6 @@ public class AlienManager extends GenericEntityManager
             case G_TOPSPIN:
             case G_3LEGS_ALIEN:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(10, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -225,7 +230,6 @@ public class AlienManager extends GenericEntityManager
             case G_BLOB:
             case G_SPINNING_BALL:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(5, 12);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -236,7 +240,6 @@ public class AlienManager extends GenericEntityManager
 
             case G_DOG:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(6, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -247,7 +250,6 @@ public class AlienManager extends GenericEntityManager
 
             case G_TWINKLES:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -258,7 +260,6 @@ public class AlienManager extends GenericEntityManager
 
             case G_ASTEROID:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = ((Gfx._VIEW_HEIGHT / Gfx.getTileHeight()) / 2) + MathUtils.random(4);
 
                 initPos.x += ((MathUtils.random(100) < 50) ?
@@ -270,7 +271,6 @@ public class AlienManager extends GenericEntityManager
 
             case G_GREEN_BLOCK:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(4, 16);
 
                 initPos.x += MathUtils.random(Gfx._GAME_SCENE_WIDTH);
@@ -282,7 +282,6 @@ public class AlienManager extends GenericEntityManager
             case G_ALIEN_WHEEL:
             case G_STAR_SPINNER:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = 3;
 
                 initPos.x -= (Gfx._VIEW_WIDTH / Gfx.getTileWidth());
@@ -292,7 +291,6 @@ public class AlienManager extends GenericEntityManager
 
             case G_STAIR_CLIMBER:
             {
-                initPos.x = (int) (App.getPlayer().sprite.getX() / Gfx.getTileWidth());
                 initPos.y = MathUtils.random(3, 5);
 
                 initPos.x += (int) ((MathUtils.random(100) < 50) ?
@@ -301,7 +299,10 @@ public class AlienManager extends GenericEntityManager
             break;
 
             default:
-                break;
+            {
+                Trace.__FILE_FUNC("WARNING: Unknown Alien Entity type: " + graphicID);
+            }
+            break;
         }
 
         return initPos;

@@ -330,15 +330,21 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void wrap()
     {
-        if ((direction.getX() == Movement._DIRECTION_LEFT) && ((sprite.getX() + frameWidth) < 0))
+        float left = App.mapData.entityWindow.x;
+        float right = (App.mapData.entityWindow.x + App.mapData.entityWindow.width);
+        float width = App.mapData.entityWindow.width;
+
+        if ((direction.getX() == Movement._DIRECTION_LEFT)
+            && ((sprite.getX() + frameWidth) < left))
         {
-            sprite.translateX(Gfx.visibleMapWidth() * Movement._DIRECTION_RIGHT);
+            sprite.translateX(width * Movement._DIRECTION_RIGHT);
         }
         else
         {
-            if ((direction.getX() == Movement._DIRECTION_RIGHT) && (sprite.getX() > Gfx.getMapWidth()))
+            if ((direction.getX() == Movement._DIRECTION_RIGHT)
+                && (sprite.getX() > right))
             {
-                sprite.translateX(Gfx.visibleMapWidth() * Movement._DIRECTION_LEFT);
+                sprite.translateX(width * Movement._DIRECTION_LEFT);
             }
         }
     }

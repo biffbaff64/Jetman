@@ -21,7 +21,6 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
-import com.richikin.jetman.input.InputUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.core.HighScoreUtils;
@@ -824,21 +823,29 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "MAP : " + App.mapData.mapPosition.toString(),
+                        "PLYR : x: " + App.getPlayer().sprite.getX() + ", y: " + App.getPlayer().sprite.getY(),
                         originX + 20,
                         originY + 570
                     );
 
-                if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
-                {
-                    smallFont.draw
-                        (
-                            App.spriteBatch,
-                            "JOY : " + InputUtils.getJoystickAngle(),
-                            originX + 20,
-                            originY + 540
-                        );
-                }
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "MAP : " + App.mapData.mapPosition.toString(),
+                        originX + 20,
+                        originY + 540
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "EVBOX : " + App.mapData.entityWindow.x
+                        + " ====>> "
+                        + (App.mapData.entityWindow.x + App.mapData.entityWindow.width)
+                        ,
+                        originX + 20,
+                        originY + 510
+                    );
             }
         }
     }

@@ -31,7 +31,7 @@ public class MapData
             "extra game tiles",
             "object tiles",
             "collision",
-        };
+            };
 
     public final LayerImage[] backgroundLayers =
         {
@@ -40,7 +40,7 @@ public class MapData
             new LayerImage("data/stars_background.png", 0.0f, 0.0f),
             new LayerImage("data/dark_mountains.png", 1.2f, 0.01f),
             new LayerImage("data/light_mountains.png", 2.4f, 0.015f),
-        };
+            };
 
     //
     // NOTE: Not made final because _horizointalSpeed fields
@@ -49,7 +49,7 @@ public class MapData
         {
             new LayerImage("data/foreground.png", 0.0f, 0.0f),
             new LayerImage("data/foreground_near.png", 0.0f, 0.0f),
-        };
+            };
 
     public OrthogonalTiledMapRenderer mapRenderer;
     public TmxMapLoader               tmxMapLoader;
@@ -63,13 +63,12 @@ public class MapData
 
     // Current bottom left position of the screen
     // window (0, 0) into the game currentMap
-    public SimpleVec2  mapPosition;
-    public SimpleVec2  previousMapPosition;
-    public SimpleVec2  checkPoint;
-    public Rectangle   viewportBox;
-    public Rectangle   innerViewportBox;
-    public Rectangle   extendedViewportBox;
-    public Rectangle   mapBox;
+    public SimpleVec2 mapPosition;
+    public SimpleVec2 previousMapPosition;
+    public SimpleVec2 checkPoint;
+    public Rectangle  viewportBox;
+    public Rectangle  entityWindow;
+    public Rectangle  mapBox;
 
     public TiledMapTileLayer gameTilesLayer;
     public TiledMapTileLayer extraGameTilesLayer;
@@ -91,8 +90,7 @@ public class MapData
         checkPoint          = new SimpleVec2();
         tmxMapLoader        = new TmxMapLoader();
         viewportBox         = new Rectangle();
-        innerViewportBox    = new Rectangle();
-        extendedViewportBox = new Rectangle();
+        entityWindow        = new Rectangle();
         mapBox              = new Rectangle();
         enemyFreeZones      = new Array<>();
         placementTiles      = new Array<>();
@@ -136,36 +134,26 @@ public class MapData
      */
     public void update()
     {
-        OrthographicCamera camera = App.baseRenderer.spriteGameCamera.camera;
+        if (App.getPlayer() != null)
+        {
+            viewportBox.set
+                (
+                    (App.getPlayer().sprite.getX() - Gfx._VIEW_HALF_WIDTH),
+                    0,
+                    Gfx._VIEW_WIDTH,
+                    Gfx._VIEW_HEIGHT
+                );
 
-        float xPos       = camera.position.x;
-        float yPos       = camera.position.y;
-        float viewWidth  = camera.viewportWidth;
-        float viewHeight = camera.viewportHeight;
-        float zoom       = camera.zoom;
-
-        float x      = (xPos - ((viewWidth * zoom) / 2));
-        float y      = (yPos - ((viewHeight * zoom) / 2));
-        float width  = (viewWidth * zoom);
-        float height = (viewHeight * zoom);
-
-        viewportBox.set(x, y, width, height);
-
-        innerViewportBox.set
-            (
-                mapPosition.getX(),
-                mapPosition.getY(),
-                Gfx._VIEW_WIDTH,
-                Gfx._VIEW_HEIGHT
-            );
-
-        extendedViewportBox.set
-            (
-                x - (width / 4),
-                y - (height / 4),
-                width + (width / 2),
-                height + (height / 2)
-            );
+            //
+            // entityWindow is ONLY to be used for entity tracking
+            entityWindow.set
+                (
+                    (App.getPlayer().sprite.getX() - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
+                    0,
+                    (Gfx._VIEW_WIDTH * 3),
+                    Gfx._VIEW_HEIGHT
+                );
+        }
     }
 
     /**

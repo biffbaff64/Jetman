@@ -58,7 +58,7 @@ public class AppConfig
 
         // ------------------------------------------------
         // Temporary development settings
-        Developer.setAndroidOnDesktop(false);
+        Developer.setAndroidOnDesktop(true);
         Developer.setGodMode(false);
 
         App.settings.enable(Settings._DISABLE_MENU_SCREEN);

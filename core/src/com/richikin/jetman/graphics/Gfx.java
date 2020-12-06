@@ -53,7 +53,7 @@ public class Gfx
     public static final int _DESKTOP_WIDTH  = 1280;
     public static final int _DESKTOP_HEIGHT = 720;
     public static final int _VIEW_WIDTH     = 1600;
-    public static final int _VIEW_HEIGHT    = 900;
+    public static final int _VIEW_HEIGHT    = 896;
 
     public static final int _VIEW_HALF_WIDTH  = (_VIEW_WIDTH / 2);
     public static final int _VIEW_HALF_HEIGHT = (_VIEW_HEIGHT / 2);

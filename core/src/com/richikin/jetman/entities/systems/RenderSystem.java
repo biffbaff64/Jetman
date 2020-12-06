@@ -5,6 +5,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.maths.SimpleVec2F;
 
 // TODO: 27/12/2018 - This class is becoming untidy, with multiple draw methods.
 //                  - Investigate simplifying the draw methods.
