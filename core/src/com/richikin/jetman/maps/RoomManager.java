@@ -26,7 +26,7 @@ public class RoomManager
                         (
                             -2.0f, 1200,
                             // Zero Entities
-                            0, 0, 0, 0, 0, 0,
+                            0, 8, 0, 0, 0, 0,
                             0, 0, 0, 0, 0, 0
                             // Lots of Entities
 //                            4, 4, 4, 4, 4, 4,

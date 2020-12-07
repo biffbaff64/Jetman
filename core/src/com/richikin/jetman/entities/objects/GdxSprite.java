@@ -330,23 +330,35 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void wrap()
     {
-        float left = App.mapData.entityWindow.x;
-        float right = (App.mapData.entityWindow.x + App.mapData.entityWindow.width);
-        float width = App.mapData.entityWindow.width;
-
-        if ((direction.getX() == Movement._DIRECTION_LEFT)
-            && ((sprite.getX() + frameWidth) < left))
+        if ((direction.getX() == Movement._DIRECTION_LEFT) && ((sprite.getX() + frameWidth) < 0))
         {
-            sprite.translateX(width * Movement._DIRECTION_RIGHT);
+            sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_RIGHT);
         }
         else
         {
-            if ((direction.getX() == Movement._DIRECTION_RIGHT)
-                && (sprite.getX() > right))
+            if ((direction.getX() == Movement._DIRECTION_RIGHT) && (sprite.getX() > Gfx.getMapWidth()))
             {
-                sprite.translateX(width * Movement._DIRECTION_LEFT);
+                sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_LEFT);
             }
         }
+
+        //        float left = App.mapData.entityWindow.x;
+//        float right = (App.mapData.entityWindow.x + App.mapData.entityWindow.width);
+//        float width = App.mapData.entityWindow.width;
+//
+//        if ((direction.getX() == Movement._DIRECTION_LEFT)
+//            && ((sprite.getX() + frameWidth) < left))
+//        {
+//            sprite.translateX(width * Movement._DIRECTION_RIGHT);
+//        }
+//        else
+//        {
+//            if ((direction.getX() == Movement._DIRECTION_RIGHT)
+//                && (sprite.getX() > right))
+//            {
+//                sprite.translateX(width * Movement._DIRECTION_LEFT);
+//            }
+//        }
     }
 
     @Override

@@ -617,11 +617,15 @@ public class MainPlayer extends GdxSprite
 
             if (sprite.getX() > Gfx.visibleMapRight())
             {
-                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH));
+                sprite.translateX(-(Gfx.visibleMapRight() - Gfx._VIEW_HALF_WIDTH));
+
+                App.entityManager.renderSystem.relocateSprites();
             }
             else if ((sprite.getX() + frameWidth) < Gfx._VIEW_HALF_WIDTH)
             {
-                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_WIDTH);
+                sprite.translateX(Gfx.visibleMapRight() - Gfx._VIEW_HALF_WIDTH);
+
+                App.entityManager.renderSystem.relocateSprites();
             }
         }
     }

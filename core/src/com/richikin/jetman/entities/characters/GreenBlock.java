@@ -4,6 +4,7 @@ package com.richikin.jetman.entities.characters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.core.GameProgress;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.ActionStates;
@@ -59,6 +60,11 @@ public class GreenBlock extends GdxSprite
         {
             case _RUNNING:
             {
+                if (Developer.isDevMode() && App.inputManager.keyboard.shiftButtonHeld)
+                {
+                    speed.setX(0);
+                }
+
                 sprite.translate((speed.getX() * direction.getX()), 0);
 
                 wrap();
