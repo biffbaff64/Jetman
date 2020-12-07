@@ -11,6 +11,9 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
+import com.richikin.utilslib.maths.SimpleVec2F;
+
 import org.jetbrains.annotations.NotNull;
 
 public class EntityUtils
@@ -35,12 +38,13 @@ public class EntityUtils
 
             System.arraycopy(tmpFrames, 0, destinationFrames, 0, frameCount);
 
+            //noinspection MagicNumber
             animation = new Animation<>(0.75f / 6f, tmpFrames);
             animation.setPlayMode(playmode);
         }
         catch (NullPointerException npe)
         {
-            Trace.__FILE_FUNC(filename);
+            Trace.__FILE_FUNC("Craeting animation from " + filename + " failed!");
 
             animation = null;
         }
@@ -48,11 +52,15 @@ public class EntityUtils
         return animation;
     }
 
-    public TextureRegion getKeyFrame(final Animation<TextureRegion> animation, final float elapsedTime, final boolean looping)
+    public TextureRegion getKeyFrame(final Animation<? extends TextureRegion> animation, final float elapsedTime, final boolean looping)
     {
         return animation.getKeyFrame(elapsedTime, looping);
     }
 
+    /**
+     * Gets a random sprite from {@link EntityData#entityMap}, making
+     * sure to not return the specified sprite.
+     */
     public GdxSprite getRandomSprite(GdxSprite oneToAvoid)
     {
         GdxSprite randomSprite;
@@ -69,15 +77,11 @@ public class EntityUtils
     }
 
     /**
-     * Finds the nearest sprite of type _gid to the player.
-     *
-     * @param _gid
-     * @return
+     * Finds the nearest sprite of type gid to the player.
      */
-    public GdxSprite findNearest(GraphicID _gid)
+    public GdxSprite findNearest(GraphicID gid)
     {
-        GdxSprite distantSprite = findFirstOf(_gid);
-        GdxSprite gdxSprite;
+        GdxSprite distantSprite = findFirstOf(gid);
 
         if (distantSprite != null)
         {
@@ -85,9 +89,9 @@ public class EntityUtils
 
             for (GameEntity entity : App.entityData.entityMap)
             {
-                if (entity.gid == _gid)
+                if (entity.gid == gid)
                 {
-                    gdxSprite = (GdxSprite) entity;
+                    GdxSprite gdxSprite = (GdxSprite) entity;
 
                     float tempDistance = App.getPlayer().getPosition().dst(gdxSprite.getPosition());
 
@@ -103,18 +107,20 @@ public class EntityUtils
         return distantSprite;
     }
 
-    public GdxSprite getDistantSprite(GdxSprite _checkSprite)
+    /**
+     * Finds the furthest sprite of type gid to the player.
+     */
+    public GdxSprite getDistantSprite(@NotNull GdxSprite checkSprite)
     {
         GdxSprite distantSprite = App.getPlayer();
-        GdxSprite gdxSprite;
 
-        float distance = _checkSprite.getPosition().dst(distantSprite.getPosition());
+        float distance = checkSprite.getPosition().dst(distantSprite.getPosition());
 
         for (GameEntity entity : App.entityData.entityMap)
         {
-            gdxSprite = (GdxSprite) entity;
+            GdxSprite gdxSprite = (GdxSprite) entity;
 
-            float tempDistance = _checkSprite.getPosition().dst(gdxSprite.getPosition());
+            float tempDistance = checkSprite.getPosition().dst(gdxSprite.getPosition());
 
             if (Math.abs(tempDistance) > Math.abs(distance))
             {
@@ -151,7 +157,8 @@ public class EntityUtils
      * @param graphicID The GraphicID.
      * @return Z position range is between 0 and Gfx._MAXIMUM_Z_DEPTH.
      */
-    public int getInitialZPosition(final GraphicID graphicID)
+    // TODO: 07/12/2020 - This method is too long, shorten it.
+    public int getInitialZPosition(@NotNull GraphicID graphicID)
     {
         int zed;
 
@@ -266,65 +273,39 @@ public class EntityUtils
         }
     }
 
-    public int numDyingEntities()
+    public GdxSprite findFirstOf(final GraphicID gid)
     {
-        int dyingCount = 0;
+        GdxSprite gdxSprite = null;
 
-        for (int i = 0; i < App.entityData.entityMap.size; i++)
+        for (GameEntity entity : App.entityData.entityMap)
         {
-            switch (App.entityData.entityMap.get(i).gid)
+            if (entity.gid == gid)
             {
-                case G_EXPLOSION12:
-                case G_EXPLOSION64:
-                case G_EXPLOSION128:
-                case G_EXPLOSION256:
-                {
-                    if (App.entityData.entityMap.get(i).entityAction == ActionStates._RUNNING)
-                    {
-                        dyingCount++;
-                    }
-                }
+                gdxSprite = (GdxSprite) entity;
                 break;
-
-                default:
-                    break;
-            }
-        }
-
-        return dyingCount;
-    }
-
-    public GdxSprite findFirstOf(final GraphicID _gid)
-    {
-        GdxSprite gdxSprite = null;
-
-        for (GameEntity entity : App.entityData.entityMap)
-        {
-            if ((entity.gid == _gid) && (gdxSprite == null))
-            {
-                gdxSprite = (GdxSprite) entity;
             }
         }
 
         return gdxSprite;
     }
 
-    public GdxSprite findLastOf(final GraphicID _gid)
+    public GdxSprite findLastOf(final GraphicID gid)
     {
         GdxSprite gdxSprite = null;
 
         for (GameEntity entity : App.entityData.entityMap)
         {
-            if (entity.gid == _gid)
+            if (entity.gid == gid)
             {
                 gdxSprite = (GdxSprite) entity;
+                break;
             }
         }
 
         return gdxSprite;
     }
 
-    public boolean canUpdate(GraphicID graphicID)
+    public boolean canUpdate(@NotNull GraphicID graphicID)
     {
         boolean isUpdateable;
 
@@ -348,7 +329,8 @@ public class EntityUtils
         return isUpdateable;
     }
 
-    private boolean isEntityEnabled(GraphicID graphicID)
+    // TODO: 07/12/2020 - This method is too long, shorten it.
+    private boolean isEntityEnabled(@NotNull GraphicID graphicID)
     {
         boolean isEnabled;
 
@@ -403,5 +385,14 @@ public class EntityUtils
         }
 
         return isEnabled;
+    }
+
+    public SimpleVec2 translateMapPosToEntityWindow(GdxSprite sprite)
+    {
+        SimpleVec2 pos = sprite.position;
+
+        // TODO: 07/12/2020
+
+        return pos;
     }
 }

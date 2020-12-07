@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.parallax.ParallaxBackground;
-import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.ViewportType;
 import com.richikin.jetman.graphics.camera.Zoom;
+import com.richikin.jetman.graphics.parallax.ParallaxBackground;
+import com.richikin.jetman.graphics.parallax.ParallaxManager;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec3F;
 

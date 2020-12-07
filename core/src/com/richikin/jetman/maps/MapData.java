@@ -31,7 +31,7 @@ public class MapData
             "extra game tiles",
             "object tiles",
             "collision",
-            };
+        };
 
     public final LayerImage[] backgroundLayers =
         {
@@ -40,7 +40,7 @@ public class MapData
             new LayerImage("data/stars_background.png", 0.0f, 0.0f),
             new LayerImage("data/dark_mountains.png", 1.2f, 0.01f),
             new LayerImage("data/light_mountains.png", 2.4f, 0.015f),
-            };
+        };
 
     //
     // NOTE: Not made final because _horizointalSpeed fields
@@ -49,7 +49,7 @@ public class MapData
         {
             new LayerImage("data/foreground.png", 0.0f, 0.0f),
             new LayerImage("data/foreground_near.png", 0.0f, 0.0f),
-            };
+        };
 
     public OrthogonalTiledMapRenderer mapRenderer;
     public TmxMapLoader               tmxMapLoader;
@@ -101,15 +101,15 @@ public class MapData
      */
     public void initialiseRoom()
     {
-        initialiseMap(App.roomManager.getMapNameWithPath(), mapLayerNames);
-    }
+//        initialiseMap(App.roomManager.getMapNameWithPath(), mapLayerNames);
+//    }
+//
+//    public void initialiseMap(String gameMap, String[] mapLayers)
+//    {
+        currentMapName = App.roomManager.getMapNameWithPath();
+        currentMap     = tmxMapLoader.load(currentMapName);
 
-    public void initialiseMap(String gameMap, String[] mapLayers)
-    {
-        currentMapName = gameMap;
-        currentMap     = tmxMapLoader.load(gameMap);
-
-        setGameLevelMap(mapLayers);
+        setGameLevelMap(mapLayerNames);
         setEnemyFreeZones();
 
         if (mapRenderer != null)
@@ -130,7 +130,7 @@ public class MapData
     /**
      * Update the screen virtual window.
      * This box is used for checking that entities are
-     * visible on screen.
+     * visible on screen.1
      */
     public void update()
     {
