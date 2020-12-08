@@ -1,8 +1,5 @@
 package com.richikin.jetman.entities.systems;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.StringBuilder;
-import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.EntityManager;
@@ -10,12 +7,8 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.utilslib.logging.Trace;
 
 import org.jetbrains.annotations.NotNull;
-
-// TODO: 27/12/2018 - This class is becoming untidy, with multiple draw methods.
-//                  - Investigate simplifying the draw methods.
 
 public class RenderSystem
 {
