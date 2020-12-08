@@ -1,14 +1,16 @@
 package com.richikin.jetman.entities.systems;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.StringBuilder;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.Movement;
-import com.richikin.utilslib.maths.SimpleVec2F;
+import com.richikin.utilslib.logging.Trace;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,11 +19,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class RenderSystem
 {
-    private final ShapeRenderer sr;
-
     public RenderSystem()
     {
-        this.sr = new ShapeRenderer();
     }
 
     /**
@@ -75,7 +74,7 @@ public class RenderSystem
      * Draw the teleporter beams, which are activated when the
      * teleporter is in use. These are not sprites.
      *
-     * @param teleportBeam  The {@link TeleportBeam} object.
+     * @param teleportBeam The {@link TeleportBeam} object.
      */
     public void drawTeleportBeams(TeleportBeam teleportBeam)
     {
@@ -122,9 +121,8 @@ public class RenderSystem
      * Checks for the supplied sprite being inside
      * the scene window.
      *
-     * @param sprObj    The sprite to check.
-     *
-     * @return          TRUE if inside the window.
+     * @param sprObj The sprite to check.
+     * @return TRUE if inside the window.
      */
     public boolean isInViewWindow(@NotNull GdxSprite sprObj)
     {
@@ -136,6 +134,9 @@ public class RenderSystem
         return true;
     }
 
+    /**
+     * Relocate enemy entities when crossing the map loop boundary.
+     */
     public void relocateSprites()
     {
         GdxSprite entity;
@@ -144,27 +145,22 @@ public class RenderSystem
         {
             entity = (GdxSprite) App.entityData.entityMap.get(i);
 
-            if (entity.gid != GraphicID.G_PLAYER)
+            if (EntityManager.enemies.contains(entity.gid, true))
             {
-                float xPos = entity.sprite.getX();
+                final int _WRAP_POINT_LEFT = 1600;
+                final int _WRAP_POINT_RIGHT = 14400;
 
-                xPos += ((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * entity.direction.getX()) % Gfx.getMapWidth();
-
-                entity.sprite.setPosition(xPos, entity.sprite.getY());
-
-//                entity.sprite.translateX((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * entity.direction.getX());
-//
-//                if (entity.getPosition().x > Gfx.getMapWidth())
-//                {
-//                    entity.sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_LEFT);
-//                }
-//                else
-//                {
-//                    if (entity.getPosition().x < 0)
-//                    {
-//                        entity.sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_RIGHT);
-//                    }
-//                }
+                if (entity.sprite.getX() < _WRAP_POINT_LEFT)
+                {
+                    entity.sprite.translateX((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * Movement._DIRECTION_RIGHT);
+                }
+                else
+                {
+                    if (entity.sprite.getX() > _WRAP_POINT_RIGHT)
+                    {
+                        entity.sprite.translateX((Gfx.getMapWidth() - Gfx._VIEW_WIDTH) * Movement._DIRECTION_LEFT);
+                    }
+                }
             }
         }
     }

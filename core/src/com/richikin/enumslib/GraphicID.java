@@ -79,8 +79,6 @@ public enum GraphicID
     _CEILING,
     _WALL,
     _LETHAL_OBJECT,
-    _ENEMY,
-    _MAIN,
     _SIGN,
     _SPEECH,
     _HUD_PANEL,
@@ -89,6 +87,15 @@ public enum GraphicID
     _BRIDGE,
     _CRATER,
     _ALIEN_MANAGER,
+
+    // ----------------------------
+    // Main Character type, i.e. Player
+    _MAIN,
+
+    // ----------------------------
+    // Enemy Character type, but not stationary entities
+    // like rocket launchers etc.
+    _ENEMY,
 
     // ----------------------------
     // Encapsulating type, covering any collision IDs that can be stood on.

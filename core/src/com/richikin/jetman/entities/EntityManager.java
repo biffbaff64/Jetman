@@ -1,37 +1,49 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.config.Settings;
+import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.characters.Teleporter;
-import com.richikin.jetman.maps.RoomManager;
-import com.richikin.jetman.entities.managers.*;
+import com.richikin.jetman.entities.managers.AlienManager;
+import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
+import com.richikin.jetman.entities.managers.BarrierManager;
+import com.richikin.jetman.entities.managers.BombManager;
+import com.richikin.jetman.entities.managers.DefenceStationManager;
+import com.richikin.jetman.entities.managers.MissileBaseManager;
+import com.richikin.jetman.entities.managers.PlayerManager;
+import com.richikin.jetman.entities.managers.RoverManager;
+import com.richikin.jetman.entities.managers.TeleportManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
-import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.maps.RoomManager;
 import com.richikin.utilslib.logging.Trace;
 
 public class EntityManager implements IEntityManager
 {
     // --------------------------------------------------
     //
-    public final GraphicID[] enemies =
+    public static final Array<GraphicID> enemies;
+
+    static
         {
-            GraphicID.G_3BALLS_UFO,
-            GraphicID.G_3LEGS_ALIEN,
-            GraphicID.G_ASTEROID,
-            GraphicID.G_ALIEN_WHEEL,
-            GraphicID.G_BLOB,
-            GraphicID.G_DOG,
-            GraphicID.G_GREEN_BLOCK,
-            GraphicID.G_SPINNING_BALL,
-            GraphicID.G_STAIR_CLIMBER,
-            GraphicID.G_STAR_SPINNER,
-            GraphicID.G_TOPSPIN,
-            GraphicID.G_TWINKLES,
+            enemies = new Array<>();
+
+            enemies.add(GraphicID.G_3BALLS_UFO);
+            enemies.add(GraphicID.G_3LEGS_ALIEN);
+            enemies.add(GraphicID.G_ASTEROID);
+            enemies.add(GraphicID.G_ALIEN_WHEEL);
+            enemies.add(GraphicID.G_BLOB);
+            enemies.add(GraphicID.G_DOG);
+            enemies.add(GraphicID.G_GREEN_BLOCK);
+            enemies.add(GraphicID.G_SPINNING_BALL);
+            enemies.add(GraphicID.G_STAIR_CLIMBER);
+            enemies.add(GraphicID.G_STAR_SPINNER);
+            enemies.add(GraphicID.G_TOPSPIN);
+            enemies.add(GraphicID.G_TWINKLES);
         };
 
     // --------------------------------------------------
@@ -61,7 +73,14 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
-        initialiseManagerList();
+        App.roverManager            = new RoverManager();
+        App.teleportManager         = new TeleportManager();
+        App.missileBaseManager      = new MissileBaseManager();
+        App.defenceStationManager   = new DefenceStationManager();
+        App.bombManager             = new BombManager();
+
+        _bombManagerIndex = App.entityData.addManager(App.bombManager);
+        _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 
     @Override
@@ -291,20 +310,6 @@ public class EntityManager implements IEntityManager
         return (AppConfig.entitiesExist && !AppConfig.quitToMainMenu);
     }
 
-    private void initialiseManagerList()
-    {
-        Trace.__FILE_FUNC();
-
-        App.roverManager            = new RoverManager();
-        App.teleportManager         = new TeleportManager();
-        App.missileBaseManager      = new MissileBaseManager();
-        App.defenceStationManager   = new DefenceStationManager();
-        App.bombManager             = new BombManager();
-
-        _bombManagerIndex = App.entityData.addManager(App.bombManager);
-        _alienManagerIndex = App.entityData.addManager(new AlienManager());
-    }
-
     public void initialiseForLevel()
     {
         Trace.__FILE_FUNC();
@@ -336,7 +341,7 @@ public class EntityManager implements IEntityManager
      * Background entities which are essentially just
      * decorations, such as ufos and twinkling stars.
      */
-    public void addBackgroundEntities()
+    private void addBackgroundEntities()
     {
         // --------------------------------------------------
         //

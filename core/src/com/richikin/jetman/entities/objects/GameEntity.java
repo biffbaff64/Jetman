@@ -17,8 +17,8 @@ public class GameEntity implements EntityComponent, Disposable
     public GraphicID       type;
     public SimpleVec2      position;
     public int             zPosition;
-    public int           frameWidth;
-    public int           frameHeight;
+    public int             frameWidth;
+    public int             frameHeight;
     public CollisionObject collisionObject;
     public Body            b2dBody;
     public short           bodyCategory;
