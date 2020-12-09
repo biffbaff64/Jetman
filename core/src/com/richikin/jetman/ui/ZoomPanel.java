@@ -3,10 +3,12 @@ package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.logging.Trace;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,8 +56,8 @@ public class ZoomPanel extends DefaultPanel implements IUserInterfacePanel
 
         setPosition
             (
-                (float) ((Gfx._HUD_WIDTH - textureRegion.getRegionWidth()) / 2),
-                (float) ((Gfx._HUD_HEIGHT - textureRegion.getRegionHeight()) / 2)
+                (int) (AppConfig.hudOriginX + ((Gfx._HUD_WIDTH - textureRegion.getRegionWidth()) / 2)),
+                (int) (AppConfig.hudOriginY + ((Gfx._HUD_HEIGHT - textureRegion.getRegionHeight()) / 2))
             );
     }
 

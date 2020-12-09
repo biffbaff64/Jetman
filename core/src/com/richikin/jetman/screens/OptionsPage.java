@@ -286,10 +286,10 @@ public class OptionsPage implements IUIPage
      */
     private void updateSettings()
     {
-        App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, (GameAudio.inst().getMusicVolume() != AudioData._SILENT));
-        App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, (GameAudio.inst().getFXVolume() != AudioData._SILENT));
-
+        App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, musicCheckBox.isChecked());
+        App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, fxCheckBox.isChecked());
         App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
+        App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, hintsCheckBox.isChecked());
         App.settings.getPrefs().flush();
     }
 
@@ -300,9 +300,8 @@ public class OptionsPage implements IUIPage
     {
         vibrateCheckBox.setChecked(App.settings.isEnabled(Settings._VIBRATIONS));
         hintsCheckBox.setChecked(App.settings.isEnabled(Settings._SHOW_HINTS));
-
-        musicCheckBox.setChecked(GameAudio.inst().getMusicVolume() > 0);
-        fxCheckBox.setChecked(GameAudio.inst().getFXVolume() > 0);
+        musicCheckBox.setChecked(App.settings.isEnabled(Settings._MUSIC_ENABLED));
+        fxCheckBox.setChecked(App.settings.isEnabled(Settings._SOUNDS_ENABLED));
     }
 
     /**
@@ -469,19 +468,8 @@ public class OptionsPage implements IUIPage
                 @Override
                 public void changed(ChangeEvent event, Actor actor)
                 {
-                    if (setupCompleted)
-                    {
-                        GameAudio.inst().startSound(AudioData.SFX_BEEP);
-
-                        if (musicCheckBox.isChecked())
-                        {
-                            GameAudio.inst().setMusicVolume(AudioData._MAX_VOLUME);
-                        }
-                        else if (!musicCheckBox.isChecked())
-                        {
-                            GameAudio.inst().setMusicVolume(AudioData._SILENT);
-                        }
-                    }
+                    App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, musicCheckBox.isChecked());
+                    App.settings.getPrefs().flush();
                 }
             });
         }
@@ -497,19 +485,8 @@ public class OptionsPage implements IUIPage
                 @Override
                 public void changed(ChangeEvent event, Actor actor)
                 {
-                    if (setupCompleted)
-                    {
-                        GameAudio.inst().startSound(AudioData.SFX_BEEP);
-
-                        if (fxCheckBox.isChecked())
-                        {
-                            GameAudio.inst().setFXVolume(AudioData._MAX_VOLUME);
-                        }
-                        else if (!fxCheckBox.isChecked())
-                        {
-                            GameAudio.inst().setFXVolume(AudioData._SILENT);
-                        }
-                    }
+                    App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, fxCheckBox.isChecked());
+                    App.settings.getPrefs().flush();
                 }
             });
         }
@@ -525,6 +502,8 @@ public class OptionsPage implements IUIPage
                 @Override
                 public void changed(ChangeEvent event, Actor actor)
                 {
+                    App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, vibrateCheckBox.isChecked());
+                    App.settings.getPrefs().flush();
                 }
             });
         }
@@ -540,6 +519,8 @@ public class OptionsPage implements IUIPage
                 @Override
                 public void changed(ChangeEvent event, Actor actor)
                 {
+                    App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, hintsCheckBox.isChecked());
+                    App.settings.getPrefs().flush();
                 }
             });
         }

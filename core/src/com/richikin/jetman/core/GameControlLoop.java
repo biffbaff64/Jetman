@@ -137,7 +137,6 @@ public class GameControlLoop extends AbstractControlLoop
         {
             GameAudio.inst().playGameTune(true);
 
-            App.getHud().messageManager.enable();
             App.getHud().messageManager.addZoomMessage(GameAssets._GETREADY_MSG_ASSET, 1500);
         }
 
@@ -234,7 +233,6 @@ public class GameControlLoop extends AbstractControlLoop
                 App.appState.set(StateID._STATE_GAME_OVER);
 
                 App.getHud().hideControls();
-                App.getHud().messageManager.enable();
                 App.getHud().messageManager.addZoomMessage(GameAssets._GAMEOVER_MSG_ASSET, 3000);
             }
             else

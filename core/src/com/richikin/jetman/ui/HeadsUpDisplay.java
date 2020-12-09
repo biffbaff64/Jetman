@@ -823,28 +823,15 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "PLYR : x: " + App.getPlayer().sprite.getX() + ", y: " + App.getPlayer().sprite.getY(),
+                        "MUS : " + App.settings.isEnabled(Settings._MUSIC_ENABLED)
+                        + "          "
+                        + "FX : " + App.settings.isEnabled(Settings._SOUNDS_ENABLED)
+                        + "          "
+                        + "VIB : " + App.settings.isEnabled(Settings._VIBRATIONS)
+                        + "          "
+                        + "HINTS : " + App.settings.isEnabled(Settings._SHOW_HINTS),
                         originX + 20,
                         originY + 570
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "MAP : " + App.mapData.mapPosition.toString(),
-                        originX + 20,
-                        originY + 540
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "EVBOX : " + App.mapData.entityWindow.x
-                        + " ====>> "
-                        + (App.mapData.entityWindow.x + App.mapData.entityWindow.width)
-                        ,
-                        originX + 20,
-                        originY + 510
                     );
             }
         }

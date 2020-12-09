@@ -18,6 +18,7 @@ package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.Bomb;
@@ -64,8 +65,8 @@ public class BombManager extends GenericEntityManager
                         App.getHud().messageManager.setPosition
                             (
                                 "new_bomb",
-                                185,
-                                (720 - 167)
+                                (int) AppConfig.hudOriginX + 185,
+                                (int) AppConfig.hudOriginY + (720 - 167)
                             );
                     }
                 }

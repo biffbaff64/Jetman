@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.managers.BombManager;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
+import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.core.PlayServicesID;
@@ -19,6 +21,26 @@ public class Bomb extends Carryable
     public Bomb()
     {
         super(GraphicID.G_BOMB);
+    }
+
+    @Override
+    public void initialise(SpriteDescriptor descriptor)
+    {
+        super.initialise(descriptor);
+
+        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
+        collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_GROUND | Gfx.CAT_MISSILE_BASE | Gfx.CAT_VEHICLE;
+    }
+
+    @Override
+    public void update(int spriteNum)
+    {
+        super.update(spriteNum);
+
+        if (getAction() == ActionStates._DEAD)
+        {
+            App.entityData.managerList.get(App.entityManager._bombManagerIndex).free();
+        }
     }
 
     @Override

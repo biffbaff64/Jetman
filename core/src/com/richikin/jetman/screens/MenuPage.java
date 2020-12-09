@@ -114,9 +114,6 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        AppConfig.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
-        AppConfig.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
-
         buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppConfig.hudOriginX + 515, (int) AppConfig.hudOriginY + (720 - 379));
         buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 437));
         buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppConfig.hudOriginX + 596, (int) AppConfig.hudOriginY + (720 - 614));
@@ -247,7 +244,7 @@ public class MenuPage implements IUIPage, Disposable
                 buttonGoogle = Scene2DUtils.addButton
                     (
                         "btn_google_signin_dark",
-                        "btn_google_signin_dark_pressed",
+                        "btn_google_signout_dark_pressed",
                         1040,
                         30
                     );

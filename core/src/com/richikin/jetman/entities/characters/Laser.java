@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.audio.AudioData;
+import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -72,6 +74,8 @@ public class Laser extends GdxSprite
         sprite.setColor(colourList[((MainPlayer) descriptor._PARENT).laserColour]);
 
         setAction(ActionStates._RUNNING);
+
+        GameAudio.inst().startSound(AudioData.SFX_LASER);
     }
 
     @Override

@@ -5,13 +5,17 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
@@ -19,8 +23,8 @@ import com.richikin.jetman.core.App;
 
 public class PausePanel extends DefaultPanel
 {
-    public CheckBox    buttonMusicVolume;
-    public CheckBox    buttonFXVolume;
+    public CheckBox    buttonMusic;
+    public CheckBox    buttonSounds;
     public CheckBox    buttonVibrations;
     public CheckBox    buttonGameHints;
     public ImageButton buttonHome;
@@ -37,7 +41,7 @@ public class PausePanel extends DefaultPanel
             {800, (720 - 320), 55, 24},   // FX
             {800, (720 - 372), 55, 24},   // FX
             {800, (720 - 425), 55, 24},   // FX
-            {530, (720 - 482), 220, 34},   // Exit
+            {530, (720 - 482), 220, 34},  // Exit
         };
 
     private Texture pausePanel;
@@ -53,7 +57,7 @@ public class PausePanel extends DefaultPanel
 
         Skin skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
-        buttonMusicVolume = Scene2DUtils.addCheckBox
+        buttonMusic = Scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -63,7 +67,7 @@ public class PausePanel extends DefaultPanel
                 skin
             );
 
-        buttonFXVolume = Scene2DUtils.addCheckBox
+        buttonSounds = Scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -101,41 +105,19 @@ public class PausePanel extends DefaultPanel
                 (int) AppConfig.hudOriginY + displayPos[_EXIT][1]
             );
 
-        buttonMusicVolume.setChecked(GameAudio.inst().getMusicVolume() != 0);
-        buttonFXVolume.setChecked(GameAudio.inst().getFXVolume() != 0);
+        buttonMusic.setChecked(App.settings.isEnabled(Settings._MUSIC_ENABLED));
+        buttonSounds.setChecked(App.settings.isEnabled(Settings._SOUNDS_ENABLED));
         buttonVibrations.setChecked(App.settings.isEnabled(Settings._VIBRATIONS));
         buttonGameHints.setChecked(App.settings.isEnabled(Settings._SHOW_HINTS));
+
+        addCheckboxListeners();
     }
 
     @Override
     public boolean update()
     {
-        if (buttonMusicVolume.isChecked() && (GameAudio.inst().getMusicVolume() > 0))
-        {
-            GameAudio.inst().saveMusicVolume();
-            GameAudio.inst().setMusicVolume(0);
-        }
-        else
-        {
-            if (!buttonMusicVolume.isChecked() && (GameAudio.inst().getMusicVolume() == 0))
-            {
-                GameAudio.inst().setMusicVolume(GameAudio.inst().getMusicVolumeSave());
-            }
-        }
-
-        if (buttonFXVolume.isChecked() && (GameAudio.inst().getFXVolume() > 0))
-        {
-            GameAudio.inst().saveFXVolume();
-            GameAudio.inst().setFXVolume(0);
-        }
-        else
-        {
-            if (!buttonFXVolume.isChecked() && (GameAudio.inst().getFXVolume() == 0))
-            {
-                GameAudio.inst().setFXVolume(GameAudio.inst().getFXVolumeSave());
-            }
-        }
-
+        App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, buttonMusic.isChecked());
+        App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, buttonSounds.isChecked());
         App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, buttonVibrations.isChecked());
         App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, buttonGameHints.isChecked());
         App.settings.getPrefs().flush();
@@ -157,6 +139,29 @@ public class PausePanel extends DefaultPanel
         {
             spriteBatch.draw(pausePanel, originX, originY);
         }
+    }
+
+    private void addCheckboxListeners()
+    {
+        buttonMusic.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, buttonSounds.isChecked());
+                App.settings.getPrefs().flush();
+            }
+        });
+
+        buttonSounds.addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ChangeEvent event, Actor actor)
+            {
+                App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, buttonSounds.isChecked());
+                App.settings.getPrefs().flush();
+            }
+        });
     }
 
     private void setQuitToTitle()
@@ -184,14 +189,14 @@ public class PausePanel extends DefaultPanel
             buttonHome.addAction(Actions.removeActor());
         }
 
-        if (buttonMusicVolume != null)
+        if (buttonMusic != null)
         {
-            buttonMusicVolume.addAction(Actions.removeActor());
+            buttonMusic.addAction(Actions.removeActor());
         }
 
-        if (buttonFXVolume != null)
+        if (buttonSounds != null)
         {
-            buttonFXVolume.addAction(Actions.removeActor());
+            buttonSounds.addAction(Actions.removeActor());
         }
 
         if (buttonVibrations != null)
@@ -204,11 +209,11 @@ public class PausePanel extends DefaultPanel
             buttonGameHints.addAction(Actions.removeActor());
         }
 
-        buttonHome        = null;
-        buttonMusicVolume = null;
-        buttonFXVolume    = null;
-        buttonVibrations  = null;
-        buttonGameHints   = null;
-        pausePanel        = null;
+        buttonHome       = null;
+        buttonMusic      = null;
+        buttonSounds     = null;
+        buttonVibrations = null;
+        buttonGameHints  = null;
+        pausePanel       = null;
     }
 }

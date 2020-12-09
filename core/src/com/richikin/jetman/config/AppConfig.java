@@ -39,6 +39,7 @@ public class AppConfig
     public static GameButtonRegion      fullScreenButton;           // ...
     public static Switch                systemBackButton;           // ...
     public static ImageButton           backButton;                 // ...
+    public static ConfigListener        configListener;             // ...
 
     public static float hudOriginX;
     public static float hudOriginY;
@@ -58,13 +59,16 @@ public class AppConfig
 
         // ------------------------------------------------
         // Temporary development settings
-        Developer.setAndroidOnDesktop(true);
-        Developer.setGodMode(false);
+        if (Developer.isDevMode() && AppConfig.isDesktopApp())
+        {
+            Developer.setAndroidOnDesktop(true);
+            Developer.setGodMode(false);
 
-        App.settings.enable(Settings._DISABLE_MENU_SCREEN);
-        App.settings.disable(Settings._SCROLL_DEMO);
-        App.settings.disable(Settings._SPRITE_BOXES);
-        App.settings.disable(Settings._TILE_BOXES);
+            App.settings.disable(Settings._DISABLE_MENU_SCREEN);
+            App.settings.disable(Settings._SCROLL_DEMO);
+            App.settings.disable(Settings._SPRITE_BOXES);
+            App.settings.disable(Settings._TILE_BOXES);
+        }
         // ------------------------------------------------
 
         quitToMainMenu    = false;
@@ -79,6 +83,7 @@ public class AppConfig
         usedController    = "None";
 
         availableInputs = new Array<>();
+        configListener = new ConfigListener();
 
         if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
@@ -96,8 +101,8 @@ public class AppConfig
 
         Stats.setup();
 
-        hudOriginX = 0;
-        hudOriginY = 0;
+        AppConfig.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
+        AppConfig.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
 
         fullScreenButton = new GameButtonRegion(0, 0, Gfx._HUD_WIDTH, Gfx._HUD_HEIGHT);
         systemBackButton = new Switch();

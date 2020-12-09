@@ -123,6 +123,18 @@ public class GameAudio
         return volume;
     }
 
+    public void playTune(boolean play)
+    {
+        if (play)
+        {
+            startTune(currentTune, getMusicVolume(), true);
+        }
+        else
+        {
+            tuneStop();
+        }
+    }
+
     /**
      * Play or Stop the Main Game tune.
      *

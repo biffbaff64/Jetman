@@ -35,7 +35,7 @@ public class MessageManager
         {
             if (messages.get(i).enabled)
             {
-                if (!messages.get(i).panel.update())
+                if (messages.get(i).panel.update())
                 {
                     messages.removeIndex(i);
                 }
@@ -56,16 +56,15 @@ public class MessageManager
 
     public void addSlidePanel(String imageName)
     {
-        if (managerEnabled)
-        {
-            SlidePanel panel = new SlidePanel();
+        SlidePanel panel = new SlidePanel();
 
-            panel.initialise(App.assets.getObjectRegion(imageName), imageName);
-            panel.activate();
-            panel.action = ActionStates._OPENING;
+        panel.initialise(App.assets.getObjectRegion(imageName), imageName);
+        panel.activate();
+        panel.action = ActionStates._OPENING;
 
-            messages.add(new Message(panel, true, imageName));
-        }
+        messages.add(new Message(panel, true, imageName));
+
+        enable();
     }
 
     public void closeSlidePanel(String _name)
@@ -74,27 +73,28 @@ public class MessageManager
 
     public void addZoomMessage(String imageName, int displayDelay)
     {
-        if (managerEnabled)
+        if (App.assets.getTextRegion(imageName) == null)
         {
+            Trace.__FILE_FUNC("ERROR: " + imageName + " not loaded!");
+        }
+        else
+        {
+            Trace.__FILE_FUNC();
+
             IUserInterfacePanel panel = new ZoomPanel();
 
-            if (App.assets.getTextRegion(imageName) == null)
-            {
-                Trace.__FILE_FUNC("ERROR: " + imageName + " not loaded!");
-            }
-            else
-            {
-                panel.initialise
-                    (
-                        App.assets.getTextRegion(imageName),
-                        imageName,
-                        /* _canPause   */(displayDelay > 0),
-                        /* _bounceBack */ true
-                    );
-                panel.setPauseTime(displayDelay);
+            panel.initialise
+                (
+                    App.assets.getTextRegion(imageName),
+                    imageName,
+                    /* _canPause   */(displayDelay > 0),
+                    /* _bounceBack */ true
+                );
+            panel.setPauseTime(displayDelay);
 
-                messages.add(new Message(panel, true, imageName));
-            }
+            messages.add(new Message(panel, true, imageName));
+
+            enable();
         }
     }
 
@@ -102,6 +102,7 @@ public class MessageManager
     {
         addZoomMessage(_fileName, _delay);
         setPosition(_fileName, x, y);
+        enable();
     }
 
     public boolean doesPanelExist(String _nameID)
@@ -131,12 +132,12 @@ public class MessageManager
         }
     }
 
-    public void enable()
+    private void enable()
     {
         managerEnabled = true;
     }
 
-    public void disable()
+    private void disable()
     {
         managerEnabled = false;
     }

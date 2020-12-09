@@ -13,6 +13,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.PlayServicesID;
 import com.richikin.jetman.physics.Movement;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.logging.Trace;
 
 public class RoverGun extends Carryable
 {
@@ -30,10 +31,12 @@ public class RoverGun extends Carryable
     @Override
     public void initialise(SpriteDescriptor descriptor)
     {
+        Trace.__FILE_FUNC();
+
         super.initialise(descriptor);
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MISSILE_BASE | Gfx.CAT_VEHICLE;
+        collidesWith = Gfx.CAT_GROUND | Gfx.CAT_VEHICLE;
 
         isShooting = false;
         gunTurretAngle = 0f;

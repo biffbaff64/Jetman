@@ -76,7 +76,7 @@
   <object id="49" name="Base Defender" gid="4" x="14912" y="800" width="32" height="32"/>
   <object id="51" name="Base Defender" gid="4" x="16000" y="800" width="32" height="32"/>
   <object id="54" name="Player" gid="1" x="8320" y="800" width="32" height="32"/>
-  <object id="82" name="Laser Barrier" gid="12" x="6944" y="800" width="32" height="32"/>
+  <object id="82" name="Laser Barrier" gid="12" x="5728" y="800" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffaa00" id="5" name="collision">
   <object id="59" name="Ground" x="0" y="800" width="19200" height="96"/>

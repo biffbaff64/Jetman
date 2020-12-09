@@ -34,6 +34,14 @@ public class MainGame extends com.badlogic.gdx.Game
     }
 
     @Override
+    public void render()
+    {
+        super.render();
+
+        AppConfig.configListener.update();
+    }
+
+    @Override
     public void setScreen(Screen screen)
     {
         Gdx.app.debug("MG: ", ("" + screen.getClass()));
