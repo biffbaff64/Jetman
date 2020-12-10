@@ -39,6 +39,11 @@ public class MainGame extends com.badlogic.gdx.Game
         super.render();
 
         AppConfig.configListener.update();
+
+        if (App.baseRenderer.getSplashScreen().isAvailable)
+        {
+            App.baseRenderer.getSplashScreen().update();
+        }
     }
 
     @Override

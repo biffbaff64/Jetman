@@ -96,20 +96,21 @@ public class GameAssets
 
     //
     // Background sprites
-    public static final String _BACKGROUND_UFO_ASSET   = "background_ufo";
-    public static final String _TWINKLE_STAR1_ASSET    = "twinkle_star1";
-    public static final String _TWINKLE_STAR2_ASSET    = "twinkle_star2";
+    public static final String _BACKGROUND_UFO_ASSET = "background_ufo";
+    public static final String _TWINKLE_STAR1_ASSET  = "twinkle_star1";
+    public static final String _TWINKLE_STAR2_ASSET  = "twinkle_star2";
 
-    public static final int _BACKGROUND_UFO_FRAMES   = 10;
-    public static final int _TWINKLE_STAR_FRAMES     = 12;
+    public static final int _BACKGROUND_UFO_FRAMES = 10;
+    public static final int _TWINKLE_STAR_FRAMES   = 12;
 
     //
     // Fonts and HUD assets
-    public static final String _BENZOIC_FONT       = "data/fonts/paraaminobenzoic.ttf";
-    public static final String _ORBITRON_BOLD_FONT = "data/fonts/Orbitron Bold.ttf";
-    public static final String _PRO_WINDOWS_FONT   = "data/fonts/ProFontWindows.ttf";
-    public static final String _VIDEO_PHREAK_FONT  = "data/fonts/ProFontWindows.ttf";
-    public static final String _HUD_PANEL_ASSET    = "data/hud_panel.png";
+    public static final String _BENZOIC_FONT        = "data/fonts/paraaminobenzoic.ttf";
+    public static final String _ORBITRON_BOLD_FONT  = "data/fonts/Orbitron Bold.ttf";
+    public static final String _PRO_WINDOWS_FONT    = "data/fonts/ProFontWindows.ttf";
+    public static final String _VIDEO_PHREAK_FONT   = "data/fonts/ProFontWindows.ttf";
+    public static final String _HUD_PANEL_ASSET     = "data/hud_panel.png";
+    public static final String _SPLASH_SCREEN_ASSET = "data/splash_screen.png";
 
     public static int hudPanelWidth;      // Set when object is loaded
     public static int hudPanelHeight;     //
@@ -123,49 +124,49 @@ public class GameAssets
 
     private static final AssetSize[] assetSizes =
         {
-            new AssetSize(GraphicID.G_PLAYER,            80,  80),
-            new AssetSize(GraphicID.G_ROVER,            303, 131),
-            new AssetSize(GraphicID.G_ROVER_WHEEL,       68,  68),
-            new AssetSize(GraphicID.G_ROVER_BOOT,       108,  14),
-            new AssetSize(GraphicID.G_ROVER_GUN,        122,  59),
-            new AssetSize(GraphicID.G_ROVER_GUN_BARREL, 122,  59),
-            new AssetSize(GraphicID.G_BOMB,              42,  53),
-            new AssetSize(GraphicID.G_ROVER_BULLET,      36,  36),
+            new AssetSize(GraphicID.G_PLAYER, 80, 80),
+            new AssetSize(GraphicID.G_ROVER, 303, 131),
+            new AssetSize(GraphicID.G_ROVER_WHEEL, 68, 68),
+            new AssetSize(GraphicID.G_ROVER_BOOT, 108, 14),
+            new AssetSize(GraphicID.G_ROVER_GUN, 122, 59),
+            new AssetSize(GraphicID.G_ROVER_GUN_BARREL, 122, 59),
+            new AssetSize(GraphicID.G_BOMB, 42, 53),
+            new AssetSize(GraphicID.G_ROVER_BULLET, 36, 36),
 
-            new AssetSize(GraphicID.G_MISSILE_BASE,     120,  51),
-            new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),
-            new AssetSize(GraphicID.G_DEFENDER,          52,  48),
-            new AssetSize(GraphicID.G_DEFENDER_ZAP,      52,  23),
-            new AssetSize(GraphicID.G_DEFENDER_BULLET,   36,  36),
+            new AssetSize(GraphicID.G_MISSILE_BASE, 120, 51),
+            new AssetSize(GraphicID.G_MISSILE_LAUNCHER, 90, 120),
+            new AssetSize(GraphicID.G_DEFENDER, 52, 48),
+            new AssetSize(GraphicID.G_DEFENDER_ZAP, 52, 23),
+            new AssetSize(GraphicID.G_DEFENDER_BULLET, 36, 36),
 
-            new AssetSize(GraphicID.G_TRANSPORTER,       96, 124),
-            new AssetSize(GraphicID.G_TRANSPORTER_BEAM,  64, 512),
-            new AssetSize(GraphicID.G_LASER,            324,   8),
-            new AssetSize(GraphicID.G_UFO_BULLET,         9,   9),
+            new AssetSize(GraphicID.G_TRANSPORTER, 96, 124),
+            new AssetSize(GraphicID.G_TRANSPORTER_BEAM, 64, 512),
+            new AssetSize(GraphicID.G_LASER, 324, 8),
+            new AssetSize(GraphicID.G_UFO_BULLET, 9, 9),
 
-            new AssetSize(GraphicID.G_ASTEROID,          60,  60),
-            new AssetSize(GraphicID.G_ALIEN_WHEEL,       68,  68),
-            new AssetSize(GraphicID.G_3BALLS_UFO,        48,  48),
-            new AssetSize(GraphicID.G_STAIR_CLIMBER,     96,  96),
-            new AssetSize(GraphicID.G_3LEGS_ALIEN,      112, 112),
-            new AssetSize(GraphicID.G_BLOB,              48,  48),
-            new AssetSize(GraphicID.G_GREEN_BLOCK,       72,  48),
-            new AssetSize(GraphicID.G_DOG,               64,  64),
-            new AssetSize(GraphicID.G_SPINNING_BALL,     80,  80),
-            new AssetSize(GraphicID.G_STAR_SPINNER,      68,  68),
-            new AssetSize(GraphicID.G_TOPSPIN,           72,  72),
-            new AssetSize(GraphicID.G_TWINKLES,          48,  48),
+            new AssetSize(GraphicID.G_ASTEROID, 60, 60),
+            new AssetSize(GraphicID.G_ALIEN_WHEEL, 68, 68),
+            new AssetSize(GraphicID.G_3BALLS_UFO, 48, 48),
+            new AssetSize(GraphicID.G_STAIR_CLIMBER, 96, 96),
+            new AssetSize(GraphicID.G_3LEGS_ALIEN, 112, 112),
+            new AssetSize(GraphicID.G_BLOB, 48, 48),
+            new AssetSize(GraphicID.G_GREEN_BLOCK, 72, 48),
+            new AssetSize(GraphicID.G_DOG, 64, 64),
+            new AssetSize(GraphicID.G_SPINNING_BALL, 80, 80),
+            new AssetSize(GraphicID.G_STAR_SPINNER, 68, 68),
+            new AssetSize(GraphicID.G_TOPSPIN, 72, 72),
+            new AssetSize(GraphicID.G_TWINKLES, 48, 48),
 
-            new AssetSize(GraphicID.G_POWER_BEAM,       120, 563),
+            new AssetSize(GraphicID.G_POWER_BEAM, 120, 563),
 
-            new AssetSize(GraphicID.G_EXPLOSION12,       64,  64),
-            new AssetSize(GraphicID.G_EXPLOSION64,       64,  64),
-            new AssetSize(GraphicID.G_EXPLOSION128,      64,  64),
-            new AssetSize(GraphicID.G_EXPLOSION256,      64,  64),
+            new AssetSize(GraphicID.G_EXPLOSION12, 64, 64),
+            new AssetSize(GraphicID.G_EXPLOSION64, 64, 64),
+            new AssetSize(GraphicID.G_EXPLOSION128, 64, 64),
+            new AssetSize(GraphicID.G_EXPLOSION256, 64, 64),
 
-            new AssetSize(GraphicID.G_BACKGROUND_UFO,     8,   4),
-            new AssetSize(GraphicID.G_TWINKLE_STAR,      46,  46),
-        };
+            new AssetSize(GraphicID.G_BACKGROUND_UFO, 8, 4),
+            new AssetSize(GraphicID.G_TWINKLE_STAR, 46, 46),
+            };
 
     public static SimpleVec2 getAssetSize(GraphicID _gid)
     {

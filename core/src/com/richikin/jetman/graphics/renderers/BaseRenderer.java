@@ -12,6 +12,7 @@ import com.richikin.jetman.graphics.camera.ViewportType;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.jetman.graphics.parallax.ParallaxBackground;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
+import com.richikin.jetman.screens.LoadingScreen;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec3F;
 
@@ -28,6 +29,7 @@ public class BaseRenderer implements Disposable
     public Zoom               hudZoom;
     public boolean            isDrawingStage;
 
+    private LoadingScreen loadingScreen;
     private WorldRenderer worldRenderer;
     private HUDRenderer   hudRenderer;
     private SimpleVec3F   cameraPos;
@@ -92,8 +94,9 @@ public class BaseRenderer implements Disposable
         worldRenderer = new WorldRenderer();
         hudRenderer   = new HUDRenderer();
         cameraPos     = new SimpleVec3F();
+        loadingScreen = new LoadingScreen();
 
-        isDrawingStage         = false;
+        isDrawingStage         = true;
         AppConfig.camerasReady = true;
     }
 
@@ -222,6 +225,11 @@ public class BaseRenderer implements Disposable
                 App.baseRenderer.parallaxForeground.render();
             }
 
+            if (loadingScreen.isAvailable)
+            {
+                loadingScreen.render();
+            }
+
             App.spriteBatch.end();
         }
 
@@ -236,6 +244,11 @@ public class BaseRenderer implements Disposable
         hudZoom.stop();
 
         App.worldModel.drawDebugMatrix();
+    }
+
+    public LoadingScreen getSplashScreen()
+    {
+        return loadingScreen;
     }
 
     public void resizeCameras(int _width, int _height)
