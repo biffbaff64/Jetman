@@ -24,7 +24,7 @@ public final class Version
 {
     public static final int majorVersion    = 0;
     public static final int minorVersion    = 0;
-    public static final int issueNumber     = 2;
+    public static final int issueNumber     = 3;
 
     static final String appVersion  = "" + majorVersion + "." + minorVersion + "." + issueNumber;
     static final String projectID   = "Jetman";
@@ -32,16 +32,19 @@ public final class Version
 
     //
     // Release Version
+    // TODO: 10/12/2020
     static final String clientID    = "146820815538-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
     static final String sha1        = "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00";
 
     //
     // Debug Version
+    // TODO: 10/12/2020
     static final String clientID_debug = "146820815538-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.apps.googleusercontent.com";
     static final String sha1_debug     = "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00";
 
     //
     // Google Base64-encoded RSA public key
+    // TODO: 10/12/2020
     static final String googleRsaPublicKey = "ABCDefghIJKLmnopQRSTuvwxYZ";
 
     // ------------------------------------------------------

@@ -1,6 +1,7 @@
 package com.richikin.jetman.developer;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,7 @@ import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.DefaultPanel;
+import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
@@ -46,6 +48,10 @@ public class DeveloperPanel extends DefaultPanel
     // The elements below are all initialised in quickSetup()
     private int glProfilerRow;
     private int glProfilerColumn;
+    private int devModeRow;
+    private int devModeColumn;
+    private int godModeRow;
+    private int godModeColumn;
 
     static class DMEntry
     {
@@ -62,6 +68,9 @@ public class DeveloperPanel extends DefaultPanel
     }
 
     private static final int _TABLE_COLUMNS = 3;
+
+    private final String _DEVMODE = "devmode";
+    private final String _GODMODE = "godmode";
 
     private DMEntry[][] devMenu;
 
@@ -221,9 +230,8 @@ public class DeveloperPanel extends DefaultPanel
                 label[column].setAlignment(Align.center);
                 label[column].setDisabled(true);
 
-                buttons[row][column] = new CheckBox("", skin);
+                buttons[row][column] = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", 0, 0, Color.WHITE, skin);
                 buttons[row][column].setChecked(App.settings.isEnabled(devMenu[row][column].prefName));
-                buttons[row][column].setText(App.settings.isEnabled(devMenu[row][column].prefName) ? " ON" : " OFF");
             }
 
             createCheckBoxListener(row);
@@ -231,7 +239,7 @@ public class DeveloperPanel extends DefaultPanel
             for (int column = 0; column < _TABLE_COLUMNS; column++)
             {
                 Label num = new Label("" + row + ": ", skin);
-                table.add(num).padLeft(20);
+                table.add(num).padLeft(10);
                 table.add(label[column]).prefWidth(90);
                 table.add(buttons[row][column]).prefWidth(50);
 
@@ -356,6 +364,9 @@ public class DeveloperPanel extends DefaultPanel
             App.settings.getPrefs().flush();
         }
 
+        buttons[devModeRow][devModeColumn].setChecked(Developer.isDevMode());
+        buttons[godModeRow][godModeColumn].setChecked(Developer.isGodMode());
+
         updatePreferences();
     }
 
@@ -376,11 +387,20 @@ public class DeveloperPanel extends DefaultPanel
         }
 
         App.settings.getPrefs().flush();
+
+        if (!buttons[devModeRow][devModeColumn].isChecked()
+            && buttons[godModeRow][godModeColumn].isChecked())
+        {
+            buttons[godModeRow][godModeColumn].setChecked(false);
+        }
     }
 
     private void updatePreferencesOnExit()
     {
         Trace.__FILE_FUNC();
+
+        Developer.setDevMode(buttons[devModeRow][devModeColumn].isChecked());
+        Developer.setGodMode(buttons[godModeRow][godModeColumn].isChecked() && Developer.isDevMode());
     }
 
     private void glProfilerUpdate()
@@ -486,6 +506,16 @@ public class DeveloperPanel extends DefaultPanel
                     glProfilerColumn = column;
                     glProfilerRow    = row;
                 }
+                else if (prefName.equals(_DEVMODE))
+                {
+                    devModeColumn   = column;
+                    devModeRow      = row;
+                }
+                else if (prefName.equals(_GODMODE))
+                {
+                    godModeColumn   = column;
+                    godModeRow      = row;
+                }
             }
         }
     }
@@ -507,22 +537,22 @@ public class DeveloperPanel extends DefaultPanel
                 {
                     new DMEntry("Sprite Boxes", Settings._SPRITE_BOXES, false),
                     new DMEntry("B2D Renderer", Settings._B2D_RENDERER, false),
-                    new DMEntry("Vibrations", Settings._VIBRATIONS, false)
+                    new DMEntry("SHow Hints", Settings._SHOW_HINTS, false)
                 },
                 {
                     new DMEntry("Tile Boxes", Settings._TILE_BOXES, false),
                     new DMEntry("Use Ashley ECS", Settings._USING_ASHLEY_ECS, false),
-                    new DMEntry("Challenges", Settings._CHALLENGES, false)
+                    new DMEntry("Vibrations", Settings._VIBRATIONS, false)
                 },
                 {
                     new DMEntry("Button Outlines", Settings._BUTTON_BOXES, false),
                     new DMEntry("Shader Program", Settings._SHADER_PROGRAM, false),
-                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
+                    new DMEntry("Music Enabled", Settings._MUSIC_ENABLED, false),
                 },
                 {
                     new DMEntry("Show FPS", Settings._SHOW_FPS, false),
                     new DMEntry("GLProfiler", Settings._GL_PROFILER, false),
-                    new DMEntry("", "", false),
+                    new DMEntry("FX Enabled", Settings._SOUNDS_ENABLED, false),
                 },
                 {
                     new DMEntry("Show Debug", Settings._SHOW_DEBUG, false),
@@ -537,31 +567,36 @@ public class DeveloperPanel extends DefaultPanel
                 {
                     new DMEntry("Spawnpoints", Settings._SPAWNPOINTS, false),
                     new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Play Services", Settings._PLAY_SERVICES, false)
                 },
                 {
                     new DMEntry("Menu Page Heaps", Settings._MENU_HEAPS, false),
                     new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
                 },
                 {
                     new DMEntry("Disable Menu Screen", Settings._DISABLE_MENU_SCREEN, false),
                     new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Challenges", Settings._CHALLENGES, false)
                 },
                 {
                     new DMEntry("Cull Sprites", Settings._CULL_SPRITES, false),
                     new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Signin Status", Settings._SIGN_IN_STATUS, false)
                 },
                 {
                     new DMEntry("", "", false),
                     new DMEntry("", "", false),
-                    new DMEntry("", "", false)
-                },
+                    new DMEntry("", "", false),
+                    },
                 {
                     new DMEntry("", "", false),
                     new DMEntry("", "", false),
+                    new DMEntry("", "", false),
+                    },
+                {
+                    new DMEntry("Dev Mode", _DEVMODE, false),
+                    new DMEntry("Invincibilty", _GODMODE, false),
                     new DMEntry("", "", false)
                 },
             };

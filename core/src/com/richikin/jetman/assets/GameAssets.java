@@ -130,6 +130,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_ROVER_GUN,        122,  59),
             new AssetSize(GraphicID.G_ROVER_GUN_BARREL, 122,  59),
             new AssetSize(GraphicID.G_BOMB,              42,  53),
+            new AssetSize(GraphicID.G_ROVER_BULLET,      36,  36),
 
             new AssetSize(GraphicID.G_MISSILE_BASE,     120,  51),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER,  90, 120),

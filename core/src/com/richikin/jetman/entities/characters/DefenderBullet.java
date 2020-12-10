@@ -44,50 +44,50 @@ public class DefenderBullet extends GdxSprite
 
         if (gid == GraphicID.G_ROVER_BULLET)
         {
-//            float angle = Math.abs(App.getGun().gunTurret.sprite.getRotation());
-//
-//            speed.setX(8 * MathUtils.cosDeg(angle));
-//            speed.setY(8 * MathUtils.sinDeg(angle));
-//
-//            direction.setX
-//                (
-//                    App.getGun().isFlippedX
-//                        ? Movement._DIRECTION_LEFT
-//                        : Movement._DIRECTION_RIGHT
-//                );
-//
-//            direction.setY
-//                (
-//                    (App.getGun().gunTurret.sprite.getRotation() != 0.0f)
-//                        ? Movement._DIRECTION_UP
-//                        : Movement._DIRECTION_STILL
-//                );
-//
-//            if (App.getRover().isFlippedX)
-//            {
-//                sprite.setPosition
-//                    (
-//                        (App.getGun().gunTurret.sprite.getX() + 46),
-//                        (App.getGun().gunTurret.sprite.getY() + 28)
-//                    );
-//            }
-//            else
-//            {
-//                sprite.setPosition
-//                    (
-//                        (App.getGun().gunTurret.sprite.getX() + 51),
-//                        (App.getGun().gunTurret.sprite.getY() + 28)
-//                    );
-//            }
-//
-//            float count = (68.0f * MathUtils.cosDeg(angle));
-//
-//            while (count > 0)
-//            {
-//                sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
-//
-//                count -= speed.getX();
-//            }
+            float angle = Math.abs(App.getGun().gunTurret.sprite.getRotation());
+
+            speed.setX(8 * MathUtils.cosDeg(angle));
+            speed.setY(8 * MathUtils.sinDeg(angle));
+
+            direction.setX
+                (
+                    App.getGun().isFlippedX
+                        ? Movement._DIRECTION_LEFT
+                        : Movement._DIRECTION_RIGHT
+                );
+
+            direction.setY
+                (
+                    (App.getGun().gunTurret.sprite.getRotation() != 0.0f)
+                        ? Movement._DIRECTION_UP
+                        : Movement._DIRECTION_STILL
+                );
+
+            if (App.getRover().isFlippedX)
+            {
+                sprite.setPosition
+                    (
+                        (App.getGun().gunTurret.sprite.getX() + 46),
+                        (App.getGun().gunTurret.sprite.getY() + 28)
+                    );
+            }
+            else
+            {
+                sprite.setPosition
+                    (
+                        (App.getGun().gunTurret.sprite.getX() + 51),
+                        (App.getGun().gunTurret.sprite.getY() + 28)
+                    );
+            }
+
+            float count = (68.0f * MathUtils.cosDeg(angle));
+
+            while (count > 0)
+            {
+                sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
+
+                count -= speed.getX();
+            }
 
             bodyCategory = Gfx.CAT_PLAYER_WEAPON;
             collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;

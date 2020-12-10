@@ -53,7 +53,6 @@ public class RoverGun extends Carryable
         descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_GUN_BARREL);
         descriptor._INDEX      = App.entityData.entityMap.size;
 
-        // TODO: 29/11/2020 - Does the turret need to be added to the entity list?
         gunTurret = new GunTurret();
         gunTurret.initialise(descriptor);
         App.entityData.addEntity(gunTurret);
@@ -125,6 +124,7 @@ public class RoverGun extends Carryable
             if (isShooting && (shootRate > 0.0875f) && (shootCount < 2))
             {
                 SpriteDescriptor descriptor = App.entities.getDescriptor(GraphicID.G_ROVER_BULLET);
+                descriptor._SIZE       = GameAssets.getAssetSize(GraphicID.G_ROVER_BULLET);
                 descriptor._POSITION.x = (int) (gunTurret.sprite.getX() / Gfx.getTileWidth());
                 descriptor._POSITION.x = (int) (gunTurret.sprite.getY() / Gfx.getTileHeight());
                 descriptor._POSITION.z = App.entityUtils.getInitialZPosition(GraphicID.G_ROVER_BULLET);
@@ -174,7 +174,7 @@ public class RoverGun extends Carryable
     @Override
     public void draw(SpriteBatch spriteBatch)
     {
-        isDrawable = (isAttachedToPlayer && App.teleportManager.teleportActive);
+        isDrawable = !(isAttachedToPlayer && App.teleportManager.teleportActive);
 
         if (gunTurret != null)
         {
@@ -230,9 +230,7 @@ public class RoverGun extends Carryable
             {
                 if (getAction() == ActionStates._FALLING)
                 {
-                    GraphicID contactID = App.collisionUtils.getBoxHittingBottom(App.getGun()).gid;
-
-                    switch (contactID)
+                    switch (App.collisionUtils.getBoxHittingBottom(App.getGun()).gid)
                     {
                         case _GROUND:
                         {
@@ -256,12 +254,15 @@ public class RoverGun extends Carryable
                         case G_ROVER:
                         case G_ROVER_BOOT:
                         {
-                            isAttachedToRover = true;
-                            direction.setY(Movement._DIRECTION_STILL);
-                            speed.setY(0);
-                            setAction(ActionStates._STANDING);
+                            if (!isAttachedToRover)
+                            {
+                                isAttachedToRover = true;
+                                direction.setY(Movement._DIRECTION_STILL);
+                                speed.setY(0);
+                                setAction(ActionStates._STANDING);
 
-                            App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+                                App.googleServices.unlockAchievement(PlayServicesID.achievement_gunman_jetman.getID());
+                            }
                         }
                         break;
                     }
@@ -273,16 +274,7 @@ public class RoverGun extends Carryable
             {
                 if ((sprite.getY() + frameHeight) < 0)
                 {
-                    setAction(ActionStates._DEAD);
-                }
-                else
-                {
-                    if (!isAttachedToPlayer
-                        && !isAttachedToRover
-                        && (collisionObject.idBottom == GraphicID.G_NO_ID))
-                    {
-                        setAction(ActionStates._FALLING);
-                    }
+                    explode();
                 }
             }
 
