@@ -1,4 +1,4 @@
-package com.richikin.jetman.physics;
+package com.richikin.utilslib.physics;
 
 public enum Dir
 {

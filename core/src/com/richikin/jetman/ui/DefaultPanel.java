@@ -10,7 +10,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Direction;
+import com.richikin.utilslib.physics.Direction;
 import com.richikin.jetman.physics.Speed;
 
 /**

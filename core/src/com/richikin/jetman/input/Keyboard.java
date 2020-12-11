@@ -8,11 +8,11 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.developer.Developer;
-import com.richikin.jetman.physics.Dir;
+import com.richikin.utilslib.physics.Dir;
 import com.richikin.utilslib.input.DirectionMap;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.DirectionValue;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.DirectionValue;
+import com.richikin.utilslib.physics.Movement;
 
 @SuppressWarnings("WeakerAccess")
 public class Keyboard extends InputAdapter

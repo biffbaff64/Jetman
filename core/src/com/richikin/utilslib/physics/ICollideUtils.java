@@ -1,4 +1,4 @@
-package com.richikin.jetman.physics;
+package com.richikin.utilslib.physics;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.richikin.jetman.entities.objects.GdxSprite;

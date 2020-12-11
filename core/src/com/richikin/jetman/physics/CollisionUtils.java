@@ -12,6 +12,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
+import com.richikin.utilslib.physics.ICollideUtils;
 
 public class CollisionUtils implements ICollideUtils, Disposable
 {
@@ -25,6 +26,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     /**
      * Initialise these utils.
      */
+    @Override
     public void initialise()
     {
         AABBData.initialise();
@@ -35,6 +37,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return the collision object
      */
+    @Override
     public CollisionObject newObject()
     {
         return new CollisionObject();
@@ -47,6 +50,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return the collision object
      */
+    @Override
     public CollisionObject newObject(Rectangle rectangle)
     {
         return new CollisionObject(rectangle);
@@ -63,6 +67,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return the collision object
      */
+    @Override
     public CollisionObject newObject(int x, int y, int width, int height, GraphicID graphicID)
     {
         return new CollisionObject(x, y, width, height, graphicID);
@@ -107,6 +112,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     /**
      * Tidy ALL currently active collision objects.
      */
+    @Override
     public void tidy()
     {
         for (int i = 0; i < AABBData.boxes().size; i++)
@@ -134,6 +140,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
     /**
      * Dump debug information for all
      */
+    @Override
     public void debugAll()
     {
 //        for (int i = 0; i < AABBData.boxes().size; i++)
@@ -148,6 +155,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return the boolean
      */
+    @Override
     public boolean canCollide(GdxSprite entity, GdxSprite target)
     {
         return ((entity.collidesWith & target.bodyCategory) != 0)
@@ -162,6 +170,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return TRUE if the two entities are able to collide.
      */
+    @Override
     public boolean filter(short theEntityFlag, short theCollisionBoxFlag)
     {
         return ((theEntityFlag & theCollisionBoxFlag) != 0);
@@ -175,6 +184,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return the marker tile on
      */
+    @Override
     public TileID getMarkerTileOn(int x, int y)
     {
         TileID tileID = TileID._UNKNOWN;
@@ -197,6 +207,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return
      */
+    @Override
     public int getXBelow(GdxSprite spriteObj)
     {
         return (int) ((spriteObj.getCollisionRectangle().getX() + (Gfx.getTileWidth() / 2)) / Gfx.getTileWidth());
@@ -209,6 +220,7 @@ public class CollisionUtils implements ICollideUtils, Disposable
      *
      * @return
      */
+    @Override
     public int getYBelow(GdxSprite spriteObj)
     {
         int y;
@@ -223,21 +235,25 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return y;
     }
 
+    @Override
     public CollisionObject getBoxHittingTop(GdxSprite spriteObject)
     {
         return AABBData.boxes().get(spriteObject.collisionObject.boxHittingTop);
     }
 
+    @Override
     public CollisionObject getBoxHittingBottom(GdxSprite spriteObject)
     {
         return AABBData.boxes().get(spriteObject.collisionObject.boxHittingBottom);
     }
 
+    @Override
     public CollisionObject getBoxHittingLeft(GdxSprite spriteObject)
     {
         return AABBData.boxes().get(spriteObject.collisionObject.boxHittingLeft);
     }
 
+    @Override
     public CollisionObject getBoxHittingRight(GdxSprite spriteObject)
     {
         return AABBData.boxes().get(spriteObject.collisionObject.boxHittingRight);

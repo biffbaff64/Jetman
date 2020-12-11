@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.physics.Dir;
+import com.richikin.utilslib.physics.Dir;
 import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.controllers.ControllerType;

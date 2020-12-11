@@ -6,7 +6,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
-import com.richikin.jetman.physics.Direction;
+import com.richikin.utilslib.physics.Direction;
 import com.richikin.jetman.physics.Speed;
 
 public class SlidePanel extends DefaultPanel implements IUserInterfacePanel

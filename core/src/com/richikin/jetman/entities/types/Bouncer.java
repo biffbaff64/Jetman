@@ -15,7 +15,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 public class Bouncer extends GdxSprite
 {

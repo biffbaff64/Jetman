@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Direction;
+import com.richikin.utilslib.physics.Direction;
 import com.richikin.jetman.physics.Speed;
 
 public interface IDefaultUIPanel

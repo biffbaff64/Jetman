@@ -1,8 +1,9 @@
 
-package com.richikin.jetman.physics;
+package com.richikin.utilslib.physics;
 
-public abstract class Movement
+public enum Movement
 {
+    ;
     public static final int _HORIZONTAL         = 1;
     public static final int _VERTICAL           = 2;
     public static final int _DIRECTION_IN       = 1;

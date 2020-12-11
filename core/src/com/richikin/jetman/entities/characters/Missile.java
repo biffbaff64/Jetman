@@ -14,7 +14,7 @@ import com.richikin.jetman.graphics.camera.Shake;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 public class Missile extends GdxSprite implements ICollisionListener
 {

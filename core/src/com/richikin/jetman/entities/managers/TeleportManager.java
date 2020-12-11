@@ -14,7 +14,7 @@ import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 public class TeleportManager extends GenericEntityManager
 {

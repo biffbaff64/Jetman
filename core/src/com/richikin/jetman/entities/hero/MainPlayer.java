@@ -19,7 +19,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.jetman.physics.aabb.CollisionRect;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;

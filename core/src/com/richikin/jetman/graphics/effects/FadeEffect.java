@@ -4,7 +4,7 @@ package com.richikin.jetman.graphics.effects;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;

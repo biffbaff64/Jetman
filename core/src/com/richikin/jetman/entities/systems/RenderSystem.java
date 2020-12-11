@@ -6,7 +6,7 @@ import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -4,8 +4,8 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
-import com.richikin.jetman.physics.Direction;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.Speed;
 import com.richikin.enumslib.StateID;
 

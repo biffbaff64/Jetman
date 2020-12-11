@@ -18,7 +18,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.Proximity;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 
 import java.util.concurrent.TimeUnit;
 

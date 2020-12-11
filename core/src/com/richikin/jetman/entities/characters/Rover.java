@@ -12,7 +12,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.PlayServicesID;
-import com.richikin.jetman.physics.Movement;
+import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
 public class Rover extends GdxSprite
