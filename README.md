@@ -8,7 +8,7 @@ TODO Items
     - Implement keyboard controls for desktop version
     - Implement external controller for desktop version
     - Implement External controller for android version
-    -     
+    - Remove Speed class. Use SimpleVec2F instead.
 
     Dispose Instances checklist
     ---------------------------

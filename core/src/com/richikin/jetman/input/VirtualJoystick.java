@@ -5,11 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.physics.Dir;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.input.Touchpad;
-import com.richikin.jetman.physics.Movement;
 
 public class VirtualJoystick
 {
@@ -144,9 +143,9 @@ public class VirtualJoystick
         return touchpad;
     }
 
-    private Movement.Dir evaluateJoypadDirection()
+    private Dir evaluateJoypadDirection()
     {
-        Movement.Dir joyDir;
+        Dir joyDir;
 
         //
         // The default angle for joystick goes round anti-clockwise,

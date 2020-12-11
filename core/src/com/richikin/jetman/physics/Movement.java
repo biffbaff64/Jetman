@@ -16,33 +16,20 @@ public abstract class Movement
     public static final int _DIRECTION_STILL    = 0;
     public static final int _DIRECTION_CUSTOM   = 2;
 
-    public enum Dir
-    {
-        _STILL,
-        _UP,
-        _DOWN,
-        _LEFT,
-        _RIGHT,
-        _UP_LEFT,
-        _UP_RIGHT,
-        _DOWN_LEFT,
-        _DOWN_RIGHT,
-    }
-
     private static final String[][] aliases =
         {
             {"LEFT ", "STILL", "RIGHT"},
             {"DOWN ", "STILL", "UP   "},
         };
 
-    public static String getAliasX(int _value)
+    public static String getAliasX(int value)
     {
-        return aliases[0][_value+1];
+        return aliases[0][value+1];
     }
 
-    public static String getAliasY(int _value)
+    public static String getAliasY(int value)
     {
-        return aliases[1][_value+1];
+        return aliases[1][value+1];
     }
 
     public static Dir translateDirection(Direction direction)

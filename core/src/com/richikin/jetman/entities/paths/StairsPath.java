@@ -16,11 +16,11 @@ public class StairsPath
         public final Direction   direction;
         public final Speed       speed;
 
-        PathData(SimpleVec2F _distance, Direction _direction, Speed _speed)
+        PathData(SimpleVec2F distance, Direction direction, Speed speed)
         {
-            distance = new SimpleVec2F(_distance.x, _distance.y);
-            direction = new Direction(_direction);
-            speed = new Speed(_speed);
+            this.distance  = new SimpleVec2F(distance.x, distance.y);
+            this.direction = new Direction(direction);
+            this.speed     = new Speed(speed);
         }
     }
 
@@ -110,21 +110,22 @@ public class StairsPath
             // ...And Repeat...
         };
 
-    public       int        pathIndex;
+    public int pathIndex;
+
     public final SimpleVec2 directionReset;
 
     public StairsPath()
     {
-        pathIndex = 0;
+        pathIndex      = 0;
         directionReset = new SimpleVec2(Movement._DIRECTION_RIGHT, Movement._DIRECTION_STILL);
     }
 
     public void setNextPathData(GdxSprite spriteObject)
     {
-        if (pathIndex >= pathData.length)
-        {
-            pathIndex = 0;
-        }
+//        if (pathIndex >= pathData.length)
+//        {
+//            pathIndex = 0;
+//        }
 
         spriteObject.distance.set(pathData[pathIndex].distance);
         spriteObject.direction.set(pathData[pathIndex].direction);
@@ -135,6 +136,8 @@ public class StairsPath
             spriteObject.direction.setX(directionReset.getX());
         }
 
-        pathIndex++;
+//        pathIndex++;
+
+        pathIndex = (pathIndex + 1) % pathData.length;
     }
 }

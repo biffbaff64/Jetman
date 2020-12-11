@@ -8,11 +8,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.physics.Dir;
 import com.richikin.utilslib.input.IGDXButton;
 import com.richikin.utilslib.input.controllers.ControllerData;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.jetman.physics.Movement;
 
 @SuppressWarnings("WeakerAccess")
 public class InputManager
@@ -24,10 +24,10 @@ public class InputManager
     public VirtualJoystick   virtualJoystick;
     public TouchScreen       touchScreen;
     public GameController    gameController;
-    public InputMultiplexer  inputMultiplexer;
-    public Movement.Dir      currentRegisteredDirection;
-    public Movement.Dir      lastRegisteredDirection;
-    public float             _horizontalValue;
+    public InputMultiplexer inputMultiplexer;
+    public Dir              currentRegisteredDirection;
+    public Dir              lastRegisteredDirection;
+    public float            _horizontalValue;
     public float             _verticalValue;
 
     public InputManager()
@@ -39,8 +39,8 @@ public class InputManager
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(App.stage);
 
-        currentRegisteredDirection = Movement.Dir._STILL;
-        lastRegisteredDirection    = Movement.Dir._STILL;
+        currentRegisteredDirection = Dir._STILL;
+        lastRegisteredDirection    = Dir._STILL;
 
         //
         // Initialise virtual controllers if enabled.
