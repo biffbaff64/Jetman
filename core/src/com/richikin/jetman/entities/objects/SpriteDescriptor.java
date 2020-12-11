@@ -36,7 +36,8 @@ public class SpriteDescriptor
     public SimpleVec2F        _DIST;         // Initial travel distance. Useful for moving blocks etc.
     public Speed              _SPEED;        // Initial speed.
     public Box                _BOX;          //
-    public boolean            _ENEMY;
+    public boolean            _ENEMY;        //
+    public int                _VALUE;        //
 
     public SpriteDescriptor()
     {
@@ -58,6 +59,7 @@ public class SpriteDescriptor
         this._SPEED     = null;
         this._BOX       = null;
         this._ENEMY     = false;
+        this._VALUE     = 0;
     }
 
     public SpriteDescriptor(String _objectName,
@@ -109,6 +111,7 @@ public class SpriteDescriptor
         this._SPEED     = _descriptor._SPEED;
         this._BOX       = _descriptor._BOX;
         this._ENEMY     = _descriptor._ENEMY;
+        this._VALUE     = _descriptor._VALUE;
     }
 
     public void debug()

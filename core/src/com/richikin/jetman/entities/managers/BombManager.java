@@ -68,6 +68,8 @@ public class BombManager extends GenericEntityManager
                                 (int) AppConfig.hudOriginX + 185,
                                 (int) AppConfig.hudOriginY + (720 - 167)
                             );
+
+                        App.getHud().alphaDisplay.setMessage("     NEW BOMB READY!           ");
                     }
                 }
             }

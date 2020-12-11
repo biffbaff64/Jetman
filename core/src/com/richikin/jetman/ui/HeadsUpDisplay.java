@@ -103,6 +103,7 @@ public class HeadsUpDisplay implements Disposable
     public ImageButton PauseButton;
 
     public MessageManager messageManager;
+    public AlphaDisplay   alphaDisplay;
     public PausePanel     pausePanel;
     public StateID        hudStateID;
 
@@ -174,6 +175,14 @@ public class HeadsUpDisplay implements Disposable
         baseArrowIndex  = _ARROW_DOWN;
 
         drawFuelLow(StateID._INIT, 0, 0);
+
+        alphaDisplay = new AlphaDisplay();
+        alphaDisplay.initialise
+            (
+                (int) AppConfig.hudOriginX + 279,
+                (int) AppConfig.hudOriginY + 20
+            );
+        alphaDisplay.setActive(true);
 
         hudStateID = StateID._STATE_PANEL_START;
 
@@ -414,6 +423,11 @@ public class HeadsUpDisplay implements Disposable
             originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
             originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
+            if (AppConfig.gameScreenActive())
+            {
+                App.baseRenderer.parallaxForeground.render();
+            }
+
             drawPanels();
             drawItems();
 
@@ -652,6 +666,11 @@ public class HeadsUpDisplay implements Disposable
             if (messageManager.isEnabled())
             {
                 messageManager.draw();
+            }
+
+            if (alphaDisplay.activeMessage)
+            {
+                alphaDisplay.drawBackground();
             }
         }
     }

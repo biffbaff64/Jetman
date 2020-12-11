@@ -30,11 +30,7 @@ public class LoadingScreen implements Disposable
 
     public void update()
     {
-    }
-
-    public void render()
-    {
-        if (background != null)
+        if ((background != null) && isAvailable)
         {
             background.setPosition(AppConfig.hudOriginX, AppConfig.hudOriginY);
         }

@@ -220,16 +220,6 @@ public class BaseRenderer implements Disposable
 
             hudRenderer.render(App.spriteBatch, hudGameCamera);
 
-            if (AppConfig.gameScreenActive())
-            {
-                App.baseRenderer.parallaxForeground.render();
-            }
-
-            if (loadingScreen.isAvailable)
-            {
-                loadingScreen.render();
-            }
-
             App.spriteBatch.end();
         }
 
