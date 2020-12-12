@@ -4,7 +4,7 @@ import com.richikin.enumslib.GraphicID;
 
 public interface ICollisionListener
 {
-    void onPositiveCollision(GraphicID graphicID);
+    void onPositiveCollision(CollisionObject cobjHitting);
 
     void onNegativeCollision();
 

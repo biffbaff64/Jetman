@@ -57,6 +57,10 @@ public class AABB implements Disposable
 
                 isHitting = false;
 
+                //
+                // boxA is the sprite checking for collision
+                // boxB is any sprite that boxA is in contact with
+                // All collisionObjects have parentEntities.
                 for (CollisionObject boxB : AABBData.boxes())
                 {
                     if (boxB.index > 0)
@@ -71,9 +75,11 @@ public class AABB implements Disposable
                                 if (Intersector.overlaps(topRectangle, boxB.rectangle))
                                 {
                                     isHitting           = true;
-                                    boxA.idTop          = boxB.gid;
-                                    boxA.boxHittingTop  = boxB.index;
-                                    boxA.contactMask    |= AABBData._TOP;
+                                    boxA.contactTop     = boxB.parentEntity;
+
+//                                    boxA.idTop          = boxB.gid;
+//                                    boxA.boxHittingTop  = boxB.index;
+//                                    boxA.contactMask    |= AABBData._TOP;
                                 }
 
                                 if (Intersector.overlaps(midRectangle, boxB.rectangle))
@@ -83,19 +89,23 @@ public class AABB implements Disposable
                                         && ((midRectangle.x + midRectangle.width) > (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
                                         isHitting           = true;
-                                        boxA.idLeft         = boxB.gid;
-                                        boxA.boxHittingLeft = boxB.index;
-                                        boxA.contactMask    |= AABBData._LEFT;
+                                        boxA.contactLeft    = boxB.parentEntity;
+
+//                                        boxA.idLeft         = boxB.gid;
+//                                        boxA.boxHittingLeft = boxB.index;
+//                                        boxA.contactMask    |= AABBData._LEFT;
                                     }
 
                                     if ((midRectangle.x < boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        isHitting               = true;
-                                        boxA.idRight            = boxB.gid;
-                                        boxA.boxHittingRight    = boxB.index;
-                                        boxA.contactMask        |= AABBData._RIGHT;
+                                        isHitting           = true;
+                                        boxA.contactRight   = boxB.parentEntity;
+
+//                                        boxA.idRight            = boxB.gid;
+//                                        boxA.boxHittingRight    = boxB.index;
+//                                        boxA.contactMask        |= AABBData._RIGHT;
                                     }
                                 }
 
@@ -103,9 +113,11 @@ public class AABB implements Disposable
                                     && (boxB.rectangle.y <= botRectangle.y))
                                 {
                                     isHitting               = true;
-                                    boxA.idBottom           = boxB.gid;
-                                    boxA.boxHittingBottom   = boxB.index;
-                                    boxA.contactMask        |= AABBData._BOTTOM;
+                                    boxA.contactBottom      = boxB.parentEntity;
+
+//                                    boxA.idBottom           = boxB.gid;
+//                                    boxA.boxHittingBottom   = boxB.index;
+//                                    boxA.contactMask        |= AABBData._BOTTOM;
                                 }
                             }
                         }
@@ -115,15 +127,6 @@ public class AABB implements Disposable
                             collisionDetected = true;
                             isHitting = false;
 
-                            //
-                            // Collision objects for non-sprites
-                            // don't have parent sprites
-                            if (boxB.parentEntity != null)
-                            {
-                                boxA.contactEntity = boxB.parentEntity;
-                            }
-
-                            boxA.contactGid         = boxB.gid;
                             boxA.isContactObstacle  = boxB.isObstacle;
                             boxA.action             = ActionStates._COLLIDING;
                             boxB.action             = ActionStates._COLLIDING;

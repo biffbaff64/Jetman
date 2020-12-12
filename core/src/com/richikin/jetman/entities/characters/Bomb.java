@@ -12,6 +12,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.core.PlayServicesID;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 
@@ -87,7 +88,7 @@ public class Bomb extends Carryable
         addCollisionListener(new ICollisionListener()
         {
             @Override
-            public void onPositiveCollision(GraphicID graphicID)
+            public void onPositiveCollision(CollisionObject cobjHitting)
             {
                 if (getAction() == ActionStates._FALLING)
                 {
