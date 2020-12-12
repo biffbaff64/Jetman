@@ -60,22 +60,22 @@ public class HeadsUpDisplay implements Disposable
     private static final int _TIME_BAR    = 10;
 
     //@formatter:off
-    private static final int[][] displayPos = new int[][]
-        {
-            {  25, 1016, (720 - 695), 240, 240},    // Joystick
-            {1007,   44, (720 - 677),  96,  96},    // Action
-            {1129,  158, (720 - 590),  96,  96},    // Attack
-            {1200, 1200, (720 - 177),  64,  64},    // Pause Button
-            {  20,   20, (720 - 177),  64,  64},    // Settings Button
-            {   0,    0, (720 - 101),  99,  86},    // Dev Options
-            {1180, 1180, (720 - 101),  99,  86},    // Debug Console
-            {  18,   18, (720 -  92),   0,   0},    // Truck Arrow
-            {1218, 1218, (720 -  92),   0,   0},    // Base Arrow
-            { 162,  162, (720 -  72),   0,   0},    // Fuel Bar
-            { 162,  162, (720 - 101),   0,   0},    // Time Bar
-        };
+    private static final int[][] displayPos =
+    {
+        {  25, 1016, (720 - 695), 240, 240},    // Joystick
+        {1007,   44, (720 - 677),  96,  96},    // Action
+        {1129,  158, (720 - 590),  96,  96},    // Attack
+        {1200, 1200, (720 - 177),  64,  64},    // Pause Button
+        {  20,   20, (720 - 177),  64,  64},    // Settings Button
+        {   0,    0, (720 - 101),  99,  86},    // Dev Options
+        {1180, 1180, (720 - 101),  99,  86},    // Debug Console
+        {  18,   18, (720 -  92),   0,   0},    // Truck Arrow
+        {1218, 1218, (720 -  92),   0,   0},    // Base Arrow
+        { 162,  162, (720 -  72),   0,   0},    // Fuel Bar
+        { 162,  162, (720 - 101),   0,   0},    // Time Bar
+    };
 
-    private final int[][] livesDisplay = new int[][]
+    private final int[][] livesDisplay =
         {
             {1070, (720 - 47)},
             {1024, (720 - 47)},
@@ -103,7 +103,7 @@ public class HeadsUpDisplay implements Disposable
     public ImageButton PauseButton;
 
     public MessageManager messageManager;
-    public AlphaDisplay   alphaDisplay;
+//    public AlphaDisplay   alphaDisplay;
     public PausePanel     pausePanel;
     public StateID        hudStateID;
 
@@ -176,13 +176,13 @@ public class HeadsUpDisplay implements Disposable
 
         drawFuelLow(StateID._INIT, 0, 0);
 
-        alphaDisplay = new AlphaDisplay();
-        alphaDisplay.initialise
-            (
-                (int) AppConfig.hudOriginX + 279,
-                (int) AppConfig.hudOriginY + 20
-            );
-        alphaDisplay.setActive(true);
+//        alphaDisplay = new AlphaDisplay();
+//        alphaDisplay.initialise
+//            (
+//                (int) AppConfig.hudOriginX + 279,
+//                (int) AppConfig.hudOriginY + 20
+//            );
+//        alphaDisplay.setActive(true);
 
         hudStateID = StateID._STATE_PANEL_START;
 
@@ -668,18 +668,20 @@ public class HeadsUpDisplay implements Disposable
                 messageManager.draw();
             }
 
-            if (alphaDisplay.activeMessage)
-            {
-                alphaDisplay.drawBackground();
-            }
+//            if (alphaDisplay.activeMessage)
+//            {
+//                alphaDisplay.drawBackground();
+//            }
         }
     }
 
-    private void drawFuelLow(StateID _stateID, float originX, float originY)
+    private void drawFuelLow(StateID stateID, float originX, float originY)
     {
-        if (_stateID == StateID._INIT)
+        if (stateID == StateID._INIT)
         {
-            imageFuelLow = Scene2DUtils.createDrawable("fuel_low", App.assets.getTextsLoader());
+            Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+            imageFuelLow = scene2DUtils.createDrawable("fuel_low", App.assets.getTextsLoader());
             fuelLowState = true;
             fuelLowTimer = StopWatch.start();
             fuelLowDelay = 1000;
@@ -720,21 +722,23 @@ public class HeadsUpDisplay implements Disposable
         {
             int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-            AttackButton = Scene2DUtils.addButton
+            Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+            AttackButton = scene2DUtils.addButton
                 (
                     "button_a",
                     "button_a_pressed",
                     displayPos[_ATTACK][xPos], displayPos[_ATTACK][_Y]
                 );
 
-            ActionButton = Scene2DUtils.addButton
+            ActionButton = scene2DUtils.addButton
                 (
                     "button_b",
                     "button_b_pressed",
                     displayPos[_ACTION][xPos], displayPos[_ACTION][_Y]
                 );
 
-            PauseButton = Scene2DUtils.addButton
+            PauseButton = scene2DUtils.addButton
                 (
                     "pause_button",
                     "pause_button_pressed",

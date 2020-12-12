@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
@@ -22,8 +23,9 @@ public class LoadingScreen implements Disposable
         isAvailable = true;
 
         Texture texture = App.assets.loadSingleAsset(GameAssets._SPLASH_SCREEN_ASSET, Texture.class);
+        TextureRegionDrawable drawable = new TextureRegionDrawable(new TextureRegion(texture));
 
-        background = Scene2DUtils.createImage(new TextureRegion(texture));
+        background = new Image(drawable);
         background.setVisible(true);
         background.setZIndex(99);
     }

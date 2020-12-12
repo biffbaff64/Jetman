@@ -93,7 +93,9 @@ public class ExitPanel implements Disposable
         panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
         darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
 
-        buttonYes = Scene2DUtils.addButton
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+        buttonYes = scene2DUtils.addButton
             (
                 "button_yes_blue",
                 "button_yes_pressed",
@@ -101,7 +103,7 @@ public class ExitPanel implements Disposable
                 (int) AppConfig.hudOriginY + displayPos[_YES][1]
             );
 
-        buttonNo = Scene2DUtils.addButton
+        buttonNo = scene2DUtils.addButton
             (
                 "button_no_red",
                 "button_no_pressed",
@@ -119,6 +121,7 @@ public class ExitPanel implements Disposable
 
         buttonYes.addListener(new ClickListener()
         {
+            @Override
             public void clicked(InputEvent event, float x, float y)
             {
                 action = _YES_PRESSED;
@@ -127,6 +130,7 @@ public class ExitPanel implements Disposable
 
         buttonNo.addListener(new ClickListener()
         {
+            @Override
             public void clicked(InputEvent event, float x, float y)
             {
                 action = _NO_PRESSED;
