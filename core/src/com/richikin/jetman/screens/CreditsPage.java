@@ -33,7 +33,9 @@ public class CreditsPage implements IUIPage, Disposable
     {
         foreground = App.assets.loadSingleAsset(GameAssets._CREDITS_PANEL_ASSET, Texture.class);
 
-        versionLabel = Scene2DUtils.addLabel
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+        versionLabel = scene2DUtils.addLabel
             (
                 Version.getDisplayVersion(),
                 (int) AppConfig.hudOriginX + 364,

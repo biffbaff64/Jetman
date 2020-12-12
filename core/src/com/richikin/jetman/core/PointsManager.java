@@ -9,69 +9,47 @@ public class PointsManager
     static class Points
     {
         final GraphicID gid;
-        final int       value;
-        int total;
-        int pending;
+        final int       points;
 
         Points(GraphicID _gid, int _points)
         {
-            this.gid     = _gid;
-            this.value   = _points;
-            this.total   = 0;
-            this.pending = 0;
+            this.gid = _gid;
+            this.points = _points;
         }
     }
 
-    private static final Array<Points> pointsTable = new Array<>();
-
-    public static void updatePointStacks()
-    {
-        for (Points entry : pointsTable)
+    private static final Points[] pointsTable =
         {
-            if (entry.pending > 0)
+            new Points(GraphicID.G_MISSILE_BASE,    5000),
+            new Points(GraphicID.G_MISSILE,         500),
+            new Points(GraphicID.G_SPINNING_BALL,   210),
+            new Points(GraphicID.G_3BALLS_UFO,      170),
+            new Points(GraphicID.G_TWINKLES,        170),
+            new Points(GraphicID.G_ALIEN_WHEEL,     160),
+            new Points(GraphicID.G_3BALLS_UFO,      160),
+            new Points(GraphicID.G_GREEN_BLOCK,     120),
+            new Points(GraphicID.G_STAR_SPINNER,    120),
+            new Points(GraphicID.G_ASTEROID,        110),
+            new Points(GraphicID.G_DOG,             100),
+            new Points(GraphicID.G_BLOB,            100),
+            new Points(GraphicID.G_TOPSPIN,         90),
+            new Points(GraphicID.G_3LEGS_ALIEN,     90),
+            };
+
+    public static int getPoints(GraphicID gid)
+    {
+        int score = 0;
+
+        for (final Points aPointsTable : pointsTable)
+        {
+            if (gid.equals(aPointsTable.gid))
             {
-                int amount = NumberUtils.getCount(entry.pending);
+                score = aPointsTable.points;
 
-                entry.total += amount;
-                entry.pending -= amount;
-            }
-        }
-    }
-
-    public static void addItem(GraphicID _gid, int _value)
-    {
-        pointsTable.add(new Points(_gid, _value));
-    }
-
-    public static void addPending(GraphicID _gid, int _value)
-    {
-        pointsTable.get(getIndex(_gid)).pending += _value;
-    }
-
-    public static int getPoints(GraphicID _gid)
-    {
-        int points = 0;
-
-        if (pointsTable.size > getIndex(_gid))
-        {
-            points = pointsTable.get(getIndex(_gid)).total;
-        }
-
-        return points;
-    }
-
-    private static int getIndex(GraphicID _gid)
-    {
-        int index = 0;
-
-        for (final Points entry : pointsTable)
-        {
-            if (_gid.equals(entry.gid))
-            {
                 break;
             }
         }
 
-        return index;
+        return score;
     }
 }

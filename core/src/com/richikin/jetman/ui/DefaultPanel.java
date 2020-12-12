@@ -11,7 +11,6 @@ import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
-import com.richikin.jetman.physics.Speed;
 
 /**
  * Basic UI Panel class.
@@ -158,7 +157,7 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     public void initialise(TextureRegion _region, String _nameID, Object... args) {}
 
     @Override
-    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, Speed speed) {}
+    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed) {}
 
     @Override
     public void setup() {}

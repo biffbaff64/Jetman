@@ -172,12 +172,14 @@ public class HiscorePage implements IUIPage, Disposable
         colorIndex = new int[_DISPLAYED_HISCORES];
         loopCount  = 0;
 
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
         for (int i = 0; i < _DISPLAYED_HISCORES; i++)
         {
             int _Y_POS = (_TABLE_Y - (Gfx._HUD_HEIGHT / 2)) - (_SPACING * i);
 
             // Hiscore table rank
-            rankLabels[i] = Scene2DUtils.addLabel
+            rankLabels[i] = scene2DUtils.addLabel
                 (
                     "" + (i + 1),
                     _RANK_X - (Gfx._HUD_WIDTH / 2),
@@ -188,7 +190,7 @@ public class HiscorePage implements IUIPage, Disposable
                 );
 
             // The game level achieved
-            levelLabels[i] = Scene2DUtils.addLabel
+            levelLabels[i] = scene2DUtils.addLabel
                 (
                     "" + App.highScoreUtils.getHighScoreTable()[i].level,
                     _LEVEL_X - (Gfx._HUD_WIDTH / 2),
@@ -199,7 +201,7 @@ public class HiscorePage implements IUIPage, Disposable
                 );
 
             // The player score
-            scoreLabels[i] = Scene2DUtils.addLabel
+            scoreLabels[i] = scene2DUtils.addLabel
                 (
                     String.format(Locale.UK, "%8d", App.highScoreUtils.getHighScoreTable()[i].score),
                     _SCORE_X - (Gfx._HUD_WIDTH / 2),

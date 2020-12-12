@@ -6,7 +6,6 @@ import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
-import com.richikin.jetman.physics.Speed;
 
 public interface IDefaultUIPanel
 {
@@ -16,7 +15,7 @@ public interface IDefaultUIPanel
 
     void initialise(TextureRegion _region, String _nameID, Object... args);
 
-    void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, Speed speed);
+    void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed);
 
     void setup();
 

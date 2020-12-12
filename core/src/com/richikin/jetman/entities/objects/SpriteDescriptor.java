@@ -8,7 +8,6 @@ import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.utilslib.physics.Direction;
-import com.richikin.jetman.physics.Speed;
 import com.richikin.utilslib.logging.Trace;
 
 /**
@@ -34,10 +33,9 @@ public class SpriteDescriptor
     public int                _LINK;         // Linked GDXSprite (if applicable).
     public Direction          _DIR;          // Initial direction of travel.
     public SimpleVec2F        _DIST;         // Initial travel distance. Useful for moving blocks etc.
-    public Speed              _SPEED;        // Initial speed.
+    public SimpleVec2F        _SPEED;        // Initial speed.
     public Box                _BOX;          //
     public boolean            _ENEMY;        //
-    public int                _VALUE;        //
 
     public SpriteDescriptor()
     {
@@ -59,7 +57,6 @@ public class SpriteDescriptor
         this._SPEED     = null;
         this._BOX       = null;
         this._ENEMY     = false;
-        this._VALUE     = 0;
     }
 
     public SpriteDescriptor(String _objectName,
@@ -111,7 +108,6 @@ public class SpriteDescriptor
         this._SPEED     = _descriptor._SPEED;
         this._BOX       = _descriptor._BOX;
         this._ENEMY     = _descriptor._ENEMY;
-        this._VALUE     = _descriptor._VALUE;
     }
 
     public void debug()
@@ -134,5 +130,6 @@ public class SpriteDescriptor
         Trace.dbg("_DIST           : " + (_DIST != null ? _DIST.toString() : "NOT SET"));
         Trace.dbg("_SPEED          : " + (_SPEED != null ? _SPEED.toString() : "NOT SET"));
         Trace.dbg("_BOX            : " + (_BOX != null ? _BOX.toString() : "NOT SET"));
+        Trace.dbg("_ENEMY          : " + _ENEMY);
     }
 }

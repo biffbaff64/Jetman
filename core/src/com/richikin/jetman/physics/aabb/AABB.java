@@ -4,114 +4,131 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
-import com.richikin.enumslib.GraphicID;
 
 public class AABB implements Disposable
 {
-    private CollisionObject contactBox;
-    private Rectangle       topRectangle;
-    private Rectangle       midRectangle;
-    private Rectangle       botRectangle;
+    private Rectangle   topRectangle;
+    private Rectangle   midRectangle;
+    private Rectangle   botRectangle;
 
     public AABB()
     {
-        this.contactBox   = App.collisionUtils.newObject();
+        super();
+
         this.topRectangle = new Rectangle();
         this.midRectangle = new Rectangle();
         this.botRectangle = new Rectangle();
     }
 
-    public boolean checkHittingBox(GameEntity _thisSprite)
+    public boolean checkAABBBoxes(CollisionObject boxA)
     {
-        boolean isHitting         = false;
+        boolean isHitting;
         boolean collisionDetected = false;
 
         if (AABBData.boxes().size > 0)
         {
-            Rectangle rectangle = _thisSprite.collisionObject.rectangle;
-
-            rectangle.y--;
-            rectangle.height++;
-
-            float boxHeight = rectangle.height / 3;
-            int   arraySize = AABBData.boxes().size;
-
-            // Obtain rectangles for the middle and bottom
-            // sections of the parent sprite...
-            topRectangle.set(rectangle.x, (rectangle.y + (boxHeight * 2)), rectangle.width, boxHeight);
-            midRectangle.set(rectangle.x, (rectangle.y + boxHeight), rectangle.width, boxHeight);
-            botRectangle.set(rectangle.x, rectangle.y, rectangle.width, boxHeight);
-
-            // ...and check for collision, skipping box 0
-            for (int index = 1; index < arraySize; index++)
+            if (boxA.index > 0)
             {
-                // Grab rectangle from the global data table
-                contactBox = AABBData.boxes().get(index);
+                float boxHeight = boxA.rectangle.height / 3;
 
-                _thisSprite.collisionObject.action = ActionStates._COLLIDABLE;
+                topRectangle.set
+                    (
+                        (boxA.rectangle.x + (boxA.rectangle.width / 4)),
+                        (boxA.rectangle.y + (boxHeight * 2)),
+                        (boxA.rectangle.width / 2),
+                        boxHeight
+                    );
 
-                if ((contactBox != null)
-                    && (contactBox.parentEntity != null)
-                    && ((_thisSprite.collidesWith & contactBox.parentEntity.bodyCategory) != 0)
-                    && ((contactBox.parentEntity.collidesWith & _thisSprite.bodyCategory) != 0)
-                    && (_thisSprite.collisionObject.index != contactBox.index))
+                midRectangle.set
+                    (
+                        boxA.rectangle.x,
+                        (boxA.rectangle.y + boxHeight),
+                        boxA.rectangle.width,
+                        boxHeight
+                    );
+
+                botRectangle.set
+                    (
+                        (boxA.rectangle.x + (boxA.rectangle.width / 4)),
+                        boxA.rectangle.y,
+                        (boxA.rectangle.width / 2),
+                        boxHeight
+                    );
+
+                isHitting = false;
+
+                for (CollisionObject boxB : AABBData.boxes())
                 {
-                    if (Intersector.overlaps(rectangle, contactBox.rectangle))
+                    if (boxB.index > 0)
                     {
-                        if (Intersector.overlaps(contactBox.rectangle, topRectangle))
+                        if (((boxA.parentEntity.collidesWith & boxB.parentEntity.bodyCategory) != 0)
+                            && ((boxB.parentEntity.collidesWith & boxA.parentEntity.bodyCategory) != 0)
+                            && ((boxA.gid != boxB.gid) || (boxA.index != boxB.index))
+                            && ((boxA.type != boxB.type) || (boxA.index != boxB.index)))
                         {
-                            isHitting                                 = true;
-                            _thisSprite.collisionObject.idTop         = contactBox.gid;
-                            _thisSprite.collisionObject.boxHittingTop = contactBox.index;
+                            if (Intersector.overlaps(boxA.rectangle, boxB.rectangle))
+                            {
+                                if (Intersector.overlaps(topRectangle, boxB.rectangle))
+                                {
+                                    isHitting           = true;
+                                    boxA.idTop          = boxB.gid;
+                                    boxA.boxHittingTop  = boxB.index;
+                                    boxA.contactMask    |= AABBData._TOP;
+                                }
+
+                                if (Intersector.overlaps(midRectangle, boxB.rectangle))
+                                {
+                                    if ((midRectangle.x >= boxB.rectangle.x)
+                                        && (midRectangle.x <= (boxB.rectangle.x + boxB.rectangle.width))
+                                        && ((midRectangle.x + midRectangle.width) > (boxB.rectangle.x + boxB.rectangle.width)))
+                                    {
+                                        isHitting           = true;
+                                        boxA.idLeft         = boxB.gid;
+                                        boxA.boxHittingLeft = boxB.index;
+                                        boxA.contactMask    |= AABBData._LEFT;
+                                    }
+
+                                    if ((midRectangle.x < boxB.rectangle.x)
+                                        && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
+                                        && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
+                                    {
+                                        isHitting               = true;
+                                        boxA.idRight            = boxB.gid;
+                                        boxA.boxHittingRight    = boxB.index;
+                                        boxA.contactMask        |= AABBData._RIGHT;
+                                    }
+                                }
+
+                                if (Intersector.overlaps(botRectangle, boxB.rectangle)
+                                    && (boxB.rectangle.y <= botRectangle.y))
+                                {
+                                    isHitting               = true;
+                                    boxA.idBottom           = boxB.gid;
+                                    boxA.boxHittingBottom   = boxB.index;
+                                    boxA.contactMask        |= AABBData._BOTTOM;
+                                }
+                            }
                         }
 
-                        if (isValidSideObstacle(contactBox.gid) && Intersector.overlaps(contactBox.rectangle, midRectangle))
+                        if (isHitting)
                         {
-                            if ((midRectangle.x >= contactBox.rectangle.x)
-                                && (midRectangle.x <= (contactBox.rectangle.x + contactBox.rectangle.width))
-                                && ((midRectangle.x + midRectangle.width) > (contactBox.rectangle.x + contactBox.rectangle.width)))
+                            collisionDetected = true;
+                            isHitting = false;
+
+                            //
+                            // Collision objects for non-sprites
+                            // don't have parent sprites
+                            if (boxB.parentEntity != null)
                             {
-                                isHitting                                  = true;
-                                _thisSprite.collisionObject.idLeft         = contactBox.gid;
-                                _thisSprite.collisionObject.boxHittingLeft = contactBox.index;
+                                boxA.contactEntity = boxB.parentEntity;
                             }
 
-                            if ((midRectangle.x < contactBox.rectangle.x)
-                                && ((midRectangle.x + midRectangle.width) >= contactBox.rectangle.x)
-                                && ((midRectangle.x + midRectangle.width) <= (contactBox.rectangle.x + contactBox.rectangle.width)))
-                            {
-                                isHitting                                   = true;
-                                _thisSprite.collisionObject.idRight         = contactBox.gid;
-                                _thisSprite.collisionObject.boxHittingRight = contactBox.index;
-                            }
-                        }
-
-                        if (Intersector.overlaps(contactBox.rectangle, botRectangle)
-                            && (contactBox.rectangle.y <= botRectangle.y))
-                        {
-                            isHitting                                    = true;
-                            _thisSprite.collisionObject.idBottom         = contactBox.gid;
-                            _thisSprite.collisionObject.boxHittingBottom = contactBox.index;
+                            boxA.contactGid         = boxB.gid;
+                            boxA.isContactObstacle  = boxB.isObstacle;
+                            boxA.action             = ActionStates._COLLIDING;
+                            boxB.action             = ActionStates._COLLIDING;
                         }
                     }
-                }
-
-                if (isHitting)
-                {
-                    collisionDetected = true;
-                    contactBox.action = ActionStates._COLLIDING;
-
-                    _thisSprite.collisionObject.contactEntity = contactBox.parentEntity;
-                    _thisSprite.collisionObject.action        = ActionStates._COLLIDING;
-
-                    if ((_thisSprite.gid != GraphicID.G_PLAYER) && (contactBox.gid == GraphicID.G_PLAYER))
-                    {
-                        _thisSprite.collisionObject.isHittingPlayer = true;
-                    }
-
-                    isHitting = false;
                 }
             }
         }
@@ -119,17 +136,11 @@ public class AABB implements Disposable
         return collisionDetected;
     }
 
-    private boolean isValidSideObstacle(GraphicID gid)
-    {
-        return (gid != GraphicID._GROUND);
-    }
-
     @Override
     public void dispose()
     {
-        contactBox   = null;
-        topRectangle = null;
-        midRectangle = null;
-        botRectangle = null;
+        topRectangle    = null;
+        midRectangle    = null;
+        botRectangle    = null;
     }
 }

@@ -57,7 +57,9 @@ public class PausePanel extends DefaultPanel
 
         Skin skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
-        buttonMusic = Scene2DUtils.addCheckBox
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+        buttonMusic = scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -67,7 +69,7 @@ public class PausePanel extends DefaultPanel
                 skin
             );
 
-        buttonSounds = Scene2DUtils.addCheckBox
+        buttonSounds = scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -77,7 +79,7 @@ public class PausePanel extends DefaultPanel
                 skin
             );
 
-        buttonVibrations = Scene2DUtils.addCheckBox
+        buttonVibrations = scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -87,7 +89,7 @@ public class PausePanel extends DefaultPanel
                 skin
             );
 
-        buttonGameHints = Scene2DUtils.addCheckBox
+        buttonGameHints = scene2DUtils.addCheckBox
             (
                 "toggle_on",
                 "toggle_off",
@@ -97,7 +99,7 @@ public class PausePanel extends DefaultPanel
                 skin
             );
 
-        buttonHome = Scene2DUtils.addButton
+        buttonHome = scene2DUtils.addButton
             (
                 "button_quit_to_title",
                 "button_quit_to_title_pressed",

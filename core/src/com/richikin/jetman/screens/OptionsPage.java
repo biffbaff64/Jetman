@@ -228,24 +228,26 @@ public class OptionsPage implements IUIPage
     {
         Trace.__FILE_FUNC();
 
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
         // ----------
-        musicCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 279), Color.WHITE, skin);
-        fxCheckBox      = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 330), Color.WHITE, skin);
-        vibrateCheckBox = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 382), Color.WHITE, skin);
-        hintsCheckBox   = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 435), Color.WHITE, skin);
+        musicCheckBox   = scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 279), Color.WHITE, skin);
+        fxCheckBox      = scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 330), Color.WHITE, skin);
+        vibrateCheckBox = scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 382), Color.WHITE, skin);
+        hintsCheckBox   = scene2DUtils.addCheckBox("toggle_on", "toggle_off", (int) AppConfig.hudOriginX + 800, (int) AppConfig.hudOriginY + (720 - 435), Color.WHITE, skin);
 
         // ----------
         if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            buttonPrivacy   = Scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 511));
-            buttonStoryLine = Scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 558));
+            buttonPrivacy   = scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 511));
+            buttonStoryLine = scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 558));
 
             // ----------
             if (App.googleServices.isSignedIn())
             {
                 if (Developer.isDevMode() || (Version.majorVersion == 0))
                 {
-                    buttonSignOut = Scene2DUtils.addButton
+                    buttonSignOut = scene2DUtils.addButton
                         (
                             "btn_google_signout_dark",
                             "btn_google_signout_dark_pressed",
@@ -261,7 +263,7 @@ public class OptionsPage implements IUIPage
         // ----------
         if (Developer.isDevMode())
         {
-            buttonDevOptions = Scene2DUtils.addButton
+            buttonDevOptions = scene2DUtils.addButton
                 (
                     "new_developer_options_button",
                     "new_developer_options_button_pressed",
@@ -269,7 +271,7 @@ public class OptionsPage implements IUIPage
                     (int) AppConfig.hudOriginY + (720 - 511)
                 );
 
-            buttonStats = Scene2DUtils.addButton
+            buttonStats = scene2DUtils.addButton
                 (
                     "new_stats_button",
                     "new_stats_button_pressed",

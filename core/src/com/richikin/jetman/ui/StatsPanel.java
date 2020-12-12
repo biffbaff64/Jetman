@@ -84,13 +84,15 @@ public class StatsPanel extends DefaultPanel
         Image   image = new Image(new TextureRegion(sky));
         buffer.setBackground(image.getDrawable());
 
-        title = Scene2DUtils.createImage("title_small", App.assets.getTextsLoader());
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+        title = scene2DUtils.createImage("title_small", App.assets.getTextsLoader());
         title.setPosition(AppConfig.hudOriginX + 350, AppConfig.hudOriginY + (720 - 160));
 
         populateTable(buffer, skin);
 
         // Wrap the buffer in a scrollpane.
-        scrollPane = Scene2DUtils.createScrollPane(buffer, skin, _SCROLL_PANE_NAME);
+        scrollPane = scene2DUtils.createScrollPane(buffer, skin, _SCROLL_PANE_NAME);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setWidth(Gfx._HUD_WIDTH - 400);

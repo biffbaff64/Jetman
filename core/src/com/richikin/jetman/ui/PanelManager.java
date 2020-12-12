@@ -6,7 +6,6 @@ import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.Speed;
 import com.richikin.enumslib.StateID;
 
 public class PanelManager
@@ -81,7 +80,7 @@ public class PanelManager
                     new SimpleVec2F(currentPanel.getPosition().x, currentPanel.getPosition().y),
                     new SimpleVec2F(0, currentPanel.getHeight() + 50),
                     new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
-                    new Speed(0, 40)
+                    new SimpleVec2F(0, 40)
                 );
 
             currentPanel.setState(StateID._STATE_CLOSING);

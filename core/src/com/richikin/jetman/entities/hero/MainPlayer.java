@@ -139,6 +139,7 @@ public class MainPlayer extends GdxSprite
         shootCount  = 0;
         laserColour = 0;
 
+        actionButton.removeAction();
         setAction(ActionStates._SPAWNING);
 
         createSpawnAnimation();
@@ -369,6 +370,7 @@ public class MainPlayer extends GdxSprite
         // Restart if this player has more lives left...
         if (App.gameProgress.getLives().getTotal() > 0)
         {
+            actionButton.removeAction();
             setAction(ActionStates._RESETTING);
             isDrawable = false;
 

@@ -30,7 +30,7 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
             if (AppConfig.gameScreenActive())
             {
                 App.mapData.update();
-                PointsManager.updatePointStacks();
+                App.gameProgress.update();
             }
 
             //

@@ -25,6 +25,7 @@ import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
 
+// TODO: 12/12/2020 - Can this class be trimmed?
 public class CollisionObject implements Disposable
 {
     /*
@@ -38,16 +39,17 @@ public class CollisionObject implements Disposable
     public ActionStates  action;
     public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
-    public GraphicID     contactGid;        // ID of contact object
+    public GraphicID     contactGid;        // #### ID of contact object
     public CollisionRect rectangle;         // The actual collision rectangle
     public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public GameEntity    contactEntity;     // ID of contact object
+    public short         contactMask;       //
     public int           index;             // This objects position in the collision object arraylist
 
-    public GraphicID idTop;                 // ID of object hitting the top of this object
-    public GraphicID idBottom;              // ID of object hitting the bottom of this object
+    public GraphicID idTop;                 // #### ID of object hitting the top of this object
+    public GraphicID idBottom;              // #### ID of object hitting the bottom of this object
     public GraphicID idLeft;                // ID of object hitting the left of this object
-    public GraphicID idRight;               // ID of object hitting the right of this object
+    public GraphicID idRight;               // #### ID of object hitting the right of this object
 
     public int boxHittingTop;
     public int boxHittingBottom;
@@ -56,7 +58,7 @@ public class CollisionObject implements Disposable
 
     public boolean isHittingPlayer;
     public boolean isObstacle;
-    public boolean isContactObstacle;
+    public boolean isContactObstacle;       // ####
 
     private StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ingored for
@@ -80,6 +82,26 @@ public class CollisionObject implements Disposable
         rectangle = new CollisionRect(new Rectangle(x, y, width, height), _type);
 
         create();
+    }
+
+    public boolean hasContactUp()
+    {
+        return (contactMask & AABBData._TOP) > 0;
+    }
+
+    public boolean hasContactDown()
+    {
+        return (contactMask & AABBData._BOTTOM) > 0;
+    }
+
+    public boolean hasContactLeft()
+    {
+        return (contactMask & AABBData._LEFT) > 0;
+    }
+
+    public boolean hasContactRight()
+    {
+        return (contactMask & AABBData._RIGHT) > 0;
     }
 
     public GameEntity getParent()
@@ -117,6 +139,7 @@ public class CollisionObject implements Disposable
         {
             action           = ActionStates._COLLIDABLE;
             isHittingPlayer  = false;
+            contactMask      = 0;
             contactEntity    = null;
             boxHittingTop    = 0;
             boxHittingBottom = 0;

@@ -28,6 +28,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
+            Trace.__FILE_FUNC(graphicID);
+
             switch (graphicID)
             {
                 // Objects that can be collided with, and which

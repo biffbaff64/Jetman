@@ -114,11 +114,13 @@ public class MenuPage implements IUIPage, Disposable
     {
         Trace.__FILE_FUNC();
 
-        buttonStart = Scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppConfig.hudOriginX + 515, (int) AppConfig.hudOriginY + (720 - 379));
-        buttonOptions = Scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 437));
-        buttonExit    = Scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppConfig.hudOriginX + 596, (int) AppConfig.hudOriginY + (720 - 614));
-        buttonHiScores = Scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppConfig.hudOriginX + 543, (int) AppConfig.hudOriginY + (720 - 496));
-        buttonCredits = Scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 554));
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+        buttonStart = scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppConfig.hudOriginX + 515, (int) AppConfig.hudOriginY + (720 - 379));
+        buttonOptions = scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 437));
+        buttonExit    = scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppConfig.hudOriginX + 596, (int) AppConfig.hudOriginY + (720 - 614));
+        buttonHiScores = scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppConfig.hudOriginX + 543, (int) AppConfig.hudOriginY + (720 - 496));
+        buttonCredits = scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 554));
 
         addDateSpecificItems(AppConfig.hudOriginX, AppConfig.hudOriginY);
     }
@@ -131,11 +133,13 @@ public class MenuPage implements IUIPage, Disposable
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
         if (calendar.get(Calendar.MONTH) == Calendar.NOVEMBER)
         {
             if (calendar.get(Calendar.DAY_OF_MONTH) == 11)
             {
-                decoration = Scene2DUtils.makeObjectsImage("poppy");
+                decoration = scene2DUtils.makeObjectsImage("poppy");
                 decoration.setPosition(originX + 1160, originY + (720 - 90));
                 App.stage.addActor(decoration);
             }
@@ -146,7 +150,7 @@ public class MenuPage implements IUIPage, Disposable
             {
                 if (calendar.get(Calendar.DAY_OF_MONTH) == 25)
                 {
-                    decoration = Scene2DUtils.makeObjectsImage("xmas_tree");
+                    decoration = scene2DUtils.makeObjectsImage("xmas_tree");
                     decoration.setPosition(originX + 1075, originY + (720 - 342));
                     App.stage.addActor(decoration);
                 }
@@ -241,7 +245,9 @@ public class MenuPage implements IUIPage, Disposable
              */
             if (App.googleServices.isEnabled() && !App.googleServices.isSignedIn())
             {
-                buttonGoogle = Scene2DUtils.addButton
+                Scene2DUtils scene2DUtils = new Scene2DUtils();
+
+                buttonGoogle = scene2DUtils.addButton
                     (
                         "btn_google_signin_dark",
                         "btn_google_signout_dark_pressed",

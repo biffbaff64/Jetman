@@ -222,6 +222,8 @@ public class DeveloperPanel extends DefaultPanel
 
         buttons = new CheckBox[devMenu.length][_TABLE_COLUMNS];
 
+        Scene2DUtils scene2DUtils = new Scene2DUtils();
+
         for (int row = 0; row < devMenu.length; row++)
         {
             for (int column = 0; column < _TABLE_COLUMNS; column++)
@@ -230,7 +232,7 @@ public class DeveloperPanel extends DefaultPanel
                 label[column].setAlignment(Align.center);
                 label[column].setDisabled(true);
 
-                buttons[row][column] = Scene2DUtils.addCheckBox("toggle_on", "toggle_off", 0, 0, Color.WHITE, skin);
+                buttons[row][column] = scene2DUtils.addCheckBox("toggle_on", "toggle_off", 0, 0, Color.WHITE, skin);
                 buttons[row][column].setChecked(App.settings.isEnabled(devMenu[row][column].prefName));
             }
 

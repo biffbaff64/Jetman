@@ -7,11 +7,10 @@ import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
-import com.richikin.jetman.physics.Speed;
 
 public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
 {
-    public  Speed        speed;
+    public  SimpleVec2F        speed;
     public  Direction    direction;
     public  XYSetF       distance;
     public  XYSetF       distanceReset;
@@ -40,7 +39,7 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
     }
 
     @Override
-    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, Speed speed)
+    public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed)
     {
         setPosition(xy.x, xy.y);
 

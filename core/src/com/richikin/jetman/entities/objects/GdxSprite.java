@@ -18,7 +18,6 @@ import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.Speed;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {
@@ -63,7 +62,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public Direction direction;
     public Direction lookingAt;
     public XYSetF    distance;
-    public Speed     speed;
+    public SimpleVec2F     speed;
     public int       strength;
 
     // --------------------------------------------------------------
@@ -101,7 +100,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         sprite    = new Sprite();
         direction = new Direction();
         lookingAt = new Direction();
-        speed     = new Speed();
+        speed     = new SimpleVec2F();
         distance  = new XYSetF();
         initXYZ   = new SimpleVec3();
         aabb      = new AABB();
@@ -408,7 +407,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
             // as and when needed.
             if (collisionObject.action == ActionStates._COLLIDABLE)
             {
-                if (aabb.checkHittingBox(this))
+                if (aabb.checkAABBBoxes(collisionObject))
                 {
                     collisionObject.action = ActionStates._COLLIDING;
 

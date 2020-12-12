@@ -6,7 +6,6 @@ import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.Speed;
 
 public class StairsPath
 {
@@ -14,13 +13,13 @@ public class StairsPath
     {
         public final SimpleVec2F distance;
         public final Direction   direction;
-        public final Speed       speed;
+        public final SimpleVec2F       speed;
 
-        PathData(SimpleVec2F distance, Direction direction, Speed speed)
+        PathData(SimpleVec2F distance, Direction direction, SimpleVec2F speed)
         {
             this.distance  = new SimpleVec2F(distance.x, distance.y);
             this.direction = new Direction(direction);
-            this.speed     = new Speed(speed);
+            this.speed     = new SimpleVec2F(speed);
         }
     }
 
@@ -29,83 +28,83 @@ public class StairsPath
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_UP),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_UP),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_UP),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_UP),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             // ---------------------------------------------------------------
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(96, 0),
                 /* Direction */ new Direction(Movement._DIRECTION_CUSTOM, Movement._DIRECTION_STILL),
-                /* Speed     */ new Speed(2, 0)
+                /* Speed     */ new SimpleVec2F(2, 0)
             ),
             new PathData(
                 /* Distance  */ new SimpleVec2F(0, 96),
                 /* Direction */ new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
-                /* Speed     */ new Speed(0, 2)
+                /* Speed     */ new SimpleVec2F(0, 2)
             ),
             // ...And Repeat...
         };

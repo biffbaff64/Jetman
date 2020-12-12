@@ -17,7 +17,6 @@ import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.jetman.physics.Speed;
 
 public class MapCreator
 {
@@ -88,7 +87,7 @@ public class MapCreator
         markerTile._INDEX      = _descriptor._INDEX;
         markerTile._DIST       = new SimpleVec2F();
         markerTile._DIR        = new Direction();
-        markerTile._SPEED      = new Speed();
+        markerTile._SPEED      = new SimpleVec2F();
 
         //
         // Create the bounding box for this placement tile.
