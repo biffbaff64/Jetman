@@ -74,12 +74,9 @@ public class AABB implements Disposable
                             {
                                 if (Intersector.overlaps(topRectangle, boxB.rectangle))
                                 {
-                                    isHitting           = true;
-                                    boxA.contactTop     = boxB.parentEntity;
-
-//                                    boxA.idTop          = boxB.gid;
-//                                    boxA.boxHittingTop  = boxB.index;
-//                                    boxA.contactMask    |= AABBData._TOP;
+                                    boxA.hasContact[AABBData._CONTACT_TOP] = true;
+                                    boxA.contacts[AABBData._CONTACT_TOP] = boxB.parentEntity;
+                                    isHitting = true;
                                 }
 
                                 if (Intersector.overlaps(midRectangle, boxB.rectangle))
@@ -88,36 +85,27 @@ public class AABB implements Disposable
                                         && (midRectangle.x <= (boxB.rectangle.x + boxB.rectangle.width))
                                         && ((midRectangle.x + midRectangle.width) > (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        isHitting           = true;
-                                        boxA.contactLeft    = boxB.parentEntity;
-
-//                                        boxA.idLeft         = boxB.gid;
-//                                        boxA.boxHittingLeft = boxB.index;
-//                                        boxA.contactMask    |= AABBData._LEFT;
+                                        boxA.hasContact[AABBData._CONTACT_LEFT] = true;
+                                        boxA.contacts[AABBData._CONTACT_LEFT] = boxB.parentEntity;
+                                        isHitting = true;
                                     }
 
                                     if ((midRectangle.x < boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        isHitting           = true;
-                                        boxA.contactRight   = boxB.parentEntity;
-
-//                                        boxA.idRight            = boxB.gid;
-//                                        boxA.boxHittingRight    = boxB.index;
-//                                        boxA.contactMask        |= AABBData._RIGHT;
+                                        boxA.hasContact[AABBData._CONTACT_RIGHT] = true;
+                                        boxA.contacts[AABBData._CONTACT_RIGHT] = boxB.parentEntity;
+                                        isHitting = true;
                                     }
                                 }
 
                                 if (Intersector.overlaps(botRectangle, boxB.rectangle)
                                     && (boxB.rectangle.y <= botRectangle.y))
                                 {
-                                    isHitting               = true;
-                                    boxA.contactBottom      = boxB.parentEntity;
-
-//                                    boxA.idBottom           = boxB.gid;
-//                                    boxA.boxHittingBottom   = boxB.index;
-//                                    boxA.contactMask        |= AABBData._BOTTOM;
+                                    boxA.hasContact[AABBData._CONTACT_BOTTOM] = true;
+                                    boxA.contacts[AABBData._CONTACT_BOTTOM] = boxB.parentEntity;
+                                    isHitting = true;
                                 }
                             }
                         }

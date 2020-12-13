@@ -1,18 +1,3 @@
-/*
- *  Copyright 01/05/2018 Red7Projects.
- *  <p>
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *  <p>
- *  http://www.apache.org/licenses/LICENSE-2.0
- *  <p>
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 
 package com.richikin.jetman.physics.aabb;
 
@@ -23,6 +8,7 @@ import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.logging.StopWatch;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 // TODO: 12/12/2020 - Can this class be trimmed?
@@ -42,32 +28,15 @@ public class CollisionObject implements Disposable
     public CollisionRect rectangle;         // The actual collision rectangle
     public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
     public int           index;             // This objects position in the collision object arraylist
-
-    public GameEntity contactTop;           // The entity colliding at the top
-    public GameEntity contactBottom;        // The entity colliding at the bottom
-    public GameEntity contactLeft;          // The entity colliding at the left
-    public GameEntity contactRight;         // The entity colliding at the right
-
-    public short contactFilterMask;         //
-//    public GameEntity contactEntity;        // ID of contact object
-//    public short      contactMask;          //
-
-//    public GraphicID idTop;                 // #### ID of object hitting the top of this object
-//    public GraphicID idBottom;              // #### ID of object hitting the bottom of this object
-//    public GraphicID idLeft;                // ID of object hitting the left of this object
-//    public GraphicID idRight;               // #### ID of object hitting the right of this object
-
-//    public int boxHittingTop;
-//    public int boxHittingBottom;
-//    public int boxHittingLeft;
-//    public int boxHittingRight;
-
-    public boolean isHittingPlayer;
-    public boolean isObstacle;
-    public boolean isContactObstacle;       // ####
+    public boolean[]     hasContact;
+    public GameEntity[]  contacts;          // The entities being collided with
+    public short         contactFilterMask; // Combined mask of the BodyCategories of all contacts
+    public boolean       isHittingPlayer;
+    public boolean       isObstacle;
+    public boolean       isContactObstacle; // ####
 
     private StopWatch invisibilityTimer;
-    private int       invisibilityDelay;    // How long this collision object is ingored for
+    private int       invisibilityDelay;    // How long this collision object is ignored for
 
     public CollisionObject()
     {
@@ -76,42 +45,38 @@ public class CollisionObject implements Disposable
         create();
     }
 
-    public CollisionObject(Rectangle _rectangle)
+    public CollisionObject(Rectangle rectangle)
     {
-        this.rectangle = new CollisionRect(_rectangle, GraphicID.G_NO_ID);
+        this.rectangle = new CollisionRect(rectangle, GraphicID.G_NO_ID);
 
         create();
     }
 
-    public CollisionObject(int x, int y, int width, int height, GraphicID _type)
+    public CollisionObject(int x, int y, int width, int height, GraphicID type)
     {
-        rectangle = new CollisionRect(new Rectangle(x, y, width, height), _type);
+        rectangle = new CollisionRect(new Rectangle(x, y, width, height), type);
 
         create();
     }
 
     public boolean hasContactUp()
     {
-        return contactTop != null;
-//        return (contactMask & AABBData._TOP) > 0;
+        return contacts[AABBData._CONTACT_TOP] != null;
     }
 
     public boolean hasContactDown()
     {
-        return contactBottom != null;
-//        return (contactMask & AABBData._BOTTOM) > 0;
+        return contacts[AABBData._CONTACT_BOTTOM] != null;
     }
 
     public boolean hasContactLeft()
     {
-        return contactLeft != null;
-//        return (contactMask & AABBData._LEFT) > 0;
+        return contacts[AABBData._CONTACT_LEFT] != null;
     }
 
     public boolean hasContactRight()
     {
-        return contactRight != null;
-//        return (contactMask & AABBData._RIGHT) > 0;
+        return contacts[AABBData._CONTACT_RIGHT] != null;
     }
 
     public GameEntity getParent()
@@ -119,13 +84,11 @@ public class CollisionObject implements Disposable
         return parentEntity;
     }
 
-//    public GameEntity getContact()
-//    {
-//        return contactEntity;
-//    }
-
     private void create()
     {
+        contacts = new GameEntity[AABBData._MAX_CONTACT_SIDES];
+        hasContact = new boolean[AABBData._MAX_CONTACT_SIDES];
+
         clearCollision();
 
         index             = AABBData.boxes().size;
@@ -146,41 +109,17 @@ public class CollisionObject implements Disposable
         {
             action          = ActionStates._COLLIDABLE;
             isHittingPlayer = false;
-            contactTop      = null;
-            contactBottom   = null;
-            contactLeft     = null;
-            contactRight    = null;
 
-//            contactMask      = 0;
-//            contactEntity    = null;
-
-//            boxHittingTop    = 0;
-//            boxHittingBottom = 0;
-//            boxHittingLeft   = 0;
-//            boxHittingRight  = 0;
-//            idTop            = GraphicID.G_NO_ID;
-//            idBottom         = GraphicID.G_NO_ID;
-//            idLeft           = GraphicID.G_NO_ID;
-//            idRight          = GraphicID.G_NO_ID;
+            Arrays.fill(hasContact, false);
         }
     }
 
     @Override
     public void dispose()
     {
-//        contactEntity = null;
-        parentEntity  = null;
-        rectangle     = null;
-
-        contactTop = null;
-        contactBottom = null;
-        contactLeft = null;
-        contactRight = null;
-
-//        idTop         = null;
-//        idBottom      = null;
-//        idLeft        = null;
-//        idRight       = null;
+        parentEntity = null;
+        rectangle    = null;
+        contacts     = null;
     }
 
     public void setInvisibility(int timeInMilliseconds)

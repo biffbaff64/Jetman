@@ -13,6 +13,7 @@ import com.richikin.jetman.entities.SpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABB;
+import com.richikin.jetman.physics.box2d.B2DConstants;
 import com.richikin.utilslib.maths.*;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
@@ -21,10 +22,6 @@ import com.richikin.utilslib.physics.Movement;
 
 public class GdxSprite extends GameEntity implements SpriteComponent
 {
-    // TODO: 04/12/2020 - Move these to a more suitable class
-    public static final float DEFAULT_FRICTION    = 0.2f;
-    public static final float DEFAULT_RESTITUTION = 0.1f;
-
     // -----------------------------------------------
     // properties etc
     //
@@ -162,8 +159,8 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                 (
                     this,
                     1.0f,
-                    DEFAULT_FRICTION,
-                    DEFAULT_RESTITUTION
+                    B2DConstants.DEFAULT_FRICTION,
+                    B2DConstants.DEFAULT_RESTITUTION
                 );
         }
     }
@@ -340,24 +337,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                 sprite.translateX(Gfx.getMapWidth() * Movement._DIRECTION_LEFT);
             }
         }
-
-        //        float left = App.mapData.entityWindow.x;
-//        float right = (App.mapData.entityWindow.x + App.mapData.entityWindow.width);
-//        float width = App.mapData.entityWindow.width;
-//
-//        if ((direction.getX() == Movement._DIRECTION_LEFT)
-//            && ((sprite.getX() + frameWidth) < left))
-//        {
-//            sprite.translateX(width * Movement._DIRECTION_RIGHT);
-//        }
-//        else
-//        {
-//            if ((direction.getX() == Movement._DIRECTION_RIGHT)
-//                && (sprite.getX() > right))
-//            {
-//                sprite.translateX(width * Movement._DIRECTION_LEFT);
-//            }
-//        }
     }
 
     @Override

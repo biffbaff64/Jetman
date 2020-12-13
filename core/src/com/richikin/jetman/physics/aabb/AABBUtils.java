@@ -3,15 +3,19 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Intersector;
 import com.richikin.jetman.entities.objects.GameEntity;
 
-public abstract class AABBUtils
+import org.jetbrains.annotations.NotNull;
+
+public enum AABBUtils
 {
-    public static boolean contains(GameEntity _entityA, GameEntity _entityB)
+    ;
+
+    public static boolean contains(@NotNull GameEntity entityA, @NotNull GameEntity entityB)
     {
-        return _entityA.getCollisionRectangle().contains(_entityB.getCollisionRectangle());
+        return entityA.getCollisionRectangle().contains(entityB.getCollisionRectangle());
     }
 
-    public static boolean overlaps(GameEntity _entityA, GameEntity _entityB)
+    public static boolean overlaps(@NotNull GameEntity entityA, @NotNull GameEntity entityB)
     {
-        return Intersector.overlaps(_entityA.getCollisionRectangle(), _entityB.getCollisionRectangle());
+        return Intersector.overlaps(entityA.getCollisionRectangle(), entityB.getCollisionRectangle());
     }
 }
