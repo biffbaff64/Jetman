@@ -42,8 +42,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                         && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
                     {
-                        Trace.__FILE_FUNC_LINE();
-
                         App.getPlayer().explode();
                         App.getPlayer().isRotating = false;
                         App.getPlayer().rotateSpeed = 0;
@@ -52,7 +50,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     {
                         if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         {
-                            setOnGround(cobjHitting.gid);         // Set LJM standing
+                            setOnGround(cobjHitting.gid);   // Set LJM standing
                             checkForCrater();               // Check for contact with any craters
                         }
                     }
@@ -67,8 +65,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     if ((cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         && (App.getPlayer().sprite.getY() > (App.getTeleporter(0).frameHeight)))
                     {
-                        setOnGround(cobjHitting.gid);         // Set LJM standing
-                        checkForCrater();               // Check for contact with any craters
+                        setOnGround(cobjHitting.gid);       // Set LJM standing
+                        checkForCrater();                   // Check for contact with any craters
                     }
                 }
                 break;
