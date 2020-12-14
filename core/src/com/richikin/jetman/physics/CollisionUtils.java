@@ -238,29 +238,25 @@ public class CollisionUtils implements ICollideUtils, Disposable
     @Override
     public CollisionObject getBoxHittingTop(GdxSprite spriteObject)
     {
-        return spriteObject.collisionObject.contactTop.collisionObject;
-//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingTop);
+        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingTop);
     }
 
     @Override
     public CollisionObject getBoxHittingBottom(GdxSprite spriteObject)
     {
-        return spriteObject.collisionObject.contactBottom.collisionObject;
-//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingBottom);
+        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingBottom);
     }
 
     @Override
     public CollisionObject getBoxHittingLeft(GdxSprite spriteObject)
     {
-        return spriteObject.collisionObject.contactLeft.collisionObject;
-//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingLeft);
+        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingLeft);
     }
 
     @Override
     public CollisionObject getBoxHittingRight(GdxSprite spriteObject)
     {
-        return spriteObject.collisionObject.contactRight.collisionObject;
-//        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingRight);
+        return AABBData.boxes().get(spriteObject.collisionObject.boxHittingRight);
     }
 
     @Override

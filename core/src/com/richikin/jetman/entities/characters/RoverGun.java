@@ -11,6 +11,7 @@ import com.richikin.jetman.entities.types.Carryable;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.PlayServicesID;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.Trace;
@@ -226,7 +227,7 @@ public class RoverGun extends Carryable
         addCollisionListener(new ICollisionListener()
         {
             @Override
-            public void onPositiveCollision(GraphicID graphicID)
+            public void onPositiveCollision(CollisionObject cobjHitting)
             {
                 if (getAction() == ActionStates._FALLING)
                 {

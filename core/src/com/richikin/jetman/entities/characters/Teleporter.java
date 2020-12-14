@@ -8,6 +8,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
@@ -132,7 +133,7 @@ public class Teleporter extends GdxSprite
         addCollisionListener(new ICollisionListener()
         {
             @Override
-            public void onPositiveCollision(GraphicID graphicID)
+            public void onPositiveCollision(CollisionObject cobjHitting)
             {
                 if (getAction() == ActionStates._FALLING)
                 {

@@ -11,6 +11,7 @@ import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LaserBarrier extends GdxSprite
 {
-    private final Color[] colourList = new Color[]
+    private final Color[] colourList =
         {
             Color.WHITE,
             Color.BLUE,
@@ -48,9 +49,9 @@ public class LaserBarrier extends GdxSprite
     private float     restingTime;
     private int       frameNumber;
 
-    public LaserBarrier(final GraphicID _gid)
+    public LaserBarrier(final GraphicID gid)
     {
-        super(_gid);
+        super(gid);
     }
 
     @Override
@@ -173,9 +174,9 @@ public class LaserBarrier extends GdxSprite
         addCollisionListener(new ICollisionListener()
         {
             @Override
-            public void onPositiveCollision(final GraphicID graphicID)
+            public void onPositiveCollision(CollisionObject cobjHitting)
             {
-                if (graphicID == GraphicID.G_BOMB)
+                if (cobjHitting.gid == GraphicID.G_BOMB)
                 {
                     if (App.getBomb().sprite.getY() < getSprite().getY())
                     {

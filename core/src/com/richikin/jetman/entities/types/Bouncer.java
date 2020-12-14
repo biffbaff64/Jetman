@@ -12,6 +12,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
@@ -19,13 +20,14 @@ import com.richikin.utilslib.physics.Movement;
 
 public class Bouncer extends GdxSprite
 {
-    private static final float _BOUNCE_X_SPEED = 2.0f;
-    private static final float _BOUNCE_Y_SPEED = -0.25f;
-    private static final int _MAX_BOUNCE_SPEED = 10;
-    private static final int _EXTRA_BOUCE_SPEED = 4;
+    private static final float _BOUNCE_X_SPEED    = 2.0f;
+    private static final float _BOUNCE_Y_SPEED    = -0.25f;
+    private static final int   _MAX_BOUNCE_SPEED  = 10;
+    private static final int   _EXTRA_BOUCE_SPEED = 4;
+    private static final float _ROTATE_SPEED      = -4.0f;
 
     private StopWatch stopWatch;
-    private float maxBounceSpeed;
+    private float     maxBounceSpeed;
 
     public Bouncer(GraphicID graphicID)
     {
@@ -45,7 +47,7 @@ public class Bouncer extends GdxSprite
         direction.set(Movement._DIRECTION_STILL, Movement._DIRECTION_STILL);
 
         setAction(ActionStates._RUNNING);
-        stopWatch = StopWatch.start();
+        stopWatch  = StopWatch.start();
         isRotating = true;
 
         maxBounceSpeed = _MAX_BOUNCE_SPEED + MathUtils.random(_EXTRA_BOUCE_SPEED);
@@ -55,21 +57,21 @@ public class Bouncer extends GdxSprite
         addCollisionListener(new ICollisionListener()
         {
             @Override
-            public void onPositiveCollision(final GraphicID graphicID)
+            public void onPositiveCollision(CollisionObject cobjHitting)
             {
-                if (graphicID == GraphicID.G_LASER)
+                if (cobjHitting.gid == GraphicID.G_LASER)
                 {
                     setAction(ActionStates._KILLED);
                 }
                 else
                 {
-                    if (graphicID == GraphicID.G_PLAYER)
+                    if (cobjHitting.gid == GraphicID.G_PLAYER)
                     {
                         setAction(ActionStates._HURT);
                     }
                     else
                     {
-                        if (graphicID == GraphicID._CRATER)
+                        if (cobjHitting.gid == GraphicID._CRATER)
                         {
                             if (MathUtils.random(100) < 35)
                             {
@@ -105,7 +107,7 @@ public class Bouncer extends GdxSprite
                 elapsedAnimTime += Gdx.graphics.getDeltaTime();
                 sprite.setRegion(App.entityUtils.getKeyFrame(animation, elapsedAnimTime, true));
 
-                rotateSpeed = -4.0f * direction.getX();
+                rotateSpeed = _ROTATE_SPEED * direction.getX();
 
                 moveBouncer();
             }

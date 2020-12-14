@@ -25,7 +25,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     // -----------------------------------------------
     // properties etc
     //
-    public SimpleVec3 initXYZ;                 // The entity's start map coordinates
+    public SimpleVec3 initXYZ;                      // The entity's start map coordinates
     public int        spriteNumber;
     public float      rotateSpeed;
     public float      rotation;

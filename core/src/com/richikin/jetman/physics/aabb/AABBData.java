@@ -10,12 +10,6 @@ public enum AABBData
     public static final short _LEFT   = 0x04;
     public static final short _RIGHT  = 0x08;
 
-    public static final int _CONTACT_TOP       = 0;
-    public static final int _CONTACT_BOTTOM    = 1;
-    public static final int _CONTACT_LEFT      = 2;
-    public static final int _CONTACT_RIGHT     = 3;
-    public static final int _MAX_CONTACT_SIDES = 4;
-
     private static Array<CollisionObject> collisionBoxData;
 
     public static void createData()

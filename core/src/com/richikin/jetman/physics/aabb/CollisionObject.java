@@ -25,15 +25,25 @@ public class CollisionObject implements Disposable
     public ActionStates  action;
     public GraphicID     gid;               // ID of THIS object
     public GraphicID     type;              // _OBSTACLE or _ENTITY
+    public short         contactMask;       //
     public CollisionRect rectangle;         // The actual collision rectangle
     public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public GameEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
-    public boolean[]     hasContact;
-    public GameEntity[]  contacts;          // The entities being collided with
-    public short         contactFilterMask; // Combined mask of the BodyCategories of all contacts
-    public boolean       isHittingPlayer;
-    public boolean       isObstacle;
-    public boolean       isContactObstacle; // ####
+
+    public GraphicID idTop;                 // ID of object hitting the top of this object
+    public GraphicID idBottom;              // ID of object hitting the bottom of this object
+    public GraphicID idLeft;                // ID of object hitting the left of this object
+    public GraphicID idRight;               // ID of object hitting the right of this object
+
+    public int boxHittingTop;
+    public int boxHittingBottom;
+    public int boxHittingLeft;
+    public int boxHittingRight;
+
+    public boolean isHittingPlayer;
+    public boolean isObstacle;
+    public boolean isContactObstacle;
 
     private StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ignored for
@@ -61,22 +71,22 @@ public class CollisionObject implements Disposable
 
     public boolean hasContactUp()
     {
-        return contacts[AABBData._CONTACT_TOP] != null;
+        return (contactMask & AABBData._TOP) > 0;
     }
 
     public boolean hasContactDown()
     {
-        return contacts[AABBData._CONTACT_BOTTOM] != null;
+        return (contactMask & AABBData._BOTTOM) > 0;
     }
 
     public boolean hasContactLeft()
     {
-        return contacts[AABBData._CONTACT_LEFT] != null;
+        return (contactMask & AABBData._LEFT) > 0;
     }
 
     public boolean hasContactRight()
     {
-        return contacts[AABBData._CONTACT_RIGHT] != null;
+        return (contactMask & AABBData._RIGHT) > 0;
     }
 
     public GameEntity getParent()
@@ -84,11 +94,13 @@ public class CollisionObject implements Disposable
         return parentEntity;
     }
 
+    public GameEntity getContact()
+    {
+        return contactEntity;
+    }
+
     private void create()
     {
-        contacts = new GameEntity[AABBData._MAX_CONTACT_SIDES];
-        hasContact = new boolean[AABBData._MAX_CONTACT_SIDES];
-
         clearCollision();
 
         index             = AABBData.boxes().size;
@@ -107,19 +119,31 @@ public class CollisionObject implements Disposable
     {
         if (action != ActionStates._DEAD)
         {
-            action          = ActionStates._COLLIDABLE;
-            isHittingPlayer = false;
-
-            Arrays.fill(hasContact, false);
+            action           = ActionStates._COLLIDABLE;
+            isHittingPlayer  = false;
+            contactEntity    = null;
+            contactMask      = 0;
+            boxHittingTop    = 0;
+            boxHittingBottom = 0;
+            boxHittingLeft   = 0;
+            boxHittingRight  = 0;
+            idTop            = GraphicID.G_NO_ID;
+            idBottom         = GraphicID.G_NO_ID;
+            idLeft           = GraphicID.G_NO_ID;
+            idRight          = GraphicID.G_NO_ID;
         }
     }
 
     @Override
     public void dispose()
     {
-        parentEntity = null;
-        rectangle    = null;
-        contacts     = null;
+        contactEntity = null;
+        parentEntity  = null;
+        rectangle     = null;
+        idTop         = null;
+        idBottom      = null;
+        idLeft        = null;
+        idRight       = null;
     }
 
     public void setInvisibility(int timeInMilliseconds)

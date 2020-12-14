@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.AABBUtils;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
@@ -20,17 +21,15 @@ public class CollisionHandler implements ICollisionListener, Disposable
     /**
      * Called when Collision is occurring.
      *
-     * @param graphicID The GraphicdID of the entity
+     * @param cobjHitting The CollisionObject of the entity
      *                  in collision with.
      */
     @Override
-    public void onPositiveCollision(GraphicID graphicID)
+    public void onPositiveCollision(CollisionObject cobjHitting)
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
-            Trace.__FILE_FUNC(graphicID);
-
-            switch (graphicID)
+            switch (cobjHitting.gid)
             {
                 // Objects that can be collided with, and which
                 // make up the 'Ground' group i.e. can be stood on.
@@ -41,7 +40,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case G_ROVER_BOOT:
                 {
                     if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-                        && (graphicID != GraphicID.G_ROVER_BOOT))
+                        && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
                     {
                         Trace.__FILE_FUNC_LINE();
 
@@ -51,9 +50,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     }
                     else
                     {
-                        if (graphicID == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         {
-                            setOnGround(graphicID);         // Set LJM standing
+                            setOnGround(cobjHitting.gid);         // Set LJM standing
                             checkForCrater();               // Check for contact with any craters
                         }
                     }
@@ -65,10 +64,10 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case G_TRANSPORTER:
                 {
                     // TODO: 12/12/2018 - LJM needs to be able to pick up Teleporters.
-                    if ((graphicID == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+                    if ((cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         && (App.getPlayer().sprite.getY() > (App.getTeleporter(0).frameHeight)))
                     {
-                        setOnGround(graphicID);         // Set LJM standing
+                        setOnGround(cobjHitting.gid);         // Set LJM standing
                         checkForCrater();               // Check for contact with any craters
                     }
                 }
@@ -85,7 +84,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     {
                         App.getPlayer().strength = 0;
 
-                        switch (graphicID)
+                        switch (cobjHitting.gid)
                         {
                             case G_MISSILE_BASE:
                             case G_MISSILE_LAUNCHER:

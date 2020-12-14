@@ -74,9 +74,10 @@ public class AABB implements Disposable
                             {
                                 if (Intersector.overlaps(topRectangle, boxB.rectangle))
                                 {
-                                    boxA.hasContact[AABBData._CONTACT_TOP] = true;
-                                    boxA.contacts[AABBData._CONTACT_TOP] = boxB.parentEntity;
-                                    isHitting = true;
+                                    isHitting           = true;
+                                    boxA.idTop          = boxB.gid;
+                                    boxA.boxHittingTop  = boxB.index;
+                                    boxA.contactMask    |= AABBData._TOP;
                                 }
 
                                 if (Intersector.overlaps(midRectangle, boxB.rectangle))
@@ -85,27 +86,30 @@ public class AABB implements Disposable
                                         && (midRectangle.x <= (boxB.rectangle.x + boxB.rectangle.width))
                                         && ((midRectangle.x + midRectangle.width) > (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        boxA.hasContact[AABBData._CONTACT_LEFT] = true;
-                                        boxA.contacts[AABBData._CONTACT_LEFT] = boxB.parentEntity;
-                                        isHitting = true;
+                                        isHitting           = true;
+                                        boxA.idLeft         = boxB.gid;
+                                        boxA.boxHittingLeft = boxB.index;
+                                        boxA.contactMask    |= AABBData._LEFT;
                                     }
 
                                     if ((midRectangle.x < boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        boxA.hasContact[AABBData._CONTACT_RIGHT] = true;
-                                        boxA.contacts[AABBData._CONTACT_RIGHT] = boxB.parentEntity;
-                                        isHitting = true;
+                                        isHitting           = true;
+                                        boxA.idRight            = boxB.gid;
+                                        boxA.boxHittingRight    = boxB.index;
+                                        boxA.contactMask        |= AABBData._RIGHT;
                                     }
                                 }
 
                                 if (Intersector.overlaps(botRectangle, boxB.rectangle)
                                     && (boxB.rectangle.y <= botRectangle.y))
                                 {
-                                    boxA.hasContact[AABBData._CONTACT_BOTTOM] = true;
-                                    boxA.contacts[AABBData._CONTACT_BOTTOM] = boxB.parentEntity;
-                                    isHitting = true;
+                                    isHitting               = true;
+                                    boxA.idBottom           = boxB.gid;
+                                    boxA.boxHittingBottom   = boxB.index;
+                                    boxA.contactMask        |= AABBData._BOTTOM;
                                 }
                             }
                         }
@@ -115,6 +119,7 @@ public class AABB implements Disposable
                             collisionDetected = true;
                             isHitting = false;
 
+                            boxA.contactEntity      = boxB.parentEntity;
                             boxA.isContactObstacle  = boxB.isObstacle;
                             boxA.action             = ActionStates._COLLIDING;
                             boxB.action             = ActionStates._COLLIDING;

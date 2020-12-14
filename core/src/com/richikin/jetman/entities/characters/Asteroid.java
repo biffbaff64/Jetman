@@ -74,7 +74,7 @@ public class Asteroid extends GdxSprite
 
                 wrap();
 
-                if ((collisionObject.contactBottom.gid == GraphicID._GROUND)
+                if ((collisionObject.idBottom == GraphicID._GROUND)
                     || collisionObject.isHittingPlayer)
                 {
                     setAction(ActionStates._HURT);
@@ -111,7 +111,7 @@ public class Asteroid extends GdxSprite
             {
                 CraterManager craterManager = new CraterManager();
 
-                if ((collisionObject.contactBottom.gid == GraphicID._GROUND)
+                if ((collisionObject.idBottom == GraphicID._GROUND)
                     && (craterManager.canMakeCrater(this)))
                 {
                     int x = (int) (sprite.getX() / Gfx.getTileWidth());

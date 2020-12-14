@@ -11,6 +11,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.camera.Shake;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
@@ -165,9 +166,9 @@ public class Missile extends GdxSprite implements ICollisionListener
     }
 
     @Override
-    public void onPositiveCollision(GraphicID graphicID)
+    public void onPositiveCollision(CollisionObject cobjHitting)
     {
-        if (graphicID == GraphicID.G_ROVER)
+        if (cobjHitting.gid == GraphicID.G_ROVER)
         {
             Shake.start();
 
@@ -181,7 +182,7 @@ public class Missile extends GdxSprite implements ICollisionListener
 
             setAction(ActionStates._EXPLODING);
         }
-        else if (graphicID == GraphicID.G_LASER)
+        else if (cobjHitting.gid == GraphicID.G_LASER)
         {
             setAction(ActionStates._KILLED);
         }
