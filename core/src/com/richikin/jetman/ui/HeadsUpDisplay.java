@@ -843,19 +843,19 @@ public class HeadsUpDisplay implements Disposable
 
             if (App.settings.isEnabled(Settings._SHOW_DEBUG))
             {
-//                smallFont.draw
-//                    (
-//                        App.spriteBatch,
-//                        "MUS : " + App.settings.isEnabled(Settings._MUSIC_ENABLED)
-//                        + "          "
-//                        + "FX : " + App.settings.isEnabled(Settings._SOUNDS_ENABLED)
-//                        + "          "
-//                        + "VIB : " + App.settings.isEnabled(Settings._VIBRATIONS)
-//                        + "          "
-//                        + "HINTS : " + App.settings.isEnabled(Settings._SHOW_HINTS),
-//                        originX + 20,
-//                        originY + 570
-//                    );
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "TOP : " + App.getPlayer().collisionObject.idTop
+                        + "          "
+                        + "LFT : " + App.getPlayer().collisionObject.idLeft
+                        + "          "
+                        + "RGT : " + App.getPlayer().collisionObject.idRight
+                        + "          "
+                        + "BOT : " + App.getPlayer().collisionObject.idBottom,
+                        originX + 20,
+                        originY + 570
+                    );
             }
         }
     }

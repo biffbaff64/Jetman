@@ -29,18 +29,20 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
-            switch (cobjHitting.gid)
+            CollisionObject cobj = App.getPlayer().collisionObject;
+
+            switch (cobj.idBottom)
             {
                 // Objects that can be collided with, and which
                 // make up the 'Ground' group i.e. can be stood on.
                 case _GROUND:
-                case _CEILING:
                 case _BRIDGE:
                 case _CRATER:
                 case G_ROVER_BOOT:
+                case G_TRANSPORTER:
                 {
                     if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-                        && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
+                            && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
                     {
                         App.getPlayer().explode();
                         App.getPlayer().isRotating = false;
@@ -48,59 +50,92 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     }
                     else
                     {
-                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
-                        {
-                            setOnGround(cobjHitting.gid);   // Set LJM standing
-                            checkForCrater();               // Check for contact with any craters
-                        }
+                        setOnGround(cobj.idBottom);   // Set LJM standing
+                        checkForCrater();               // Check for contact with any craters
                     }
                 }
                 break;
 
-                // Other objects that can be collided with, but
-                // that don't cause damage to LJM.
-                case G_TRANSPORTER:
-                {
-                    // TODO: 12/12/2018 - LJM needs to be able to pick up Teleporters.
-                    if ((cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
-                        && (App.getPlayer().sprite.getY() > (App.getTeleporter(0).frameHeight)))
-                    {
-                        setOnGround(cobjHitting.gid);       // Set LJM standing
-                        checkForCrater();                   // Check for contact with any craters
-                    }
-                }
-                break;
-
-                // Objects that can be collided with, and
-                // which WILL hurt LJM.
-                case G_POWER_BEAM:
-                case G_NO_ID:
                 default:
-                {
-                    if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
-                        && (App.getPlayer().getAction() != ActionStates._DYING))
-                    {
-                        App.getPlayer().strength = 0;
-
-                        switch (cobjHitting.gid)
-                        {
-                            case G_MISSILE_BASE:
-                            case G_MISSILE_LAUNCHER:
-                            case G_POWER_BEAM:
-                            {
-                            }
-                            break;
-
-                            default:
-                            {
-                                App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
-                            }
-                            break;
-                        }
-                    }
-                }
-                break;
+                    break;
             }
+
+//            switch (cobjHitting.gid)
+//            {
+//                // Objects that can be collided with, and which
+//                // make up the 'Ground' group i.e. can be stood on.
+//                case _GROUND:
+//                case _BRIDGE:
+//                case _CRATER:
+//                case G_ROVER_BOOT:
+//                {
+//                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
+//                        && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
+//                    {
+//                        App.getPlayer().explode();
+//                        App.getPlayer().isRotating = false;
+//                        App.getPlayer().rotateSpeed = 0;
+//                    }
+//                    else
+//                    {
+//                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+//                        {
+//                            setOnGround(cobjHitting.gid);   // Set LJM standing
+//                            checkForCrater();               // Check for contact with any craters
+//                        }
+//                    }
+//                }
+//                break;
+//
+//                // Other objects that can be collided with, but
+//                // that don't cause damage to LJM.
+//                case G_TRANSPORTER:
+//                {
+//                    // TODO: 12/12/2018 - LJM needs to be able to pick up Teleporters.
+//                    if ((cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+//                        && (App.getPlayer().sprite.getY() > (App.getTeleporter(0).frameHeight)))
+//                    {
+//                        setOnGround(cobjHitting.gid);       // Set LJM standing
+//                        checkForCrater();                   // Check for contact with any craters
+//                    }
+//                }
+//                break;
+//
+//                case _CEILING:
+//                {
+//                }
+//                break;
+//
+//                // Objects that can be collided with, and
+//                // which WILL hurt LJM.
+//                case G_POWER_BEAM:
+//                case G_NO_ID:
+//                default:
+//                {
+//                    if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
+//                        && (App.getPlayer().getAction() != ActionStates._DYING))
+//                    {
+//                        App.getPlayer().strength = 0;
+//
+//                        switch (cobjHitting.gid)
+//                        {
+//                            case G_MISSILE_BASE:
+//                            case G_MISSILE_LAUNCHER:
+//                            case G_POWER_BEAM:
+//                            {
+//                            }
+//                            break;
+//
+//                            default:
+//                            {
+//                                App.getPlayer().collisionObject.contactEntity.setAction(ActionStates._HURT);
+//                            }
+//                            break;
+//                        }
+//                    }
+//                }
+//                break;
+//            }
         }
     }
 

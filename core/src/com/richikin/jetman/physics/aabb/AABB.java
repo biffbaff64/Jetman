@@ -96,7 +96,7 @@ public class AABB implements Disposable
                                         && ((midRectangle.x + midRectangle.width) >= boxB.rectangle.x)
                                         && ((midRectangle.x + midRectangle.width) <= (boxB.rectangle.x + boxB.rectangle.width)))
                                     {
-                                        isHitting           = true;
+                                        isHitting               = true;
                                         boxA.idRight            = boxB.gid;
                                         boxA.boxHittingRight    = boxB.index;
                                         boxA.contactMask        |= AABBData._RIGHT;
