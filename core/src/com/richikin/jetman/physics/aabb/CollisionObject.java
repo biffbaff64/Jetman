@@ -44,6 +44,7 @@ public class CollisionObject implements Disposable
     public boolean isHittingPlayer;
     public boolean isObstacle;
     public boolean isContactObstacle;
+    public boolean isInvisibilityAllowed;
 
     private StopWatch invisibilityTimer;
     private int       invisibilityDelay;    // How long this collision object is ignored for
@@ -103,11 +104,12 @@ public class CollisionObject implements Disposable
     {
         clearCollision();
 
-        index             = AABBData.boxes().size;
-        isObstacle        = true;
-        isContactObstacle = false;
-        gid               = GraphicID.G_NO_ID;
-        invisibilityTimer = StopWatch.start();
+        index                 = AABBData.boxes().size;
+        isObstacle            = true;
+        isContactObstacle     = false;
+        gid                   = GraphicID.G_NO_ID;
+        invisibilityTimer     = StopWatch.start();
+        isInvisibilityAllowed = true;
     }
 
     public void kill()
@@ -119,21 +121,21 @@ public class CollisionObject implements Disposable
     {
         if (action != ActionStates._DEAD)
         {
-            action           = ActionStates._COLLIDABLE;
-            isHittingPlayer  = false;
+            action          = ActionStates._COLLIDABLE;
+            isHittingPlayer = false;
 
-            contactEntity    = null;
-            contactMask      = 0;
+            contactEntity = null;
+            contactMask   = 0;
 
             boxHittingTop    = 0;
             boxHittingBottom = 0;
             boxHittingLeft   = 0;
             boxHittingRight  = 0;
 
-            idTop            = GraphicID.G_NO_ID;
-            idBottom         = GraphicID.G_NO_ID;
-            idLeft           = GraphicID.G_NO_ID;
-            idRight          = GraphicID.G_NO_ID;
+            idTop    = GraphicID.G_NO_ID;
+            idBottom = GraphicID.G_NO_ID;
+            idLeft   = GraphicID.G_NO_ID;
+            idRight  = GraphicID.G_NO_ID;
         }
     }
 
@@ -158,7 +160,7 @@ public class CollisionObject implements Disposable
 
     public void checkInvisibility()
     {
-        if (action != ActionStates._COLLIDABLE)
+        if ((action != ActionStates._COLLIDABLE) && isInvisibilityAllowed)
         {
             if (invisibilityTimer.time(TimeUnit.MILLISECONDS) >= invisibilityDelay)
             {

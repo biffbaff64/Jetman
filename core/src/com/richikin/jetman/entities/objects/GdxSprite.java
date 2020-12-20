@@ -398,7 +398,10 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                         }
                     }
 
-                    collisionObject.setInvisibility(1000);
+                    if (isEnemy && collisionObject.isInvisibilityAllowed)
+                    {
+                        collisionObject.setInvisibility(1000);
+                    }
                 }
 
                 //
