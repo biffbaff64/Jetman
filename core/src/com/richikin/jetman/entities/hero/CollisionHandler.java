@@ -29,36 +29,38 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
-            CollisionObject cobj = App.getPlayer().collisionObject;
+            checkForGround();
 
-            switch (cobj.idBottom)
-            {
-                // Objects that can be collided with, and which
-                // make up the 'Ground' group i.e. can be stood on.
-                case _GROUND:
-                case _BRIDGE:
-                case _CRATER:
-                case G_ROVER_BOOT:
-                case G_TRANSPORTER:
-                {
-                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-                            && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
-                    {
-                        App.getPlayer().explode();
-                        App.getPlayer().isRotating = false;
-                        App.getPlayer().rotateSpeed = 0;
-                    }
-                    else
-                    {
-                        setOnGround(cobj.idBottom);   // Set LJM standing
-                        checkForCrater();               // Check for contact with any craters
-                    }
-                }
-                break;
-
-                default:
-                    break;
-            }
+//            CollisionObject cobj = App.getPlayer().collisionObject;
+//
+//            switch (cobj.idBottom)
+//            {
+//                // Objects that can be collided with, and which
+//                // make up the 'Ground' group i.e. can be stood on.
+//                case _GROUND:
+//                case _BRIDGE:
+//                case _CRATER:
+//                case G_ROVER_BOOT:
+//                case G_TRANSPORTER:
+//                {
+//                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
+//                            && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
+//                    {
+//                        App.getPlayer().explode();
+//                        App.getPlayer().isRotating = false;
+//                        App.getPlayer().rotateSpeed = 0;
+//                    }
+//                    else
+//                    {
+//                        setOnGround(cobj.idBottom);   // Set LJM standing
+//                        checkForCrater();               // Check for contact with any craters
+//                    }
+//                }
+//                break;
+//
+//                default:
+//                    break;
+//            }
 
 //            switch (cobjHitting.gid)
 //            {
@@ -147,8 +149,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
-            checkForFalling();
             checkForGround();
+            checkForFalling();
         }
     }
 
@@ -252,19 +254,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
             case _BRIDGE:
             case G_ROVER_BOOT:
             {
-                App.getPlayer().isInMidAir = false;
-                App.getPlayer().isOnGround = true;
-                App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
-
-                if (App.getPlayer().getAction() == ActionStates._FALLING)
-                {
-                    App.getPlayer().setAction(ActionStates._STANDING);
-                    App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
-                }
-
-                Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
-
-                App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+                setOnGround(graphicID);
             }
             break;
 
