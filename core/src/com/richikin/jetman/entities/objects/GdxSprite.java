@@ -390,9 +390,12 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                 {
                     collisionObject.action = ActionStates._COLLIDING;
 
-                    if (collisionCallback != null)
+                    if (App.collisionUtils.filter(collisionObject.contactEntity.collidesWith, bodyCategory))
                     {
-                        collisionCallback.onPositiveCollision(collisionObject);
+                        if (collisionCallback != null)
+                        {
+                            collisionCallback.onPositiveCollision(collisionObject);
+                        }
                     }
 
                     collisionObject.setInvisibility(1000);

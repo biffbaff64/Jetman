@@ -121,12 +121,15 @@ public class CollisionObject implements Disposable
         {
             action           = ActionStates._COLLIDABLE;
             isHittingPlayer  = false;
+
             contactEntity    = null;
             contactMask      = 0;
+
             boxHittingTop    = 0;
             boxHittingBottom = 0;
             boxHittingLeft   = 0;
             boxHittingRight  = 0;
+
             idTop            = GraphicID.G_NO_ID;
             idBottom         = GraphicID.G_NO_ID;
             idLeft           = GraphicID.G_NO_ID;

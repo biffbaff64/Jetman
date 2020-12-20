@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
 
 public class AABB implements Disposable
 {
@@ -123,6 +124,11 @@ public class AABB implements Disposable
                             boxA.isContactObstacle  = boxB.isObstacle;
                             boxA.action             = ActionStates._COLLIDING;
                             boxB.action             = ActionStates._COLLIDING;
+
+                            if (boxB.gid == GraphicID.G_PLAYER)
+                            {
+                                boxA.isHittingPlayer = true;
+                            }
                         }
                     }
                 }
