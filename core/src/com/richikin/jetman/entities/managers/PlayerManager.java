@@ -33,7 +33,7 @@ public class PlayerManager
         App.entityManager._playerReady = true;
         App.entityManager._playerIndex = descriptor._INDEX;
 
-        App.entities.mainPlayer.addCollisionListener(App.getPlayer().collision);
+//        App.entities.mainPlayer.addCollisionListener(App.getPlayer().collision);
     }
 
     public void setSpawnPoint()

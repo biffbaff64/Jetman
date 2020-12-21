@@ -690,6 +690,8 @@ public class MainPlayer extends GdxSprite
         teleport      = new TeleportHandler();
         laserManager  = new LaserManager();
         bridgeManager = new BridgeManager();
+
+        addCollisionListener(collision);
     }
 
     private void createSpawnAnimation()

@@ -29,37 +29,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (App.getPlayer().getAction() != ActionStates._TELEPORTING)
         {
-//            CollisionObject cobj = App.getPlayer().collisionObject;
-//
-//            switch (cobj.idBottom)
-//            {
-//                // Objects that can be collided with, and which
-//                // make up the 'Ground' group i.e. can be stood on.
-//                case _GROUND:
-//                case _BRIDGE:
-//                case _CRATER:
-//                case G_ROVER_BOOT:
-//                case G_TRANSPORTER:
-//                {
-//                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-//                            && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
-//                    {
-//                        App.getPlayer().explode();
-//                        App.getPlayer().isRotating = false;
-//                        App.getPlayer().rotateSpeed = 0;
-//                    }
-//                    else
-//                    {
-//                        setOnGround(cobj.idBottom);   // Set LJM standing
-//                        checkForCrater();               // Check for contact with any craters
-//                    }
-//                }
-//                break;
-//
-//                default:
-//                    break;
-//            }
-
             switch (cobjHitting.gid)
             {
                 // Objects that can be collided with, and which

@@ -64,6 +64,8 @@ public class AppConfig
             Developer.setAndroidOnDesktop(true);
             Developer.setGodMode(false);
 
+            App.settings.disable(Settings._BOX2D_PHYSICS);
+            App.settings.disable(Settings._B2D_RENDERER);
             App.settings.disable(Settings._DISABLE_MENU_SCREEN);
             App.settings.disable(Settings._SCROLL_DEMO);
             App.settings.disable(Settings._SPRITE_BOXES);
