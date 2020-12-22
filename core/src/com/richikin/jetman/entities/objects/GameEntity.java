@@ -98,53 +98,6 @@ public class GameEntity implements EntityComponent, Disposable
         return position.x + frameWidth;
     }
 
-    //
-    // The most common sprite actions.
-    public void setStanding()
-    {
-        this.entityAction = ActionStates._STANDING;
-    }
-
-    public void setRunning()
-    {
-        this.entityAction = ActionStates._RUNNING;
-    }
-
-    public void setFalling()
-    {
-        this.entityAction = ActionStates._FALLING;
-    }
-
-    public void setFlying()
-    {
-        this.entityAction = ActionStates._FLYING;
-    }
-
-    public void setHurt()
-    {
-        this.entityAction = ActionStates._HURT;
-    }
-
-    public void setKilled()
-    {
-        this.entityAction = ActionStates._KILLED;
-    }
-
-    public void setDying()
-    {
-        this.entityAction = ActionStates._DYING;
-    }
-
-    public void setExploding()
-    {
-        this.entityAction = ActionStates._EXPLODING;
-    }
-
-    public void setDead()
-    {
-        this.entityAction = ActionStates._DEAD;
-    }
-
     /**
      * Releases all resources of this object.
      */

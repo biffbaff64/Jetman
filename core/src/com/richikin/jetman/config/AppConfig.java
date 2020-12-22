@@ -57,22 +57,6 @@ public class AppConfig
 
         Developer.setMode();
 
-        // ------------------------------------------------
-        // Temporary development settings
-        if (Developer.isDevMode() && AppConfig.isDesktopApp())
-        {
-            Developer.setAndroidOnDesktop(true);
-            Developer.setGodMode(false);
-
-            App.settings.disable(Settings._BOX2D_PHYSICS);
-            App.settings.disable(Settings._B2D_RENDERER);
-            App.settings.disable(Settings._DISABLE_MENU_SCREEN);
-            App.settings.disable(Settings._SCROLL_DEMO);
-            App.settings.disable(Settings._SPRITE_BOXES);
-            App.settings.disable(Settings._TILE_BOXES);
-        }
-        // ------------------------------------------------
-
         quitToMainMenu    = false;
         forceQuitToMenu   = false;
         gamePaused        = false;

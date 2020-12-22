@@ -3,6 +3,7 @@ package com.richikin.jetman.graphics.renderers;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.developer.DebugRenderer;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 
 public class WorldRenderer implements IGameScreenRenderer
@@ -31,6 +32,8 @@ public class WorldRenderer implements IGameScreenRenderer
                 {
                     App.entityManager.drawSprites();
                 }
+
+                DebugRenderer.drawBoxes();
             }
             break;
 

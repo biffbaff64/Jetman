@@ -47,7 +47,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     }
                     else
                     {
-                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+//                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
+                        if (App.getPlayer().collisionObject.idBottom == cobjHitting.gid)
                         {
                             setOnGround(cobjHitting.gid);   // Set LJM standing
                             checkForCrater();               // Check for contact with any craters

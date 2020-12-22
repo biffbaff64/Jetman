@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.LibApp;
 import com.richikin.jetman.physics.aabb.CollisionRect;
@@ -22,7 +23,7 @@ import com.richikin.jetman.config.Settings;
 public class DebugRenderer implements Disposable
 {
     private static TextureRegion debugTextureRegion;
-    private static BitmapFont    font;
+    private static BitmapFont font;
 
     public static void setup(String _debugFont)
     {
@@ -39,6 +40,11 @@ public class DebugRenderer implements Disposable
 
     public static void drawBoxes()
     {
+        if (debugTextureRegion == null)
+        {
+            setup(GameAssets._PRO_WINDOWS_FONT);
+        }
+
         if (App.settings.isEnabled(Settings._TILE_BOXES))
         {
             drawTileLayerBoxes();

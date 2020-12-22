@@ -241,12 +241,11 @@ public class MainPlayer extends GdxSprite
             break;
 
             case _HOVERING:
-            case _RUNNING:
             case _FLYING:
             case _FALLING:
+            case _RUNNING:
             {
                 buttons.checkButtons();
-
                 movePlayer();
             }
             break;
@@ -256,8 +255,6 @@ public class MainPlayer extends GdxSprite
             {
                 if (App.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
                 {
-                    Trace.__FILE_FUNC_LINE();
-
                     explode();
 
                     isRotating  = false;
