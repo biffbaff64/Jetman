@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.ViewportType;
@@ -113,8 +114,7 @@ public class BaseRenderer implements Disposable
         // will centre on the main character.
         if (AppConfig.gameScreenActive())
         {
-            if ((App.getPlayer() != null)
-                && App.appState.after(StateID._STATE_SETUP))
+            if ((App.getPlayer() != null) && App.appState.after(StateID._STATE_SETUP))
             {
                 if (App.getPlayer().isRidingRover)
                 {
@@ -148,23 +148,16 @@ public class BaseRenderer implements Disposable
             App.spriteBatch.setProjectionMatrix(parallaxGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.x = (float) (Gfx._VIEW_WIDTH / 2);
-            cameraPos.y = (float) (Gfx._VIEW_HEIGHT / 2);
+            cameraPos.x = parallaxGameCamera.camera.viewportWidth / 2;
+            cameraPos.y = parallaxGameCamera.camera.viewportHeight / 2;
             cameraPos.z = 0;
 
-            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(),false);
+            parallaxGameCamera.setPosition(cameraPos, gameZoom.getZoomValue(), false);
             parallaxBackground.render();
 
             App.entityManager.renderSystem.drawBackgroundSprites();
             App.spriteBatch.end();
         }
-
-        //
-        // Camera position settings are the same
-        // for TiledGameCamera and SpriteGameCamera.
-        cameraPos.x = (float) (App.mapData.mapPosition.getX() + (Gfx._VIEW_WIDTH / 2));
-        cameraPos.y = (float) (App.mapData.mapPosition.getY() + (Gfx._VIEW_HEIGHT / 2));
-        cameraPos.z = 0;
 
         // ----- Draw the TiledMap, if enabled -----
         if (tiledGameCamera.isInUse)
@@ -172,6 +165,10 @@ public class BaseRenderer implements Disposable
             tiledGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
             App.spriteBatch.begin();
+
+            cameraPos.x = (float) (App.mapData.mapPosition.getX() + (tiledGameCamera.camera.viewportWidth / 2));
+            cameraPos.y = (float) (App.mapData.mapPosition.getY() + (tiledGameCamera.camera.viewportHeight / 2));
+            cameraPos.z = 0;
 
             if (tiledGameCamera.isLerpingEnabled)
             {
@@ -192,6 +189,10 @@ public class BaseRenderer implements Disposable
             spriteGameCamera.viewport.apply();
             App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
             App.spriteBatch.begin();
+
+            cameraPos.x = (float) (App.mapData.mapPosition.getX() + (spriteGameCamera.camera.viewportWidth / 2));
+            cameraPos.y = (float) (App.mapData.mapPosition.getY() + (spriteGameCamera.camera.viewportHeight / 2));
+            cameraPos.z = 0;
 
             if (spriteGameCamera.isLerpingEnabled)
             {
@@ -215,7 +216,10 @@ public class BaseRenderer implements Disposable
             App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.setEmpty();
+            cameraPos.x = (float) (hudGameCamera.camera.viewportWidth / 2);
+            cameraPos.y = (float) (hudGameCamera.camera.viewportHeight / 2);
+            cameraPos.z = 0;
+
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);
 
             hudRenderer.render(App.spriteBatch, hudGameCamera);

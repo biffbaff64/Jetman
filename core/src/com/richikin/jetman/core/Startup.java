@@ -2,9 +2,11 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
+import com.richikin.jetman.developer.DebugRenderer;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
@@ -46,6 +48,8 @@ public class Startup
             App.googleServices.setup();
             App.googleServices.createApiClient();
         }
+
+        DebugRenderer.setup(GameAssets._PRO_WINDOWS_FONT);
 
         GameAudio.inst().setup();
         Shake.setAllowed(false);
