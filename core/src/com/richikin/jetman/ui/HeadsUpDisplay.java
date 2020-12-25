@@ -846,15 +846,49 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "TOP : " + App.getPlayer().collisionObject.idTop
-                        + "          "
-                        + "LFT : " + App.getPlayer().collisionObject.idLeft
-                        + "          "
-                        + "RGT : " + App.getPlayer().collisionObject.idRight
-                        + "          "
-                        + "BOT : " + App.getPlayer().collisionObject.idBottom,
+                        "ACT:" + App.getPlayer().getAction(),
                         originX + 20,
                         originY + 570
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "TOP : " + App.getPlayer().collisionObject.idTop,
+                        originX + 20,
+                        originY + 540
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "LFT : " + App.getPlayer().collisionObject.idLeft,
+                        originX + 20,
+                        originY + 510
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "RGT : " + App.getPlayer().collisionObject.idRight,
+                        originX + 20,
+                        originY + 480
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "BOT : " + App.getPlayer().collisionObject.idBottom,
+                        originX + 20,
+                        originY + 450
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "CST : " + App.getPlayer().collisionState,
+                        originX + 20,
+                        originY + 420
                     );
             }
         }

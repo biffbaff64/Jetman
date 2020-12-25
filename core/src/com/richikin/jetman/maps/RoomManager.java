@@ -248,7 +248,6 @@ public class RoomManager
             break;
 
             case _CRATER:
-            case G_CRATER:
             {
                 thisMax = 4;
             }

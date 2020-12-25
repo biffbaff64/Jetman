@@ -36,10 +36,6 @@ public enum GraphicID
     G_POWER_BEAM_SMALL,
 
     // ----------------------------
-    G_TOWER,
-    G_CRATER,
-
-    // ----------------------------
     G_PICKUP,
     G_FREEZER,
     G_ADD_TIME,

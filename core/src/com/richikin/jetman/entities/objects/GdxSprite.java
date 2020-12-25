@@ -25,16 +25,22 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     // -----------------------------------------------
     // properties etc
     //
-    public SimpleVec3 initXYZ;                      // The entity's start map coordinates
-    public int        spriteNumber;
-    public float      rotateSpeed;
-    public float      rotation;
-    public int        link;
+    public SimpleVec3  initXYZ;
+    public int         spriteNumber;
+    public float       rotateSpeed;
+    public float       rotation;
+    public int         link;
+    public Sprite      sprite;
+    public Direction   direction;
+    public Direction   lookingAt;
+    public XYSetF      distance;
+    public SimpleVec2F speed;
+    public int         strength;
 
     // -----------------------------------------------
     // Collision Related
     //
-    public  AABB               aabb;               // Reference to the box collision handler;
+    public  AABB               aabb;
     private ICollisionListener collisionCallback;
 
     // -----------------------------------------------
@@ -54,13 +60,6 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public Animation<TextureRegion> animation;
     public float                    elapsedAnimTime;
     public TextureRegion[]          animFrames;
-
-    public Sprite    sprite;
-    public Direction direction;
-    public Direction lookingAt;
-    public XYSetF    distance;
-    public SimpleVec2F     speed;
-    public int       strength;
 
     // --------------------------------------------------------------
     // Code
@@ -102,14 +101,14 @@ public class GdxSprite extends GameEntity implements SpriteComponent
         initXYZ   = new SimpleVec3();
         aabb      = new AABB();
 
-        strength            = GameConstants._MAX_STRENGTH;
-        spriteNumber        = 0;
-        rotation            = 0;
-        isDrawable          = true;
-        isRotating          = false;
-        isFlippedX          = false;
-        isFlippedY          = false;
-        isMainCharacter     = false;
+        strength        = GameConstants._MAX_STRENGTH;
+        spriteNumber    = 0;
+        rotation        = 0;
+        isDrawable      = true;
+        isRotating      = false;
+        isFlippedX      = false;
+        isFlippedY      = false;
+        isMainCharacter = false;
 
         spriteNumber = descriptor._INDEX;
         isAnimating  = (descriptor._FRAMES > 1);
@@ -138,9 +137,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     public void initPosition(SimpleVec3 vec3F)
     {
         sprite.setSize(frameWidth, frameHeight);
-
         sprite.setPosition((vec3F.x * Gfx.getTileWidth()), (vec3F.y * Gfx.getTileHeight()));
-
         sprite.setBounds(sprite.getX(), sprite.getY(), frameWidth, frameHeight);
         sprite.setOriginCenter();
 

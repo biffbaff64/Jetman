@@ -51,12 +51,13 @@ public class MainPlayer extends GdxSprite
     public boolean isBlockedLeft;
     public boolean isBlockedRight;
 
-    public float rightEdge;
-    public float topEdge;
-    public float shootRate;
-    public int   shootCount;
-    public float maxMoveSpeed;
-    public Box   viewBox;
+    public float        rightEdge;
+    public float        topEdge;
+    public float        shootRate;
+    public int          shootCount;
+    public float        maxMoveSpeed;
+    public Box          viewBox;
+    public ActionStates collisionState;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -85,9 +86,9 @@ public class MainPlayer extends GdxSprite
 
         bodyCategory = Gfx.CAT_PLAYER;
         collidesWith = Gfx.CAT_MOBILE_ENEMY
-                    | Gfx.CAT_FIXED_ENEMY
-                    | Gfx.CAT_GROUND
-                    | Gfx.CAT_CEILING;
+            | Gfx.CAT_FIXED_ENEMY
+            | Gfx.CAT_GROUND
+            | Gfx.CAT_CEILING;
 
         isMainCharacter = true;
         stopWatch       = StopWatch.start();
@@ -135,9 +136,10 @@ public class MainPlayer extends GdxSprite
         sprite.setRotation(0);
         sprite.setScale(1.0f);
 
-        strength    = GameConstants._MAX_STRENGTH;
-        shootCount  = 0;
-        laserColour = 0;
+        collisionState = ActionStates._NO_ACTION;
+        strength       = GameConstants._MAX_STRENGTH;
+        shootCount     = 0;
+        laserColour    = 0;
 
         actionButton.removeAction();
         setAction(ActionStates._SPAWNING);

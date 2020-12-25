@@ -87,6 +87,9 @@ public enum ActionStates
     _TEST_ACTION4,
     _TEST_ACTION5,
 
+    _NEGATIVE,
+    _POSITIVE,
+
     _NO_ACTION,
     ;
 }

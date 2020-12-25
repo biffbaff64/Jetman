@@ -4,13 +4,12 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.core.App;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.utilslib.physics.Movement;
+import com.richikin.jetman.core.App;
 import com.richikin.jetman.physics.aabb.AABBUtils;
+import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
 
 public class CollisionHandler implements ICollisionListener, Disposable
 {
@@ -38,8 +37,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case _CRATER:
                 case G_ROVER_BOOT:
                 {
-                    if ((App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-                        && (cobjHitting.gid != GraphicID.G_ROVER_BOOT))
+                    if (App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                     {
                         App.getPlayer().explode();
                         App.getPlayer().isRotating = false;
@@ -47,7 +45,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     }
                     else
                     {
-//                        if (cobjHitting.gid == App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid)
                         if (App.getPlayer().collisionObject.idBottom == cobjHitting.gid)
                         {
                             setOnGround(cobjHitting.gid);   // Set LJM standing
@@ -107,6 +104,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 break;
             }
         }
+
+        App.getPlayer().collisionState = ActionStates._POSITIVE;
     }
 
     /**
@@ -120,6 +119,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
             checkForGround();
             checkForFalling();
         }
+
+        App.getPlayer().collisionState = ActionStates._NEGATIVE;
     }
 
     /**
@@ -214,13 +215,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForGround()
     {
-        GraphicID graphicID = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid;
+        GraphicID graphicID = App.getPlayer().collisionObject.idBottom;
 
         switch (graphicID)
         {
             case _GROUND:
             case _BRIDGE:
             case G_ROVER_BOOT:
+            case _CRATER:
             {
                 setOnGround(graphicID);
             }
@@ -244,7 +246,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         if (!App.getPlayer().isRidingRover)
         {
-            if (App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid == GraphicID._CRATER)
+            if (App.getPlayer().collisionObject.idBottom == GraphicID._CRATER)
             {
                 if (!App.getPlayer().isMovingX)
                 {
