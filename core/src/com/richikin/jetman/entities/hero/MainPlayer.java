@@ -57,7 +57,6 @@ public class MainPlayer extends GdxSprite
     public int          shootCount;
     public float        maxMoveSpeed;
     public Box          viewBox;
-    public ActionStates collisionState;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -98,6 +97,8 @@ public class MainPlayer extends GdxSprite
         initXYZ.set(sprite.getX(), sprite.getY(), zPosition);
         App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
 
+        addDynamicPhysicsBody();
+
         setup(true);
 
         bridgeSection = App.assets.getObjectRegion("bridge");
@@ -136,7 +137,6 @@ public class MainPlayer extends GdxSprite
         sprite.setRotation(0);
         sprite.setScale(1.0f);
 
-        collisionState = ActionStates._NO_ACTION;
         strength       = GameConstants._MAX_STRENGTH;
         shootCount     = 0;
         laserColour    = 0;

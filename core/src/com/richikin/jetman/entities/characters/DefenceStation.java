@@ -5,9 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
@@ -45,7 +43,7 @@ public class DefenceStation extends GdxSprite
         shootTimer      = StopWatch.start();
         shootInterval   = App.roomManager.getFireRate();
 
-        addCollisionListener(new GenericCollisionListener(this));
+        addDynamicPhysicsBody();
     }
 
     @Override

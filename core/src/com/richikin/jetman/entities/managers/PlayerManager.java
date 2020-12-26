@@ -27,10 +27,8 @@ public class PlayerManager
 
         App.entities.mainPlayer = new MainPlayer();
         App.entities.mainPlayer.initialise(descriptor);
-
-        App.entities.mainPlayer.addCollisionListener(App.getPlayer().collision);
-
         App.entityData.addEntity(App.entities.mainPlayer);
+
         App.entityManager.updateIndexes();
         App.entityManager._playerReady = true;
         App.entityManager._playerIndex = descriptor._INDEX;

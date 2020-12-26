@@ -148,7 +148,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     @Override
-    public void addPhysicsBody()
+    public void addDynamicPhysicsBody()
     {
         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
         {
@@ -157,6 +157,20 @@ public class GdxSprite extends GameEntity implements SpriteComponent
                     this,
                     1.0f,
                     B2DConstants.DEFAULT_FRICTION,
+                    B2DConstants.DEFAULT_RESTITUTION
+                );
+        }
+    }
+
+    @Override
+    public void addKinematicPhysicsBody()
+    {
+        if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
+        {
+            b2dBody = App.worldModel.bodyBuilder.createKinematicBody
+                (
+                    this,
+                    1.0f,
                     B2DConstants.DEFAULT_RESTITUTION
                 );
         }
@@ -299,6 +313,12 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     }
 
     @Override
+    public void preDraw()
+    {
+        setPositionfromBody();
+    }
+
+    @Override
     public void draw(final SpriteBatch spriteBatch)
     {
         if (isDrawable)
@@ -377,34 +397,37 @@ public class GdxSprite extends GameEntity implements SpriteComponent
             collisionObject.checkInvisibility();
             collisionObject.clearCollision();
 
-            //
-            // All CollisionObjects are collidable by default.
-            // This flag is available to turn off detection
-            // as and when needed.
-            if (collisionObject.action == ActionStates._COLLIDABLE)
+            if (App.settings.isDisabled(Settings._BOX2D_PHYSICS))
             {
-                if (aabb.checkAABBBoxes(collisionObject))
-                {
-                    collisionObject.action = ActionStates._COLLIDING;
-
-                    if (collisionCallback != null)
-                    {
-                        collisionCallback.onPositiveCollision(collisionObject);
-                    }
-
-                    if (isEnemy && collisionObject.isInvisibilityAllowed)
-                    {
-                        collisionObject.setInvisibility(1000);
-                    }
-                }
-
                 //
-                // collisionObject.action might have changed at this point.
-                if (collisionObject.action != ActionStates._COLLIDING)
+                // All CollisionObjects are collidable by default.
+                // This flag is available to turn off detection
+                // as and when needed.
+                if (collisionObject.action == ActionStates._COLLIDABLE)
                 {
-                    if (collisionCallback != null)
+                    if (aabb.checkAABBBoxes(collisionObject))
                     {
-                        collisionCallback.onNegativeCollision();
+                        collisionObject.action = ActionStates._COLLIDING;
+
+                        if (collisionCallback != null)
+                        {
+                            collisionCallback.onPositiveCollision(collisionObject);
+                        }
+
+                        if (isEnemy && collisionObject.isInvisibilityAllowed)
+                        {
+                            collisionObject.setInvisibility(1000);
+                        }
+                    }
+
+                    //
+                    // collisionObject.action might have changed at this point.
+                    if (collisionObject.action != ActionStates._COLLIDING)
+                    {
+                        if (collisionCallback != null)
+                        {
+                            collisionCallback.onNegativeCollision();
+                        }
                     }
                 }
             }

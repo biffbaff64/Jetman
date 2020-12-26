@@ -53,7 +53,7 @@ public class Missile extends GdxSprite implements ICollisionListener
 
         setAction(ActionStates._RUNNING);
 
-        addCollisionListener(this);
+        addDynamicPhysicsBody();
     }
 
     @Override

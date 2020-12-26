@@ -12,8 +12,6 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
@@ -52,49 +50,51 @@ public class Bouncer extends GdxSprite
 
         maxBounceSpeed = _MAX_BOUNCE_SPEED + MathUtils.random(_EXTRA_BOUCE_SPEED);
 
+        addDynamicPhysicsBody();
+
         //
         // Add a custom CollisionListener
-        addCollisionListener(new ICollisionListener()
-        {
-            @Override
-            public void onPositiveCollision(CollisionObject cobjHitting)
-            {
-                if (cobjHitting.gid == GraphicID.G_LASER)
-                {
-                    setAction(ActionStates._KILLED);
-                }
-                else
-                {
-                    if (cobjHitting.gid == GraphicID.G_PLAYER)
-                    {
-                        setAction(ActionStates._HURT);
-                    }
-                    else
-                    {
-                        if (cobjHitting.gid == GraphicID._CRATER)
-                        {
-                            if (MathUtils.random(100) < 35)
-                            {
-                                direction.toggleX();
-                                speed.set(_BOUNCE_X_SPEED, maxBounceSpeed);
-                            }
-                        }
-                    }
-                }
-
-                collisionObject.setInvisibility(1000);
-            }
-
-            @Override
-            public void onNegativeCollision()
-            {
-            }
-
-            @Override
-            public void dispose()
-            {
-            }
-        });
+//        addCollisionListener(new ICollisionListener()
+//        {
+//            @Override
+//            public void onPositiveCollision(CollisionObject cobjHitting)
+//            {
+//                if (cobjHitting.gid == GraphicID.G_LASER)
+//                {
+//                    setAction(ActionStates._KILLED);
+//                }
+//                else
+//                {
+//                    if (cobjHitting.gid == GraphicID.G_PLAYER)
+//                    {
+//                        setAction(ActionStates._HURT);
+//                    }
+//                    else
+//                    {
+//                        if (cobjHitting.gid == GraphicID._CRATER)
+//                        {
+//                            if (MathUtils.random(100) < 35)
+//                            {
+//                                direction.toggleX();
+//                                speed.set(_BOUNCE_X_SPEED, maxBounceSpeed);
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                collisionObject.setInvisibility(1000);
+//            }
+//
+//            @Override
+//            public void onNegativeCollision()
+//            {
+//            }
+//
+//            @Override
+//            public void dispose()
+//            {
+//            }
+//        });
     }
 
     @Override

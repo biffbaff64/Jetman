@@ -123,6 +123,8 @@ public class DefenderBullet extends GdxSprite
             distance.set((float) Gfx._VIEW_WIDTH / 2, (float) Gfx._VIEW_HEIGHT / 2);
         }
 
+        addDynamicPhysicsBody();
+
         setAction(ActionStates._RUNNING);
         colourIndex = 0;
     }

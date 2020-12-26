@@ -9,6 +9,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.physics.aabb.AABBUtils;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
 public class CollisionHandler implements ICollisionListener, Disposable
@@ -37,6 +38,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case _CRATER:
                 case G_ROVER_BOOT:
                 {
+                    Trace.__FILE_FUNC();
+
                     if (App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
                     {
                         App.getPlayer().explode();
@@ -104,8 +107,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 break;
             }
         }
-
-        App.getPlayer().collisionState = ActionStates._POSITIVE;
     }
 
     /**
@@ -119,8 +120,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
             checkForGround();
             checkForFalling();
         }
-
-        App.getPlayer().collisionState = ActionStates._NEGATIVE;
     }
 
     /**
@@ -194,6 +193,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void setOnGround(GraphicID graphicID)
     {
+        Trace.__FILE_FUNC();
+
         App.getPlayer().isInMidAir    = false;
         App.getPlayer().isOnGround    = true;
         App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);

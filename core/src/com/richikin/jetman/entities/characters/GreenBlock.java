@@ -10,7 +10,6 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.PointsManager;
-import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
@@ -50,7 +49,7 @@ public class GreenBlock extends GdxSprite
             direction.set(Movement._DIRECTION_LEFT, Movement._DIRECTION_STILL);
         }
 
-        addCollisionListener(new GenericCollisionListener(this));
+        addKinematicPhysicsBody();
     }
 
     @Override
@@ -65,7 +64,8 @@ public class GreenBlock extends GdxSprite
                     speed.setX(0);
                 }
 
-                sprite.translate((speed.getX() * direction.getX()), 0);
+                b2dBody.setGravityScale(0);
+                b2dBody.setLinearVelocity(speed.getX() * direction.getX(), speed.getY() * direction.getY());
 
                 wrap();
 

@@ -10,7 +10,6 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
@@ -46,7 +45,7 @@ public class MissileBase extends GdxSprite
 
         App.gameProgress.baseDestroyed = false;
 
-        addCollisionListener(new GenericCollisionListener(this));
+        addDynamicPhysicsBody();
     }
 
     @Override
@@ -204,6 +203,7 @@ public class MissileBase extends GdxSprite
         topSection.sprite.setPosition(topSection.sprite.getX() + 15, topSection.sprite.getY() + this.frameHeight);
         topSection.animation.setFrameDuration(0.5f / 6f);
         topSection.setAction(ActionStates._STANDING);
+        topSection.addDynamicPhysicsBody();
 
         App.entityData.addEntity(topSection);
     }

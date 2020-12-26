@@ -30,6 +30,8 @@ public class Bomb extends Carryable
 
         bodyCategory = Gfx.CAT_PLAYER_WEAPON;
         collidesWith = Gfx.CAT_FIXED_ENEMY | Gfx.CAT_GROUND | Gfx.CAT_MISSILE_BASE | Gfx.CAT_VEHICLE;
+
+        addDynamicPhysicsBody();
     }
 
     @Override

@@ -37,15 +37,15 @@ public class Laser extends GdxSprite
     public Laser()
     {
         super(GraphicID.G_LASER);
-
-        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
-        collidesWith = Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
     }
 
     @Override
     public void initialise(SpriteDescriptor descriptor)
     {
         create(descriptor);
+
+        bodyCategory = Gfx.CAT_PLAYER_WEAPON;
+        collidesWith = Gfx.CAT_MOBILE_ENEMY | Gfx.CAT_ENEMY_WEAPON;
 
         float x;
 
@@ -62,7 +62,7 @@ public class Laser extends GdxSprite
             distance.set((App.mapData.mapPosition.getX() + Gfx._VIEW_WIDTH) - x, 0);
         }
 
-        float y = (descriptor._PARENT.sprite.getY() + (descriptor._PARENT.frameHeight / 2)) - 2;
+        float y = (descriptor._PARENT.sprite.getY() + (descriptor._PARENT.frameHeight / 2f)) - 2;
 
         sprite.setPosition(x, y);
 
@@ -74,6 +74,8 @@ public class Laser extends GdxSprite
         sprite.setColor(colourList[((MainPlayer) descriptor._PARENT).laserColour]);
 
         setAction(ActionStates._RUNNING);
+
+        addDynamicPhysicsBody();
 
         GameAudio.inst().startSound(AudioData.SFX_LASER);
     }

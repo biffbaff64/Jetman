@@ -26,6 +26,8 @@ public interface SpriteComponent
 
     Vector3 getPosition();
 
+    void preDraw();
+
     void draw(SpriteBatch spriteBatch);
 
     void animate();
@@ -34,7 +36,9 @@ public interface SpriteComponent
 
     void setAnimation(SpriteDescriptor descriptor, float frameRate);
 
-    void addPhysicsBody();
+    void addDynamicPhysicsBody();
+
+    void addKinematicPhysicsBody();
 
     void setPositionfromBody();
 

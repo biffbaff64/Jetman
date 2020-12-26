@@ -76,6 +76,8 @@ public class ZapSprite extends GdxSprite
         stopWatch = StopWatch.start();
         setAction(ActionStates._STANDING);
         isDrawable = true;
+
+        addDynamicPhysicsBody();
     }
 
     @Override

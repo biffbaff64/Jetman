@@ -50,6 +50,7 @@ public class Startup
         }
 
         DebugRenderer.setup(GameAssets._PRO_WINDOWS_FONT);
+        App.worldModel.createB2DRenderer();
 
         GameAudio.inst().setup();
         Shake.setAllowed(false);

@@ -19,7 +19,7 @@ import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
-public class AppConfig
+public class              AppConfig
 {
     public static final String _PREFS_FILE_NAME = "com.richikin.jetman.preferences";
 

@@ -84,6 +84,8 @@ public class UfoWeapon extends GdxSprite
 
         setAction(ActionStates._RUNNING);
         colourIndex = 0;
+
+        addDynamicPhysicsBody();
     }
 
     @Override

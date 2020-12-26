@@ -44,7 +44,7 @@ public class Teleporter extends GdxSprite
             | Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_GROUND;
 
-        setCollisionListener();
+        addDynamicPhysicsBody();
     }
 
     @Override

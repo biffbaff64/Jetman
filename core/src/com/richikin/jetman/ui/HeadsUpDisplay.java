@@ -882,14 +882,6 @@ public class HeadsUpDisplay implements Disposable
                         originX + 20,
                         originY + 450
                     );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "CST : " + App.getPlayer().collisionState,
-                        originX + 20,
-                        originY + 420
-                    );
             }
         }
     }

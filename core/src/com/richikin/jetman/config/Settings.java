@@ -104,6 +104,12 @@ public class Settings implements ISettings
     }
 
     @Override
+    public boolean isDisabled(final String preference)
+    {
+        return (prefs != null) && !prefs.getBoolean(preference);
+    }
+
+    @Override
     public void enable(final String preference)
     {
         if (prefs != null)

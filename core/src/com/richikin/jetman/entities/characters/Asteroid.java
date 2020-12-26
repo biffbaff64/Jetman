@@ -9,7 +9,6 @@ import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.GdxSprite;
-import com.richikin.jetman.entities.objects.GenericCollisionListener;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
@@ -54,7 +53,7 @@ public class Asteroid extends GdxSprite
         isRotating      = true;
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
 
-        addCollisionListener(new GenericCollisionListener(this));
+        addDynamicPhysicsBody();
     }
 
     @Override
@@ -69,13 +68,11 @@ public class Asteroid extends GdxSprite
         {
             case _RUNNING:
             {
-                sprite.translateX(speed.getX() * direction.getX());
-                sprite.translateY(speed.getY() * direction.getY());
+                b2dBody.setLinearVelocity(speed.getX() * direction.getX(), speed.getY() * direction.getY());
 
                 wrap();
 
-                if ((collisionObject.idBottom == GraphicID._GROUND)
-                    || collisionObject.isHittingPlayer)
+                if ((collisionObject.idBottom == GraphicID._GROUND) || collisionObject.isHittingPlayer)
                 {
                     setAction(ActionStates._HURT);
                     elapsedAnimTime = 0;

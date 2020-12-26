@@ -59,8 +59,6 @@ public class LaserBarrier extends GdxSprite
     {
         create(entityDescriptor);
 
-        setCollisionListener();
-
         colourIndex = MathUtils.random(colourList.length - 1);
 
         setAction(ActionStates._STANDING);
@@ -74,6 +72,8 @@ public class LaserBarrier extends GdxSprite
         stopWatch   = StopWatch.start();
         isAnimating = false;
         frameNumber = 0;
+
+        addDynamicPhysicsBody();
     }
 
     @Override

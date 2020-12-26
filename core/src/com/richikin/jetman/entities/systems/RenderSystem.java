@@ -47,7 +47,7 @@ public class RenderSystem
                             {
                                 if (entity.zPosition == z)
                                 {
-                                    entity.setPositionfromBody();
+                                    entity.preDraw();
 
                                     if (isInViewWindow(entity) && entity.isDrawable)
                                     {

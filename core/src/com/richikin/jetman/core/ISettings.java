@@ -6,6 +6,8 @@ public interface ISettings
 
     boolean isEnabled(final String preference);
 
+    boolean isDisabled(final String preference);
+
     void enable(final String preference);
 
     void disable(final String preference);

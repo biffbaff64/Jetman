@@ -43,6 +43,8 @@ public class RoverGun extends Carryable
         gunTurretAngle = 0f;
         shootCount = 0;
         shootRate = 0f;
+
+        addDynamicPhysicsBody();
     }
 
     public void addTurret()
@@ -56,6 +58,8 @@ public class RoverGun extends Carryable
 
         gunTurret = new GunTurret();
         gunTurret.initialise(descriptor);
+        gunTurret.addDynamicPhysicsBody();
+
         App.entityData.addEntity(gunTurret);
     }
 
