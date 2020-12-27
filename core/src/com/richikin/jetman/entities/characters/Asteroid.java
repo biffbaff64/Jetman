@@ -2,16 +2,23 @@ package com.richikin.jetman.entities.characters;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.physics.box2d.BodyIdentity;
+import com.richikin.jetman.physics.box2d.IContactListener;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
 
@@ -54,6 +61,7 @@ public class Asteroid extends GdxSprite
         rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
 
         addDynamicPhysicsBody();
+        setContactListener();
     }
 
     @Override
@@ -169,5 +177,69 @@ public class Asteroid extends GdxSprite
         collisionObject.rectangle.y         = sprite.getY() + ((frameHeight - height) / 2);
         collisionObject.rectangle.width     = width;
         collisionObject.rectangle.height    = height;
+    }
+
+    private void setContactListener()
+    {
+        App.worldModel.box2DContactListener.addListener
+            (
+                new ContactListener()
+                {
+                    @Override
+                    public void beginContact(Contact contact)
+                    {
+                        GdxSprite spriteA = ((BodyIdentity) contact.getFixtureA().getBody().getUserData()).entity;
+                        GdxSprite spriteB = ((BodyIdentity) contact.getFixtureB().getBody().getUserData()).entity;
+
+                        if (spriteA != null)
+                        {
+//                            if (spriteA.spriteNumber == index)
+//                            {
+//                                GraphicID gidA = spriteA.gid;
+//
+//                                collisionObject.isHittingPlayer = (gidA == GraphicID.G_PLAYER);
+//
+//                                if (gidA == GraphicID._GROUND)
+//                                {
+//                                    collisionObject.idBottom = GraphicID._GROUND;
+//                                }
+//                            }
+                        }
+
+                        if (spriteB != null)
+                        {
+//                            if (spriteB.spriteNumber == index)
+//                            {
+//                                GraphicID gidB = spriteB.gid;
+//
+//                                collisionObject.isHittingPlayer = (gidB == GraphicID.G_PLAYER);
+//
+//                                if (gidB == GraphicID._GROUND)
+//                                {
+//                                    collisionObject.idBottom = GraphicID._GROUND;
+//                                }
+//                            }
+                        }
+                    }
+
+                    @Override
+                    public void endContact(Contact contact)
+                    {
+
+                    }
+
+                    @Override
+                    public void preSolve(Contact contact, Manifold oldManifold)
+                    {
+
+                    }
+
+                    @Override
+                    public void postSolve(Contact contact, ContactImpulse impulse)
+                    {
+
+                    }
+                }
+            );
     }
 }

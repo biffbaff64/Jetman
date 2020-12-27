@@ -12,7 +12,6 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
-import com.richikin.utilslib.maths.SimpleVec2F;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,9 +1,13 @@
 package com.richikin.jetman.physics.box2d;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.graphics.Gfx;
+
+import org.jetbrains.annotations.NotNull;
 
 public class BodyBuilder
 {
@@ -24,7 +28,7 @@ public class BodyBuilder
      * @param _friction    Object friction.
      * @param _restitution The object restitution.
      */
-    public Body createDynamicCircle(GameEntity _entity, float _density, float _friction, float _restitution)
+    public Body createDynamicCircle(GdxSprite _entity, float _density, float _friction, float _restitution)
     {
         CircleShape shape = new CircleShape();
         shape.setRadius((_entity.frameWidth / 2f) / Gfx._PPM);
@@ -48,7 +52,7 @@ public class BodyBuilder
      * @param _friction    Object friction.
      * @param _restitution The object restitution.
      */
-    public Body createDynamicBox(GameEntity _entity, float _density, float _friction, float _restitution)
+    public Body createDynamicBox(GdxSprite _entity, float _density, float _friction, float _restitution)
     {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -79,7 +83,7 @@ public class BodyBuilder
      * @param _density     Object density
      * @param _restitution The object restitution.
      */
-    public Body createKinematicBody(GameEntity _entity, float _density, float _restitution)
+    public Body createKinematicBody(GdxSprite _entity, float _density, float _restitution)
     {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -116,7 +120,7 @@ public class BodyBuilder
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, 1.0f, 1.0f, 0.15f);
 
-        return buildBody(_entity, bodyDef, fixtureDef);
+        return buildBody(bodyDef, fixtureDef);
     }
 
     /**
@@ -133,7 +137,7 @@ public class BodyBuilder
      * @param _restitution The object restitution.
      * @return The newly created Body.
      */
-    public Body createStaticBody(GameEntity _entity, float _density, float _friction, float _restitution)
+    public Body createStaticBody(@NotNull GameEntity _entity, float _density, float _friction, float _restitution)
     {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -145,10 +149,10 @@ public class BodyBuilder
         BodyDef bodyDef = createBodyDef(BodyDef.BodyType.StaticBody, _entity);
         FixtureDef fixtureDef = createFixtureDef(_entity, shape, _density, _friction, _restitution);
 
-        return buildBody(_entity, bodyDef, fixtureDef);
+        return buildBody(bodyDef, fixtureDef);
     }
 
-    private Body buildBody(GameEntity _entity, BodyDef _bodyDef, FixtureDef _fixtureDef)
+    private Body buildBody(GdxSprite _entity, BodyDef _bodyDef, FixtureDef _fixtureDef)
     {
         Body body = App.worldModel.box2DWorld.createBody(_bodyDef);
         body.setUserData(new BodyIdentity(_entity, _entity.gid, _entity.type));
@@ -157,7 +161,16 @@ public class BodyBuilder
         return body;
     }
 
-    private BodyDef createBodyDef(BodyDef.BodyType bodyType, GameEntity _entity)
+    private Body buildBody(BodyDef _bodyDef, FixtureDef _fixtureDef)
+    {
+        Body body = App.worldModel.box2DWorld.createBody(_bodyDef);
+        body.setUserData(new BodyIdentity(null, GraphicID.G_NO_ID, GraphicID.G_NO_ID));
+        body.createFixture(_fixtureDef);
+
+        return body;
+    }
+
+    private BodyDef createBodyDef(BodyDef.BodyType bodyType, @NotNull GameEntity _entity)
     {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type          = bodyType;
@@ -172,7 +185,7 @@ public class BodyBuilder
         return bodyDef;
     }
 
-    private FixtureDef createFixtureDef(GameEntity _entity, Shape _shape, float _density, float _friction, float _restitution)
+    private FixtureDef createFixtureDef(@NotNull GameEntity _entity, Shape _shape, float _density, float _friction, float _restitution)
     {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape               = _shape;
