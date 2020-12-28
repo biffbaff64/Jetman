@@ -414,7 +414,9 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
 
                         if (collisionCallback != null)
                         {
-                            collisionCallback.onPositiveCollision(collisionObject);
+                            //
+                            // Pass the collisionObject of the contact entity
+                            collisionCallback.onPositiveCollision(collisionObject.contactEntity.collisionObject);
                         }
 
                         if (isEnemy && collisionObject.isInvisibilityAllowed)
