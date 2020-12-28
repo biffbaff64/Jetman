@@ -247,8 +247,15 @@ public class MainPlayer extends GdxSprite
             case _FALLING:
             case _RUNNING:
             {
-                buttons.checkButtons();
-                movePlayer();
+                if ((getAction() == ActionStates._FALLING) && (collisionObject.idBottom == GraphicID._GROUND))
+                {
+                    setAction(ActionStates._STANDING);
+                }
+                else
+                {
+                    buttons.checkButtons();
+                    movePlayer();
+                }
             }
             break;
 
@@ -265,7 +272,7 @@ public class MainPlayer extends GdxSprite
                 else
                 {
                     sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
-                    speed.y += 0.2f;
+                    speed.addY(0.2f);
                 }
             }
             break;
@@ -601,7 +608,7 @@ public class MainPlayer extends GdxSprite
                     (speed.getX() * App.inputManager.getControllerXPercentage()),
                     (speed.getY() * direction.getY())
                 );
-            speed.y += 0.025f;
+            speed.addY(0.025f);
         }
         else
         {

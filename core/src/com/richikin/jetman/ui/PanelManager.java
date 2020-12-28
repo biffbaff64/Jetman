@@ -77,7 +77,7 @@ public class PanelManager
         {
             currentPanel.set
                 (
-                    new SimpleVec2F(currentPanel.getPosition().x, currentPanel.getPosition().y),
+                    new SimpleVec2F(currentPanel.getPosition().getX(), currentPanel.getPosition().getY()),
                     new SimpleVec2F(0, currentPanel.getHeight() + 50),
                     new Direction(Movement._DIRECTION_STILL, Movement._DIRECTION_DOWN),
                     new SimpleVec2F(0, 40)

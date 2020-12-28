@@ -139,7 +139,7 @@ public class TeleportThief extends GdxSprite
                 {
                     sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
                     distance.addY(speed.getY());
-                    speed.y += 0.2f;
+                    speed.addY(0.2f);
                 }
             }
             break;
@@ -160,7 +160,7 @@ public class TeleportThief extends GdxSprite
                 {
                     sprite.translate(0, (speed.getY() * Movement._DIRECTION_DOWN));
                     distance.addY(speed.getY());
-                    speed.y += 0.2f;
+                    speed.addY(0.2f);
                 }
             }
             break;
@@ -207,7 +207,7 @@ public class TeleportThief extends GdxSprite
                     {
                         sprite.translate(0, (speed.getY() * Movement._DIRECTION_UP));
                         distance.subY(speed.getY());
-                        speed.y -= 0.2f;
+                        speed.subY(0.2f);
                     }
                 }
             }
@@ -299,7 +299,7 @@ public class TeleportThief extends GdxSprite
         }
         else
         {
-            speed.y -= 0.2f;
+            speed.subY(0.2f);
         }
 
         isFlippedX = (direction.getX() == Movement._DIRECTION_RIGHT);
@@ -310,7 +310,7 @@ public class TeleportThief extends GdxSprite
             {
                 if (!attachedToTransporter
                     && (sprite.getX() > App.getTeleporter(i).sprite.getX())
-                    && (sprite.getX() < (App.getTeleporter(i).sprite.getX() + (App.getTeleporter(i).frameWidth / 3)))
+                    && (sprite.getX() < (App.getTeleporter(i).sprite.getX() + (App.getTeleporter(i).frameWidth / 3f)))
                     && (sprite.getY() > (App.getTeleporter(i).sprite.getY() + App.getTeleporter(i).frameHeight)))
                 {
                     if (!App.getTeleporter(i).isCollected && (MathUtils.random(100) < 25))

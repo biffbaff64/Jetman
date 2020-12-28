@@ -30,6 +30,6 @@ public class SimpleDrawable
 
     public void draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.draw(image, position.x, position.y, width, height);
+        spriteBatch.draw(image, position.getX(), position.getY(), width, height);
     }
 }

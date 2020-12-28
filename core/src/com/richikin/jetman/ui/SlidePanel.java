@@ -41,7 +41,7 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
     @Override
     public void set(SimpleVec2F xy, SimpleVec2F distance, Direction direction, SimpleVec2F speed)
     {
-        setPosition(xy.x, xy.y);
+        setPosition(xy.getX(), xy.getY());
 
         this.distance.set(distance);
         this.distanceReset.set(distance);
@@ -116,15 +116,15 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
 
     private boolean move()
     {
-        if (distance.x > 0)
+        if (distance.getX() > 0)
         {
-            setPosition((int) (getPosition().x + (speed.getX() * direction.getX())), getPosition().y);
+            setPosition((int) (getPosition().getX() + (speed.getX() * direction.getX())), getPosition().getY());
             distance.subX((int) Math.min(distance.getX(), speed.getX()));
         }
 
         if (distance.getY() > 0)
         {
-            setPosition(getPosition().x, (int) (getPosition().y + (speed.getY() * direction.getY())));
+            setPosition(getPosition().getX(), (int) (getPosition().getY() + (speed.getY() * direction.getY())));
             distance.subY((int) Math.min(distance.getY(), speed.getY()));
         }
 

@@ -48,7 +48,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
                     }
                     else
                     {
-                        if (App.getPlayer().collisionObject.idBottom == cobjHitting.gid)
+                        if (cobjHitting.gid == App.getPlayer().collisionObject.idBottom)
                         {
                             setOnGround(cobjHitting.gid);   // Set LJM standing
                             checkForCrater();               // Check for contact with any craters
@@ -158,7 +158,11 @@ public class CollisionHandler implements ICollisionListener, Disposable
      */
     private void checkForFalling()
     {
-        if (App.collisionUtils.getBoxHittingBottom(App.getPlayer()).gid == GraphicID.G_NO_ID)
+        GraphicID graphicID = App.getPlayer().collisionObject.idBottom;
+
+        if ((graphicID != GraphicID._GROUND)
+            && (graphicID != GraphicID._BRIDGE)
+            && (graphicID != GraphicID.G_ROVER_BOOT))
         {
             App.getPlayer().isInMidAir = true;
             App.getPlayer().isOnGround = false;

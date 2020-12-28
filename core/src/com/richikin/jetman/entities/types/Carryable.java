@@ -71,7 +71,7 @@ public class Carryable extends GdxSprite implements ICarryable
                 isAttachedToPlayer = false;
 
                 direction.setY(Movement._DIRECTION_DOWN);
-                speed.y += 0.2f;
+                speed.addY(0.2f);
 
                 sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
             }

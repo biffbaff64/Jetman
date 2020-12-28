@@ -56,7 +56,7 @@ public class Teleporter extends GdxSprite
             {
                 if (collisionObject.idBottom == GraphicID.G_NO_ID)
                 {
-                    speed.y = 0;
+                    speed.setY(0);
                     setAction(ActionStates._FALLING);
                 }
             }
@@ -80,7 +80,7 @@ public class Teleporter extends GdxSprite
                 isCollected = false;
                 collector   = null;
 
-                speed.y += 0.2f;
+                speed.addY(0.2f);
 
                 sprite.translate(Movement._DIRECTION_STILL, (speed.getY() * Movement._DIRECTION_DOWN));
             }

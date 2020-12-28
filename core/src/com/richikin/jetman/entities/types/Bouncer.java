@@ -204,7 +204,7 @@ public class Bouncer extends GdxSprite
         {
             sprite.translate((speed.getX() * direction.getX()), (speed.getY() * direction.getY()));
 
-            speed.y += (_BOUNCE_Y_SPEED * direction.getY());
+            speed.addY(_BOUNCE_Y_SPEED * direction.getY());
 
             stopWatch.reset();
         }

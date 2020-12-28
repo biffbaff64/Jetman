@@ -7,21 +7,18 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.entities.managers.CraterManager;
 import com.richikin.jetman.entities.managers.ExplosionManager;
-import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.physics.box2d.BodyIdentity;
-import com.richikin.jetman.physics.box2d.IContactListener;
-import com.richikin.utilslib.physics.Movement;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.physics.Movement;
 
 public class Asteroid extends GdxSprite
 {
@@ -171,13 +168,13 @@ public class Asteroid extends GdxSprite
     @Override
     public void updateCollisionBox()
     {
-        float width  = (frameWidth * sprite.getScaleX());
+        float width = (frameWidth * sprite.getScaleX());
         float height = (frameWidth * sprite.getScaleY());
 
-        collisionObject.rectangle.x      = sprite.getX() + ((frameWidth - width) / 2);
-        collisionObject.rectangle.y      = sprite.getY() + ((frameHeight - height) / 2);
-        collisionObject.rectangle.width  = width;
-        collisionObject.rectangle.height = height;
+        collisionObject.rectangle.x         = sprite.getX() + ((frameWidth - width) / 2);
+        collisionObject.rectangle.y         = sprite.getY() + ((frameHeight - height) / 2);
+        collisionObject.rectangle.width     = width;
+        collisionObject.rectangle.height    = height;
     }
 
     private void setContactListener()

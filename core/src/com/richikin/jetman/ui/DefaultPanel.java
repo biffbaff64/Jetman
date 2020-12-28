@@ -61,7 +61,7 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     {
         if (isActive && (textureRegion != null))
         {
-            App.spriteBatch.draw(textureRegion, position.x, position.y, panelWidth, panelHeight);
+            App.spriteBatch.draw(textureRegion, position.getX(), position.getY(), panelWidth, panelHeight);
         }
     }
 

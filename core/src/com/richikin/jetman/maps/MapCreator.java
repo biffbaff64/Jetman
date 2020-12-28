@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
@@ -233,7 +234,11 @@ public class MapCreator
                         gameEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
                         gameEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));
                         gameEntity.setCollisionObject(gameEntity.position.x, gameEntity.position.y);
-                        gameEntity.b2dBody = App.worldModel.bodyBuilder.createStaticBody(gameEntity);
+
+                        if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
+                        {
+                            gameEntity.b2dBody = App.worldModel.bodyBuilder.createStaticBody(gameEntity);
+                        }
                     }
                 }
             }

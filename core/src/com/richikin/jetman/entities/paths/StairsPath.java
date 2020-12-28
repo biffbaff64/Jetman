@@ -17,7 +17,7 @@ public class StairsPath
 
         PathData(SimpleVec2F distance, Direction direction, SimpleVec2F speed)
         {
-            this.distance  = new SimpleVec2F(distance.x, distance.y);
+            this.distance  = new SimpleVec2F(distance.getX(), distance.getY());
             this.direction = new Direction(direction);
             this.speed     = new SimpleVec2F(speed);
         }
