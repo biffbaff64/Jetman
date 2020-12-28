@@ -262,7 +262,7 @@ public class MainPlayer extends GdxSprite
             // Fall to the ground after being killed while flying
             case _FALLING_TO_GROUND:
             {
-                if (App.collisionUtils.getBoxHittingBottom(this).gid == GraphicID._GROUND)
+                if (collisionObject.idBottom == GraphicID._GROUND)
                 {
                     explode();
 

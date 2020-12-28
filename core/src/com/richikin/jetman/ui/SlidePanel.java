@@ -10,7 +10,7 @@ import com.richikin.utilslib.physics.Direction;
 
 public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
 {
-    public  SimpleVec2F        speed;
+    public  SimpleVec2F  speed;
     public  Direction    direction;
     public  XYSetF       distance;
     public  XYSetF       distanceReset;

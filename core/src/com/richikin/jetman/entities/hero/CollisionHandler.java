@@ -193,28 +193,6 @@ public class CollisionHandler implements ICollisionListener, Disposable
     }
 
     /**
-     *
-     */
-    private void setOnGround(GraphicID graphicID)
-    {
-        Trace.__FILE_FUNC();
-
-        App.getPlayer().isInMidAir    = false;
-        App.getPlayer().isOnGround    = true;
-        App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
-
-        if (App.getPlayer().getAction() == ActionStates._FALLING)
-        {
-            App.getPlayer().setAction(ActionStates._STANDING);
-            App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
-        }
-
-        Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
-
-        App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
-    }
-
-    /**
      * Returns TRUE if LJM is in contact with the
      * ground, bridge section, or rover boot.
      */
@@ -245,6 +223,28 @@ public class CollisionHandler implements ICollisionListener, Disposable
             }
             break;
         }
+    }
+
+    /**
+     *
+     */
+    private void setOnGround(GraphicID graphicID)
+    {
+        Trace.__FILE_FUNC();
+
+        App.getPlayer().isInMidAir    = false;
+        App.getPlayer().isOnGround    = true;
+        App.getPlayer().isOnRoverBack = (graphicID == GraphicID.G_ROVER_BOOT);
+
+        if (App.getPlayer().getAction() == ActionStates._FALLING)
+        {
+            App.getPlayer().setAction(ActionStates._STANDING);
+            App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
+        }
+
+        Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
+
+        App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
     }
 
     private void checkForCrater()
