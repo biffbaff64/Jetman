@@ -107,7 +107,7 @@ public class Carryable extends GdxSprite implements ICarryable
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
     }
 

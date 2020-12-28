@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.richikin.enumslib.ActionStates;

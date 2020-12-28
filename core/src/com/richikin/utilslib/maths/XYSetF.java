@@ -7,9 +7,9 @@ public class XYSetF extends SimpleVec2F
         super(0, 0);
     }
 
-    public XYSetF(float _x, float _y)
+    public XYSetF(float x, float y)
     {
-        super(_x, _y);
+        super(x, y);
     }
 
     public void addXWrapped(float value, float minimum, float maximum)
@@ -50,6 +50,7 @@ public class XYSetF extends SimpleVec2F
         }
     }
 
+    @Override
     public void subX(float value)
     {
         if ((x -= value) <= 0)
@@ -58,6 +59,7 @@ public class XYSetF extends SimpleVec2F
         }
     }
 
+    @Override
     public void subY(float value)
     {
         if ((y -= value) <= 0)
@@ -66,16 +68,19 @@ public class XYSetF extends SimpleVec2F
         }
     }
 
+    @Override
     public void addX(float value)
     {
         x += value;
     }
 
+    @Override
     public void addY(float value)
     {
         y += value;
     }
 
+    @Override
     public boolean isEmpty()
     {
         return ((x <= 0) && (y <= 0));

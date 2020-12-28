@@ -9,7 +9,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
-import com.richikin.jetman.entities.SpriteComponent;
+import com.richikin.jetman.entities.components.ISpriteComponent;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.AABB;
@@ -20,7 +20,7 @@ import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 
-public class GdxSprite extends GameEntity implements SpriteComponent
+public class GdxSprite extends GameEntity implements ISpriteComponent
 {
     // -----------------------------------------------
     // properties etc
@@ -180,15 +180,18 @@ public class GdxSprite extends GameEntity implements SpriteComponent
      * Sets the sprite position from the physics body coordinates
      */
     @Override
-    public void setPositionfromBody()
+    public void setPositionFromBody()
     {
-        if (b2dBody != null)
+        if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
         {
-            sprite.setPosition
-                (
-                    (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth >> 1),
-                    (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight >> 1)
-                );
+            if (b2dBody != null)
+            {
+                sprite.setPosition
+                    (
+                        (b2dBody.getPosition().x * Gfx._PPM) - (frameWidth >> 1),
+                        (b2dBody.getPosition().y * Gfx._PPM) - (frameHeight >> 1)
+                    );
+            }
         }
     }
 
@@ -315,7 +318,7 @@ public class GdxSprite extends GameEntity implements SpriteComponent
     @Override
     public void preDraw()
     {
-        setPositionfromBody();
+        setPositionFromBody();
     }
 
     @Override

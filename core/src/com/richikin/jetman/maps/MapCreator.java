@@ -10,7 +10,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.entities.EntityManagerComponent;
+import com.richikin.jetman.entities.components.IEntityManagerComponent;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.utilslib.maths.SimpleVec2;
@@ -33,7 +33,7 @@ public class MapCreator
     {
         Trace.__FILE_FUNC();
 
-        for (EntityManagerComponent component : App.entityData.managerList)
+        for (IEntityManagerComponent component : App.entityData.managerList)
         {
             component.setPlaceable(false);
         }

@@ -48,11 +48,11 @@ public class AlienManager extends GenericEntityManager
     }
 
     @Override
-    public void free(final GraphicID _gid)
+    public void free(final GraphicID gid)
     {
         for (GraphicIndex item : aliens)
         {
-            if (item.graphicID == _gid)
+            if (item.graphicID == gid)
             {
                 item.value = Math.max(0, item.value - 1);
             }

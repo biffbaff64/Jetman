@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.objects;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.entities.objects.GdxSprite;

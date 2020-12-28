@@ -58,9 +58,9 @@ public class GunTurret extends GdxSprite
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
-        App.entityData.removeEntity(_index);
+        App.entityData.removeEntity(index);
     }
 
     @Override

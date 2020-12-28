@@ -1,11 +1,11 @@
 
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.components;
 
 import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-public interface EntityManagerComponent
+public interface IEntityManagerComponent
 {
     void init();
 
@@ -19,7 +19,7 @@ public interface EntityManagerComponent
 
     void free();
 
-    void free(final GraphicID _gid);
+    void free(final GraphicID gid);
 
     void reset();
 
@@ -28,8 +28,6 @@ public interface EntityManagerComponent
     void setActiveCount(int numActive);
 
     GraphicID getGID();
-
-    boolean isPlaceable();
 
     void setPlaceable(boolean placeable);
 

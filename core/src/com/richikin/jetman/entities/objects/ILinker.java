@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.objects;
 
 public interface ILinker
 {

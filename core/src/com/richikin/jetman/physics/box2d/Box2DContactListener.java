@@ -1,7 +1,10 @@
 package com.richikin.jetman.physics.box2d;
 
-import com.badlogic.gdx.physics.box2d.*;
-import com.richikin.jetman.core.App;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
+
 import net.dermetfan.gdx.Multiplexer;
 
 public class Box2DContactListener extends Multiplexer<ContactListener> implements ContactListener
@@ -9,7 +12,7 @@ public class Box2DContactListener extends Multiplexer<ContactListener> implement
     public Box2DContactListener()
     {
         //
-        // Initialises the Multiplexer.receivers array
+        // Initialises the Multiplexer#receivers array
         super();
     }
 
@@ -17,13 +20,13 @@ public class Box2DContactListener extends Multiplexer<ContactListener> implement
      * Called when two fixtures begin to touch.
      */
     @Override
-    public void beginContact(Contact _contact)
+    public void beginContact(Contact contact)
     {
         if (receivers.notEmpty())
         {
             for (ContactListener listener : receivers)
             {
-                listener.beginContact(_contact);
+                listener.beginContact(contact);
             }
         }
     }
@@ -32,13 +35,13 @@ public class Box2DContactListener extends Multiplexer<ContactListener> implement
      * Called when two fixtures cease to touch.
      */
     @Override
-    public void endContact(Contact _contact)
+    public void endContact(Contact contact)
     {
         if (receivers.notEmpty())
         {
             for (ContactListener listener : receivers)
             {
-                listener.endContact(_contact);
+                listener.endContact(contact);
             }
         }
     }
@@ -56,13 +59,13 @@ public class Box2DContactListener extends Multiplexer<ContactListener> implement
      * EndContact callback. However, you may get a BeginContact callback the next step.
      */
     @Override
-    public void preSolve(Contact _contact, Manifold _oldManifold)
+    public void preSolve(Contact contact, Manifold oldManifold)
     {
         if (receivers.notEmpty())
         {
             for (ContactListener listener : receivers)
             {
-                listener.preSolve(_contact, _oldManifold);
+                listener.preSolve(contact, oldManifold);
             }
         }
     }
@@ -77,19 +80,19 @@ public class Box2DContactListener extends Multiplexer<ContactListener> implement
      * Note: this is only called for contacts that are touching, solid, and awake.
      */
     @Override
-    public void postSolve(Contact _contact, ContactImpulse _impulse)
+    public void postSolve(Contact contact, ContactImpulse impulse)
     {
         if (receivers.notEmpty())
         {
             for (ContactListener listener : receivers)
             {
-                listener.postSolve(_contact, _impulse);
+                listener.postSolve(contact, impulse);
             }
         }
     }
 
-    public void addListener(ContactListener _listener)
+    public void addListener(ContactListener listener)
     {
-        receivers.add(_listener);
+        receivers.add(listener);
     }
 }

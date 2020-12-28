@@ -19,7 +19,7 @@ import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
-public class              AppConfig
+public class AppConfig
 {
     public static final String _PREFS_FILE_NAME = "com.richikin.jetman.preferences";
 
@@ -64,8 +64,8 @@ public class              AppConfig
             Developer.setAndroidOnDesktop(true);
             Developer.setGodMode(false);
 
-            App.settings.enable(Settings._BOX2D_PHYSICS);
-            App.settings.enable(Settings._B2D_RENDERER);
+            App.settings.disable(Settings._BOX2D_PHYSICS);
+            App.settings.disable(Settings._B2D_RENDERER);
             App.settings.enable(Settings._DISABLE_MENU_SCREEN);
             App.settings.disable(Settings._SCROLL_DEMO);
             App.settings.disable(Settings._SPRITE_BOXES);

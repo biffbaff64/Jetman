@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.PointsManager;
@@ -57,15 +58,15 @@ public class Asteroid extends GdxSprite
         direction.setY(Movement._DIRECTION_DOWN);
 
         setAction(ActionStates._RUNNING);
-        isRotating      = true;
-        rotateSpeed     = (MathUtils.random(5, 8) * (direction.getX() * -1));
+        isRotating  = true;
+        rotateSpeed = (MathUtils.random(5, 8) * (direction.getX() * -1));
 
         addDynamicPhysicsBody();
         setContactListener();
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
     }
 
@@ -76,8 +77,8 @@ public class Asteroid extends GdxSprite
         {
             case _RUNNING:
             {
-                b2dBody.setLinearVelocity(speed.getX() * direction.getX(), speed.getY() * direction.getY());
-
+//                b2dBody.setLinearVelocity(speed.getX() * direction.getX(), speed.getY() * direction.getY());
+                sprite.translate(speed.getX() * direction.getX(), speed.getY() * direction.getY());
                 wrap();
 
                 if ((collisionObject.idBottom == GraphicID._GROUND) || collisionObject.isHittingPlayer)
@@ -170,29 +171,31 @@ public class Asteroid extends GdxSprite
     @Override
     public void updateCollisionBox()
     {
-        float width = (frameWidth * sprite.getScaleX());
+        float width  = (frameWidth * sprite.getScaleX());
         float height = (frameWidth * sprite.getScaleY());
 
-        collisionObject.rectangle.x         = sprite.getX() + ((frameWidth - width) / 2);
-        collisionObject.rectangle.y         = sprite.getY() + ((frameHeight - height) / 2);
-        collisionObject.rectangle.width     = width;
-        collisionObject.rectangle.height    = height;
+        collisionObject.rectangle.x      = sprite.getX() + ((frameWidth - width) / 2);
+        collisionObject.rectangle.y      = sprite.getY() + ((frameHeight - height) / 2);
+        collisionObject.rectangle.width  = width;
+        collisionObject.rectangle.height = height;
     }
 
     private void setContactListener()
     {
-        App.worldModel.box2DContactListener.addListener
-            (
-                new ContactListener()
-                {
-                    @Override
-                    public void beginContact(Contact contact)
+        if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
+        {
+            App.worldModel.box2DContactListener.addListener
+                (
+                    new ContactListener()
                     {
-                        GdxSprite spriteA = ((BodyIdentity) contact.getFixtureA().getBody().getUserData()).entity;
-                        GdxSprite spriteB = ((BodyIdentity) contact.getFixtureB().getBody().getUserData()).entity;
-
-                        if (spriteA != null)
+                        @Override
+                        public void beginContact(Contact contact)
                         {
+//                            GdxSprite spriteA = ((BodyIdentity) contact.getFixtureA().getBody().getUserData()).entity;
+//                            GdxSprite spriteB = ((BodyIdentity) contact.getFixtureB().getBody().getUserData()).entity;
+
+//                            if (spriteA != null)
+//                            {
 //                            if (spriteA.spriteNumber == index)
 //                            {
 //                                GraphicID gidA = spriteA.gid;
@@ -204,10 +207,10 @@ public class Asteroid extends GdxSprite
 //                                    collisionObject.idBottom = GraphicID._GROUND;
 //                                }
 //                            }
-                        }
+//                            }
 
-                        if (spriteB != null)
-                        {
+//                            if (spriteB != null)
+//                            {
 //                            if (spriteB.spriteNumber == index)
 //                            {
 //                                GraphicID gidB = spriteB.gid;
@@ -219,27 +222,25 @@ public class Asteroid extends GdxSprite
 //                                    collisionObject.idBottom = GraphicID._GROUND;
 //                                }
 //                            }
+//                            }
+                        }
+
+                        @Override
+                        public void endContact(Contact contact)
+                        {
+                        }
+
+                        @Override
+                        public void preSolve(Contact contact, Manifold oldManifold)
+                        {
+                        }
+
+                        @Override
+                        public void postSolve(Contact contact, ContactImpulse impulse)
+                        {
                         }
                     }
-
-                    @Override
-                    public void endContact(Contact contact)
-                    {
-
-                    }
-
-                    @Override
-                    public void preSolve(Contact contact, Manifold oldManifold)
-                    {
-
-                    }
-
-                    @Override
-                    public void postSolve(Contact contact, ContactImpulse impulse)
-                    {
-
-                    }
-                }
-            );
+                );
+        }
     }
 }

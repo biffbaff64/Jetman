@@ -4,11 +4,10 @@ package com.richikin.jetman.physics.aabb;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
-import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.utilslib.logging.StopWatch;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 // TODO: 12/12/2020 - Can this class be trimmed?

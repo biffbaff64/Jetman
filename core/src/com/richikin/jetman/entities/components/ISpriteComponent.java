@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities;
+package com.richikin.jetman.entities.components;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -6,7 +6,7 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.utilslib.maths.SimpleVec3;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 
-public interface SpriteComponent
+public interface ISpriteComponent
 {
     void initialise(SpriteDescriptor descriptor);
 
@@ -40,7 +40,7 @@ public interface SpriteComponent
 
     void addKinematicPhysicsBody();
 
-    void setPositionfromBody();
+    void setPositionFromBody();
 
     void addCollisionListener(ICollisionListener listener);
 

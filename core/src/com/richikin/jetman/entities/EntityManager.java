@@ -16,7 +16,9 @@ import com.richikin.jetman.entities.managers.MissileBaseManager;
 import com.richikin.jetman.entities.managers.PlayerManager;
 import com.richikin.jetman.entities.managers.RoverManager;
 import com.richikin.jetman.entities.managers.TeleportManager;
+import com.richikin.jetman.entities.components.IEntityManagerComponent;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.entities.objects.IEntityManager;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.entities.systems.RenderSystem;
 import com.richikin.jetman.maps.RoomManager;
@@ -118,7 +120,7 @@ public class EntityManager implements IEntityManager
             // to see if any entities need re-spawning etc.
             if (!App.gameProgress.levelCompleted && !App.gameProgress.baseDestroyed)
             {
-                for (final EntityManagerComponent system : App.entityData.managerList)
+                for (final IEntityManagerComponent system : App.entityData.managerList)
                 {
                     system.update();
                 }
@@ -327,7 +329,7 @@ public class EntityManager implements IEntityManager
         App.missileBaseManager.init();
         App.defenceStationManager.init();
 
-        for (final EntityManagerComponent system : App.entityData.managerList)
+        for (final IEntityManagerComponent system : App.entityData.managerList)
         {
             system.init();
         }

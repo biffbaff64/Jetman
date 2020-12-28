@@ -5,8 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SimpleVec2F
 {
-    public float x;
-    public float y;
+    protected float x;
+    protected float y;
 
     public SimpleVec2F()
     {
@@ -14,16 +14,16 @@ public class SimpleVec2F
         this.y = 0;
     }
 
-    public SimpleVec2F(float _x, float _y)
+    public SimpleVec2F(float x, float y)
     {
-        this.x = _x;
-        this.y = _y;
+        this.x = x;
+        this.y = y;
     }
 
-    public SimpleVec2F(SimpleVec2F _vec2)
+    public SimpleVec2F(SimpleVec2F vec2)
     {
-        this.x = _vec2.x;
-        this.y = _vec2.y;
+        this.x = vec2.getX();
+        this.y = vec2.getY();
     }
 
     public void add(float x, float y)
@@ -70,8 +70,8 @@ public class SimpleVec2F
 
     public void set(@NotNull SimpleVec2F vec2)
     {
-        this.x = vec2.x;
-        this.y = vec2.y;
+        this.x = vec2.getX();
+        this.y = vec2.getY();
     }
 
     public boolean isEmpty()

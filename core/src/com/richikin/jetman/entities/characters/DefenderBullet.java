@@ -199,9 +199,9 @@ public class DefenderBullet extends GdxSprite
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
         App.missileBaseManager.releaseSparkler();
-        App.entityData.removeEntity(_index);
+        App.entityData.removeEntity(index);
     }
 }

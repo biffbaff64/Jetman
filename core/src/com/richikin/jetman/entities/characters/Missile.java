@@ -194,7 +194,7 @@ public class Missile extends GdxSprite implements ICollisionListener
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
         if (!App.gameProgress.roverDestroyed
             && !App.gameProgress.baseDestroyed
@@ -208,6 +208,6 @@ public class Missile extends GdxSprite implements ICollisionListener
         }
 
         collisionObject.kill();
-        App.entityData.removeEntity(_index);
+        App.entityData.removeEntity(index);
     }
 }

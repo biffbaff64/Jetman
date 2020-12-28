@@ -4,11 +4,11 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.jetman.entities.EntityManagerComponent;
+import com.richikin.jetman.entities.components.IEntityManagerComponent;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-public class GenericEntityManager implements EntityManagerComponent, Disposable
+public class GenericEntityManager implements IEntityManagerComponent, Disposable
 {
     public       boolean          canPlace;
     public       SpriteDescriptor descriptor;
@@ -84,7 +84,7 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     }
 
     @Override
-    public void free(final GraphicID _gid)
+    public void free(final GraphicID gid)
     {
     }
 
@@ -110,12 +110,6 @@ public class GenericEntityManager implements EntityManagerComponent, Disposable
     public GraphicID getGID()
     {
         return managerID;
-    }
-
-    @Override
-    public boolean isPlaceable()
-    {
-        return canPlace;
     }
 
     @Override

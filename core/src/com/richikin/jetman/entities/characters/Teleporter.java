@@ -121,11 +121,11 @@ public class Teleporter extends GdxSprite
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
         App.entityManager._teleportIndex[teleporterNumber] = 0;
         collisionObject.kill();
-        App.entityData.removeEntity(_index);
+        App.entityData.removeEntity(index);
     }
 
     private void setCollisionListener()

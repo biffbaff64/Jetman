@@ -10,10 +10,10 @@ public class BodyIdentity
     public final GraphicID type;
     public final GdxSprite entity;
 
-    BodyIdentity(GdxSprite _entity, GraphicID _gid, GraphicID _type)
+    public BodyIdentity(GdxSprite entity, GraphicID gid, GraphicID type)
     {
-        this.entity = _entity;
-        this.gid = _gid;
-        this.type = _type;
+        this.entity = entity;
+        this.gid = gid;
+        this.type = type;
     }
 }

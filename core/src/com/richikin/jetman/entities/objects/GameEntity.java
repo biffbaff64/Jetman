@@ -6,12 +6,12 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.components.IEntityComponent;
 import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
-import com.richikin.jetman.entities.EntityComponent;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-public class GameEntity implements EntityComponent, Disposable
+public class GameEntity implements IEntityComponent, Disposable
 {
     public GraphicID       gid;
     public GraphicID       type;
@@ -36,12 +36,12 @@ public class GameEntity implements EntityComponent, Disposable
     }
 
     @Override
-    public void setCollisionObject(int _xPos, int _yPos)
+    public void setCollisionObject(int xPos, int yPos)
     {
         collisionObject = App.collisionUtils.newObject
             (
-                _xPos,
-                _yPos,
+                xPos,
+                yPos,
                 frameWidth,
                 frameHeight,
                 GraphicID._ENTITY
@@ -58,9 +58,9 @@ public class GameEntity implements EntityComponent, Disposable
     }
 
     @Override
-    public void setCollisionObject(float _xPos, float _yPos)
+    public void setCollisionObject(float xPos, float yPos)
     {
-        setCollisionObject((int) _xPos, (int) _yPos);
+        setCollisionObject((int) xPos, (int) yPos);
     }
 
     @Override
@@ -70,9 +70,9 @@ public class GameEntity implements EntityComponent, Disposable
     }
 
     @Override
-    public void setAction(ActionStates _action)
+    public void setAction(ActionStates action)
     {
-        this.entityAction = _action;
+        this.entityAction = action;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class GameEntity implements EntityComponent, Disposable
     }
 
     @Override
-    public void tidy(int _index)
+    public void tidy(int index)
     {
     }
 
