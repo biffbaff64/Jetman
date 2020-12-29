@@ -86,6 +86,8 @@ public class MainPlayer extends GdxSprite
         bodyCategory = Gfx.CAT_PLAYER;
         collidesWith = Gfx.CAT_MOBILE_ENEMY
             | Gfx.CAT_FIXED_ENEMY
+            | Gfx.CAT_PLAYER_WEAPON
+            | Gfx.CAT_ENEMY_WEAPON
             | Gfx.CAT_GROUND
             | Gfx.CAT_CEILING;
 

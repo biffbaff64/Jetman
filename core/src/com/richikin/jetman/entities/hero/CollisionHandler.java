@@ -209,15 +209,20 @@ public class CollisionHandler implements ICollisionListener, Disposable
             }
             break;
 
-            default:
+            case G_NO_ID:
             {
-                App.getPlayer().isInMidAir = true;
-                App.getPlayer().isOnGround = false;
-
                 if (App.getPlayer().getAction() == ActionStates._STANDING)
                 {
+                    App.getPlayer().isInMidAir = true;
+                    App.getPlayer().isOnGround = false;
+
                     App.getPlayer().setAction(ActionStates._FALLING);
                 }
+            }
+            break;
+
+            default:
+            {
             }
             break;
         }

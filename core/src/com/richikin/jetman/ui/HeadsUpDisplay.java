@@ -174,13 +174,13 @@ public class HeadsUpDisplay implements Disposable
         truckArrowIndex = _ARROW_DOWN;
         baseArrowIndex  = _ARROW_DOWN;
 
-        drawFuelLow(StateID._INIT, 0, 0);
+        drawFuelLow(StateID._INIT);
 
 //        alphaDisplay = new AlphaDisplay();
 //        alphaDisplay.initialise
 //            (
-//                (int) AppConfig.hudOriginX + 279,
-//                (int) AppConfig.hudOriginY + 20
+//                (int) AppConfig.hudAppConfig.hudOriginX + 279,
+//                (int) AppConfig.hudAppConfig.hudOriginY + 20
 //            );
 //        alphaDisplay.setActive(true);
 
@@ -420,8 +420,8 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.hudExists)
         {
-            originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-            originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
+//            originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
+//            originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
 
             if (AppConfig.gameScreenActive())
             {
@@ -444,20 +444,20 @@ public class HeadsUpDisplay implements Disposable
             // so that aligns properly with the HUD
             for (ParallaxLayer layer : new Array.ArrayIterator<>(App.baseRenderer.parallaxForeground.layers))
             {
-                layer.position.set(originX, originY);
+                layer.position.set(AppConfig.hudOriginX, AppConfig.hudOriginY);
             }
 
             //
             // Draw the Pause panel if activated
             if (hudStateID == StateID._STATE_PAUSED)
             {
-                pausePanel.draw(App.spriteBatch, camera, originX, originY);
+                pausePanel.draw(App.spriteBatch, camera, AppConfig.hudOriginX, AppConfig.hudOriginY);
             }
             else
             {
                 if (fuelLowWarning)
                 {
-                    drawFuelLow(StateID._UPDATE, originX, originY);
+                    drawFuelLow(StateID._UPDATE);
                 }
             }
         }
@@ -547,7 +547,7 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawPanels()
     {
-        App.spriteBatch.draw(scorePanel, originX, originY + (720 - scorePanel.getHeight()));
+        App.spriteBatch.draw(scorePanel, AppConfig.hudOriginX, AppConfig.hudOriginY + (720 - scorePanel.getHeight()));
     }
 
     /**
@@ -555,20 +555,20 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawItems()
     {
-        fuelBar.draw((int) (originX + displayPos[_FUEL_BAR][_X1]), (int) (originY + displayPos[_FUEL_BAR][_Y]));
-        timeBar.draw((int) (originX + displayPos[_TIME_BAR][_X1]), (int) (originY + displayPos[_TIME_BAR][_Y]));
+        fuelBar.draw((int) (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y]));
+        timeBar.draw((int) (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y]));
 
         App.spriteBatch.draw
             (
                 barDividerFuel,
-                (originX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
-                (originY + displayPos[_FUEL_BAR][_Y])
+                (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
+                (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y])
             );
         App.spriteBatch.draw
             (
                 barDividerTime,
-                (originX + displayPos[_TIME_BAR][_X1] + timeBar.getTotal()),
-                (originY + displayPos[_TIME_BAR][_Y])
+                (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1] + timeBar.getTotal()),
+                (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y])
             );
 
         for (int i = 0; i < App.gameProgress.getLives().getTotal(); i++)
@@ -576,8 +576,8 @@ public class HeadsUpDisplay implements Disposable
             App.spriteBatch.draw
                 (
                     miniMen,
-                    (originX + livesDisplay[i][0]),
-                    (originY + livesDisplay[i][1])
+                    (AppConfig.hudOriginX + livesDisplay[i][0]),
+                    (AppConfig.hudOriginY + livesDisplay[i][1])
                 );
         }
 
@@ -590,16 +590,16 @@ public class HeadsUpDisplay implements Disposable
             (
                 App.spriteBatch,
                 String.format(Locale.UK, "%06d", App.gameProgress.getScore().getTotal()),
-                originX + 296,
-                originY + (720 - 4)
+                AppConfig.hudOriginX + 296,
+                AppConfig.hudOriginY + (720 - 4)
             );
 
         midFont.draw
             (
                 App.spriteBatch,
                 String.format(Locale.UK, "%06d", highScoreUtils.getHighScoreTable()[0].score),
-                originX + 660,
-                originY + (720 - 6)
+                AppConfig.hudOriginX + 660,
+                AppConfig.hudOriginY + (720 - 6)
             );
 
         //
@@ -614,8 +614,8 @@ public class HeadsUpDisplay implements Disposable
                         "%02d",
                         App.gameProgress.playerLevel
                     ),
-                originX + 208,
-                originY + 714
+                AppConfig.hudOriginX + 208,
+                AppConfig.hudOriginY + 714
             );
     }
 
@@ -625,22 +625,22 @@ public class HeadsUpDisplay implements Disposable
         {
             if (showHUDControls)
             {
-                ActionButton.setPosition(originX + displayPos[_ACTION][_X1], originY + displayPos[_ACTION][_Y]);
-                AttackButton.setPosition(originX + displayPos[_ATTACK][_X1], originY + displayPos[_ATTACK][_Y]);
-                PauseButton.setPosition(originX + displayPos[_PAUSE][_X1], originY + displayPos[_PAUSE][_Y]);
+                ActionButton.setPosition(AppConfig.hudOriginX + displayPos[_ACTION][_X1], AppConfig.hudOriginY + displayPos[_ACTION][_Y]);
+                AttackButton.setPosition(AppConfig.hudOriginX + displayPos[_ATTACK][_X1], AppConfig.hudOriginY + displayPos[_ATTACK][_Y]);
+                PauseButton.setPosition(AppConfig.hudOriginX + displayPos[_PAUSE][_X1], AppConfig.hudOriginY + displayPos[_PAUSE][_Y]);
 
                 if (App.inputManager.virtualJoystick != null)
                 {
                     App.inputManager.virtualJoystick.getTouchpad().setPosition
                         (
-                            originX + displayPos[_JOYSTICK][_X1],
-                            originY + displayPos[_JOYSTICK][_Y]
+                            AppConfig.hudOriginX + displayPos[_JOYSTICK][_X1],
+                            AppConfig.hudOriginY + displayPos[_JOYSTICK][_Y]
                         );
 
                     App.inputManager.virtualJoystick.getTouchpad().setBounds
                         (
-                            originX + displayPos[_JOYSTICK][_X1],
-                            originY + displayPos[_JOYSTICK][_Y],
+                            AppConfig.hudOriginX + displayPos[_JOYSTICK][_X1],
+                            AppConfig.hudOriginY + displayPos[_JOYSTICK][_Y],
                             App.inputManager.virtualJoystick.getTouchpad().getWidth(),
                             App.inputManager.virtualJoystick.getTouchpad().getHeight()
                         );
@@ -655,8 +655,8 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawArrows()
     {
-        App.spriteBatch.draw(arrows[truckArrowIndex], (originX + displayPos[_TRUCK_ARROW][_X1]), (originY + displayPos[_TRUCK_ARROW][_Y]));
-        App.spriteBatch.draw(arrows[baseArrowIndex], (originX + displayPos[_BASE_ARROW][_X1]), (originY + displayPos[_BASE_ARROW][_Y]));
+        App.spriteBatch.draw(arrows[truckArrowIndex], (AppConfig.hudOriginX + displayPos[_TRUCK_ARROW][_X1]), (AppConfig.hudOriginY + displayPos[_TRUCK_ARROW][_Y]));
+        App.spriteBatch.draw(arrows[baseArrowIndex], (AppConfig.hudOriginX + displayPos[_BASE_ARROW][_X1]), (AppConfig.hudOriginY + displayPos[_BASE_ARROW][_Y]));
     }
 
     private void drawMessages()
@@ -675,7 +675,7 @@ public class HeadsUpDisplay implements Disposable
         }
     }
 
-    private void drawFuelLow(StateID stateID, float originX, float originY)
+    private void drawFuelLow(StateID stateID)
     {
         if (stateID == StateID._INIT)
         {
@@ -697,7 +697,7 @@ public class HeadsUpDisplay implements Disposable
 
             if (fuelLowState)
             {
-                imageFuelLow.draw(App.spriteBatch, originX + 480, originY + (720 - 140), 320, 27);
+                imageFuelLow.draw(App.spriteBatch, AppConfig.hudOriginX + 480, AppConfig.hudOriginY + (720 - 140), 320, 27);
             }
         }
     }
@@ -823,11 +823,11 @@ public class HeadsUpDisplay implements Disposable
         if (Developer.isDevMode())
         {
             smallFont.setColor(Color.WHITE);
-            smallFont.draw(App.spriteBatch, "DEV MODE", originX + 470, originY + (720 - 6));
+            smallFont.draw(App.spriteBatch, "DEV MODE", AppConfig.hudOriginX + 470, AppConfig.hudOriginY + (720 - 6));
 
             if (Developer.isGodMode())
             {
-                smallFont.draw(App.spriteBatch, "GOD MODE", originX + 790, originY + (720 - 6));
+                smallFont.draw(App.spriteBatch, "GOD MODE", AppConfig.hudOriginX + 790, AppConfig.hudOriginY + (720 - 6));
             }
 
             if (App.settings.isEnabled(Settings._SHOW_FPS))
@@ -836,8 +836,8 @@ public class HeadsUpDisplay implements Disposable
                     (
                         App.spriteBatch,
                         "FPS  : " + Gdx.graphics.getFramesPerSecond(),
-                        originX + 20,
-                        originY + 600
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 600
                     );
             }
 
@@ -847,40 +847,48 @@ public class HeadsUpDisplay implements Disposable
                     (
                         App.spriteBatch,
                         "ACT:" + App.getPlayer().getAction(),
-                        originX + 20,
-                        originY + 570
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 570
                     );
 
                 smallFont.draw
                     (
                         App.spriteBatch,
                         "TOP : " + App.getPlayer().collisionObject.idTop,
-                        originX + 20,
-                        originY + 540
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 540
                     );
 
                 smallFont.draw
                     (
                         App.spriteBatch,
                         "LFT : " + App.getPlayer().collisionObject.idLeft,
-                        originX + 20,
-                        originY + 510
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 510
                     );
 
                 smallFont.draw
                     (
                         App.spriteBatch,
                         "RGT : " + App.getPlayer().collisionObject.idRight,
-                        originX + 20,
-                        originY + 480
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 480
                     );
 
                 smallFont.draw
                     (
                         App.spriteBatch,
                         "BOT : " + App.getPlayer().collisionObject.idBottom,
-                        originX + 20,
-                        originY + 450
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 450
+                    );
+
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "IMA : " + App.getPlayer().isInMidAir,
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 420
                     );
             }
         }

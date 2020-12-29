@@ -116,18 +116,48 @@ public class MenuPage implements IUIPage, Disposable
 
         Scene2DUtils scene2DUtils = new Scene2DUtils();
 
-        buttonStart = scene2DUtils.addButton("buttonStart", "buttonStart_pressed", (int) AppConfig.hudOriginX + 515, (int) AppConfig.hudOriginY + (720 - 379));
-        buttonOptions = scene2DUtils.addButton("buttonOptions", "buttonOptions_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 437));
-        buttonExit    = scene2DUtils.addButton("buttonExit", "buttonExit_pressed", (int) AppConfig.hudOriginX + 596, (int) AppConfig.hudOriginY + (720 - 614));
-        buttonHiScores = scene2DUtils.addButton("button_hiscores", "button_hiscores_pressed", (int) AppConfig.hudOriginX + 543, (int) AppConfig.hudOriginY + (720 - 496));
-        buttonCredits = scene2DUtils.addButton("button_credits", "button_credits_pressed", (int) AppConfig.hudOriginX + 558, (int) AppConfig.hudOriginY + (720 - 554));
+        buttonStart = scene2DUtils.addButton
+            (
+                "buttonStart",
+                "buttonStart_pressed",
+                (int) AppConfig.hudOriginX + 515,
+                (int) AppConfig.hudOriginY + (720 - 379)
+            );
+        buttonOptions = scene2DUtils.addButton
+            (
+                "buttonOptions",
+                "buttonOptions_pressed",
+                (int) AppConfig.hudOriginX + 558,
+                (int) AppConfig.hudOriginY + (720 - 437)
+            );
+        buttonExit = scene2DUtils.addButton
+            (
+                "buttonExit",
+                "buttonExit_pressed",
+                (int) AppConfig.hudOriginX + 596,
+                (int) AppConfig.hudOriginY + (720 - 614)
+            );
+        buttonHiScores = scene2DUtils.addButton
+            (
+                "button_hiscores",
+                "button_hiscores_pressed",
+                (int) AppConfig.hudOriginX + 543,
+                (int) AppConfig.hudOriginY + (720 - 496)
+            );
+        buttonCredits = scene2DUtils.addButton
+            (
+                "button_credits",
+                "button_credits_pressed",
+                (int) AppConfig.hudOriginX + 558,
+                (int) AppConfig.hudOriginY + (720 - 554)
+            );
 
-        addDateSpecificItems(AppConfig.hudOriginX, AppConfig.hudOriginY);
+        addDateSpecificItems();
     }
 
-    private void addDateSpecificItems(float originX, float originY)
+    private void addDateSpecificItems()
     {
-        Trace.__FILE_FUNC();
+        // TODO: 29/12/2020 - Add New Years Day, Mother Goddess Day
 
         Date     date     = new Date(TimeUtils.millis());
         Calendar calendar = Calendar.getInstance();
@@ -140,7 +170,7 @@ public class MenuPage implements IUIPage, Disposable
             if (calendar.get(Calendar.DAY_OF_MONTH) == 11)
             {
                 decoration = scene2DUtils.makeObjectsImage("poppy");
-                decoration.setPosition(originX + 1160, originY + (720 - 90));
+                decoration.setPosition(AppConfig.hudOriginX + 1160, AppConfig.hudOriginY + (720 - 90));
                 App.stage.addActor(decoration);
             }
         }
@@ -151,7 +181,7 @@ public class MenuPage implements IUIPage, Disposable
                 if (calendar.get(Calendar.DAY_OF_MONTH) == 25)
                 {
                     decoration = scene2DUtils.makeObjectsImage("xmas_tree");
-                    decoration.setPosition(originX + 1075, originY + (720 - 342));
+                    decoration.setPosition(AppConfig.hudOriginX + 1075, AppConfig.hudOriginY + (720 - 342));
                     App.stage.addActor(decoration);
                 }
             }

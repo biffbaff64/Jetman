@@ -3,7 +3,8 @@ package com.richikin.enumslib;
 public enum ActionStates
 {
     // ----------------------------
-    _INIT_SPAWN, _SPAWNING,
+    _INIT_SPAWN,
+    _SPAWNING,
 
     // ----------------------------
     _STANDING,
