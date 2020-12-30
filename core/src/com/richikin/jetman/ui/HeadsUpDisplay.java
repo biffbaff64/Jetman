@@ -839,57 +839,6 @@ public class HeadsUpDisplay implements Disposable
                         AppConfig.hudOriginY + 600
                     );
             }
-
-            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
-            {
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "ACT:" + App.getPlayer().getAction(),
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 570
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "TOP : " + App.getPlayer().collisionObject.idTop,
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 540
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "LFT : " + App.getPlayer().collisionObject.idLeft,
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 510
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "RGT : " + App.getPlayer().collisionObject.idRight,
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 480
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "BOT : " + App.getPlayer().collisionObject.idBottom,
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 450
-                    );
-
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "IMA : " + App.getPlayer().isInMidAir,
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 420
-                    );
-            }
         }
     }
 
