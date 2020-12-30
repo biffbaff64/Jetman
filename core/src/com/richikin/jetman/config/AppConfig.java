@@ -66,10 +66,10 @@ public class AppConfig
 
             App.settings.disable(Settings._BOX2D_PHYSICS);
             App.settings.disable(Settings._B2D_RENDERER);
-            App.settings.disable(Settings._DISABLE_MENU_SCREEN);
+            App.settings.enable(Settings._DISABLE_MENU_SCREEN);
             App.settings.disable(Settings._SCROLL_DEMO);
-            App.settings.disable(Settings._SPRITE_BOXES);
-            App.settings.disable(Settings._TILE_BOXES);
+            App.settings.enable(Settings._SPRITE_BOXES);
+            App.settings.enable(Settings._TILE_BOXES);
         }
         // ------------------------------------------------
 
@@ -103,8 +103,8 @@ public class AppConfig
 
         Stats.setup();
 
-        AppConfig.hudOriginX = (float) -(Gfx._HUD_WIDTH / 2);
-        AppConfig.hudOriginY = (float) -(Gfx._HUD_HEIGHT / 2);
+        AppConfig.hudOriginX = App.baseRenderer.hudGameCamera.getPosition().x - (Gfx._HUD_WIDTH / 2f);
+        AppConfig.hudOriginY = App.baseRenderer.hudGameCamera.getPosition().y - (Gfx._HUD_HEIGHT / 2f);
 
         fullScreenButton = new GameButtonRegion(0, 0, Gfx._HUD_WIDTH, Gfx._HUD_HEIGHT);
         systemBackButton = new Switch();

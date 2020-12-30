@@ -121,7 +121,7 @@ public class Carryable extends GdxSprite implements ICarryable
         }
         else
         {
-            sprite.setPosition(App.getPlayer().sprite.getX(), (App.getPlayer().sprite.getY() - (frameHeight / 2)));
+            sprite.setPosition(App.getPlayer().sprite.getX(), (App.getPlayer().sprite.getY() - (frameHeight / 2f)));
         }
 
         isAttachedToRover = false;

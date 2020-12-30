@@ -160,6 +160,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
         if ((graphicID != GraphicID._GROUND)
             && (graphicID != GraphicID._BRIDGE)
+            && (graphicID != GraphicID._CRATER)
             && (graphicID != GraphicID.G_ROVER_BOOT))
         {
             App.getPlayer().isInMidAir = true;
@@ -231,7 +232,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     /**
      *
      */
-    private void setOnGround(GraphicID graphicID)
+    public void setOnGround(GraphicID graphicID)
     {
         App.getPlayer().isInMidAir    = false;
         App.getPlayer().isOnGround    = true;
@@ -243,7 +244,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
             App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
         }
 
-        Rectangle rectangle = App.collisionUtils.getBoxHittingBottom(App.getPlayer()).rectangle;
+        Rectangle rectangle = App.getPlayer().collisionObject.contactEntity.getCollisionRectangle();
 
         App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
     }

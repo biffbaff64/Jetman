@@ -41,8 +41,11 @@ public class LoadingScreen implements Disposable
     @Override
     public void dispose()
     {
-        background.setVisible(false);
-        background.addAction(Actions.removeActor());
+        if (background != null)
+        {
+            background.setVisible(false);
+            background.addAction(Actions.removeActor());
+        }
 
         App.assets.unloadAsset("data/splash_screen.png");
 

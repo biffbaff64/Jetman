@@ -40,14 +40,17 @@ public class GameEntity implements IEntityComponent, Disposable
     {
         collisionObject = App.collisionUtils.newObject
             (
-                xPos,
-                yPos,
-                frameWidth,
-                frameHeight,
-                GraphicID._ENTITY
+                new Rectangle
+                    (
+                        xPos,
+                        yPos,
+                        frameWidth,
+                        frameHeight
+                    )
             );
 
         collisionObject.gid          = this.gid;
+        collisionObject.type         = GraphicID._ENTITY;
         collisionObject.isObstacle   = false;
         collisionObject.parentEntity = this;
 

@@ -554,9 +554,9 @@ public class MainPlayer extends GdxSprite
         else
         {
             collisionObject.rectangle.x      = (sprite.getX() + ((float) frameWidth / 4));
-            collisionObject.rectangle.y      = sprite.getY();
+            collisionObject.rectangle.y      = sprite.getY() - (isInMidAir ? 0 : 2);
             collisionObject.rectangle.width  = ((float) frameWidth / 2);
-            collisionObject.rectangle.height = frameHeight;
+            collisionObject.rectangle.height = frameHeight + (isInMidAir ? 0 : 2);
         }
 
         viewBox.x      = (int) ((sprite.getX() - Gfx._VIEW_HALF_WIDTH) + (frameWidth / 2));

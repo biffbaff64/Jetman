@@ -305,17 +305,17 @@ public class ButtonInputHandler implements Disposable
                     //
                     // If in mid air and no buttons pressed then
                     // the player must be falling
-//                    if (App.getPlayer().isInMidAir)
-//                    {
-//                        App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
-//                        App.getPlayer().setAction(ActionStates._FALLING);
-//                        App.getPlayer().isMovingY = true;
-//
-//                        if (App.getPlayer().speed.getY() <= 0)
-//                        {
-//                            App.getPlayer().speed.setY(1.0f);
-//                        }
-//                    }
+                    if (App.getPlayer().isInMidAir)
+                    {
+                        App.getPlayer().direction.setY(Movement._DIRECTION_DOWN);
+                        App.getPlayer().setAction(ActionStates._FALLING);
+                        App.getPlayer().isMovingY = true;
+
+                        if (App.getPlayer().speed.getY() <= 0)
+                        {
+                            App.getPlayer().speed.setY(1.0f);
+                        }
+                    }
                 }
             }
         }

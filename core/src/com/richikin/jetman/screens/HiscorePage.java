@@ -176,14 +176,14 @@ public class HiscorePage implements IUIPage, Disposable
 
         for (int i = 0; i < _DISPLAYED_HISCORES; i++)
         {
-            int _Y_POS = (_TABLE_Y - (Gfx._HUD_HEIGHT / 2)) - (_SPACING * i);
+            int _Y_POS = (_TABLE_Y - (_SPACING * i));
 
             // Hiscore table rank
             rankLabels[i] = scene2DUtils.addLabel
                 (
                     "" + (i + 1),
-                    _RANK_X - (Gfx._HUD_WIDTH / 2),
-                    _Y_POS,
+                    (int) AppConfig.hudOriginX + _RANK_X,
+                    (int) AppConfig.hudOriginY + _Y_POS,
                     _FNT_SIZE,
                     Color.WHITE,
                     GameAssets._BENZOIC_FONT
@@ -193,8 +193,8 @@ public class HiscorePage implements IUIPage, Disposable
             levelLabels[i] = scene2DUtils.addLabel
                 (
                     "" + App.highScoreUtils.getHighScoreTable()[i].level,
-                    _LEVEL_X - (Gfx._HUD_WIDTH / 2),
-                    _Y_POS,
+                    (int) AppConfig.hudOriginX + _LEVEL_X,
+                    (int) AppConfig.hudOriginY + _Y_POS,
                     _FNT_SIZE,
                     Color.WHITE,
                     GameAssets._BENZOIC_FONT
@@ -204,8 +204,8 @@ public class HiscorePage implements IUIPage, Disposable
             scoreLabels[i] = scene2DUtils.addLabel
                 (
                     String.format(Locale.UK, "%8d", App.highScoreUtils.getHighScoreTable()[i].score),
-                    _SCORE_X - (Gfx._HUD_WIDTH / 2),
-                    _Y_POS,
+                    (int) AppConfig.hudOriginX + _SCORE_X,
+                    (int) AppConfig.hudOriginY + _Y_POS,
                     _FNT_SIZE,
                     Color.WHITE,
                     GameAssets._BENZOIC_FONT
@@ -222,7 +222,7 @@ public class HiscorePage implements IUIPage, Disposable
     /**
      * Show or Hide all menu items
      *
-     * @param _visible visibility flag/
+     * @param _visible visibility flag
      */
     private void showItems(boolean _visible)
     {
