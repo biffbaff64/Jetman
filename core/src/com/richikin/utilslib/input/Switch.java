@@ -16,11 +16,6 @@ public class Switch implements IGDXButton
     }
 
     @Override
-    public void update()
-    {
-    }
-
-    @Override
     public boolean checkPress(int touchX, int touchY)
     {
         return false;

@@ -6,10 +6,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.physics.aabb.AABBUtils;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
 public class CollisionHandler implements ICollisionListener, Disposable
@@ -183,9 +181,9 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
         if (App.entityManager.doesRoverExist())
         {
-            isInMiddle = AABBUtils.contains(App.getRover(), App.getPlayer())
-                        && !AABBUtils.overlaps(App.getRover().frontWheel, App.getPlayer())
-                        && !AABBUtils.overlaps(App.getRover().backWheel, App.getPlayer());
+            isInMiddle = App.getRover().getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle())
+                && !Intersector.overlaps(App.getRover().frontWheel.getCollisionRectangle(), App.getPlayer().getCollisionRectangle())
+                && !Intersector.overlaps(App.getRover().backWheel.getCollisionRectangle(), App.getPlayer().getCollisionRectangle());
         }
 
         return isInMiddle;

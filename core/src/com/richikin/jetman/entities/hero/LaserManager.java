@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Laser;
@@ -38,11 +37,6 @@ public class LaserManager implements Disposable
                 return new Laser();
             }
 
-            @Override
-            public void finaliseObject()
-            {
-
-            }
         };
 
         laserPool = new ObjectPool<>(laserFactory, 50);

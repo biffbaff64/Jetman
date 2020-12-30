@@ -31,10 +31,6 @@ public class MapUtils
     {
     }
 
-    public void update()
-    {
-    }
-
     public void positionAt(int x, int y)
     {
         App.mapData.previousMapPosition.set(App.mapData.mapPosition);

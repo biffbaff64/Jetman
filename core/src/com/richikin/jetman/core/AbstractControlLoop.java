@@ -7,8 +7,5 @@ public abstract class AbstractControlLoop implements IControlLoop
     }
 
     @Override
-    public abstract void initialise();
-
-    @Override
     public abstract void update();
 }

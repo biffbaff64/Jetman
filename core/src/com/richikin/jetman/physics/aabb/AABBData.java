@@ -24,6 +24,7 @@ public enum AABBData
 
     public static void initialise()
     {
+        collisionBoxData.clear();
     }
 
     public static void add(CollisionObject object)

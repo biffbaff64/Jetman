@@ -3,8 +3,6 @@ package com.richikin.utilslib.input;
 
 public interface IGDXButton
 {
-    void update();
-
     boolean checkPress(int touchX, int touchY);
 
     boolean checkRelease(int touchX, int touchY);

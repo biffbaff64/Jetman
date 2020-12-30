@@ -4,11 +4,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.TwinkleStar;
 import com.richikin.jetman.entities.characters.Ufo;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
 
 public class BackgroundObjectsManager

@@ -67,6 +67,7 @@ public class MessageManager
         enable();
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void closeSlidePanel(String _name)
     {
     }

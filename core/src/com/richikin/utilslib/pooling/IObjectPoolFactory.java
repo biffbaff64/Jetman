@@ -10,6 +10,4 @@ public interface IObjectPoolFactory<T>
     T createObject(Rectangle _rectangle);
 
     T createObject(int x, int y, int width, int height, GraphicID type);
-
-    void finaliseObject();
 }

@@ -11,7 +11,6 @@ import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.jetman.core.HighScore;
 import com.richikin.utilslib.logging.StateManager;
@@ -22,7 +21,6 @@ import com.richikin.jetman.ui.IUIPage;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class HiscorePage implements IUIPage, Disposable
 {
     private static final int _RANK_X             = 360;

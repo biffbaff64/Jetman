@@ -1,17 +1,8 @@
 package com.richikin.jetman.ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.maths.SimpleVec2;
 
 public class AlphaDisplay implements Disposable
@@ -35,9 +26,9 @@ public class AlphaDisplay implements Disposable
 
     public void update()
     {
-        if (activeMessage)
-        {
-        }
+//        if (activeMessage)
+//        {
+//        }
     }
 
     public void drawBackground()
@@ -57,9 +48,9 @@ public class AlphaDisplay implements Disposable
     {
         activeMessage = state;
 
-        if (!state)
-        {
-        }
+//        if (!state)
+//        {
+//        }
     }
 
     @Override

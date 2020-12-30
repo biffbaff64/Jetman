@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.Rover;
 import com.richikin.jetman.entities.characters.RoverGun;
@@ -158,6 +157,7 @@ public class RoverManager extends GenericEntityManager
         return created;
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean isValidPosition(int x)
     {
 //        return !(App.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() == TileID._CRATER_TILE.get());

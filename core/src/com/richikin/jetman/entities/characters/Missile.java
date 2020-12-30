@@ -45,7 +45,7 @@ public class Missile extends GdxSprite implements ICollisionListener
             sprite.setPosition(sprite.getX(), (App.getRover().sprite.getY() + App.getRover().frameHeight) - 4);
 
             distance.setX(Math.abs(App.getRover().sprite.getX() - sprite.getX()));
-            distance.setY(Math.abs(sprite.getY() - (App.getRover().sprite.getY() + (App.getRover().frameHeight / 3))));
+            distance.setY(Math.abs(sprite.getY() - (App.getRover().sprite.getY() + (App.getRover().frameHeight / 3f))));
 
             speed.setX(12.0f);
             speed.setY(distance.getY() / (distance.getX() / speed.getX()));

@@ -101,8 +101,6 @@ public class StatsPanel extends DefaultPanel
 
         App.stage.addActor(scrollPane);
         App.stage.addActor(title);
-
-        createButtonListeners();
     }
 
     /**
@@ -201,13 +199,6 @@ public class StatsPanel extends DefaultPanel
             Trace.__FILE_FUNC_LINE();
             Stats.incMeter(Meters._NULL_POINTER_EXCEPTION.get());
         }
-    }
-
-    /**
-     * Create a listener for the Reset Stats button.
-     */
-    private void createButtonListeners()
-    {
     }
 
     /**

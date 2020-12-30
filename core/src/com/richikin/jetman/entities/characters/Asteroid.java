@@ -120,7 +120,7 @@ public class Asteroid extends GdxSprite
                     int x = (int) (sprite.getX() / Gfx.getTileWidth());
                     int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
 
-                    craterManager.makeCrater(x, y);
+                    craterManager.makeCrater(x);
                 }
 
                 setAction(ActionStates._DEAD);

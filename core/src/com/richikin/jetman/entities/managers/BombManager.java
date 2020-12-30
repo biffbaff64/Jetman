@@ -20,7 +20,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.Bomb;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;

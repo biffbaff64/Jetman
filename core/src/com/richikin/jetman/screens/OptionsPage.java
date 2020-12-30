@@ -15,8 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.assets.GameAssets;
-import com.richikin.jetman.audio.AudioData;
-import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.developer.DeveloperPanel;
 import com.richikin.jetman.config.Settings;
@@ -49,7 +47,6 @@ public class OptionsPage implements IUIPage
     private ScreenID           activePanel;
     private boolean            isJustFinishedOptionsPanel;
     private boolean            enteredDeveloperPanel;
-    private boolean            setupCompleted;
 
     /**
      * Instantiates a new Options page.
@@ -61,8 +58,6 @@ public class OptionsPage implements IUIPage
     @Override
     public void initialise()
     {
-        setupCompleted = false;
-
         if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
             AppConfig.backButton.setVisible(true);
@@ -88,7 +83,6 @@ public class OptionsPage implements IUIPage
 
         Developer.developerPanelActive = false;
         enteredDeveloperPanel          = false;
-        setupCompleted                 = true;
         isJustFinishedOptionsPanel     = false;
     }
 

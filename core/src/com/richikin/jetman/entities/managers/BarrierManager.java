@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.characters.LaserBarrier;
 import com.richikin.utilslib.maths.SimpleVec2;
 

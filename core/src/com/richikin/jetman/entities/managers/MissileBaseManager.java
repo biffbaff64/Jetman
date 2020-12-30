@@ -3,7 +3,6 @@ package com.richikin.jetman.entities.managers;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.Entities;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.characters.DefenceStation;
@@ -119,6 +118,7 @@ public class MissileBaseManager extends GenericEntityManager
      * @param startX    x position
      * @param startY    y position
      */
+    @SuppressWarnings("EmptyMethod")
     public void launch(float startX, float startY)
     {
 //        EntityDescriptor descriptor = new EntityDescriptor();

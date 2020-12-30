@@ -1,7 +1,6 @@
 package com.richikin.jetman.ui;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.richikin.enumslib.ScreenID;
 
 /**
  * UIPaqes are Main Menu/Title sequences pages,

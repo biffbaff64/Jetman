@@ -70,8 +70,6 @@ public class ObjectPool<T>
     {
         if (object != null)
         {
-            factory.finaliseObject();
-
             if (freeObjects.size < maxSize)
             {
                 freeObjects.add(object);

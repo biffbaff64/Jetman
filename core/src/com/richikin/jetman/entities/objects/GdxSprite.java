@@ -261,11 +261,6 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
     }
 
     @Override
-    public void postMove()
-    {
-    }
-
-    @Override
     public void animate()
     {
     }
@@ -450,14 +445,5 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
     public Vector3 getPosition()
     {
         return new Vector3(sprite.getX(), sprite.getY(), zPosition);
-    }
-
-    /**
-     * Releases all resources of this object.
-     */
-    @Override
-    public void dispose()
-    {
-        super.dispose();
     }
 }

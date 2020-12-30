@@ -1,8 +1,6 @@
 package com.richikin.jetman.core;
 
-import com.badlogic.gdx.utils.Array;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.maths.NumberUtils;
 
 public class PointsManager
 {

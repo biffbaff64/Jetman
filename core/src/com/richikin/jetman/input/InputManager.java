@@ -34,7 +34,7 @@ public class InputManager
     {
     }
 
-    public boolean setup()
+    public void setup()
     {
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(App.stage);
@@ -79,8 +79,6 @@ public class InputManager
         Gdx.input.setCatchKey(Input.Keys.BACK, true);
         Gdx.input.setCatchKey(Input.Keys.MENU, true);
         Gdx.input.setInputProcessor(inputMultiplexer);
-
-        return true;
     }
 
     public float getControllerXPercentage()

@@ -296,6 +296,7 @@ public class Rover extends GdxSprite
         }
     }
 
+    @SuppressWarnings("SameReturnValue")
     private boolean checkForCrater()
     {
 //        int x;

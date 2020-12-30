@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.Trace;
 
 public class PathUtils
@@ -27,9 +26,9 @@ public class PathUtils
         return paths;
     }
 
-    public boolean setup()
+    @SuppressWarnings("EmptyMethod")
+    public void setup()
     {
-        return false;
     }
 
     /**

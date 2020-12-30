@@ -4,7 +4,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.PointsManager;
 import com.richikin.jetman.graphics.effects.FadeEffect;
 import com.richikin.utilslib.input.IGDXButton;
 
@@ -31,13 +30,6 @@ public abstract class AbstractBaseScreen extends ScreenAdapter implements IBaseS
             {
                 App.mapData.update();
                 App.gameProgress.update();
-            }
-
-            //
-            // Update any buttons that are animating/Scaling etc
-            for (IGDXButton button : App.inputManager.gameButtons)
-            {
-                button.update();
             }
         }
     }

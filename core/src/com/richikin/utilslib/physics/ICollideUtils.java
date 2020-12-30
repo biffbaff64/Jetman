@@ -18,8 +18,6 @@ public interface ICollideUtils
 
     void tidy();
 
-    void debugAll();
-
     boolean canCollide(GdxSprite entity, GdxSprite target);
 
     boolean filter(short theEntityFlag, short theCollisionBoxFlag);

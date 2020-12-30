@@ -46,7 +46,7 @@ public class EntityManager implements IEntityManager
             enemies.add(GraphicID.G_STAR_SPINNER);
             enemies.add(GraphicID.G_TOPSPIN);
             enemies.add(GraphicID.G_TWINKLES);
-        };
+        }
 
     // --------------------------------------------------
     // Indexes into manager list

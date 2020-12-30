@@ -14,7 +14,6 @@ import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.audio.GameAudio;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.jetman.ui.IUIPage;

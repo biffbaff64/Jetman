@@ -17,10 +17,6 @@ public class GameControlLoop extends AbstractControlLoop
         super();
     }
 
-    public void initialise()
-    {
-    }
-
     public void update()
     {
         switch (App.appState.peek())
@@ -196,7 +192,6 @@ public class GameControlLoop extends AbstractControlLoop
         }
         else
         {
-            App.mapUtils.update();
             App.entityManager.updateSprites();
             App.entityManager.tidySprites();
 
@@ -224,7 +219,6 @@ public class GameControlLoop extends AbstractControlLoop
     private void stateSetForRetry()
     {
         App.getHud().update();
-        App.mapUtils.update();
 
         if (scr().retryDelay.time(TimeUnit.MILLISECONDS) > 2000)
         {
@@ -255,7 +249,6 @@ public class GameControlLoop extends AbstractControlLoop
         App.levelManager.closeCurrentLevel();
 
         App.getHud().update();
-        App.mapUtils.update();
 
         scr().reset();
         App.appState.set(StateID._STATE_SETUP);

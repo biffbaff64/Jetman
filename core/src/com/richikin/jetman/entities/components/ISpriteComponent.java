@@ -22,8 +22,6 @@ public interface ISpriteComponent
 
     void postUpdate(int spriteNum);
 
-    void postMove();
-
     Vector3 getPosition();
 
     void preDraw();

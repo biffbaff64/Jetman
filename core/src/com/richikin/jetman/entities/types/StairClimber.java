@@ -13,13 +13,11 @@ import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.paths.StairsPath;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
 public class StairClimber extends GdxSprite
 {
-    private StopWatch stopWatch;
     private       StairsPath stairsPath;
 
     public StairClimber(GraphicID _gid)
@@ -43,7 +41,6 @@ public class StairClimber extends GdxSprite
         stairsPath.setNextPathData(this);
 
         setAction(ActionStates._RUNNING);
-        stopWatch = StopWatch.start();
 
         addDynamicPhysicsBody();
     }

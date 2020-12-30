@@ -2,7 +2,6 @@ package com.richikin.jetman.config;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.richikin.jetman.audio.AudioData;
 import com.richikin.jetman.core.ISettings;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
@@ -43,6 +42,8 @@ public class Settings implements ISettings
     public static final String _VIBRATIONS     = "vibrations";         // Enables/Disables device vibrations
     public static final String _MUSIC_ENABLED  = "music enabled";      // Enables/Disables Music
     public static final String _SOUNDS_ENABLED = "sound enabled";      // Enables/Disables Sound FX
+    public static final String _MUSIC_VOLUME   = "music volume";       //
+    public static final String _FX_VOLUME      = "fx volume";          //
     public static final String _PLAY_SERVICES  = "play services";      // Enables Google Play Services
     public static final String _ACHIEVEMENTS   = "achievements";       // Enables In-Game Achievements
     public static final String _CHALLENGES     = "challenges";         // Enables In-Game challenges

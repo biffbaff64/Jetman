@@ -128,8 +128,6 @@ public class GameController implements ControllerListener
 
     /**
      * A {@link Controller} got connected.
-     *
-     * @param controller
      */
     @Override
     public void connected(Controller controller)
@@ -139,8 +137,6 @@ public class GameController implements ControllerListener
 
     /**
      * A {@link Controller} got disconnected.
-     *
-     * @param controller
      */
     @Override
     public void disconnected(Controller controller)
@@ -153,11 +149,6 @@ public class GameController implements ControllerListener
      * The buttonCode is controller specific.
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts button constants for known controllers.
-     *
-     * @param controller
-     * @param buttonCode - The {@link ControllerMap} button code.
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean buttonDown(Controller controller, int buttonCode)
@@ -255,11 +246,6 @@ public class GameController implements ControllerListener
      * The buttonCode is controller specific.
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts button constants for known controllers.
-     *
-     * @param controller
-     * @param buttonCode - The {@link ControllerMap} button code.
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean buttonUp(Controller controller, int buttonCode)
@@ -350,12 +336,6 @@ public class GameController implements ControllerListener
      * The axis value is in the range [-1, 1].
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts axes constants for known controllers.
-     *
-     * @param controller
-     * @param axisCode - The {@link ControllerMap} axis code.
-     * @param value the axis value, -1 to 1
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value)
@@ -493,12 +473,6 @@ public class GameController implements ControllerListener
      * The povCode is controller specific.
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts POV constants for known controllers.
-     *
-     * @param controller
-     * @param povCode
-     * @param value
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value)
@@ -514,12 +488,6 @@ public class GameController implements ControllerListener
      * The sliderCode is controller specific.
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts slider constants for known controllers.
-     *
-     * @param controller
-     * @param sliderCode
-     * @param value
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean xSliderMoved(Controller controller, int sliderCode, boolean value)
@@ -532,12 +500,6 @@ public class GameController implements ControllerListener
      * The sliderCode is controller specific.
      * The <code>com.badlogic.gdx.controllers.mapping</code> package
      * hosts slider constants for known controllers.
-     *
-     * @param controller
-     * @param sliderCode
-     * @param value
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean ySliderMoved(Controller controller, int sliderCode, boolean value)
@@ -552,12 +514,6 @@ public class GameController implements ControllerListener
      * hosts slider constants for known controllers. The value is a
      * {@link Vector3} representing the acceleration on a 3-axis
      * accelerometer in m/s^2.
-     *
-     * @param controller
-     * @param accelerometerCode
-     * @param value
-     *
-     * @return whether to hand the event to other listeners.
      */
     @Override
     public boolean accelerometerMoved(Controller controller, int accelerometerCode, Vector3 value)

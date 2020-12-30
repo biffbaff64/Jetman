@@ -386,6 +386,7 @@ public class EntityUtils
         return isEnabled;
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public SimpleVec2 translateMapPosToEntityWindow(GdxSprite sprite)
     {
         SimpleVec2 pos = sprite.position;

@@ -8,7 +8,6 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.utilslib.logging.Trace;
 
 public class CraterManager
 {
@@ -37,11 +36,10 @@ public class CraterManager
      * specified co-ordinates.
      *
      * @param x     X Co-ordinate (in tiles, not pixels).
-     * @param y     X Co-ordinate (in tiles, not pixels).
      */
-    public void makeCrater(int x, int y)
+    public void makeCrater(int x)
     {
-        y = 2;
+        int y = 2;
 
         if ((App.gameProgress.activeCraterCount < App.roomManager.getMaxAllowed(GraphicID._CRATER))
             && (App.mapData.mapBox.contains((x + 3) * Gfx.getTileWidth(), Gfx.getTileHeight())))

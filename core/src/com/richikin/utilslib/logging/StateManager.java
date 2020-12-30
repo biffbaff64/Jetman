@@ -1,6 +1,5 @@
 package com.richikin.utilslib.logging;
 
-import com.badlogic.gdx.utils.StringBuilder;
 import com.richikin.enumslib.StateID;
 
 public class StateManager

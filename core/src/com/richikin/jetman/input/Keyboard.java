@@ -301,7 +301,7 @@ public class Keyboard extends InputAdapter
         int screenX = (int) (newPoints.x - App.mapData.mapPosition.getX());
         int screenY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 
-        boolean returnFlag = false;
+        boolean returnFlag;
 
         if (AppConfig.gameScreenActive())
         {
@@ -324,7 +324,7 @@ public class Keyboard extends InputAdapter
         int screenX = (int) (newPoints.x - App.mapData.mapPosition.getX());
         int screenY = (int) (newPoints.y - App.mapData.mapPosition.getY());
 
-        boolean returnFlag = false;
+        boolean returnFlag;
 
         if (AppConfig.gameScreenActive())
         {

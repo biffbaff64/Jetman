@@ -2,7 +2,6 @@
 package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.TileID;
 import com.richikin.jetman.assets.GameAssets;

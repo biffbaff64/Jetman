@@ -3,6 +3,7 @@ package com.richikin.utilslib.google;
 
 public interface IPlayServices
 {
+    @SuppressWarnings("EmptyMethod")
     void setup();
 
     void createApiClient();

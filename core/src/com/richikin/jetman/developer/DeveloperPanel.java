@@ -57,13 +57,11 @@ public class DeveloperPanel extends DefaultPanel
     {
         final String  string;
         final String  prefName;
-        final boolean isEnemy;
 
-        DMEntry(String _string, String _pref, boolean _isEnemy)
+        DMEntry(String _string, String _pref)
         {
             this.string   = _string;
             this.prefName = _pref;
-            this.isEnemy  = _isEnemy;
         }
     }
 
@@ -148,12 +146,10 @@ public class DeveloperPanel extends DefaultPanel
         }
     }
 
-    private void close(boolean update)
+    @Override
+    public void close()
     {
-        if (update)
-        {
-            updatePreferencesOnExit();
-        }
+        updatePreferencesOnExit();
 
         Developer.developerPanelActive = false;
 
@@ -265,7 +261,7 @@ public class DeveloperPanel extends DefaultPanel
         {
             public void clicked(InputEvent event, float x, float y)
             {
-                close(true);
+                close();
             }
         });
 
@@ -426,26 +422,6 @@ public class DeveloperPanel extends DefaultPanel
         }
     }
 
-    /**
-     * Either ENABLE or DISABLE all enemy entities.
-     *
-     * @param _disable boolean TRUE to disable
-     *                 boolean FALSE to enable.
-     */
-    private void setAllEnemiesEnableStatus(boolean _disable)
-    {
-        for (int row = 0; row < devMenu.length; row++)
-        {
-            for (int column = 0; column < _TABLE_COLUMNS; column++)
-            {
-                if (devMenu[row][column].isEnemy)
-                {
-                    buttons[row][column].setChecked(!_disable);
-                }
-            }
-        }
-    }
-
     private void resetPreferencesToDefaults()
     {
         okToResetPrefs = true;
@@ -503,20 +479,20 @@ public class DeveloperPanel extends DefaultPanel
             {
                 String prefName = devMenu[row][column].prefName;
 
-                if (prefName.equals(Settings._GL_PROFILER))
+                switch (prefName)
                 {
-                    glProfilerColumn = column;
-                    glProfilerRow    = row;
-                }
-                else if (prefName.equals(_DEVMODE))
-                {
-                    devModeColumn   = column;
-                    devModeRow      = row;
-                }
-                else if (prefName.equals(_GODMODE))
-                {
-                    godModeColumn   = column;
-                    godModeRow      = row;
+                    case Settings._GL_PROFILER:
+                        glProfilerColumn = column;
+                        glProfilerRow = row;
+                        break;
+                    case _DEVMODE:
+                        devModeColumn = column;
+                        devModeRow = row;
+                        break;
+                    case _GODMODE:
+                        godModeColumn = column;
+                        godModeRow = row;
+                        break;
                 }
             }
         }
@@ -527,79 +503,79 @@ public class DeveloperPanel extends DefaultPanel
         DMEntry[][] devMenuDefaults =
             {
                 {
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
+                    new DMEntry("", "")
                 },
                 {
-                    new DMEntry("Scroll Demo", Settings._SCROLL_DEMO, false),
-                    new DMEntry("Using Box2D", Settings._BOX2D_PHYSICS, false),
-                    new DMEntry("Installed", Settings._INSTALLED, false)
+                    new DMEntry("Scroll Demo", Settings._SCROLL_DEMO),
+                    new DMEntry("Using Box2D", Settings._BOX2D_PHYSICS),
+                    new DMEntry("Installed", Settings._INSTALLED)
                 },
                 {
-                    new DMEntry("Sprite Boxes", Settings._SPRITE_BOXES, false),
-                    new DMEntry("B2D Renderer", Settings._B2D_RENDERER, false),
-                    new DMEntry("SHow Hints", Settings._SHOW_HINTS, false)
+                    new DMEntry("Sprite Boxes", Settings._SPRITE_BOXES),
+                    new DMEntry("B2D Renderer", Settings._B2D_RENDERER),
+                    new DMEntry("SHow Hints", Settings._SHOW_HINTS)
                 },
                 {
-                    new DMEntry("Tile Boxes", Settings._TILE_BOXES, false),
-                    new DMEntry("Use Ashley ECS", Settings._USING_ASHLEY_ECS, false),
-                    new DMEntry("Vibrations", Settings._VIBRATIONS, false)
+                    new DMEntry("Tile Boxes", Settings._TILE_BOXES),
+                    new DMEntry("Use Ashley ECS", Settings._USING_ASHLEY_ECS),
+                    new DMEntry("Vibrations", Settings._VIBRATIONS)
                 },
                 {
-                    new DMEntry("Button Outlines", Settings._BUTTON_BOXES, false),
-                    new DMEntry("Shader Program", Settings._SHADER_PROGRAM, false),
-                    new DMEntry("Music Enabled", Settings._MUSIC_ENABLED, false),
+                    new DMEntry("Button Outlines", Settings._BUTTON_BOXES),
+                    new DMEntry("Shader Program", Settings._SHADER_PROGRAM),
+                    new DMEntry("Music Enabled", Settings._MUSIC_ENABLED),
                 },
                 {
-                    new DMEntry("Show FPS", Settings._SHOW_FPS, false),
-                    new DMEntry("GLProfiler", Settings._GL_PROFILER, false),
-                    new DMEntry("FX Enabled", Settings._SOUNDS_ENABLED, false),
+                    new DMEntry("Show FPS", Settings._SHOW_FPS),
+                    new DMEntry("GLProfiler", Settings._GL_PROFILER),
+                    new DMEntry("FX Enabled", Settings._SOUNDS_ENABLED),
                 },
                 {
-                    new DMEntry("Show Debug", Settings._SHOW_DEBUG, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
+                    new DMEntry("Show Debug", Settings._SHOW_DEBUG),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
                 },
                 {
-                    new DMEntry("Android on Desktop", Settings._ANDROID_ON_DESKTOP, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Android on Desktop", Settings._ANDROID_ON_DESKTOP),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
                 },
                 {
-                    new DMEntry("Spawnpoints", Settings._SPAWNPOINTS, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("Play Services", Settings._PLAY_SERVICES, false)
+                    new DMEntry("Spawnpoints", Settings._SPAWNPOINTS),
+                    new DMEntry("", ""),
+                    new DMEntry("Play Services", Settings._PLAY_SERVICES)
                 },
                 {
-                    new DMEntry("Menu Page Heaps", Settings._MENU_HEAPS, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("Achievements", Settings._ACHIEVEMENTS, false)
+                    new DMEntry("Menu Page Heaps", Settings._MENU_HEAPS),
+                    new DMEntry("", ""),
+                    new DMEntry("Achievements", Settings._ACHIEVEMENTS)
                 },
                 {
-                    new DMEntry("Disable Menu Screen", Settings._DISABLE_MENU_SCREEN, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("Challenges", Settings._CHALLENGES, false)
+                    new DMEntry("Disable Menu Screen", Settings._DISABLE_MENU_SCREEN),
+                    new DMEntry("", ""),
+                    new DMEntry("Challenges", Settings._CHALLENGES)
                 },
                 {
-                    new DMEntry("Cull Sprites", Settings._CULL_SPRITES, false),
-                    new DMEntry("", "", false),
-                    new DMEntry("Signin Status", Settings._SIGN_IN_STATUS, false)
+                    new DMEntry("Cull Sprites", Settings._CULL_SPRITES),
+                    new DMEntry("", ""),
+                    new DMEntry("Signin Status", Settings._SIGN_IN_STATUS)
                 },
                 {
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
                     },
                 {
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
-                    new DMEntry("", "", false),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
+                    new DMEntry("", ""),
                     },
                 {
-                    new DMEntry("Dev Mode", _DEVMODE, false),
-                    new DMEntry("Invincibilty", _GODMODE, false),
-                    new DMEntry("", "", false)
+                    new DMEntry("Dev Mode", _DEVMODE),
+                    new DMEntry("Invincibilty", _GODMODE),
+                    new DMEntry("", ""),
                 },
             };
 
@@ -607,6 +583,7 @@ public class DeveloperPanel extends DefaultPanel
 
         for (int row = 0; row < devMenuDefaults.length; row++)
         {
+            //noinspection ManualArrayCopy
             for (int column = 0; column < _TABLE_COLUMNS; column++)
             {
                 devMenu[row][column] = devMenuDefaults[row][column];

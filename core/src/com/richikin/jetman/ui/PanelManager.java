@@ -137,7 +137,18 @@ public class PanelManager
 
     public boolean doesPanelExist(String _panelName)
     {
-        return false;
+        boolean exists;
+
+        try
+        {
+            exists = _panelName.equals(currentPanel.getNameID());
+        }
+        catch (Exception npe)
+        {
+            exists = false;
+        }
+
+        return exists;
     }
 
     public IUserInterfacePanel getCurrentPanel()

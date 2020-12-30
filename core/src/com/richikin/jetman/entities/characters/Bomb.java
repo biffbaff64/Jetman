@@ -80,7 +80,7 @@ public class Bomb extends Carryable
             int x = (int) (sprite.getX() / Gfx.getTileWidth());
             int y = (int) (App.getPlayer().sprite.getY() / Gfx.getTileHeight()) - 1;
 
-            craterManager.makeCrater(x, y);
+            craterManager.makeCrater(x);
         }
     }
 

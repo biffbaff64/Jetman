@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.OrthoGameCamera;
 import com.richikin.jetman.graphics.camera.ViewportType;
@@ -166,8 +165,8 @@ public class BaseRenderer implements Disposable
             App.spriteBatch.setProjectionMatrix(tiledGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.x = (float) (App.mapData.mapPosition.getX() + (tiledGameCamera.camera.viewportWidth / 2));
-            cameraPos.y = (float) (App.mapData.mapPosition.getY() + (tiledGameCamera.camera.viewportHeight / 2));
+            cameraPos.x = (App.mapData.mapPosition.getX() + (tiledGameCamera.camera.viewportWidth / 2));
+            cameraPos.y = (App.mapData.mapPosition.getY() + (tiledGameCamera.camera.viewportHeight / 2));
             cameraPos.z = 0;
 
             if (tiledGameCamera.isLerpingEnabled)
@@ -190,8 +189,8 @@ public class BaseRenderer implements Disposable
             App.spriteBatch.setProjectionMatrix(spriteGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.x = (float) (App.mapData.mapPosition.getX() + (spriteGameCamera.camera.viewportWidth / 2));
-            cameraPos.y = (float) (App.mapData.mapPosition.getY() + (spriteGameCamera.camera.viewportHeight / 2));
+            cameraPos.x = (App.mapData.mapPosition.getX() + (spriteGameCamera.camera.viewportWidth / 2));
+            cameraPos.y = (App.mapData.mapPosition.getY() + (spriteGameCamera.camera.viewportHeight / 2));
             cameraPos.z = 0;
 
             if (spriteGameCamera.isLerpingEnabled)
@@ -216,8 +215,8 @@ public class BaseRenderer implements Disposable
             App.spriteBatch.setProjectionMatrix(hudGameCamera.camera.combined);
             App.spriteBatch.begin();
 
-            cameraPos.x = (float) (hudGameCamera.camera.viewportWidth / 2);
-            cameraPos.y = (float) (hudGameCamera.camera.viewportHeight / 2);
+            cameraPos.x = (hudGameCamera.camera.viewportWidth / 2);
+            cameraPos.y = (hudGameCamera.camera.viewportHeight / 2);
             cameraPos.z = 0;
 
             hudGameCamera.setPosition(cameraPos, hudZoom.getZoomValue(), false);

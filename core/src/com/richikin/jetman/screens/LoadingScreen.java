@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.ui.Scene2DUtils;
 
 public class LoadingScreen implements Disposable
 {

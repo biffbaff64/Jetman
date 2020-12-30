@@ -82,11 +82,6 @@ public class GameButton extends Switch implements Disposable
     }
 
     @Override
-    public void update()
-    {
-    }
-
-    @Override
     public boolean checkPress(int touchX, int touchY)
     {
         boolean returnFlag = false;

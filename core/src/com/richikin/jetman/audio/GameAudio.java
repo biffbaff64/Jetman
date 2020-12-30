@@ -106,6 +106,10 @@ public class GameAudio
         AudioData.music[AudioData.MUS_HISCORE] = App.assets.loadSingleAsset("data/sounds/breath.mp3", Music.class);
         AudioData.music[AudioData.MUS_GAME]    = App.assets.loadSingleAsset("data/sounds/fear_mon.mp3", Music.class);
 
+        App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, AudioData._DEFAULT_MUSIC_VOLUME);
+        App.settings.getPrefs().putInteger(Settings._FX_VOLUME, AudioData._DEFAULT_FX_VOLUME);
+        App.settings.getPrefs().flush();
+
         soundsLoaded = true;
     }
 
@@ -209,22 +213,18 @@ public class GameAudio
         }
     }
 
-    public long startSound(int soundNumber)
+    public void startSound(int soundNumber)
     {
-        long id = 0;
-
         if (App.settings.isEnabled(Settings._SOUNDS_ENABLED) && soundsLoaded)
         {
             if (getFXVolume() > 0)
             {
                 if (AudioData.sounds[soundNumber] != null)
                 {
-                    id = AudioData.sounds[soundNumber].play(getUsableVolume(getFXVolume()));
+                    AudioData.sounds[soundNumber].play(getUsableVolume(getFXVolume()));
                 }
             }
         }
-
-        return id;
     }
 
     public void tuneStop()
@@ -245,26 +245,24 @@ public class GameAudio
             AudioData.music[currentTune].setVolume(getUsableVolume(volume));
         }
 
-//        App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, volume);
-//        App.settings.getPrefs().flush();
+        App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, volume);
+        App.settings.getPrefs().flush();
     }
 
     public void setFXVolume(int volume)
     {
-//        App.settings.getPrefs().putInteger(Settings._FX_VOLUME, volume);
-//        App.settings.getPrefs().flush();
+        App.settings.getPrefs().putInteger(Settings._FX_VOLUME, volume);
+        App.settings.getPrefs().flush();
     }
 
     public int getMusicVolume()
     {
-        return AudioData._DEFAULT_MUSIC_VOLUME;
-//        return App.settings.getPrefs().getInteger(Settings._MUSIC_VOLUME);
+        return App.settings.getPrefs().getInteger(Settings._MUSIC_VOLUME);
     }
 
     public int getFXVolume()
     {
-        return AudioData._DEFAULT_FX_VOLUME;
-//        return App.settings.getPrefs().getInteger(Settings._FX_VOLUME);
+        return App.settings.getPrefs().getInteger(Settings._FX_VOLUME);
     }
 
     public float getUsableFxVolume()
@@ -307,6 +305,7 @@ public class GameAudio
         return soundsLoaded && AudioData.music[currentTune].isPlaying();
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isTunePlaying(int _tune)
     {
         return soundsLoaded && AudioData.music[_tune].isPlaying();

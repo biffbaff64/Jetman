@@ -137,24 +137,6 @@ public class CollisionUtils implements ICollideUtils, Disposable
         tidy();
     }
 
-    /**
-     * Dump debug information for all
-     */
-    @Override
-    public void debugAll()
-    {
-//        for (int i = 0; i < AABBData.boxes().size; i++)
-//        {
-//            AABBData.boxes().get(i).debug();
-//        }
-    }
-
-    /**
-     * @param entity the entity
-     * @param target the target
-     *
-     * @return the boolean
-     */
     @Override
     public boolean canCollide(GdxSprite entity, GdxSprite target)
     {
@@ -164,26 +146,12 @@ public class CollisionUtils implements ICollideUtils, Disposable
 //            && (entity.collisionObject.collisionArrayIndex != target.collisionObject.collisionArrayIndex);
     }
 
-    /**
-     * @param theEntityFlag         The entitiy's bodyCategory flag
-     * @param theCollisionBoxFlag   The collidesWith flag of the entity to test against.
-     *
-     * @return TRUE if the two entities are able to collide.
-     */
     @Override
     public boolean filter(short theEntityFlag, short theCollisionBoxFlag)
     {
         return ((theEntityFlag & theCollisionBoxFlag) != 0);
     }
 
-    /**
-     * Gets marker tile on.
-     *
-     * @param x the x
-     * @param y the y
-     *
-     * @return the marker tile on
-     */
     @Override
     public TileID getMarkerTileOn(int x, int y)
     {
@@ -200,26 +168,12 @@ public class CollisionUtils implements ICollideUtils, Disposable
         return tileID;
     }
 
-    /**
-     *
-     *
-     * @param spriteObj the sprite obj
-     *
-     * @return
-     */
     @Override
     public int getXBelow(GdxSprite spriteObj)
     {
         return (int) ((spriteObj.getCollisionRectangle().getX() + (Gfx.getTileWidth() / 2)) / Gfx.getTileWidth());
     }
 
-    /**
-     *
-     *
-     * @param spriteObj the sprite obj
-     *
-     * @return
-     */
     @Override
     public int getYBelow(GdxSprite spriteObj)
     {

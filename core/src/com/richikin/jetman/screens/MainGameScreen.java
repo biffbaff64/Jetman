@@ -57,7 +57,6 @@ public class MainGameScreen extends AbstractBaseScreen
             App.levelManager = new LevelManager();
 
             App.levelManager.prepareNewGame();
-            gameControlLoop.initialise();
 
             App.appState.set(StateID._STATE_SETUP);
         }
@@ -147,12 +146,6 @@ public class MainGameScreen extends AbstractBaseScreen
         initialise();
 
         App.appState.set(StateID._STATE_SETUP);
-    }
-
-    @Override
-    public void hide()
-    {
-        super.hide();
     }
 
     @Override
