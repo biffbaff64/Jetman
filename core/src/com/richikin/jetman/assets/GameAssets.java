@@ -26,11 +26,8 @@ public class GameAssets
     public static final String _3LEGS_ALIEN_ASSET      = "3legs";
     public static final String _ALIEN_WHEEL_ASSET      = "wheel";
     public static final String _ASTEROID1_ASSET        = "asteroid03";
-    public static final String _ASTEROID2_ASSET        = "asteroid02_redglow";
-    public static final String _ASTEROID3_ASSET        = "asteroid03";
     public static final String _BLOB_ASSET             = "plus_blob";
     public static final String _BOMB_ASSET             = "bomb";
-    public static final String _CRATER_ASSET           = "crater";
     public static final String _DEFENDER_ASSET         = "jetman_defence";
     public static final String _DEFENDER_ZAP_ASSET     = "zap";
     public static final String _DOG_ASSET              = "eyebitter";
@@ -55,7 +52,7 @@ public class GameAssets
     public static final String _TOPSPIN_ASSET          = "topspin";
     public static final String _TWINKLES_ASSET         = "twinkles2";
     public static final String _UFO_BULLET_ASSET       = "ufo_bullet";
-    public static final String _WINDMILL_ASSET         = "windmill";
+    public static final String _WINDMILL_ASSET         = "plus_blob";
 
     //
     // Frame counts for animations
@@ -65,7 +62,6 @@ public class GameAssets
     public static final int _ALIEN_WHEEL_FRAMES      = 32;
     public static final int _BOMB_FRAMES             = 2;
     public static final int _BLOB_FRAMES             = 32;
-    public static final int _CRATER_FRAMES           = 1;
     public static final int _DEFENDER_FRAMES         = 10;
     public static final int _DEFENDER_ZAP_FRAMES     = 22;
     public static final int _DOG_FRAMES              = 32;
@@ -86,11 +82,10 @@ public class GameAssets
     public static final int _SPINNING_BALL_FRAMES    = 32;
     public static final int _DEFENDER_BULLET_FRAMES  = 10;
     public static final int _TRANSPORTER_FRAMES      = 21;
-    public static final int _TRANSPORTER_BEAM_FRAMES = 1;
     public static final int _TOPSPIN_FRAMES          = 32;
     public static final int _TWINKLES_FRAMES         = 32;
     public static final int _UFO_BULLET_FRAMES       = 10;
-    public static final int _WINDMILL_FRAMES         = 1;
+    public static final int _WINDMILL_FRAMES         = 32;
 
     //
     // Background sprites

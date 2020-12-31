@@ -6,7 +6,7 @@ import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.characters.Teleporter;
+import com.richikin.jetman.entities.structures.Teleporter;
 import com.richikin.jetman.entities.managers.AlienManager;
 import com.richikin.jetman.entities.managers.BackgroundObjectsManager;
 import com.richikin.jetman.entities.managers.BarrierManager;

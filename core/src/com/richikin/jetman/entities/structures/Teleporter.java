@@ -1,4 +1,4 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.structures;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;

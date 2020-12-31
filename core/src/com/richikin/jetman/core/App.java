@@ -13,6 +13,8 @@ import com.richikin.jetman.entities.characters.*;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.managers.*;
 import com.richikin.jetman.entities.paths.PathUtils;
+import com.richikin.jetman.entities.structures.MissileBase;
+import com.richikin.jetman.entities.structures.Teleporter;
 import com.richikin.jetman.graphics.CameraUtils;
 import com.richikin.jetman.graphics.IAssets;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;

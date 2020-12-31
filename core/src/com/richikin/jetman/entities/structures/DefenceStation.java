@@ -1,10 +1,11 @@
-package com.richikin.jetman.entities.characters;
+package com.richikin.jetman.entities.structures;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.characters.ZapSprite;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.managers.ExplosionManager;
@@ -17,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DefenceStation extends GdxSprite
 {
-    private       ZapSprite zapSprite;
-    private       StopWatch shootTimer;
+    private ZapSprite zapSprite;
+    private StopWatch shootTimer;
     private       float     shootInterval;
 
     public DefenceStation()

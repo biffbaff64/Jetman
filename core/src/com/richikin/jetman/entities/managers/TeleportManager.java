@@ -6,7 +6,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.characters.Teleporter;
+import com.richikin.jetman.entities.structures.Teleporter;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.maps.RoomManager;
