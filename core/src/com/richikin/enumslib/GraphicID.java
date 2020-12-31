@@ -54,6 +54,7 @@ public enum GraphicID
     G_SPINNING_BALL,
     G_BLOB,
     G_ALIEN_WHEEL,
+    G_WINDMILL,
 
     // ----------------------------
     G_TWINKLE_STAR,

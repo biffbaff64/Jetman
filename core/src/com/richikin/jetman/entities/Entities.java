@@ -306,6 +306,14 @@ public class Entities
                     Animation.PlayMode.LOOP,
                     TileID._TWINKLES_TILE
                 ),
+            new SpriteDescriptor
+                (
+                    "Windmill",
+                    GraphicID.G_WINDMILL, GraphicID._ENEMY,
+                    GameAssets._WINDMILL_ASSET, GameAssets._WINDMILL_FRAMES,
+                    Animation.PlayMode.LOOP,
+                    TileID._WINDMILL_TILE
+                ),
 
             // Miscellaneous Enemy Related
 

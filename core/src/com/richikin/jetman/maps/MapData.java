@@ -101,11 +101,6 @@ public class MapData
      */
     public void initialiseRoom()
     {
-//        initialiseMap(App.roomManager.getMapNameWithPath(), mapLayerNames);
-//    }
-//
-//    public void initialiseMap(String gameMap, String[] mapLayers)
-//    {
         currentMapName = App.roomManager.getMapNameWithPath();
         currentMap     = tmxMapLoader.load(currentMapName);
 

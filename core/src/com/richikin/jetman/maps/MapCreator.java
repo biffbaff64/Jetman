@@ -2,8 +2,10 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.enumslib.TileID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.GameEntity;
@@ -183,11 +185,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_SCENERY;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                                    | Gfx.CAT_PLAYER_WEAPON
-                                                    | Gfx.CAT_MOBILE_ENEMY
-                                                    | Gfx.CAT_MISSILE_BASE
-                                                    | Gfx.CAT_TELEPORTER
-                                                    | Gfx.CAT_FIXED_ENEMY;
+                                | Gfx.CAT_PLAYER_WEAPON
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -197,11 +199,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                                    | Gfx.CAT_PLAYER_WEAPON
-                                                    | Gfx.CAT_MOBILE_ENEMY
-                                                    | Gfx.CAT_MISSILE_BASE
-                                                    | Gfx.CAT_TELEPORTER
-                                                    | Gfx.CAT_FIXED_ENEMY;
+                                | Gfx.CAT_PLAYER_WEAPON
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -212,11 +214,11 @@ public class MapCreator
                             gameEntity.type         = GraphicID._OBSTACLE;
                             gameEntity.bodyCategory = Gfx.CAT_GROUND;
                             gameEntity.collidesWith = Gfx.CAT_PLAYER
-                                                    | Gfx.CAT_PLAYER_WEAPON
-                                                    | Gfx.CAT_MOBILE_ENEMY
-                                                    | Gfx.CAT_MISSILE_BASE
-                                                    | Gfx.CAT_TELEPORTER
-                                                    | Gfx.CAT_FIXED_ENEMY;
+                                | Gfx.CAT_PLAYER_WEAPON
+                                | Gfx.CAT_MOBILE_ENEMY
+                                | Gfx.CAT_MISSILE_BASE
+                                | Gfx.CAT_TELEPORTER
+                                | Gfx.CAT_FIXED_ENEMY;
                         }
                         break;
 
@@ -226,7 +228,7 @@ public class MapCreator
 
                     if (gameEntity.gid != GraphicID.G_NO_ID)
                     {
-                        gameEntity.position = new SimpleVec2
+                        gameEntity.position    = new SimpleVec2
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
                                 (int) ((float) mapObject.getProperties().get("y"))

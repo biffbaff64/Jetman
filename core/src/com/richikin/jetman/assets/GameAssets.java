@@ -55,6 +55,7 @@ public class GameAssets
     public static final String _TOPSPIN_ASSET          = "topspin";
     public static final String _TWINKLES_ASSET         = "twinkles2";
     public static final String _UFO_BULLET_ASSET       = "ufo_bullet";
+    public static final String _WINDMILL_ASSET         = "windmill";
 
     //
     // Frame counts for animations
@@ -89,6 +90,7 @@ public class GameAssets
     public static final int _TOPSPIN_FRAMES          = 32;
     public static final int _TWINKLES_FRAMES         = 32;
     public static final int _UFO_BULLET_FRAMES       = 10;
+    public static final int _WINDMILL_FRAMES         = 1;
 
     //
     // Background sprites
@@ -151,6 +153,7 @@ public class GameAssets
             new AssetSize(GraphicID.G_STAR_SPINNER,     68, 68),
             new AssetSize(GraphicID.G_TOPSPIN,          72, 72),
             new AssetSize(GraphicID.G_TWINKLES,         48, 48),
+            new AssetSize(GraphicID.G_WINDMILL,         48, 48),
 
             new AssetSize(GraphicID.G_POWER_BEAM,       120, 563),
 

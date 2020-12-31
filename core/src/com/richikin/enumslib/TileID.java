@@ -3,6 +3,7 @@ package com.richikin.enumslib;
 
 public enum TileID
 {
+
     _DEFAULT_TILE(0),
 
     // Row 1
@@ -36,7 +37,7 @@ public enum TileID
     _ROCKET_TILE                (24),
     _BRIDGE_TILE                (25),
     _TOWER_TILE                 (26),
-    _U27_TILE                   (27),
+    _WINDMILL_TILE              (27),
     _U28_TILE                   (28),
     _U29_TILE                   (29),
     _U30_TILE                   (30),
