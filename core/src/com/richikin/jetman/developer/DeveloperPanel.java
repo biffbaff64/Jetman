@@ -534,7 +534,7 @@ public class DeveloperPanel extends DefaultPanel
                 },
                 {
                     new DMEntry("Show Debug", Settings._SHOW_DEBUG),
-                    new DMEntry("", ""),
+                    new DMEntry("Enemies", Settings._ENABLE_ENEMIES),
                     new DMEntry("", ""),
                 },
                 {

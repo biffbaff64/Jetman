@@ -48,14 +48,14 @@ asteroid03
   index: -1
 background_ufo
   rotate: false
-  xy: 1416, 28
+  xy: 2, 19
   size: 80, 4
   orig: 80, 4
   offset: 0, 0
   index: -1
 bomb
   rotate: false
-  xy: 1962, 375
+  xy: 1962, 391
   size: 84, 53
   orig: 84, 53
   offset: 0, 0
@@ -90,7 +90,7 @@ jm_spinningball
   index: -1
 launcher_base
   rotate: false
-  xy: 576, 30
+  xy: 1726, 907
   size: 120, 51
   orig: 120, 51
   offset: 0, 0
@@ -111,7 +111,7 @@ launcher_top_empty
   index: -1
 lives
   rotate: false
-  xy: 1478, 1141
+  xy: 1728, 35
   size: 64, 45
   orig: 64, 45
   offset: 0, 0
@@ -125,7 +125,7 @@ ljm_death
   index: -1
 ljm_fly2
   rotate: false
-  xy: 1744, 944
+  xy: 1800, 164
   size: 240, 80
   orig: 240, 80
   offset: 0, 0
@@ -142,6 +142,13 @@ ljm_walk2
   xy: 904, 1510
   size: 960, 80
   orig: 960, 80
+  offset: 0, 0
+  index: -1
+mini_abxy
+  rotate: false
+  xy: 1744, 960
+  size: 264, 64
+  orig: 264, 64
   offset: 0, 0
   index: -1
 player_appear
@@ -172,13 +179,6 @@ powerbeam
   orig: 720, 563
   offset: 0, 0
   index: -1
-powerbeam_small
-  rotate: false
-  xy: 1840, 64
-  size: 120, 180
-  orig: 120, 180
-  offset: 0, 0
-  index: -1
 rocket
   rotate: false
   xy: 1174, 3
@@ -195,7 +195,7 @@ rover
   index: -1
 rover_boot
   rotate: false
-  xy: 1578, 1606
+  xy: 576, 67
   size: 108, 14
   orig: 108, 14
   offset: 0, 0
@@ -251,7 +251,7 @@ tower
   index: -1
 transporter_beam
   rotate: false
-  xy: 1962, 430
+  xy: 1962, 446
   size: 64, 512
   orig: 64, 512
   offset: 0, 0
@@ -286,7 +286,7 @@ twinkles2
   index: -1
 ufo_bullet
   rotate: false
-  xy: 2, 14
+  xy: 1578, 1611
   size: 90, 9
   orig: 90, 9
   offset: 0, 0
@@ -323,5 +323,12 @@ green_block
   xy: 2, 2
   size: 288, 192
   orig: 288, 192
+  offset: 0, 0
+  index: -1
+powerbeam_small
+  rotate: false
+  xy: 550, 14
+  size: 120, 180
+  orig: 120, 180
   offset: 0, 0
   index: -1

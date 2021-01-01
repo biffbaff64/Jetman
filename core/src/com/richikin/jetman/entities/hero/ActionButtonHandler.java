@@ -27,6 +27,37 @@ public class ActionButtonHandler implements Disposable
         this.previousActionMode = ActionMode._NO_ACTION;
     }
 
+    public void update()
+    {
+        switch (actionMode)
+        {
+            case _TELEPORTING:
+            {
+                if (App.entityManager.teleportBeam != null)
+                {
+                    if (App.entityManager.teleportBeam.update())
+                    {
+                        App.entityManager.teleportBeam.dispose();
+                        App.entityManager.teleportBeam = null;
+
+                        App.teleportManager.setTeleporting(teleportNumber);
+                    }
+                }
+            }
+            break;
+
+            case _BOMB_CARRY:
+            case _GUN_CARRY:
+            case _BRIDGE_CARRY:
+            case _ROVER_RIDE:
+            case _NO_ACTION:
+            default:
+            {
+            }
+            break;
+        }
+    }
+
     public void setAction()
     {
         if ((actionMode == ActionMode._NO_ACTION)
@@ -95,35 +126,9 @@ public class ActionButtonHandler implements Disposable
         }
     }
 
-    public void update()
+    public int getTeleportNumber()
     {
-        switch (actionMode)
-        {
-            case _TELEPORTING:
-            {
-                if (App.entityManager.teleportBeam != null)
-                {
-                    if (App.entityManager.teleportBeam.update())
-                    {
-                        App.entityManager.teleportBeam.dispose();
-                        App.entityManager.teleportBeam = null;
-
-                        App.teleportManager.setTeleporting(teleportNumber);
-                    }
-                }
-            }
-            break;
-
-            case _BOMB_CARRY:
-            case _GUN_CARRY:
-            case _BRIDGE_CARRY:
-            case _ROVER_RIDE:
-            case _NO_ACTION:
-            default:
-            {
-            }
-            break;
-        }
+        return teleportNumber;
     }
 
     public ActionMode getActionMode()

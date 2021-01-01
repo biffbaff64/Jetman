@@ -2,7 +2,9 @@ package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.jetman.assets.GameAssets;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.entities.characters.*;
 import com.richikin.jetman.entities.types.StairClimber;
 import com.richikin.jetman.graphics.Gfx;
@@ -37,14 +39,17 @@ public class AlienManager extends GenericEntityManager
     @Override
     public void init()
     {
-        Trace.__FILE_FUNC();
-
-        for (GraphicIndex item : aliens)
+        if (!Developer.isDevMode() || App.settings.isEnabled(Settings._ENABLE_ENEMIES))
         {
-            item.value = 0;
-        }
+            Trace.__FILE_FUNC();
 
-        update();
+            for (GraphicIndex item : aliens)
+            {
+                item.value = 0;
+            }
+
+            update();
+        }
     }
 
     @Override
@@ -62,12 +67,15 @@ public class AlienManager extends GenericEntityManager
     @Override
     public void update()
     {
-        for (GraphicIndex alien : aliens)
+        if (!Developer.isDevMode() || App.settings.isEnabled(Settings._ENABLE_ENEMIES))
         {
-            if (alien.value < App.roomManager.getMaxAllowed(alien.graphicID))
+            for (GraphicIndex alien : aliens)
             {
-                create(alien.graphicID);
-                alien.value++;
+                if (alien.value < App.roomManager.getMaxAllowed(alien.graphicID))
+                {
+                    create(alien.graphicID);
+                    alien.value++;
+                }
             }
         }
     }

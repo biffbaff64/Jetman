@@ -85,12 +85,6 @@
   <object id="51" name="Base Defender" gid="4" x="16000" y="928" width="32" height="32"/>
   <object id="54" name="Player" gid="1" x="8320" y="928" width="32" height="32"/>
   <object id="82" name="Laser Barrier" gid="12" x="5728" y="928" width="32" height="32"/>
-  <object id="85" name="Laser Barrier" gid="12" x="64" y="928" width="32" height="32"/>
-  <object id="86" name="Laser Barrier" gid="12" x="224" y="928" width="32" height="32"/>
-  <object id="87" name="Laser Barrier" gid="12" x="384" y="928" width="32" height="32"/>
-  <object id="88" name="Laser Barrier" gid="12" x="19072" y="928" width="32" height="32"/>
-  <object id="89" name="Laser Barrier" gid="12" x="18912" y="928" width="32" height="32"/>
-  <object id="90" name="Laser Barrier" gid="12" x="18752" y="928" width="32" height="32"/>
   <object id="91" name="Windmill" gid="27" x="6880" y="544" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffaa00" id="5" name="collision">

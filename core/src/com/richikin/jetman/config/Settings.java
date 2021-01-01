@@ -35,6 +35,7 @@ public class Settings implements ISettings
     public static final String _GL_PROFILER         = "gl profiler";        // Enables/Disables the LibGdx OpenGL Profiler
     public static final String _ANDROID_ON_DESKTOP  = "android desktop";    //
     public static final String _SHOW_HINTS          = "show hints";         // Enables/Disables In-Game Hints
+    public static final String _ENABLE_ENEMIES      = "enable enemies";     //
 
     //
     // Game settings

@@ -30,8 +30,8 @@ public class BridgeManager
 
                 //
                 // Remove the _CRATER markertile
-                App.mapData.markerTilesLayer.setCell(x + column, y - row, null);
-                App.mapData.markerTilesLayer.setCell(x + column, (y - (row + 1)), null);
+//                App.mapData.markerTilesLayer.setCell(x + column, y - row, null);
+//                App.mapData.markerTilesLayer.setCell(x + column, (y - (row + 1)), null);
             }
         }
     }

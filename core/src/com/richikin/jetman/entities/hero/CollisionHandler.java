@@ -6,6 +6,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.physics.Movement;
@@ -116,6 +118,24 @@ public class CollisionHandler implements ICollisionListener, Disposable
             checkForGround();
             checkForFalling();
         }
+    }
+
+    public int isNextTo(GraphicID graphicID)
+    {
+        int nextTo = 0;
+
+        for (GameEntity sprite : App.entityData.entityMap)
+        {
+            if (sprite.gid == graphicID)
+            {
+                if (((GdxSprite) sprite).sprite.getBoundingRectangle().overlaps(App.getPlayer().sprite.getBoundingRectangle()))
+                {
+                    nextTo = ((GdxSprite) sprite).spriteNumber;
+                }
+            }
+        }
+
+        return nextTo;
     }
 
     /**
