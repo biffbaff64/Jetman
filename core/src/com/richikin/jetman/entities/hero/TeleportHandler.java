@@ -48,7 +48,7 @@ public class TeleportHandler
         }
         else
         {
-            if (App.teleportManager.targetDistance.getX() > 0)
+             if (App.teleportManager.targetDistance.getX() > 0)
             {
                 App.getPlayer().sprite.translate
                     (

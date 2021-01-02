@@ -20,12 +20,12 @@ public class Keyboard extends InputAdapter
     // =================================================================
     // DEFAULT Keyboard options.
     //
-    public static final int defaultValueUp       = Input.Keys.W;
-    public static final int defaultValueDown     = Input.Keys.S;
+    public static final int defaultValueUp       = Input.Keys.S;
+    public static final int defaultValueDown     = Input.Keys.Z;
     public static final int defaultValueLeft     = Input.Keys.A;
-    public static final int defaultValueRight    = Input.Keys.D;
-    public static final int defaultValueA        = Input.Keys.NUMPAD_2;
-    public static final int defaultValueB        = Input.Keys.NUMPAD_6;
+    public static final int defaultValueRight    = Input.Keys.X;
+    public static final int defaultValueA        = Input.Keys.Q;
+    public static final int defaultValueB        = Input.Keys.W;
     public static final int defaultValueX        = Input.Keys.NUMPAD_1;
     public static final int defaultValueY        = Input.Keys.NUMPAD_5;
     public static final int defaultValueHudInfo  = Input.Keys.F9;

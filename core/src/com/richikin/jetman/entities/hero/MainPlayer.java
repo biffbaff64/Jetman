@@ -684,8 +684,19 @@ public class MainPlayer extends GdxSprite
      */
     private void checkForFuelRefill()
     {
-        if (!App.getHud().getFuelBar().isFull() && collision.isInRoverMiddle())
+        if (App.getHud().getFuelBar().hasRefillRoom()
+            && (App.getPlayer().collisionObject.idBottom == GraphicID._GROUND)
+            && (App.getPlayer().getAction() == ActionStates._STANDING)
+            && collision.isInRoverMiddle())
         {
+            App.getHud().messageManager.addZoomMessage("fuel_refilled", 1500);
+            App.getHud().messageManager.setPosition
+                (
+                    "fuel_refilled",
+                    (int) AppConfig.hudOriginX + 480,
+                    (int) AppConfig.hudOriginY + (720 - 145)
+                );
+
             App.getHud().getFuelBar().refill();
         }
     }

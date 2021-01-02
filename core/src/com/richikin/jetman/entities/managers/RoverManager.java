@@ -2,6 +2,7 @@
 package com.richikin.jetman.entities.managers;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.richikin.enumslib.TileID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
@@ -160,8 +161,7 @@ public class RoverManager extends GenericEntityManager
     @SuppressWarnings("SameReturnValue")
     private boolean isValidPosition(int x)
     {
-//        return !(App.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() == TileID._CRATER_TILE.get());
-        return true;
+        return !(App.collisionUtils.getMarkerTileOn(x / Gfx.getTileWidth(), 1).get() == TileID._CRATER_TILE.get());
     }
 
     public void freeRoverGun()

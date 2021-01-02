@@ -113,6 +113,11 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         height = _height;
     }
 
+    public boolean hasRefillRoom()
+    {
+        return hasRoom() && (total < (getMax() - 10));
+    }
+
     @Override
     public void setColor(Color color)
     {

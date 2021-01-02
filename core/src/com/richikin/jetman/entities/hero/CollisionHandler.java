@@ -10,6 +10,7 @@ import com.richikin.jetman.entities.objects.GameEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
 public class CollisionHandler implements ICollisionListener, Disposable
@@ -195,15 +196,15 @@ public class CollisionHandler implements ICollisionListener, Disposable
      * Returns TRUE if LJM is standing in front of
      * the Moon Rover, in the middle between the wheels.
      */
-    boolean isInRoverMiddle()
+    public boolean isInRoverMiddle()
     {
         boolean isInMiddle = false;
 
         if (App.entityManager.doesRoverExist())
         {
-            isInMiddle = App.getRover().getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle())
-                && !Intersector.overlaps(App.getRover().frontWheel.getCollisionRectangle(), App.getPlayer().getCollisionRectangle())
-                && !Intersector.overlaps(App.getRover().backWheel.getCollisionRectangle(), App.getPlayer().getCollisionRectangle());
+            isInMiddle = (App.getPlayer().collisionObject.idBottom == GraphicID._GROUND)
+                && (App.getPlayer().getCollisionRectangle().x < App.getRover().frontWheel.getPosition().x)
+                && (App.getPlayer().getCollisionRectangle().x > (App.getRover().backWheel.getPosition().x + App.getRover().backWheel.frameWidth));
         }
 
         return isInMiddle;

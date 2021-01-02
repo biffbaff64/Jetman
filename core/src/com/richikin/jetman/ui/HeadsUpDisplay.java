@@ -839,6 +839,17 @@ public class HeadsUpDisplay implements Disposable
                         AppConfig.hudOriginY + 600
                     );
             }
+
+            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "IIRM  : " + App.getPlayer().collision.isInRoverMiddle(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 570
+                    );
+            }
         }
     }
 

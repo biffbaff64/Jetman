@@ -32,6 +32,13 @@ fuel_low
   orig: 320, 27
   offset: 0, 0
   index: -1
+fuel_refilled
+  rotate: false
+  xy: 524, 452
+  size: 320, 27
+  orig: 320, 27
+  offset: 0, 0
+  index: -1
 gameover
   rotate: false
   xy: 2, 160
