@@ -9,4 +9,5 @@ public class AnimationComponent implements Component
     public Animation<TextureRegion> animation;
     public float                    elapsedAnimTime;
     public TextureRegion[]          animFrames;
+    public boolean                  isLooping;
 }

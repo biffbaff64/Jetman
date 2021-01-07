@@ -2,6 +2,7 @@ package com.richikin.jetman.graphics;
 
 import com.badlogic.gdx.math.Vector2;
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.utilslib.maths.SimpleVec2F;
 
 public class Gfx
 {
@@ -27,8 +28,9 @@ public class Gfx
     //
     // Pixels Per Meter in the Box2D World
     // In this instance, a meter is the length of a single TiledMap tile.
-    public static float _PPM       = 32.0f;
-    public static float _PPM_RATIO = (1.0f / _PPM);
+    public static       float _PPM              = 32.0f;
+    public static       float _PIXELS_TO_METERS = (1.0f / _PPM);
+    public static final float _PPM_SETTING      = 32.0f;
 
     //
     // Maximum Z-sorting depth for sprites
@@ -66,14 +68,34 @@ public class Gfx
     public static       float _GAME_SCENE_WIDTH  = (_VIEW_WIDTH / _PPM);
     public static       float _GAME_SCENE_HEIGHT = (_VIEW_HEIGHT / _PPM);
 
-    public static final float _PPM_SETTING = 32.0f;
-
     //
     // Initialised in MapData
     public static int mapWidth;
     public static int mapHeight;
     public static int tileWidth;
     public static int tileHeight;
+
+    private static SimpleVec2F pixelDimensions = new SimpleVec2F();
+    private static SimpleVec2F meterDimensions = new SimpleVec2F();
+
+    public static SimpleVec2F getScreenSizeInMeters()
+    {
+        meterDimensions.set(_VIEW_WIDTH * _PIXELS_TO_METERS, _VIEW_HEIGHT * _PIXELS_TO_METERS);
+
+        return meterDimensions;
+    }
+
+    public static SimpleVec2F getScreenSizeInPixels()
+    {
+        pixelDimensions.set(_VIEW_WIDTH, _VIEW_HEIGHT);
+
+        return pixelDimensions;
+    }
+
+    public static float PixelsToMeters(float pixels)
+    {
+        return pixels * _PIXELS_TO_METERS;
+    }
 
     public static int getTileWidth()
     {
@@ -102,7 +124,7 @@ public class Gfx
             if (newPPM != _PPM)
             {
                 _PPM               = newPPM;
-                _PPM_RATIO         = (1.0f / _PPM);
+                _PIXELS_TO_METERS  = (1.0f / _PPM);
                 _GAME_SCENE_WIDTH  = (_VIEW_WIDTH / _PPM);
                 _GAME_SCENE_HEIGHT = (_VIEW_HEIGHT / _PPM);
             }
