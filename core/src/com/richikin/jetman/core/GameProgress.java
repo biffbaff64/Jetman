@@ -1,6 +1,7 @@
 package com.richikin.jetman.core;
 
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.maths.Item;
 import com.richikin.utilslib.maths.NumberUtils;
 import com.richikin.utilslib.logging.Trace;

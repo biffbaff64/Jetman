@@ -24,7 +24,7 @@ public class RenderingSystem extends SortedIteratingSystem
     // component mappers to get components from entities
     private ComponentMapper<SpriteComponent> spriteMapper;
 
-    public RenderingSystem(SpriteBatch spriteBatch)
+    public RenderingSystem()
     {
         // gets all entities with a SpriteComponent
         super(Family.all(SpriteComponent.class).get(), new ZComparator());

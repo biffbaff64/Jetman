@@ -142,29 +142,6 @@ public final class App extends LibApp
         return entities.teleporters[index];
     }
 
-    /**
-     * Returns the current number of lives left. This is done via
-     * a method so that _GOD_MODE can return _MAX_LIVES.
-     */
-    public static int getLives()
-    {
-        int lives;
-
-        if (Developer.isDevMode() && Developer.isGodMode())
-        {
-            lives = GameConstants._MAX_LIVES;
-        }
-        else
-        {
-            lives = gameProgress.getLives().getTotal();
-        }
-
-        return lives;
-    }
-
-    /**
-     * Returns the currently active game level.
-     */
     public static int getLevel()
     {
         return gameProgress.playerLevel;
