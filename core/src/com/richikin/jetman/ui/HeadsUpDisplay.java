@@ -276,10 +276,13 @@ public class HeadsUpDisplay implements Disposable
     {
         if (!App.teleportManager.teleportActive)
         {
-            if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
+            if (App.getPlayer() != null)
             {
-                fuelBar.setSpeed(App.getPlayer().isCarrying ? 1 : 0.25f);
-                fuelBar.updateSlowDecrement();
+                if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
+                {
+                    fuelBar.setSpeed(App.getPlayer().isCarrying ? 1 : 0.25f);
+                    fuelBar.updateSlowDecrement();
+                }
             }
 
             if (App.getBase() != null)
@@ -408,7 +411,6 @@ public class HeadsUpDisplay implements Disposable
             {
                 Developer.developerPanelActive = true;
 
-//                App.developerPanel.setup();
                 buttonDevOptions.release();
                 App.appState.set(StateID._STATE_DEVELOPER_PANEL);
             }
@@ -419,9 +421,6 @@ public class HeadsUpDisplay implements Disposable
     {
         if (AppConfig.hudExists)
         {
-//            originX = (camera.position.x - (float) (Gfx._HUD_WIDTH / 2));
-//            originY = (camera.position.y - (float) (Gfx._HUD_HEIGHT / 2));
-
             if (AppConfig.gameScreenActive())
             {
                 App.baseRenderer.parallaxForeground.render();
@@ -840,16 +839,9 @@ public class HeadsUpDisplay implements Disposable
                     );
             }
 
-            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
-            {
-                smallFont.draw
-                    (
-                        App.spriteBatch,
-                        "IIRM  : " + App.getPlayer().collision.isInRoverMiddle(),
-                        AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 570
-                    );
-            }
+//            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+//            {
+//            }
         }
     }
 

@@ -39,34 +39,35 @@ public final class App extends LibApp
     // =======================================================
     // Global access references
     //
-    public static MainGame       mainGame;
-    public static BaseRenderer   baseRenderer;
-    public static CameraUtils    cameraUtils;
-    public static WorldModel     worldModel;
-    public static InputManager   inputManager;
-    public static MainMenuScreen mainMenuScreen;
-    public static MainGameScreen mainGameScreen;
-    public static IAssets        assets;
-    public static ISettings      settings;
+    public static MainGame        mainGame;
+    public static BaseRenderer    baseRenderer;
+    public static CameraUtils     cameraUtils;
+    public static WorldModel      worldModel;
+    public static InputManager    inputManager;
+    public static MainMenuScreen  mainMenuScreen;
+    public static MainGameScreen  mainGameScreen;
+    public static IAssets         assets;
+    public static ISettings       settings;
+    public static HighScoreUtils  highScoreUtils;
+    public static ParallaxManager parallaxManager;
+    public static PanelManager    panelManager;
+    public static LevelManager    levelManager;
+    public static RoomManager     roomManager;
 
     //
     // Globals to be made available when MainGameScreen is active.
     // These must be released when MainGameScreen is destroyed.
-    public static CollisionUtils        collisionUtils;
-    public static HighScoreUtils        highScoreUtils;
-    public static EntityUtils           entityUtils;
-    public static Entities              entities;
-    public static MapUtils              mapUtils;
-    public static PathUtils             pathUtils;
-    public static EntityData            entityData;
-    public static MapData               mapData;
-    public static HeadsUpDisplay        hud;
-    public static GameProgress          gameProgress;
-    public static MapCreator            mapCreator;
-    public static ParallaxManager       parallaxManager;
-    public static PanelManager          panelManager;
-    public static LevelManager          levelManager;
-    public static RoomManager           roomManager;
+    public static CollisionUtils collisionUtils;
+    public static EntityUtils    entityUtils;
+    public static Entities       entities;
+    public static MapUtils       mapUtils;
+    public static PathUtils      pathUtils;
+    public static EntityData     entityData;
+    public static MapData        mapData;
+    public static HeadsUpDisplay hud;
+    public static GameProgress   gameProgress;
+    public static MapCreator     mapCreator;
+
     public static EntityManager         entityManager;
     public static RoverManager          roverManager;
     public static TeleportManager       teleportManager;
@@ -114,105 +115,36 @@ public final class App extends LibApp
     public static MainPlayer getPlayer()
     {
         return entities.mainPlayer;
-//        MainPlayer player = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.size > 0)
-//            && (entityData.entityMap.get(entityManager._playerIndex) != null)
-//            && (entityData.entityMap.get(entityManager._playerIndex) instanceof MainPlayer))
-//        {
-        // TODO: 16/11/2020
-//            player = ((MainPlayer) entityData.entityMap.get(entityManager._playerIndex));
-//        }
-//
-//        return player;
     }
 
     public static Rover getRover()
     {
         return entities.rover;
-//        Rover rover = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.get(entityManager._roverIndex) != null)
-//            && (entityData.entityMap.get(entityManager._roverIndex) instanceof Rover))
-//        {
-        // TODO: 16/11/2020
-//            rover = ((Rover) entityData.entityMap.get(entityManager._roverIndex));
-//        }
-//
-//        return rover;
     }
 
     public static RoverGun getGun()
     {
         return entities.roverGun;
-//        RoverGun gun = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.get(entityManager._roverGunIndex) != null)
-//            && (entityData.entityMap.get(entityManager._roverGunIndex) instanceof RoverGun))
-//        {
-        // TODO: 16/11/2020
-//            gun = ((RoverGun) entityData.entityMap.get(entityManager._roverGunIndex));
-//        }
-//
-//        return gun;
     }
 
     public static Bomb getBomb()
     {
         return entities.bomb;
-//        Bomb bomb = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.get(entityManager._bombIndex) != null)
-//            && (entityData.entityMap.get(entityManager._bombIndex) instanceof Bomb))
-//        {
-        // TODO: 16/11/2020
-//            bomb = ((Bomb) entityData.entityMap.get(entityManager._bombIndex));
-//        }
-//
-//        return bomb;
     }
 
     public static MissileBase getBase()
     {
         return entities.missileBase;
-//        MissileBase base = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.get(entityManager._missileBaseIndex) != null)
-//            && (entityData.entityMap.get(entityManager._missileBaseIndex) instanceof MissileBase))
-//        {
-        // TODO: 16/11/2020
-//            base = ((MissileBase) entityData.entityMap.get(entityManager._missileBaseIndex));
-//        }
-//
-//        return base;
     }
 
     public static Teleporter getTeleporter(int index)
     {
         return entities.teleporters[index];
-//        Teleporter teleporter = null;
-//
-//        if ((entityData.entityMap != null)
-//            && (entityData.entityMap.get(entityManager._teleportIndex[index]) != null)
-//            && (entityData.entityMap.get(entityManager._teleportIndex[index]).gid == GraphicID.G_TRANSPORTER))
-//        {
-        // TODO: 16/11/2020
-//            teleporter = (Teleporter) entityData.entityMap.get(entityManager._teleportIndex[index]);
-//        }
-//
-//        return teleporter;
     }
 
     /**
      * Returns the current number of lives left. This is done via
      * a method so that _GOD_MODE can return _MAX_LIVES.
-     *
-     * @return the lives.
      */
     public static int getLives()
     {
@@ -232,8 +164,6 @@ public final class App extends LibApp
 
     /**
      * Returns the currently active game level.
-     *
-     * @return the level
      */
     public static int getLevel()
     {

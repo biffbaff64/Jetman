@@ -28,6 +28,8 @@ public class TeleportManager extends GenericEntityManager
     public TeleportManager()
     {
         super(GraphicID.G_TRANSPORTER);
+
+        teleportActive = false;
     }
 
     @Override

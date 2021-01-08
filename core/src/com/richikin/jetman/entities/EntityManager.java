@@ -81,8 +81,8 @@ public class EntityManager implements IEntityManager
         App.defenceStationManager   = new DefenceStationManager();
         App.bombManager             = new BombManager();
 
-        _bombManagerIndex = App.entityData.addManager(App.bombManager);
-        _alienManagerIndex = App.entityData.addManager(new AlienManager());
+//        _bombManagerIndex = App.entityData.addManager(App.bombManager);
+//        _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 
     @Override
@@ -318,25 +318,25 @@ public class EntityManager implements IEntityManager
 
         AppConfig.entitiesExist = false;
 
-        playerManager = new PlayerManager();
-        playerManager.setSpawnPoint();
-        playerManager.createPlayer();
+//        playerManager = new PlayerManager();
+//        playerManager.setSpawnPoint();
+//        playerManager.createPlayer();
 
-        addBackgroundEntities();
+//        addBackgroundEntities();
 
-        App.roverManager.init();
-        App.teleportManager.init();
-        App.missileBaseManager.init();
-        App.defenceStationManager.init();
+//        App.roverManager.init();
+//        App.teleportManager.init();
+//        App.missileBaseManager.init();
+//        App.defenceStationManager.init();
 
-        for (final IEntityManagerComponent system : App.entityData.managerList)
-        {
-            system.init();
-        }
+//        for (final IEntityManagerComponent system : App.entityData.managerList)
+//        {
+//            system.init();
+//        }
 
-        App.entities.setAllEnemyStatuses();
+//        App.entities.setAllEnemyStatuses();
 
-        AppConfig.entitiesExist = true;
+//        AppConfig.entitiesExist = true;
     }
 
     /**
