@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.entities.components.IEntityManagerComponent;
 import com.richikin.jetman.entities.hero.MainPlayer;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
@@ -18,6 +19,12 @@ public class PlayerManager
 
     public PlayerManager()
     {
+    }
+
+    public void init()
+    {
+        setSpawnPoint();
+        createPlayer();
     }
 
     public void createPlayer()

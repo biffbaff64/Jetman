@@ -50,7 +50,6 @@ public class EntityManager implements IEntityManager
 
     // --------------------------------------------------
     // Indexes into manager list
-    public int _bombManagerIndex;
     public int _alienManagerIndex;
 
     // --------------------------------------------------
@@ -75,14 +74,40 @@ public class EntityManager implements IEntityManager
     {
         Trace.__FILE_FUNC();
 
+        // TODO: 09/01/2021 - Look at adding these into the entity manager list
         App.roverManager            = new RoverManager();
         App.teleportManager         = new TeleportManager();
         App.missileBaseManager      = new MissileBaseManager();
         App.defenceStationManager   = new DefenceStationManager();
-        App.bombManager             = new BombManager();
 
-//        _bombManagerIndex = App.entityData.addManager(App.bombManager);
-//        _alienManagerIndex = App.entityData.addManager(new AlienManager());
+        App.entityData.addManager(new BombManager());
+        _alienManagerIndex = App.entityData.addManager(new AlienManager());
+    }
+
+    public void initialiseForLevel()
+    {
+        Trace.__FILE_FUNC();
+
+        AppConfig.entitiesExist = false;
+
+        playerManager = new PlayerManager();
+        playerManager.init();
+
+        addBackgroundEntities();
+
+        App.roverManager.init();
+        App.teleportManager.init();
+        App.missileBaseManager.init();
+        App.defenceStationManager.init();
+
+        for (final IEntityManagerComponent system : App.entityData.managerList)
+        {
+            system.init();
+        }
+
+        App.entities.setAllEnemyStatuses();
+
+        AppConfig.entitiesExist = true;
     }
 
     @Override
@@ -154,7 +179,6 @@ public class EntityManager implements IEntityManager
                     //
                     // NB: entity might have died in postUpdate, which is
                     // why this next if() is not an else.
-
                     if (entity.getAction() == ActionStates._DEAD)
                     {
                         switch (entity.gid)
@@ -265,13 +289,6 @@ public class EntityManager implements IEntityManager
         }
     }
 
-    public boolean doesRoverExist()
-    {
-        return ((App.roverManager != null)
-            && (App.roverManager.getGID() == GraphicID.G_ROVER)
-            && (App.roverManager.getActiveCount() > 0));
-    }
-
     /**
      * Update the indexes into the entity map
      * for the main entities
@@ -310,33 +327,6 @@ public class EntityManager implements IEntityManager
     public boolean isEntityUpdateAllowed()
     {
         return (AppConfig.entitiesExist && !AppConfig.quitToMainMenu);
-    }
-
-    public void initialiseForLevel()
-    {
-        Trace.__FILE_FUNC();
-
-        AppConfig.entitiesExist = false;
-
-//        playerManager = new PlayerManager();
-//        playerManager.setSpawnPoint();
-//        playerManager.createPlayer();
-
-//        addBackgroundEntities();
-
-//        App.roverManager.init();
-//        App.teleportManager.init();
-//        App.missileBaseManager.init();
-//        App.defenceStationManager.init();
-
-//        for (final IEntityManagerComponent system : App.entityData.managerList)
-//        {
-//            system.init();
-//        }
-
-//        App.entities.setAllEnemyStatuses();
-
-//        AppConfig.entitiesExist = true;
     }
 
     /**

@@ -41,7 +41,7 @@ public class Bomb extends Carryable
 
         if (getAction() == ActionStates._DEAD)
         {
-            App.entityData.managerList.get(App.entityManager._bombManagerIndex).free();
+            App.entityData.managerList.get(App.entityManager ._bombManagerIndex).free();
         }
     }
 

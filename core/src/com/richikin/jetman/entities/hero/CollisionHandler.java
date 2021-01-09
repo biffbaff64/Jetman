@@ -200,7 +200,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         boolean isInMiddle = false;
 
-        if (App.entityManager.doesRoverExist())
+        if (App.doesRoverExist())
         {
             isInMiddle = (App.getPlayer().collisionObject.idBottom == GraphicID._GROUND)
                 && (App.getPlayer().getCollisionRectangle().x < App.getRover().frontWheel.getPosition().x)

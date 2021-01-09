@@ -2,6 +2,7 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.AssetLoader;
 import com.richikin.jetman.config.Settings;
@@ -73,7 +74,6 @@ public final class App extends LibApp
     public static TeleportManager       teleportManager;
     public static MissileBaseManager    missileBaseManager;
     public static DefenceStationManager defenceStationManager;
-    public static BombManager           bombManager;
 
     private App()
     {
@@ -145,6 +145,13 @@ public final class App extends LibApp
     public static int getLevel()
     {
         return gameProgress.playerLevel;
+    }
+
+    public static boolean doesRoverExist()
+    {
+        return ((roverManager != null)
+            && (roverManager.getGID() == GraphicID.G_ROVER)
+            && (roverManager.getActiveCount() > 0));
     }
 
     public static boolean doTransportersExist()
