@@ -35,7 +35,19 @@ public class EndgameManager
         }
         else
         {
-            if (App.gameProgress.gameCompleted)
+            //
+            // Rover destroyed, Earth destroyed, the apocalypse is here...
+            // The Human Race is no more, you failed...!!!
+            if (App.gameProgress.roverDestroyed)
+            {
+                Trace.__FILE_FUNC_WithDivider("ROVER DESTROYED");
+                Trace.divider();
+
+                App.getPlayer().setAction(ActionStates._DEAD);
+            }
+            //
+            // Waheyy!! All levels completed!
+            else if (App.gameProgress.gameCompleted)
             {
                 Trace.__FILE_FUNC_WithDivider("GAME COMPLETED");
                 Trace.divider();
@@ -50,15 +62,23 @@ public class EndgameManager
 
                 returnFlag = true;
             }
-            else if (App.gameProgress.levelCompleted)
+            //
+            // LJM Successfully destroyed the missile base!
+            else if (App.gameProgress.baseDestroyed)
             {
-                Trace.__FILE_FUNC_WithDivider("LEVEL COMPLETED");
-                Trace.divider();
+                if (!App.getHud().messageManager.doesPanelExist("base_destroyed"))
+                {
+                    App.gameProgress.levelCompleted = true;
 
-                App.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
-                App.appState.set(StateID._STATE_LEVEL_FINISHED);
+                    Trace.__FILE_FUNC_WithDivider("LEVEL COMPLETED");
+                    Trace.dbg("app.gameProgress.levelCompleted: " + App.gameProgress.levelCompleted);
+                    Trace.divider();
 
-                returnFlag = true;
+                    App.getHud().setStateID(StateID._STATE_LEVEL_FINISHED);
+                    App.appState.set(StateID._STATE_LEVEL_FINISHED);
+
+                    returnFlag = true;
+                }
             }
             //
             // Restarting due to life lost and

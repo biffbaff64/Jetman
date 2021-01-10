@@ -214,5 +214,6 @@ public class MissileBase extends GdxSprite
         App.missileBaseManager.free();
         collisionObject.kill();
         App.entityData.removeEntity(index);
+        App.gameProgress.levelCompleted = true;
     }
 }

@@ -109,8 +109,6 @@ public class HeadsUpDisplay implements Disposable
     private static final int _MAX_TIMEBAR_LENGTH = 1000;
     private static final int _MAX_FUELBAR_LENGTH = 1000;
 
-    private float           originX;
-    private float           originY;
     private ProgressBar     timeBar;
     private ProgressBar     fuelBar;
     private Texture         scorePanel;
@@ -174,14 +172,6 @@ public class HeadsUpDisplay implements Disposable
         baseArrowIndex  = _ARROW_DOWN;
 
         drawFuelLow(StateID._INIT);
-
-//        alphaDisplay = new AlphaDisplay();
-//        alphaDisplay.initialise
-//            (
-//                (int) AppConfig.hudAppConfig.hudOriginX + 279,
-//                (int) AppConfig.hudAppConfig.hudOriginY + 20
-//            );
-//        alphaDisplay.setActive(true);
 
         hudStateID = StateID._STATE_PANEL_START;
 
@@ -451,13 +441,6 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.draw(App.spriteBatch, camera, AppConfig.hudOriginX, AppConfig.hudOriginY);
             }
-            else
-            {
-                if (fuelLowWarning)
-                {
-                    drawFuelLow(StateID._UPDATE);
-                }
-            }
         }
     }
 
@@ -553,6 +536,11 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawItems()
     {
+        if (fuelLowWarning)
+        {
+            drawFuelLow(StateID._UPDATE);
+        }
+
         fuelBar.draw((int) (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y]));
         timeBar.draw((int) (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y]));
 
@@ -562,6 +550,7 @@ public class HeadsUpDisplay implements Disposable
                 (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
                 (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y])
             );
+
         App.spriteBatch.draw
             (
                 barDividerTime,
@@ -665,11 +654,6 @@ public class HeadsUpDisplay implements Disposable
             {
                 messageManager.draw();
             }
-
-//            if (alphaDisplay.activeMessage)
-//            {
-//                alphaDisplay.drawBackground();
-//            }
         }
     }
 

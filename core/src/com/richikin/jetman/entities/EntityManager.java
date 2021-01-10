@@ -51,6 +51,7 @@ public class EntityManager implements IEntityManager
     // --------------------------------------------------
     // Indexes into manager list
     public int _alienManagerIndex;
+    public int _bombManagerIndex;
 
     // --------------------------------------------------
     // Indexes into entity list
@@ -80,7 +81,7 @@ public class EntityManager implements IEntityManager
         App.missileBaseManager      = new MissileBaseManager();
         App.defenceStationManager   = new DefenceStationManager();
 
-        App.entityData.addManager(new BombManager());
+        _bombManagerIndex = App.entityData.addManager(new BombManager());
         _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 

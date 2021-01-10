@@ -166,13 +166,13 @@ public class GameProgress implements Disposable
         playerLevel = 1;
     }
 
-    @Override
-    public void dispose()
-    {
-    }
-
     public float getGameDifficulty()
     {
         return gameDiffculty;
+    }
+
+    @Override
+    public void dispose()
+    {
     }
 }

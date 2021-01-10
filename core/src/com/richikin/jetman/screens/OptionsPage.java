@@ -10,23 +10,23 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.richikin.enumslib.ScreenID;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
-import com.richikin.jetman.developer.DeveloperPanel;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.developer.Developer;
+import com.richikin.jetman.developer.DeveloperPanel;
+import com.richikin.jetman.ui.IUIPage;
 import com.richikin.jetman.ui.InstructionsPanel;
 import com.richikin.jetman.ui.PrivacyPolicyPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.jetman.ui.StatsPanel;
-import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
-import com.richikin.jetman.ui.IUIPage;
 
 public class OptionsPage implements IUIPage
 {
@@ -34,7 +34,7 @@ public class OptionsPage implements IUIPage
     private ImageButton        buttonPrivacy;
     private ImageButton        buttonStoryLine;
     private ImageButton        buttonDevOptions;
-    private ImageButton        buttonSignOut;
+    private ImageButton        buttonGoogle;
     private CheckBox           musicCheckBox;
     private CheckBox           fxCheckBox;
     private CheckBox           vibrateCheckBox;
@@ -233,25 +233,30 @@ public class OptionsPage implements IUIPage
         // ----------
         if (AppConfig.currentScreenID == ScreenID._MAIN_MENU)
         {
-            buttonPrivacy   = scene2DUtils.addButton("new_privacy_policy_button", "new_privacy_policy_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 511));
-            buttonStoryLine = scene2DUtils.addButton("new_objectives_button", "new_objectives_button_pressed", (int) AppConfig.hudOriginX + 401, (int) AppConfig.hudOriginY + (720 - 558));
+            buttonPrivacy = scene2DUtils.addButton
+                (
+                    "new_privacy_policy_button",
+                    "new_privacy_policy_button_pressed",
+                    (int) AppConfig.hudOriginX + 401,
+                    (int) AppConfig.hudOriginY + (720 - 511)
+                );
+
+            buttonStoryLine = scene2DUtils.addButton
+                (
+                    "new_objectives_button",
+                    "new_objectives_button_pressed",
+                    (int) AppConfig.hudOriginX + 401,
+                    (int) AppConfig.hudOriginY + (720 - 558)
+                );
 
             // ----------
-            if (App.googleServices.isSignedIn())
-            {
-                if (Developer.isDevMode() || (Version.majorVersion == 0))
-                {
-                    buttonSignOut = scene2DUtils.addButton
-                        (
-                            "btn_google_signout_dark",
-                            "btn_google_signout_dark_pressed",
-                            (int) AppConfig.hudOriginX + 986,
-                            (int) AppConfig.hudOriginY + (720 - 80)
-                        );
-
-                    buttonSignOut.setSize(191, 46);
-                }
-            }
+            buttonGoogle = scene2DUtils.addButton
+                (
+                    "signedOutButton",
+                    "signedInButton",
+                    (int) AppConfig.hudOriginX + 479,
+                    (int) AppConfig.hudOriginY + (720 - 241)
+                );
         }
 
         // ----------
@@ -298,6 +303,8 @@ public class OptionsPage implements IUIPage
         hintsCheckBox.setChecked(App.settings.isEnabled(Settings._SHOW_HINTS));
         musicCheckBox.setChecked(App.settings.isEnabled(Settings._MUSIC_ENABLED));
         fxCheckBox.setChecked(App.settings.isEnabled(Settings._SOUNDS_ENABLED));
+
+        buttonGoogle.setChecked(App.googleServices.isSignedIn());
     }
 
     /**
@@ -313,9 +320,9 @@ public class OptionsPage implements IUIPage
             buttonStats.setVisible(_visibilty);
         }
 
-        if (buttonSignOut != null)
+        if (buttonGoogle != null)
         {
-            buttonSignOut.setVisible(_visibilty);
+            buttonGoogle.setVisible(_visibilty);
         }
 
         if (buttonPrivacy != null)
@@ -385,16 +392,16 @@ public class OptionsPage implements IUIPage
             });
         }
 
-        if (buttonSignOut != null)
+        if (buttonGoogle != null)
         {
-            buttonSignOut.addListener(new ClickListener()
+            buttonGoogle.addListener(new ClickListener()
             {
                 public void clicked(InputEvent event, float x, float y)
                 {
                     App.googleServices.signOut();
 
-                    buttonSignOut.addAction(Actions.removeActor());
-                    buttonSignOut = null;
+                    buttonGoogle.addAction(Actions.removeActor());
+                    buttonGoogle = null;
                 }
             });
         }
@@ -571,10 +578,10 @@ public class OptionsPage implements IUIPage
             hintsCheckBox = null;
         }
 
-        if (buttonSignOut != null)
+        if (buttonGoogle != null)
         {
-            buttonSignOut.addAction(Actions.removeActor());
-            buttonSignOut = null;
+            buttonGoogle.addAction(Actions.removeActor());
+            buttonGoogle = null;
         }
 
         App.assets.unloadAsset(GameAssets._OPTIONS_PANEL_ASSET);
