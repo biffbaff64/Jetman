@@ -385,7 +385,9 @@ public class MainPlayer extends GdxSprite
             App.gameProgress.isRestarting   = true;
             App.gameProgress.playerGameOver = false;
 
-            App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+            // ---------------------------------------------------------
+            // App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
+            // ---------------------------------------------------------
         }
         else
         {
