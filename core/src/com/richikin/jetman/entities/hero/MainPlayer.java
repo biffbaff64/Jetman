@@ -386,6 +386,8 @@ public class MainPlayer extends GdxSprite
             App.gameProgress.playerGameOver = false;
 
             // ---------------------------------------------------------
+            // -------------------For Future Use------------------------
+            // ---------------------------------------------------------
             // App.mapData.checkPoint.set(sprite.getX(), sprite.getY());
             // ---------------------------------------------------------
         }
