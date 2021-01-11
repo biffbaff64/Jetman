@@ -51,12 +51,12 @@ public class MainPlayer extends GdxSprite
     public boolean isBlockedLeft;
     public boolean isBlockedRight;
 
-    public float        rightEdge;
-    public float        topEdge;
-    public float        shootRate;
-    public int          shootCount;
-    public float        maxMoveSpeed;
-    public Box          viewBox;
+    public float rightEdge;
+    public float topEdge;
+    public float shootRate;
+    public int   shootCount;
+    public float maxMoveSpeed;
+    public Box   viewBox;
 
     public ButtonInputHandler  buttons;
     public CollisionHandler    collision;
@@ -139,9 +139,9 @@ public class MainPlayer extends GdxSprite
         sprite.setRotation(0);
         sprite.setScale(1.0f);
 
-        strength       = GameConstants._MAX_STRENGTH;
-        shootCount     = 0;
-        laserColour    = 0;
+        strength    = GameConstants._MAX_STRENGTH;
+        shootCount  = 0;
+        laserColour = 0;
 
         actionButton.removeAction();
         setAction(ActionStates._SPAWNING);

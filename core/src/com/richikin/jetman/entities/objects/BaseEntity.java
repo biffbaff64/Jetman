@@ -11,26 +11,26 @@ import com.richikin.jetman.physics.aabb.AABBData;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.maths.SimpleVec2;
 
-public class GameEntity implements IEntityComponent, Disposable
+public class BaseEntity implements IEntityComponent, Disposable
 {
-    public GraphicID       gid;
-    public GraphicID       type;
-    public SimpleVec2      position;
-    public int             zPosition;
-    public int             frameWidth;
-    public int             frameHeight;
-    public CollisionObject collisionObject;
-    public Body            b2dBody;
-    public short           bodyCategory;
-    public short           collidesWith;
-    public ActionStates    entityAction;
+    public GraphicID       gid;                 // Entity ID
+    public GraphicID       type;                // Entity Type - _Entity, _OBSTACLE, etc.
+    public SimpleVec2      position;            // Map position
+    public int             zPosition;           // Z-Sort position
+    public int             frameWidth;          // Width in pixels, or width of frame for animations
+    public int             frameHeight;         // Width in pixels, or width of frame for animations
+    public CollisionObject collisionObject;     // ...
+    public Body            b2dBody;             // Box2D Physics body
+    public short           bodyCategory;        // Bit-mask entity collision type
+    public short           collidesWith;        // Bit-mask of entity types that can be collided with
+    public ActionStates    entityAction;        // Current action/state
 
-    public GameEntity()
+    public BaseEntity()
     {
         this.gid = GraphicID.G_NO_ID;
     }
 
-    public GameEntity(GraphicID _gid)
+    public BaseEntity(GraphicID _gid)
     {
         this.gid = _gid;
     }

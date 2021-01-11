@@ -337,6 +337,7 @@ public class Rover extends GdxSprite
             case G_DEFENDER_ZAP:
             case G_MISSILE_LAUNCHER:
             case G_MISSILE_BASE:
+            case G_POWER_BEAM:
             {
                 isHitting = true;
             }

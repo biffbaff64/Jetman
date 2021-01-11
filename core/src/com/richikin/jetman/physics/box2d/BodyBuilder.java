@@ -3,7 +3,7 @@ package com.richikin.jetman.physics.box2d;
 import com.badlogic.gdx.physics.box2d.*;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.graphics.Gfx;
 
@@ -106,9 +106,9 @@ public class BodyBuilder
      * ground, walls, and any object which does not need to move. Static bodies
      * require less computing power.
      *
-     * @param _entity The {@link GameEntity} to extract properties from.
+     * @param _entity The {@link BaseEntity} to extract properties from.
      */
-    public Body createStaticBody(GameEntity _entity)
+    public Body createStaticBody(BaseEntity _entity)
     {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -131,13 +131,13 @@ public class BodyBuilder
      * ground, walls, and any object which does not need to move. Static bodies
      * require less computing power.
      *
-     * @param _entity      The {@link GameEntity} to extract properties from.
+     * @param _entity      The {@link BaseEntity} to extract properties from.
      * @param _density     Object density
      * @param _friction    Object friction
      * @param _restitution The object restitution.
      * @return The newly created Body.
      */
-    public Body createStaticBody(@NotNull GameEntity _entity, float _density, float _friction, float _restitution)
+    public Body createStaticBody(@NotNull BaseEntity _entity, float _density, float _friction, float _restitution)
     {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox
@@ -170,7 +170,7 @@ public class BodyBuilder
         return body;
     }
 
-    private BodyDef createBodyDef(BodyDef.BodyType bodyType, @NotNull GameEntity _entity)
+    private BodyDef createBodyDef(BodyDef.BodyType bodyType, @NotNull BaseEntity _entity)
     {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type          = bodyType;
@@ -185,7 +185,7 @@ public class BodyBuilder
         return bodyDef;
     }
 
-    private FixtureDef createFixtureDef(@NotNull GameEntity _entity, Shape _shape, float _density, float _friction, float _restitution)
+    private FixtureDef createFixtureDef(@NotNull BaseEntity _entity, Shape _shape, float _density, float _friction, float _restitution)
     {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape               = _shape;

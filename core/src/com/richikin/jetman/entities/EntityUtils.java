@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.graphics.Gfx;
@@ -86,7 +86,7 @@ public class EntityUtils
         {
             float distance = App.getPlayer().getPosition().dst(distantSprite.getPosition());
 
-            for (GameEntity entity : App.entityData.entityMap)
+            for (BaseEntity entity : App.entityData.entityMap)
             {
                 if (entity.gid == gid)
                 {
@@ -115,7 +115,7 @@ public class EntityUtils
 
         float distance = checkSprite.getPosition().dst(distantSprite.getPosition());
 
-        for (GameEntity entity : App.entityData.entityMap)
+        for (BaseEntity entity : App.entityData.entityMap)
         {
             GdxSprite gdxSprite = (GdxSprite) entity;
 
@@ -276,7 +276,7 @@ public class EntityUtils
     {
         GdxSprite gdxSprite = null;
 
-        for (GameEntity entity : App.entityData.entityMap)
+        for (BaseEntity entity : App.entityData.entityMap)
         {
             if (entity.gid == gid)
             {
@@ -292,7 +292,7 @@ public class EntityUtils
     {
         GdxSprite gdxSprite = null;
 
-        for (GameEntity entity : App.entityData.entityMap)
+        for (BaseEntity entity : App.entityData.entityMap)
         {
             if (entity.gid == gid)
             {

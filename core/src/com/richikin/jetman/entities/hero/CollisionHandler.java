@@ -6,11 +6,10 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
-import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Movement;
 
 public class CollisionHandler implements ICollisionListener, Disposable
@@ -39,13 +38,13 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 case _CRATER:
                 case G_ROVER_BOOT:
                 {
-                    if (App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
-                    {
-                        App.getPlayer().explode();
-                        App.getPlayer().isRotating = false;
-                        App.getPlayer().rotateSpeed = 0;
-                    }
-                    else
+//                    if (App.getPlayer().getAction() == ActionStates._FALLING_TO_GROUND)
+//                    {
+//                        App.getPlayer().explode();
+//                        App.getPlayer().isRotating = false;
+//                        App.getPlayer().rotateSpeed = 0;
+//                    }
+//                    else
                     {
                         if (cobjHitting.gid == App.getPlayer().collisionObject.idBottom)
                         {
@@ -77,11 +76,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
                 // Objects that can be collided with, and
                 // which WILL hurt LJM.
+                case G_MISSILE_BASE:
+                case G_MISSILE_LAUNCHER:
                 case G_POWER_BEAM:
                 case G_NO_ID:
                 default:
                 {
                     if ((App.getPlayer().getAction() != ActionStates._EXPLODING)
+                        && (App.getPlayer().getAction() != ActionStates._FALLING_TO_GROUND)
                         && (App.getPlayer().getAction() != ActionStates._DYING))
                     {
                         App.getPlayer().strength = 0;
@@ -92,6 +94,14 @@ public class CollisionHandler implements ICollisionListener, Disposable
                             case G_MISSILE_LAUNCHER:
                             case G_POWER_BEAM:
                             {
+                                if (App.getPlayer().isInMidAir)
+                                {
+                                    App.getPlayer().setAction(ActionStates._FALLING_TO_GROUND);
+                                }
+                                else
+                                {
+                                    App.getPlayer().explode();
+                                }
                             }
                             break;
 
@@ -125,7 +135,7 @@ public class CollisionHandler implements ICollisionListener, Disposable
     {
         int nextTo = 0;
 
-        for (GameEntity sprite : App.entityData.entityMap)
+        for (BaseEntity sprite : App.entityData.entityMap)
         {
             if (sprite.gid == graphicID)
             {
@@ -148,7 +158,11 @@ public class CollisionHandler implements ICollisionListener, Disposable
 
         if (App.getBomb() != null)
         {
-            isPresent = Intersector.overlaps(App.getPlayer().getCollisionRectangle(), App.getBomb().getCollisionRectangle());
+            isPresent = Intersector.overlaps
+                (
+                    App.getPlayer().getCollisionRectangle(),
+                    App.getBomb().getCollisionRectangle()
+                );
         }
 
         return isPresent;

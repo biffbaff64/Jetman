@@ -59,19 +59,17 @@ public class LaserBarrier extends GdxSprite
     {
         create(entityDescriptor);
 
-        colourIndex = MathUtils.random(colourList.length - 1);
-
-        setAction(ActionStates._STANDING);
-
+        colourIndex  = MathUtils.random(colourList.length - 1);
         bodyCategory = Gfx.CAT_FIXED_ENEMY;
         collidesWith = Gfx.CAT_PLAYER | Gfx.CAT_VEHICLE;
+        onTimer      = 20 + MathUtils.random(10);
+        offTimer     = 5 + MathUtils.random(10);
+        restingTime  = onTimer;
+        stopWatch    = StopWatch.start();
+        isAnimating  = false;
+        frameNumber  = 0;
 
-        onTimer     = 20 + MathUtils.random(10);
-        offTimer    = 5 + MathUtils.random(10);
-        restingTime = onTimer;
-        stopWatch   = StopWatch.start();
-        isAnimating = false;
-        frameNumber = 0;
+        setAction(ActionStates._STANDING);
 
         addDynamicPhysicsBody();
     }

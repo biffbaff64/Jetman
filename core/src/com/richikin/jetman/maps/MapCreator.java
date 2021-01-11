@@ -2,13 +2,11 @@ package com.richikin.jetman.maps;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.enumslib.TileID;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.aabb.AABBData;
@@ -151,14 +149,14 @@ public class MapCreator
 
     protected void createCollisionBoxes()
     {
-        GameEntity gameEntity;
+        BaseEntity baseEntity;
 
-        gameEntity                 = new GameEntity();
-        gameEntity.gid             = GraphicID.G_NO_ID;
-        gameEntity.type            = GraphicID.G_NO_ID;
-        gameEntity.position        = new SimpleVec2();
-        gameEntity.collisionObject = App.collisionUtils.newObject();
-        AABBData.add(gameEntity.collisionObject);
+        baseEntity                 = new BaseEntity();
+        baseEntity.gid             = GraphicID.G_NO_ID;
+        baseEntity.type            = GraphicID.G_NO_ID;
+        baseEntity.position        = new SimpleVec2();
+        baseEntity.collisionObject = App.collisionUtils.newObject();
+        AABBData.add(baseEntity.collisionObject);
 
         for (MapObject mapObject : App.mapData.mapObjects)
         {
@@ -166,25 +164,25 @@ public class MapCreator
             {
                 if (null != mapObject.getName())
                 {
-                    gameEntity = new GameEntity();
+                    baseEntity = new BaseEntity();
 
                     switch (mapObject.getName().toLowerCase())
                     {
                         case "ceiling":
                         {
-                            gameEntity.gid          = GraphicID._CEILING;
-                            gameEntity.type         = GraphicID._OBSTACLE;
-                            gameEntity.bodyCategory = Gfx.CAT_CEILING;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER;
+                            baseEntity.gid          = GraphicID._CEILING;
+                            baseEntity.type         = GraphicID._OBSTACLE;
+                            baseEntity.bodyCategory = Gfx.CAT_CEILING;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER;
                         }
                         break;
 
                         case "crater":
                         {
-                            gameEntity.gid          = GraphicID._CRATER;
-                            gameEntity.type         = GraphicID._OBSTACLE;
-                            gameEntity.bodyCategory = Gfx.CAT_SCENERY;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                            baseEntity.gid          = GraphicID._CRATER;
+                            baseEntity.type         = GraphicID._OBSTACLE;
+                            baseEntity.bodyCategory = Gfx.CAT_SCENERY;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
                                 | Gfx.CAT_MOBILE_ENEMY
                                 | Gfx.CAT_MISSILE_BASE
@@ -195,10 +193,10 @@ public class MapCreator
 
                         case "bridge":
                         {
-                            gameEntity.gid          = GraphicID._BRIDGE;
-                            gameEntity.type         = GraphicID._OBSTACLE;
-                            gameEntity.bodyCategory = Gfx.CAT_GROUND;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                            baseEntity.gid          = GraphicID._BRIDGE;
+                            baseEntity.type         = GraphicID._OBSTACLE;
+                            baseEntity.bodyCategory = Gfx.CAT_GROUND;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
                                 | Gfx.CAT_MOBILE_ENEMY
                                 | Gfx.CAT_MISSILE_BASE
@@ -210,10 +208,10 @@ public class MapCreator
                         case "ground":
                         case "wall":
                         {
-                            gameEntity.gid          = GraphicID._GROUND;
-                            gameEntity.type         = GraphicID._OBSTACLE;
-                            gameEntity.bodyCategory = Gfx.CAT_GROUND;
-                            gameEntity.collidesWith = Gfx.CAT_PLAYER
+                            baseEntity.gid          = GraphicID._GROUND;
+                            baseEntity.type         = GraphicID._OBSTACLE;
+                            baseEntity.bodyCategory = Gfx.CAT_GROUND;
+                            baseEntity.collidesWith = Gfx.CAT_PLAYER
                                 | Gfx.CAT_PLAYER_WEAPON
                                 | Gfx.CAT_MOBILE_ENEMY
                                 | Gfx.CAT_MISSILE_BASE
@@ -226,20 +224,20 @@ public class MapCreator
                             break;
                     }
 
-                    if (gameEntity.gid != GraphicID.G_NO_ID)
+                    if (baseEntity.gid != GraphicID.G_NO_ID)
                     {
-                        gameEntity.position    = new SimpleVec2
+                        baseEntity.position    = new SimpleVec2
                             (
                                 (int) ((float) mapObject.getProperties().get("x")),
                                 (int) ((float) mapObject.getProperties().get("y"))
                             );
-                        gameEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
-                        gameEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));
-                        gameEntity.setCollisionObject(gameEntity.position.x, gameEntity.position.y);
+                        baseEntity.frameWidth  = (int) ((float) mapObject.getProperties().get("width"));
+                        baseEntity.frameHeight = (int) ((float) mapObject.getProperties().get("height"));
+                        baseEntity.setCollisionObject(baseEntity.position.x, baseEntity.position.y);
 
                         if (App.settings.isEnabled(Settings._BOX2D_PHYSICS))
                         {
-                            gameEntity.b2dBody = App.worldModel.bodyBuilder.createStaticBody(gameEntity);
+                            baseEntity.b2dBody = App.worldModel.bodyBuilder.createStaticBody(baseEntity);
                         }
                     }
                 }

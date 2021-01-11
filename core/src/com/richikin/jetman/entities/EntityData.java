@@ -4,14 +4,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.entities.structures.DefenceStation;
 import com.richikin.jetman.entities.components.IEntityManagerComponent;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.utilslib.logging.Trace;
 
 import java.util.ArrayList;
 
 public class EntityData implements Disposable
 {
-    public Array<GameEntity>                  entityMap;
+    public Array<BaseEntity>                  entityMap;
     public ArrayList<IEntityManagerComponent> managerList;
     public DefenceStation[]                   defenceStations;
 
@@ -38,9 +38,9 @@ public class EntityData implements Disposable
         {
             thisCount = 0;
 
-            for (GameEntity gameEntity : new Array.ArrayIterator<>(entityMap))
+            for (BaseEntity baseEntity : new Array.ArrayIterator<>(entityMap))
             {
-                if (gameEntity.gid == managerComponent.getGID())
+                if (baseEntity.gid == managerComponent.getGID())
                 {
                     thisCount++;
                 }
@@ -57,7 +57,7 @@ public class EntityData implements Disposable
         return managerList.size() - 1;
     }
 
-    public void addEntity(GameEntity _entity)
+    public void addEntity(BaseEntity _entity)
     {
         if (_entity != null)
         {

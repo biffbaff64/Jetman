@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
-import com.richikin.jetman.entities.objects.GameEntity;
+import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;
@@ -26,8 +26,8 @@ public class CollisionObject implements Disposable
     public GraphicID     type;              // _OBSTACLE or _ENTITY
     public short         contactMask;       //
     public CollisionRect rectangle;         // The actual collision rectangle
-    public GameEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
-    public GameEntity    contactEntity;     // ID of contact object
+    public BaseEntity    parentEntity;      // The GdxSprite this collision object belongs to, if applicable.
+    public BaseEntity    contactEntity;     // ID of contact object
     public int           index;             // This objects position in the collision object arraylist
 
     public GraphicID idTop;                 // ID of object hitting the top of this object
@@ -89,12 +89,12 @@ public class CollisionObject implements Disposable
         return (contactMask & AABBData._RIGHT) > 0;
     }
 
-    public GameEntity getParent()
+    public BaseEntity getParent()
     {
         return parentEntity;
     }
 
-    public GameEntity getContact()
+    public BaseEntity getContact()
     {
         return contactEntity;
     }

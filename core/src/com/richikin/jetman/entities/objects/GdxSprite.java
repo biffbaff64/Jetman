@@ -20,7 +20,11 @@ import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 
-public class GdxSprite extends GameEntity implements ISpriteComponent
+/**
+ *  This should really be named GameSprite, but GdxSprite is a
+ *  historic name I've used for quite some time.
+ */
+public class GdxSprite extends BaseEntity implements ISpriteComponent
 {
     // -----------------------------------------------
     // properties etc
@@ -147,6 +151,7 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
         initXYZ.set(sprite.getX(), sprite.getY(), vec3F.z);
     }
 
+    // TODO: 11/01/2021 - relocate this method to a utility class
     @Override
     public void addDynamicPhysicsBody()
     {
@@ -162,6 +167,7 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
         }
     }
 
+    // TODO: 11/01/2021 - relocate this method to a utility class
     @Override
     public void addKinematicPhysicsBody()
     {
@@ -337,6 +343,7 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
      * has gone beyond either if the maps borders.
      */
     // TODO: 04/12/2020 - Remove Feature Envy warning (Suppressed for now).
+    // TODO: 11/01/2021 - relocate this method to a utility class
     @SuppressWarnings("FeatureEnvy")
     @Override
     public void wrap()
@@ -366,8 +373,6 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
     /**
      * Add a {@link ICollisionListener} to
      * this entity.
-     *
-     * @param listener The listener.
      */
     @Override
     public void addCollisionListener(ICollisionListener listener)
@@ -438,8 +443,6 @@ public class GdxSprite extends GameEntity implements ISpriteComponent
      * The LibGDX {@link Sprite} class doesn't have a
      * getPosition() method, just getX() and getY(),
      * so this is here to make up for that.
-     *
-     * @return Vector3 holding the map position.
      */
     @Override
     public Vector3 getPosition()
