@@ -7,6 +7,7 @@ import com.richikin.enumslib.StateID;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.maths.XYSetF;
 import com.richikin.utilslib.physics.Direction;
+import com.richikin.utilslib.ui.DefaultPanel;
 
 public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
 {
@@ -29,6 +30,7 @@ public class SlidePanel extends DefaultPanel implements IUserInterfacePanel
         this.nameID        = _nameID;
 
         deactivate();
+
         this.isInPlace = false;
         this.action    = ActionStates._NO_ACTION;
 

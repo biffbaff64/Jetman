@@ -17,7 +17,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.ui.DefaultPanel;
+import com.richikin.utilslib.ui.DefaultPanel;
 import com.richikin.jetman.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;

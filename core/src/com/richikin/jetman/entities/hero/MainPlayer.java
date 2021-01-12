@@ -136,6 +136,7 @@ public class MainPlayer extends GdxSprite
         isBlockedLeft   = false;
         isBlockedRight  = false;
 
+        sprite.setPosition(initXYZ.getX(), initXYZ.getY());
         sprite.setRotation(0);
         sprite.setScale(1.0f);
 

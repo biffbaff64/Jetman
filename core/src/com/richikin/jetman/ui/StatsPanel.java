@@ -19,6 +19,7 @@ import com.richikin.jetman.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.ui.DefaultPanel;
 
 public class StatsPanel extends DefaultPanel
 {

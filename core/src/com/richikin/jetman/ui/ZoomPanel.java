@@ -8,6 +8,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.camera.Zoom;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.ui.DefaultPanel;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.utilslib.ui.DefaultPanel;
 
 public class InstructionsPanel extends DefaultPanel
 {

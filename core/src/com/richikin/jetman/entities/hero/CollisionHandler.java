@@ -8,6 +8,7 @@ import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.BaseEntity;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.physics.Movement;
@@ -78,6 +79,8 @@ public class CollisionHandler implements ICollisionListener, Disposable
                 // which WILL hurt LJM.
                 case G_MISSILE_BASE:
                 case G_MISSILE_LAUNCHER:
+                case G_DEFENDER:
+                case G_DEFENDER_ZAP:
                 case G_POWER_BEAM:
                 case G_NO_ID:
                 default:
@@ -93,7 +96,11 @@ public class CollisionHandler implements ICollisionListener, Disposable
                             case G_MISSILE_BASE:
                             case G_MISSILE_LAUNCHER:
                             case G_POWER_BEAM:
+                            case G_DEFENDER:
+                            case G_DEFENDER_ZAP:
                             {
+                                rebound();
+
                                 if (App.getPlayer().isInMidAir)
                                 {
                                     App.getPlayer().setAction(ActionStates._FALLING_TO_GROUND);
@@ -299,6 +306,31 @@ public class CollisionHandler implements ICollisionListener, Disposable
             {
                 App.getPlayer().isJumpingCrater = false;
             }
+        }
+    }
+
+    private void rebound()
+    {
+        if (App.getPlayer().collisionObject.hasContactUp()
+            && !App.getPlayer().collisionObject.hasContactDown())
+        {
+            App.getPlayer().sprite.translateY(Gfx.getTileHeight() * Movement._DIRECTION_DOWN);
+        }
+        else if (App.getPlayer().collisionObject.hasContactDown()
+            && !App.getPlayer().collisionObject.hasContactUp())
+        {
+            App.getPlayer().sprite.translateY(Gfx.getTileHeight() * Movement._DIRECTION_UP);
+        }
+
+        if (App.getPlayer().collisionObject.hasContactLeft()
+            && !App.getPlayer().collisionObject.hasContactRight())
+        {
+            App.getPlayer().sprite.translateX(Gfx.getTileWidth() * Movement._DIRECTION_RIGHT);
+        }
+        else if (App.getPlayer().collisionObject.hasContactRight()
+            && !App.getPlayer().collisionObject.hasContactLeft())
+        {
+            App.getPlayer().sprite.translateX(Gfx.getTileWidth() * Movement._DIRECTION_LEFT);
         }
     }
 

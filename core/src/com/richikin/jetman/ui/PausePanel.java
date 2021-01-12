@@ -17,6 +17,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.ui.DefaultPanel;
 
 public class PausePanel extends DefaultPanel
 {

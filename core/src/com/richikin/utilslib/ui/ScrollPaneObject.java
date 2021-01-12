@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;

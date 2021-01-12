@@ -1,4 +1,4 @@
-package com.richikin.jetman.ui;
+package com.richikin.utilslib.ui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
-import com.richikin.jetman.core.App;
+import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.logging.StateManager;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
@@ -61,7 +61,7 @@ public abstract class DefaultPanel implements IDefaultUIPanel, Disposable
     {
         if (isActive && (textureRegion != null))
         {
-            App.spriteBatch.draw(textureRegion, position.getX(), position.getY(), panelWidth, panelHeight);
+            LibApp.spriteBatch.draw(textureRegion, position.getX(), position.getY(), panelWidth, panelHeight);
         }
     }
 
