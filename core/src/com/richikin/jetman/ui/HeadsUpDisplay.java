@@ -204,17 +204,7 @@ public class HeadsUpDisplay implements Disposable
                     updateArrowIndicators();
                     updateDeveloperItems();
 
-                    if (messageManager.isEnabled())
-                    {
-                        messageManager.update();
-
-                        if (!messageManager.doesPanelExist("ZoomPanel")
-                            && (App.appState.peek() != StateID._STATE_GAME)
-                            && App.missileBaseManager.isMissileActive)
-                        {
-                            App.appState.set(StateID._STATE_GAME);
-                        }
-                    }
+                    messageManager.update();
                 }
             }
             break;
@@ -223,28 +213,17 @@ public class HeadsUpDisplay implements Disposable
             {
                 pausePanel.update();
 
-                if (buttonPause.isPressed() || AppConfig.quitToMainMenu)
+                if (buttonPause.isPressed())
                 {
                     AppConfig.unPause();
                     buttonPause.release();
                     pausePanel.dispose();
 
-                    if (AppConfig.quitToMainMenu)
-                    {
-                        showHUDControls = false;
-                        hudStateID      = StateID._STATE_CLOSING;
+                    showHUDControls = true;
+                    hudStateID      = StateID._STATE_PANEL_UPDATE;
 
-                        hideControls();
-                        showPauseButton(false);
-                    }
-                    else
-                    {
-                        showHUDControls = true;
-                        hudStateID      = StateID._STATE_PANEL_UPDATE;
-
-                        showControls();
-                        showPauseButton(true);
-                    }
+                    showControls();
+                    showPauseButton(true);
                 }
             }
             break;

@@ -220,14 +220,14 @@ public class GameControlLoop extends AbstractControlLoop
     {
         App.getHud().update();
 
-        if (scr().retryDelay.time(TimeUnit.MILLISECONDS) > 2000)
+        if (AppConfig.quitToMainMenu || (scr().retryDelay.time(TimeUnit.MILLISECONDS) > 2000))
         {
             if (AppConfig.quitToMainMenu)
             {
-                App.appState.set(StateID._STATE_GAME_OVER);
-
                 App.getHud().hideControls();
                 App.getHud().messageManager.addZoomMessage(GameAssets._GAMEOVER_MSG_ASSET, 3000);
+
+                App.appState.set(StateID._STATE_GAME_OVER);
             }
             else
             {
@@ -262,7 +262,7 @@ public class GameControlLoop extends AbstractControlLoop
     {
         App.getHud().update();
 
-        if (!App.panelManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
+        if (!App.getHud().messageManager.doesPanelExist(GameAssets._GAMEOVER_MSG_ASSET))
         {
             App.appState.set(StateID._STATE_END_GAME);
         }
@@ -275,13 +275,10 @@ public class GameControlLoop extends AbstractControlLoop
     {
         App.getHud().update();
 
-        //
-        // If the game has a 'Completed Panel' this is
-        // a good place to update it and check for it closing.
-
-        //
-        // App.appState should be set to _STATE_END_GAME when appropriate.
-        App.appState.set(StateID._STATE_END_GAME);
+        if (scr().completedPanel.update())
+        {
+            App.appState.set(StateID._STATE_END_GAME);
+        }
     }
 
     /**

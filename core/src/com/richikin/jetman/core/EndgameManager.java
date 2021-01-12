@@ -23,6 +23,8 @@ public class EndgameManager
             App.getHud().hideControls();
 
             //
+            // All lives lost...
+            //
             // Setting appState to Level Retry, but setting quitToMainMenu to true
             // will redirect flow to Game Over state after a short delay followed
             // by a 'Game Over' message.

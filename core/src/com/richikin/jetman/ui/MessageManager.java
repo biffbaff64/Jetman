@@ -31,13 +31,17 @@ public class MessageManager
 
     public void update()
     {
-        for (int i = 0; i < messages.size; i++)
+        if (isEnabled())
         {
-            if (messages.get(i).enabled)
+            for (int i = 0; i < messages.size; i++)
             {
-                if (messages.get(i).panel.update())
+                if (messages.get(i).enabled)
                 {
-                    messages.removeIndex(i);
+                    // Returns TRUE if finished...
+                    if (messages.get(i).panel.update())
+                    {
+                        messages.removeIndex(i);
+                    }
                 }
             }
         }
@@ -68,7 +72,7 @@ public class MessageManager
     }
 
     @SuppressWarnings("EmptyMethod")
-    public void closeSlidePanel(String _name)
+    public void closeSlidePanel(String name)
     {
     }
 
@@ -80,7 +84,7 @@ public class MessageManager
         }
         else
         {
-            Trace.__FILE_FUNC();
+            Trace.__FILE_FUNC(imageName);
 
             IUserInterfacePanel panel = new ZoomPanel();
 
@@ -96,37 +100,40 @@ public class MessageManager
             messages.add(new Message(panel, true, imageName));
 
             enable();
+
+            Trace.dbg("Finished: Active messages = " + messages.size);
         }
     }
 
-    public void addZoomMessage(String _fileName, int _delay, int x, int y)
+    public void addZoomMessage(String fileName, int delay, int x, int y)
     {
-        addZoomMessage(_fileName, _delay);
-        setPosition(_fileName, x, y);
+        Trace.__FILE_FUNC(fileName);
+
+        addZoomMessage(fileName, delay);
+        setPosition(fileName, x, y);
         enable();
     }
 
-    public boolean doesPanelExist(String _nameID)
+    public boolean doesPanelExist(String nameID)
     {
         boolean exists = false;
 
         for (Message msg : messages)
         {
-            if (_nameID.equals(msg.name))
+            if (nameID.equals(msg.name))
             {
                 exists = true;
-                break;
             }
         }
 
         return exists;
     }
 
-    public void setPosition(String _nameID, int x, int y)
+    public void setPosition(String nameID, int x, int y)
     {
         for (Message msg : messages)
         {
-            if (_nameID.equals(msg.name))
+            if (nameID.equals(msg.name))
             {
                 msg.panel.setPosition(x, y);
             }
