@@ -53,7 +53,7 @@ public class HiscorePage implements IUIPage, Disposable
             Color.SKY,
             Color.SKY,
             Color.CYAN,
-            };
+        };
 
     private Label[] levelLabels;
     private Label[] rankLabels;
@@ -64,7 +64,6 @@ public class HiscorePage implements IUIPage, Disposable
     private Texture      foreground;
 
     private int[] colorIndex;
-    private int   loopCount;
 
     public HiscorePage()
     {
@@ -111,8 +110,6 @@ public class HiscorePage implements IUIPage, Disposable
     public void show()
     {
         showItems(true);
-
-        loopCount = 0;
 
         if (App.highScoreUtils.newHighScoreAvailable)
         {
@@ -168,7 +165,6 @@ public class HiscorePage implements IUIPage, Disposable
         }
 
         colorIndex = new int[_DISPLAYED_HISCORES];
-        loopCount  = 0;
 
         Scene2DUtils scene2DUtils = new Scene2DUtils();
 
@@ -217,11 +213,6 @@ public class HiscorePage implements IUIPage, Disposable
         }
     }
 
-    /**
-     * Show or Hide all menu items
-     *
-     * @param _visible visibility flag
-     */
     private void showItems(boolean _visible)
     {
         if (rankLabels != null)

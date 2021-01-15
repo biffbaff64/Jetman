@@ -3,12 +3,10 @@
 TODO Items
 ----------
 
-    - Use GameButton/Switch instead of Scene2D button classes? If not, should GameButton/AnimatedButton
-        be removed?
-    - Implement keyboard controls for desktop version
-    - Implement external controller for desktop version
-    - Implement External controller for android version
-    - Remove Speed class. Use SimpleVec2F instead.
+    - Improve speed of showing HiScore page
+    - Bug when driving the Moon Lander, starts to disappear when moving.
+    - Glitch when wrapping map boundary
+    - Add ABXY button hints for player actions
 
     Dispose Instances checklist
     ---------------------------

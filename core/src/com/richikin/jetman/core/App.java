@@ -5,17 +5,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.AssetLoader;
+import com.richikin.jetman.characters.managers.RoverManager;
+import com.richikin.jetman.characters.misc.Bomb;
+import com.richikin.jetman.characters.misc.Rover;
+import com.richikin.jetman.characters.misc.RoverGun;
 import com.richikin.jetman.config.Settings;
-import com.richikin.jetman.entities.Entities;
+import com.richikin.jetman.characters.Entities;
 import com.richikin.jetman.entities.EntityData;
 import com.richikin.jetman.entities.EntityManager;
 import com.richikin.jetman.entities.EntityUtils;
-import com.richikin.jetman.entities.characters.*;
-import com.richikin.jetman.entities.hero.MainPlayer;
-import com.richikin.jetman.entities.managers.*;
+import com.richikin.jetman.characters.hero.MainPlayer;
 import com.richikin.jetman.entities.paths.PathUtils;
-import com.richikin.jetman.entities.structures.MissileBase;
-import com.richikin.jetman.entities.structures.Teleporter;
+import com.richikin.jetman.characters.misc.MissileBase;
+import com.richikin.jetman.characters.misc.Teleporter;
 import com.richikin.jetman.graphics.CameraUtils;
 import com.richikin.jetman.graphics.IAssets;
 import com.richikin.jetman.graphics.parallax.ParallaxManager;
@@ -30,7 +32,6 @@ import com.richikin.jetman.screens.MainGameScreen;
 import com.richikin.jetman.screens.MainMenuScreen;
 import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
-import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.logging.StateManager;
 
@@ -69,11 +70,11 @@ public final class App extends LibApp
     public static GameProgress   gameProgress;
     public static MapCreator     mapCreator;
 
-    public static EntityManager         entityManager;
-    public static RoverManager          roverManager;
-    public static TeleportManager       teleportManager;
-    public static MissileBaseManager    missileBaseManager;
-    public static DefenceStationManager defenceStationManager;
+    public static EntityManager                                                 entityManager;
+    public static RoverManager                                                  roverManager;
+    public static com.richikin.jetman.characters.managers.TeleportManager       teleportManager;
+    public static com.richikin.jetman.characters.managers.MissileBaseManager    missileBaseManager;
+    public static com.richikin.jetman.characters.managers.DefenceStationManager defenceStationManager;
 
     private App()
     {
