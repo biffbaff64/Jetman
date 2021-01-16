@@ -153,24 +153,14 @@ public class Rover extends GdxSprite
 
             case _RUNNING:
             {
-                frontWheel.isRotating = true;
-                backWheel.isRotating = true;
-
-                frontWheel.rotateSpeed = speed.getX() * (direction.getX() * -1);
-                backWheel.rotateSpeed = speed.getX() * (direction.getX() * -1);
-
-                sprite.translate(speed.getX() * direction.getX(), 0);
+                moveRover();
             }
             break;
 
             case _HURT:
             case _KILLED:
             {
-                ExplosionManager explosionManager = new ExplosionManager();
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel);
-                explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel);
+                explode();
 
                 collisionObject.setInvisibility(1000);
 
@@ -185,13 +175,7 @@ public class Rover extends GdxSprite
 
             case _DYING:
             {
-                setAction(ActionStates._DEAD);
-                frontWheel.setAction(ActionStates._DEAD);
-                backWheel.setAction(ActionStates._DEAD);
-                roverBack.setAction(ActionStates._DEAD);
-
-                App.gameProgress.playerLifeOver = true;
-                App.gameProgress.roverDestroyed = true;
+                kill();
             }
             break;
 
@@ -211,6 +195,37 @@ public class Rover extends GdxSprite
         frontWheel.updateCommon();
         backWheel.updateCommon();
         roverBack.updateCommon();
+    }
+
+    private void moveRover()
+    {
+        frontWheel.isRotating = true;
+        backWheel.isRotating = true;
+
+        frontWheel.rotateSpeed = speed.getX() * (direction.getX() * -1);
+        backWheel.rotateSpeed = speed.getX() * (direction.getX() * -1);
+
+        sprite.translate(speed.getX() * direction.getX(), 0);
+    }
+
+    private void kill()
+    {
+        setAction(ActionStates._DEAD);
+        frontWheel.setAction(ActionStates._DEAD);
+        backWheel.setAction(ActionStates._DEAD);
+        roverBack.setAction(ActionStates._DEAD);
+
+        App.gameProgress.playerLifeOver = true;
+        App.gameProgress.roverDestroyed = true;
+    }
+
+    private void explode()
+    {
+        ExplosionManager explosionManager = new ExplosionManager();
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION256, this);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, roverBack);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, frontWheel);
+        explosionManager.createExplosion(GraphicID.G_EXPLOSION128, backWheel);
     }
 
     @Override
@@ -278,7 +293,7 @@ public class Rover extends GdxSprite
     {
         App.getPlayer().buttons.checkButtons();
 
-        moveGunTurret();
+        App.getGun().moveGunTurret();
 
         obstacleCheck();
 
@@ -304,7 +319,7 @@ public class Rover extends GdxSprite
 //
 //        if (lookingAt.getX() == Movement._DIRECTION_RIGHT)
 //        {
-//            x = (int) (collisionObject.rectangle.x + frameWidth);
+//            x = (int) ((collisionObject.rectangle.x + frameWidth) / Gfx.getTileWidth());
 //            y = ((int) collisionObject.rectangle.y / Gfx.getTileHeight()) - 1;
 //        }
 //        else
@@ -358,26 +373,5 @@ public class Rover extends GdxSprite
     {
         collisionObject.kill();
         App.entityData.removeEntity(index);
-    }
-
-    // TODO: 29/09/2018 - Move this to RoverGun() class
-    private void moveGunTurret()
-    {
-        if (App.getGun().isAttachedToRover)
-        {
-            if (App.getHud().buttonUp.isPressed() && (App.getGun().gunTurretAngle >= 0.0f) && (App.getGun().gunTurretAngle < 90.0f))
-            {
-                App.getGun().gunTurretAngle++;
-            }
-            else
-            {
-                if (App.getHud().buttonDown.isPressed() && (App.getGun().gunTurretAngle <= 90.0f) && (App.getGun().gunTurretAngle > 0.0f))
-                {
-                    App.getGun().gunTurretAngle--;
-                }
-            }
-
-            App.getGun().gunTurret.sprite.setRotation(App.getGun().gunTurretAngle * this.direction.getX());
-        }
     }
 }

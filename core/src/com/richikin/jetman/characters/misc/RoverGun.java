@@ -202,6 +202,26 @@ public class RoverGun extends Carryable
         App.entityData.removeEntity(index);
     }
 
+    public void moveGunTurret()
+    {
+        if (isAttachedToRover)
+        {
+            if (App.getHud().buttonUp.isPressed() && (gunTurretAngle >= 0.0f) && (gunTurretAngle < 90.0f))
+            {
+                gunTurretAngle++;
+            }
+            else
+            {
+                if (App.getHud().buttonDown.isPressed() && (gunTurretAngle <= 90.0f) && (gunTurretAngle > 0.0f))
+                {
+                    gunTurretAngle--;
+                }
+            }
+
+            gunTurret.sprite.setRotation(gunTurretAngle * this.direction.getX());
+        }
+    }
+
     public void startShooting()
     {
         if (!isShooting)
