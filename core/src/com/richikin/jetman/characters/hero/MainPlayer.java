@@ -58,11 +58,11 @@ public class MainPlayer extends GdxSprite
     public float maxMoveSpeed;
     public Box   viewBox;
 
-    public com.richikin.jetman.characters.hero.ButtonInputHandler buttons;
-    public CollisionHandler                                       collision;
-    public ActionButtonHandler                                    actionButton;
-    public com.richikin.jetman.characters.hero.TeleportHandler    teleport;
-    public LaserManager                                           laserManager;
+    public ButtonInputHandler  buttons;
+    public CollisionHandler    collision;
+    public ActionButtonHandler actionButton;
+    public TeleportHandler     teleport;
+    public LaserManager        laserManager;
     public BridgeManager       bridgeManager;
     public CollisionRect       tileRectangle;
 

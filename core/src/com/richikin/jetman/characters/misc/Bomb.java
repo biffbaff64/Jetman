@@ -11,7 +11,7 @@ import com.richikin.jetman.characters.managers.ExplosionManager;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.characters.basetypes.Carryable;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.core.PlayServicesID;
+import com.richikin.enumslib.PlayServicesID;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.utilslib.physics.Movement;
 import com.richikin.jetman.physics.aabb.ICollisionListener;

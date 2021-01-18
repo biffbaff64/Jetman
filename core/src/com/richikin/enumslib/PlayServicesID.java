@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.core;
+package com.richikin.enumslib;
 
 public enum PlayServicesID
 {

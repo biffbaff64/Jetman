@@ -133,7 +133,7 @@ public class MapData
         {
             viewportBox.set
                 (
-                    (App.getPlayer().sprite.getX() - Gfx._VIEW_HALF_WIDTH),
+                    (App.getPlayerPos().getX() - Gfx._VIEW_HALF_WIDTH),
                     0,
                     Gfx._VIEW_WIDTH,
                     Gfx._VIEW_HEIGHT
@@ -143,7 +143,7 @@ public class MapData
             // entityWindow is ONLY to be used for entity tracking
             entityWindow.set
                 (
-                    (App.getPlayer().sprite.getX() - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
+                    (App.getPlayerPos().getX() - (Gfx._VIEW_WIDTH + Gfx._VIEW_HALF_WIDTH)),
                     0,
                     (Gfx._VIEW_WIDTH * 3),
                     Gfx._VIEW_HEIGHT

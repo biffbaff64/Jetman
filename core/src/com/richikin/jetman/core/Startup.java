@@ -47,6 +47,9 @@ public class Startup
 
             App.googleServices.setup();
             App.googleServices.createApiClient();
+
+            LocalPlayServicesData lpsd = new LocalPlayServicesData();
+            lpsd.setup();
         }
 
         DebugRenderer.setup(GameAssets._PRO_WINDOWS_FONT);

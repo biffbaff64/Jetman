@@ -15,6 +15,7 @@ public class BaseEntity implements IEntityComponent, Disposable
 {
     public GraphicID       gid;                 // Entity ID
     public GraphicID       type;                // Entity Type - _Entity, _OBSTACLE, etc.
+    // TODO: 18/01/2021 - is 'position' needed?
     public SimpleVec2      position;            // Map position
     public int             zPosition;           // Z-Sort position
     public int             frameWidth;          // Width in pixels, or width of frame for animations

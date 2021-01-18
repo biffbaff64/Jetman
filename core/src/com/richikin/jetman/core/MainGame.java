@@ -7,6 +7,7 @@ import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.google.DummyAdsController;
 import com.richikin.utilslib.google.IPlayServices;
 import com.richikin.enumslib.StateID;
+import com.richikin.utilslib.google.PlayServicesData;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
@@ -15,8 +16,9 @@ public class MainGame extends com.badlogic.gdx.Game
      */
     public MainGame(IPlayServices _services)
     {
-        App.googleServices = _services;
-        App.adsController  = new DummyAdsController();
+        App.googleServices   = _services;
+        App.adsController    = new DummyAdsController();
+        App.playServicesData = new PlayServicesData();
     }
 
     @Override

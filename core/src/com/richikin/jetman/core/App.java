@@ -34,6 +34,7 @@ import com.richikin.jetman.ui.HeadsUpDisplay;
 import com.richikin.jetman.ui.PanelManager;
 import com.richikin.utilslib.LibApp;
 import com.richikin.utilslib.logging.StateManager;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 // TODO: 16/11/2020
 public final class App extends LibApp
@@ -116,6 +117,22 @@ public final class App extends LibApp
     public static MainPlayer getPlayer()
     {
         return entities.mainPlayer;
+    }
+
+    private static final SimpleVec2 position = new SimpleVec2();
+    public static SimpleVec2 getPlayerPos()
+    {
+        if (entities.mainPlayer.isRidingRover)
+        {
+            position.set(entities.rover.sprite.getX(), entities.rover.sprite.getY());
+            entities.mainPlayer.sprite.setPosition(position.getX(), position.getY());
+        }
+        else
+        {
+            position.set(entities.mainPlayer.sprite.getX(), entities.mainPlayer.sprite.getY());
+        }
+
+        return position;
     }
 
     public static Rover getRover()

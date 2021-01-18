@@ -119,7 +119,7 @@ public class BaseRenderer implements Disposable
                 {
                     App.mapUtils.positionAt
                         (
-                            (int) (App.getRover().sprite.getX() + 96), // TODO: 21/11/2020
+                            (int) (App.getRover().sprite.getX() + 96),
                             (int) (App.getRover().sprite.getY())
                         );
                 }

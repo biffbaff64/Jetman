@@ -802,9 +802,18 @@ public class HeadsUpDisplay implements Disposable
                     );
             }
 
-//            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
-//            {
-//            }
+            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "PLYR ACT: " + App.getPlayer().getAction()
+                        + "          "
+                        + "ACT BUTTON: " + App.getPlayer().actionButton.getActionMode(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 570
+                    );
+            }
         }
     }
 

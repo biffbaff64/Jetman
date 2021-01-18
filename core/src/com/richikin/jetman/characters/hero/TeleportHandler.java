@@ -2,7 +2,7 @@ package com.richikin.jetman.characters.hero;
 
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.core.PlayServicesID;
+import com.richikin.enumslib.PlayServicesID;
 
 public class TeleportHandler
 {
