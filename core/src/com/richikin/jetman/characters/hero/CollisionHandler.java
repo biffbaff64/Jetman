@@ -284,9 +284,12 @@ public class CollisionHandler implements ICollisionListener, Disposable
             App.getPlayer().direction.setY(Movement._DIRECTION_STILL);
         }
 
-        Rectangle rectangle = App.getPlayer().collisionObject.contactEntity.getCollisionRectangle();
+        if (App.getPlayer().collisionObject.contactEntity != null)
+        {
+            Rectangle rectangle = App.getPlayer().collisionObject.contactEntity.getCollisionRectangle();
 
-        App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+            App.getPlayer().sprite.setY(rectangle.y + rectangle.height);
+        }
     }
 
     private void checkForCrater()

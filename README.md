@@ -4,7 +4,6 @@ TODO Items
 ----------
 
     - Improve speed of showing HiScore page
-    - Bug when driving the Moon Lander, starts to disappear when moving.
     - Glitch when wrapping map boundary
     - Add ABXY button hints for player actions
     - Moon Rover needs to check for craters

@@ -18,6 +18,7 @@ package com.richikin.jetman.characters.hero;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
@@ -100,12 +101,12 @@ public class ButtonInputHandler implements Disposable
             }
             else if (App.getPlayer().actionButton.getActionMode() == ActionButtonHandler.ActionMode._ROVER_RIDE)
             {
-                if (App.getPlayer().isRidingRover)
+//                if (App.getPlayer().isRidingRover)
                 {
                     App.getPlayer().isRidingRover = false;
                     App.getPlayer().actionButton.removeAction();
-                    App.getPlayer().sprite.setPosition((App.getRover().sprite.getX() + 96), App.getPlayer().initXYZ.getY());
-                    App.getPlayer().setAction(ActionStates._STANDING);
+                    App.getPlayer().collision.setOnGround(GraphicID._GROUND);
+                    App.getPlayer().sprite.setPosition((App.getPlayerPos().getX() + 130), App.getPlayerPos().getY());
                     App.getRover().setAction(ActionStates._STANDING);
                 }
 

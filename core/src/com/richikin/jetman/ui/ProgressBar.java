@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
 {
     private static final int _DEFAULT_BAR_HEIGHT = 26;
+    private static final int _DEFAULT_INTERVAL = 100;
 
     public boolean justEmptied;
     public boolean isAutoRefilling;
@@ -25,7 +26,7 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
     private final float scale;
     private       NinePatch ninePatch;
 
-    public ProgressBar(int _speed, int delay, int size, int maxSize, String texture)
+    public ProgressBar(int _speed, int size, int maxSize, String texture)
     {
         ninePatch = new NinePatch(App.assets.getObjectRegion(texture), 1, 1, 1, 1);
 
@@ -39,6 +40,9 @@ public class ProgressBar extends ItemF implements IUIProgressBar, Disposable
         this.justEmptied     = false;
         this.isAutoRefilling = false;
         this.scale           = 1;
+        this.speed           = _speed;
+        this.addInterval     = _DEFAULT_INTERVAL;
+        this.subInterval     = _DEFAULT_INTERVAL;
     }
 
     public void draw(int x, int y)

@@ -102,7 +102,6 @@ public class HeadsUpDisplay implements Disposable
     public ImageButton PauseButton;
 
     public MessageManager messageManager;
-//    public AlphaDisplay   alphaDisplay;
     public PausePanel     pausePanel;
     public StateID        hudStateID;
 
@@ -147,8 +146,8 @@ public class HeadsUpDisplay implements Disposable
         messageManager = new MessageManager();
         pausePanel     = new PausePanel();
 
-        timeBar = new ProgressBar(1, 100, 0, _MAX_TIMEBAR_LENGTH, "bar9");
-        fuelBar = new ProgressBar(1, 70, 0, _MAX_FUELBAR_LENGTH, "bar9");
+        timeBar = new ProgressBar(1, 0, _MAX_TIMEBAR_LENGTH, "bar9");
+        fuelBar = new ProgressBar(1, 0, _MAX_FUELBAR_LENGTH, "bar9");
 
         barDividerFuel = App.assets.getObjectRegion("bar_divider");
         barDividerTime = App.assets.getObjectRegion("bar_divider");
@@ -249,19 +248,19 @@ public class HeadsUpDisplay implements Disposable
             {
                 if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
                 {
-                    fuelBar.setSpeed(App.getPlayer().isCarrying ? 1 : 0.25f);
+                    fuelBar.setSpeed(App.getPlayer().isCarrying ? 2 : 1);
                     fuelBar.updateSlowDecrement();
                 }
             }
 
-            if (App.getBase() != null)
+            if (App.getBase().getAction() != ActionStates._WAITING)
             {
-                if (App.getBase().getAction() != ActionStates._WAITING)
-                {
-                    timeBar.updateSlowDecrement();
-                }
+                timeBar.updateSlowDecrement();
+            }
 
-                if (timeBar.justEmptied)
+            if (timeBar.justEmptied)
+            {
+                if (App.getBase() != null)
                 {
                     if (!App.missileBaseManager.isMissileActive)
                     {
@@ -669,15 +668,15 @@ public class HeadsUpDisplay implements Disposable
      */
     private void createHUDButtons()
     {
-        buttonUp       = new Switch();
-        buttonDown     = new Switch();
-        buttonLeft     = new Switch();
-        buttonRight    = new Switch();
-        buttonX        = new Switch();
-        buttonY        = new Switch();
-        buttonPause    = new Switch();
-        buttonAction   = new Switch();
-        buttonAttack   = new Switch();
+        buttonUp     = new Switch();
+        buttonDown   = new Switch();
+        buttonLeft   = new Switch();
+        buttonRight  = new Switch();
+        buttonX      = new Switch();
+        buttonY      = new Switch();
+        buttonPause  = new Switch();
+        buttonAction = new Switch();
+        buttonAttack = new Switch();
 
         if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
@@ -807,11 +806,16 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "PLYR ACT: " + App.getPlayer().getAction()
-                        + "          "
-                        + "ACT BUTTON: " + App.getPlayer().actionButton.getActionMode(),
+                        "FUEL: " + fuelBar.getTotal(),
                         AppConfig.hudOriginX + 20,
                         AppConfig.hudOriginY + 570
+                    );
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "TIME: " + timeBar.getTotal(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + 540
                     );
             }
         }
@@ -827,16 +831,16 @@ public class HeadsUpDisplay implements Disposable
         buttonPause      = null;
         buttonDevOptions = null;
 
-        if(AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
+        if (AppConfig.availableInputs.contains(ControllerType._VIRTUAL, true))
         {
             AttackButton.addAction(Actions.removeActor());
             ActionButton.addAction(Actions.removeActor());
             PauseButton.addAction(Actions.removeActor());
         }
 
-        AttackButton   = null;
-        ActionButton   = null;
-        PauseButton    = null;
+        AttackButton = null;
+        ActionButton = null;
+        PauseButton  = null;
 
         messageManager = null;
 
