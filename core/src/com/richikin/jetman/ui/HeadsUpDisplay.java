@@ -264,7 +264,7 @@ public class HeadsUpDisplay implements Disposable
                 {
                     if (!App.missileBaseManager.isMissileActive)
                     {
-                        App.getBase().setAction(ActionStates._FIGHTING);
+                        App.getBase().setAction(ActionStates._SET_FIGHTING);
                     }
                 }
             }

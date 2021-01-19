@@ -18,6 +18,7 @@ public enum ActionStates
     _CIRCLING,
     _HOVERING,
     _TALKING,
+    _SET_FIGHTING,
     _FIGHTING,
     _HOLDING,
     _HELD,

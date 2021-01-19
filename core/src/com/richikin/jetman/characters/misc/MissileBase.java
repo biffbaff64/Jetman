@@ -63,15 +63,20 @@ public class MissileBase extends GdxSprite
             }
             break;
 
-            case _FIGHTING:
+            case _SET_FIGHTING:
             {
                 App.getHud().messageManager.addZoomMessage
                     (
                         "missilewarning",
-                        2000,
-                        185, (720 - 196)
+                        5000
                     );
 
+                setAction(ActionStates._FIGHTING);
+            }
+            break;
+
+            case _FIGHTING:
+            {
                 App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
                 App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
 
