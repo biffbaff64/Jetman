@@ -77,8 +77,8 @@ public class MissileBase extends GdxSprite
 
             case _FIGHTING:
             {
-                App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
-                App.missileBaseManager.launch(topSection.sprite.getX(), topSection.sprite.getY());
+                App.missileBaseManager.launch((int) topSection.sprite.getX(), (int) topSection.sprite.getY());
+                App.missileBaseManager.launch((int) topSection.sprite.getX(), (int) topSection.sprite.getY());
 
                 topSection.isFlippedX = (sprite.getX() < App.getPlayer().sprite.getX());
 

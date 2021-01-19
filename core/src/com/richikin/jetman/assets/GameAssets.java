@@ -127,6 +127,7 @@ public class GameAssets
 
             new AssetSize(GraphicID.G_MISSILE_BASE,     120, 51),
             new AssetSize(GraphicID.G_MISSILE_LAUNCHER, 90, 120),
+            new AssetSize(GraphicID.G_MISSILE,          120, 29),
             new AssetSize(GraphicID.G_DEFENDER,         52, 48),
             new AssetSize(GraphicID.G_DEFENDER_ZAP,     52, 23),
             new AssetSize(GraphicID.G_DEFENDER_BULLET, 36, 36),
