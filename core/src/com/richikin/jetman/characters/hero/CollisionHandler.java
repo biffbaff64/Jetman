@@ -13,7 +13,7 @@ import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
 import com.richikin.utilslib.physics.Movement;
 
-public class CollisionHandler implements ICollisionListener, Disposable
+public class CollisionHandler implements ICollisionListener
 {
     public CollisionHandler()
     {
@@ -335,10 +335,5 @@ public class CollisionHandler implements ICollisionListener, Disposable
         {
             App.getPlayer().sprite.translateX(Gfx.getTileWidth() * Movement._DIRECTION_LEFT);
         }
-    }
-
-    @Override
-    public void dispose()
-    {
     }
 }

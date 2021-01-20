@@ -174,5 +174,9 @@ public class GameProgress implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
+        // DO NOT dispose of score and lives unless they have
+        // been processed with regard to hiscores first.
     }
 }

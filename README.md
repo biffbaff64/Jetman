@@ -11,24 +11,24 @@ TODO Items
     Dispose Instances checklist
     ---------------------------
     
-   DebugRenderer
-   AssetLoader
-   DeveloperPanel
+   ~~DebugRenderer~~
+   ~~AssetLoader~~
+   ~~DeveloperPanel~~
    GameProgress
-   LevelManager
-   EntityData
-   EntityManager
-   ActionButtonHandler
-   ButtonHandler
-   CollisionHandler
-   LaserManager
+   ~~LevelManager~~
+   ~~EntityData~~
+   ~~EntityManager~~
+   ~~ActionButtonHandler~~
+   ~~ButtonHandler~~
+   ~~CollisionHandler~~
+   ~~LaserManager~~
    GenericEntityManager
    GameEntity
    GdxSprite
    TeleportBeam
-   StarField
-   StarObject
-   ParallaxBackground
+   ~~StarField~~
+   ~~StarObject~~
+   ~~ParallaxBackground~~
    ParallaxLayer
    BaseRenderer
    AnimatedButton

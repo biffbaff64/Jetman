@@ -27,7 +27,7 @@ public class EntityManager implements IEntityManager
 {
     // --------------------------------------------------
     //
-    public static final Array<GraphicID> enemies;
+    public static Array<GraphicID> enemies;
 
     static
         {
@@ -349,6 +349,11 @@ public class EntityManager implements IEntityManager
     @Override
     public void dispose()
     {
-        App.entityData.dispose();
+        enemies.clear();
+        enemies = null;
+
+        teleportBeam = null;
+        playerManager = null;
+        renderSystem = null;
     }
 }

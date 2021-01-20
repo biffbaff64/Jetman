@@ -230,7 +230,12 @@ public class DebugRenderer implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         debugTextureRegion.getTexture().dispose();
         debugTextureRegion = null;
+
+        font.dispose();
+        font = null;
     }
 }

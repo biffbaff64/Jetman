@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.logging.Trace;
 
 public class ActionButtonHandler implements Disposable
 {
@@ -164,6 +165,8 @@ public class ActionButtonHandler implements Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE__();
+
         actionMode         = null;
         previousActionMode = null;
     }

@@ -97,5 +97,6 @@ public class EntityData implements Disposable
 
         entityMap   = null;
         managerList = null;
+        defenceStations = null;
     }
 }

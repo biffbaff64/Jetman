@@ -19,11 +19,11 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.graphics.parallax.ParallaxLayer;
-import com.richikin.jetman.input.VirtualJoystick;
-import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.core.HighScoreUtils;
+import com.richikin.jetman.developer.Developer;
+import com.richikin.jetman.graphics.parallax.ParallaxLayer;
 import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
@@ -110,11 +110,11 @@ public class HeadsUpDisplay implements Disposable
 
     private ProgressBar     timeBar;
     private ProgressBar     fuelBar;
-    private Texture         scorePanel;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
-    private TextureRegion   miniMen;
     private TextureRegion[] arrows;
+    private TextureRegion   miniMen;
+    private Texture         scorePanel;
     private int             baseArrowIndex;
     private int             truckArrowIndex;
     private boolean         showHUDControls;

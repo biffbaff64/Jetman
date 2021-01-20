@@ -610,26 +610,32 @@ public class DeveloperPanel extends DefaultPanel
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         super.dispose();
 
         foreground.dispose();
+        heading.clear();
+        table.clear();
         exitButton.clear();
         buttonResetPrefs.clear();
         buttonResetHiScores.clear();
         buttonResetStats.clear();
         buttonGLProfiler.clear();
-        heading.clear();
-        table.clear();
         scrollPane.clear();
 
+        devMenu             = null;
+        scrollPane          = null;
+
         foreground          = null;
+        buttons             = null;
+        heading             = null;
+        table               = null;
+        glProfiler          = null;
         exitButton          = null;
         buttonResetPrefs    = null;
         buttonResetHiScores = null;
         buttonResetStats    = null;
         buttonGLProfiler    = null;
-        heading             = null;
-        table               = null;
-        scrollPane          = null;
     }
 }

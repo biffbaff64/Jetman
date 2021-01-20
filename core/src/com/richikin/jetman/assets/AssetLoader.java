@@ -186,6 +186,8 @@ public class AssetLoader implements IAssets, Disposable
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         assetManager.dispose();
         assetManager = null;
     }

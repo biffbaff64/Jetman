@@ -16,14 +16,13 @@
 
 package com.richikin.jetman.characters.hero;
 
-import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.physics.Movement;
 
-public class ButtonInputHandler implements Disposable
+public class ButtonInputHandler
 {
     private float slowDown;
 
@@ -319,10 +318,5 @@ public class ButtonInputHandler implements Disposable
                 }
             }
         }
-    }
-
-    @Override
-    public void dispose()
-    {
     }
 }
