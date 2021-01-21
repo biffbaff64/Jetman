@@ -1,8 +1,9 @@
 package com.richikin.jetman.physics.aabb;
 
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 
-public enum AABBData
+public enum AABBData implements Disposable
 {
     ;
     public static final short _TOP    = 0x01;
@@ -48,5 +49,12 @@ public enum AABBData
         {
             collisionBoxData.get(i).index = i;
         }
+    }
+
+    @Override
+    public void dispose()
+    {
+        collisionBoxData.clear();
+        collisionBoxData = null;
     }
 }

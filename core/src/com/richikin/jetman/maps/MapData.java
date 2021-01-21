@@ -14,9 +14,9 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.graphics.parallax.LayerImage;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.physics.Movement;
-import com.richikin.utilslib.logging.Trace;
 
 public class MapData
 {
@@ -216,16 +216,27 @@ public class MapData
         Trace.__FILE_FUNC();
 
         mapRenderer.dispose();
-        mapRenderer = null;
+        mapRenderer  = null;
+        tmxMapLoader = null;
 
         gameTilesLayer      = null;
         extraGameTilesLayer = null;
+
         currentMap          = null;
         objectTiles         = null;
         mapObjects          = null;
         mapPosition         = null;
         previousMapPosition = null;
         checkPoint          = null;
-        tmxMapLoader        = null;
+        currentMapName      = null;
+
+        viewportBox  = null;
+        entityWindow = null;
+        mapBox       = null;
+
+        enemyFreeZones.clear();
+        placementTiles.clear();
+        enemyFreeZones = null;
+        placementTiles = null;
     }
 }

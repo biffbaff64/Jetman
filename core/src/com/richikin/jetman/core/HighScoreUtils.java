@@ -2,13 +2,15 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Json;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.Item;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class HighScoreUtils
+public class HighScoreUtils implements Disposable
 {
     public static final int    _MAX_HISCORES = 10;
     public static final String filePath      = "hiscore_data.json";
@@ -198,6 +200,15 @@ public class HighScoreUtils
 
         sortTable();
         writeTable();
+    }
+
+    /**
+     * Releases all resources of this object.
+     */
+    @Override
+    public void dispose()
+    {
+        Trace.__FILE_FUNC();
     }
 
     static class SortByScore implements Comparator<HighScore>

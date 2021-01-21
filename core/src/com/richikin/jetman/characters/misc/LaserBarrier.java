@@ -188,11 +188,6 @@ public class LaserBarrier extends GdxSprite
             public void onNegativeCollision()
             {
             }
-
-            @Override
-            public void dispose()
-            {
-            }
         });
     }
 }

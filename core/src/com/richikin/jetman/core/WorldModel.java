@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.jetman.physics.box2d.BodyBuilder;
@@ -11,7 +12,7 @@ import com.richikin.jetman.physics.box2d.Box2DContactListener;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Trace;
 
-public class WorldModel
+public class WorldModel implements Disposable
 {
     public World                box2DWorld;
     public Box2DDebugRenderer   b2dr;
@@ -81,6 +82,12 @@ public class WorldModel
         {
             box2DWorld.step(Gfx._STEP_TIME, Gfx._VELOCITY_ITERATIONS, Gfx._POSITION_ITERATIONS);
         }
+    }
+
+    @Override
+    public void dispose()
+    {
+        Trace.__FILE_FUNC();
     }
 }
 

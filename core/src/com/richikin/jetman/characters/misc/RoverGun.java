@@ -303,11 +303,6 @@ public class RoverGun extends Carryable
                     explode();
                 }
             }
-
-            @Override
-            public void dispose()
-            {
-            }
         });
     }
 }

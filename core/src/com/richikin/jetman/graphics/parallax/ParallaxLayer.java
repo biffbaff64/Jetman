@@ -14,10 +14,10 @@ import com.richikin.utilslib.physics.Movement;
 public class ParallaxLayer implements Disposable
 {
     public final String        name;
-    public final TextureRegion textureRegion;
-    public final XYSetF        offset;
-    public final XYSetF        position;
-    public final boolean       isActive;
+    public       TextureRegion textureRegion;
+    public       XYSetF        offset;
+    public       XYSetF        position;
+    public final boolean isActive;
 
     public Direction direction;
     public float     xSpeed;
@@ -96,5 +96,10 @@ public class ParallaxLayer implements Disposable
     {
         App.assets.unloadAsset(name);
         textureRegion.getTexture().dispose();
+
+        textureRegion = null;
+        offset = null;
+        position = null;
+        direction = null;
     }
 }

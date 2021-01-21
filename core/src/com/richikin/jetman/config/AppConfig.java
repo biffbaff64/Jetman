@@ -7,15 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
-import com.richikin.jetman.core.App;
+import com.richikin.enumslib.ScreenID;
 import com.richikin.enumslib.StateID;
+import com.richikin.jetman.core.App;
+import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
 import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
-import com.richikin.enumslib.ScreenID;
-import com.richikin.jetman.developer.Developer;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 
@@ -44,7 +44,9 @@ public class AppConfig
     public static float hudOriginX;
     public static float hudOriginY;
 
-    private AppConfig() {}
+    private AppConfig()
+    {
+    }
 
     public static void setup()
     {
@@ -86,7 +88,7 @@ public class AppConfig
         usedController    = "None";
 
         availableInputs = new Array<>();
-        configListener = new ConfigListener();
+        configListener  = new ConfigListener();
 
         if (isAndroidApp() || Developer.isAndroidOnDesktop())
         {
@@ -219,7 +221,7 @@ public class AppConfig
     public static void pause()
     {
         App.appState.set(StateID._STATE_PAUSED);
-        gamePaused    = true;
+        gamePaused = true;
 
         if (App.getHud().hudStateID != StateID._STATE_SETTINGS_PANEL)
         {
@@ -233,16 +235,21 @@ public class AppConfig
     public static void unPause()
     {
         App.appState.set(StateID._STATE_GAME);
-        gamePaused    = false;
+        gamePaused              = false;
         App.getHud().hudStateID = StateID._STATE_PANEL_UPDATE;
     }
 
     public static void dispose()
     {
+        Trace.__FILE_FUNC();
+
         availableInputs.clear();
 
-        usedController       = null;
-        availableInputs      = null;
+        currentScreenID      = null;
         virtualControllerPos = null;
+        availableInputs      = null;
+        fullScreenButton     = null;
+        systemBackButton     = null;
+        configListener       = null;
     }
 }

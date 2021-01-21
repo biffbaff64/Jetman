@@ -160,11 +160,6 @@ public class Bomb extends Carryable
                     explode();
                 }
             }
-
-            @Override
-            public void dispose()
-            {
-            }
         });
     }
 }

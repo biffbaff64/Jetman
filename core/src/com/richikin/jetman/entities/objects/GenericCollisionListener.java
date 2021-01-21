@@ -1,11 +1,13 @@
 package com.richikin.jetman.entities.objects;
 
+import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.jetman.physics.aabb.CollisionObject;
 import com.richikin.jetman.physics.aabb.ICollisionListener;
+import com.richikin.utilslib.logging.Trace;
 
-public class GenericCollisionListener implements ICollisionListener
+public class GenericCollisionListener implements ICollisionListener, Disposable
 {
     private GdxSprite parent;
 
@@ -43,9 +45,14 @@ public class GenericCollisionListener implements ICollisionListener
     {
     }
 
+    /**
+     * Releases all resources of this object.
+     */
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         parent = null;
     }
 }

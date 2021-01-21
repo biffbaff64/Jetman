@@ -159,11 +159,6 @@ public class Teleporter extends GdxSprite
             public void onNegativeCollision()
             {
             }
-
-            @Override
-            public void dispose()
-            {
-            }
         });
     }
 }

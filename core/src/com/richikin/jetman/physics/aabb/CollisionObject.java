@@ -141,13 +141,17 @@ public class CollisionObject implements Disposable
     @Override
     public void dispose()
     {
-        contactEntity = null;
-        parentEntity  = null;
-        rectangle     = null;
-        idTop         = null;
-        idBottom      = null;
-        idLeft        = null;
-        idRight       = null;
+        action            = null;
+        gid               = null;
+        type              = null;
+        rectangle         = null;
+        contactEntity     = null;
+        parentEntity      = null;
+        idTop             = null;
+        idBottom          = null;
+        idLeft            = null;
+        idRight           = null;
+        invisibilityTimer = null;
     }
 
     public void setInvisibility(int timeInMilliseconds)
