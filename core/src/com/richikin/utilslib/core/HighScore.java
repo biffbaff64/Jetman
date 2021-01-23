@@ -1,4 +1,4 @@
-package com.richikin.jetman.core;
+package com.richikin.utilslib.core;
 
 public class HighScore
 {

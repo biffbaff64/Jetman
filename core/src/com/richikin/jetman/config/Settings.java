@@ -2,7 +2,7 @@ package com.richikin.jetman.config;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.richikin.jetman.core.ISettings;
+import com.richikin.utilslib.core.ISettings;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 

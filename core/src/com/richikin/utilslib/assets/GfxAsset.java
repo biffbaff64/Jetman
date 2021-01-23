@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.assets;
+package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;

@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.assets;
+package com.richikin.utilslib.assets;
 
 import com.richikin.enumslib.GraphicID;
 import com.richikin.utilslib.maths.SimpleVec2;

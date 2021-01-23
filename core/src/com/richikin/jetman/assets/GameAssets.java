@@ -2,6 +2,7 @@
 package com.richikin.jetman.assets;
 
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.assets.AssetSize;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.Trace;
 
