@@ -88,6 +88,15 @@ public class WorldModel implements Disposable
     public void dispose()
     {
         Trace.__FILE_FUNC();
+
+        b2dr.dispose();
+        b2dr = null;
+
+        box2DContactListener = null;
+        bodyBuilder = null;
+
+        box2DWorld.dispose();
+        box2DWorld = null;
     }
 }
 

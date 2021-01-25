@@ -3,25 +3,27 @@
 TODO Items
 ----------
 
-    - Improve speed of showing HiScore page
-    - Glitch when wrapping map boundary
-    - Add ABXY button hints for player actions
-    - Moon Rover needs to check for craters
+   - Improve speed of showing HiScore page
+   - Glitch when wrapping map boundary
+   - Add ABXY button hints for player actions
+   - Moon Rover needs to check for craters
+   - Implement PanelManager()
+
 
     Dispose Instances checklist
     ---------------------------
 
 ----- ASSETS -----
    ~~AssetLoader~~
-   GameAssets
+   ~~GameAssets~~
 -----CHARACTERS -----
 -----CONFIG -----
    ~~AppConfig~~
 ----- CORE -----
    GameProgress
    ~~LevelManager~~
-   HighScoreUtils
-   WorldModel
+   ~~HighScoreUtils~~
+   ~~WorldModel~~
 ----- DEBUG -----
    ~~DebugRenderer~~
    ~~DeveloperPanel~~
@@ -32,8 +34,11 @@ TODO Items
    BaseEntity
    GdxSprite
    TeleportBeam
-   PathUtils
-   FixedPath
+   ~~PathUtils~~
+   ~~FixedPath~~
+   ~~Navigation~~
+   ~~StairsPath~~
+   ~~Circular~~
 ----- HERO -----
    ~~ActionButtonHandler~~
    ~~ButtonHandler~~
@@ -56,10 +61,10 @@ TODO Items
    InputManager
    VirtualJoystick
 ----- MAP -----
-   MapCreator
+   ~~MapCreator~~
    ~~MapData~~
-   MapUtils
-   RoomManager
+   ~~MapUtils~~
+   ~~RoomManager~~
 ----- PHYSICS -----
    AABB
    ~~CollisionUtils~~
@@ -76,7 +81,7 @@ TODO Items
    MenuPage
    OptionsPage
 ----- UI -----
-   AlphaDisplay
+   ~~AlphaDisplay~~
    DefaultPanel
    ExitPanel
    HeadsUpDisplay

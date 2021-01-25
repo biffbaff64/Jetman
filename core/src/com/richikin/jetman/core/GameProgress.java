@@ -41,8 +41,8 @@ public class GameProgress implements Disposable
         lives = new Item(0, GameConstants._MAX_LIVES, GameConstants._MAX_LIVES);
 
         this.scoreStack = 0;
-        this.timeStack = 0;
-        this.fuelStack = 0;
+        this.timeStack  = 0;
+        this.fuelStack  = 0;
     }
 
     public void resetProgress()
@@ -61,13 +61,13 @@ public class GameProgress implements Disposable
         score.setToMinimum();
         lives.setToMaximum();
 
-        baseDestroyed         = false;
-        roverDestroyed        = false;
-        activeCraterCount     = 0;
-        playerLifeOver        = false;
-        playerLevel           = 1;
-        playerGameOver        = false;
-        gameDiffculty         = 1.0f;
+        baseDestroyed     = false;
+        roverDestroyed    = false;
+        activeCraterCount = 0;
+        playerLifeOver    = false;
+        playerLevel       = 1;
+        playerGameOver    = false;
+        gameDiffculty     = 1.0f;
     }
 
     public void update()

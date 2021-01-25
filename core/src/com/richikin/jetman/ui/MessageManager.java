@@ -3,6 +3,9 @@ package com.richikin.jetman.ui;
 import com.badlogic.gdx.utils.Array;
 import com.richikin.jetman.core.App;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.ui.panels.IUserInterfacePanel;
+import com.richikin.jetman.ui.panels.SlidePanel;
+import com.richikin.jetman.ui.panels.ZoomPanel;
 import com.richikin.utilslib.logging.Trace;
 
 public class MessageManager

@@ -7,9 +7,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Disposable;
 import com.richikin.utilslib.logging.Trace;
 
-public class PathUtils
+public class PathUtils implements Disposable
 {
     public Array<FixedPath> paths;
     public int              numberOfPaths;
@@ -107,5 +108,12 @@ public class PathUtils
         }
 
         return randomPath;
+    }
+
+    @Override
+    public void dispose()
+    {
+        paths.clear();
+        paths = null;
     }
 }

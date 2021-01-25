@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
+import com.richikin.jetman.ui.panels.ZoomPanel;
 import com.richikin.utilslib.logging.StopWatch;
 
 import java.util.concurrent.TimeUnit;

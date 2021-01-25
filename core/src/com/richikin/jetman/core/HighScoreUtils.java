@@ -29,8 +29,8 @@ public class HighScoreUtils implements Disposable
      * I thought about using Array but it just seemed
      * to be a bit much for such a small number of entries.
      */
-    private       HighScore[] highScores;
-    private final Json        json;
+    private HighScore[] highScores;
+    private Json        json;
 
     public HighScoreUtils()
     {
@@ -203,13 +203,13 @@ public class HighScoreUtils implements Disposable
         writeTable();
     }
 
-    /**
-     * Releases all resources of this object.
-     */
     @Override
     public void dispose()
     {
         Trace.__FILE_FUNC();
+
+        json = null;
+        highScores = null;
     }
 
     static class SortByScore implements Comparator<HighScore>

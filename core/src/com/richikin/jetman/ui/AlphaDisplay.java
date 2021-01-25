@@ -3,8 +3,13 @@ package com.richikin.jetman.ui;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 
+/**
+ * CLass intended to emulate the Alphanumeric
+ * displays used on fruit machines etc...
+ */
 public class AlphaDisplay implements Disposable
 {
     public boolean activeMessage;
@@ -26,12 +31,9 @@ public class AlphaDisplay implements Disposable
 
     public void update()
     {
-//        if (activeMessage)
-//        {
-//        }
     }
 
-    public void drawBackground()
+    public void draw()
     {
         if (activeMessage)
         {
@@ -47,15 +49,13 @@ public class AlphaDisplay implements Disposable
     public void setActive(boolean state)
     {
         activeMessage = state;
-
-//        if (!state)
-//        {
-//        }
     }
 
     @Override
     public void dispose()
     {
+        Trace.__FILE_FUNC();
+
         display = null;
         message = null;
     }

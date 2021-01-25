@@ -1,4 +1,4 @@
-package com.richikin.jetman.ui;
+package com.richikin.jetman.ui.panels;
 
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.core.App;

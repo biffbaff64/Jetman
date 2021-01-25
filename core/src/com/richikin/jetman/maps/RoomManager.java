@@ -1,5 +1,6 @@
 package com.richikin.jetman.maps;
 
+import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
 import com.richikin.enumslib.GraphicID;
@@ -7,7 +8,7 @@ import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.logging.Trace;
 import org.jetbrains.annotations.NotNull;
 
-public class RoomManager
+public class RoomManager implements Disposable
 {
     public static final int _MAX_TELEPORTERS = 2;
     public static final int _MAX_DEFENCE_STATIONS = 2;
@@ -141,12 +142,6 @@ public class RoomManager
     public RoomManager()
     {
         Trace.__FILE_FUNC();
-
-//        worldWidth  = 1;
-//        worldHeight = roomMap.length;
-
-//        Trace.dbg("_WORLD_WIDTH : " + worldWidth);
-//        Trace.dbg("_WORLD_HEIGHT: " + worldHeight);
     }
 
     public void initialise()
@@ -263,6 +258,11 @@ public class RoomManager
         return thisMax;
     }
 
+    public int getMaximumAllowed(GraphicID gid)
+    {
+        return 0;
+    }
+
     public float getBaseOffset()
     {
         return roomMap[App.getLevel()].mapEntry.baseOffset;
@@ -319,5 +319,13 @@ public class RoomManager
         }
 
         return position;
+    }
+
+    @Override
+    public void dispose()
+    {
+        Trace.__FILE_FUNC();
+
+        activeRoom = null;
     }
 }

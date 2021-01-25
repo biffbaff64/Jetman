@@ -1,13 +1,15 @@
 
 package com.richikin.jetman.entities.paths;
 
+import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.entities.objects.GdxSprite;
+import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 import com.richikin.utilslib.maths.SimpleVec2F;
 import com.richikin.utilslib.physics.Direction;
 import com.richikin.utilslib.physics.Movement;
 
-public class StairsPath
+public class StairsPath implements Disposable
 {
     private static class PathData
     {
@@ -110,8 +112,7 @@ public class StairsPath
         };
 
     public int pathIndex;
-
-    public final SimpleVec2 directionReset;
+    public SimpleVec2 directionReset;
 
     public StairsPath()
     {
@@ -121,11 +122,6 @@ public class StairsPath
 
     public void setNextPathData(GdxSprite spriteObject)
     {
-//        if (pathIndex >= pathData.length)
-//        {
-//            pathIndex = 0;
-//        }
-
         spriteObject.distance.set(pathData[pathIndex].distance);
         spriteObject.direction.set(pathData[pathIndex].direction);
         spriteObject.speed.set(pathData[pathIndex].speed);
@@ -135,8 +131,14 @@ public class StairsPath
             spriteObject.direction.setX(directionReset.getX());
         }
 
-//        pathIndex++;
-
         pathIndex = (pathIndex + 1) % pathData.length;
+    }
+
+    @Override
+    public void dispose()
+    {
+        Trace.__FILE_FUNC();
+
+        directionReset = null;
     }
 }
