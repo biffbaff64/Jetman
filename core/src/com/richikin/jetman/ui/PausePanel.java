@@ -116,18 +116,21 @@ public class PausePanel extends DefaultPanel
     @Override
     public boolean update()
     {
-        App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, buttonMusic.isChecked());
-        App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, buttonSounds.isChecked());
-        App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, buttonVibrations.isChecked());
-        App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, buttonGameHints.isChecked());
-        App.settings.getPrefs().flush();
-
-        if (buttonHome.isChecked())
+        if (pausePanel != null)
         {
-            setQuitToTitle();
+            App.settings.getPrefs().putBoolean(Settings._MUSIC_ENABLED, buttonMusic.isChecked());
+            App.settings.getPrefs().putBoolean(Settings._SOUNDS_ENABLED, buttonSounds.isChecked());
+            App.settings.getPrefs().putBoolean(Settings._VIBRATIONS, buttonVibrations.isChecked());
+            App.settings.getPrefs().putBoolean(Settings._SHOW_HINTS, buttonGameHints.isChecked());
+            App.settings.getPrefs().flush();
 
-            App.appState.set(StateID._STATE_LEVEL_RETRY);
-            AppConfig.quitToMainMenu = true;
+            if (buttonHome.isChecked())
+            {
+                setQuitToTitle();
+
+                App.appState.set(StateID._STATE_LEVEL_RETRY);
+                AppConfig.quitToMainMenu = true;
+            }
         }
 
         return false;

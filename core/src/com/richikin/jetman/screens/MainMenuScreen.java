@@ -185,13 +185,13 @@ public class MainMenuScreen extends AbstractBaseScreen
                 {
                     int option = exitPanel.update();
 
-                    if (option == exitPanel._YES_PRESSED)
+                    if (option == ExitPanel._YES_PRESSED)
                     {
                         exitPanel.dispose();
                         AppConfig.shutDownActive = true;
                         Gdx.app.exit();
                     }
-                    else if (option == exitPanel._NO_PRESSED)
+                    else if (option == ExitPanel._NO_PRESSED)
                     {
                         exitPanel.close();
                         exitPanel = null;
