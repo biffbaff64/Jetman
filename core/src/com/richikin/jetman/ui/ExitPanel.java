@@ -1,10 +1,13 @@
 package com.richikin.jetman.ui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
@@ -16,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ExitPanel implements Disposable
 {
-    public final int _NONE_PRESSED = 0;
-    public final int _NO_PRESSED   = 1;
-    public final int _YES_PRESSED  = 2;
+    public static final int _NONE_PRESSED = 0;
+    public static final int _NO_PRESSED   = 1;
+    public static final int _YES_PRESSED  = 2;
 
     public ImageButton buttonYes;
     public ImageButton buttonNo;
@@ -35,8 +38,11 @@ public class ExitPanel implements Disposable
     private ImageButton.ImageButtonStyle styleBlueYes;
     private ImageButton.ImageButtonStyle styleBlueNo;
 
-    private static final int _YES = 0;
-    private static final int _NO  = 1;
+    private static final int _YES             = 0;
+    private static final int _NO              = 1;
+    private static final int _UPDATE_INTERVAL = 750;
+
+    private Dialog dialogBox;
 
     private static final int[][] displayPos =
         {
@@ -50,7 +56,17 @@ public class ExitPanel implements Disposable
 
     public void open()
     {
-        setup();
+        panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
+        darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
+
+        addDialog();
+        addButtons();
+        addButtonListeners();
+
+        action    = _NONE_PRESSED;
+        showYes   = true;
+        firstTime = true;
+        stopWatch = StopWatch.start();
     }
 
     public void close()
@@ -60,7 +76,7 @@ public class ExitPanel implements Disposable
 
     public int update()
     {
-        if ((stopWatch.time(TimeUnit.MILLISECONDS) > 750) || firstTime)
+        if ((stopWatch.time(TimeUnit.MILLISECONDS) > _UPDATE_INTERVAL) || firstTime)
         {
             if (showYes)
             {
@@ -88,11 +104,13 @@ public class ExitPanel implements Disposable
         spriteBatch.draw(panel, AppConfig.hudOriginX, AppConfig.hudOriginY);
     }
 
-    private void setup()
+    private void addDialog()
     {
-        panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
-        darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
+        dialogBox = new Dialog("Exit Game?", new Skin(Gdx.files.internal("data/uiskin.json")));
+    }
 
+    private void addButtons()
+    {
         Scene2DUtils scene2DUtils = new Scene2DUtils();
 
         buttonYes = scene2DUtils.addButton
@@ -114,11 +132,19 @@ public class ExitPanel implements Disposable
         buttonYes.setZIndex(1);
         buttonNo.setZIndex(1);
 
-        action    = _NONE_PRESSED;
-        showYes   = true;
-        firstTime = true;
-        stopWatch = StopWatch.start();
+        styleRedYes    = new ImageButton.ImageButtonStyle();
+        styleRedNo     = new ImageButton.ImageButtonStyle();
+        styleRedYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_red"));
+        styleRedNo.up  = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_red"));
 
+        styleBlueYes    = new ImageButton.ImageButtonStyle();
+        styleBlueNo     = new ImageButton.ImageButtonStyle();
+        styleBlueYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_blue"));
+        styleBlueNo.up  = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_blue"));
+    }
+
+    private void addButtonListeners()
+    {
         buttonYes.addListener(new ClickListener()
         {
             @Override
@@ -136,16 +162,6 @@ public class ExitPanel implements Disposable
                 action = _NO_PRESSED;
             }
         });
-
-        styleRedYes = new ImageButton.ImageButtonStyle();
-        styleRedNo = new ImageButton.ImageButtonStyle();
-        styleRedYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_red"));
-        styleRedNo.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_red"));
-
-        styleBlueYes = new ImageButton.ImageButtonStyle();
-        styleBlueNo = new ImageButton.ImageButtonStyle();
-        styleBlueYes.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_yes_blue"));
-        styleBlueNo.up = new TextureRegionDrawable(App.assets.getButtonRegion("button_no_blue"));
     }
 
     @Override
@@ -163,9 +179,9 @@ public class ExitPanel implements Disposable
         buttonYes = null;
         buttonNo  = null;
 
-        styleRedYes = null;
-        styleRedNo = null;
+        styleRedYes  = null;
+        styleRedNo   = null;
         styleBlueYes = null;
-        styleBlueNo = null;
+        styleBlueNo  = null;
     }
 }
