@@ -260,13 +260,15 @@ public class HeadsUpDisplay implements Disposable
 
             if (timeBar.justEmptied)
             {
-                if (App.getBase() != null)
-                {
-                    if (!App.missileBaseManager.isMissileActive)
-                    {
-                        App.getBase().setAction(ActionStates._SET_FIGHTING);
-                    }
-                }
+//                if (App.getBase() != null)
+//                {
+//                    if (!App.missileBaseManager.isMissileActive)
+//                    {
+//                        App.getBase().setAction(ActionStates._SET_FIGHTING);
+//                    }
+//                }
+
+                timeBar.refill();
             }
         }
     }

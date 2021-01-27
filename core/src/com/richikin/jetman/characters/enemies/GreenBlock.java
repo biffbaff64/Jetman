@@ -64,8 +64,6 @@ public class GreenBlock extends GdxSprite
                     speed.setX(0);
                 }
 
-//                b2dBody.setGravityScale(0);
-//                b2dBody.setLinearVelocity(speed.getX() * direction.getX(), speed.getY() * direction.getY());
                 sprite.translate(speed.getX() * direction.getX(), speed.getY() * direction.getY());
 
                 wrap();
