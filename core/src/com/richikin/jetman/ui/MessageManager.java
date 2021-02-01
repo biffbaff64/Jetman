@@ -10,7 +10,7 @@ import com.richikin.utilslib.logging.Trace;
 
 public class MessageManager
 {
-    static class Message
+    private static class Message
     {
         public IUserInterfacePanel panel;
         public boolean             enabled;

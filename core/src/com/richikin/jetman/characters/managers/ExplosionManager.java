@@ -10,7 +10,7 @@ import com.richikin.enumslib.GraphicID;
 
 public class ExplosionManager
 {
-    static class ExplosionInfo
+    private static class ExplosionInfo
     {
         final GraphicID graphicID;
         final float     scale;

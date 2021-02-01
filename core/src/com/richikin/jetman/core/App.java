@@ -5,7 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.richikin.enumslib.GraphicID;
 import com.richikin.enumslib.StateID;
 import com.richikin.jetman.assets.AssetLoader;
+import com.richikin.jetman.characters.managers.DefenceStationManager;
+import com.richikin.jetman.characters.managers.MissileBaseManager;
 import com.richikin.jetman.characters.managers.RoverManager;
+import com.richikin.jetman.characters.managers.TeleportManager;
 import com.richikin.jetman.characters.misc.Bomb;
 import com.richikin.jetman.characters.misc.Rover;
 import com.richikin.jetman.characters.misc.RoverGun;
@@ -50,9 +53,9 @@ public final class App extends LibApp
     public static InputManager    inputManager;
     public static MainMenuScreen  mainMenuScreen;
     public static MainGameScreen  mainGameScreen;
-    public static IAssets        assets;
-    public static ISettings      settings;
-    public static HighScoreUtils highScoreUtils;
+    public static IAssets         assets;
+    public static ISettings       settings;
+    public static HighScoreUtils  highScoreUtils;
     public static ParallaxManager parallaxManager;
     public static PanelManager    panelManager;
     public static LevelManager    levelManager;
@@ -72,11 +75,11 @@ public final class App extends LibApp
     public static GameProgress   gameProgress;
     public static MapCreator     mapCreator;
 
-    public static EntityManager                                                 entityManager;
-    public static RoverManager                                                  roverManager;
-    public static com.richikin.jetman.characters.managers.TeleportManager       teleportManager;
-    public static com.richikin.jetman.characters.managers.MissileBaseManager    missileBaseManager;
-    public static com.richikin.jetman.characters.managers.DefenceStationManager defenceStationManager;
+    public static EntityManager         entityManager;
+    public static RoverManager          roverManager;
+    public static TeleportManager       teleportManager;
+    public static MissileBaseManager    missileBaseManager;
+    public static DefenceStationManager defenceStationManager;
 
     private App()
     {
@@ -121,6 +124,7 @@ public final class App extends LibApp
     }
 
     private static final SimpleVec2 position = new SimpleVec2();
+
     public static SimpleVec2 getPlayerPos()
     {
         if (entities.mainPlayer.isRidingRover)

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
@@ -124,6 +125,7 @@ public class HeadsUpDisplay implements Disposable
     private HighScoreUtils  highScoreUtils;
     private Drawable        imageFuelLow;
     private boolean         fuelLowWarning;
+    private boolean         timeLowWarning;
     private boolean         fuelLowState;
     private StopWatch       fuelLowTimer;
     private int             fuelLowDelay;
@@ -280,6 +282,7 @@ public class HeadsUpDisplay implements Disposable
     private void updateBarColours()
     {
         fuelLowWarning = false;
+        timeLowWarning = false;
 
         if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
         {
@@ -303,6 +306,7 @@ public class HeadsUpDisplay implements Disposable
             if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
             {
                 timeBar.setColor(Color.RED);
+                timeLowWarning = true;
             }
             else
             {
@@ -387,7 +391,7 @@ public class HeadsUpDisplay implements Disposable
         }
     }
 
-    public void render(OrthographicCamera camera, boolean _canDrawControls)
+    public void render(OrthographicCamera camera, boolean canDrawControls)
     {
         if (AppConfig.hudExists)
         {
@@ -399,7 +403,7 @@ public class HeadsUpDisplay implements Disposable
             drawPanels();
             drawItems();
 
-            if (_canDrawControls && App.gameProgress.gameSetupDone)
+            if (canDrawControls && App.gameProgress.gameSetupDone)
             {
                 drawControls(camera);
             }
@@ -460,12 +464,12 @@ public class HeadsUpDisplay implements Disposable
         showHUDControls = false;
     }
 
-    public void showPauseButton(boolean _state)
+    public void showPauseButton(boolean state)
     {
         if (PauseButton != null)
         {
-            PauseButton.setVisible(_state);
-            PauseButton.setDisabled(!_state);
+            PauseButton.setVisible(state);
+            PauseButton.setDisabled(!state);
         }
     }
 
@@ -483,9 +487,9 @@ public class HeadsUpDisplay implements Disposable
         buttonDown.release();
     }
 
-    public void setStateID(StateID _newState)
+    public void setStateID(StateID newState)
     {
-        hudStateID = _newState;
+        hudStateID = newState;
     }
 
     public VirtualJoystick getJoystick()
@@ -792,6 +796,8 @@ public class HeadsUpDisplay implements Disposable
                 smallFont.draw(App.spriteBatch, "GOD MODE", AppConfig.hudOriginX + 790, AppConfig.hudOriginY + (720 - 6));
             }
 
+            int yPosition = 600;
+
             if (App.settings.isEnabled(Settings._SHOW_FPS))
             {
                 smallFont.draw
@@ -799,25 +805,44 @@ public class HeadsUpDisplay implements Disposable
                         App.spriteBatch,
                         "FPS  : " + Gdx.graphics.getFramesPerSecond(),
                         AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 600
+                        AppConfig.hudOriginY + yPosition
                     );
+
+                yPosition -= 30;
             }
 
-            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+//            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+//            {
+//            }
+
+            if (App.settings.isEnabled(Settings._MENU_HEAPS))
             {
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "FUEL: " + fuelBar.getTotal(),
+                        String.format
+                            (
+                                Locale.UK,
+                                "JAVA HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getJavaHeap()) / 1024) / 1024)
+                            ),
                         AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 570
+                        AppConfig.hudOriginY + yPosition
                     );
+
+                yPosition -= 30;
+
                 smallFont.draw
                     (
                         App.spriteBatch,
-                        "TIME: " + timeBar.getTotal(),
+                        String.format
+                            (
+                                Locale.UK,
+                                "NATIVE HEAP: %3.2fMB",
+                                ((((float) Gdx.app.getNativeHeap()) / 1024) / 1024)
+                            ),
                         AppConfig.hudOriginX + 20,
-                        AppConfig.hudOriginY + 540
+                        AppConfig.hudOriginY + yPosition
                     );
             }
         }
