@@ -1,8 +1,8 @@
 
 animations.png
-size: 2048,2048
+size: 2048, 2048
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest, Nearest
 repeat: none
 3_balls
   rotate: false
@@ -307,9 +307,9 @@ zap
   index: -1
 
 animations2.png
-size: 1024,256
+size: 1024, 256
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Nearest, Nearest
 repeat: none
 explosion64
   rotate: false

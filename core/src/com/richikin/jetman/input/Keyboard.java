@@ -399,14 +399,17 @@ public class Keyboard extends InputAdapter
     /**
      * React to the mouse wheel scrolling
      *
-     * @param amount - scroll amount.
-     *               - amount < 0 == scroll down.
-     *               - amount > 0 == scroll up.
+     * @param amountX - scroll amount.
+     *                - amount < 0 == scroll left.
+     *                - amount > 0 == scroll right.
+     * @param amountY - scroll amount.
+     *                - amount < 0 == scroll down.
+     *                - amount > 0 == scroll up.
      * @return boolean indicating whether or not the input
      * was processed.
      */
     @Override
-    public boolean scrolled(int amount)
+    public boolean scrolled(float amountX, float amountY)
     {
         if (AppConfig.gameScreenActive())
         {
@@ -414,22 +417,22 @@ public class Keyboard extends InputAdapter
             {
                 if (ctrlButtonHeld)
                 {
-                    if (amount < 0)
+                    if (amountY < 0)
                     {
                         App.baseRenderer.gameZoom.out(0.10f);
                     }
-                    else if (amount > 0)
+                    else if (amountY > 0)
                     {
                         App.baseRenderer.gameZoom.in(0.10f);
                     }
                 }
                 if (shiftButtonHeld)
                 {
-                    if (amount < 0)
+                    if (amountY < 0)
                     {
                         App.baseRenderer.hudZoom.out(0.10f);
                     }
-                    else if (amount > 0)
+                    else if (amountY > 0)
                     {
                         App.baseRenderer.hudZoom.in(0.10f);
                     }
