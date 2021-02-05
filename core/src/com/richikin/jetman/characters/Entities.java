@@ -32,7 +32,7 @@ public class Entities
                 (
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
-                    GameAssets._PLAYER_IDLE, GameAssets._PLAYER_STAND_FRAMES,
+                    GameAssets._PLAYER_IDLE_ASSET, GameAssets._PLAYER_STAND_FRAMES,
                     Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
                 ),

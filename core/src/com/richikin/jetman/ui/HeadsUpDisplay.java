@@ -811,9 +811,18 @@ public class HeadsUpDisplay implements Disposable
                 yPosition -= 30;
             }
 
-//            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
-//            {
-//            }
+            if (App.settings.isEnabled(Settings._SHOW_DEBUG))
+            {
+                smallFont.draw
+                    (
+                        App.spriteBatch,
+                        "AB Action: " + App.getPlayer().actionButton.getActionMode(),
+                        AppConfig.hudOriginX + 20,
+                        AppConfig.hudOriginY + yPosition
+                    );
+
+                yPosition -= 30;
+            }
 
             if (App.settings.isEnabled(Settings._MENU_HEAPS))
             {

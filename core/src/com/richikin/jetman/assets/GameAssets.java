@@ -10,11 +10,11 @@ public class GameAssets
 {
     //
     // MainPlayer assets
-    public static final String _PLAYER_RUN   = "ljm_walk2";
-    public static final String _PLAYER_IDLE  = "ljm_stand";
-    public static final String _PLAYER_FLY   = "ljm_fly2";
-    public static final String _PLAYER_DYING = "ljm_death";
-    public static final String _PLAYER_SPAWN = "player_appear";
+    public static final String _PLAYER_RUN_ASSET  = "ljm_walk2";
+    public static final String _PLAYER_IDLE_ASSET = "ljm_stand";
+    public static final String _PLAYER_FLY_ASSET   = "ljm_fly2";
+    public static final String _PLAYER_DYING_ASSET = "ljm_death";
+    public static final String _PLAYER_SPAWN_ASSET = "player_appear";
 
     public static final int _PLAYER_STAND_FRAMES = 5;
     public static final int _PLAYER_DYING_FRAMES = 1;
@@ -105,15 +105,15 @@ public class GameAssets
     public static final String _HUD_PANEL_ASSET     = "data/hud_panel.png";
     public static final String _SPLASH_SCREEN_ASSET = "data/splash_screen.png";
 
-    public static int hudPanelWidth;      // Set when object is loaded
-    public static int hudPanelHeight;     //
-
     public static final String _GETREADY_MSG_ASSET  = "getready";
     public static final String _GAMEOVER_MSG_ASSET  = "gameover";
     public static final String _CREDITS_PANEL_ASSET = "data/credits_panel.png";
     public static final String _OPTIONS_PANEL_ASSET = "data/options_panel.png";
     public static final String _PAUSE_PANEL_ASSET   = "data/pause_panel.png";
     public static final String _UISKIN_ASSET        = "data/uiskin.json";
+
+    public static int hudPanelWidth;      // Set when object is loaded
+    public static int hudPanelHeight;     //
 
     private static final AssetSize[] assetSizes =
         {

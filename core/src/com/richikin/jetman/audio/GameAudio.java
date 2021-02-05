@@ -113,20 +113,6 @@ public class GameAudio
         soundsLoaded = true;
     }
 
-    private float getUsableVolume(int volume)
-    {
-//        volume /= _VOLUME_MULTIPLIER;
-//
-//        if (volume >= _MAX_VOLUME)
-//        {
-//            volume = _MAX_VOLUME;
-//        }
-//
-//        return volumes[volume];
-
-        return volume;
-    }
-
     public void playTune(boolean play)
     {
         if (play)
@@ -204,7 +190,7 @@ public class GameAudio
                     && !AudioData.music[musicNumber].isPlaying())
                 {
                     AudioData.music[musicNumber].setLooping(looping);
-                    AudioData.music[musicNumber].setVolume(getUsableVolume(volume));
+                    AudioData.music[musicNumber].setVolume(volume);
                     AudioData.music[musicNumber].play();
 
                     currentTune = musicNumber;
@@ -221,7 +207,7 @@ public class GameAudio
             {
                 if (AudioData.sounds[soundNumber] != null)
                 {
-                    AudioData.sounds[soundNumber].play(getUsableVolume(getFXVolume()));
+                    AudioData.sounds[soundNumber].play(getFXVolume());
                 }
             }
         }
@@ -242,7 +228,7 @@ public class GameAudio
     {
         if (AudioData.music[currentTune] != null)
         {
-            AudioData.music[currentTune].setVolume(getUsableVolume(volume));
+            AudioData.music[currentTune].setVolume(volume);
         }
 
         App.settings.getPrefs().putInteger(Settings._MUSIC_VOLUME, volume);

@@ -452,7 +452,7 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET    = GameAssets._PLAYER_DYING;
+                    descriptor._ASSET    = GameAssets._PLAYER_DYING_ASSET;
                     descriptor._FRAMES   = GameAssets._PLAYER_DYING_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
@@ -469,7 +469,7 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET    = GameAssets._PLAYER_FLY;
+                    descriptor._ASSET    = GameAssets._PLAYER_FLY_ASSET;
                     descriptor._FRAMES   = GameAssets._PLAYER_FLY_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
@@ -483,7 +483,7 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET    = GameAssets._PLAYER_RUN;
+                    descriptor._ASSET    = GameAssets._PLAYER_RUN_ASSET;
                     descriptor._FRAMES   = GameAssets._PLAYER_RUN_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
@@ -500,7 +500,7 @@ public class MainPlayer extends GdxSprite
                 {
                     SpriteDescriptor descriptor = App.entities.getDescriptor(this.gid);
 
-                    descriptor._ASSET    = GameAssets._PLAYER_IDLE;
+                    descriptor._ASSET    = GameAssets._PLAYER_IDLE_ASSET;
                     descriptor._FRAMES   = GameAssets._PLAYER_STAND_FRAMES;
                     descriptor._PLAYMODE = Animation.PlayMode.LOOP;
 
@@ -726,7 +726,7 @@ public class MainPlayer extends GdxSprite
         spawnFrames = new TextureRegion[_SPAWN_FRAMES];
         spawnAnim   = App.entityUtils.createAnimation
             (
-                GameAssets._PLAYER_SPAWN,
+                GameAssets._PLAYER_SPAWN_ASSET,
                 spawnFrames,
                 _SPAWN_FRAMES,
                 Animation.PlayMode.NORMAL

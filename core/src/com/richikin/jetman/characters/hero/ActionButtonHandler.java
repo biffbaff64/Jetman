@@ -30,36 +30,30 @@ public class ActionButtonHandler implements Disposable
 
     public void update()
     {
-        switch (actionMode)
+        if (actionMode == ActionMode._TELEPORTING)
         {
-            case _TELEPORTING:
+            if (App.entityManager.teleportBeam != null)
             {
-                if (App.entityManager.teleportBeam != null)
+                if (App.entityManager.teleportBeam.update())
                 {
-                    if (App.entityManager.teleportBeam.update())
-                    {
-                        App.entityManager.teleportBeam.dispose();
-                        App.entityManager.teleportBeam = null;
+                    App.entityManager.teleportBeam.dispose();
+                    App.entityManager.teleportBeam = null;
 
-                        App.teleportManager.setTeleporting(teleportNumber);
-                    }
+                    App.teleportManager.setTeleporting(teleportNumber);
                 }
             }
-            break;
+        }
+        else
+        {
 
-            case _BOMB_CARRY:
-            case _GUN_CARRY:
-            case _BRIDGE_CARRY:
-            case _ROVER_RIDE:
-            case _NO_ACTION:
-            default:
-            {
-            }
-            break;
         }
     }
 
     public void setAction()
+    {
+    }
+
+    private void oldSetAction()
     {
         if ((actionMode == ActionMode._NO_ACTION)
             || ((actionMode == ActionMode._BOMB_CARRY) && App.getPlayer().collision.isTeleporterPresent())
