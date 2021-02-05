@@ -3,7 +3,10 @@ package com.richikin.jetman.characters.hero;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.utils.Disposable;
 import com.richikin.enumslib.ActionStates;
+import com.richikin.jetman.characters.misc.Bomb;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameConstants;
+import com.richikin.jetman.maps.RoomManager;
 import com.richikin.utilslib.logging.Trace;
 
 public class ActionButtonHandler implements Disposable
@@ -16,6 +19,7 @@ public class ActionButtonHandler implements Disposable
         _BRIDGE_CARRY,
         _ROVER_RIDE,
         _TELEPORTING,
+        _OFFER_ABXY_A,
     }
 
     private int        teleportNumber;
@@ -43,9 +47,32 @@ public class ActionButtonHandler implements Disposable
                 }
             }
         }
-        else
+        else if ((actionMode == ActionMode._NO_ACTION)
+            || ((actionMode == ActionMode._BOMB_CARRY) && App.getPlayer().collision.isTeleporterPresent())
+            || ((actionMode == ActionMode._GUN_CARRY) && App.getPlayer().collision.isTeleporterPresent()))
         {
-
+            if (App.getPlayer().collision.isInRoverMiddle()
+                || App.getPlayer().collision.isBombPresent()
+                || App.getPlayer().collision.isTeleporterPresent())
+            {
+                setActionMode(ActionMode._OFFER_ABXY_A);
+            }
+//            else
+//            {
+//                if (App.getPlayer().collision.isTeleporterPresent())
+//                {
+//                    for (int i=0; i< RoomManager._MAX_TELEPORTERS; i++)
+//                    {
+//                        if (App.getTeleporter(i).getCollisionRectangle().contains(App.getPlayer().getCollisionRectangle()))
+//                        {
+//                            setActionMode(ActionMode._TELEPORTING);
+//
+//                            App.teleportManager.teleportVisual(true);
+//                            teleportNumber = i;
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 
