@@ -25,6 +25,7 @@ import com.richikin.jetman.entities.objects.GdxSprite;
 
 public class Proximity
 {
+    // TODO: 06/02/2021 - Why are these not local to methods?
     private final Rectangle proximityArea;
     private final Vector2   tmp1;
     private final Vector2   tmp2;

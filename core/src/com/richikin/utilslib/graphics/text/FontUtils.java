@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics.text;
+package com.richikin.utilslib.graphics.text;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

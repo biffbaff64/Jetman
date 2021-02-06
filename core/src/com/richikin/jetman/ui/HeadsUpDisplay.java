@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
@@ -23,7 +22,7 @@ import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.HighScoreUtils;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.input.VirtualJoystick;
 import com.richikin.utilslib.input.GameButtonRegion;
 import com.richikin.utilslib.input.Switch;
@@ -31,6 +30,7 @@ import com.richikin.utilslib.input.controllers.ControllerPos;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.ui.Scene2DUtils;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -645,7 +645,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (stateID == StateID._INIT)
         {
-            Scene2DUtils scene2DUtils = new Scene2DUtils();
+            com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new com.richikin.utilslib.ui.Scene2DUtils();
 
             imageFuelLow = scene2DUtils.createDrawable("fuel_low", App.assets.getTextsLoader());
             fuelLowState = true;
@@ -688,7 +688,7 @@ public class HeadsUpDisplay implements Disposable
         {
             int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-            Scene2DUtils scene2DUtils = new Scene2DUtils();
+            com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new Scene2DUtils();
 
             AttackButton = scene2DUtils.addButton
                 (

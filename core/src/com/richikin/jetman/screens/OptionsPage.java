@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -24,7 +23,7 @@ import com.richikin.jetman.developer.DeveloperPanel;
 import com.richikin.jetman.ui.IUIPage;
 import com.richikin.jetman.ui.InstructionsPanel;
 import com.richikin.jetman.ui.PrivacyPolicyPanel;
-import com.richikin.jetman.ui.Scene2DUtils;
+import com.richikin.utilslib.ui.Scene2DUtils;
 import com.richikin.jetman.ui.StatsPanel;
 import com.richikin.utilslib.logging.Trace;
 

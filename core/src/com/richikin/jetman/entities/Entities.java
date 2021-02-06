@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.characters;
+package com.richikin.jetman.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.richikin.enumslib.GraphicID;
@@ -24,6 +24,9 @@ public class Entities
     public Bomb         bomb;
     public MissileBase  missileBase;
     public Teleporter[] teleporters;
+
+    // TODO: 06/02/2021 - Transfer the information from GameAssets class into this class
+    // TODO: 06/02/2021 - This would allow removal of GameAssets.
 
     public final SpriteDescriptor[] entityList =
         {

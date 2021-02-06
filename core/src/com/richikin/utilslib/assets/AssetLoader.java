@@ -1,11 +1,10 @@
 
-package com.richikin.jetman.assets;
+package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Disposable;
-import com.richikin.jetman.graphics.IAssets;
 import com.richikin.utilslib.logging.Trace;
 
 public class AssetLoader implements IAssets, Disposable
@@ -44,61 +43,61 @@ public class AssetLoader implements IAssets, Disposable
     /**
      * Use the AssetManager to find and return the specified
      * region from the Buttons Atlas.
-     * @param _name The name of the required region
+     * @param name The name of the required region
      * @return      A TextureRegion holding requested Region
      */
     @Override
-    public TextureRegion getButtonRegion(final String _name)
+    public TextureRegion getButtonRegion(final String name)
     {
-        return assetManager.get(_BUTTONS_ATLAS, TextureAtlas.class).findRegion(_name);
+        return assetManager.get(_BUTTONS_ATLAS, TextureAtlas.class).findRegion(name);
     }
 
     /**
      * Use the AssetManager to find and return the specified
      * region from the Animations Atlas.
-     * @param _name The name of the required region
+     * @param name The name of the required region
      * @return      A TextureRegion holding requested Region
      */
     @Override
-    public TextureRegion getAnimationRegion(final String _name)
+    public TextureRegion getAnimationRegion(final String name)
     {
-        return assetManager.get(_ANIMATIONS_ATLAS, TextureAtlas.class).findRegion(_name);
+        return assetManager.get(_ANIMATIONS_ATLAS, TextureAtlas.class).findRegion(name);
     }
 
     /**
      * Use the AssetManager to find and return the specified
      * region from the Objects Atlas.
-     * @param _name The name of the required region
+     * @param name The name of the required region
      * @return      A TextureRegion holding requested Region
      */
     @Override
-    public TextureRegion getObjectRegion(final String _name)
+    public TextureRegion getObjectRegion(final String name)
     {
-        return assetManager.get(_OBJECTS_ATLAS, TextureAtlas.class).findRegion(_name);
+        return assetManager.get(_OBJECTS_ATLAS, TextureAtlas.class).findRegion(name);
     }
 
     /**
      * Use the AssetManager to find and return the specified
      * region from the Text Atlas.
-     * @param _name The name of the required region
+     * @param name The name of the required region
      * @return      A TextureRegion holding requested Region
      */
     @Override
-    public TextureRegion getTextRegion(final String _name)
+    public TextureRegion getTextRegion(final String name)
     {
-        return assetManager.get(_TEXT_ATLAS, TextureAtlas.class).findRegion(_name);
+        return assetManager.get(_TEXT_ATLAS, TextureAtlas.class).findRegion(name);
     }
 
     /**
      * Use the AssetManager to find and return the specified
      * region from the Achievements Atlas.
-     * @param _name The name of the required region
+     * @param name The name of the required region
      * @return      A TextureRegion holding requested Region
      */
     @Override
-    public TextureRegion getAchievementRegion(final String _name)
+    public TextureRegion getAchievementRegion(final String name)
     {
-        return assetManager.get(_ACHIEVEMENTS_ATLAS, TextureAtlas.class).findRegion(_name);
+        return assetManager.get(_ACHIEVEMENTS_ATLAS, TextureAtlas.class).findRegion(name);
     }
 
     @Override

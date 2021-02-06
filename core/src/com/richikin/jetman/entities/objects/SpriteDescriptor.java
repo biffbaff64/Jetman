@@ -14,6 +14,7 @@ import com.richikin.utilslib.logging.Trace;
  * Used for storing relevant information for
  * creating, placing and initialising sprites.
  */
+// TODO: 06/02/2021 - Fix naming issues
 public class SpriteDescriptor
 {
     public String             _NAME;         // MUST Match the name assigned in TiledMap.
@@ -59,55 +60,55 @@ public class SpriteDescriptor
         this._ENEMY     = false;
     }
 
-    public SpriteDescriptor(String _objectName,
-                            GraphicID _graphicID,
-                            GraphicID _type,
-                            String _asset,
-                            int _frames,
-                            TileID _tileID)
+    public SpriteDescriptor(String objectName,
+                            GraphicID graphicID,
+                            GraphicID type,
+                            String asset,
+                            int frames,
+                            TileID tileID)
     {
         this();
 
-        this._NAME   = _objectName;
-        this._GID    = _graphicID;
-        this._TILE   = _tileID;
-        this._ASSET  = _asset;
-        this._FRAMES = _frames;
-        this._TYPE   = _type;
+        this._NAME   = objectName;
+        this._GID    = graphicID;
+        this._TILE   = tileID;
+        this._ASSET  = asset;
+        this._FRAMES = frames;
+        this._TYPE   = type;
     }
 
-    public SpriteDescriptor(String _objectName,
-                            GraphicID _graphicID,
-                            GraphicID _type,
-                            String _asset,
-                            int _frames,
-                            Animation.PlayMode _playMode,
-                            TileID _tileID)
+    public SpriteDescriptor(String objectName,
+                            GraphicID graphicID,
+                            GraphicID type,
+                            String asset,
+                            int frames,
+                            Animation.PlayMode playMode,
+                            TileID tileID)
     {
-        this(_objectName, _graphicID, _type, _asset, _frames, _tileID);
-        this._PLAYMODE = _playMode;
+        this(objectName, graphicID, type, asset, frames, tileID);
+        this._PLAYMODE = playMode;
     }
 
-    public SpriteDescriptor(SpriteDescriptor _descriptor)
+    public SpriteDescriptor(SpriteDescriptor descriptor)
     {
-        this._GID       = _descriptor._GID;
-        this._TYPE      = _descriptor._TYPE;
-        this._POSITION  = _descriptor._POSITION;
-        this._SIZE      = _descriptor._SIZE;
-        this._INDEX     = _descriptor._INDEX;
-        this._FRAMES    = _descriptor._FRAMES;
-        this._PLAYMODE  = _descriptor._PLAYMODE;
-        this._ANIM_RATE = _descriptor._ANIM_RATE;
-        this._NAME      = _descriptor._NAME;
-        this._ASSET     = _descriptor._ASSET;
-        this._LINK      = _descriptor._LINK;
-        this._TILE      = _descriptor._TILE;
-        this._PARENT    = _descriptor._PARENT;
-        this._DIR       = _descriptor._DIR;
-        this._DIST      = _descriptor._DIST;
-        this._SPEED     = _descriptor._SPEED;
-        this._BOX       = _descriptor._BOX;
-        this._ENEMY     = _descriptor._ENEMY;
+        this._GID       = descriptor._GID;
+        this._TYPE      = descriptor._TYPE;
+        this._POSITION  = descriptor._POSITION;
+        this._SIZE      = descriptor._SIZE;
+        this._INDEX     = descriptor._INDEX;
+        this._FRAMES    = descriptor._FRAMES;
+        this._PLAYMODE  = descriptor._PLAYMODE;
+        this._ANIM_RATE = descriptor._ANIM_RATE;
+        this._NAME      = descriptor._NAME;
+        this._ASSET     = descriptor._ASSET;
+        this._LINK      = descriptor._LINK;
+        this._TILE      = descriptor._TILE;
+        this._PARENT    = descriptor._PARENT;
+        this._DIR       = descriptor._DIR;
+        this._DIST      = descriptor._DIST;
+        this._SPEED     = descriptor._SPEED;
+        this._BOX       = descriptor._BOX;
+        this._ENEMY     = descriptor._ENEMY;
     }
 
     public void debug()

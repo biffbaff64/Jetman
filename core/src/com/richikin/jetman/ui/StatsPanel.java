@@ -15,11 +15,12 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.ui.DefaultPanel;
+import com.richikin.utilslib.ui.Scene2DUtils;
 
 public class StatsPanel extends DefaultPanel
 {
@@ -85,7 +86,7 @@ public class StatsPanel extends DefaultPanel
         Image   image = new Image(new TextureRegion(sky));
         buffer.setBackground(image.getDrawable());
 
-        Scene2DUtils scene2DUtils = new Scene2DUtils();
+        com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new Scene2DUtils();
 
         title = scene2DUtils.createImage("title_small", App.assets.getTextsLoader());
         title.setPosition(AppConfig.hudOriginX + 350, AppConfig.hudOriginY + (720 - 160));

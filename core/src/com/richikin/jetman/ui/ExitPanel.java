@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.logging.StopWatch;
+import com.richikin.utilslib.ui.Scene2DUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -93,7 +94,7 @@ public class ExitPanel implements Disposable
         panel     = App.assets.loadSingleAsset("data/exit_screen.png", Texture.class);
         darkLayer = App.assets.loadSingleAsset("data/dark_screen.png", Texture.class);
 
-        Scene2DUtils scene2DUtils = new Scene2DUtils();
+        com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new Scene2DUtils();
 
         buttonYes = scene2DUtils.addButton
             (

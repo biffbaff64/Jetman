@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics;
+package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,12 +20,12 @@ public class SimpleDrawable
         this.position   = new SimpleVec2F();
     }
 
-    public SimpleDrawable(TextureRegion _image, float _x, float _y)
+    public SimpleDrawable(TextureRegion image, float x, float y)
     {
-        this.image      = _image;
-        this.position   = new SimpleVec2F(_x, _y);
-        this.width      = _image.getRegionWidth();
-        this.height     = _image.getRegionHeight();
+        this.image      = image;
+        this.position   = new SimpleVec2F(x, y);
+        this.width      = image.getRegionWidth();
+        this.height     = image.getRegionHeight();
     }
 
     public void draw(SpriteBatch spriteBatch)

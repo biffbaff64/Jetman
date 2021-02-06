@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics;
+package com.richikin.utilslib.assets;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

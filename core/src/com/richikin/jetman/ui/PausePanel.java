@@ -18,6 +18,7 @@ import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.utilslib.ui.DefaultPanel;
+import com.richikin.utilslib.ui.Scene2DUtils;
 
 public class PausePanel extends DefaultPanel
 {
@@ -55,7 +56,7 @@ public class PausePanel extends DefaultPanel
 
         Skin skin = new Skin(Gdx.files.internal(GameAssets._UISKIN_ASSET));
 
-        Scene2DUtils scene2DUtils = new Scene2DUtils();
+        com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new Scene2DUtils();
 
         buttonMusic = scene2DUtils.addCheckBox
             (

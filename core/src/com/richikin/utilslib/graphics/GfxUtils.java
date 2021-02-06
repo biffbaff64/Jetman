@@ -1,5 +1,5 @@
 
-package com.richikin.jetman.graphics;
+package com.richikin.utilslib.graphics;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class GfxUtils
 {
-    public static void splitRegion(TextureRegion textureRegion, int frameCount, TextureRegion[] destinationFrames)
+    public void splitRegion(TextureRegion textureRegion, int frameCount, TextureRegion[] destinationFrames)
     {
         TextureRegion[] tmpFrames = textureRegion.split
             (
@@ -18,7 +18,7 @@ public class GfxUtils
         System.arraycopy(tmpFrames, 0, destinationFrames, 0, frameCount);
     }
 
-    public static void drawRect(int x, int y, int width, int height, int thickness, Color color)
+    public void drawRect(int x, int y, int width, int height, int thickness, Color color)
     {
         ShapeRenderer shapeRenderer = new ShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);

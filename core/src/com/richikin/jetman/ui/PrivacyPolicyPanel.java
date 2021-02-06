@@ -14,7 +14,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.graphics.Gfx;
-import com.richikin.jetman.graphics.text.FontUtils;
+import com.richikin.utilslib.graphics.text.FontUtils;
 import com.richikin.jetman.ui.panels.IUserInterfacePanel;
 import com.richikin.utilslib.logging.Meters;
 import com.richikin.utilslib.logging.Stats;

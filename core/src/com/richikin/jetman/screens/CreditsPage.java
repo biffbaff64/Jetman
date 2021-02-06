@@ -13,7 +13,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Version;
 import com.richikin.jetman.core.App;
-import com.richikin.jetman.ui.Scene2DUtils;
+import com.richikin.utilslib.ui.Scene2DUtils;
 import com.richikin.utilslib.logging.StopWatch;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.jetman.ui.IUIPage;

@@ -11,14 +11,14 @@ public class Room
         this("", new MapEntry());
     }
 
-    public Room(final String _roomName, MapEntry _mapEntry)
+    public Room(final String name, MapEntry entry)
     {
-        this.roomName = _roomName;
-        this.mapEntry = _mapEntry;
+        this.roomName = name;
+        this.mapEntry = entry;
     }
 
-    public void set(Room _reference)
+    public void set(Room reference)
     {
-        this.roomName = _reference.roomName;
+        this.roomName = reference.roomName;
     }
 }
