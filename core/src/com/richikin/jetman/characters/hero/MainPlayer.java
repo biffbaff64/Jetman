@@ -16,6 +16,7 @@ import com.richikin.jetman.characters.managers.BridgeManager;
 import com.richikin.jetman.characters.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.graphics.SimpleDrawable;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.maths.Box;
 import com.richikin.jetman.physics.aabb.CollisionRect;
@@ -72,6 +73,7 @@ public class MainPlayer extends GdxSprite
     private Animation<TextureRegion> spawnAnim;
     private float                    elapsedSpawnTime;
     private StopWatch                stopWatch;
+    private SimpleDrawable           aButtonHint;
 
     public MainPlayer()
     {
@@ -194,7 +196,7 @@ public class MainPlayer extends GdxSprite
 
         updateCommon();
 
-        actionButton.update();
+        actionButton.updateOfferButton();
     }
 
     private void updateMainPlayer()
@@ -542,6 +544,13 @@ public class MainPlayer extends GdxSprite
                         this.sprite.getX(),
                         this.sprite.getY()
                     );
+            }
+            else
+            {
+                if (actionButton.getActionMode() == ActionButtonHandler.ActionMode._OFFER_ABXY_A)
+                {
+                    // TODO: 06/02/2021 - Draw the 'A' button hint here
+                }
             }
         }
     }

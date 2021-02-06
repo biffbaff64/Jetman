@@ -176,6 +176,25 @@ public class CollisionHandler implements ICollisionListener
     }
 
     /**
+     * Returns TRUE if LJM is in contact with the bomb.
+     */
+    public boolean isGunTurretPresent()
+    {
+        boolean isPresent = false;
+
+        if (App.getGun() != null)
+        {
+            isPresent = Intersector.overlaps
+                (
+                    App.getPlayer().getCollisionRectangle(),
+                    App.getGun().getCollisionRectangle()
+                );
+        }
+
+        return isPresent;
+    }
+
+    /**
      * Returns TRUE if LJM is in contact with a Teleporter booth.
      */
     public boolean isTeleporterPresent()
