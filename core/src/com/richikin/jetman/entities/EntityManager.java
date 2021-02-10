@@ -30,22 +30,22 @@ public class EntityManager implements IEntityManager
     public static Array<GraphicID> enemies;
 
     static
-        {
-            enemies = new Array<>();
+    {
+        enemies = new Array<>();
 
-            enemies.add(GraphicID.G_3BALLS_UFO);
-            enemies.add(GraphicID.G_3LEGS_ALIEN);
-            enemies.add(GraphicID.G_ASTEROID);
-            enemies.add(GraphicID.G_ALIEN_WHEEL);
-            enemies.add(GraphicID.G_BLOB);
-            enemies.add(GraphicID.G_DOG);
-            enemies.add(GraphicID.G_GREEN_BLOCK);
-            enemies.add(GraphicID.G_SPINNING_BALL);
-            enemies.add(GraphicID.G_STAIR_CLIMBER);
-            enemies.add(GraphicID.G_STAR_SPINNER);
-            enemies.add(GraphicID.G_TOPSPIN);
-            enemies.add(GraphicID.G_TWINKLES);
-        }
+        enemies.add(GraphicID.G_3BALLS_UFO);
+        enemies.add(GraphicID.G_3LEGS_ALIEN);
+        enemies.add(GraphicID.G_ASTEROID);
+        enemies.add(GraphicID.G_ALIEN_WHEEL);
+        enemies.add(GraphicID.G_BLOB);
+        enemies.add(GraphicID.G_DOG);
+        enemies.add(GraphicID.G_GREEN_BLOCK);
+        enemies.add(GraphicID.G_SPINNING_BALL);
+        enemies.add(GraphicID.G_STAIR_CLIMBER);
+        enemies.add(GraphicID.G_STAR_SPINNER);
+        enemies.add(GraphicID.G_TOPSPIN);
+        enemies.add(GraphicID.G_TWINKLES);
+    }
 
     // --------------------------------------------------
     // Indexes into manager list
@@ -75,12 +75,12 @@ public class EntityManager implements IEntityManager
         Trace.__FILE_FUNC();
 
         // TODO: 09/01/2021 - Look at adding these into the entity manager list
-        App.roverManager            = new RoverManager();
-        App.teleportManager         = new TeleportManager();
-        App.missileBaseManager      = new MissileBaseManager();
-        App.defenceStationManager   = new DefenceStationManager();
+        App.roverManager          = new RoverManager();
+        App.teleportManager       = new TeleportManager();
+        App.missileBaseManager    = new MissileBaseManager();
+        App.defenceStationManager = new DefenceStationManager();
 
-        _bombManagerIndex = App.entityData.addManager(new BombManager());
+        _bombManagerIndex  = App.entityData.addManager(new BombManager());
         _alienManagerIndex = App.entityData.addManager(new AlienManager());
     }
 
@@ -183,40 +183,15 @@ public class EntityManager implements IEntityManager
                     {
                         switch (entity.gid)
                         {
-                            case G_PLAYER:
-                            case G_BACKGROUND_UFO:
-                            case G_TWINKLE_STAR:
-                            case _CEILING:
-                            case _CRATER:
-                            case _GROUND:
-                            {
+                            case G_PLAYER, G_BACKGROUND_UFO, G_TWINKLE_STAR, _CEILING, _CRATER, _GROUND -> {
+                                // TODO: 10/02/2021 - Actions for these entities needed here
                             }
-                            break;
-
-                            case G_TRANSPORTER:
-                            case G_MISSILE:
-                            case G_MISSILE_BASE:
-                            case G_DEFENDER:
-                            case G_ROVER:
-                            case G_ROVER_BULLET:
-                            case G_ROVER_WHEEL:
-                            case G_DEFENDER_BULLET:
-                            case G_UFO_BULLET:
-                            case G_EXPLOSION12:
-                            case G_EXPLOSION64:
-                            case G_EXPLOSION128:
-                            case G_EXPLOSION256:
-                            {
+                            case G_TRANSPORTER, G_MISSILE, G_MISSILE_BASE, G_DEFENDER, G_ROVER, G_ROVER_BULLET,
+                                G_ROVER_WHEEL, G_DEFENDER_BULLET, G_UFO_BULLET, G_EXPLOSION12, G_EXPLOSION64,
+                                G_EXPLOSION128, G_EXPLOSION256 -> {
                                 entity.tidy(i);
                             }
-                            break;
-
-                            case G_BOMB:
-                            case G_ROVER_GUN:
-                            case G_ROVER_GUN_BARREL:
-                            case G_ASTEROID:
-                            default:
-                            {
+                            default -> {
                                 if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);
@@ -225,7 +200,6 @@ public class EntityManager implements IEntityManager
                                     App.entityData.removeEntity(i);
                                 }
                             }
-                            break;
                         }
 
                         updateIndexes();
@@ -255,29 +229,16 @@ public class EntityManager implements IEntityManager
     {
         switch (entity.gid)
         {
-            case G_TRANSPORTER:
-            {
+            case G_TRANSPORTER -> {
                 _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
             }
-            break;
-
-            case G_MISSILE_BASE:
-            {
+            case G_MISSILE_BASE -> {
                 App.missileBaseManager.free();
             }
-            break;
-
-            case G_BOMB:
-            case G_DEFENDER:
-            case G_MISSILE:
-            case G_ROVER:
-            {
+            case G_BOMB, G_DEFENDER, G_MISSILE, G_ROVER -> {
             }
-            break;
-
-            default:
-            {
-                for (GraphicID gid : enemies)
+            default -> {
+                for (var gid : enemies)
                 {
                     if (gid == entity.gid)
                     {
@@ -285,7 +246,6 @@ public class EntityManager implements IEntityManager
                     }
                 }
             }
-            break;
         }
     }
 
@@ -352,8 +312,8 @@ public class EntityManager implements IEntityManager
         enemies.clear();
         enemies = null;
 
-        teleportBeam = null;
+        teleportBeam  = null;
         playerManager = null;
-        renderSystem = null;
+        renderSystem  = null;
     }
 }
