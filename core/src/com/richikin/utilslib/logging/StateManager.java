@@ -8,19 +8,12 @@ public class StateManager
 
     public StateManager(StateID _state)
     {
-        this();
-
         currentState = _state;
     }
 
     public StateManager()
     {
         currentState = StateID._INACTIVE;
-    }
-
-    public void push(StateID _state)
-    {
-        currentState = _state;
     }
 
     public void set(StateID _state)

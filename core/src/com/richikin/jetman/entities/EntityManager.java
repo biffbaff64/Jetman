@@ -23,7 +23,7 @@ import com.richikin.jetman.entities.objects.TeleportBeam;
 import com.richikin.jetman.maps.RoomManager;
 import com.richikin.utilslib.logging.Trace;
 
-public class EntityManager implements IEntityManager
+public class  EntityManager implements IEntityManager
 {
     // --------------------------------------------------
     //
@@ -163,11 +163,9 @@ public class EntityManager implements IEntityManager
     {
         if (App.entityData.entityMap != null)
         {
-            GdxSprite entity;
-
             for (int i = 0; i < App.entityData.entityMap.size; i++)
             {
-                entity = (GdxSprite) App.entityData.entityMap.get(i);
+                GdxSprite entity = (GdxSprite) App.entityData.entityMap.get(i);
 
                 if (entity != null)
                 {
@@ -183,15 +181,36 @@ public class EntityManager implements IEntityManager
                     {
                         switch (entity.gid)
                         {
-                            case G_PLAYER, G_BACKGROUND_UFO, G_TWINKLE_STAR, _CEILING, _CRATER, _GROUND -> {
-                                // TODO: 10/02/2021 - Actions for these entities needed here
+                            case G_PLAYER:
+                            case G_BACKGROUND_UFO:
+                            case G_TWINKLE_STAR:
+                            case _CEILING:
+                            case _CRATER:
+                            case _GROUND:
+                            {
                             }
-                            case G_TRANSPORTER, G_MISSILE, G_MISSILE_BASE, G_DEFENDER, G_ROVER, G_ROVER_BULLET,
-                                G_ROVER_WHEEL, G_DEFENDER_BULLET, G_UFO_BULLET, G_EXPLOSION12, G_EXPLOSION64,
-                                G_EXPLOSION128, G_EXPLOSION256 -> {
+                            break;
+
+                            case G_TRANSPORTER:
+                            case G_MISSILE:
+                            case G_MISSILE_BASE:
+                            case G_DEFENDER:
+                            case G_ROVER:
+                            case G_ROVER_BULLET:
+                            case G_ROVER_WHEEL:
+                            case G_DEFENDER_BULLET:
+                            case G_UFO_BULLET:
+                            case G_EXPLOSION12:
+                            case G_EXPLOSION64:
+                            case G_EXPLOSION128:
+                            case G_EXPLOSION256:
+                            {
                                 entity.tidy(i);
                             }
-                            default -> {
+                            break;
+
+                            default:
+                            {
                                 if (entity.gid != GraphicID.G_NO_ID)
                                 {
                                     releaseEntity(entity);
@@ -200,6 +219,7 @@ public class EntityManager implements IEntityManager
                                     App.entityData.removeEntity(i);
                                 }
                             }
+                            break;
                         }
 
                         updateIndexes();
@@ -229,16 +249,29 @@ public class EntityManager implements IEntityManager
     {
         switch (entity.gid)
         {
-            case G_TRANSPORTER -> {
+            case G_TRANSPORTER:
+            {
                 _teleportIndex[((Teleporter) entity).teleporterNumber] = 0;
             }
-            case G_MISSILE_BASE -> {
+            break;
+
+            case G_MISSILE_BASE:
+            {
                 App.missileBaseManager.free();
             }
-            case G_BOMB, G_DEFENDER, G_MISSILE, G_ROVER -> {
+            break;
+
+            case G_BOMB:
+            case G_DEFENDER:
+            case G_MISSILE:
+            case G_ROVER:
+            {
             }
-            default -> {
-                for (var gid : enemies)
+            break;
+
+            default:
+            {
+                for (GraphicID gid : enemies)
                 {
                     if (gid == entity.gid)
                     {
@@ -246,6 +279,7 @@ public class EntityManager implements IEntityManager
                     }
                 }
             }
+            break;
         }
     }
 
@@ -256,15 +290,13 @@ public class EntityManager implements IEntityManager
     @Override
     public void updateIndexes()
     {
-        GdxSprite entity;
-
         _playerIndex      = 0;
         _teleportIndex[0] = 0;
         _teleportIndex[1] = 0;
 
         for (int i = 0; i < App.entityData.entityMap.size; i++)
         {
-            entity = (GdxSprite) App.entityData.entityMap.get(i);
+            GdxSprite entity = (GdxSprite) App.entityData.entityMap.get(i);
 
             if (entity != null)
             {

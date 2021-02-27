@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.richikin.jetman.assets.GameAssets;
 import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.config.AppConfig;
+import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
 import com.richikin.jetman.core.GameConstants;
 import com.richikin.enumslib.StateID;
@@ -16,6 +17,7 @@ import com.richikin.jetman.characters.managers.BridgeManager;
 import com.richikin.jetman.characters.managers.ExplosionManager;
 import com.richikin.jetman.graphics.Gfx;
 import com.richikin.enumslib.GraphicID;
+import com.richikin.utilslib.graphics.GfxUtils;
 import com.richikin.utilslib.graphics.SimpleDrawable;
 import com.richikin.utilslib.input.controllers.ControllerType;
 import com.richikin.utilslib.maths.Box;
@@ -73,7 +75,8 @@ public class MainPlayer extends GdxSprite
     private Animation<TextureRegion> spawnAnim;
     private float                    elapsedSpawnTime;
     private StopWatch                stopWatch;
-    private SimpleDrawable           aButtonHint;
+    private TextureRegion[]          buttonHintImages;
+    private TextureRegion            aButtonHint;
 
     public MainPlayer()
     {
@@ -104,6 +107,12 @@ public class MainPlayer extends GdxSprite
         addDynamicPhysicsBody();
 
         setup(true);
+
+
+        GfxUtils gfxUtils = new GfxUtils();
+        buttonHintImages = new TextureRegion[4];
+        gfxUtils.splitRegion(App.assets.getAnimationRegion("mini_abxy"), 4, buttonHintImages);
+        aButtonHint   = buttonHintImages[1];
 
         bridgeSection = App.assets.getObjectRegion("bridge");
         tileRectangle = new CollisionRect(this.gid);
@@ -547,9 +556,17 @@ public class MainPlayer extends GdxSprite
             }
             else
             {
-                if (actionButton.getActionMode() == ActionButtonHandler.ActionMode._OFFER_ABXY_A)
+                if (App.settings.isEnabled(Settings._SHOW_HINTS))
                 {
-                    // TODO: 06/02/2021 - Draw the 'A' button hint here
+                    if (actionButton.getActionMode() == ActionButtonHandler.ActionMode._OFFER_ABXY_B)
+                    {
+                        spriteBatch.draw
+                            (
+                                aButtonHint,
+                                this.sprite.getX(),
+                                this.sprite.getY() + this.frameHeight
+                            );
+                    }
                 }
             }
         }

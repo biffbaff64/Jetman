@@ -21,6 +21,7 @@ public class ActionButtonHandler implements Disposable
         _ROVER_RIDE,
         _TELEPORTING,
         _OFFER_ABXY_A,
+        _OFFER_ABXY_B,
     }
 
     private int        teleportNumber;
@@ -58,7 +59,7 @@ public class ActionButtonHandler implements Disposable
         {
             if (App.getPlayer().collision.isTeleporterPresent())
             {
-                setActionMode(ActionMode._OFFER_ABXY_A);
+                setActionMode(ActionMode._OFFER_ABXY_B);
                 setFutureActionMode(ActionMode._TELEPORTING);
 
                 for (int i=0; i< RoomManager._MAX_TELEPORTERS; i++)
@@ -71,17 +72,17 @@ public class ActionButtonHandler implements Disposable
             }
             else if (App.getPlayer().collision.isInRoverMiddle())
             {
-                setActionMode(ActionMode._OFFER_ABXY_A);
+                setActionMode(ActionMode._OFFER_ABXY_B);
                 setFutureActionMode(ActionMode._ROVER_RIDE);
             }
             else if (App.getPlayer().collision.isBombPresent())
             {
-                setActionMode(ActionMode._OFFER_ABXY_A);
+                setActionMode(ActionMode._OFFER_ABXY_B);
                 setFutureActionMode(ActionMode._BOMB_CARRY);
             }
             else if (App.getPlayer().collision.isGunTurretPresent())
             {
-                setActionMode(ActionMode._OFFER_ABXY_A);
+                setActionMode(ActionMode._OFFER_ABXY_B);
                 setFutureActionMode(ActionMode._GUN_CARRY);
             }
         }

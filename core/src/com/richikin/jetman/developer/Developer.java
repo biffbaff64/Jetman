@@ -17,7 +17,7 @@ public abstract class Developer
     {
         if (AppConfig.isDesktopApp())
         {
-            isDevMode = "TRUE".equals(System.getenv("_DEV_MODE").toUpperCase());
+            isDevMode = "TRUE".equalsIgnoreCase(System.getenv("_DEV_MODE"));
         }
     }
 

@@ -55,8 +55,8 @@ public class DeveloperPanel extends DefaultPanel
 
     static class DMEntry
     {
-        final String  string;
-        final String  prefName;
+        final String string;
+        final String prefName;
 
         DMEntry(String _string, String _pref)
         {
@@ -482,17 +482,25 @@ public class DeveloperPanel extends DefaultPanel
                 switch (prefName)
                 {
                     case Settings._GL_PROFILER:
+                    {
                         glProfilerColumn = column;
-                        glProfilerRow = row;
-                        break;
+                        glProfilerRow    = row;
+                    }
+                    break;
+
                     case _DEVMODE:
+                    {
                         devModeColumn = column;
-                        devModeRow = row;
-                        break;
+                        devModeRow    = row;
+                    }
+                    break;
+
                     case _GODMODE:
+                    {
                         godModeColumn = column;
-                        godModeRow = row;
-                        break;
+                        godModeRow    = row;
+                    }
+                    break;
                 }
             }
         }
@@ -566,12 +574,12 @@ public class DeveloperPanel extends DefaultPanel
                     new DMEntry("", ""),
                     new DMEntry("", ""),
                     new DMEntry("", ""),
-                    },
+                },
                 {
                     new DMEntry("", ""),
                     new DMEntry("", ""),
                     new DMEntry("", ""),
-                    },
+                },
                 {
                     new DMEntry("Dev Mode", _DEVMODE),
                     new DMEntry("Invincibilty", _GODMODE),
@@ -624,8 +632,8 @@ public class DeveloperPanel extends DefaultPanel
         buttonGLProfiler.clear();
         scrollPane.clear();
 
-        devMenu             = null;
-        scrollPane          = null;
+        devMenu    = null;
+        scrollPane = null;
 
         foreground          = null;
         buttons             = null;

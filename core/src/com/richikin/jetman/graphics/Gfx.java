@@ -75,8 +75,8 @@ public class Gfx
     public static int tileWidth;
     public static int tileHeight;
 
-    private static SimpleVec2F pixelDimensions = new SimpleVec2F();
-    private static SimpleVec2F meterDimensions = new SimpleVec2F();
+    private static final SimpleVec2F pixelDimensions = new SimpleVec2F();
+    private static final SimpleVec2F meterDimensions = new SimpleVec2F();
 
     public static SimpleVec2F getScreenSizeInMeters()
     {

@@ -14,7 +14,9 @@ import com.richikin.jetman.characters.misc.Teleporter;
 import com.richikin.jetman.characters.hero.MainPlayer;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
+import com.richikin.utilslib.assets.AssetSize;
 import com.richikin.utilslib.logging.Trace;
+import com.richikin.utilslib.maths.SimpleVec2;
 
 public class Entities
 {
@@ -36,6 +38,7 @@ public class Entities
                     "Player",
                     GraphicID.G_PLAYER, GraphicID._MAIN,
                     GameAssets._PLAYER_IDLE_ASSET, GameAssets._PLAYER_STAND_FRAMES,
+                    new SimpleVec2(80, 80),
                     Animation.PlayMode.LOOP,
                     TileID._PLAYER_TILE
                 ),
@@ -44,6 +47,7 @@ public class Entities
                     "Rover",
                     GraphicID.G_ROVER, GraphicID._MAIN,
                     GameAssets._ROVER_IDLE_ASSET, GameAssets._ROVER_FRAMES,
+                    new SimpleVec2(303, 131),
                     Animation.PlayMode.LOOP,
                     TileID._ROVER_TILE
                 ),
@@ -53,6 +57,7 @@ public class Entities
                     "Rover Gun",
                     GraphicID.G_ROVER_GUN, GraphicID._MAIN,
                     GameAssets._ROVER_GUN_ASSET, GameAssets._ROVER_GUN_FRAMES,
+                    new SimpleVec2(122, 59),
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
@@ -62,6 +67,7 @@ public class Entities
                     "Gun Barrel",
                     GraphicID.G_ROVER_GUN_BARREL, GraphicID._MAIN,
                     GameAssets._ROVER_GUN_BARREL_ASSET, GameAssets._ROVER_GUN_BARREL_FRAMES,
+                    new SimpleVec2(122, 59),
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_GUN_TILE
                 ),
@@ -70,6 +76,7 @@ public class Entities
                     "Rover Wheel",
                     GraphicID.G_ROVER_WHEEL, GraphicID._MAIN,
                     GameAssets._ROVER_WHEEL_ASSET, GameAssets._ROVER_WHEEL_FRAMES,
+                    new SimpleVec2(68, 68),
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_WHEEL_TILE
                 ),
@@ -78,6 +85,7 @@ public class Entities
                     "Rover Boot",
                     GraphicID.G_ROVER_BOOT, GraphicID._MAIN,
                     GameAssets._ROVER_BOOT_ASSET, GameAssets._ROVER_BOOT_FRAMES,
+                    new SimpleVec2(108, 14),
                     Animation.PlayMode.NORMAL,
                     TileID._ROVER_BOOT_TILE
                 ),
@@ -86,6 +94,7 @@ public class Entities
                     "Rover Bullet",
                     GraphicID.G_ROVER_BULLET, GraphicID._MAIN,
                     GameAssets._DEFENDER_BULLET_ASSET, GameAssets._DEFENDER_BULLET_FRAMES,
+                    new SimpleVec2(36, 36),
                     Animation.PlayMode.LOOP,
                     TileID._ROVER_BULLET_TILE
                 ),
@@ -96,6 +105,7 @@ public class Entities
                     "Laser",
                     GraphicID.G_LASER, GraphicID._INTERACTIVE,
                     GameAssets._LASER_ASSET, GameAssets._LASER_FRAMES,
+                    new SimpleVec2(324, 8),
                     Animation.PlayMode.LOOP,
                     TileID._LASER_TILE
                 ),
@@ -104,6 +114,7 @@ public class Entities
                     "UFOBullet",
                     GraphicID.G_UFO_BULLET, GraphicID._INTERACTIVE,
                     GameAssets._UFO_BULLET_ASSET, GameAssets._UFO_BULLET_FRAMES,
+                    new SimpleVec2(9, 9),
                     Animation.PlayMode.LOOP,
                     TileID._UFO_BULLET_TILE
                 ),
@@ -112,6 +123,7 @@ public class Entities
                     "Explosion 12",
                     GraphicID.G_EXPLOSION12, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
+                    new SimpleVec2(64, 64),
                     Animation.PlayMode.NORMAL,
                     TileID._EXPLOSION_TILE
                 ),
@@ -120,6 +132,7 @@ public class Entities
                     "Explosion 64",
                     GraphicID.G_EXPLOSION64, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
+                    new SimpleVec2(64, 64),
                     Animation.PlayMode.NORMAL,
                     TileID._EXPLOSION_TILE
                 ),
@@ -128,6 +141,7 @@ public class Entities
                     "Explosion 128",
                     GraphicID.G_EXPLOSION128, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
+                    new SimpleVec2(64, 64),
                     Animation.PlayMode.NORMAL,
                     TileID._EXPLOSION_TILE
                 ),
@@ -136,6 +150,7 @@ public class Entities
                     "Explosion 256",
                     GraphicID.G_EXPLOSION256, GraphicID._DECORATION,
                     GameAssets._EXPLOSION64_ASSET, GameAssets._EXPLOSION64_FRAMES,
+                    new SimpleVec2(64, 64),
                     Animation.PlayMode.NORMAL,
                     TileID._EXPLOSION_TILE
                 ),
@@ -146,6 +161,7 @@ public class Entities
                     "Bomb",
                     GraphicID.G_BOMB, GraphicID._WEAPON,
                     GameAssets._BOMB_ASSET, GameAssets._BOMB_FRAMES,
+                    new SimpleVec2(42, 53),
                     Animation.PlayMode.LOOP,
                     TileID._BOMB_TILE
                 ),
@@ -158,6 +174,17 @@ public class Entities
                     "Teleporter",
                     GraphicID.G_TRANSPORTER, GraphicID._INTERACTIVE,
                     GameAssets._TRANSPORTER_ASSET, GameAssets._TRANSPORTER_FRAMES,
+                    new SimpleVec2(96, 124),
+                    Animation.PlayMode.LOOP,
+                    TileID._TRANSPORTER_TILE
+                ),
+
+            new SpriteDescriptor
+                (
+                    "Teleporter Beam",
+                    GraphicID.G_TRANSPORTER_BEAM, GraphicID._INTERACTIVE,
+                    GameAssets._TRANSPORTER_BEAM_ASSET, 0, // Determined by class
+                    new SimpleVec2(96, 124),
                     Animation.PlayMode.LOOP,
                     TileID._TRANSPORTER_TILE
                 ),
@@ -168,6 +195,7 @@ public class Entities
                     "Missile Base",
                     GraphicID.G_MISSILE_BASE, GraphicID._ENEMY,
                     GameAssets._MISSILE_BASE_ASSET, GameAssets._MISSILE_BASE_FRAMES,
+                    new SimpleVec2(120, 51),
                     Animation.PlayMode.NORMAL,
                     TileID._MISSILE_BASE_TILE
                 ),
@@ -176,6 +204,7 @@ public class Entities
                     "Missile Launcher",
                     GraphicID.G_MISSILE_LAUNCHER, GraphicID._ENEMY,
                     GameAssets._MISSILE_LAUNCHER_ASSET, GameAssets._MISSILE_LAUNCHER_FRAMES,
+                    new SimpleVec2(90, 120),
                     Animation.PlayMode.LOOP,
                     TileID._MISSILE_LAUNCHER_TILE
                 ),
@@ -184,6 +213,7 @@ public class Entities
                     "Base Defender",
                     GraphicID.G_DEFENDER, GraphicID._ENEMY,
                     GameAssets._DEFENDER_ASSET, GameAssets._DEFENDER_FRAMES,
+                    new SimpleVec2(52, 48),
                     Animation.PlayMode.LOOP,
                     TileID._DEFENDER_TILE
                 ),
@@ -192,6 +222,7 @@ public class Entities
                     "Defender Bullet",
                     GraphicID.G_DEFENDER_BULLET, GraphicID._ENEMY,
                     GameAssets._DEFENDER_BULLET_ASSET, GameAssets._DEFENDER_BULLET_FRAMES,
+                    new SimpleVec2(36, 36),
                     Animation.PlayMode.LOOP,
                     TileID._DEFENDER_BULLET_TILE
                 ),
@@ -200,6 +231,7 @@ public class Entities
                     "Defender Zap",
                     GraphicID.G_DEFENDER_ZAP, GraphicID._ENEMY,
                     GameAssets._DEFENDER_ZAP_ASSET, GameAssets._DEFENDER_ZAP_FRAMES,
+                    new SimpleVec2(52, 23),
                     Animation.PlayMode.LOOP,
                     TileID._DEFENDER_ZAP_TILE
                 ),
@@ -208,6 +240,7 @@ public class Entities
                     "Laser Barrier",
                     GraphicID.G_POWER_BEAM, GraphicID._ENEMY,
                     GameAssets._POWER_BEAM_ASSET, GameAssets._POWER_BEAM_FRAMES,
+                    new SimpleVec2(120, 563),
                     Animation.PlayMode.LOOP,
                     TileID._BEAM_TILE
                 ),
@@ -218,6 +251,7 @@ public class Entities
                     "3BallsUfo",
                     GraphicID.G_3BALLS_UFO, GraphicID._ENEMY,
                     GameAssets._3BALLS_UFO_ASSET, GameAssets._3BALLS_UFO_FRAMES,
+                    new SimpleVec2(48, 48),
                     Animation.PlayMode.LOOP,
                     TileID._3BALLS_UFO_TILE
                 ),
@@ -226,6 +260,7 @@ public class Entities
                     "3LegsAlien",
                     GraphicID.G_3LEGS_ALIEN, GraphicID._ENEMY,
                     GameAssets._3LEGS_ALIEN_ASSET, GameAssets._3LEGS_ALIEN_FRAMES,
+                    new SimpleVec2(112, 112),
                     Animation.PlayMode.LOOP,
                     TileID._3LEGS_ALIEN_TILE
                 ),
@@ -234,6 +269,7 @@ public class Entities
                     "Asteroid",
                     GraphicID.G_ASTEROID, GraphicID._ENEMY,
                     GameAssets._ASTEROID1_ASSET, GameAssets._ASTEROID_FRAMES,
+                    new SimpleVec2(60, 60),
                     Animation.PlayMode.LOOP,
                     TileID._ASTEROID_TILE
                 ),
@@ -242,6 +278,7 @@ public class Entities
                     "AlienWheel",
                     GraphicID.G_ALIEN_WHEEL, GraphicID._ENEMY,
                     GameAssets._ALIEN_WHEEL_ASSET, GameAssets._ALIEN_WHEEL_FRAMES,
+                    new SimpleVec2(68, 68),
                     Animation.PlayMode.LOOP,
                     TileID._ALIEN_WHEEL_TILE
                 ),
@@ -250,6 +287,7 @@ public class Entities
                     "Blob",
                     GraphicID.G_BLOB, GraphicID._ENEMY,
                     GameAssets._BLOB_ASSET, GameAssets._BLOB_FRAMES,
+                    new SimpleVec2(48, 48),
                     Animation.PlayMode.LOOP,
                     TileID._BLOB_TILE
                 ),
@@ -258,6 +296,7 @@ public class Entities
                     "Dog",
                     GraphicID.G_DOG, GraphicID._ENEMY,
                     GameAssets._DOG_ASSET, GameAssets._DOG_FRAMES,
+                    new SimpleVec2(64, 64),
                     Animation.PlayMode.LOOP,
                     TileID._DOG_TILE
                 ),
@@ -266,6 +305,7 @@ public class Entities
                     "GreenBlock",
                     GraphicID.G_GREEN_BLOCK, GraphicID._ENEMY,
                     GameAssets._GREEN_BLOCK_ASSET, GameAssets._GREEN_BLOCK_FRAMES,
+                    new SimpleVec2(72, 48),
                     Animation.PlayMode.LOOP,
                     TileID._GREEN_BLOCK_TILE
                 ),
@@ -274,6 +314,7 @@ public class Entities
                     "StairClimber",
                     GraphicID.G_STAIR_CLIMBER, GraphicID._ENEMY,
                     GameAssets._STAIRCLIMBER_ASSET, GameAssets._STAIRCLIMBER_FRAMES,
+                    new SimpleVec2(96, 96),
                     Animation.PlayMode.LOOP,
                     TileID._STAIRCLIMBER_TILE
                 ),
@@ -282,6 +323,7 @@ public class Entities
                     "StarSpinner",
                     GraphicID.G_STAR_SPINNER, GraphicID._ENEMY,
                     GameAssets._STAR_SPINNER_ASSET, GameAssets._STAR_SPINNER_FRAMES,
+                    new SimpleVec2(68, 68),
                     Animation.PlayMode.LOOP,
                     TileID._STAR_SPINNER_TILE
                 ),
@@ -290,6 +332,7 @@ public class Entities
                     "SpinningBall",
                     GraphicID.G_SPINNING_BALL, GraphicID._ENEMY,
                     GameAssets._SPINNING_BALL_ASSET, GameAssets._SPINNING_BALL_FRAMES,
+                    new SimpleVec2(80, 80),
                     Animation.PlayMode.LOOP,
                     TileID._SPINNING_BALL_TILE
                 ),
@@ -298,6 +341,7 @@ public class Entities
                     "TopSpin",
                     GraphicID.G_TOPSPIN, GraphicID._ENEMY,
                     GameAssets._TOPSPIN_ASSET, GameAssets._TOPSPIN_FRAMES,
+                    new SimpleVec2(72, 72),
                     Animation.PlayMode.LOOP,
                     TileID._TOPSPIN_TILE
                 ),
@@ -306,6 +350,7 @@ public class Entities
                     "Twinkles",
                     GraphicID.G_TWINKLES, GraphicID._ENEMY,
                     GameAssets._TWINKLES_ASSET, GameAssets._TWINKLES_FRAMES,
+                    new SimpleVec2(48, 48),
                     Animation.PlayMode.LOOP,
                     TileID._TWINKLES_TILE
                 ),
@@ -314,6 +359,7 @@ public class Entities
                     "Windmill",
                     GraphicID.G_WINDMILL, GraphicID._ENEMY,
                     GameAssets._WINDMILL_ASSET, GameAssets._WINDMILL_FRAMES,
+                    new SimpleVec2(48, 48),
                     Animation.PlayMode.LOOP,
                     TileID._WINDMILL_TILE
                 ),
@@ -326,6 +372,7 @@ public class Entities
                     "Background Ufo",
                     GraphicID.G_BACKGROUND_UFO, GraphicID._BACKGROUND_ENTITY,
                     GameAssets._BACKGROUND_UFO_ASSET, GameAssets._BACKGROUND_UFO_FRAMES,
+                    new SimpleVec2(8, 4),
                     Animation.PlayMode.LOOP,
                     TileID._BACKGROUND_UFO_TILE
                 ),
@@ -335,6 +382,7 @@ public class Entities
                     "Twinkle Star",
                     GraphicID.G_TWINKLE_STAR, GraphicID._BACKGROUND_ENTITY,
                     GameAssets._TWINKLE_STAR1_ASSET, GameAssets._TWINKLE_STAR_FRAMES,
+                    new SimpleVec2(46, 46),
                     Animation.PlayMode.LOOP,
                     TileID._TWINKLE_STAR_TILE
                 ),
@@ -342,6 +390,26 @@ public class Entities
 
     public Entities()
     {
+    }
+
+    public SimpleVec2 getAssetSize(GraphicID _gid)
+    {
+        SimpleVec2 size = new SimpleVec2();
+
+        for (final SpriteDescriptor descriptor : entityList)
+        {
+            if (descriptor._GID == _gid)
+            {
+                size = descriptor._SIZE;
+            }
+        }
+
+        if (size.isEmpty())
+        {
+            Trace.__FILE_FUNC("***** Size for " + _gid + " not found! *****");
+        }
+
+        return size;
     }
 
     public int getDescriptorIndex(GraphicID gid)
