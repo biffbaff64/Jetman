@@ -24,11 +24,10 @@ import java.util.ArrayList;
  */
 public class MainMenuScreen extends AbstractBaseScreen
 {
-    private static final int _MENU_PAGE      = 0;
-    private static final int _OPTIONS_PAGE   = 1;
-    private static final int _HISCORE_PAGE   = 2;
-    private static final int _CREDITS_PAGE   = 3;
-    private static final int _EXIT_PAGE      = 4;
+    private static final int _MENU_PANEL    = 0;
+    private static final int _OPTIONS_PANEL = 1;
+    private static final int _CREDITS_PANEL = 2;
+    private static final int _EXIT_PANEL    = 3;
 
     private ExitPanel          exitPanel;
     private OptionsPage        optionsPage;
@@ -54,12 +53,11 @@ public class MainMenuScreen extends AbstractBaseScreen
         menuPage    = new MenuPage();
         panels      = new ArrayList<>();
         starField   = new StarField();
-        currentPage = _MENU_PAGE;
+        currentPage = _MENU_PANEL;
 
-        panels.add(_MENU_PAGE, menuPage);
-        panels.add(_OPTIONS_PAGE, optionsPage);
-        panels.add(_HISCORE_PAGE, new HiscorePage());
-        panels.add(_CREDITS_PAGE, new CreditsPage());
+        panels.add(_MENU_PANEL, menuPage);
+        panels.add(_OPTIONS_PANEL, optionsPage);
+        panels.add(_CREDITS_PANEL, new CreditsPage());
 
         menuPage.initialise();
         menuPage.show();
@@ -105,11 +103,10 @@ public class MainMenuScreen extends AbstractBaseScreen
 
             switch (currentPage)
             {
-                case _MENU_PAGE:
-                case _HISCORE_PAGE:
-                case _CREDITS_PAGE:
-                case _OPTIONS_PAGE:
-                case _EXIT_PAGE:
+                case _MENU_PANEL:
+                case _CREDITS_PANEL:
+                case _OPTIONS_PANEL:
+                case _EXIT_PANEL:
                 {
                     spriteBatch.draw(background, AppConfig.hudOriginX, AppConfig.hudOriginY);
 
@@ -152,36 +149,35 @@ public class MainMenuScreen extends AbstractBaseScreen
         {
             switch (currentPage)
             {
-                case _HISCORE_PAGE:
-                case _CREDITS_PAGE:
+                case _CREDITS_PANEL:
                 {
                     panels.get(currentPage).update();
 
                     if (AppConfig.backButton.isChecked())
                     {
                         AppConfig.backButton.setChecked(false);
-                        changePageTo(_MENU_PAGE);
+                        changePageTo(_MENU_PANEL);
                     }
                 }
                 break;
 
-                case _MENU_PAGE:
+                case _MENU_PANEL:
                 {
-                    panels.get(_MENU_PAGE).update();
+                    panels.get(_MENU_PANEL).update();
                 }
                 break;
 
-                case _OPTIONS_PAGE:
+                case _OPTIONS_PANEL:
                 {
-                    if (panels.get(_OPTIONS_PAGE).update())
+                    if (panels.get(_OPTIONS_PANEL).update())
                     {
                         AppConfig.backButton.setChecked(false);
-                        changePageTo(_MENU_PAGE);
+                        changePageTo(_MENU_PANEL);
                     }
                 }
                 break;
 
-                case _EXIT_PAGE:
+                case _EXIT_PANEL:
                 {
                     int option = exitPanel.update();
 
@@ -196,7 +192,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                         exitPanel.close();
                         exitPanel = null;
 
-                        currentPage = _MENU_PAGE;
+                        currentPage = _MENU_PANEL;
 
                         panels.get(currentPage).show();
                     }
@@ -235,15 +231,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     if ((menuPage.buttonOptions != null) && menuPage.buttonOptions.isChecked())
                     {
                         menuPage.buttonOptions.setChecked(false);
-                        changePageTo(_OPTIONS_PAGE);
-                    }
-
-                    //
-                    // Check HISCORES button, open hiscores page if pressed
-                    if ((menuPage.buttonHiScores != null) && menuPage.buttonHiScores.isChecked())
-                    {
-                        menuPage.buttonHiScores.setChecked(false);
-                        changePageTo(_HISCORE_PAGE);
+                        changePageTo(_OPTIONS_PANEL);
                     }
 
                     //
@@ -251,7 +239,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                     if ((menuPage.buttonCredits != null) && menuPage.buttonCredits.isChecked())
                     {
                         menuPage.buttonCredits.setChecked(false);
-                        changePageTo(_CREDITS_PAGE);
+                        changePageTo(_CREDITS_PANEL);
                     }
 
                     //
@@ -264,7 +252,7 @@ public class MainMenuScreen extends AbstractBaseScreen
                         exitPanel = new ExitPanel();
                         exitPanel.open();
 
-                        currentPage = _EXIT_PAGE;
+                        currentPage = _EXIT_PANEL;
                     }
 
                     //
@@ -300,8 +288,8 @@ public class MainMenuScreen extends AbstractBaseScreen
         App.cameraUtils.resetCameraZoom();
         App.cameraUtils.disableAllCameras();
 
-        App.baseRenderer.hudGameCamera.isInUse  = true;
-        App.baseRenderer.isDrawingStage         = true;
+        App.baseRenderer.hudGameCamera.isInUse = true;
+        App.baseRenderer.isDrawingStage        = true;
 
         Version.appDetails();
 
@@ -345,14 +333,12 @@ public class MainMenuScreen extends AbstractBaseScreen
         if (panels.get(currentPage) != null)
         {
             panels.get(currentPage).hide();
-            panels.get(currentPage).dispose();
         }
 
         currentPage = _nextPage;
 
         if (panels.get(_nextPage) != null)
         {
-            panels.get(currentPage).initialise();
             panels.get(currentPage).show();
         }
     }
@@ -379,9 +365,9 @@ public class MainMenuScreen extends AbstractBaseScreen
             panels = null;
         }
 
-        background = null;
+        background  = null;
         exitPanel   = null;
         optionsPage = null;
-        menuPage = null;
+        menuPage    = null;
     }
 }

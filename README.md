@@ -3,7 +3,7 @@
 TODO Items
 ----------
 
-   - Improve speed of showing HiScore page
+   - Remove HiScore page, now using Google Leaderboard
    - Glitch when wrapping map boundary
    - Add ABXY button hints for player actions
    - Moon Rover needs to check for craters

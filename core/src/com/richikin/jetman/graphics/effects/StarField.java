@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class StarField implements Disposable
 {
-    public final float speed    = 90f;
+    public final float speed    = 40f;
     public final int   numStars = 5000;
 
     private ArrayList<StarObject> stars;
