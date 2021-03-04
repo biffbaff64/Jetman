@@ -30,7 +30,6 @@ public class MainMenuScreen extends AbstractBaseScreen
     private static final int _EXIT_PANEL    = 3;
 
     private ExitPanel          exitPanel;
-    private OptionsPage        optionsPage;
     private MenuPage           menuPage;
     private Texture            background;
     private StarField          starField;
@@ -49,14 +48,13 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         App.mapData.mapPosition.set(0, 0);
 
-        optionsPage = new OptionsPage();
         menuPage    = new MenuPage();
         panels      = new ArrayList<>();
         starField   = new StarField();
         currentPage = _MENU_PANEL;
 
         panels.add(_MENU_PANEL, menuPage);
-        panels.add(_OPTIONS_PANEL, optionsPage);
+        panels.add(_OPTIONS_PANEL, new OptionsPage());
         panels.add(_CREDITS_PANEL, new CreditsPage());
 
         menuPage.initialise();
@@ -367,7 +365,6 @@ public class MainMenuScreen extends AbstractBaseScreen
 
         background  = null;
         exitPanel   = null;
-        optionsPage = null;
         menuPage    = null;
     }
 }
