@@ -177,8 +177,8 @@ public class PausePanel extends DefaultPanel
 
         App.gameProgress.toMinimum();
 
-        App.getHud().getFuelBar().setToMinimum();
-        App.getHud().getTimeBar().setToMinimum();
+        App.gameProgress.getFuelBar().setToMinimum();
+        App.gameProgress.getTimeBar().setToMinimum();
 
         buttonHome.setChecked(false);
 

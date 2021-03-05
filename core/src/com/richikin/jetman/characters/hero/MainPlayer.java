@@ -345,7 +345,7 @@ public class MainPlayer extends GdxSprite
 
             case _FLYING:
             {
-                if (App.getHud().getFuelBar().isEmpty())
+                if (App.gameProgress.getFuelBar().isEmpty())
                 {
                     setAction(ActionStates._FALLING_TO_GROUND);
 
@@ -715,7 +715,7 @@ public class MainPlayer extends GdxSprite
      */
     private void checkForFuelRefill()
     {
-        if (App.getHud().getFuelBar().hasRefillRoom()
+        if (App.gameProgress.getFuelBar().hasRefillRoom()
             && (App.getPlayer().collisionObject.idBottom == GraphicID._GROUND)
             && (App.getPlayer().getAction() == ActionStates._STANDING)
             && collision.isInRoverMiddle())
@@ -728,7 +728,7 @@ public class MainPlayer extends GdxSprite
                     (int) AppConfig.hudOriginY + (720 - 145)
                 );
 
-            App.getHud().getFuelBar().refill();
+            App.gameProgress.getFuelBar().refill();
         }
     }
 

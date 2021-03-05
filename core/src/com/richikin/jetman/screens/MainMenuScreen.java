@@ -331,12 +331,14 @@ public class MainMenuScreen extends AbstractBaseScreen
         if (panels.get(currentPage) != null)
         {
             panels.get(currentPage).hide();
+            panels.get(currentPage).dispose();
         }
 
         currentPage = _nextPage;
 
         if (panels.get(_nextPage) != null)
         {
+            panels.get(currentPage).initialise();
             panels.get(currentPage).show();
         }
     }

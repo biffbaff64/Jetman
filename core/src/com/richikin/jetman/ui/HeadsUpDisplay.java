@@ -19,6 +19,7 @@ import com.richikin.jetman.assets.GameAssets;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.config.Settings;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameProgress;
 import com.richikin.jetman.core.HighScoreUtils;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.parallax.ParallaxLayer;
@@ -90,6 +91,7 @@ public class HeadsUpDisplay implements Disposable
     public Switch buttonLeft;
     public Switch buttonRight;
 
+    // ###############################################################
     // TODO: 27/11/2020 - Are these following switches still needed ??
     public Switch buttonAction;
     public Switch buttonAttack;
@@ -97,6 +99,7 @@ public class HeadsUpDisplay implements Disposable
     public Switch buttonY;
     public Switch buttonPause;
     public Switch buttonDevOptions;
+    // ###############################################################
 
     public ImageButton ActionButton;
     public ImageButton AttackButton;
@@ -105,12 +108,9 @@ public class HeadsUpDisplay implements Disposable
     public MessageManager messageManager;
     public PausePanel     pausePanel;
     public StateID        hudStateID;
+    public boolean        fuelLowWarning;
+    public boolean        timeLowWarning;
 
-    private static final int _MAX_TIMEBAR_LENGTH = 1000;
-    private static final int _MAX_FUELBAR_LENGTH = 1000;
-
-    private ProgressBar     timeBar;
-    private ProgressBar     fuelBar;
     private TextureRegion   barDividerFuel;
     private TextureRegion   barDividerTime;
     private TextureRegion[] arrows;
@@ -124,8 +124,6 @@ public class HeadsUpDisplay implements Disposable
     private BitmapFont      smallFont;
     private HighScoreUtils  highScoreUtils;
     private Drawable        imageFuelLow;
-    private boolean         fuelLowWarning;
-    private boolean         timeLowWarning;
     private boolean         fuelLowState;
     private StopWatch       fuelLowTimer;
     private int             fuelLowDelay;
@@ -147,9 +145,6 @@ public class HeadsUpDisplay implements Disposable
         highScoreUtils = new HighScoreUtils();
         messageManager = new MessageManager();
         pausePanel     = new PausePanel();
-
-        timeBar = new ProgressBar(1, 0, _MAX_TIMEBAR_LENGTH, "bar9");
-        fuelBar = new ProgressBar(1, 0, _MAX_FUELBAR_LENGTH, "bar9");
 
         barDividerFuel = App.assets.getObjectRegion("bar_divider");
         barDividerTime = App.assets.getObjectRegion("bar_divider");
@@ -200,8 +195,8 @@ public class HeadsUpDisplay implements Disposable
                 }
                 else
                 {
-                    updateBars();
-                    updateBarColours();
+                    App.gameProgress.updateBars();
+                    App.gameProgress.updateBarColours();
                     updateArrowIndicators();
                     updateDeveloperItems();
 
@@ -233,89 +228,6 @@ public class HeadsUpDisplay implements Disposable
             {
             }
             break;
-        }
-    }
-
-    /**
-     * Update the fuel bar and Launch timer bar.
-     * The fuel bar decrements if LJM is flying, or jumping a crater.
-     * The Launch Timer bar slowly decrements down to zero. Once
-     * the bar is empty the missiles are launched.
-     */
-    private void updateBars()
-    {
-        if (!App.teleportManager.teleportActive)
-        {
-            if (App.getPlayer() != null)
-            {
-                if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
-                {
-                    fuelBar.setSpeed(App.getPlayer().isCarrying ? 2 : 1);
-                    fuelBar.updateSlowDecrement();
-                }
-            }
-
-            if (App.getBase().getAction() != ActionStates._WAITING)
-            {
-                timeBar.updateSlowDecrement();
-            }
-
-            if (timeBar.justEmptied)
-            {
-//                if (App.getBase() != null)
-//                {
-//                    if (!App.missileBaseManager.isMissileActive)
-//                    {
-//                        App.getBase().setAction(ActionStates._SET_FIGHTING);
-//                    }
-//                }
-
-                timeBar.refill();
-            }
-        }
-    }
-
-    /**
-     * Updates the Fuel bar and Time bar colours, depending
-     * on the length of the bars.
-     */
-    private void updateBarColours()
-    {
-        fuelLowWarning = false;
-        timeLowWarning = false;
-
-        if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
-        {
-            if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
-            {
-                fuelBar.setColor(Color.RED);
-                fuelLowWarning = true;
-            }
-            else
-            {
-                fuelBar.setColor(Color.ORANGE);
-            }
-        }
-        else
-        {
-            fuelBar.setColor(Color.GREEN);
-        }
-
-        if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
-        {
-            if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
-            {
-                timeBar.setColor(Color.RED);
-                timeLowWarning = true;
-            }
-            else
-            {
-                timeBar.setColor(Color.ORANGE);
-            }
-        }
-        else
-        {
-            timeBar.setColor(Color.YELLOW);
         }
     }
 
@@ -475,8 +387,8 @@ public class HeadsUpDisplay implements Disposable
 
     public void refillItems()
     {
-        App.getHud().getFuelBar().setToMaximum();
-        App.getHud().getTimeBar().setToMaximum();
+        App.gameProgress.getFuelBar().setToMaximum();
+        App.gameProgress.getTimeBar().setToMaximum();
     }
 
     public void releaseDirectionButtons()
@@ -497,16 +409,6 @@ public class HeadsUpDisplay implements Disposable
         return App.inputManager.virtualJoystick;
     }
 
-    public ProgressBar getTimeBar()
-    {
-        return timeBar;
-    }
-
-    public ProgressBar getFuelBar()
-    {
-        return fuelBar;
-    }
-
     /**
      * Draws the HUD background panels.
      */
@@ -525,20 +427,20 @@ public class HeadsUpDisplay implements Disposable
             drawFuelLow(StateID._UPDATE);
         }
 
-        fuelBar.draw((int) (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y]));
-        timeBar.draw((int) (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y]));
+        App.gameProgress.getFuelBar().draw((int) (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y]));
+        App.gameProgress.getTimeBar().draw((int) (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1]), (int) (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y]));
 
         App.spriteBatch.draw
             (
                 barDividerFuel,
-                (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1] + fuelBar.getTotal()),
+                (AppConfig.hudOriginX + displayPos[_FUEL_BAR][_X1] + App.gameProgress.getFuelBar().getTotal()),
                 (AppConfig.hudOriginY + displayPos[_FUEL_BAR][_Y])
             );
 
         App.spriteBatch.draw
             (
                 barDividerTime,
-                (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1] + timeBar.getTotal()),
+                (AppConfig.hudOriginX + displayPos[_TIME_BAR][_X1] + App.gameProgress.getTimeBar().getTotal()),
                 (AppConfig.hudOriginY + displayPos[_TIME_BAR][_Y])
             );
 

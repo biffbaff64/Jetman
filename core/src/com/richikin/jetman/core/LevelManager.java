@@ -55,8 +55,8 @@ public class LevelManager
 
         //
         // Reset the bars. Each level must start with full fuel and maximum time.
-        App.getHud().getFuelBar().setToMaximum();
-        App.getHud().getTimeBar().setToMaximum();
+        App.gameProgress.getFuelBar().setToMaximum();
+        App.gameProgress.getTimeBar().setToMaximum();
         App.getHud().update();
 
         //

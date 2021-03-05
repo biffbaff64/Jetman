@@ -154,7 +154,7 @@ public class ButtonInputHandler
 
             if (!App.getPlayer().isRidingRover)
             {
-                if (App.getHud().getFuelBar().getTotal() > 0)
+                if (App.gameProgress.getFuelBar().getTotal() > 0)
                 {
                     App.getPlayer().isFalling = false;
                     App.getPlayer().isMovingY = true;

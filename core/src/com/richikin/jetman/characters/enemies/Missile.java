@@ -200,8 +200,8 @@ public class Missile extends GdxSprite implements ICollisionListener
             && !App.gameProgress.baseDestroyed
             && (direction.getY() != Movement._DIRECTION_UP))
         {
-            App.getHud().getTimeBar().setToMaximum();
-            App.getHud().getFuelBar().setToMaximum();
+            App.gameProgress.getTimeBar().setToMaximum();
+            App.gameProgress.getFuelBar().setToMaximum();
             App.getHud().update();
 
             App.getBase().setAction(ActionStates._STANDING);

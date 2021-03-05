@@ -1,13 +1,19 @@
 package com.richikin.jetman.core;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Disposable;
+import com.richikin.enumslib.ActionStates;
 import com.richikin.jetman.developer.Developer;
+import com.richikin.jetman.ui.ProgressBar;
 import com.richikin.utilslib.maths.Item;
 import com.richikin.utilslib.maths.NumberUtils;
 import com.richikin.utilslib.logging.Trace;
 
 public class GameProgress implements Disposable
 {
+    public static final int _MAX_TIMEBAR_LENGTH = 1000;
+    public static final int _MAX_FUELBAR_LENGTH = 1000;
+
     public boolean isRestarting;
     public boolean levelCompleted;
     public boolean gameCompleted;
@@ -30,6 +36,9 @@ public class GameProgress implements Disposable
 
     private final Item score;
     private final Item lives;
+
+    private ProgressBar timeBar;
+    private ProgressBar fuelBar;
 
     private int scoreStack;
     private int timeStack;
@@ -60,6 +69,9 @@ public class GameProgress implements Disposable
 
         score.setToMinimum();
         lives.setToMaximum();
+
+        timeBar = new ProgressBar(1, 0, _MAX_TIMEBAR_LENGTH, "bar9");
+        fuelBar = new ProgressBar(1, 0, _MAX_FUELBAR_LENGTH, "bar9");
 
         baseDestroyed     = false;
         roverDestroyed    = false;
@@ -114,6 +126,89 @@ public class GameProgress implements Disposable
         }
     }
 
+    /**
+     * Update the fuel bar and Launch timer bar.
+     * The fuel bar decrements if LJM is flying, or jumping a crater.
+     * The Launch Timer bar slowly decrements down to zero. Once
+     * the bar is empty the missiles are launched.
+     */
+    public void updateBars()
+    {
+        if (!App.teleportManager.teleportActive)
+        {
+            if (App.getPlayer() != null)
+            {
+                if ((App.getPlayer().getAction() == ActionStates._FLYING) || App.getPlayer().isJumpingCrater)
+                {
+                    fuelBar.setSpeed(App.getPlayer().isCarrying ? 2 : 1);
+                    fuelBar.updateSlowDecrement();
+                }
+            }
+
+            if (App.getBase().getAction() != ActionStates._WAITING)
+            {
+                timeBar.updateSlowDecrement();
+            }
+
+            if (timeBar.justEmptied)
+            {
+                if (App.getBase() != null)
+                {
+                    if (!App.missileBaseManager.isMissileActive)
+                    {
+                        App.getBase().setAction(ActionStates._SET_FIGHTING);
+                    }
+                }
+
+                timeBar.refill();
+            }
+        }
+    }
+
+    /**
+     * Updates the Fuel bar and Time bar colours, depending
+     * on the length of the bars.
+     */
+    public void updateBarColours()
+    {
+        App.getHud().fuelLowWarning = false;
+        App.getHud().timeLowWarning = false;
+
+        if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
+        {
+            if (fuelBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
+            {
+                fuelBar.setColor(Color.RED);
+                App.getHud().fuelLowWarning = true;
+            }
+            else
+            {
+                fuelBar.setColor(Color.ORANGE);
+            }
+        }
+        else
+        {
+            fuelBar.setColor(Color.GREEN);
+        }
+
+        if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 2))
+        {
+            if (timeBar.getTotal() < (float) (_MAX_TIMEBAR_LENGTH / 4))
+            {
+                timeBar.setColor(Color.RED);
+                App.getHud().timeLowWarning = true;
+            }
+            else
+            {
+                timeBar.setColor(Color.ORANGE);
+            }
+        }
+        else
+        {
+            timeBar.setColor(Color.YELLOW);
+        }
+    }
+
     private void updateStacks()
     {
         int amount;
@@ -130,7 +225,7 @@ public class GameProgress implements Disposable
         {
             amount = NumberUtils.getCount(timeStack);
 
-            App.getHud().getTimeBar().add(amount);
+            timeBar.add(amount);
             timeStack -= amount;
         }
 
@@ -138,9 +233,19 @@ public class GameProgress implements Disposable
         {
             amount = NumberUtils.getCount(fuelStack);
 
-            App.getHud().getFuelBar().add(amount);
+            fuelBar.add(amount);
             fuelStack -= amount;
         }
+    }
+
+    public ProgressBar getTimeBar()
+    {
+        return timeBar;
+    }
+
+    public ProgressBar getFuelBar()
+    {
+        return fuelBar;
     }
 
     public Item getScore()
@@ -151,11 +256,6 @@ public class GameProgress implements Disposable
     public Item getLives()
     {
         return lives;
-    }
-
-    public void closeLastGame()
-    {
-        App.googleServices.submitScore(score.getTotal(), playerLevel);
     }
 
     public void toMinimum()
@@ -169,6 +269,11 @@ public class GameProgress implements Disposable
     public float getGameDifficulty()
     {
         return gameDiffculty;
+    }
+
+    public void closeLastGame()
+    {
+        App.googleServices.submitScore(score.getTotal(), playerLevel);
     }
 
     @Override
