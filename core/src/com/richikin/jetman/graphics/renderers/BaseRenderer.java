@@ -2,7 +2,6 @@ package com.richikin.jetman.graphics.renderers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.richikin.enumslib.StateID;
@@ -20,6 +19,8 @@ import com.richikin.utilslib.maths.SimpleVec3F;
 
 public class BaseRenderer implements Disposable
 {
+    private static final int PLAYER_ROVER_OFFSET = 130;
+
     public OrthoGameCamera hudGameCamera;
     public OrthoGameCamera spriteGameCamera;
     public OrthoGameCamera tiledGameCamera;
@@ -107,10 +108,7 @@ public class BaseRenderer implements Disposable
      */
     public void render()
     {
-//        Gdx.gl.glClearColor(0, 0, 0, 1);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        ScreenUtils.clear(Color.BLACK);
+        ScreenUtils.clear(Color.BLACK, false);
 
         //
         // Set the positioning reference point for the cameras. Cameras
@@ -123,7 +121,7 @@ public class BaseRenderer implements Disposable
                 {
                     App.mapUtils.positionAt
                         (
-                            (int) (App.getRover().sprite.getX() + 130),
+                            (int) (App.getRover().sprite.getX() + PLAYER_ROVER_OFFSET),
                             (int) (App.getRover().sprite.getY())
                         );
                 }
@@ -144,7 +142,26 @@ public class BaseRenderer implements Disposable
 
         App.spriteBatch.enableBlending();
 
-        // ----- Draw the first set of Parallax Layers, if enabled -----
+        processParallaxCamera();
+        processTiledMapCamera();
+        processSpritesCamera();
+        processHUDCamera();
+
+        // ----- Draw the Stage, if enabled -----
+        if (isDrawingStage && (App.stage != null))
+        {
+            App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
+            App.stage.draw();
+        }
+
+        gameZoom.stop();
+        hudZoom.stop();
+
+        App.worldModel.drawDebugMatrix();
+    }
+
+    private void processParallaxCamera()
+    {
         if (parallaxGameCamera.isInUse)
         {
             parallaxGameCamera.viewport.apply();
@@ -161,8 +178,10 @@ public class BaseRenderer implements Disposable
             App.entityManager.renderSystem.drawBackgroundSprites();
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the TiledMap, if enabled -----
+    private void processTiledMapCamera()
+    {
         if (tiledGameCamera.isInUse)
         {
             tiledGameCamera.viewport.apply();
@@ -185,8 +204,10 @@ public class BaseRenderer implements Disposable
             App.mapData.render(tiledGameCamera.camera);
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the game sprites, if enabled -----
+    private void processSpritesCamera()
+    {
         if (spriteGameCamera.isInUse)
         {
             spriteGameCamera.viewport.apply();
@@ -210,9 +231,14 @@ public class BaseRenderer implements Disposable
 
             App.spriteBatch.end();
         }
+    }
 
-        // ----- Draw the HUD and any related objects, if enabled -----
-        // ----- The Front End should only be using this camera -------
+    /**
+     * Draw the HUD and any related objects, if enabled.
+     * The Front End should only be using this camera.
+     */
+    private void processHUDCamera()
+    {
         if (hudGameCamera.isInUse)
         {
             hudGameCamera.viewport.apply();
@@ -229,18 +255,6 @@ public class BaseRenderer implements Disposable
 
             App.spriteBatch.end();
         }
-
-        // ----- Draw the Stage, if enabled -----
-        if (isDrawingStage && (App.stage != null))
-        {
-            App.stage.act(Math.min(Gdx.graphics.getDeltaTime(), Gfx._STEP_TIME));
-            App.stage.draw();
-        }
-
-        gameZoom.stop();
-        hudZoom.stop();
-
-        App.worldModel.drawDebugMatrix();
     }
 
     public LoadingScreen getSplashScreen()
@@ -248,12 +262,12 @@ public class BaseRenderer implements Disposable
         return loadingScreen;
     }
 
-    public void resizeCameras(int _width, int _height)
+    public void resizeCameras(int width, int height)
     {
-        parallaxGameCamera.resizeViewport(_width, _height, true);
-        tiledGameCamera.resizeViewport(_width, _height, true);
-        spriteGameCamera.resizeViewport(_width, _height, true);
-        hudGameCamera.resizeViewport(_width, _height, true);
+        parallaxGameCamera.resizeViewport(width, height, true);
+        tiledGameCamera.resizeViewport(width, height, true);
+        spriteGameCamera.resizeViewport(width, height, true);
+        hudGameCamera.resizeViewport(width, height, true);
     }
 
     @Override

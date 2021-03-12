@@ -59,6 +59,9 @@ public class HeadsUpDisplay implements Disposable
     private static final int _BASE_ARROW  = 8;
     private static final int _FUEL_BAR    = 9;
     private static final int _TIME_BAR    = 10;
+    private static final int _LEVEL       = 11;
+    private static final int _SCORE       = 12;
+    private static final int _HISCORE     = 13;
 
     //@formatter:off
     private static final int[][] displayPos =
@@ -74,6 +77,9 @@ public class HeadsUpDisplay implements Disposable
         {1218, 1218, (720 -  92),   0,   0},    // Base Arrow
         { 162,  162, (720 -  72),   0,   0},    // Fuel Bar
         { 162,  162, (720 - 101),   0,   0},    // Time Bar
+        { 208,  208, (720 -   6),   0,   0},    // Player Level
+        { 296,  296, (720 -   4),   0,   0},    // Score
+        { 660,  660, (720 -   6),   0,   0},    // HiScore
     };
 
     private final int[][] livesDisplay =
@@ -487,8 +493,8 @@ public class HeadsUpDisplay implements Disposable
                         "%02d",
                         App.gameProgress.playerLevel
                     ),
-                AppConfig.hudOriginX + 208,
-                AppConfig.hudOriginY + 714
+                AppConfig.hudOriginX + displayPos[_LEVEL][_X1],
+                AppConfig.hudOriginY + displayPos[_LEVEL][_Y]
             );
     }
 
@@ -528,8 +534,19 @@ public class HeadsUpDisplay implements Disposable
      */
     private void drawArrows()
     {
-        App.spriteBatch.draw(arrows[truckArrowIndex], (AppConfig.hudOriginX + displayPos[_TRUCK_ARROW][_X1]), (AppConfig.hudOriginY + displayPos[_TRUCK_ARROW][_Y]));
-        App.spriteBatch.draw(arrows[baseArrowIndex], (AppConfig.hudOriginX + displayPos[_BASE_ARROW][_X1]), (AppConfig.hudOriginY + displayPos[_BASE_ARROW][_Y]));
+        App.spriteBatch.draw
+            (
+                arrows[truckArrowIndex],
+                (AppConfig.hudOriginX + displayPos[_TRUCK_ARROW][_X1]),
+                (AppConfig.hudOriginY + displayPos[_TRUCK_ARROW][_Y])
+            );
+
+        App.spriteBatch.draw
+            (
+                arrows[baseArrowIndex],
+                (AppConfig.hudOriginX + displayPos[_BASE_ARROW][_X1]),
+                (AppConfig.hudOriginY + displayPos[_BASE_ARROW][_Y])
+            );
     }
 
     private void drawMessages()
@@ -547,7 +564,7 @@ public class HeadsUpDisplay implements Disposable
     {
         if (stateID == StateID._INIT)
         {
-            com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new com.richikin.utilslib.ui.Scene2DUtils();
+            Scene2DUtils scene2DUtils = new Scene2DUtils();
 
             imageFuelLow = scene2DUtils.createDrawable("fuel_low", App.assets.getTextsLoader());
             fuelLowState = true;
@@ -590,7 +607,7 @@ public class HeadsUpDisplay implements Disposable
         {
             int xPos = AppConfig.virtualControllerPos == ControllerPos._LEFT ? _X1 : _X2;
 
-            com.richikin.utilslib.ui.Scene2DUtils scene2DUtils = new Scene2DUtils();
+            Scene2DUtils scene2DUtils = new Scene2DUtils();
 
             AttackButton = scene2DUtils.addButton
                 (
