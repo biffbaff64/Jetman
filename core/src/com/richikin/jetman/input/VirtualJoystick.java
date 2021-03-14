@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.richikin.jetman.core.App;
+import com.richikin.jetman.core.GameConstants;
 import com.richikin.utilslib.physics.Dir;
 import com.richikin.utilslib.input.DirectionMap;
 import com.richikin.utilslib.input.Touchpad;
@@ -26,6 +27,7 @@ public class VirtualJoystick
     public void create()
     {
         Skin touchpadSkin = new Skin();
+
         touchpadSkin.add("background", new Texture("data/packedimages/input/touch_background.png"));
         touchpadSkin.add("ball", new Texture("data/packedimages/input/joystick_ball.png"));
 
@@ -145,14 +147,12 @@ public class VirtualJoystick
 
     private Dir evaluateJoypadDirection()
     {
-        Dir joyDir;
-
         //
         // The default angle for joystick goes round anti-clockwise,
         // so modify so that the result is now clockwise.
-        int angle = Math.abs((int) (InputUtils.getJoystickAngle() - 360));
+        int angle = Math.abs((int) (InputUtils.inst().getJoystickAngle() - GameConstants.DEGREES_360));
 
-        joyDir = DirectionMap.map[angle / 10].translated;
+        Dir joyDir = DirectionMap.map[angle / 10].translated;
 
         App.inputManager.lastRegisteredDirection = joyDir;
 

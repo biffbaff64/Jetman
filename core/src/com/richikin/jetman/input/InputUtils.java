@@ -8,12 +8,24 @@ import com.richikin.utilslib.input.controllers.ControllerType;
 
 public class InputUtils
 {
-    public static float getJoystickAngle()
+    private static final InputUtils instance;
+
+    static
     {
-        return getJoystickVector().angle();
+        instance = new InputUtils();
     }
 
-    public static Vector2 getJoystickVector()
+    public static InputUtils inst()
+    {
+        return instance;
+    }
+
+    public float getJoystickAngle()
+    {
+        return getJoystickVector().angleDeg();
+    }
+
+    public Vector2 getJoystickVector()
     {
         float xPerc = App.inputManager.virtualJoystick.getTouchpad().getKnobPercentX();
         float yPerc = App.inputManager.virtualJoystick.getTouchpad().getKnobPercentY();
@@ -23,8 +35,8 @@ public class InputUtils
         return vector2.rotate90(-1);
     }
 
-    public static boolean isInputAvailable(ControllerType _inputType)
+    public boolean isInputAvailable(ControllerType inputType)
     {
-        return AppConfig.availableInputs.contains(_inputType, true);
+        return AppConfig.availableInputs.contains(inputType, true);
     }
 }
