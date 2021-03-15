@@ -14,7 +14,6 @@ import com.richikin.jetman.characters.misc.Teleporter;
 import com.richikin.jetman.characters.hero.MainPlayer;
 import com.richikin.jetman.entities.objects.GdxSprite;
 import com.richikin.jetman.entities.objects.SpriteDescriptor;
-import com.richikin.utilslib.assets.AssetSize;
 import com.richikin.utilslib.logging.Trace;
 import com.richikin.utilslib.maths.SimpleVec2;
 
@@ -117,6 +116,15 @@ public class Entities
                     new SimpleVec2(9, 9),
                     Animation.PlayMode.LOOP,
                     TileID._UFO_BULLET_TILE
+                ),
+            new SpriteDescriptor
+                (
+                    "Missile",
+                    GraphicID.G_MISSILE, GraphicID._INTERACTIVE,
+                    GameAssets._MISSILE_ASSET, GameAssets._MISSILE_FRAMES,
+                    new SimpleVec2(120, 29),
+                    Animation.PlayMode.LOOP,
+                    TileID._MISSILE_TILE
                 ),
             new SpriteDescriptor
                 (

@@ -27,7 +27,7 @@ public class RoomManager implements Disposable
 //                        (
 //                            -2.0f, 1200,
                             // Zero Entities
-//                            0, 4, 0, 0, 0, 0,
+//                            0, 0, 0, 0, 0, 0,
 //                            0, 0, 0, 0, 0, 0
                             // Lots of Entities
 //                            4, 4, 4, 4, 4, 4,
@@ -40,9 +40,20 @@ public class RoomManager implements Disposable
                     "level1.tmx",
                     new MapEntry
                         (
-                            -2.0f, 1200,
-                            6, 6, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0
+                            -2.0f,  // To Be Removed
+                            1200,   // Base fire rate
+                            6,      // maxAsteroids
+                            6,      // maxGreenBlocks
+                            0,      // maxWheels
+                            0,      // maxStairClimbers
+                            0,      // maxStarSpinners
+                            0,      // maxTwinkles
+                            0,      // maxBlobs
+                            0,      // maxDogs
+                            0,      // maxTopSpinners
+                            0,      // max3LegAliens
+                            0,      // max3BallAliens
+                            0       // maxSpinningBalls
                         )
                 ),
             new Room

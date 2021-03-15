@@ -2,12 +2,14 @@ package com.richikin.jetman.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.async.AsyncExecutor;
 import com.badlogic.gdx.utils.async.AsyncResult;
 import com.badlogic.gdx.utils.async.AsyncTask;
 import com.richikin.jetman.config.AppConfig;
 import com.richikin.jetman.developer.Developer;
 import com.richikin.jetman.graphics.effects.StarField;
+import com.richikin.jetman.screens.SplashScreen;
 import com.richikin.utilslib.google.DummyAdsController;
 import com.richikin.utilslib.google.IPlayServices;
 import com.richikin.enumslib.StateID;
@@ -15,6 +17,8 @@ import com.richikin.utilslib.google.PlayServicesData;
 
 public class MainGame extends com.badlogic.gdx.Game
 {
+    private Startup startup;
+
     /**
      * Instantiates a new Main game.
      */
@@ -30,23 +34,41 @@ public class MainGame extends com.badlogic.gdx.Game
     {
         App.mainGame = this;
 
+        SplashScreen.inst().setup();
+
         //
         // Initialise all essential objects required before
         // the main screen is initialised.
         //
-        Startup startup = new Startup();
-        startup.startApp();
-        startup.closeStartup();
+        startup = new Startup();
     }
 
     @Override
     public void render()
     {
-        super.render();
+        if (SplashScreen.inst().isAvailable)
+        {
+            if (!startup.startupDone)
+            {
+                startup.startApp();
+            }
 
-        AppConfig.configListener.update();
+            SplashScreen.inst().update();
+            SplashScreen.inst().render();
 
-        App.baseRenderer.getSplashScreen().update();
+            if (!SplashScreen.inst().isAvailable)
+            {
+                startup.closeStartup();
+            }
+        }
+        else
+        {
+            ScreenUtils.clear(1, 1, 1, 1);
+
+            super.render();
+
+            AppConfig.configListener.update();
+        }
     }
 
     @Override

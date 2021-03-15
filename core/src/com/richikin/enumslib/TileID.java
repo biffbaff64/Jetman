@@ -34,7 +34,7 @@ public enum TileID
     _CRATER_TILE                (21),
     _ALIEN_WHEEL_TILE           (22),
     _ROVER_GUN_TILE             (23),
-    _ROCKET_TILE                (24),
+    _MISSILE_TILE               (24),
     _BRIDGE_TILE                (25),
     _TOWER_TILE                 (26),
     _WINDMILL_TILE              (27),

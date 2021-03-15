@@ -27,18 +27,18 @@ public class AlienManager extends GenericEntityManager
 {
     private final GraphicIndex[] aliens =
         {
-//            new GraphicIndex(GraphicID.G_3BALLS_UFO, 0),
-//            new GraphicIndex(GraphicID.G_3LEGS_ALIEN, 0),
-//            new GraphicIndex(GraphicID.G_ASTEROID, 0),
-//            new GraphicIndex(GraphicID.G_ALIEN_WHEEL, 0),
-//            new GraphicIndex(GraphicID.G_BLOB, 0),
-//            new GraphicIndex(GraphicID.G_DOG, 0),
+            new GraphicIndex(GraphicID.G_3BALLS_UFO, 0),
+            new GraphicIndex(GraphicID.G_3LEGS_ALIEN, 0),
+            new GraphicIndex(GraphicID.G_ASTEROID, 0),
+            new GraphicIndex(GraphicID.G_ALIEN_WHEEL, 0),
+            new GraphicIndex(GraphicID.G_BLOB, 0),
+            new GraphicIndex(GraphicID.G_DOG, 0),
             new GraphicIndex(GraphicID.G_GREEN_BLOCK, 0),
-//            new GraphicIndex(GraphicID.G_SPINNING_BALL, 0),
-//            new GraphicIndex(GraphicID.G_STAIR_CLIMBER, 0),
-//            new GraphicIndex(GraphicID.G_STAR_SPINNER, 0),
-//            new GraphicIndex(GraphicID.G_TOPSPIN, 0),
-//            new GraphicIndex(GraphicID.G_TWINKLES, 0),
+            new GraphicIndex(GraphicID.G_SPINNING_BALL, 0),
+            new GraphicIndex(GraphicID.G_STAIR_CLIMBER, 0),
+            new GraphicIndex(GraphicID.G_STAR_SPINNER, 0),
+            new GraphicIndex(GraphicID.G_TOPSPIN, 0),
+            new GraphicIndex(GraphicID.G_TWINKLES, 0),
         };
 
     public AlienManager()
